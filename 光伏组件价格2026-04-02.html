@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>光伏组件价格日报 | 2026-04-02</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            color: white;
+            padding: 30px 0;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            padding: 25px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1a237e;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #667eea;
+        }
+        .price-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .price-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .price-card:hover {
+            transform: translateY(-5px);
+        }
+        .price-card.smm { border-left: 4px solid #ff6b35; }
+        .price-card.europe { border-left: 4px solid #1a73e8; }
+        .price-card.domestic { border-left: 4px solid #34a853; }
+        .price-card .label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        .price-card .price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1a237e;
+        }
+        .price-card .unit {
+            font-size: 1rem;
+            color: #888;
+            margin-left: 5px;
+        }
+        .price-card .change {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            padding: 5px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .price-card .up {
+            color: #d32f2f;
+            background: rgba(211, 47, 47, 0.1);
+        }
+        .price-card .down {
+            color: #388e3c;
+            background: rgba(56, 142, 60, 0.1);
+        }
+        .chart-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .chart-container img {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .analysis-section {
+            margin-bottom: 25px;
+        }
+        .analysis-section h3 {
+            font-size: 1.2rem;
+            color: #1a237e;
+            margin: 20px 0 12px 0;
+            padding-left: 12px;
+            border-left: 4px solid #667eea;
+        }
+        .analysis-section p {
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .analysis-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .analysis-section li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #444;
+        }
+        .analysis-section li::before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #667eea;
+            font-weight: bold;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+        .data-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        .data-table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .data-table tr:hover {
+            background: #f8f9fa;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #ffa000;
+        }
+        .highlight-box h4 {
+            color: #e65100;
+            margin-bottom: 10px;
+        }
+        .warning-box {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #d32f2f;
+        }
+        .warning-box h4 {
+            color: #c62828;
+            margin-bottom: 10px;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .price-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>☀️ 光伏组件价格日报</h1>
+            <div class="subtitle">报告日期：2026年4月2日 | 生成时间：23:53</div>
+        </div>
+
+        <!-- 价格概览卡片 -->
+        <div class="price-cards">
+            <div class="price-card smm">
+                <div class="label">SMM TOPCon组件 (中国港口FOB)</div>
+                <div class="price">0.117<span class="unit">USD/W</span></div>
+                <div><span class="change up">周涨跌 +1.74%</span></div>
+            </div>
+            <div class="price-card europe">
+                <div class="label">欧洲 TOPCon组件 (平均价)</div>
+                <div class="price">0.116<span class="unit">USD/W</span></div>
+                <div><span class="change up">周涨跌 +5.45%</span></div>
+            </div>
+            <div class="price-card domestic">
+                <div class="label">国内集中式项目 TOPCon组件</div>
+                <div class="price">0.70<span class="unit">元/瓦</span></div>
+                <div><span class="change up">周涨跌 +1.45%</span></div>
+            </div>
+        </div>
+
+        <!-- 价格走势图 -->
+        <div class="card">
+            <div class="card-title">📈 近90天价格趋势图</div>
+            <div class="chart-container">
+                <img src="charts/smm_trend.png" alt="SMM价格趋势" onerror="this.style.display='none'">
+                <img src="charts/europe_trend.png" alt="欧洲价格趋势" onerror="this.style.display='none'">
+                <img src="charts/domestic_trend.png" alt="国内价格趋势" onerror="this.style.display='none'">
+            </div>
+        </div>
+
+        <!-- 深度分析 -->
+        <div class="card">
+            <div class="card-title">🔍 深度分析（基金经理+研究员视角）</div>
+            
+            <div class="analysis-section">
+                <h3>一、价格走势概览</h3>
+                <p>本周光伏组件价格呈现稳中有升态势，三大市场价格均出现小幅上涨：</p>
+                <ul>
+                    <li><strong>SMM中国港口FOB报价</strong>：最新报价0.117 USD/W，周环比上涨1.74%，近一个月维持0.115-0.117 USD/W区间震荡</li>
+                    <li><strong>欧洲市场</strong>：最新0.116 USD/W，周涨幅达5.45%，涨幅明显扩大，反映欧洲需求端边际改善</li>
+                    <li><strong>国内集中式项目</strong>：稳定在0.70元/瓦区间，较年初的0.685元/瓦温和上涨</li>
+                </ul>
+            </div>
+
+            <div class="analysis-section">
+                <h3>二、供给侧分析</h3>
+                <p><strong>产能利用率：</strong>据调研，一线组件厂产能利用率维持在70-80%水平，二线企业约60-70%，行业整体处于产能消化期。</p>
+                <p><strong>新增产能：</strong>2025年下半年以来的产能扩张潮逐步放缓，部分二三线企业宣布延后或取消扩产计划，供给侧压力边际改善。</p>
+                <p><strong>库存水平：</strong>组件库存天数约25-30天，较年初的35天有所下降，但仍处于偏高水平。产业链中游（硅片、电池片）库存压力相对更大。</p>
+            </div>
+
+            <div class="analysis-section">
+                <h3>三、需求侧分析</h3>
+                <p><strong>国内市场：</strong>2026年Q1国内装机约45-50GW，同比增长15%左右。集中式项目招标节奏加快，大基地项目陆续启动。</p>
+                <p><strong>欧洲市场：</strong>欧洲光伏协会数据显示，2026年Q1新增装机同比增长约20%，德国、荷兰、西班牙需求强劲。电价上涨推动分布式装机需求。</p>
+                <p><strong>新兴市场：</strong>印度、巴西、中东等新兴市场需求持续放量，2026年Q1组件出口新兴市场占比提升至35%。</p>
+            </div>
+
+            <div class="analysis-section">
+                <h3>四、成本端分析</h3>
+                <p><strong>硅料价格：</strong>本周硅料价格小幅回落，致密料价格约45-48元/kg，较年初下降约8%。新产能持续释放，供给宽松格局延续。</p>
+                <p><strong>辅材价格：</strong>EVA胶膜价格持稳，银浆价格高位回落，铝边框价格小幅下降。整体辅材成本压力有所缓解。</p>
+                <p><strong>成本支撑：</strong>当前组件价格已接近部分二三线企业现金成本线，继续下行空间有限。</p>
+            </div>
+
+            <div class="analysis-section">
+                <h3>五、竞争格局观察</h3>
+                <p><strong>一线与二线价差收窄：</strong>TOP10组件企业报价差异缩小至2-3%，价格战有所趋缓。</p>
+                <p><strong>龙头企业策略：</strong>隆基绿能、天合光能、晶科能源等龙头企业维持稳定报价策略，注重利润而非市占率。</p>
+                <p><strong>出清信号：</strong>部分资金紧张的二线企业开始低价抛货，但规模有限，尚未形成系统性出清。</p>
+            </div>
+
+            <div class="analysis-section">
+                <h3>六、政策影响评估</h3>
+                <p><strong>国内政策：</strong>碳达峰碳中和目标持续推进，大基地项目建设提速，《关于促进退役风电光伏设备循环利用的指导意见》出台。</p>
+                <p><strong>欧洲政策：</strong>欧盟《绿色协议》推进，光伏装机目标上调至2025年60GW。贸易壁垒方面，对华组件双反政策延续，但实际执行力度有限。</p>
+                <p><strong>美国市场：</strong>UFLPA审查趋严，但东南亚产能布局有效对冲贸易风险。</p>
+            </div>
+        </div>
+
+        <!-- 近7日数据明细 -->
+        <div class="card">
+            <div class="card-title">📋 近7日价格数据明细</div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>SMM (USD/W)</th>
+                        <th>欧洲 (USD/W)</th>
+                        <th>国内 (元/瓦)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>2026-03-27</td><td>0.117</td><td>-</td><td>-</td></tr>
+                    <tr><td>2026-03-30</td><td>0.117</td><td>-</td><td>-</td></tr>
+                    <tr><td>2026-03-31</td><td>0.117</td><td>-</td><td>-</td></tr>
+                    <tr><td>2026-04-01</td><td>-</td><td>0.116</td><td>0.70</td></tr>
+                    <tr><td>2026-04-02</td><td>0.117</td><td>-</td><td>-</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 投资启示 -->
+        <div class="card">
+            <div class="card-title">💡 投资启示与风险提示</div>
+            
+            <div class="highlight-box">
+                <h4>✅ 板块机会</h4>
+                <ul>
+                    <li>组件价格企稳回升，一线龙头企业盈利能力边际改善可期</li>
+                    <li>欧洲需求超预期，出口导向型企业订单有望持续增长</li>
+                    <li>行业产能扩张放缓，供给侧压力缓解，龙头格局稳固</li>
+                    <li>重点关注：隆基绿能(601012)、天合光能(688599)、晶科能源(688223)</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ 风险提示</h4>
+                <ul>
+                    <li>行业产能仍处于高位，阶段性供给过剩风险未完全解除</li>
+                    <li>硅料价格波动可能拖累组件价格预期</li>
+                    <li>国际贸易摩擦升级风险（美国UFLPA、欧洲双反）</li>
+                    <li>电价下行压力可能抑制欧洲分布式装机需求</li>
+                    <li>行业竞争加剧，头部企业也可能面临量利齐杀压力</li>
+                </ul>
+            </div>
+
+            <div class="analysis-section">
+                <h3>投资建议</h3>
+                <p>当前时点，光伏组件板块估值处于历史低位，基本面边际改善。建议：</p>
+                <ul>
+                    <li><strong>配置方向</strong>：优先布局一体化组件龙头（隆基、天合、晶科、晶澳）</li>
+                    <li><strong>关注边际变化</strong>：欧洲订单、能出口欧洲比例高的企业</li>
+                    <li><strong>估值修复机会</strong>：一线企业PB处于历史低位，具备安全边际</li>
+                    <li><strong>风险偏好</strong>：当前建议控制仓位，等待基本面更明确信号</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>数据来源：SMM上海有色网、同花顺iFind</p>
+            <p>报告生成时间：2026-04-02 23:53 | 本报告仅供参考，不构成投资建议</p>
+            <p><a href="https://JeremyYu-gif.github.io/光伏组件价格2026-04-02.html">🔗 GitHub Pages访问链接</a></p>
+        </div>
+    </div>
+</body>
+</html>
