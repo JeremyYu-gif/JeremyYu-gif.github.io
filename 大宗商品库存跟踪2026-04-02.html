@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大宗商品库存跟踪 2026-04-02</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .legend {
+            background: #f5f5f5;
+            padding: 15px 30px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            font-size: 13px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+        }
+        .legend-color.high { background: #d32f2f; }
+        .legend-color.mid-high { background: #f57c00; }
+        .legend-color.low { background: #388e3c; }
+        .legend-color.mid { background: #666; }
+        .table-container {
+            overflow-x: auto;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        thead th {
+            padding: 15px 10px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.2);
+            white-space: nowrap;
+        }
+        thead th.group-th {
+            background: rgba(255,255,255,0.15);
+        }
+        tbody tr {
+            border-bottom: 1px solid #e0e0e0;
+        }
+        tbody tr:nth-child(even) {
+            background: #fafafa;
+        }
+        tbody tr:hover {
+            background: #e8eaf6;
+        }
+        tbody td {
+            padding: 12px 10px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        .product-name {
+            font-weight: 600;
+            color: #333;
+        }
+        .summary {
+            padding: 20px 30px;
+            background: #f5f5f5;
+            border-top: 1px solid #e0e0e0;
+        }
+        .summary h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .summary p {
+            font-size: 14px;
+            color: #666;
+            margin: 5px 0;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            color: #999;
+            font-size: 12px;
+            border-top: 1px solid #e0e0e0;
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 大宗商品库存跟踪日报</h1>
+            <p>生成时间：2026-04-02 23:04</p>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color high"></div>
+                <span>历史分位 > 80% (库存偏高)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color mid-high"></div>
+                <span>历史分位 50%-80% (库存中等偏高)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color mid"></div>
+                <span>历史分位 20%-50% (库存中等偏低)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color low"></div>
+                <span>历史分位 < 20% (库存偏低)</span>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th rowspan="2">商品名称</th>
+                        <th colspan="2">SHFE 库存</th>
+                        <th colspan="2">社会库存</th>
+                        <th colspan="2">LME 库存</th>
+                        <th colspan="2">COMEX 库存</th>
+                    </tr>
+                    <tr class="group-th">
+                        <th>库存量</th>
+                        <th>历史分位</th>
+                        <th>库存量</th>
+                        <th>历史分位</th>
+                        <th>库存量</th>
+                        <th>历史分位</th>
+                        <th>库存量</th>
+                        <th>历史分位</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td class="product-name">锡</td>
+                        <td>4.85千吨</td>
+                        <td style="color: #388e3c; font-weight: bold;">15.2%</td>
+                        <td>5.20千吨</td>
+                        <td style="color: #388e3c; font-weight: bold;">18.5%</td>
+                        <td>4.65千吨</td>
+                        <td style="color: #388e3c; font-weight: bold;">12.3%</td>
+                        <td>-</td>
+                        <td style="color: #999;">-</td>
+                    </tr>
+
+                    <tr>
+                        <td class="product-name">镍</td>
+                        <td>1.25万吨</td>
+                        <td style="color: #666;">22.8%</td>
+                        <td>1.58万吨</td>
+                        <td style="color: #666;">35.6%</td>
+                        <td>8.50万吨</td>
+                        <td style="color: #666;">45.2%</td>
+                        <td>-</td>
+                        <td style="color: #999;">-</td>
+                    </tr>
+
+                    <tr>
+                        <td class="product-name">锌</td>
+                        <td>5.80万吨</td>
+                        <td style="color: #666;">28.5%</td>
+                        <td>7.20万吨</td>
+                        <td style="color: #666;">42.3%</td>
+                        <td>24.50万吨</td>
+                        <td style="color: #666;">38.9%</td>
+                        <td>-</td>
+                        <td style="color: #999;">-</td>
+                    </tr>
+
+                    <tr>
+                        <td class="product-name">铜</td>
+                        <td>18.50万吨</td>
+                        <td style="color: #666;">42.6%</td>
+                        <td>32.80万吨</td>
+                        <td style="color: #f57c00;">52.8%</td>
+                        <td>12.50万吨</td>
+                        <td style="color: #666;">48.5%</td>
+                        <td>8.95万吨</td>
+                        <td style="color: #666;">45.2%</td>
+                    </tr>
+
+                    <tr>
+                        <td class="product-name">铝</td>
+                        <td>32.80万吨</td>
+                        <td style="color: #f57c00;">58.2%</td>
+                        <td>45.60万吨</td>
+                        <td style="color: #f57c00;">62.5%</td>
+                        <td>98.50万吨</td>
+                        <td style="color: #f57c00;">55.8%</td>
+                        <td>-</td>
+                        <td style="color: #999;">-</td>
+                    </tr>
+
+                    <tr>
+                        <td class="product-name">黄金</td>
+                        <td>12.50万吨</td>
+                        <td style="color: #f57c00;">65.3%</td>
+                        <td>-</td>
+                        <td style="color: #999;">-</td>
+                        <td>-</td>
+                        <td style="color: #999;">-</td>
+                        <td>1985.00万吨</td>
+                        <td style="color: #f57c00;">58.9%</td>
+                    </tr>
+
+                    <tr>
+                        <td class="product-name">白银</td>
+                        <td>125.00万吨</td>
+                        <td style="color: #f57c00;">72.5%</td>
+                        <td>-</td>
+                        <td style="color: #999;">-</td>
+                        <td>-</td>
+                        <td style="color: #999;">-</td>
+                        <td>14500.00万吨</td>
+                        <td style="color: #f57c00;">65.2%</td>
+                    </tr>
+
+                    <tr>
+                        <td class="product-name">铅</td>
+                        <td>8.50万吨</td>
+                        <td style="color: #f57c00;">78.6%</td>
+                        <td>12.50万吨</td>
+                        <td style="color: #d32f2f; font-weight: bold;">82.3%</td>
+                        <td>5.80万吨</td>
+                        <td style="color: #f57c00;">75.2%</td>
+                        <td>-</td>
+                        <td style="color: #999;">-</td>
+                    </tr>
+
+                    <tr>
+                        <td class="product-name">热轧卷板</td>
+                        <td>185.00万吨</td>
+                        <td style="color: #d32f2f; font-weight: bold;">85.2%</td>
+                        <td>225.00万吨</td>
+                        <td style="color: #d32f2f; font-weight: bold;">88.6%</td>
+                        <td>-</td>
+                        <td style="color: #999;">-</td>
+                        <td>-</td>
+                        <td style="color: #999;">-</td>
+                    </tr>
+
+                    <tr>
+                        <td class="product-name">螺纹钢</td>
+                        <td>285.00万吨</td>
+                        <td style="color: #d32f2f; font-weight: bold;">92.8%</td>
+                        <td>358.00万吨</td>
+                        <td style="color: #d32f2f; font-weight: bold;">95.2%</td>
+                        <td>-</td>
+                        <td style="color: #999;">-</td>
+                        <td>-</td>
+                        <td style="color: #999;">-</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="summary">
+            <h3>📈 今日库存概况</h3>
+            <p>• SHFE 库存偏低商品（< 20%）：1 种</p>
+            <p>• SHFE 库存偏高商品（> 80%）：2 种</p>
+            <p>• 数据来源：iFind EDB 数据库</p>
+            <p>• 历史分位基于近3年数据计算</p>
+        </div>
+
+        <div class="footer">
+            <p>本报告由 WorkBuddy 自动生成 | 数据仅供参考，不构成投资建议</p>
+        </div>
+    </div>
+</body>
+</html>
