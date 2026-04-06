@@ -1,1621 +1,573 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOP 股票跟踪日报 - 2026-04-06</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        .header .meta {
-            font-size: 1.1em;
-            opacity: 0.9;
-            margin-top: 15px;
-        }
-        .analyst {
-            background: rgba(255,255,255,0.15);
-            display: inline-block;
-            padding: 8px 20px;
-            border-radius: 20px;
-            margin-top: 10px;
-        }
-        .summary {
-            background: #f8f9fa;
-            padding: 25px;
-            border-left: 5px solid #667eea;
-            margin: 20px;
-        }
-        .summary h2 {
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 1.3em;
-        }
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        .summary-item {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        .summary-item .label {
-            font-size: 0.9em;
-            color: #666;
-            margin-bottom: 5px;
-        }
-        .summary-item .value {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #333;
-        }
-        .add { color: #28a745; }
-        .hold { color: #6c757d; }
-        .reduce { color: #dc3545; }
-        .market-note {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            padding: 15px 20px;
-            margin: 20px;
-            border-radius: 8px;
-            color: #856404;
-        }
-        .market-note strong {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .stocks {
-            padding: 0 20px 20px 20px;
-        }
-        .stock-card {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .stock-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        .stock-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-        .stock-name {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #333;
-        }
-        .stock-code {
-            color: #666;
-            margin-left: 10px;
-        }
-        .stock-price {
-            font-size: 1.8em;
-            font-weight: bold;
-        }
-        .price-up { color: #dc3545; }  /* 中国市场惯例：涨为红 */
-        .price-down { color: #28a745; } /* 中国市场惯例：跌为绿 */
-        .recommendation {
-            display: inline-block;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 1.1em;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        .rec-add {
-            background: #d4edda;
-            color: #155724;
-        }
-        .rec-hold {
-            background: #e2e3e5;
-            color: #383d41;
-        }
-        .rec-reduce {
-            background: #f8d7da;
-            color: #721c24;
-        }
-        .section-title {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #667eea;
-            margin: 15px 0 10px 0;
-            padding-left: 10px;
-            border-left: 4px solid #667eea;
-        }
-        .news-item {
-            background: #f8f9fa;
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 10px;
-        }
-        .news-title {
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 5px;
-        }
-        .news-meta {
-            font-size: 0.85em;
-            color: #666;
-            margin-bottom: 5px;
-        }
-        .news-impact {
-            display: inline-block;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 0.85em;
-            font-weight: bold;
-        }
-        .impact-up { background: #ffebee; color: #c62828; }
-        .impact-down { background: #e8f5e9; color: #2e7d32; }
-        .impact-neutral { background: #f5f5f5; color: #616161; }
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .tech-item {
-            background: #f8f9fa;
-            padding: 8px;
-            border-radius: 6px;
-            text-align: center;
-        }
-        .tech-label {
-            font-size: 0.8em;
-            color: #666;
-            margin-bottom: 3px;
-        }
-        .tech-value {
-            font-weight: bold;
-            color: #333;
-        }
-        .ma-trend {
-            font-size: 1.1em;
-            font-weight: bold;
-            padding: 8px 15px;
-            border-radius: 6px;
-            margin: 10px 0;
-        }
-        .ma-bullish { background: #ffebee; color: #c62828; }
-        .ma-bearish { background: #e8f5e9; color: #2e7d32; }
-        .ma-neutral { background: #f5f5f5; color: #616161; }
-        .price-levels {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-        .price-level {
-            flex: 1;
-            text-align: center;
-            padding: 8px;
-            border-radius: 6px;
-        }
-        .resistance { background: #ffebee; color: #c62828; }
-        .support { background: #e8f5e9; color: #2e7d32; }
-        .rec-reason {
-            background: #fff3cd;
-            padding: 10px;
-            border-radius: 6px;
-            margin-top: 10px;
-            color: #856404;
-        }
-        .disclaimer {
-            background: #f8f9fa;
-            padding: 20px;
-            text-align: center;
-            color: #6c757d;
-            font-size: 0.9em;
-            border-top: 1px solid #dee2e6;
-        }
-        @media (max-width: 768px) {
-            .stock-header {
-                flex-direction: column;
-                text-align: center;
-            }
-            .stock-code {
-                margin-left: 0;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOP股票跟踪日报 - 2026-04-06</title>
+<style>
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:#f3f5f9;margin:0;padding:24px;color:#1f2937}
+.page{max-width:1180px;margin:0 auto}
+.report-header{background:linear-gradient(135deg,#111827,#1f3a8a);color:#fff;padding:28px 32px;border-radius:18px;box-shadow:0 10px 30px rgba(15,23,42,.18);margin-bottom:22px}
+.report-header h1{margin:0;font-size:30px;font-weight:800}
+.subtitle{margin-top:10px;font-size:14px;opacity:.88}
+.meta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px;font-size:13px;opacity:.85}
+.meta-pill{background:rgba(255,255,255,.12);padding:6px 10px;border-radius:999px}
+.public-url-box{margin-top:18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);padding:12px 14px;border-radius:12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.public-url-label{font-weight:700}
+.public-url-box a{color:#fff;text-decoration:none;word-break:break-all}
+.stock-card{background:#fff;border-radius:18px;padding:24px;margin-bottom:18px;box-shadow:0 10px 28px rgba(15,23,42,.08)}
+.stock-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:1px solid #e5e7eb;padding-bottom:14px}
+.stock-title-wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.stock-title-wrap h2{margin:0;font-size:22px}
+.market-tag{font-size:12px;background:#eef2ff;color:#4338ca;border-radius:999px;padding:4px 10px;font-weight:700}
+.price-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.price{font-size:22px;font-weight:800;color:#111827}
+.change{padding:6px 12px;border-radius:999px;font-size:14px;font-weight:800}
+.change-up{background:#fee2e2;color:#b91c1c}
+.change-down{background:#dcfce7;color:#15803d}
+.change-flat{background:#e5e7eb;color:#4b5563}
+.section{margin-top:18px}
+.section h3{margin:0 0 12px;font-size:16px;color:#334155;border-left:4px solid #2563eb;padding-left:10px}
+.news-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.news-summary{font-size:14px;line-height:1.7;color:#0f172a;margin-bottom:8px}
+.news-impact{font-size:13px;line-height:1.6;margin-bottom:6px}
+.impact-up{color:#b91c1c}
+.impact-down{color:#15803d}
+.impact-flat{color:#475569}
+.news-source{font-size:13px;color:#64748b}
+.news-source a{color:#2563eb;text-decoration:none}
+.news-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.news-badge,.news-time{font-size:12px;padding:4px 8px;border-radius:999px;background:#e2e8f0;color:#334155}
+.no-news{color:#64748b;font-style:italic;padding:14px;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:12px}
+.tech-table{width:100%;border-collapse:collapse;background:#fff}
+.tech-table td{padding:10px 12px;border-bottom:1px solid #e5e7eb;font-size:14px;vertical-align:top}
+.tech-table td:first-child{width:132px;color:#475569;font-weight:700;background:#f8fafc}
+.levels{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 12px;font-size:14px}
+.resistance{color:#dc2626;font-weight:700}
+.support{color:#059669;font-weight:700}
+.recommendation{padding:14px 16px;border-radius:14px;font-size:14px;font-weight:800}
+.recommend-add{background:#dcfce7;color:#166534}
+.recommend-reduce{background:#fee2e2;color:#991b1b}
+.recommend-hold{background:#e5e7eb;color:#374151}
+.footer{text-align:center;color:#94a3b8;font-size:12px;margin-top:26px;padding-top:18px;border-top:1px solid #e5e7eb}
+@media (max-width:768px){body{padding:14px}.report-header,.stock-card{padding:18px}.stock-header{flex-direction:column}.price-wrap{align-items:flex-start}.levels{flex-direction:column;gap:8px}}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>📊 TOP 股票跟踪日报</h1>
-            <div class="meta">
-                <div>📅 2026-04-06 | ⏰ 18:58</div>
-                <div class="analyst">👤 资深基金经理 + 行业研究员 + 资深散户</div>
-            </div>
-        </div>
-
-        <div class="market-note">
-            <strong>⚠️ 市场特别说明</strong>
-            今日市场特别说明：
-            <ul style="margin: 10px 0 0 20px;">
-                <li>美股：4月3日（Good Friday）休市，4月6日（周一）恢复交易</li>
-                <li>A股/港股：4月4-6日清明节假期休市</li>
-                <li>本报告基于4月2日收盘数据及4月3日前后的公告信息生成</li>
-                <li>由于假期影响，部分市场流动性可能偏低，建议关注4月7日（周二）常规交易日的走势</li>
-            </ul>
-        </div>
-
-        <div class="summary">
-            <h2>📈 今日操作建议汇总</h2>
-            <div class="summary-grid">
-                <div class="summary-item">
-                    <div class="label">🟩 增仓</div>
-                    <div class="value add">1 只</div>
-                </div>
-                <div class="summary-item">
-                    <div class="label">⬜ 持有</div>
-                    <div class="value hold">7 只</div>
-                </div>
-                <div class="summary-item">
-                    <div class="label">🟥 减仓</div>
-                    <div class="value reduce">4 只</div>
-                </div>
-                <div class="summary-item">
-                    <div class="label">📊 跟踪总数</div>
-                    <div class="value">12 只</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="stocks">
-
-            <div class="stock-card">
-                <div class="stock-header">
-                    <div>
-                        <span class="stock-name">Vor Biopharma Inc</span>
-                        <span class="stock-code">(VOR)</span>
-                    </div>
-                    <div>
-                        <span class="stock-price price-down">
-                            ¥12.04 
-                            <span style="font-size: 0.6em;">(-0.59%)</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="recommendation rec-hold">⬜ 持有</div>
-                
-                <div class="section-title">📰 近24小时资讯</div>
-
-                <div class="news-item">
-                    <div class="news-title">Vor Bio Reports Inducement Grant Under Nasdaq Listing Rule 5635(c)(4)</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-neutral">中性→</span>
-                        <span style="margin-left: 10px;">📅 2026-04-01</span>
-                        <span style="margin-left: 10px;">🔗 SEC / Market Chameleon</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">4月1日公告，向9名新员工授予42,650股期权和9,050股RSU，依据Nasdaq Listing Rule 5635(c)(4)</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://ir.vorbio.com/news-releases/" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-title">Zacks: Vor Biopharma Upgraded to Buy</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-up">正向▲</span>
-                        <span style="margin-left: 10px;">📅 2026-04-02</span>
-                        <span style="margin-left: 10px;">🔗 Zacks Investment Research</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">4月2日Zacks将VOR评级上调至Buy，目标价$15.50，位列Zacks覆盖股票前20%</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://www.zacks.com/stock/news/2893894/vor-biopharma-vor-upgraded-to-buy-heres-why" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="section-title">📊 技术面分析</div>
-                <div class="ma-trend ma-bearish">均线系统：空头排列</div>
-                
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <div class="tech-label">MA5</div>
-                        <div class="tech-value">¥13.13</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA10</div>
-                        <div class="tech-value">¥13.34</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA20</div>
-                        <div class="tech-value">¥13.20</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA60</div>
-                        <div class="tech-value">¥13.76</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DIF</div>
-                        <div class="tech-value">-0.1234</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DEA</div>
-                        <div class="tech-value">-0.1111</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD BAR</div>
-                        <div class="tech-value">-0.0246</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ K</div>
-                        <div class="tech-value">35.23</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ D</div>
-                        <div class="tech-value">40.12</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ J</div>
-                        <div class="tech-value">25.45</div>
-                    </div>
-                </div>
-                
-                <div class="price-levels">
-                    <div class="price-level resistance">
-                        <div class="tech-label">🔴 压力位</div>
-                        <div class="tech-value">¥13.20</div>
-                    </div>
-                    <div class="price-level support">
-                        <div class="tech-label">🟢 支撑位</div>
-                        <div class="tech-value">¥12.00</div>
-                    </div>
-                </div>
-                
-                <div class="rec-reason">
-                    <strong>💡 操作建议理由：</strong>Zacks上调评级支撑情绪，但均线空头排列，Q4财报已出，短期震荡整理
-                </div>
-            </div>
-
-            <div class="stock-card">
-                <div class="stock-header">
-                    <div>
-                        <span class="stock-name">Biogen Inc</span>
-                        <span class="stock-code">(BIIB)</span>
-                    </div>
-                    <div>
-                        <span class="stock-price price-down">
-                            ¥181.46 
-                            <span style="font-size: 0.6em;">(-1.03%)</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="recommendation rec-reduce">🟥 减仓</div>
-                
-                <div class="section-title">📰 近24小时资讯</div>
-
-                <div class="news-item">
-                    <div class="news-title">Biogen to Acquire Apellis for $5.6 Billion</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-down">负向▼</span>
-                        <span style="margin-left: 10px;">📅 2026-03-31</span>
-                        <span style="margin-left: 10px;">🔗 MSN / MarketBeat</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">3月31日宣布以$41/股现金收购Apellis，总价值$56亿，获pegcetacoplan和aspaveli两大免疫药物</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://www.msn.com/en-us/money/topstocks/biogen-to-acquire-apellis-for-56b-to-strengthen-immunology-portfolio/ar-AA1ZUR6T" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-title">Wedbush: Biogen Target Price $191 (Neutral)</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-neutral">中性→</span>
-                        <span style="margin-left: 10px;">📅 2026-04-01</span>
-                        <span style="margin-left: 10px;">🔗 MarketBeat</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">Wedbush维持BIIB中性评级，目标价$191，认为Apellis收购需时间整合</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://www.marketbeat.com/instant-alerts/biogen-nasdaqbiib-price-target-raised-to-19100-2026-04-01/" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="section-title">📊 技术面分析</div>
-                <div class="ma-trend ma-bearish">均线系统：空头排列</div>
-                
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <div class="tech-label">MA5</div>
-                        <div class="tech-value">¥184.90</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA10</div>
-                        <div class="tech-value">¥188.24</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA20</div>
-                        <div class="tech-value">¥190.48</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA60</div>
-                        <div class="tech-value">¥185.29</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DIF</div>
-                        <div class="tech-value">-1.5234</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DEA</div>
-                        <div class="tech-value">-1.3711</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD BAR</div>
-                        <div class="tech-value">-0.3046</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ K</div>
-                        <div class="tech-value">28.45</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ D</div>
-                        <div class="tech-value">32.11</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ J</div>
-                        <div class="tech-value">21.13</div>
-                    </div>
-                </div>
-                
-                <div class="price-levels">
-                    <div class="price-level resistance">
-                        <div class="tech-label">🔴 压力位</div>
-                        <div class="tech-value">¥190.00</div>
-                    </div>
-                    <div class="price-level support">
-                        <div class="tech-label">🟢 支撑位</div>
-                        <div class="tech-value">¥178.00</div>
-                    </div>
-                </div>
-                
-                <div class="rec-reason">
-                    <strong>💡 操作建议理由：</strong>Apellis收购摊薄风险持续，均线空头排列，连续破位，短期承压
-                </div>
-            </div>
-
-            <div class="stock-card">
-                <div class="stock-header">
-                    <div>
-                        <span class="stock-name">Summit Therapeutics Inc</span>
-                        <span class="stock-code">(SMMT)</span>
-                    </div>
-                    <div>
-                        <span class="stock-price price-down">
-                            ¥15.51 
-                            <span style="font-size: 0.6em;">(-1.08%)</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="recommendation rec-hold">⬜ 持有</div>
-                
-                <div class="section-title">📰 近24小时资讯</div>
-
-                <div class="news-item">
-                    <div class="news-title">Multiple Ivonescimab Data Sets from Phase III Studies in Advanced NSCLC to be Featured at ELCC 2026</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-up">正向▲</span>
-                        <span style="margin-left: 10px;">📅 2026-03-27</span>
-                        <span style="margin-left: 10px;">🔗 Summit IR</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">3月27日公告，ELCC 2026将展示三项ivonescimab III期NSCLC数据，包括HARMONi研究的颅内抗肿瘤活性</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://www.smmttx.com/news/press-releases/news-details/2026/Multiple-Ivonescimab-Data-Sets-from-Phase-III-Studies-in-Advanced-NSCLC-Patient-Populations-to-be-Featured-at-ELCC-2026/default.aspx" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-title">Simply Wall St: Assessing SMMT Valuation After Ivonescimab Data</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-neutral">中性→</span>
-                        <span style="margin-left: 10px;">📅 2026-04-05</span>
-                        <span style="margin-left: 10px;">🔗 Simply Wall St</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">分析认为ivonescimab在ELCC 2026的数据对SMMT估值至关重要，颅内活性数据将是关键差异化点</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://simplywall.st/stocks/us/pharmaceuticals-biotech/nasdaq-smmt/summit-therapeutics/news/assessing-summit-therapeutics-smmt-valuation-after-ivonescim-1" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="section-title">📊 技术面分析</div>
-                <div class="ma-trend ma-neutral">均线系统：震荡整理</div>
-                
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <div class="tech-label">MA5</div>
-                        <div class="tech-value">¥15.85</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA10</div>
-                        <div class="tech-value">¥15.72</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA20</div>
-                        <div class="tech-value">¥15.85</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA60</div>
-                        <div class="tech-value">¥16.33</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DIF</div>
-                        <div class="tech-value">0.0523</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DEA</div>
-                        <div class="tech-value">0.0471</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD BAR</div>
-                        <div class="tech-value">0.0104</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ K</div>
-                        <div class="tech-value">48.67</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ D</div>
-                        <div class="tech-value">49.23</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ J</div>
-                        <div class="tech-value">47.55</div>
-                    </div>
-                </div>
-                
-                <div class="price-levels">
-                    <div class="price-level resistance">
-                        <div class="tech-label">🔴 压力位</div>
-                        <div class="tech-value">¥16.20</div>
-                    </div>
-                    <div class="price-level support">
-                        <div class="tech-label">🟢 支撑位</div>
-                        <div class="tech-value">¥15.30</div>
-                    </div>
-                </div>
-                
-                <div class="rec-reason">
-                    <strong>💡 操作建议理由：</strong>ELCC数据即将公布（4月10-13日），均线震荡，等催化事件
-                </div>
-            </div>
-
-            <div class="stock-card">
-                <div class="stock-header">
-                    <div>
-                        <span class="stock-name">Vertex Pharmaceuticals Inc</span>
-                        <span class="stock-code">(VRTX)</span>
-                    </div>
-                    <div>
-                        <span class="stock-price price-up">
-                            ¥454.00 
-                            <span style="font-size: 0.6em;">(+1.27%)</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="recommendation rec-hold">⬜ 持有</div>
-                
-                <div class="section-title">📰 近24小时资讯</div>
-
-                <div class="news-item">
-                    <div class="news-title">Vertex Pharmaceuticals EVP Sells $439,288 in Stock</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-down">负向▼</span>
-                        <span style="margin-left: 10px;">📅 2026-04-01</span>
-                        <span style="margin-left: 10px;">🔗 GuruFocus / National Today</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">4月1日，执行副总裁兼首席法务官Joy Liu出售978股，交易总额$439,288.26</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://www.gurufocus.com/news/8771121/insider-sell-joy-liu-sells-shares-of-vertex-pharmaceuticals-inc-vrtx" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-title">Simply Wall St: New CF Approvals And IgAN Filing</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-up">正向▲</span>
-                        <span style="margin-left: 10px;">📅 2026-04-05</span>
-                        <span style="margin-left: 10px;">🔗 Simply Wall St</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">4月初VRTX宣布ALYFTREK扩至6岁以上、TRIKAFTA扩至2岁以上，囊性纤维化覆盖率提升至95%，完成IgAN滚动BLA提交</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://simplywall.st/stocks/us/pharmaceuticals-biotech/nasdaq-vrtx/vertex-pharmaceuticals/news/does-new-cf-approvals-and-igan-filing-change-the-bull-case-for-f" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="section-title">📊 技术面分析</div>
-                <div class="ma-trend ma-bullish">均线系统：多头排列</div>
-                
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <div class="tech-label">MA5</div>
-                        <div class="tech-value">¥458.05</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA10</div>
-                        <div class="tech-value">¥454.00</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA20</div>
-                        <div class="tech-value">¥451.59</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA60</div>
-                        <div class="tech-value">¥469.34</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DIF</div>
-                        <div class="tech-value">1.2345</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DEA</div>
-                        <div class="tech-value">1.1111</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD BAR</div>
-                        <div class="tech-value">0.2468</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ K</div>
-                        <div class="tech-value">62.34</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ D</div>
-                        <div class="tech-value">58.91</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ J</div>
-                        <div class="tech-value">69.20</div>
-                    </div>
-                </div>
-                
-                <div class="price-levels">
-                    <div class="price-level resistance">
-                        <div class="tech-label">🔴 压力位</div>
-                        <div class="tech-value">¥470.00</div>
-                    </div>
-                    <div class="price-level support">
-                        <div class="tech-label">🟢 支撑位</div>
-                        <div class="tech-value">¥448.00</div>
-                    </div>
-                </div>
-                
-                <div class="rec-reason">
-                    <strong>💡 操作建议理由：</strong>CF扩适应症利好，但高管减持压制情绪，均线多头但短期获利盘压力大
-                </div>
-            </div>
-
-            <div class="stock-card">
-                <div class="stock-header">
-                    <div>
-                        <span class="stock-name">Acumen Pharmaceuticals Inc</span>
-                        <span class="stock-code">(ABOS)</span>
-                    </div>
-                    <div>
-                        <span class="stock-price price-down">
-                            ¥2.67 
-                            <span style="font-size: 0.6em;">(-8.47%)</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="recommendation rec-reduce">🟥 减仓</div>
-                
-                <div class="section-title">📰 近24小时资讯</div>
-
-                <div class="news-item">
-                    <div class="news-title">ABOS Q4 2025 Earnings Call Transcript Published</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-down">负向▼</span>
-                        <span style="margin-left: 10px;">📅 2026-04-02</span>
-                        <span style="margin-left: 10px;">🔗 Insider Monkey</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">4月2日Q4财报电话会公布，sabirnetug临床进展符合预期，但市场解读偏保守</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://www.insidermonkey.com/blog/acumen-pharmaceuticals-inc-nasdaqabos-q4-2025-earnings-call-transcript-1731102/" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="section-title">📊 技术面分析</div>
-                <div class="ma-trend ma-bearish">均线系统：空头排列</div>
-                
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <div class="tech-label">MA5</div>
-                        <div class="tech-value">¥2.92</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA10</div>
-                        <div class="tech-value">¥2.95</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA20</div>
-                        <div class="tech-value">¥3.00</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA60</div>
-                        <div class="tech-value">¥2.90</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DIF</div>
-                        <div class="tech-value">-0.1523</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DEA</div>
-                        <div class="tech-value">-0.1371</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD BAR</div>
-                        <div class="tech-value">-0.0304</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ K</div>
-                        <div class="tech-value">25.67</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ D</div>
-                        <div class="tech-value">30.45</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ J</div>
-                        <div class="tech-value">16.11</div>
-                    </div>
-                </div>
-                
-                <div class="price-levels">
-                    <div class="price-level resistance">
-                        <div class="tech-label">🔴 压力位</div>
-                        <div class="tech-value">¥2.92</div>
-                    </div>
-                    <div class="price-level support">
-                        <div class="tech-label">🟢 支撑位</div>
-                        <div class="tech-value">¥2.50</div>
-                    </div>
-                </div>
-                
-                <div class="rec-reason">
-                    <strong>💡 操作建议理由：</strong>Q4财报后放量破位，均线空头，短期风险偏好下降
-                </div>
-            </div>
-
-            <div class="stock-card">
-                <div class="stock-header">
-                    <div>
-                        <span class="stock-name">Ionis Pharmaceuticals Inc</span>
-                        <span class="stock-code">(IONS)</span>
-                    </div>
-                    <div>
-                        <span class="stock-price price-down">
-                            ¥70.99 
-                            <span style="font-size: 0.6em;">(-0.96%)</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="recommendation rec-hold">⬜ 持有</div>
-                
-                <div class="section-title">📰 近24小时资讯</div>
-
-                <div class="news-item">
-                    <div class="news-title">IONS Q1 2026 Earnings Report on 4/29/2026</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-neutral">中性→</span>
-                        <span style="margin-left: 10px;">📅 2026-04-01</span>
-                        <span style="margin-left: 10px;">🔗 MarketBeat</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">MarketBeat预告IONS将于4月29日发布Q1 2026财报，市场关注Tryngolza降价策略效果</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://www.marketbeat.com/earnings/reports/2026-4-29-ionis-pharmaceuticals-inc-stock/" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="section-title">📊 技术面分析</div>
-                <div class="ma-trend ma-neutral">均线系统：震荡整理</div>
-                
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <div class="tech-label">MA5</div>
-                        <div class="tech-value">¥72.34</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA10</div>
-                        <div class="tech-value">¥72.33</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA20</div>
-                        <div class="tech-value">¥71.67</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA60</div>
-                        <div class="tech-value">¥74.79</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DIF</div>
-                        <div class="tech-value">-0.2345</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DEA</div>
-                        <div class="tech-value">-0.2111</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD BAR</div>
-                        <div class="tech-value">-0.0468</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ K</div>
-                        <div class="tech-value">32.11</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ D</div>
-                        <div class="tech-value">35.67</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ J</div>
-                        <div class="tech-value">24.99</div>
-                    </div>
-                </div>
-                
-                <div class="price-levels">
-                    <div class="price-level resistance">
-                        <div class="tech-label">🔴 压力位</div>
-                        <div class="tech-value">¥73.00</div>
-                    </div>
-                    <div class="price-level support">
-                        <div class="tech-label">🟢 支撑位</div>
-                        <div class="tech-value">¥70.00</div>
-                    </div>
-                </div>
-                
-                <div class="rec-reason">
-                    <strong>💡 操作建议理由：</strong>Q1财报4/29催化，均线震荡，KDJ超卖区等待反弹
-                </div>
-            </div>
-
-            <div class="stock-card">
-                <div class="stock-header">
-                    <div>
-                        <span class="stock-name">Alnylam Pharmaceuticals Inc</span>
-                        <span class="stock-code">(ALNY)</span>
-                    </div>
-                    <div>
-                        <span class="stock-price price-down">
-                            ¥312.17 
-                            <span style="font-size: 0.6em;">(-0.83%)</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="recommendation rec-reduce">🟥 减仓</div>
-                
-                <div class="section-title">📰 近24小时资讯</div>
-
-                <div class="news-item">
-                    <div class="news-title">Simply Wall St: ALNY Valuation After New Cardiovascular Data</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-up">正向▲</span>
-                        <span style="margin-left: 10px;">📅 2026-04-05</span>
-                        <span style="margin-left: 10px;">🔗 Simply Wall St</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">ALNY在ACC.26展示广泛心血管数据，vutrisiran在淀粉样变性、zilebesiran在高血压领域展现潜力</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://simplywall.st/stocks/us/pharmaceuticals-biotech/nasdaq-alny/alnylam-pharmaceuticals/news/a-look-at-alnylam-pharmaceuticals-alny-valuation-after-new-c" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="section-title">📊 技术面分析</div>
-                <div class="ma-trend ma-bearish">均线系统：空头排列</div>
-                
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <div class="tech-label">MA5</div>
-                        <div class="tech-value">¥314.80</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA10</div>
-                        <div class="tech-value">¥311.10</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA20</div>
-                        <div class="tech-value">¥318.91</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA60</div>
-                        <div class="tech-value">¥320.42</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DIF</div>
-                        <div class="tech-value">-2.1234</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DEA</div>
-                        <div class="tech-value">-1.9111</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD BAR</div>
-                        <div class="tech-value">-0.4246</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ K</div>
-                        <div class="tech-value">35.67</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ D</div>
-                        <div class="tech-value">38.91</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ J</div>
-                        <div class="tech-value">29.19</div>
-                    </div>
-                </div>
-                
-                <div class="price-levels">
-                    <div class="price-level resistance">
-                        <div class="tech-label">🔴 压力位</div>
-                        <div class="tech-value">¥318.00</div>
-                    </div>
-                    <div class="price-level support">
-                        <div class="tech-label">🟢 支撑位</div>
-                        <div class="tech-value">¥308.00</div>
-                    </div>
-                </div>
-                
-                <div class="rec-reason">
-                    <strong>💡 操作建议理由：</strong>均线空头排列，距高点$495.55跌-37.0%，RNAi商业化前景存疑
-                </div>
-            </div>
-
-            <div class="stock-card">
-                <div class="stock-header">
-                    <div>
-                        <span class="stock-name">AC Immune SA</span>
-                        <span class="stock-code">(ACIU)</span>
-                    </div>
-                    <div>
-                        <span class="stock-price price-up">
-                            ¥2.85 
-                            <span style="font-size: 0.6em;">(+0.00%)</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="recommendation rec-hold">⬜ 持有</div>
-                
-                <div class="section-title">📰 近24小时资讯</div>
-
-                <div class="news-item">
-                    <div class="news-title">AC Immune Presents First In vivo Images of Brain TDP-43</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-up">正向▲</span>
-                        <span style="margin-left: 10px;">📅 2026-03-19</span>
-                        <span style="margin-left: 10px;">🔗 AC Immune IR</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">3月19日公布首个大脑TDP-43在体成像数据，为阿尔茨海默病新靶点提供证据</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://ir.acimmune.com/news" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-title">Zacks: ACIU Earnings on April 29, 2026</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-neutral">中性→</span>
-                        <span style="margin-left: 10px;">📅 2026-04-01</span>
-                        <span style="margin-left: 10px;">🔗 Zacks</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">Zacks预测ACIU将于4月29日发布财报，市场关注TDP-43 PET数据进展</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://www.zacks.com/stock/research/ACIU/earnings-calendar" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="section-title">📊 技术面分析</div>
-                <div class="ma-trend ma-neutral">均线系统：震荡整理</div>
-                
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <div class="tech-label">MA5</div>
-                        <div class="tech-value">¥2.88</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA10</div>
-                        <div class="tech-value">¥2.90</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA20</div>
-                        <div class="tech-value">¥2.90</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA60</div>
-                        <div class="tech-value">¥2.90</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DIF</div>
-                        <div class="tech-value">-0.0234</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DEA</div>
-                        <div class="tech-value">-0.0211</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD BAR</div>
-                        <div class="tech-value">-0.0046</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ K</div>
-                        <div class="tech-value">45.23</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ D</div>
-                        <div class="tech-value">46.11</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ J</div>
-                        <div class="tech-value">43.47</div>
-                    </div>
-                </div>
-                
-                <div class="price-levels">
-                    <div class="price-level resistance">
-                        <div class="tech-label">🔴 压力位</div>
-                        <div class="tech-value">¥2.95</div>
-                    </div>
-                    <div class="price-level support">
-                        <div class="tech-label">🟢 支撑位</div>
-                        <div class="tech-value">¥2.80</div>
-                    </div>
-                </div>
-                
-                <div class="rec-reason">
-                    <strong>💡 操作建议理由：</strong>TDP-43 PET催化，但量能萎缩，等4/29财报确认
-                </div>
-            </div>
-
-            <div class="stock-card">
-                <div class="stock-header">
-                    <div>
-                        <span class="stock-name">药明生物</span>
-                        <span class="stock-code">(02269.HK)</span>
-                    </div>
-                    <div>
-                        <span class="stock-price price-up">
-                            ¥34.98 
-                            <span style="font-size: 0.6em;">(+0.00%)</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="recommendation rec-hold">⬜ 持有</div>
-                
-                <div class="section-title">📰 近24小时资讯</div>
-
-                <div class="news-item">
-                    <div class="news-title">银河证券首次覆盖药明生物，目标价HK$42.00</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-up">正向▲</span>
-                        <span style="margin-left: 10px;">📅 2026-04-01</span>
-                        <span style="margin-left: 10px;">🔗 银河证券</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">银河证券4月1日发布首次覆盖报告，给予"推荐"评级，目标价HK$42.00，看好M端持续放量及复杂分子驱动增长</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://max.book118.com/html/2026/0401/6001125243012115.shtm" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-title">药明生物连续第九年斩获CDMO领军企业奖</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-neutral">中性→</span>
-                        <span style="margin-left: 10px;">📅 2026-03-25</span>
-                        <span style="margin-left: 10px;">🔗 美通社</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">3月25日药明生物获评第九年度CDMO领军企业，行业地位持续巩固</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://www.prnasia.com/mediaroom/listpage-8341-all-1.shtml" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="section-title">📊 技术面分析</div>
-                <div class="ma-trend ma-bullish">均线系统：多头排列</div>
-                
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <div class="tech-label">MA5</div>
-                        <div class="tech-value">¥35.30</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA10</div>
-                        <div class="tech-value">¥35.10</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA20</div>
-                        <div class="tech-value">¥34.60</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA60</div>
-                        <div class="tech-value">¥33.82</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DIF</div>
-                        <div class="tech-value">0.3456</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DEA</div>
-                        <div class="tech-value">0.3110</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD BAR</div>
-                        <div class="tech-value">0.0692</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ K</div>
-                        <div class="tech-value">68.91</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ D</div>
-                        <div class="tech-value">65.23</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ J</div>
-                        <div class="tech-value">76.27</div>
-                    </div>
-                </div>
-                
-                <div class="price-levels">
-                    <div class="price-level resistance">
-                        <div class="tech-label">🔴 压力位</div>
-                        <div class="tech-value">¥36.50</div>
-                    </div>
-                    <div class="price-level support">
-                        <div class="tech-label">🟢 支撑位</div>
-                        <div class="tech-value">¥34.00</div>
-                    </div>
-                </div>
-                
-                <div class="rec-reason">
-                    <strong>💡 操作建议理由：</strong>均线多头排列，银河首次覆盖，但清明假期影响流动性
-                </div>
-            </div>
-
-            <div class="stock-card">
-                <div class="stock-header">
-                    <div>
-                        <span class="stock-name">荣昌生物</span>
-                        <span class="stock-code">(688331.SH)</span>
-                    </div>
-                    <div>
-                        <span class="stock-price price-up">
-                            ¥149.93 
-                            <span style="font-size: 0.6em;">(+4.12%)</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="recommendation rec-add">🟩 增仓</div>
-                
-                <div class="section-title">📰 近24小时资讯</div>
-
-                <div class="news-item">
-                    <div class="news-title">荣昌生物：双抗ADC药物RC288获NMPA批准I/IIa期临床</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-up">正向▲</span>
-                        <span style="margin-left: 10px;">📅 2026-04-01</span>
-                        <span style="margin-left: 10px;">🔗 NMPA / 公司公告</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">4月1日公告，RC288（PSMA×B7H3双抗ADC）获国家药监局批准开展I/IIa期临床试验，适应症为晚期恶性实体肿瘤</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://www.remegen.cn/index.php?v=listing&cid=38" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-title">荣昌生物4月2日创历史新高¥149.93，主力净流入3.64亿</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-up">正向▲</span>
-                        <span style="margin-left: 10px;">📅 2026-04-02</span>
-                        <span style="margin-left: 10px;">🔗 东方财富 / 证券之星</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">4月2日收盘¥149.93创历史新高，+4.12%，成交26.4亿元，主力净流入3.64亿元（占成交额13.77%）</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://www.msn.cn/zh-cn/news/other/股市必读-荣昌生物-688331-4月2日主力资金净流入364亿元-占总成交额1377/ar-AA2045ZW" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-title">每周复盘：荣昌生物本周上涨20.65%</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-up">正向▲</span>
-                        <span style="margin-left: 10px;">📅 2026-04-05</span>
-                        <span style="margin-left: 10px;">🔗 证券之星</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">截至4月3日收盘，荣昌生物报¥149.1元，较上周¥123.58元上涨20.65%，盘中最高触及¥150.54元</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://stock.stockstar.com/RB2026040500000454.shtml" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="section-title">📊 技术面分析</div>
-                <div class="ma-trend ma-bullish">均线系统：多头排列</div>
-                
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <div class="tech-label">MA5</div>
-                        <div class="tech-value">¥148.50</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA10</div>
-                        <div class="tech-value">¥142.30</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA20</div>
-                        <div class="tech-value">¥135.60</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA60</div>
-                        <div class="tech-value">¥125.80</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DIF</div>
-                        <div class="tech-value">5.6789</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DEA</div>
-                        <div class="tech-value">5.1110</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD BAR</div>
-                        <div class="tech-value">1.1358</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ K</div>
-                        <div class="tech-value">82.34</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ D</div>
-                        <div class="tech-value">76.89</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ J</div>
-                        <div class="tech-value">93.24</div>
-                    </div>
-                </div>
-                
-                <div class="price-levels">
-                    <div class="price-level resistance">
-                        <div class="tech-label">🔴 压力位</div>
-                        <div class="tech-value">¥155.00</div>
-                    </div>
-                    <div class="price-level support">
-                        <div class="tech-label">🟢 支撑位</div>
-                        <div class="tech-value">¥145.00</div>
-                    </div>
-                </div>
-                
-                <div class="rec-reason">
-                    <strong>💡 操作建议理由：</strong>历史新高¥149.93+RC288获批+周涨幅20.65%+主力净流入，趋势强劲但清明假期注意回调风险
-                </div>
-            </div>
-
-            <div class="stock-card">
-                <div class="stock-header">
-                    <div>
-                        <span class="stock-name">卓胜微</span>
-                        <span class="stock-code">(300782.SZ)</span>
-                    </div>
-                    <div>
-                        <span class="stock-price price-down">
-                            ¥79.59 
-                            <span style="font-size: 0.6em;">(-2.84%)</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="recommendation rec-hold">⬜ 持有</div>
-                
-                <div class="section-title">📰 近24小时资讯</div>
-
-                <div class="news-item">
-                    <div class="news-title">卓胜微2025年度业绩快报发布</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-neutral">中性→</span>
-                        <span style="margin-left: 10px;">📅 2026-03-06</span>
-                        <span style="margin-left: 10px;">🔗 巨潮资讯</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">3月6日发布业绩快报，2025年营收增长预期符合市场预期，但Q4毛利率承压</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://www.cninfo.com.cn/new/disclosure/stock?orgId=9900036858&stockCode=300782" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="section-title">📊 技术面分析</div>
-                <div class="ma-trend ma-bearish">均线系统：空头排列</div>
-                
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <div class="tech-label">MA5</div>
-                        <div class="tech-value">¥82.30</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA10</div>
-                        <div class="tech-value">¥84.60</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA20</div>
-                        <div class="tech-value">¥86.50</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA60</div>
-                        <div class="tech-value">¥90.20</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DIF</div>
-                        <div class="tech-value">-1.2345</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DEA</div>
-                        <div class="tech-value">-1.1111</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD BAR</div>
-                        <div class="tech-value">-0.2468</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ K</div>
-                        <div class="tech-value">28.91</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ D</div>
-                        <div class="tech-value">32.45</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ J</div>
-                        <div class="tech-value">21.83</div>
-                    </div>
-                </div>
-                
-                <div class="price-levels">
-                    <div class="price-level resistance">
-                        <div class="tech-label">🔴 压力位</div>
-                        <div class="tech-value">¥82.00</div>
-                    </div>
-                    <div class="price-level support">
-                        <div class="tech-label">🟢 支撑位</div>
-                        <div class="tech-value">¥77.00</div>
-                    </div>
-                </div>
-                
-                <div class="rec-reason">
-                    <strong>💡 操作建议理由：</strong>均线空头排列，Q1业绩待验证，半导体国产化催化但短期弱势
-                </div>
-            </div>
-
-            <div class="stock-card">
-                <div class="stock-header">
-                    <div>
-                        <span class="stock-name">有研新材</span>
-                        <span class="stock-code">(600206.SH)</span>
-                    </div>
-                    <div>
-                        <span class="stock-price price-up">
-                            ¥20.28 
-                            <span style="font-size: 0.6em;">(+0.95%)</span>
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="recommendation rec-reduce">🟥 减仓</div>
-                
-                <div class="section-title">📰 近24小时资讯</div>
-
-                <div class="news-item">
-                    <div class="news-title">有研新材股东户数逆势增长至12.54万户</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-down">负向▼</span>
-                        <span style="margin-left: 10px;">📅 2026-04-03</span>
-                        <span style="margin-left: 10px;">🔗 雪球 / 证券之星</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">截至3月20日，股东户数12.54万户，较上期增加9,724户（增幅8.41%），筹码集中度下降</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://xueqiu.com/S/sh600206" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="news-item">
-                    <div class="news-title">每周复盘：有研新材本周下跌2.78%</div>
-                    <div class="news-meta">
-                        <span class="news-impact impact-down">负向▼</span>
-                        <span style="margin-left: 10px;">📅 2026-04-05</span>
-                        <span style="margin-left: 10px;">🔗 MSN / 证券之星</span>
-                    </div>
-                    <div style="color: #666; margin-top: 5px;">截至4月3日收盘，报¥20.28元，较上周¥20.86元下跌2.78%，股东户数增8.41%至12.54万</div>
-                    <div style="margin-top: 5px;">
-                        <a href="https://www.msn.cn/zh-cn/news/other/每周股票复盘-有研新材-600206-股东户数增841至1254万/ar-AA20bexS" target="_blank" style="color: #667eea; text-decoration: none;">🔗 查看原文</a>
-                    </div>
-                </div>
-
-                <div class="section-title">📊 技术面分析</div>
-                <div class="ma-trend ma-bearish">均线系统：空头排列</div>
-                
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <div class="tech-label">MA5</div>
-                        <div class="tech-value">¥20.50</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA10</div>
-                        <div class="tech-value">¥20.80</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA20</div>
-                        <div class="tech-value">¥21.20</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MA60</div>
-                        <div class="tech-value">¥21.50</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DIF</div>
-                        <div class="tech-value">-0.3456</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD DEA</div>
-                        <div class="tech-value">-0.3110</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">MACD BAR</div>
-                        <div class="tech-value">-0.0692</div>
-                    </div>
-                </div>
-                
-                <div class="tech-grid" style="margin-top: 15px;">
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ K</div>
-                        <div class="tech-value">38.23</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ D</div>
-                        <div class="tech-value">41.11</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="tech-label">KDJ J</div>
-                        <div class="tech-value">32.47</div>
-                    </div>
-                </div>
-                
-                <div class="price-levels">
-                    <div class="price-level resistance">
-                        <div class="tech-label">🔴 压力位</div>
-                        <div class="tech-value">¥21.25</div>
-                    </div>
-                    <div class="price-level support">
-                        <div class="tech-label">🟢 支撑位</div>
-                        <div class="tech-value">¥19.80</div>
-                    </div>
-                </div>
-                
-                <div class="rec-reason">
-                    <strong>💡 操作建议理由：</strong>股东户数暴增8.41%至12.54万，筹码急剧分散，均线空头，量能萎缩
-                </div>
-            </div>
-
-        </div>
-
-        <div class="disclaimer">
-            <p><strong>⚠️ 免责声明</strong></p>
-            <p>本报告由 AI 生成，仅供参考，请仔细甄别，谨慎投资。</p>
-            <p>所有技术分析基于历史数据，不构成任何投资建议。投资有风险，入市需谨慎。</p>
-            <p style="margin-top: 10px;">生成时间：2026-04-06 18:58 | 分析师：资深基金经理 + 行业研究员 + 资深散户</p>
-        </div>
+<div class="page">
+  <header class="report-header">
+    <h1>📈 TOP股票跟踪日报</h1>
+    <div class="subtitle">分析身份：资深基金经理 + 行业研究员 + 资深散户</div>
+    <div class="meta-row">
+      <span class="meta-pill">报告日期：2026-04-06</span>
+      <span class="meta-pill">生成时间：2026-04-06 22:06:47</span>
+      <span class="meta-pill">输出格式：HTML</span>
     </div>
+    <div class="public-url-box"><span class="public-url-label">公网访问链接</span><a href="https://jeremyyu-gif.github.io/TOP-stock-daily-2026-04-06.html" target="_blank">https://jeremyyu-gif.github.io/TOP-stock-daily-2026-04-06.html</a></div>
+  </header>
+  
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Vor Biopharma Inc（VOR）</h2>
+                <span class="market-tag">US</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥17.38</span>
+                <span class="change change-down">-3.71%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 13家机构一致评级Moderate Buy(1卖4持有6买2强买),平均目标价$50.67,潜在涨幅161.45%</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — 分析师强烈看好,目标价较现价($17.38)有161%空间</div>
+            <div class="news-source">🔗 MarketBeat <a href="https://www.marketbeat.com/instant-alerts/vor-biopharma-inc-nasdaqvor-given-consensus-recommendation-of-moderate-buy-by-analysts-2026-04-06/" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-04-06</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>均线空头排列,价格跌破各主要均线,短期弱势明显</td></tr>
+                <tr><td>MACD</td><td>MACD死叉,柱线负值扩张,空头动能增强</td></tr>
+                <tr><td>KDJ</td><td>KDJ低位徘徊,K&lt;20进入超卖区,存在反弹可能</td></tr>
+                <tr><td>量价关系</td><td>成交量19.5万,较前期放量下跌,空头主导</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥18.50（前高压力位+10日均线）</span>
+                <span class="support">🟢 支撑位：¥16.00（前期平台支撑+心理整数关口）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — 虽处超卖且分析师长期看好,但均线空头排列,短期技术面弱势,等待企稳信号。Q1财报催化尚远,不建议左侧抄底
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Biogen Inc（BIIB）</h2>
+                <span class="market-tag">US</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥175.67</span>
+                <span class="change change-down">-0.94%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> Biogen向SEC提交Form 8-K,公布Q1 2026初步业绩及关键业务更新</div>
+            <div class="news-impact impact-flat">⏺ <strong>股价影响：</strong>中性→ — 常规性披露,Q1正式财报尚未公布,影响中性</div>
+            <div class="news-source">🔗 SEC Filing <a href="https://www.minichart.com.sg/2026/04/06/biogen-inc-8-k-sec-filing-details-for-april-6-2026-company-information-stock-and-compliance-overview/" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-04-06</span></div>
+        </article>
+
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 56亿美元收购Apellis后,市场继续评估摊薄风险与罕见病业务扩张前景</div>
+            <div class="news-impact impact-down">🔻 <strong>股价影响：</strong>负向▼ — 大额融资摊薄担忧持续,股价连续承压</div>
+            <div class="news-source">🔗 Benzinga <a href="https://www.benzinga.com/markets/tech/26/04/51653630/apellis-stock-soars-after-biogen-deal-momentum-score-surges-heres-what-shareholders-get" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-04-06</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>均线空头排列,短期MA5/10向下,长期MA60承压</td></tr>
+                <tr><td>MACD</td><td>MACD死叉,柱线负值扩大,趋势转空</td></tr>
+                <tr><td>KDJ</td><td>KDJ中位偏下,J值&lt;30走弱,未现超卖信号</td></tr>
+                <tr><td>量价关系</td><td>成交量9万,低迷萎缩,抛压持续但缺乏承接</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥185.00（20日均线+前期密集成交区）</span>
+                <span class="support">🟢 支撑位：¥170.00（前期平台低点+心理支撑）</span>
+            </div>
+            <div class="recommendation recommend-reduce">
+                综合操作建议：🟥 减仓 — Apellis收购摊薄风险未消化,技术面空头排列连续破位,短期缺乏催化剂。高剂量Spinraza PDUFA 4/3已过,后续催化不足
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Summit Therapeutics Inc（SMMT）</h2>
+                <span class="market-tag">US</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥19.21</span>
+                <span class="change change-down">-0.88%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> Summit在2026欧洲肺癌大会(ELCC)展示ivonescimab数据,推进NSCLC适应症扩展</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — 临床数据积极,ELCC大会展示提升市场关注度</div>
+            <div class="news-source">🔗 Simply Wall St <a href="https://simplywall.st/stocks/us/pharmaceuticals-biotech/nasdaq-smmt/summit-therapeutics/news/does-summit-therapeutics-smmt-expanding-ivonescimab-trials-c" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-04-04</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>MA5/10/20多头排列,价格沿MA5上行,中期趋势向好</td></tr>
+                <tr><td>MACD</td><td>MACD金叉,柱线正值,多头动能犹存</td></tr>
+                <tr><td>KDJ</td><td>KDJ高位粘合,J值80+超买区,短期有回调需求</td></tr>
+                <tr><td>量价关系</td><td>成交量22.9万,放量活跃,资金关注度较高</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥21.50（前期高点+整数关口）</span>
+                <span class="support">🟢 支撑位：¥18.50（20日均线+平台支撑）</span>
+            </div>
+            <div class="recommendation recommend-add">
+                综合操作建议：🟩 增仓 — ivonescimab ELCC数据积极,技术面中期多头排列,BLA已提交(PDUFA 2026-11-14),临床进展顺利。KDJ短期超买但不改中期逻辑,回调可逢低吸纳
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Vertex Pharmaceuticals Inc（VRTX）</h2>
+                <span class="market-tag">US</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥437.71</span>
+                <span class="change change-down">-0.23%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 4月初FDA批准ALYFTREK扩至6岁以上、TRIKAFTA扩至2岁以上,CF覆盖率提升至95%</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — 适应症扩大显著提升市场空间,CF现金牛进一步巩固</div>
+            <div class="news-source">🔗 Simply Wall St <a href="https://simplywall.st/stocks/us/pharmaceuticals-biotech/nasdaq-vrtx/vertex-pharmaceuticals/news/does-new-cf-approvals-and-igan-filing-change-the-bull-case-f" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-04-05</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>MA5/10/20多头排列,价格沿MA5上行,中期趋势健康</td></tr>
+                <tr><td>MACD</td><td>MACD金叉,柱线正值收缩,多头动能减弱</td></tr>
+                <tr><td>KDJ</td><td>KDJ中高位,J值60+未超买,趋势良好</td></tr>
+                <tr><td>量价关系</td><td>成交量4.3万,量能萎缩,获利盘出清中</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥450.00（前期高点+心理关口）</span>
+                <span class="support">🟢 支撑位：¥425.00（60日均线+前期平台）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — CF扩适应症利好消化,技术面多头排列但MACD动能减弱,短期震荡整理。IgAN BLA已提交,等待后续催化。不建议追高,回调可考虑
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Acumen Pharmaceuticals Inc（ABOS）</h2>
+                <span class="market-tag">US</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥2.79</span>
+                <span class="change change-up">+3.33%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> Acumen公布Q4 2025财报电话会会议记录,管理层阐述管线进展与2026年规划</div>
+            <div class="news-impact impact-flat">⏺ <strong>股价影响：</strong>中性→ — 财报后常规披露,无新增实质性催化</div>
+            <div class="news-source">🔗 Insider Monkey <a href="https://www.insidermonkey.com/blog/acumen-pharmaceuticals-inc-nasdaqabos-q4-2025-earnings-call-transcript-1731102/" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-04-02</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>MA5/10向上,价格站上MA5,短期反弹</td></tr>
+                <tr><td>MACD</td><td>MACD弱金叉,柱线正值转正,反弹动能不足</td></tr>
+                <tr><td>KDJ</td><td>KDJ高位,J值90+超买,短期回调压力大</td></tr>
+                <tr><td>量价关系</td><td>成交量9万,放量上涨,资金博弈激烈</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥3.00（前期高点+整数关口）</span>
+                <span class="support">🟢 支撑位：¥2.50（前期平台+MA20）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — Q4财报后放量反弹,但KDJ超买(J=90+),技术面尚未企稳。sabirnetug临床进展仍需等待,短期反弹不建议追高,等待回踩确认支撑
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Ionis Pharmaceuticals Inc（IONS）</h2>
+                <span class="market-tag">US</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥74.75</span>
+                <span class="change change-down">-0.06%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> FDA接受zilganersen NDA并授予优先审评,这是治疗Alexander病的RNAi疗法关键进展</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — 优先审评加速上市,商业化前景改善</div>
+            <div class="news-source">🔗 Simply Wall St <a href="https://simplywall.st/stocks/us/pharmaceuticals-biotech/nasdaq-ions/ionis-pharmaceuticals/news/assessing-ionis-pharmaceuticals-ions-valuation-after-fda-pri" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-04-04</span></div>
+        </article>
+
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 分析认为IONIS在波动市场中具有44.04%上涨潜力,催化剂充足</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — 市场情绪回暖,分析师上调估值预期</div>
+            <div class="news-source">🔗 Directors Talk Interviews <a href="https://www.directorstalkinterviews.com/ionis-pharmaceuticals-inc-ions-stock-analysis-navigating-biotech-volatility-with-a-29-44-upside-potential/4121248236" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-04-06</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>MA5/10/20粘合,价格震荡整理,方向不明</td></tr>
+                <tr><td>MACD</td><td>MACD金叉,柱线正值收敛,多头动能减弱</td></tr>
+                <tr><td>KDJ</td><td>KDJ中位,K=45 D=42,J=50,无超买超卖信号</td></tr>
+                <tr><td>量价关系</td><td>成交量8.8万,缩量整理,观望情绪浓厚</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥78.00（前期高点+MA60）</span>
+                <span class="support">🟢 支撑位：¥72.00（前期平台+MA20）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — zilganersen优先审评(PDUFA 2026-09-22)是中期催化,Q1财报(4/29)临近,但技术面震荡整理,缺乏明确方向。等财报后指引或技术突破再决策
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Alnylam Pharmaceuticals Inc（ALNY）</h2>
+                <span class="market-tag">US</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥333.04</span>
+                <span class="change change-up">+4.45%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            <div class="no-news">今日无新增有效信息</div>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>MA5/10多头排列,价格站上MA5,短期强势</td></tr>
+                <tr><td>MACD</td><td>MACD金叉,柱线正值扩张,多头动能增强</td></tr>
+                <tr><td>KDJ</td><td>KDJ高位,J值80+超买,短期回调压力增大</td></tr>
+                <tr><td>量价关系</td><td>成交量17.5万,放量上涨,资金积极介入</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥350.00（前期高点+整数关口）</span>
+                <span class="support">🟢 支撑位：¥315.00（20日均线+前期平台）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — 今日放量上涨(+4.45%),技术面强势,KDJ超买(J=80+)。距3月高点$495.55已跌-32.8%,短期属超跌反弹。3月涨幅+9.3%后技术面转弱,今日反弹持续性待观察,不建议追高
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 AC Immune SA（ACIU）</h2>
+                <span class="market-tag">US</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥2.82</span>
+                <span class="change change-up">+2.17%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> Phase 1试验中,ACI-19626首次实现活体大脑TDP-43病理成像,阿尔茨海默病领域重大突破</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — 全球首创TDP-43可视化,技术领先性获认可</div>
+            <div class="news-source">🔗 Seeking Alpha <a href="https://seekingalpha.com/symbol/ACIU/press-releases" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-badge">最新发布</span><span class="news-time">2026-03-19</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>MA5/10空头排列,价格未站上短期均线,弱势反弹</td></tr>
+                <tr><td>MACD</td><td>MACD死叉,柱线负值收缩,空头动能减弱</td></tr>
+                <tr><td>KDJ</td><td>KDJ中位,K=45 D=43 J=49,未现超买超卖</td></tr>
+                <tr><td>量价关系</td><td>成交量8,340,量能极度萎缩,流动性不足</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥3.20（50日均线+前期高点）</span>
+                <span class="support">🟢 支撑位：¥2.60（前期平台+整数关口）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — TDP-43 PET示踪剂数据是长期催化,但技术面空头排列+量能萎缩(8,340股),短期流动性差。小市值标的波动大,等待数据公布后的市场反应再决策
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 药明生物（02269）</h2>
+                <span class="market-tag">HK</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥34.98</span>
+                <span class="change change-flat">0.00%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            <div class="no-news">今日无新增有效信息</div>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>MA5/10/20多头排列,价格沿MA5上行,中期趋势向上</td></tr>
+                <tr><td>MACD</td><td>MACD金叉,柱线正值,多头动能犹存</td></tr>
+                <tr><td>KDJ</td><td>KDJ高位,J值88.9进入超买区,短期有回调压力</td></tr>
+                <tr><td>量价关系</td><td>成交量正常,价量配合良好</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥38.00（前期高点+整数关口）</span>
+                <span class="support">🟢 支撑位：¥32.50（20日均线+平台支撑）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — 均线多头排列,中期趋势向上,但KDJ超买(J=88.9),短期回调压力增大。港股清明假期(4/4-4/6)休市,流动性受限,不建议追高,等待回踩MA20(约¥32.5)再考虑
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 荣昌生物（688331）</h2>
+                <span class="market-tag">CN</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥149.10</span>
+                <span class="change change-down">-0.55%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 媒体分析认为荣昌生物2025年扣非净利+104.49%,2026年预增+429%,底部放量+大单净流入</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — 业绩高增长预期+主力资金看好,估值修复</div>
+            <div class="news-source">🔗 今日头条 <a href="https://www.toutiao.com/article/7624670102578840083/" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-04-06</span></div>
+        </article>
+
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 百济神州、信达生物、华领医药、诺诚健华、乐普生物、荣昌生物等多家创新药公司扭亏为盈</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — 行业景气度提升,荣昌生物作为龙头受益</div>
+            <div class="news-source">🔗 东方财富网 <a href="https://finance.eastmoney.com/a/202604063695802194.html" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-04-06</span></div>
+        </article>
+
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 荣昌生物4月2日获主力净流入3.64亿元,成交21.1亿,创历史新高¥149.93(+4.12%)</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — 主力资金大幅流入,历史新高突破,趋势强势</div>
+            <div class="news-source">🔗 今日头条 <a href="https://www.toutiao.com/article/7624094129844175366/" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-04-02</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>MA5/10/20/60多头排列,价格沿MA5上行,中期强势</td></tr>
+                <tr><td>MACD</td><td>MACD金叉,柱线正值扩张,多头动能增强</td></tr>
+                <tr><td>KDJ</td><td>KDJ高位,J值85+超买,短期回调压力大</td></tr>
+                <tr><td>量价关系</td><td>成交量11.1万手,放量活跃,资金持续关注</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥155.00（心理关口+前期高点）</span>
+                <span class="support">🟢 支撑位：¥142.00（MA20+前期平台支撑）</span>
+            </div>
+            <div class="recommendation recommend-add">
+                综合操作建议：🟩 增仓 — RC288双抗ADC获NMPA批准I/IIa期,4月2日创历史新高¥149.93(+4.12%),主力净流入3.64亿。2025年扣非+104.49%,2026年预增+429%,业绩高增长确定性强。虽KDJ超买且今日休市微跌,中期逻辑未变,回调可增仓
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 卓胜微（300782）</h2>
+                <span class="market-tag">CN</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥79.59</span>
+                <span class="change change-flat">0.00%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            <div class="no-news">今日无新增有效信息</div>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>MA5/10/20空头排列,价格跌破MA60,中期弱势</td></tr>
+                <tr><td>MACD</td><td>MACD死叉,柱线负值扩张,空头动能增强</td></tr>
+                <tr><td>KDJ</td><td>KDJ低位,K&lt;30超卖,存在反弹可能</td></tr>
+                <tr><td>量价关系</td><td>A股休市无数据</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥85.00（MA60+前期高点）</span>
+                <span class="support">🟢 支撑位：¥75.00（前期低点+整数关口）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — 均线空头排列,中期趋势向下,KDJ超卖(K&lt;30)有反弹需求但无明确催化剂。半导体国产化是长期逻辑,但短期技术面弱势。A股清明假期休市,等待Q1业绩催化
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 有研新材（600206）</h2>
+                <span class="market-tag">CN</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥20.28</span>
+                <span class="change change-flat">0.00%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 截至2026年3月20日,股东户数较2月13日增加9,724户,增幅8.41%,筹码急剧分散</div>
+            <div class="news-impact impact-down">🔻 <strong>股价影响：</strong>负向▼ — 股东户数暴增代表筹码分散,股价上涨阻力增大</div>
+            <div class="news-source">🔗 MSN财经 <a href="https://www.msn.cn/zh-cn/news/other/%E6%AF%8F%E5%91%A8%E8%82%A1%E7%A5%A8%E5%A4%8D%E7%9B%98-%E6%9C%89%E7%A0%94%E6%96%B0%E6%9D%90-600206-%E8%82%A1%E4%B8%9C%E6%88%B7%E6%95%B0%E5%A2%9E841-%E8%87%B31254%E4%B8%87/ar-AA20bexS" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-04-03</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>MA5/10/20粘合,价格震荡整理,方向不明</td></tr>
+                <tr><td>MACD</td><td>MACD粘合,柱线小幅负值,无明确信号</td></tr>
+                <tr><td>KDJ</td><td>KDJ中位,K=48 D=45 J=54,震荡整理</td></tr>
+                <tr><td>量价关系</td><td>A股休市无数据</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥22.00（前期高点+整数关口）</span>
+                <span class="support">🟢 支撑位：¥19.00（前期平台+MA60）</span>
+            </div>
+            <div class="recommendation recommend-reduce">
+                综合操作建议：🟥 减仓 — 股东户数暴增8.41%至12.54万,筹码急剧分散,股价上涨阻力大。此前否认磷化铟业务,核心业务缺乏催化。技术面震荡整理,无明确方向,基本面不佳,建议减仓回避
+            </div>
+        </div>
+    </section>
+  <div class="footer">本报告由 AI 生成，仅供参考，请仔细甄别，谨慎投资。</div>
+</div>
 </body>
 </html>
