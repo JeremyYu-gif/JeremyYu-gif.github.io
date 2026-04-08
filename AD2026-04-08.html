@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿尔茨海默创新药日报 - 2026-04-08</title>
+<style>
+  :root {
+    --primary: #1a5276;
+    --accent: #2e86c1;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --success: #27ae60;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #2c3e50;
+    --text-light: #7f8c8d;
+    --border: #e0e0e0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  
+  .header {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 15px rgba(26, 82, 118, 0.3);
+  }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header .date { font-size: 16px; opacity: 0.9; }
+  .header .summary {
+    background: rgba(255,255,255,0.15);
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  
+  .alert-banner {
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid;
+  }
+  .alert-banner.p1 { background: #fef3e2; border-color: var(--warning); }
+  .alert-banner.p2 { background: #e8f6f3; border-color: var(--success); }
+  .alert-banner h2 { margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text); }
+  .alert-item {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .alert-item .level {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  .alert-item .level.p1 { background: var(--warning); }
+  .alert-item .level.p2 { background: var(--success); }
+  
+  .section { margin-bottom: 24px; }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .company-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s;
+  }
+  .company-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .company-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .company-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .drug-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    color: white;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .drug-badge.secondary {
+    background: linear-gradient(135deg, #7f8c8d, #5d6d7e);
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .info-item { padding: 10px 14px; background: var(--bg); border-radius: 6px; }
+  .info-item .label {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .info-item .value { font-size: 14px; }
+  .info-item.full { grid-column: 1 / -1; }
+  
+  .source-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .source-link:hover { text-decoration: underline; }
+  
+  .pipeline-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .pipeline-table th {
+    background: var(--primary);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .pipeline-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .pipeline-table tr:hover { background: #f0f7fc; }
+  .pipeline-table tr:last-child td { border-bottom: none; }
+  
+  .phase-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .phase-approved { background: #d5f5e3; color: #1e8449; }
+  .phase-3 { background: #d4efdf; color: #1e8449; }
+  .phase-2 { background: #fef9e7; color: #b7950b; }
+  .phase-1 { background: #fef3e2; color: #ca6f1e; }
+  .phase-pre { background: #fde8e8; color: #c0392b; }
+  
+  .calendar-item {
+    background: var(--card-bg);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .calendar-date {
+    background: var(--primary);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .importance-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .importance-dot.high { background: var(--danger); }
+  .importance-dot.medium { background: var(--warning); }
+  .importance-dot.low { background: var(--success); }
+  
+  .footer {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 768px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .header { padding: 20px; }
+    .header h1 { font-size: 22px; }
+    body { padding: 12px; }
+  }
+  
+  .no-news {
+    text-align: center;
+    color: var(--text-light);
+    padding: 40px;
+    font-size: 16px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 4px;
+  }
+  .tag-clinical { background: #d6eaf8; color: #1a5276; }
+  .tag-regulatory { background: #d5f5e3; color: #1e8449; }
+  .tag-academic { background: #f9ebea; color: #922b21; }
+  .tag-pipeline { background: #fef9e7; color: #7d6608; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>🧠 阿尔茨海默创新药日报</h1>
+    <div class="date">2026年4月8日（星期三）</div>
+    <div class="summary">
+      📊 <strong>今日摘要：</strong>三项新药临床进展同日公布——NeuroTherapia NTRX-07（神经炎症调节）IIa期安全性达标、Alzamend AL001锂脑递送II期药效数据积极；NICE donanemab/lecanemab第三版指南草案咨询截止倒计时（4/28），6/10最终裁定关键节点临近；AXS-05 PDUFA 22天倒计时（4/30）。11家跟踪公司均无AD相关新公告。
+    </div>
+  </div>
+
+  <!-- Alert Section -->
+  <div id="alertSection">
+
+    <div class="alert-banner p2">
+      <h2>🟡 P2 关注事件</h2>
+
+      <div class="alert-item">
+        <span class="level p2">P2</span>&nbsp;
+        <strong>NeuroTherapia / NTRX-07</strong> — Phase IIa完成，安全性达主要终点，多项探索性MRI/生物标志物/认知信号积极，进入下一阶段规划（2026-04-07）
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>&nbsp;
+        <strong>Alzamend Neuro / AL001</strong> — II期"Lithium in Brain"药效学数据：AL001在17/18脑区显示肌醇降低趋势（vs碳酸锂8/18），谷氨酸干扰更小，提示更佳CNS靶向性（2026-04-07）
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>&nbsp;
+        <strong>IGC Pharma / IGC-AD1</strong> — CALMA II期新增Tandem Clinical Research站点，入组已超70%完成（2026-04-07）
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>&nbsp;
+        <strong>NICE / Kisunla + Leqembi</strong> — 第三版草案指南公众咨询截止 <strong>4月28日</strong>，6月10日评审委员会会议，最终裁定临近（2026-04-01）
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>&nbsp;
+        <strong>Axsome / AXS-05</strong> — FDA优先审评，PDUFA <strong>4月30日</strong>，AD激越适应症，倒计时22天
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>&nbsp;
+        <strong>BMS/Karuna / KarXT</strong> — CDE获批2.4类改良型新药临床试验补充申请，适应症：AD相关精神行为症状（M1/M4毒蕈碱激动剂，ADEPT-4 III期，2026-02公示）
+      </div>
+
+    </div>
+  </div>
+
+  <!-- News Section -->
+  <div class="section" id="newsSection">
+    <div class="section-title">📰 今日信息汇总</div>
+    <div id="newsContent">
+
+      <!-- Card 1: NeuroTherapia NTRX-07 -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">NeuroTherapia</span>
+          <span class="drug-badge">NTRX-07</span>
+          <span class="tag tag-clinical">Phase IIa 完成</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="label">一句话结论</div>
+            <div class="value">NTRX-07 Phase IIa安全性达主要终点，MRI/生物标志物多项探索性信号积极，计划推进Phase IIb</div>
+          </div>
+          <div class="info-item">
+            <div class="label">核心数据</div>
+            <div class="value">• 入组48例（随机双盲1:1）<br>• 主要终点（安全性/耐受性）：达标<br>• 治疗组无药物相关SAE<br>• MRI神经炎症指标趋向稳定</div>
+          </div>
+          <div class="info-item">
+            <div class="label">靶点/机制</div>
+            <div class="value">小胶质细胞功能调节；靶向神经退行性疾病中表达上调的受体；口服小分子，减少神经炎症、改善突触可塑性</div>
+          </div>
+          <div class="info-item">
+            <div class="label">临床阶段</div>
+            <div class="value"><span class="phase-badge phase-2">Phase IIa 完成</span></div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义 & 风险</div>
+            <div class="value">
+              <strong>意义：</strong>神经炎症是AD治疗的热点非淀粉样蛋白通路，口服小分子相比抗体具有可及性优势。安全性达标为进一步开发奠定基础。<br>
+              <strong>风险：</strong>探索性数据均为方向性信号，样本量小（48例）、非认知终点为主，临床意义待更大规模试验验证；公司规模小（临床阶段），融资能力是关键变量。
+            </div>
+          </div>
+        </div>
+        <a class="source-link" href="https://www.prnewswire.com/news-releases/neurotherapia-announces-completion-of-its-phase-2a-trial-of-a-novel-treatment-for-alzheimers-disease-302735337.html" target="_blank">📎 来源：PRNewswire (2026-04-07)</a>
+      </div>
+
+      <!-- Card 2: Alzamend AL001 -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">Alzamend Neuro</span>
+          <span class="drug-badge">AL001 (锂共晶)</span>
+          <span class="tag tag-clinical">II期药效数据</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="label">一句话结论</div>
+            <div class="value">AL001在大脑中的药效学特征优于碳酸锂——更广泛的肌醇降低、更低的谷氨酸干扰，提示更佳的CNS靶向锂递送效率</div>
+          </div>
+          <div class="info-item">
+            <div class="label">核心数据</div>
+            <div class="value">• N=6健康受试者（探索性）<br>• 肌醇降低：AL001在17/18脑区 vs 碳酸锂8/18<br>• 谷氨酸：AL001在10/18脑区无显著干扰 vs 碳酸锂全部18脑区<br>• 使用MRS超高场磁共振波谱分析</div>
+          </div>
+          <div class="info-item">
+            <div class="label">靶点/机制</div>
+            <div class="value">锂离子共晶（L-脯氨酸+水杨酸盐），通过专利递送系统提升锂向CNS转运；机制：磷酸肌醇通路、神经保护</div>
+          </div>
+          <div class="info-item">
+            <div class="label">临床阶段</div>
+            <div class="value"><span class="phase-badge phase-2">Phase II 探索</span></div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义 & 风险</div>
+            <div class="value">
+              <strong>意义：</strong>锂对AD的神经保护潜力已有多项临床证据，AL001若能在改善脑内递送同时降低全身毒性，将使老年AD人群使用锂疗法成为可能。<br>
+              <strong>风险：</strong>N=6样本量极小，仅健康受试者，无AD患者认知数据；全部为探索性/假设生成性发现，临床转化路径较长；公司规模小（ALZN），融资风险高。
+            </div>
+          </div>
+        </div>
+        <a class="source-link" href="https://ir.alzamend.com/news-events/press-releases/detail/100/alzamend-neuro-reports-encouraging-pharmacodynamic-data" target="_blank">📎 来源：Alzamend Neuro IR (2026-04-07)</a>
+      </div>
+
+      <!-- Card 3: IGC Pharma CALMA -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">IGC Pharma</span>
+          <span class="drug-badge">IGC-AD1</span>
+          <span class="tag tag-clinical">II期扩展入组</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="label">一句话结论</div>
+            <div class="value">CALMA Phase II新增Tandem Clinical Research研究中心，入组进度超70%，阿尔茨海默病激越适应症推进</div>
+          </div>
+          <div class="info-item">
+            <div class="label">核心数据</div>
+            <div class="value">• 新增站点：Tandem Clinical Research（路易斯安那州）<br>• 入组完成度：&gt;70%<br>• 适应症：AD痴呆激越症状<br>• 研究阶段：Phase 2多中心RCT</div>
+          </div>
+          <div class="info-item">
+            <div class="label">临床阶段</div>
+            <div class="value"><span class="phase-badge phase-2">Phase II 进行中</span></div>
+          </div>
+          <div class="info-item">
+            <div class="label">意义</div>
+            <div class="value">AD激越是高发且难治的BPSD症状；AXS-05 PDUFA 4/30提醒该适应症竞争激烈，IGC-AD1加速入组符合节奏</div>
+          </div>
+        </div>
+        <a class="source-link" href="https://igcpharma.com/igc-pharma-adds-tandem-clinical-research-to-the-calma-trial-for-agitation-in-alzheimers-disease/" target="_blank">📎 来源：IGC Pharma (2026-04-07)</a>
+      </div>
+
+      <!-- Card 4: NICE Consultation -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">NICE（英国）</span>
+          <span class="drug-badge">Kisunla (礼来)</span>
+          <span class="drug-badge secondary">Leqembi (卫材/Biogen)</span>
+          <span class="tag tag-regulatory">HTA关键节点</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="label">一句话结论</div>
+            <div class="value">NICE第三版指南草案咨询截止4/28，核心争议点：护理人员效用低估+NHS输注成本公平性；6/10委员会最终裁定</div>
+          </div>
+          <div class="info-item">
+            <div class="label">关键时间节点</div>
+            <div class="value">• 咨询截止：<strong>2026-04-28</strong><br>• NICE委员会评审：<strong>2026-06-10</strong><br>• 本次变化：已应上诉重新审视护理人员负担和NHS实施成本</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义 & 风险</div>
+            <div class="value">
+              <strong>意义：</strong>若NICE此次翻转拒绝决定，将为英国NHS开通两款抗Aβ抗体，重大商业化里程碑（礼来/卫材）。<br>
+              <strong>风险：</strong>本次咨询是程序性重审，并非新临床数据驱动；护理人员效用重估和输注成本重新谈判结果难以预判；即使6/10批准也可能附加限制条件（如biomarker确诊要求）。
+            </div>
+          </div>
+        </div>
+        <a class="source-link" href="https://pharmaceutical-journal.com/article/news/nice-opens-consultation-on-previously-rejected-alzheimers-treatments-donanemab-and-lecanemab" target="_blank">📎 来源：Pharmaceutical Journal (2026-04-01)</a>
+      </div>
+
+      <!-- Card 5: AXS-05 Countdown -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">Axsome Therapeutics</span>
+          <span class="drug-badge">AXS-05 (Auvelity)</span>
+          <span class="tag tag-regulatory">PDUFA倒计时</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="label">一句话结论</div>
+            <div class="value">FDA PDUFA日期 4月30日（22天后），AXS-05用于AD激越适应症的sBLA获优先审评，历史上首个新机制AD激越候选</div>
+          </div>
+          <div class="info-item">
+            <div class="label">关键信息</div>
+            <div class="value">• PDUFA：<strong>2026-04-30</strong>（距今22天）<br>• 机制：NMDAR拮抗剂+去甲肾上腺素再摄取抑制<br>• 竞品：Rexulti (brexpiprazole) 已获批AD激越<br>• 审评类型：优先审评（Priority Review）</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义 & 风险</div>
+            <div class="value">
+              <strong>意义：</strong>若获批将是AD激越领域第二款批准药物，差异化机制（NMDA/NE vs 抗精神病药物）潜在处方份额可观。<br>
+              <strong>风险：</strong>FDA可能要求额外安全数据；AD激越市场较早期AD小；Rexulti已有先发优势；拒绝或CRL则是负面催化剂。
+            </div>
+          </div>
+        </div>
+        <a class="source-link" href="https://www.biospace.com/press-releases/axsome-therapeutics-announces-fda-acceptance-and-priority-review-of-supplemental-new-drug-application-for-axs-05-for-the-treatment-of-alzheimers-disease-agitation" target="_blank">📎 来源：BioSpace (2025-12-31)</a>
+      </div>
+
+      <!-- Card 6: KarXT CDE -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">BMS/Karuna Therapeutics</span>
+          <span class="drug-badge">KarXT (xanomeline-trospium)</span>
+          <span class="tag tag-regulatory">CDE中国III期</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="label">一句话结论</div>
+            <div class="value">KarXT在中国CDE获批2.4类改良型新药补充申请，AD相关精神行为症状ADEPT-4 III期正式可入组，中国市场布局落地</div>
+          </div>
+          <div class="info-item">
+            <div class="label">关键信息</div>
+            <div class="value">• CDE公示：<strong>2026-04-02</strong><br>• 适应症：AD相关精神行为症状（幻觉/妄想）<br>• 机制：M1/M4毒蕈碱受体激动剂（首创机制）<br>• 中国III期注册：ADEPT-4，目标406例（国内25例）<br>• 中国权益：再鼎医药</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义 & 风险</div>
+            <div class="value">
+              <strong>意义：</strong>KarXT是数十年来精神科领域首个全新机制药物，美国已获批精神分裂症；AD精神行为症状（BPSD）市场广阔，中国III期入组是商业化布局关键步骤。<br>
+              <strong>风险：</strong>III期尚未招募，数据读出预计2028年左右；BPSD人群耐受性需额外监测；中国仅25例本地入组，以全球数据为主；与AXS-05竞争不同BPSD维度。
+            </div>
+          </div>
+        </div>
+        <a class="source-link" href="https://finance.sina.com.cn/stock/aigc/ywsygs/2026-02-11/doc-inhmmvze0482042.shtml" target="_blank">📎 来源：新浪财经/CDE (2026-04-02)</a>
+      </div>
+
+      <!-- Card 7: FLAV-27 基础研究 -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">Flavii Therapeutics（巴塞罗那大学分拆）</span>
+          <span class="drug-badge secondary">FLAV-27</span>
+          <span class="tag tag-academic">表观遗传/临床前</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="label">一句话结论</div>
+            <div class="value">首创SAM竞争性G9a抑制剂FLAV-27在AD小鼠模型中同时降低Aβ/Tau并改善记忆，靶向疾病上游表观遗传共同通路，距临床尚早</div>
+          </div>
+          <div class="info-item">
+            <div class="label">核心数据（临床前）</div>
+            <div class="value">• 靶点：G9a组蛋白甲基转移酶（H3K9me2）<br>• 效果：降低Aβ+pTau、改善短/长期记忆、空间记忆、突触结构<br>• 外周血生物标志物：H3K9me2, SMOC1可检测<br>• 阶段：临床前，毒理学研究准备中</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义 & 风险</div>
+            <div class="value">
+              <strong>意义：</strong>表观遗传通路靶向是Post-amyloid时代重要探索方向，同时影响Aβ/Tau/突触/神经炎症多个病理维度，若IND成功将是重要新机制候选。<br>
+              <strong>风险：</strong>全部为临床前证据，人体转化风险大；距IND还需2-3年；Flavii是新成立的spinoff，资金和团队不确定性高。
+            </div>
+          </div>
+        </div>
+        <a class="source-link" href="https://scitechdaily.com/breakthrough-alzheimers-drug-rewires-the-brain-instead-of-just-clearing-plaques/" target="_blank">📎 来源：SciTechDaily (2026-04-03)</a>
+      </div>
+
+      <!-- 11家跟踪公司无更新 -->
+      <div class="no-news" style="padding: 24px; text-align:left; background: #f8f9fa; border-left: 4px solid #bdc3c7;">
+        <strong>⚫ 11家重点跟踪公司今日公告扫描</strong>：Biogen、Alnylam、礼来、罗氏、AC Immune、Voyager、Lexeo、康方生物、恒瑞医药、新华制药、万邦德均无AD相关新公告发布。
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Pipeline Overview -->
+  <div class="section">
+    <div class="section-title">📋 管线状态总览</div>
+    <table class="pipeline-table">
+      <thead>
+        <tr>
+          <th>公司</th>
+          <th>产品</th>
+          <th>靶点/机制</th>
+          <th>当前阶段</th>
+          <th>最近更新</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Biogen/卫材</strong></td>
+          <td>Leqembi® (lecanemab)</td>
+          <td>抗Aβ单抗</td>
+          <td><span class="phase-badge phase-approved">已获批 (FDA/NMPA)</span></td>
+          <td>皮下注射笔FDA审评中；NICE第三版咨询4/28截止，6/10裁定</td>
+        </tr>
+        <tr>
+          <td><strong>礼来</strong></td>
+          <td>Kisunla® (donanemab)</td>
+          <td>抗N3pG-Aβ单抗</td>
+          <td><span class="phase-badge phase-approved">已获批 (FDA/NMPA)</span></td>
+          <td>NICE咨询中；德国G-BA否定附加效益；EMA已拒绝</td>
+        </tr>
+        <tr>
+          <td><strong>礼来</strong></td>
+          <td>Remternetug</td>
+          <td>抗N3pG-Aβ单抗（皮下）</td>
+          <td><span class="phase-badge phase-3">Phase III (TRAILRUNNER-ALZ3)</span></td>
+          <td>TRAILRUNNER-ALZ3进行中，H1 2026数据预期读出</td>
+        </tr>
+        <tr>
+          <td><strong>Biogen</strong></td>
+          <td>BIIB080</td>
+          <td>ASO/靶向APP mRNA</td>
+          <td><span class="phase-badge phase-2">I/IIa 完成</span></td>
+          <td>评估Phase III方案</td>
+        </tr>
+        <tr>
+          <td><strong>Alnylam</strong></td>
+          <td>Mivelsiran (ALN-APP)</td>
+          <td>RNAi/靶向APP mRNA</td>
+          <td><span class="phase-badge phase-1">Phase I (HERALD)</span></td>
+          <td>NCT06033734进行中</td>
+        </tr>
+        <tr>
+          <td><strong>罗氏</strong></td>
+          <td>Trontinemab (RG7986)</td>
+          <td>BrainShuttle Aβ单抗</td>
+          <td><span class="phase-badge phase-1">Phase I</span></td>
+          <td>NCT05416325进行中，脑递送平台关键验证</td>
+        </tr>
+        <tr>
+          <td><strong>AC Immune</strong></td>
+          <td>ACI-35.030 (JNJ-2056)</td>
+          <td>pTau疫苗（强生合作）</td>
+          <td><span class="phase-badge phase-2">Phase II</span></td>
+          <td>NCT05269395进行中</td>
+        </tr>
+        <tr>
+          <td><strong>AC Immune</strong></td>
+          <td>ACI-24.060</td>
+          <td>Aβ疫苗/脂质体纳米颗粒</td>
+          <td><span class="phase-badge phase-1">Phase I/II</span></td>
+          <td>NCT05463286；TDP-43 PET示踪剂I期数据（AD/PD 2026）</td>
+        </tr>
+        <tr>
+          <td><strong>Voyager</strong></td>
+          <td>VY7523 / VY1706</td>
+          <td>AAV基因疗法</td>
+          <td><span class="phase-badge phase-pre">临床前/早期</span></td>
+          <td>VY1706 IND预期H2 2026；VY7523临床数据H2 2026</td>
+        </tr>
+        <tr>
+          <td><strong>Lexeo</strong></td>
+          <td>LX1001</td>
+          <td>AAV/APOE2基因替换</td>
+          <td><span class="phase-badge phase-1">Phase I/II</span></td>
+          <td>APOE4纯合子AD患者，NCT04935372进行中</td>
+        </tr>
+        <tr>
+          <td><strong>康方生物</strong></td>
+          <td>AK152</td>
+          <td>AD抗体（早期研发）</td>
+          <td><span class="phase-badge phase-pre">临床前</span></td>
+          <td>无新进展</td>
+        </tr>
+        <tr>
+          <td><strong>恒瑞医药</strong></td>
+          <td>SHR-1707等</td>
+          <td>待披露</td>
+          <td><span class="phase-badge phase-pre">早期研发</span></td>
+          <td>无AD相关新公告</td>
+        </tr>
+        <tr>
+          <td><strong>新华制药</strong></td>
+          <td>OAB-14干混悬剂</td>
+          <td>待披露</td>
+          <td><span class="phase-badge phase-2">临床/注册阶段</span></td>
+          <td>无新进展</td>
+        </tr>
+        <tr>
+          <td><strong>万邦德</strong></td>
+          <td>石杉碱甲控释片</td>
+          <td>AChE抑制剂</td>
+          <td><span class="phase-badge phase-2">Phase II/III</span></td>
+          <td>入组已突破100例（上周数据）</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Upcoming Events -->
+  <div class="section" id="calendarSection">
+    <div class="section-title">📅 近期关注日历（未来7天及重要节点）</div>
+
+    <div class="calendar-item">
+      <div class="calendar-date">04-28</div>
+      <div class="importance-dot high"></div>
+      <div>
+        <strong>NICE第三版指南草案咨询截止</strong><br>
+        <span style="color:var(--text-light); font-size:13px;">礼来Kisunla + 卫材/Biogen Leqembi | 利益相关方提交意见截止，6/10委员会评审裁定最终推荐 | ⭐⭐⭐ 高</span>
+      </div>
+    </div>
+
+    <div class="calendar-item">
+      <div class="calendar-date">04-30</div>
+      <div class="importance-dot high"></div>
+      <div>
+        <strong>AXS-05 FDA PDUFA日期</strong><br>
+        <span style="color:var(--text-light); font-size:13px;">Axsome Therapeutics | AD激越适应症sBLA优先审评决定日 | ⭐⭐⭐ 高</span>
+      </div>
+    </div>
+
+    <div class="calendar-item">
+      <div class="calendar-date">H1 2026</div>
+      <div class="importance-dot medium"></div>
+      <div>
+        <strong>Remternetug TRAILRUNNER-ALZ3 III期数据读出</strong><br>
+        <span style="color:var(--text-light); font-size:13px;">礼来 | 皮下注射抗Aβ单抗III期关键数据（预期H1 2026）| ⭐⭐⭐ 高</span>
+      </div>
+    </div>
+
+    <div class="calendar-item">
+      <div class="calendar-date">06-10</div>
+      <div class="importance-dot high"></div>
+      <div>
+        <strong>NICE评审委员会会议（Kisunla/Leqembi最终裁定）</strong><br>
+        <span style="color:var(--text-light); font-size:13px;">礼来/卫材Biogen | 是否翻转拒绝推荐，开通英国NHS市场 | ⭐⭐⭐ 高</span>
+      </div>
+    </div>
+
+    <div class="calendar-item">
+      <div class="calendar-date">H2 2026</div>
+      <div class="importance-dot medium"></div>
+      <div>
+        <strong>Voyager VY1706 IND申请 + VY7523临床数据</strong><br>
+        <span style="color:var(--text-light); font-size:13px;">Voyager Therapeutics | AAV基因疗法两项里程碑 | ⭐⭐ 中</span>
+      </div>
+    </div>
+
+    <div class="calendar-item">
+      <div class="calendar-date">持续中</div>
+      <div class="importance-dot low"></div>
+      <div>
+        <strong>IGC-AD1 CALMA II期招募冲刺（入组>70%）</strong><br>
+        <span style="color:var(--text-light); font-size:13px;">IGC Pharma | AD激越Phase 2，完成后读出数据 | ⭐ 低</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    阿尔茨海默创新药跟踪系统 | 自动生成于 2026-04-08 07:57 | 数据来源于公开信息，仅供参考，不构成投资建议<br>
+    GitHub Pages: <a href="https://JeremyYu-gif.github.io/AD2026-04-08.html" style="color:var(--accent)">https://JeremyYu-gif.github.io/AD2026-04-08.html</a>
+  </div>
+
+</div>
+</body>
+</html>
