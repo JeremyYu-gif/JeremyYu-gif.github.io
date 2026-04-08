@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿尔茨海默创新药日报 - 2026-04-09</title>
+<style>
+  :root {
+    --primary: #1a5276;
+    --accent: #2e86c1;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --success: #27ae60;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #2c3e50;
+    --text-light: #7f8c8d;
+    --border: #e0e0e0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .header {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 15px rgba(26, 82, 118, 0.3);
+  }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header .date { font-size: 16px; opacity: 0.9; }
+  .header .summary {
+    background: rgba(255,255,255,0.15);
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .alert-banner {
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid;
+  }
+  .alert-banner.p1 { background: #fef3e2; border-color: var(--warning); }
+  .alert-banner.p2 { background: #e8f6f3; border-color: var(--success); }
+  .alert-banner h2 { margin-bottom: 10px; display: flex; align-items: center; gap: 8px; color: var(--text); }
+  .alert-item {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .alert-item .level {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  .alert-item .level.p1 { background: var(--warning); }
+  .alert-item .level.p2 { background: var(--success); }
+
+  .section { margin-bottom: 24px; }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .company-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s;
+  }
+  .company-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .company-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .company-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .drug-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    color: white;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .drug-badge.secondary {
+    background: linear-gradient(135deg, #7f8c8d, #5d6d7e);
+  }
+  .drug-badge.negative {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .info-item { padding: 10px 14px; background: var(--bg); border-radius: 6px; }
+  .info-item .label {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .info-item .value { font-size: 14px; }
+  .info-item.full { grid-column: 1 / -1; }
+
+  .source-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .source-link:hover { text-decoration: underline; }
+
+  .pipeline-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .pipeline-table th {
+    background: var(--primary);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .pipeline-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .pipeline-table tr:hover { background: #f0f7fc; }
+  .pipeline-table tr:last-child td { border-bottom: none; }
+
+  .phase-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .phase-approved { background: #d5f5e3; color: #1e8449; }
+  .phase-3 { background: #d4efdf; color: #1e8449; }
+  .phase-2 { background: #fef9e7; color: #b7950b; }
+  .phase-1 { background: #fef3e2; color: #ca6f1e; }
+  .phase-pre { background: #fde8e8; color: #c0392b; }
+
+  .calendar-item {
+    background: var(--card-bg);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .calendar-date {
+    background: var(--primary);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .importance-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .importance-dot.high { background: var(--danger); }
+  .importance-dot.medium { background: var(--warning); }
+  .importance-dot.low { background: var(--success); }
+
+  .footer {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 768px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .header { padding: 20px; }
+    .header h1 { font-size: 22px; }
+    body { padding: 12px; }
+  }
+
+  .no-news {
+    text-align: center;
+    color: var(--text-light);
+    padding: 40px;
+    font-size: 16px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 4px;
+  }
+  .tag-commercial { background: #fde8e8; color: #922b21; }
+  .tag-regulatory { background: #d5f5e3; color: #1e8449; }
+  .tag-academic { background: #f9ebea; color: #922b21; }
+  .tag-pipeline { background: #fef9e7; color: #7d6608; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>🧠 阿尔茨海默创新药日报</h1>
+    <div class="date">2026年4月9日（星期四）</div>
+    <div class="summary">
+      📊 <strong>今日摘要：</strong>Eisai下调Leqembi销售预期——上半年销售增长乏力为主要原因，抗Aβ抗体商业化困境持续验证（AR需MRI监测、输注不便、患者选择偏保守）；AXS-05 PDUFA倒计时21天（4/30）；NICE donanemab/lecanemab指南咨询截止19天（4/28）；11家跟踪公司均无AD相关新公告。
+    </div>
+  </div>
+
+  <!-- Alert Section -->
+  <div id="alertSection">
+
+    <div class="alert-banner p2">
+      <h2>🟡 P2 关注事件</h2>
+
+      <div class="alert-item">
+        <span class="level p2">P2</span>&nbsp;
+        <strong>Eisai / Leqembi</strong> — 上半年销售增长乏力，下调全年销售预期；抗Aβ抗体商业化系统性挑战持续显现（ARIA监测门槛、输注基础设施、患者/医生采纳率低于预期）| <strong>2026-04-09</strong>
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>&nbsp;
+        <strong>Axsome / AXS-05</strong> — FDA优先审评，PDUFA <strong>4月30日</strong>（21天后），AD激越适应症；历史上首个新机制AD激越候选；关注FDA是否发出CRL
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>&nbsp;
+        <strong>NICE / Kisunla + Leqembi</strong> — 第三版指南草案公众咨询截止 <strong>4月28日</strong>（19天后），NICE委员会评审 <strong>6月10日</strong>
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>&nbsp;
+        <strong>礼来 / Remternetug</strong> — TRAILRUNGER-ALZ3 III期（H1 2026预期读出），皮下注射新一代抗Aβ单抗，数据值得关注
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>&nbsp;
+        <strong>AC Immune / J&J</strong> — ACI-35.030 JNJ-2056 Phase IIb RETAIN研究暂停入组（2月公告），等待试验方案评估，非安全性触发，事件仍在持续
+      </div>
+
+    </div>
+  </div>
+
+  <!-- News Section -->
+  <div class="section" id="newsSection">
+    <div class="section-title">📰 今日信息汇总</div>
+    <div id="newsContent">
+
+      <!-- Card 1: Eisai Leqembi下调预期 -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">卫材 (Eisai)</span>
+          <span class="drug-badge">Leqembi® (lecanemab)</span>
+          <span class="tag tag-commercial">销售预警</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="label">一句话结论</div>
+            <div class="value">Eisai下调Leqembi全年销售预期——上半年销售增长低于内部计划，反映抗Aβ抗体在真实世界的系统性采纳挑战</div>
+          </div>
+          <div class="info-item">
+            <div class="label">核心数据</div>
+            <div class="value">• 触发：2026上半财年销售增长低于预期<br>• 公司动作：下调全年销售指引<br>• 具体数字：待Eisai财报披露<br>• 背景：Leqembi 2023年7月FDA完全批准，2025年销售额仍处于相对较低水平</div>
+          </div>
+          <div class="info-item">
+            <div class="label">商业化挑战分析</div>
+            <div class="value">• ARIA监测要求：需要基线MRI + 输注后多次MRI监测<br>• 输注门槛：每两周静脉输注，医疗资源占用大<br>• 患者筛选：需确认淀粉样蛋白PET或CSF生物标志物<br>• 医患教育：认知改善幅度有限（CDR-SB约-0.45），性价比认知建立需时</div>
+          </div>
+          <div class="info-item">
+            <div class="label">临床阶段</div>
+            <div class="value"><span class="phase-badge phase-approved">已获批 (FDA/NMPA)</span></div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义 & 风险</div>
+            <div class="value">
+              <strong>意义：</strong>Eisai下调预期对整个抗Aβ抗体赛道有重要参考价值——说明即使FDA完全批准，商业化仍面临高门槛。这对礼来Donanemab的商业化路径、Kisunla的医保谈判、以及后续Remternetug皮下剂型均有参考意义。同时，Leqembi真实世界长期治疗持久性数据（AD/PD 2026）显示超过18个月持续治疗率尚可，说明依从性与可及性之间存在张力。<br>
+              <strong>风险：</strong>商业化困境将影响资本对整个Aβ赛道的信心；Biogen作为合作伙伴也将承受压力；对中国市场影响：NMPA已批准Leqembi，中国患者支付能力和诊断率是更大障碍。
+            </div>
+          </div>
+        </div>
+        <a class="source-link" href="https://pharmaphorum.com/news/eisai-dials-back-forecasts-alzheimers-drug-leqembi" target="_blank">📎 来源：Pharmaphorum (2026-04-09，23小时前)</a>
+      </div>
+
+      <!-- Card 2: AXS-05 countdown reminder -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">Axsome Therapeutics</span>
+          <span class="drug-badge">AXS-05 (Auvelity)</span>
+          <span class="tag tag-regulatory">PDUFA倒计时</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="label">一句话结论</div>
+            <div class="value">FDA PDUFA 4月30日（21天后），AXS-05的AD激越sBLA优先审评决定在即，关注是否发出CRL或批准</div>
+          </div>
+          <div class="info-item">
+            <div class="label">关键信息</div>
+            <div class="value">• PDUFA：<strong>2026-04-30</strong>（距今21天）<br>• 审评类型：优先审评（Priority Review）<br>• 机制：NMDAR拮抗剂（右美沙芬）+ 去甲肾上腺素再摄取抑制（安非他酮）<br>• 已获批适应症：抑郁症（商品名Auvelity）<br>• 竞品：Rexulti (brexpiprazole) 2023年获批AD激越</div>
+          </div>
+          <div class="info-item">
+            <div class="label">临床数据回顾</div>
+            <div class="value">• ADVANCE-2 III期：AXS-05显著改善AD患者激越（p<0.001）<br>• 起效时间：约2周<br>• 主要终点：Cohen-Mansfield激越量表（CMAI）<br>• 安全性：恶心、头晕为主，无重大安全信号</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义 & 风险</div>
+            <div class="value">
+              <strong>意义：</strong>若获批，将是Rexulti之后第二款AD激越批准药物，且机制与抗精神病药物完全不同（谷氨酸/NMDA vs 多巴胺/5-HT受体），将满足大量对现有药物不耐受的AD激越患者需求，市场潜力显著。<br>
+              <strong>风险：</strong>FDA可能要求补充数据（如长期安全性数据）；若发出CRL（完整回复函），AXSM股价将有显著压力，且意味着2026年内无法获批；AD激越市场实际容量仍有不确定性。
+            </div>
+          </div>
+        </div>
+        <a class="source-link" href="https://www.patientcareonline.com/view/fda-grants-priority-review-to-axs-05-for-agitation-in-alzheimer-disease-sets-april-2026-pdufa-date" target="_blank">📎 来源：Patient Care Online (2026-01-02)</a>
+      </div>
+
+      <!-- Card 3: NICE consultation reminder -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">NICE（英国）</span>
+          <span class="drug-badge">Kisunla (礼来)</span>
+          <span class="drug-badge secondary">Leqembi (卫材/Biogen)</span>
+          <span class="tag tag-regulatory">HTA关键节点</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="label">一句话结论</div>
+            <div class="value">NICE第三版指南草案咨询截止4月28日（19天后）——英国NHS是否最终推荐两款抗Aβ抗体，委员会评审6月10日</div>
+          </div>
+          <div class="info-item">
+            <div class="label">关键时间节点</div>
+            <div class="value">• 咨询截止：<strong>2026-04-28</strong>（19天后）<br>• NICE评审委员会会议：<strong>2026-06-10</strong><br>• 本轮变化：上诉后重审护理人员效用评估+NHS输注成本分配</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义 & 风险</div>
+            <div class="value">
+              <strong>意义：</strong>若6月NICE最终批准推荐，英国NHS将是全球首批大范围覆盖抗Aβ抗体的公立医保体系之一，将显著改善Kisunla/Leqembi的欧洲可及性和商业回报。<br>
+              <strong>风险：</strong>NICE已两次拒绝，本轮为上诉后重审，结果仍不确定；即使批准可能附加严格条件（仅早期确诊患者、需生物标志物确诊等）；Eisai今日下调预期可能影响英国谈判策略。
+            </div>
+          </div>
+        </div>
+        <a class="source-link" href="https://pharmaceutical-journal.com/article/news/nice-opens-consultation-on-previously-rejected-alzheimers-treatments-donanemab-and-lecanemab" target="_blank">📎 来源：Pharmaceutical Journal (2026-04-01)</a>
+      </div>
+
+      <!-- Card 4: AL002 Nature data (from March 2026) -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">Alector / Pfizer（AL002）</span>
+          <span class="drug-badge negative">AL002 (latozinemab)</span>
+          <span class="tag tag-academic">Phase II失败</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="label">一句话结论</div>
+            <div class="value">AL002 Phase II研究未达主要终点——TREM2激动未能显著改善早期AD患者认知功能，但显示了目标结合活性</div>
+          </div>
+          <div class="info-item">
+            <div class="label">核心数据（Nature Medicine）</div>
+            <div class="value">• 研究设计：Phase II，随机、双盲、安慰剂对照<br>• 主要终点：CDR-SB相对基线变化（vs 安慰剂）<br>• 结果：<strong>未达到统计显著性</strong><br>• 靶点结合：确认AL002与TREM2存在目标结合活性（PD验证成功）<br>• 发表：Nature Medicine, 2026-03-05</div>
+          </div>
+          <div class="info-item">
+            <div class="label">靶点/机制</div>
+            <div class="value">TREM2（髓样细胞触发受体2）激动——增强小胶质细胞吞噬Aβ和细胞碎片的功效；Alzheimer风险基因TREM2 R47H变异与AD发病强相关</div>
+          </div>
+          <div class="info-item">
+            <div class="label">临床阶段</div>
+            <div class="value"><span class="phase-badge phase-pre">Phase II 未达终点</span></div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义 & 风险</div>
+            <div class="value">
+              <strong>意义：</strong>TREM2是Aβ之外最重要的AD遗传风险通路之一；AL002是首个大规模人体试验验证TREM2靶点功能的候选；靶点PD验证成功但疗效未达终点，说明仅靠TREM2激动难以独立改善认知，需联合治疗策略。<br>
+              <strong>风险：</strong>Phase II失败将影响Alector/GSK合作项目信心；TREM2赛道其余候选（杜克大学BiX等）需重新评估设计策略；TREM2靶点向人体临床转化的首个重要失败数据。
+            </div>
+          </div>
+        </div>
+        <a class="source-link" href="https://www.nature.com/articles/s41591-026-04273-1" target="_blank">📎 来源：Nature Medicine (2026-03-05)</a>
+      </div>
+
+      <!-- Card 5: Remternetug reminder -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">礼来</span>
+          <span class="drug-badge">Remternetug</span>
+          <span class="tag tag-pipeline">Phase III进行中</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="label">一句话结论</div>
+            <div class="value">Remternetug皮下注射新一代抗N3pG-Aβ单抗III期TRAILRUNNER-ALZ3数据预期H1 2026读出——关注皮下给药可及性改善潜力</div>
+          </div>
+          <div class="info-item">
+            <div class="label">关键信息</div>
+            <div class="value">• 靶点：N3pG-Aβ（与Donanemab相同表位）<br>• 差异：皮下注射剂型（vs Leqembi/Donanemab静脉输注）<br>• 研究：TRAILRUNNER-ALZ3 (NCT05040070)，III期<br>• 预期数据：H1 2026（具体时间待定）</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义 & 风险</div>
+            <div class="value">
+              <strong>意义：</strong>皮下注射若能证实与静脉注射等效，将大幅改善Leqembi/Kisunla商业化中的输注门槛问题——居家自注、每月一次 vs 每月两次静脉，对患者、医生和支付方均有显著吸引力。礼来有望在抗Aβ市场建立差异化竞争优势。<br>
+              <strong>风险：</strong>皮下注射的生物利用度和ARIA风险需与静脉注射相当；H1 2026数据公布时间尚不确定；即使成功，商业化仍面临与已上市产品的竞争。
+            </div>
+          </div>
+        </div>
+        <a class="source-link" href="https://www.sciencedirect.com/science/article/pii/S2666634025001989" target="_blank">📎 来源：ScienceDirect (2025-08-08)</a>
+      </div>
+
+      <!-- 11家跟踪公司无更新 -->
+      <div class="no-news" style="padding: 24px; text-align:left; background: #f8f9fa; border-left: 4px solid #bdc3c7;">
+        <strong>⚫ 11家重点跟踪公司今日公告扫描</strong>：Biogen、Alnylam、礼来、罗氏、AC Immune、Voyager、Lexeo、康方生物、恒瑞医药、新华制药、万邦德均无AD相关新公告发布。
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Pipeline Overview -->
+  <div class="section">
+    <div class="section-title">📋 管线状态总览</div>
+    <table class="pipeline-table">
+      <thead>
+        <tr>
+          <th>公司</th>
+          <th>产品</th>
+          <th>靶点/机制</th>
+          <th>当前阶段</th>
+          <th>最近更新</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>卫材/Biogen</strong></td>
+          <td>Leqembi® (lecanemab)</td>
+          <td>抗Aβ单抗</td>
+          <td><span class="phase-badge phase-approved">已获批 (FDA/NMPA)</span></td>
+          <td>⚠️ Eisai下调全年销售预期（2026-04-09）；皮下注射笔FDA审评中；NICE第三版咨询4/28截止</td>
+        </tr>
+        <tr>
+          <td><strong>礼来</strong></td>
+          <td>Kisunla® (donanemab)</td>
+          <td>抗N3pG-Aβ单抗</td>
+          <td><span class="phase-badge phase-approved">已获批 (FDA/NMPA/欧盟)</span></td>
+          <td>NICE第三版咨询4/28截止，6/10裁定；欧盟EC已批准</td>
+        </tr>
+        <tr>
+          <td><strong>礼来</strong></td>
+          <td>Remternetug</td>
+          <td>抗N3pG-Aβ单抗（皮下）</td>
+          <td><span class="phase-badge phase-3">Phase III (TRAILRUNNER-ALZ3)</span></td>
+          <td>H1 2026预期数据读出</td>
+        </tr>
+        <tr>
+          <td><strong>Biogen</strong></td>
+          <td>BIIB080</td>
+          <td>ASO/靶向APP mRNA</td>
+          <td><span class="phase-badge phase-2">I/IIa 完成</span></td>
+          <td>评估Phase III方案</td>
+        </tr>
+        <tr>
+          <td><strong>Alnylam</strong></td>
+          <td>Mivelsiran (ALN-APP)</td>
+          <td>RNAi/靶向APP mRNA</td>
+          <td><span class="phase-badge phase-1">Phase I (HERALD)</span></td>
+          <td>NCT06033734进行中</td>
+        </tr>
+        <tr>
+          <td><strong>罗氏</strong></td>
+          <td>Trontinemab (RG7986)</td>
+          <td>BrainShuttle Aβ单抗</td>
+          <td><span class="phase-badge phase-1">Phase I</span></td>
+          <td>NCT05416325进行中，脑递送平台关键验证</td>
+        </tr>
+        <tr>
+          <td><strong>AC Immune</strong></td>
+          <td>ACI-35.030 (JNJ-2056)</td>
+          <td>pTau疫苗（强生合作）</td>
+          <td><span class="phase-badge phase-2">Phase IIb 暂停</span></td>
+          <td>⚠️ J&J暂停入组RETAIN研究（2026-02-19），非安全性原因，方案评估中</td>
+        </tr>
+        <tr>
+          <td><strong>AC Immune</strong></td>
+          <td>ACI-24.060</td>
+          <td>Aβ疫苗/脂质体纳米颗粒</td>
+          <td><span class="phase-badge phase-1">Phase I/II</span></td>
+          <td>NCT05463286进行中；TDP-43 PET示踪剂I期数据（AD/PD 2026）</td>
+        </tr>
+        <tr>
+          <td><strong>Alector/Pfizer</strong></td>
+          <td>AL002 (latozinemab)</td>
+          <td>TREM2激动单抗</td>
+          <td><span class="phase-badge phase-pre">Phase II 未达终点</span></td>
+          <td>⚠️ Nature Medicine发表：Phase II未达主要终点，但PD验证成功（2026-03）</td>
+        </tr>
+        <tr>
+          <td><strong>Voyager</strong></td>
+          <td>VY7523 / VY1706</td>
+          <td>AAV基因疗法</td>
+          <td><span class="phase-badge phase-pre">临床前/早期</span></td>
+          <td>VY1706 IND预期H2 2026；VY7523临床数据H2 2026</td>
+        </tr>
+        <tr>
+          <td><strong>Lexeo</strong></td>
+          <td>LX1001</td>
+          <td>AAV/APOE2基因替换</td>
+          <td><span class="phase-badge phase-1">Phase I/II</span></td>
+          <td>APOE4纯合子AD患者，NCT04935372进行中</td>
+        </tr>
+        <tr>
+          <td><strong>康方生物</strong></td>
+          <td>AK152</td>
+          <td>AD抗体（早期研发）</td>
+          <td><span class="phase-badge phase-pre">临床前</span></td>
+          <td>无新进展</td>
+        </tr>
+        <tr>
+          <td><strong>恒瑞医药</strong></td>
+          <td>SHR-1707等</td>
+          <td>待披露</td>
+          <td><span class="phase-badge phase-pre">早期研发</span></td>
+          <td>无AD相关新公告</td>
+        </tr>
+        <tr>
+          <td><strong>新华制药</strong></td>
+          <td>OAB-14干混悬剂</td>
+          <td>待披露</td>
+          <td><span class="phase-badge phase-2">临床/注册阶段</span></td>
+          <td>无新进展</td>
+        </tr>
+        <tr>
+          <td><strong>万邦德</strong></td>
+          <td>石杉碱甲控释片</td>
+          <td>AChE抑制剂</td>
+          <td><span class="phase-badge phase-2">Phase II/III</span></td>
+          <td>入组已突破100例</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Upcoming Events -->
+  <div class="section" id="calendarSection">
+    <div class="section-title">📅 近期关注日历（未来7天及重要节点）</div>
+
+    <div class="calendar-item">
+      <div class="calendar-date">04-16</div>
+      <div class="importance-dot low"></div>
+      <div>
+        <strong>距AXS-05 PDUFA 14天</strong><br>
+        <span style="color:var(--text-light); font-size:13px;">Axsome Therapeutics | 关注FDA是否有额外信息或AdCom通知 | ⭐ 低</span>
+      </div>
+    </div>
+
+    <div class="calendar-item">
+      <div class="calendar-date">04-28</div>
+      <div class="importance-dot high"></div>
+      <div>
+        <strong>NICE第三版指南草案咨询截止</strong><br>
+        <span style="color:var(--text-light); font-size:13px;">礼来Kisunla + 卫材/Biogen Leqembi | 利益相关方提交意见截止，6/10委员会评审裁定最终推荐 | ⭐⭐⭐ 高</span>
+      </div>
+    </div>
+
+    <div class="calendar-item">
+      <div class="calendar-date">04-30</div>
+      <div class="importance-dot high"></div>
+      <div>
+        <strong>AXS-05 FDA PDUFA日期</strong><br>
+        <span style="color:var(--text-light); font-size:13px;">Axsome Therapeutics | AD激越适应症sBLA优先审评决定日 | ⭐⭐⭐ 高</span>
+      </div>
+    </div>
+
+    <div class="calendar-item">
+      <div class="calendar-date">H1 2026</div>
+      <div class="importance-dot high"></div>
+      <div>
+        <strong>Remternetug TRAILRUNNER-ALZ3 III期数据读出</strong><br>
+        <span style="color:var(--text-light); font-size:13px;">礼来 | 皮下注射抗Aβ单抗III期关键数据（预期H1 2026）| ⭐⭐⭐ 高</span>
+      </div>
+    </div>
+
+    <div class="calendar-item">
+      <div class="calendar-date">06-10</div>
+      <div class="importance-dot high"></div>
+      <div>
+        <strong>NICE评审委员会会议（Kisunla/Leqembi最终裁定）</strong><br>
+        <span style="color:var(--text-light); font-size:13px;">礼来/卫材Biogen | 是否翻转拒绝推荐，开通英国NHS市场 | ⭐⭐⭐ 高</span>
+      </div>
+    </div>
+
+    <div class="calendar-item">
+      <div class="calendar-date">H2 2026</div>
+      <div class="importance-dot medium"></div>
+      <div>
+        <strong>Voyager VY1706 IND申请 + VY7523临床数据</strong><br>
+        <span style="color:var(--text-light); font-size:13px;">Voyager Therapeutics | AAV基因疗法两项里程碑 | ⭐⭐ 中</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    阿尔茨海默创新药跟踪系统 | 自动生成于 2026-04-09 07:50 | 数据来源于公开信息，仅供参考，不构成投资建议<br>
+    GitHub Pages: <a href="https://JeremyYu-gif.github.io/AD2026-04-09.html" style="color:var(--accent)">https://JeremyYu-gif.github.io/AD2026-04-09.html</a>
+  </div>
+
+</div>
+</body>
+</html>
