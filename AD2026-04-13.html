@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿尔茨海默创新药日报 - 2026年04月13日</title>
+<style>
+  :root {
+    --primary: #1a5276;
+    --accent: #2e86c1;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --success: #27ae60;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #2c3e50;
+    --text-light: #7f8c8d;
+    --border: #e0e0e0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 15px rgba(26, 82, 118, 0.3);
+  }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header .date { font-size: 16px; opacity: 0.9; }
+  .header .summary {
+    background: rgba(255,255,255,0.15);
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  
+  /* Alert Banner */
+  .alert-banner {
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid;
+  }
+  .alert-banner.p1 { background: #fef3e2; border-color: var(--warning); }
+  .alert-banner.p2 { background: #e8f6f3; border-color: var(--success); }
+  .alert-banner h2 { margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .alert-item {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .alert-item .level {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  .alert-item .level.p1 { background: var(--warning); }
+  .alert-item .level.p2 { background: var(--success); }
+  
+  /* News Section */
+  .section { margin-bottom: 24px; }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Company Card */
+  .company-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s;
+  }
+  .company-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .company-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .company-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .drug-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    color: white;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .info-item { padding: 10px 14px; background: var(--bg); border-radius: 6px; }
+  .info-item .label {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .info-item .value { font-size: 14px; }
+  .info-item.full { grid-column: 1 / -1; }
+  
+  .source-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .source-link:hover { text-decoration: underline; }
+  
+  /* Pipeline Table */
+  .pipeline-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .pipeline-table th {
+    background: var(--primary);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .pipeline-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .pipeline-table tr:hover { background: #f0f7fc; }
+  .pipeline-table tr:last-child td { border-bottom: none; }
+  
+  .phase-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .phase-approved { background: #d5f5e3; color: #1e8449; }
+  .phase-3 { background: #d4efdf; color: #1e8449; }
+  .phase-2 { background: #fef9e7; color: #b7950b; }
+  .phase-1 { background: #fef3e2; color: #ca6f1e; }
+  .phase-pre { background: #fde8e8; color: #c0392b; }
+  
+  /* Calendar */
+  .calendar-item {
+    background: var(--card-bg);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .calendar-date {
+    background: var(--primary);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .importance-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .importance-dot.high { background: var(--danger); }
+  .importance-dot.medium { background: var(--warning); }
+  .importance-dot.low { background: var(--success); }
+  
+  /* Footer */
+  .footer {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .header { padding: 20px; }
+    .header h1 { font-size: 22px; }
+    body { padding: 12px; }
+  }
+
+  /* Risk tag */
+  .risk-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    background: #fde8e8;
+    color: #c0392b;
+    margin-right: 4px;
+  }
+  .opportunity-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    background: #d5f5e3;
+    color: #1e8449;
+    margin-right: 4px;
+  }
+
+  .tag-section { margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>🧠 阿尔茨海默创新药日报</h1>
+    <div class="date">2026年04月13日（星期一）</div>
+    <div class="summary" id="dailySummary">
+      <strong>📊 今日核心动态：</strong><br>
+      1️⃣ <strong>AC Immune与礼来修订Morphomer® Tau合作协议</strong>：CHF 1000万首付款+17亿瑞士法郎里程碑上限，2026 H1启动IND-enabling研究，礼来持续加码Tau靶点。<br>
+      2️⃣ <strong>万邦德股价半月翻倍引"老药新炒"争议</strong>：石杉碱甲控释片II/III期临床试验进行中，市场质疑其创新成色，监管连发两份异常波动公告。<br>
+      3️⃣ <strong>OncoC4 SIGLEC-10单抗ONC-841完成首例AD患者给药</strong>：全球首个进入临床的SIGLEC-10靶点AD药物，在宣武医院开展I/II期试验。
+    </div>
+  </div>
+
+  <!-- Alert Section -->
+  <div id="alertSection">
+    <div class="alert-banner p1">
+      <h2>🟠 预警事件（P1 - 重要）</h2>
+      <div class="alert-item">
+        <span class="level p1">P1</span>
+        <strong>AC Immune | Morphomer® Tau</strong> — 与礼来修订许可协议，获CHF 1000万首付款，里程碑上限超17亿瑞士法郎，2026 H1启动IND-enabling研究
+      </div>
+    </div>
+    <div class="alert-banner p2">
+      <h2>🟡 预警事件（P2 - 关注）</h2>
+      <div class="alert-item">
+        <span class="level p2">P2</span>
+        <strong>OncoC4 | ONC-841（SIGLEC-10单抗）</strong> — 全球首个SIGLEC-10靶点AD药物在中国完成首例受试者给药（I/II期）
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>
+        <strong>Karuna/BMS | KarXT胶囊</strong> — CDE批准临床试验补充申请，用于治疗AD相关精神行为症状
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>
+        <strong>万邦德 | 石杉碱甲控释片</strong> — 半月股价翻倍，董秘离职，市场质疑"老药新炒"概念炒作
+      </div>
+    </div>
+  </div>
+
+  <!-- News Section -->
+  <div class="section" id="newsSection">
+    <div class="section-title">📰 今日信息汇总</div>
+    <div id="newsContent">
+
+      <!-- AC Immune -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">AC Immune (ACIU)</span>
+          <span class="drug-badge">Morphomer® Tau 小分子</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item full">
+            <div class="label">一句话结论</div>
+            <div class="value">与礼来修订2018年Morphomer® Tau许可协议，扩大合作范围，礼来支付CHF 1000万首付款，里程碑上限超CHF 17亿，2026 H1启动IND-enabling研究。</div>
+          </div>
+          <div class="info-item">
+            <div class="label">事件类型</div>
+            <div class="value">PIPELINE_CHANGE — 重大合作协议修订</div>
+          </div>
+          <div class="info-item">
+            <div class="label">日期</div>
+            <div class="value">2026-04-07</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">核心数据</div>
+            <div class="value">
+              • 首付款: CHF 1,000万（约$1,250万）<br>
+              • 里程碑上限: >CHF 17亿（约$21亿）<br>
+              • 特许权使用费: 低两位数百分比的阶梯式分成<br>
+              • IND-enabling研究启动: 2026 H1<br>
+              • 给药方式: 口服（血脑屏障可穿透）<br>
+              • 机制: 抑制Tau聚集+阻止病理传播
+            </div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义</div>
+            <div class="value">礼来持续押注Tau靶点（除donanemab/remternetug外再增布局），验证了Morphomer®平台技术价值。口服小分子Tau抑制剂若成功，将是对现有抗Aβ单抗的重要补充，尤其在AD早期干预和长期预防方面。CEO Andrea Pfeifer表示"靶向细胞内Tau有望减缓甚至完全阻止病理进展"。</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">风险</div>
+            <div class="value">Tau小分子抑制剂在AD领域尚无成功先例（临床验证待确立）；IND-enabling到临床入组仍有较长周期；17亿里程碑为上限值，实际触发取决于后续开发进展。</div>
+          </div>
+        </div>
+        <a href="https://discover-pharma.com/ac-immune-lilly-tau-morphomer-amendment/" class="source-link" target="_blank">📎 来源: Discover Pharma (2026-04-07)</a>
+        <a href="https://ir.acimmune.com/news" class="source-link" target="_blank" style="margin-left:16px;">📎 AC Immune IR</a>
+      </div>
+
+      <!-- 万邦德 -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">万邦德 (002082.SZ)</span>
+          <span class="drug-badge">石杉碱甲控释片</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item full">
+            <div class="label">一句话结论</div>
+            <div class="value">万邦德石杉碱甲控释片II/III期临床试验进行中（已完成100例入组），但股价半月翻倍引"老药新炒"质疑，董秘离职，4月13日再发异常波动公告。</div>
+          </div>
+          <div class="info-item">
+            <div class="label">事件类型</div>
+            <div class="value">COMPANY_EVENT — 股价异常波动 + 管线进展</div>
+          </div>
+          <div class="info-item">
+            <div class="label">日期</div>
+            <div class="value">2026-04-13（异常波动公告）</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">核心数据</div>
+            <div class="value">
+              • 股价变动: 3月下旬17.99元 → 4月7日36.24元（翻倍）<br>
+              • 5个交易日内4个涨停，总市值峰值约220亿元<br>
+              • 近一月换手率超115%，成交额约160亿元<br>
+              • 石杉碱甲控释片: 2.2类改良型新药，II/III期临床中<br>
+              • 入组进度: 2025年12月50例 → 2026年2月100例<br>
+              • 入选国家科技重大专项（2026年1月）<br>
+              • 董秘柳建朋4月7日辞任（任职仅10个月）<br>
+              • 控股股东资产负债率119.44%，股权质押率93.63%<br>
+              • 2025年归母净利润-1.99亿元（同比-458.54%）
+            </div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义</div>
+            <div class="value">石杉碱甲是中国原研老药（1994年上市），万邦德通过控释技术改良并申报AD适应症。东吴证券给予创新药管线570亿元估值。但市场存在较大争议：活性成分相同，仅制剂工艺改良，被质疑"概念炒作"。与海翔药业WP205合作附对赌条款（2027年6月30日前需与FDA就III期方案达成一致，否则退还款项）。</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">风险</div>
+            <div class="value">
+              <span class="risk-tag">高风险</span>
+              ① 控股股东资不抵债（负债率119.44%），股权高质押（93.63%），存在利用概念缓解自身危机的可能；② 2025年主营业务亏损近2亿，账面现金仅7100万；③ 会计处理争议（合作款1.2亿可能违规确认为收益）；④ 石杉碱甲为老药新做，创新成色存疑；⑤ 董秘在股价高位离职为异常信号。
+            </div>
+          </div>
+        </div>
+        <a href="https://news.qq.com/rain/a/20260412A00DHK00" class="source-link" target="_blank">📎 来源: 创业最前线/腾讯新闻 (2026-04-12)</a>
+        <a href="https://www.cninfo.com.cn/new/disclosure/stock?stockCode=002082" class="source-link" target="_blank" style="margin-left:16px;">📎 巨潮资讯网</a>
+      </div>
+
+      <!-- OncoC4 -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">OncoC4 Inc.</span>
+          <span class="drug-badge">ONC-841（SIGLEC-10单抗）</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item full">
+            <div class="label">一句话结论</div>
+            <div class="value">全球首个进入临床的SIGLEC-10靶点AD药物ONC-841在首都医科大学宣武医院完成首例受试者给药，开启I/II期临床试验（CTR20260866）。</div>
+          </div>
+          <div class="info-item">
+            <div class="label">事件类型</div>
+            <div class="value">PHASE_TRANSITION — 首例受试者给药</div>
+          </div>
+          <div class="info-item">
+            <div class="label">日期</div>
+            <div class="value">2026-04-09</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">核心数据</div>
+            <div class="value">
+              • 药物: ONC-841，抗SIGLEC-10单克隆抗体<br>
+              • 适应症: 阿尔茨海默病<br>
+              • 阶段: I/II期临床试验<br>
+              • 登记号: CTR20260866<br>
+              • 试验地点: 首都医科大学宣武医院<br>
+              • PI: 唐毅教授、魏翠柏教授<br>
+              • 审批: NMPA IND批准（基于肿瘤学安全性数据加速审批）<br>
+              • 机制: 恢复小胶质细胞功能，清除Aβ斑块和Tau缠结
+            </div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义</div>
+            <div class="value">ONC-841是<strong>全球首个且唯一</strong>进入临床的SIGLEC-10靶点药物，代表AD治疗"同类首创"创新。SIGLEC-10被描述为AD发病机制中的"全新检查点"，通过恢复小胶质细胞功能可同时清除Aβ和Tau，区别于现有仅靶向Aβ的单抗药物。该药物最初从肿瘤领域拓展至AD，体现了跨适应症研发趋势。</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">风险</div>
+            <div class="value">SIGLEC-10为全新靶点，临床验证为零，安全性和疗效完全未知；I/II期仅评估安全性和临床活性，距III期确证性试验尚远；目前仅在中国开展，全球临床布局待推进。</div>
+          </div>
+        </div>
+        <a href="https://oncoc4.com/cn/news-resources/news/oncoc4-announces-first-participant-s-dosing-in-phase-12-clinical-trial-of-onc-841-for-the-treatment-of-alzheimers-disease/" class="source-link" target="_blank">📎 来源: OncoC4官网 (2026-04-09)</a>
+      </div>
+
+      <!-- Karuna/BMS -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">Karuna/BMS</span>
+          <span class="drug-badge">KarXT胶囊（再鼎医药引进）</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item full">
+            <div class="label">一句话结论</div>
+            <div class="value">CDE批准KarXT胶囊临床试验补充申请，用于治疗AD相关的精神行为症状（BPSD），国际多中心III期临床已在中国开展。</div>
+          </div>
+          <div class="info-item">
+            <div class="label">事件类型</div>
+            <div class="value">REGULATORY_APPROVAL — 临床试验补充申请获批</div>
+          </div>
+          <div class="info-item">
+            <div class="label">日期</div>
+            <div class="value">2026-04-02</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">核心数据</div>
+            <div class="value">
+              • 药物: KarXT（xanomeline + trospium chloride 复方）<br>
+              • 适应症: AD相关精神行为症状（BPSD）<br>
+              • 中国权益: 再鼎医药拥有大中华区开发权益<br>
+              • 全球状态: FDA已批准用于精神分裂症（2024年9月，商品名Cobenfy）<br>
+              • AD适应症: 国际多中心III期临床进行中<br>
+              • 主要终点: NPI-C评分（幻觉+妄想）
+            </div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义</div>
+            <div class="value">AD相关的精神行为症状（幻觉、妄想、激越等）影响高达60-90%的AD患者，目前尚无获批的靶向治疗药物。KarXT通过M1/M4毒蕈碱受体调节，机制不同于现有抗精神病药，有望填补BPSD治疗空白。</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">风险</div>
+            <div class="value">AD适应症III期数据尚未读出；补充申请具体变更内容未完全披露。</div>
+          </div>
+        </div>
+        <a href="https://finance.sina.com.cn/stock/aigc/ywsygs/2026-02-11/doc-inhmmvze0482042.shtml" class="source-link" target="_blank">📎 来源: 新浪财经</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Pipeline Overview -->
+  <div class="section">
+    <div class="section-title">📋 管线状态总览</div>
+    <table class="pipeline-table">
+      <thead>
+        <tr>
+          <th>公司</th>
+          <th>产品</th>
+          <th>靶点/机制</th>
+          <th>当前阶段</th>
+          <th>最近更新</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Biogen/卫材</td>
+          <td>Lecanemab (Leqembi®)</td>
+          <td>抗Aβ单抗（靶向原纤维）</td>
+          <td><span class="phase-badge phase-approved">已获批</span></td>
+          <td>51国获批；皮下起始治疗sBLA FDA审评中</td>
+        </tr>
+        <tr>
+          <td>Biogen</td>
+          <td>BIIB080</td>
+          <td>ASO靶向APP mRNA</td>
+          <td><span class="phase-badge phase-1">I/IIa期完成</span></td>
+          <td>评估III期方案</td>
+        </tr>
+        <tr>
+          <td>Alnylam</td>
+          <td>Mivelsiran (ALN-APP)</td>
+          <td>RNAi靶向APP mRNA（鞘内注射）</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>HERALD试验进行中 (NCT06033734)</td>
+        </tr>
+        <tr>
+          <td>Alnylam</td>
+          <td>ALN-5288</td>
+          <td>RNAi（未公开靶点）</td>
+          <td><span class="phase-badge phase-pre">临床前</span></td>
+          <td>关注最新进展</td>
+        </tr>
+        <tr>
+          <td>礼来</td>
+          <td>Donanemab (Kisunla®)</td>
+          <td>抗Aβ单抗（靶向N3pG-Aβ）</td>
+          <td><span class="phase-badge phase-approved">已获批（美/中）</span></td>
+          <td>欧盟CHMP重新审查中</td>
+        </tr>
+        <tr>
+          <td>礼来</td>
+          <td>Remternetug</td>
+          <td>新一代抗Aβ单抗（皮下注射）</td>
+          <td><span class="phase-badge phase-3">III期</span></td>
+          <td>TRAILBLAZER-ALZ 3进行中 (NCT05738875)</td>
+        </tr>
+        <tr>
+          <td>礼来/AC Immune</td>
+          <td>Morphomer® Tau</td>
+          <td>Tau聚集抑制剂（口服小分子）</td>
+          <td><span class="phase-badge phase-pre">IND-enabling</span></td>
+          <td>2026-04-07 协议修订，H1启动IND-enabling</td>
+        </tr>
+        <tr>
+          <td>罗氏</td>
+          <td>Trontinemab (RG7986)</td>
+          <td>抗Aβ单抗（Brainshuttle™技术）</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>NCT05416325</td>
+        </tr>
+        <tr>
+          <td>AC Immune/强生</td>
+          <td>ACI-35.030 (JNJ-2056)</td>
+          <td>抗pTau疫苗</td>
+          <td><span class="phase-badge phase-2">II期</span></td>
+          <td>NCT05269395</td>
+        </tr>
+        <tr>
+          <td>AC Immune</td>
+          <td>ACI-24.060</td>
+          <td>抗Aβ疫苗（脂质体纳米颗粒）</td>
+          <td><span class="phase-badge phase-1">I/II期</span></td>
+          <td>NCT05463286</td>
+        </tr>
+        <tr>
+          <td>Voyager</td>
+          <td>VY7523</td>
+          <td>AAV基因疗法（鞘内注射）</td>
+          <td><span class="phase-badge phase-pre">临床前/早期临床</span></td>
+          <td>关注安全性数据</td>
+        </tr>
+        <tr>
+          <td>Voyager</td>
+          <td>VY1706</td>
+          <td>AAV基因疗法（靶向Tau）</td>
+          <td><span class="phase-badge phase-pre">临床前</span></td>
+          <td>临床前阶段</td>
+        </tr>
+        <tr>
+          <td>Lexeo</td>
+          <td>LX1001</td>
+          <td>AAV基因疗法（携带APOE2基因）</td>
+          <td><span class="phase-badge phase-1">I/II期</span></td>
+          <td>公司战略转向心血管领域</td>
+        </tr>
+        <tr>
+          <td>康方生物</td>
+          <td>AK152</td>
+          <td>AD治疗性抗体（未公开靶点）</td>
+          <td><span class="phase-badge phase-pre">早期研发</span></td>
+          <td>关注IND申报进展</td>
+        </tr>
+        <tr>
+          <td>恒瑞医药</td>
+          <td>SHR-1707</td>
+          <td>抗Aβ单抗</td>
+          <td><span class="phase-badge phase-pre">早期临床</span></td>
+          <td>2023年AAIC展示研究进展</td>
+        </tr>
+        <tr>
+          <td>新华制药</td>
+          <td>OAB-14 干混悬剂</td>
+          <td>AD治疗药物（机制待披露）</td>
+          <td><span class="phase-badge phase-1">临床/注册阶段</span></td>
+          <td>关注审批状态</td>
+        </tr>
+        <tr>
+          <td>万邦德</td>
+          <td>石杉碱甲控释片</td>
+          <td>乙酰胆碱酯酶抑制剂（控释剂型）</td>
+          <td><span class="phase-badge phase-2">II/III期</span></td>
+          <td>2026-02-02 完成100例入组；入选国家科技重大专项</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Upcoming Events -->
+  <div class="section" id="calendarSection">
+    <div class="section-title">📅 近期关注日历（未来7天）</div>
+    <div id="calendarContent">
+      <div class="calendar-item">
+        <span class="calendar-date">4月14日-18日</span>
+        <span class="importance-dot high"></span>
+        <div>
+          <strong>CTAD 2026（临床试验阿尔茨海默病会议）</strong><br>
+          <span style="font-size:13px;color:#7f8c8d;">关注Biogen/卫材Leqembi皮下注射新数据、礼来Remternetug III期更新、各公司管线进展</span>
+        </div>
+      </div>
+      <div class="calendar-item">
+        <span class="calendar-date">4月15日前后</span>
+        <span class="importance-dot medium"></span>
+        <div>
+          <strong>万邦德异常波动后续</strong><br>
+          <span style="font-size:13px;color:#7f8c8d;">连续发布异常波动公告，关注深交所是否发函问询、公司回复内容</span>
+        </div>
+      </div>
+      <div class="calendar-item">
+        <span class="calendar-date">持续关注</span>
+        <span class="importance-dot medium"></span>
+        <div>
+          <strong>Leqembi皮下起始治疗FDA审评</strong><br>
+          <span style="font-size:13px;color:#7f8c8d;">2026年1月sBLA获FDA受理并授予优先审评，PDUFA日期待定</span>
+        </div>
+      </div>
+      <div class="calendar-item">
+        <span class="calendar-date">持续关注</span>
+        <span class="importance-dot medium"></span>
+        <div>
+          <strong>Kisunla (Donanemab) 欧盟重新审查</strong><br>
+          <span style="font-size:13px;color:#7f8c8d;">EMA CHMP重新审查程序进行中，关注最终决定</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Non-tracked but notable -->
+  <div class="section">
+    <div class="section-title">📌 非跟踪标的动态（值得关注）</div>
+    <div class="company-card" style="border-left: 3px solid #2e86c1;">
+      <div class="info-grid">
+        <div class="info-item full">
+          <div class="label">OncoC4 | ONC-841（SIGLEC-10单抗）</div>
+          <div class="value">全球首个SIGLEC-10靶点AD药物在宣武医院完成首例给药。SIGLEC-10是AD发病机制中的全新检查点，恢复小胶质细胞功能可同时清除Aβ和Tau。代表AD治疗新方向。</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">Karuna/BMS | KarXT胶囊</div>
+          <div class="value">CDE 4月2日批准临床试验补充申请，用于治疗AD相关的精神行为症状（BPSD）。III期国际多中心临床进行中。再鼎医药拥有大中华区权益。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    阿尔茨海默创新药跟踪系统 | 自动生成于 2026-04-13 00:00 | 数据来源于公开信息，仅供参考<br>
+    覆盖11家重点企业 | Biogen · Alnylam · 礼来 · 罗氏 · AC Immune · Voyager · Lexeo · 康方生物 · 恒瑞医药 · 新华制药 · 万邦德
+  </div>
+
+</div>
+</body>
+</html>
