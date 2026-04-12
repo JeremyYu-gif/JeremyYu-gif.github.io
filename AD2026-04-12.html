@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿尔茨海默创新药日报 - 2026年04月12日</title>
+<style>
+  :root {
+    --primary: #1a5276;
+    --accent: #2e86c1;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --success: #27ae60;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #2c3e50;
+    --text-light: #7f8c8d;
+    --border: #e0e0e0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 15px rgba(26, 82, 118, 0.3);
+  }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header .date { font-size: 16px; opacity: 0.9; }
+  .header .summary {
+    background: rgba(255,255,255,0.15);
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  
+  /* Alert Banner */
+  .alert-banner {
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid;
+  }
+  .alert-banner.p1 { background: #fef3e2; border-color: var(--warning); }
+  .alert-banner h2 { margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .alert-item {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .alert-item .level {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  .alert-item .level.p1 { background: var(--warning); }
+  .alert-item .level.p2 { background: var(--success); }
+  
+  /* News Section */
+  .section { margin-bottom: 24px; }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Company Card */
+  .company-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s;
+  }
+  .company-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .company-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .company-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .drug-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    color: white;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .event-tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    background: #e8f6f3;
+    color: #1e8449;
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .info-item { padding: 10px 14px; background: var(--bg); border-radius: 6px; }
+  .info-item .label {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .info-item .value { font-size: 14px; }
+  .info-item.full { grid-column: 1 / -1; }
+  
+  .source-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .source-link:hover { text-decoration: underline; }
+  
+  /* Pipeline Table */
+  .pipeline-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .pipeline-table th {
+    background: var(--primary);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .pipeline-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .pipeline-table tr:hover { background: #f0f7fc; }
+  .pipeline-table tr:last-child td { border-bottom: none; }
+  
+  .phase-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .phase-approved { background: #d5f5e3; color: #1e8449; }
+  .phase-3 { background: #d4efdf; color: #1e8449; }
+  .phase-2 { background: #fef9e7; color: #b7950b; }
+  .phase-1 { background: #fef3e2; color: #ca6f1e; }
+  .phase-pre { background: #fde8e8; color: #c0392b; }
+  
+  /* Calendar */
+  .calendar-item {
+    background: var(--card-bg);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .calendar-date {
+    background: var(--primary);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .importance-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .importance-dot.high { background: var(--danger); }
+  .importance-dot.medium { background: var(--warning); }
+  .importance-dot.low { background: var(--success); }
+  
+  /* Footer */
+  .footer {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .header { padding: 20px; }
+    .header h1 { font-size: 22px; }
+    body { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>🧠 阿尔茨海默创新药日报</h1>
+    <div class="date">2026年04月12日（周日）</div>
+    <div class="summary">
+      <strong>📊 一句话总结：</strong><br>
+      ① AC Immune与礼来大幅扩展Tau Morphomer合作，里程碑上限达CHF 17亿，IND启用研究即将启动；<br>
+      ② NICE第三次就donanemab和lecanemab开启征询，上诉委员会认定此前严重低估护理人员负担；<br>
+      ③ OncoC4全球首创SIGLEC-10单抗ONC-841完成阿尔茨海默病I/II期首例患者给药（中国NMPA批准）；<br>
+      ④ Axsome AXS-05（阿尔茨海默激越）PDUFA日期临近（4月30日）。
+    </div>
+  </div>
+
+  <!-- Alert Section -->
+  <div id="alertSection">
+    <div class="alert-banner p1">
+      <h2>🟠 重要事件提醒（P1）</h2>
+      <div class="alert-item">
+        <span class="level p1">P1</span>
+        <strong>AC Immune × 礼来：Morphomer Tau合作扩展</strong> — 2026-04-07 — 里程碑上限CHF 17亿，IND启用研究即将启动
+      </div>
+      <div class="alert-item">
+        <span class="level p1">P1</span>
+        <strong>NICE第三次征询：donanemab &amp; lecanemab NHS准入</strong> — 2026-04-01 — 上诉委员会退回重评，征询截止4月28日
+      </div>
+      <div class="alert-item">
+        <span class="level p1">P1</span>
+        <strong>OncoC4：ONC-841（SIGLEC-10）完成AD首例给药</strong> — 2026-04-09 — 全球首创靶点，I/II期中国NMPA加速审批
+      </div>
+    </div>
+  </div>
+
+  <!-- News Section -->
+  <div class="section" id="newsSection">
+    <div class="section-title">📰 今日信息汇总</div>
+    <div id="newsContent">
+
+      <!-- AC Immune -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">AC Immune (ACIU)</span>
+          <span class="drug-badge">Morphomer® Tau</span>
+          <span class="event-tag">🤝 合作变更</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item full">
+            <div class="label">一句话结论</div>
+            <div class="value">AC Immune与礼来大幅修订2018年Morphomer Tau许可协议，扩大候选药物范围并推进IND启用研究，里程碑上限超过CHF 17亿。</div>
+          </div>
+          <div class="info-item">
+            <div class="label">预付款</div>
+            <div class="value">CHF 1,000万（~$1,250万）</div>
+          </div>
+          <div class="info-item">
+            <div class="label">里程碑上限</div>
+            <div class="value">超过CHF 17亿（~$21亿）</div>
+          </div>
+          <div class="info-item">
+            <div class="label">特许权使用费</div>
+            <div class="value">低两位数分层百分比</div>
+          </div>
+          <div class="info-item">
+            <div class="label">时间线</div>
+            <div class="value">IND启用研究即将启动（imminently）</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义</div>
+            <div class="value">礼来对Tau靶点的持续加码表明行业对细胞内Tau靶向策略的信心增强。口服小分子可穿透血脑屏障靶向细胞内Tau，与当前抗体药物形成差异化。CEO Pfeifer称"细胞内Tau靶向是精准预防神经退行性疾病的典范"。</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">风险</div>
+            <div class="value">Tau聚集抑制剂在临床阶段的成功率历史上偏低；IND启用到临床入组仍有较长周期；合作依赖礼来持续投入。</div>
+          </div>
+        </div>
+        <a href="https://www.ddw-online.com/ac-immune-and-lilly-reach-agreement-on-drug-collaboration-41221-202604/" target="_blank" class="source-link">📎 来源: Drug Discovery World</a>
+        <span style="font-size:12px;color:#7f8c8d;margin-left:12px;">日期: 2026-04-07</span>
+      </div>
+
+      <!-- NICE/Leqembi/Donanemab -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">NICE × Eisai/礼来</span>
+          <span class="drug-badge">Lecanemab / Donanemab</span>
+          <span class="event-tag">🏥 政策变化</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item full">
+            <div class="label">一句话结论</div>
+            <div class="value">NICE发布第三版草案指南并开启公开征询，此前上诉委员会裁定NICE"严重低估"了护理人员负担，要求重新评估donanemab和lecanemab的NHS准入。</div>
+          </div>
+          <div class="info-item">
+            <div class="label">上诉裁决日期</div>
+            <div class="value">2026-03-20</div>
+          </div>
+          <div class="info-item">
+            <div class="label">征询截止日期</div>
+            <div class="value">2026-04-28</div>
+          </div>
+          <div class="info-item">
+            <div class="label">NICE委员会重评</div>
+            <div class="value">2026-06-10</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">核心争议</div>
+            <div class="value">1. NICE此前被认定"严重低估"护理人员心理健康影响和无偿照护成本；2. Eisai称未获足够时间回应决定性数据；3. NHS输液成本估算被质疑；4. NICE预计采用2026年3月宣布的更高成本效益阈值。</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义</div>
+            <div class="value">英国是Leqembi/Donanemab在欧洲的最大单一市场之一，NHS准入决策对全球定价和商业化具有标杆效应。护理人员效用评估方法的修正可能改善成本效益比。</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">风险</div>
+            <div class="value">第三次征询后仍可能被否决；即使获推荐，附加条件可能限制可及人群范围。</div>
+          </div>
+        </div>
+        <a href="https://pharmaceutical-journal.com/article/news/nice-opens-consultation-on-previously-rejected-alzheimers-treatments-donanemab-and-lecanemab" target="_blank" class="source-link">📎 来源: The Pharmaceutical Journal</a>
+        <span style="font-size:12px;color:#7f8c8d;margin-left:12px;">日期: 2026-04-01</span>
+      </div>
+
+      <!-- OncoC4 -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">OncoC4（竞品动态）</span>
+          <span class="drug-badge">ONC-841</span>
+          <span class="event-tag">🧪 I/II期首例给药</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item full">
+            <div class="label">一句话结论</div>
+            <div class="value">全球首创SIGLEC-10单抗ONC-841完成阿尔茨海默病I/II期首例患者给药，首都医科大学宣武医院为PI单位，获中国NMPA加速审批。</div>
+          </div>
+          <div class="info-item">
+            <div class="label">靶点</div>
+            <div class="value">SIGLEC-10（全新AD靶点）</div>
+          </div>
+          <div class="info-item">
+            <div class="label">试验登记号</div>
+            <div class="value">CTR20260866</div>
+          </div>
+          <div class="info-item">
+            <div class="label">主要研究者</div>
+            <div class="value">唐毅教授、魏翠柏教授（宣武医院）</div>
+          </div>
+          <div class="info-item">
+            <div class="label">审批机构</div>
+            <div class="value">中国NMPA（加速审批）</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">作用机制</div>
+            <div class="value">靶向SIGLEC-10检查点，恢复小胶质细胞功能，清除致病蛋白聚集物。ONC-841为全球首个进入临床的SIGLEC-10单抗（同类首创），最初在肿瘤领域已有II期安全性数据。</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义</div>
+            <div class="value">小胶质细胞调控是AD领域新兴热门方向。SIGLEC-10靶点通过恢复而非替代小胶质细胞功能，与Aβ/Tau抗体机制截然不同，如成功将开辟全新的AD治疗路径。</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">风险</div>
+            <div class="value">全新靶点，人体安全性数据有限；I/II期距离确证疗效仍需数年；小胶质细胞调控的长期影响不确定。</div>
+          </div>
+        </div>
+        <a href="https://oncoc4.com/cn/news-resources/news/oncoc4-announces-first-participant-s-dosing-in-phase-12-clinical-trial-of-onc-841-for-the-treatment-of-alzheimers-disease/" target="_blank" class="source-link">📎 来源: OncoC4官网</a>
+        <span style="font-size:12px;color:#7f8c8d;margin-left:12px;">日期: 2026-04-09</span>
+      </div>
+
+      <!-- AXS-05 近期关注 -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">Axsome Therapeutics（竞品动态）</span>
+          <span class="drug-badge">AXS-05</span>
+          <span class="event-tag">⏰ PDUFA临近</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item full">
+            <div class="label">一句话结论</div>
+            <div class="value">AXS-05（右美沙芬/安非他命复方）用于阿尔茨海默病激越的补充NDA获FDA优先审评，PDUFA行动日期为2026年4月30日，距今18天。</div>
+          </div>
+          <div class="info-item">
+            <div class="label">适应症</div>
+            <div class="value">阿尔茨海默病激越（Agitation）</div>
+          </div>
+          <div class="info-item">
+            <div class="label">PDUFA日期</div>
+            <div class="value">2026年4月30日</div>
+          </div>
+          <div class="info-item">
+            <div class="label">审评类型</div>
+            <div class="value">优先审评（Priority Review）</div>
+          </div>
+          <div class="info-item">
+            <div class="label">支持数据</div>
+            <div class="value">4项III期试验（改善行为+延缓复发）</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义</div>
+            <div class="value">如获批准，AXS-05将成为首个获批的AD激越口服非抗精神病药物，填补该适应症领域重大空白。NMDA受体调节+ sigma-1受体激动双机制，避免抗精神病药物的严重副作用。</div>
+          </div>
+        </div>
+        <a href="https://www.patientcareonline.com/view/fda-grants-priority-review-to-axs-05-for-agitation-in-alzheimer-disease-sets-april-2026-pdufa-date" target="_blank" class="source-link">📎 来源: Patient Care Online</a>
+        <span style="font-size:12px;color:#7f8c8d;margin-left:12px;">日期: 2026-01-02（持续跟踪）</span>
+      </div>
+
+      <!-- Voyager -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">Voyager Therapeutics (VYGR)</span>
+          <span class="drug-badge">VY7523 / VY1706</span>
+          <span class="event-tag">📊 财报管线更新</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item full">
+            <div class="label">一句话结论</div>
+            <div class="value">Voyager 2025 Q4财报确认VY1706（Tau沉默基因疗法）临床试验已启动，VY7523（抗Tau抗体）临床数据预计2026下半年读出。</div>
+          </div>
+          <div class="info-item">
+            <div class="label">VY1706状态</div>
+            <div class="value">临床试验已启动（Tau沉默基因疗法）</div>
+          </div>
+          <div class="info-item">
+            <div class="label">VY7523状态</div>
+            <div class="value">数据预计2026下半年读出</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">其他进展</div>
+            <div class="value">NeuroShuttle™技术推进中：预计两款静脉注射神经基因疗法将于2026年下半年进入临床；抗淀粉样蛋白鼠类研究取得进展。</div>
+          </div>
+        </div>
+        <a href="https://ir.voyagertherapeutics.com/press-releases" target="_blank" class="source-link">📎 来源: Voyager投资者关系</a>
+        <span style="font-size:12px;color:#7f8c8d;margin-left:12px;">日期: 2026-03-09</span>
+      </div>
+
+      <!-- 无其他跟踪公司新消息 -->
+      <div style="text-align:center;color:#7f8c8d;padding:20px;background:var(--card-bg);border-radius:8px;border:1px dashed var(--border);">
+        <p>📋 以下跟踪公司在近48小时内无AD相关新公告：</p>
+        <p>Biogen（Leqembi/BIIB080）| Alnylam（Mivelsiran/ALN-5288）| 礼来（Donanemab/Remternetug）| 罗氏（Trontinemab）| Lexeo（LX1001）| 康方生物 | 恒瑞医药（SHR-1707）| 新华制药（OAB-14）| 万邦德（石杉碱甲）</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Pipeline Overview -->
+  <div class="section">
+    <div class="section-title">📋 管线状态总览</div>
+    <table class="pipeline-table">
+      <thead>
+        <tr>
+          <th>公司</th>
+          <th>产品</th>
+          <th>靶点/机制</th>
+          <th>当前阶段</th>
+          <th>最近更新</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Biogen/Eisai</td>
+          <td>Lecanemab (Leqembi®)</td>
+          <td>Aβ单抗 / IV+SC</td>
+          <td><span class="phase-badge phase-approved">已获批</span></td>
+          <td>FDA传统批准2026-02；皮下剂型sNDA优先审评中</td>
+        </tr>
+        <tr>
+          <td>Biogen</td>
+          <td>BIIB080</td>
+          <td>ASO靶向APP mRNA</td>
+          <td><span class="phase-badge phase-1">I/IIa期</span></td>
+          <td>FDA快速通道认定2025-04；评估III期方案</td>
+        </tr>
+        <tr>
+          <td>礼来</td>
+          <td>Donanemab (Kisunla®)</td>
+          <td>Aβ单抗 / N3pG</td>
+          <td><span class="phase-badge phase-approved">已获批</span></td>
+          <td>FDA加速批准2024-07；NICE第三版征询中</td>
+        </tr>
+        <tr>
+          <td>礼来</td>
+          <td>Remternetug</td>
+          <td>Aβ单抗 / SC</td>
+          <td><span class="phase-badge phase-3">III期</span></td>
+          <td>TRAILBLAZER-ALZ 3进行中</td>
+        </tr>
+        <tr>
+          <td>AC Immune/礼来</td>
+          <td>Morphomer® Tau</td>
+          <td>Tau聚集抑制剂小分子</td>
+          <td><span class="phase-badge phase-pre">IND启用</span></td>
+          <td>合作修正2026-04；IND启用研究即将启动</td>
+        </tr>
+        <tr>
+          <td>AC Immune/Janssen</td>
+          <td>ACI-35.030</td>
+          <td>pTau疫苗</td>
+          <td><span class="phase-badge phase-2">II期</span></td>
+          <td>II期临床进行中</td>
+        </tr>
+        <tr>
+          <td>AC Immune</td>
+          <td>ACI-24.060</td>
+          <td>Aβ疫苗</td>
+          <td><span class="phase-badge phase-1">I/II期</span></td>
+          <td>I/II期临床进行中</td>
+        </tr>
+        <tr>
+          <td>罗氏</td>
+          <td>Trontinemab</td>
+          <td>Aβ单抗 / Brainshuttle</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>I期临床进行中</td>
+        </tr>
+        <tr>
+          <td>Voyager</td>
+          <td>VY7523</td>
+          <td>抗Tau抗体</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>I期进行中；2026H2数据读出</td>
+        </tr>
+        <tr>
+          <td>Voyager</td>
+          <td>VY1706</td>
+          <td>Tau沉默基因疗法</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>2026年临床试验已启动</td>
+        </tr>
+        <tr>
+          <td>Lexeo</td>
+          <td>LX1001</td>
+          <td>AAV基因疗法 / APOE2</td>
+          <td><span class="phase-badge phase-1">I/II期</span></td>
+          <td>I/II期顶线数据发布；生物标志物改善</td>
+        </tr>
+        <tr>
+          <td>Alnylam</td>
+          <td>Mivelsiran (ALN-APP)</td>
+          <td>RNAi靶向APP</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>I期HERALD试验进行中</td>
+        </tr>
+        <tr>
+          <td>万邦德</td>
+          <td>石杉碱甲控释片</td>
+          <td>乙酰胆碱酯酶抑制剂</td>
+          <td><span class="phase-badge phase-2">II/III期</span></td>
+          <td>已完成100例入组（2026-02）</td>
+        </tr>
+        <tr>
+          <td>恒瑞医药</td>
+          <td>SHR-1707</td>
+          <td>抗Aβ单抗</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>首例给药2023-03；AAIC数据2023-07</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Upcoming Events -->
+  <div class="section" id="calendarSection">
+    <div class="section-title">📅 近期关注日历（未来7天）</div>
+    <div id="calendarContent">
+      <div class="calendar-item">
+        <span class="calendar-date">4月28日</span>
+        <span class="importance-dot high"></span>
+        <div><strong>NICE征询截止</strong> — donanemab &amp; lecanemab NHS准入第三版草案公开意见征询截止日</div>
+      </div>
+      <div class="calendar-item">
+        <span class="calendar-date">4月30日</span>
+        <span class="importance-dot high"></span>
+        <div><strong>FDA PDUFA行动日</strong> — Axsome AXS-05阿尔茨海默激越适应症审批决定</div>
+      </div>
+      <div class="calendar-item">
+        <span class="calendar-date">持续关注</span>
+        <span class="importance-dot medium"></span>
+        <div><strong>AC Immune Morphomer Tau</strong> — IND启用研究即将启动，关注候选分子选择和临床前数据更新</div>
+      </div>
+      <div class="calendar-item">
+        <span class="calendar-date">2026 H2</span>
+        <span class="importance-dot medium"></span>
+        <div><strong>Voyager VY7523</strong> — 抗Tau抗体I期临床数据读出（预计2026下半年）</div>
+      </div>
+      <div class="calendar-item">
+        <span class="calendar-date">2026 H2</span>
+        <span class="importance-dot medium"></span>
+        <div><strong>Voyager VY1706</strong> — Tau沉默基因疗法临床试验进展更新</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    阿尔茨海默创新药跟踪系统 | 自动生成于 2026-04-12 15:32 CST | 数据来源于公开信息，仅供参考<br>
+    跟踪11家公司：Biogen | Alnylam | 礼来 | 罗氏 | AC Immune | Voyager | Lexeo | 康方生物 | 恒瑞医药 | 新华制药 | 万邦德
+  </div>
+
+</div>
+</body>
+</html>
