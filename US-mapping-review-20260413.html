@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美股映射复盘 2026-04-13</title>
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --bg-card: #1a2235;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent-red: #ef4444;
+            --accent-green: #22c55e;
+            --accent-blue: #3b82f6;
+            --accent-gold: #f59e0b;
+            --accent-energy: #f97316;
+            --border-color: #374151;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+            border-radius: 16px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        .card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-title .icon {
+            font-size: 1.4rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+        
+        th, td {
+            padding: 12px 8px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        td {
+            font-size: 0.95rem;
+        }
+        
+        .text-red { color: var(--accent-red); }
+        .text-green { color: var(--accent-green); }
+        .text-blue { color: var(--accent-blue); }
+        .text-gold { color: var(--accent-gold); }
+        .text-orange { color: var(--accent-energy); }
+        
+        .up { color: var(--accent-red); }
+        .down { color: var(--accent-green); }
+        
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+        
+        .index-card {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+        
+        .index-card .name {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+        
+        .index-card .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .index-card .change {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .sector-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-right: 6px;
+            margin-bottom: 4px;
+        }
+        
+        .sector-energy { background: rgba(249, 115, 22, 0.2); color: var(--accent-energy); }
+        .sector-tech { background: rgba(59, 130, 246, 0.2); color: var(--accent-blue); }
+        .sector-defense { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); }
+        .sector-ai { background: rgba(168, 85, 247, 0.2); color: #a78bfa; }
+        .sector-gold { background: rgba(245, 158, 11, 0.2); color: var(--accent-gold); }
+        
+        .highlight-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid var(--accent-blue);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+        
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--accent-red);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+        
+        .mapping-box {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid var(--accent-green);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+        
+        .stock-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .stock-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .stock-name {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        
+        .stock-code {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        .stock-price {
+            text-align: right;
+        }
+        
+        .stock-change {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .strength-bar {
+            display: inline-block;
+            width: 80px;
+            height: 8px;
+            background: var(--bg-primary);
+            border-radius: 4px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        
+        .strength-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #22c55e, #eab308, #ef4444);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .index-grid, .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🇺🇸 美股映射复盘</h1>
+            <div class="subtitle">报告日期：2026年4月13日（周一） | 生成时间：2026年4月14日 07:42</div>
+        </div>
+
+        <!-- 一、美股整体表现 -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">📊</span>
+                一、美股整体表现
+            </div>
+            
+            <div class="index-grid">
+                <div class="index-card">
+                    <div class="name">道琼斯指数</div>
+                    <div class="value text-red">+0.63%</div>
+                    <div class="change up">▲ 上涨</div>
+                </div>
+                <div class="index-card">
+                    <div class="name">纳斯达克</div>
+                    <div class="value text-red">+1.23%</div>
+                    <div class="change up">▲ 上涨</div>
+                </div>
+                <div class="index-card">
+                    <div class="name">标普500</div>
+                    <div class="value text-red">+1.02%</div>
+                    <div class="change up">▲ 上涨</div>
+                </div>
+            </div>
+            
+            <table style="margin-top: 20px;">
+                <tr>
+                    <th>指标</th>
+                    <th>数值</th>
+                    <th>解读</th>
+                </tr>
+                <tr>
+                    <td>VIX恐慌指数</td>
+                    <td class="text-green">19.23 <span class="down">▼ -1.3</span></td>
+                    <td>市场情绪偏暖，恐慌情绪有所缓解</td>
+                </tr>
+                <tr>
+                    <td>10年期美债收益率</td>
+                    <td class="text-green">4.29% <span class="down">▼ -5bp</span></td>
+                    <td>美债小幅走强，避险资金流入</td>
+                </tr>
+                <tr>
+                    <td>美元指数(DXY)</td>
+                    <td class="text-green">98.36 <span class="down">▼ -0.29%</span></td>
+                    <td>美元小幅走弱，人民币压力减轻</td>
+                </tr>
+                <tr>
+                    <td>罗素2000小盘股</td>
+                    <td class="text-red">+1.44%</td>
+                    <td>小盘股表现最强，市场宽度改善</td>
+                </tr>
+            </table>
+            
+            <div class="highlight-box">
+                <strong>📌 核心事件：</strong>美国宣布对伊朗港口实施海上封锁（霍尔木兹海峡），美伊和平谈判破裂。受此影响，早盘三大指数一度下跌，但尾盘科技股反弹提振市场，最终集体收涨。
+            </div>
+        </div>
+
+        <!-- 二、强势板块与核心逻辑 -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">🔥</span>
+                二、强势板块与核心逻辑
+            </div>
+            
+            <h4 style="color: var(--accent-red); margin: 16px 0 12px;">📈 涨幅居前板块</h4>
+            <table>
+                <tr>
+                    <th>排名</th>
+                    <th>板块</th>
+                    <th>代表ETF</th>
+                    <th>涨幅</th>
+                    <th>核心驱动因素</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><span class="sector-tag sector-energy">能源</span></td>
+                    <td>XLE</td>
+                    <td class="text-red">大幅上涨</td>
+                    <td>霍尔木兹封锁导致原油供应担忧，WTI飙涨至$104+</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><span class="sector-tag sector-tech">软件/AI应用</span></td>
+                    <td>IGV</td>
+                    <td class="text-red">~+5%</td>
+                    <td>高盛CEO表态AI应用"比预期更难更慢"，缓解过度恐慌</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><span class="sector-tag sector-tech">科技龙头</span></td>
+                    <td>QQQ</td>
+                    <td class="text-red">+1.2%</td>
+                    <td>纳指反弹，科技股财报预期改善</td>
+                </tr>
+            </table>
+            
+            <h4 style="color: var(--accent-green); margin: 20px 0 12px;">📉 跌幅居前板块</h4>
+            <table>
+                <tr>
+                    <th>板块</th>
+                    <th>跌幅</th>
+                    <th>领跌标的</th>
+                    <th>下跌原因</th>
+                </tr>
+                <tr>
+                    <td>金融（部分）</td>
+                    <td class="text-green">高盛 -4.1%</td>
+                    <td>GS</td>
+                    <td>固收部门表现不佳</td>
+                </tr>
+            </table>
+            
+            <div class="highlight-box">
+                <strong>板块持续性判断：</strong>
+                <ul style="margin-top: 8px; padding-left: 20px;">
+                    <li><strong>能源板块</strong>：中期主线，受地缘政治持续发酵，油价预计在未来几周维持高位</li>
+                    <li><strong>软件/AI板块</strong>：超跌反弹，持续性待观察财报验证</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 三、重点个股异动（A股映射） -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">🎯</span>
+                三、重点个股异动（A股映射）
+            </div>
+            
+            <table>
+                <tr>
+                    <th>美股标的</th>
+                    <th>涨跌幅</th>
+                    <th>A股映射板块</th>
+                    <th>A股代表个股</th>
+                    <th>传导力度</th>
+                </tr>
+                <tr>
+                    <td><strong>英伟达 (NVDA)</strong></td>
+                    <td class="text-red">+0.36%</td>
+                    <td>光模块/CPO、算力芯片</td>
+                    <td>中际旭创、新易盛、海光信息</td>
+                    <td class="text-blue">强</td>
+                </tr>
+                <tr>
+                    <td><strong>AMD</strong></td>
+                    <td class="text-red">+0.73%</td>
+                    <td>AI算力芯片</td>
+                    <td>海光信息、寒武纪</td>
+                    <td class="text-blue">中</td>
+                </tr>
+                <tr>
+                    <td><strong>特斯拉 (TSLA)</strong></td>
+                    <td class="text-red">+0.99%</td>
+                    <td>智能驾驶、新能源车</td>
+                    <td>比亚迪、拓普集团、德赛西威</td>
+                    <td class="text-blue">强</td>
+                </tr>
+                <tr>
+                    <td><strong>博通 (AVGO)</strong></td>
+                    <td>小幅上涨</td>
+                    <td>半导体设备/IC设计</td>
+                    <td>北方华创、中芯国际</td>
+                    <td class="text-blue">中</td>
+                </tr>
+                <tr>
+                    <td><strong>高盛 (GS)</strong></td>
+                    <td class="text-green">-4.1%</td>
+                    <td>金融板块</td>
+                    <td>券商/银行板块</td>
+                    <td class="text-gold">弱（A股金融相对独立）</td>
+                </tr>
+            </table>
+            
+            <div class="highlight-box">
+                <strong>【个股深度分析】</strong>
+                <p style="margin-top: 10px;">
+                <strong>英伟达 +0.36%：</strong>盘整态势，近期并无重大催化，等待下周财报指引。<br>
+                <strong>特斯拉 +0.99%：</strong>小幅反弹，但成交量萎缩，反弹持续性存疑。<br>
+                <strong>软件板块大涨5%：</strong>高盛CEO表态AI应用落地"更难更慢"，反而缓解了市场对AI泡沫的担忧，资金重新流入被错杀的软件股。
+                </p>
+            </div>
+        </div>
+
+        <!-- 四、中概股表现 -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">🏛️</span>
+                四、中概股表现
+            </div>
+            
+            <div class="warning-box">
+                <strong>⚠️ 数据暂缺：</strong>4月13日中概股ADR详细收盘数据暂未获取到。从近期趋势看，中概股受中美关系影响较大，需关注今日港股开盘表现。
+            </div>
+            
+            <table>
+                <tr>
+                    <th>股票</th>
+                    <th>代码</th>
+                    <th>近期概况</th>
+                    <th>关键信息</th>
+                </tr>
+                <tr>
+                    <td>阿里巴巴</td>
+                    <td>BABA</td>
+                    <td>4月10日约$132</td>
+                    <td>电商龙头，估值修复中</td>
+                </tr>
+                <tr>
+                    <td>拼多多</td>
+                    <td>PDD</td>
+                    <td>4月7日约$99</td>
+                    <td>竞争压力，业绩承压</td>
+                </tr>
+                <tr>
+                    <td>理想汽车</td>
+                    <td>LI</td>
+                    <td>新能源车</td>
+                    <td>国内新能源竞争加剧</td>
+                </tr>
+            </table>
+            
+            <div class="highlight-box">
+                <strong>中概情绪判断：</strong>
+                <ul style="margin-top: 8px; padding-left: 20px;">
+                    <li>受美伊地缘冲突影响有限，中概股更多受国内政策和消费数据驱动</li>
+                    <li>港股今日开盘预计受美股科技股反弹提振，中概互联网有望跟涨</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 五、大宗商品与相关资产 -->
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">🛢️</span>
+                五、大宗商品与相关资产
+            </div>
+            
+            <table>
+                <tr>
+                    <th>品种</th>
+                    <th>最新价格</th>
+                    <th>日涨跌幅</th>
+                    <th>关键逻辑</th>
+                </tr>
+                <tr>
+                    <td><strong>WTI原油</strong></td>
+                    <td class="text-red">$104.40/桶</td>
+                    <td class="text-red">▲ +8.14%</td>
+                    <td>霍尔木兹封锁导致供应中断担忧</td>
+                </tr>
+                <tr>
+                    <td><strong>布伦特原油</strong></td>
+                    <td class="text-red">$102.30/桶</td>
+                    <td class="text-red">▲ +7.43%</td>
+                    <td>中东地缘政治风险溢价飙升</td>
+                </tr>
+                <tr>
+                    <td><strong>COMEX铜</strong></td>
+                    <td>$5.85/磅</td>
+                    <td class="text-green">▼ -0.34%</td>
+                    <td>需求担忧抵消部分涨幅</td>
+                </tr>
+                <tr>
+                    <td><strong>黄金</strong></td>
+                    <td>承压</td>
+                    <td class="text-green">▼ 下跌</td>
+                    <td>流动性需求导致短期抛售，但避险逻辑仍在</td>
+                </tr>
+            </table>
+            
+            <div class="mapping-box">
+                <strong>💹 对A股影响判断：</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li><strong>油价暴涨</strong> → 上游油气/炼化板块受益（中国石油、中国石化、中海油）</li>
+                    <li><strong>铜价下跌</strong> → 铜矿/电线电缆板块承压（洛阳钼业、西部矿业）</li>
+                    <li><strong>黄金承压</strong> → 黄金股短期调整，但避险逻辑未变</li>
+                    <li><strong>美债收益率↓</strong> → 成长股压力减轻，北向资金流出压力缓解</li>
+                    <li><strong>美元走弱</strong> → 人民币贬值压力减轻，利好外资流入</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 六、映射到A股的潜在方向（最重要） -->
+        <div class="card" style="border: 2px solid var(--accent-green);">
+            <div class="card-title" style="color: var(--accent-green);">
+                <span class="icon">🎯</span>
+                六、映射到A股的潜在方向（核心输出）
+            </div>
+            
+            <h4 style="color: var(--accent-red); margin: 16px 0 12px;">✅ 可能上涨板块 TOP5</h4>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>A股板块</th>
+                    <th>美股映射</th>
+                    <th>映射逻辑</th>
+                    <th>强度</th>
+                    <th>代表标的</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><strong>油气开采/炼化</strong></td>
+                    <td>能源板块+XLE暴涨</td>
+                    <td>霍尔木兹封锁→全球原油供应紧张→中国进口成本上升→国内油气企业受益（定价权）</td>
+                    <td class="text-red"><strong>5/5</strong></td>
+                    <td>中国石油、中国石化、中海油</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><strong>光模块/CPO</strong></td>
+                    <td>英伟达+0.36%</td>
+                    <td>AI算力需求持续，光模块作为核心受益环节</td>
+                    <td class="text-red"><strong>4/5</strong></td>
+                    <td>中际旭创、新易盛、天孚通信</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><strong>智能驾驶</strong></td>
+                    <td>特斯拉+0.99%</td>
+                    <td>FSD进展+中国智能驾驶政策预期升温</td>
+                    <td class="text-blue"><strong>3/5</strong></td>
+                    <td>德赛西威、伯特利、拓普集团</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><strong>软件/AI应用</strong></td>
+                    <td>软件板块+5%</td>
+                    <td>美股AI应用恐慌缓解→A股AI应用估值修复</td>
+                    <td class="text-blue"><strong>3/5</strong></td>
+                    <td>科大讯飞、金山办公、用友网络</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><strong>军工/国防</strong></td>
+                    <td>地缘冲突升级</td>
+                    <td>美伊冲突→中东局势紧张→军工板块受益</td>
+                    <td class="text-gold"><strong>3/5</strong></td>
+                    <td>中航沈飞、航发动力、北方导航</td>
+                </tr>
+            </table>
+            
+            <h4 style="color: var(--accent-blue); margin: 20px 0 12px;">👀 个股关注清单</h4>
+            <table>
+                <tr>
+                    <th>A股公司</th>
+                    <th>代码</th>
+                    <th>映射美股</th>
+                    <th>关注理由</th>
+                </tr>
+                <tr>
+                    <td>中国石油</td>
+                    <td>601857</td>
+                    <td>XLE/能源板块</td>
+                    <td>油价暴涨直接受益，上游资源弹性大</td>
+                </tr>
+                <tr>
+                    <td>中际旭创</td>
+                    <td>300308</td>
+                    <td>英伟达</td>
+                    <td>800G光模块核心供应商，AI算力持续受益</td>
+                </tr>
+                <tr>
+                    <td>德赛西威</td>
+                    <td>002920</td>
+                    <td>特斯拉</td>
+                    <td>智能驾驶龙头，订单饱满</td>
+                </tr>
+                <tr>
+                    <td>科大讯飞</td>
+                    <td>002230</td>
+                    <td>软件板块</td>
+                    <td>AI应用龙头，估值修复机会</td>
+                </tr>
+            </table>
+            
+            <h4 style="color: var(--accent-green); margin: 20px 0 12px;">⛔ 需规避方向</h4>
+            <div class="warning-box">
+                <table>
+                    <tr>
+                        <th>规避方向</th>
+                        <th>原因</th>
+                    </tr>
+                    <tr>
+                        <td>航空/航运（原油消耗端）</td>
+                        <td>油价暴涨→航司成本大幅上升→利润受损（中国国航、南方航空等）</td>
+                    </tr>
+                    <tr>
+                        <td>铜矿/大宗商品</td>
+                        <td>铜价下跌+需求担忧→板块承压</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- 七、风险提示 -->
+        <div class="card" style="border: 1px solid var(--accent-red);">
+            <div class="card-title" style="color: var(--accent-red);">
+                <span class="icon">⚠️</span>
+                七、风险提示
+            </div>
+            
+            <div class="warning-box">
+                <h4 style="margin-bottom: 12px;">1. 传导失败风险</h4>
+                <ul style="padding-left: 20px;">
+                    <li><strong>地缘政治驱动型上涨</strong>：美股能源板块受中东冲突驱动，但A股油气板块已有所预期，需警惕高开低走</li>
+                    <li><strong>流动性差异</strong>：美股尾盘反弹由软件股带动，A股今日开盘是否跟涨存在不确定性</li>
+                </ul>
+            </div>
+            
+            <div class="warning-box">
+                <h4 style="margin-bottom: 12px;">2. 汇率与资金面风险</h4>
+                <ul style="padding-left: 20px;">
+                    <li>美元走弱+美债收益率下降 → 人民币升值预期升温 → 外资流入利好A股</li>
+                    <li>但若油价持续高位 → 输入性通胀担忧 → 货币政策空间受限</li>
+                </ul>
+            </div>
+            
+            <div class="warning-box">
+                <h4 style="margin-bottom: 12px;">3. 时差与信息差风险</h4>
+                <ul style="padding-left: 20px;">
+                    <li>A股开盘前可能发布新的政策或公司公告，影响原有判断</li>
+                    <li>美股盘后/期货异动（期权到期、ETF调仓等）可能导致隔夜跳空</li>
+                </ul>
+            </div>
+            
+            <div class="warning-box">
+                <h4 style="margin-bottom: 12px;">4. 情绪反向风险</h4>
+                <ul style="padding-left: 20px;">
+                    <li><strong>历史规律</strong>：美股大涨后A股"高开低走"案例较多，需警惕追高风险</li>
+                    <li><strong>建议策略</strong>：若今日A股高开，可考虑分批建仓而非一次性买入</li>
+                </ul>
+            </div>
+            
+            <div class="highlight-box">
+                <strong>📌 总结：</strong>
+                <p style="margin-top: 8px;">
+                4月13日美股在地缘政治冲击下"V型反弹"，软件/AI板块超跌反弹成为市场主线。映射到A股，<strong>油气板块</strong>是最确定的受益方向（强度5星），其次是<strong>光模块/CPO</strong>和<strong>智能驾驶</strong>。需警惕高开低走风险，建议逢低布局核心标的。
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>📊 数据来源：Trading Economics, TheStreet, CNBC, Bloomberg, 新浪财经</p>
+            <p style="margin-top: 8px;">🔗 报告链接：https://JeremyYu-gif.github.io/US-mapping-review-20260413.html</p>
+            <p style="margin-top: 8px;">免责声明：本报告仅供参考，不构成投资建议</p>
+        </div>
+    </div>
+</body>
+</html>
