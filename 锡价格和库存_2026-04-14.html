@@ -18,6 +18,7 @@
   .kpi-card.shfe::before { background: linear-gradient(90deg, #fc8181, #f56565); }
   .kpi-card.lme::before { background: linear-gradient(90deg, #68d391, #48bb78); }
   .kpi-card.ratio::before { background: linear-gradient(90deg, #76e4f7, #0bc5ea); }
+  .kpi-card.warrant::before { background: linear-gradient(90deg, #b794f4, #9f7aea); }
   .kpi-label { font-size: 12px; color: #718096; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
   .kpi-value { font-size: 28px; font-weight: 700; color: #f7f8fc; }
   .kpi-unit { font-size: 13px; color: #a0aec0; margin-left: 4px; font-weight: 400; }
@@ -68,10 +69,10 @@
     <div class="kpi-value">8,550<span class="kpi-unit">吨</span></div>
     <div class="kpi-change down">▼ -0.58% 日环比（截至04-13）</div>
   </div>
-  <div class="kpi-card ratio">
-    <div class="kpi-label">同比（去年同期价格）</div>
-    <div class="kpi-value">+42.1<span class="kpi-unit">%</span></div>
-    <div class="kpi-change neutral">2025-04-14：26.16万元/吨</div>
+  <div class="kpi-card warrant">
+    <div class="kpi-label">SHFE 仓单</div>
+    <div class="kpi-value">8,359<span class="kpi-unit">吨</span></div>
+    <div class="kpi-change down">▼ -1.18% 日环比（04-10 vs 04-09）</div>
   </div>
 </div>
 
@@ -87,6 +88,10 @@
   <div class="chart-card">
     <div class="chart-title">LME 锡库存走势（近5年日度，吨）</div>
     <div class="chart-box" id="lmeChart"></div>
+  </div>
+  <div class="chart-card full-width">
+    <div class="chart-title">SHFE 锡仓单日报（近30日，日度，吨）</div>
+    <div class="chart-box" id="warrantChart"></div>
   </div>
 </div>
 
@@ -108,11 +113,13 @@
       <h4>库存动态</h4>
       <ul>
         <li>SHFE库存（04-10）：<span class="highlight">8,515吨</span>，较上周（7,467吨）<span class="up">+14.0%</span></li>
-        <li>SHFE库存处于近5年中位偏低水平，近期明显低于2024年高峰（17,818吨）</li>
+        <li>SHFE仓单（04-10）：<span class="highlight">8,359吨</span>，较前日（8,459吨）<span class="down">-1.18%</span></li>
+        <li>仓单与库存比：98.2%（仓单占库存比例高，实物交割资源充足）</li>
+        <li>仓单近30日呈下降趋势：从12,273吨（03-13）降至8,359吨（04-10），降幅 <span class="down">-31.9%</span></li>
         <li>LME库存（04-13）：<span class="highlight">8,550吨</span>，较2025年低谷（1,690吨）大幅回升</li>
         <li>LME库存同比去年同期（2025-04-14，3,090吨）：<span class="up">+176.8%</span></li>
         <li>全球两大交易所库存合计约<span class="highlight">17,065吨</span>，较2025年极低水平明显改善</li>
-        <li>库存回升叠加高价格，需警惕需求走弱风险</li>
+        <li>仓单加速下降+库存回升，暗示现货紧张有所缓解</li>
       </ul>
     </div>
   </div>
@@ -355,6 +362,16 @@ const lmeRaw = [
   ["2026-04-09",8600],["2026-04-10",8600],["2026-04-13",8550]
 ];
 
+// ========== SHFE仓单数据（近30日）==========
+const warrantRaw = [
+  ["2026-04-10",8359],["2026-04-09",8459],["2026-04-08",8551],["2026-04-07",6113],["2026-04-03",6357],
+  ["2026-04-02",6481],["2026-04-01",6677],["2026-03-31",6775],["2026-03-30",7039],["2026-03-27",7404],
+  ["2026-03-26",7757],["2026-03-25",8144],["2026-03-24",8552],["2026-03-23",8978],["2026-03-20",9486],
+  ["2026-03-19",10275],["2026-03-18",11312],["2026-03-17",11673],["2026-03-16",11995],["2026-03-13",12273],
+  ["2026-03-12",12360],["2026-03-11",10031],["2026-03-10",9709],["2026-03-09",10124],["2026-03-06",10247],
+  ["2026-03-05",10609],["2026-03-04",10898],["2026-03-03",11316],["2026-03-02",11531],["2026-02-27",11418]
+];
+
 function buildChart(domId, xData, seriesData, color, name, unit) {
   const chart = echarts.init(document.getElementById(domId));
   chart.setOption({
@@ -423,6 +440,13 @@ buildChart('lmeChart',
   lmeRaw.map(d=>d[0]),
   lmeRaw.map(d=>d[1]),
   '#68d391', 'LME锡库存', '吨'
+);
+
+// 仓单图
+buildChart('warrantChart',
+  warrantRaw.map(d=>d[0]),
+  warrantRaw.map(d=>d[1]),
+  '#b794f4', 'SHFE锡仓单', '吨'
 );
 </script>
 </body>
