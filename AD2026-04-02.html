@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿尔茨海默创新药日报 - 2026-04-02</title>
+<style>
+  :root {
+    --primary: #1a5276;
+    --accent: #2e86c1;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --success: #27ae60;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #2c3e50;
+    --text-light: #7f8c8d;
+    --border: #e0e0e0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 15px rgba(26, 82, 118, 0.3);
+  }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header .date { font-size: 16px; opacity: 0.9; }
+  .header .summary {
+    background: rgba(255,255,255,0.15);
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  
+  /* Alert Banner */
+  .alert-banner {
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid;
+  }
+  .alert-banner.p0 { background: #fde8e8; border-color: var(--danger); }
+  .alert-banner.p1 { background: #fef3e2; border-color: var(--warning); }
+  .alert-banner.p2 { background: #e8f6f3; border-color: var(--success); }
+  .alert-banner h2 { margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .alert-item {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .alert-item .level {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  .alert-item .level.p0 { background: var(--danger); }
+  .alert-item .level.p1 { background: var(--warning); }
+  .alert-item .level.p2 { background: var(--success); }
+  
+  /* News Section */
+  .section { margin-bottom: 24px; }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Company Card */
+  .company-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s;
+  }
+  .company-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .company-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .company-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .drug-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    color: white;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .info-item { padding: 10px 14px; background: var(--bg); border-radius: 6px; }
+  .info-item .label {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .info-item .value { font-size: 14px; }
+  .info-item.full { grid-column: 1 / -1; }
+  
+  .source-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .source-link:hover { text-decoration: underline; }
+  
+  /* Pipeline Table */
+  .pipeline-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .pipeline-table th {
+    background: var(--primary);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .pipeline-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .pipeline-table tr:hover { background: #f0f7fc; }
+  .pipeline-table tr:last-child td { border-bottom: none; }
+  
+  .phase-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .phase-approved { background: #d5f5e3; color: #1e8449; }
+  .phase-3 { background: #d4efdf; color: #1e8449; }
+  .phase-2 { background: #fef9e7; color: #b7950b; }
+  .phase-1 { background: #fef3e2; color: #ca6f1e; }
+  .phase-pre { background: #fde8e8; color: #c0392b; }
+  
+  /* Calendar */
+  .calendar-item {
+    background: var(--card-bg);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .calendar-date {
+    background: var(--primary);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .importance-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .importance-dot.high { background: var(--danger); }
+  .importance-dot.medium { background: var(--warning); }
+  .importance-dot.low { background: var(--success); }
+  
+  /* Footer */
+  .footer {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .header { padding: 20px; }
+    .header h1 { font-size: 22px; }
+    body { padding: 12px; }
+  }
+  
+  .no-news {
+    text-align: center;
+    color: var(--text-light);
+    padding: 40px;
+    font-size: 16px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>🧠 阿尔茨海默创新药日报</h1>
+    <div class="date">2026年4月2日</div>
+    <div class="summary" id="dailySummary">
+      <strong>一句话总结:</strong> NICE就donanemab和lecanemab重新开启公众咨询，欧洲市场准入出现转机；礼来在AD/PD 2026公布Kisunla三年数据验证"有限疗程"策略；齐鲁制药QLH2405获批IND，中国AD研发持续升温。今日无P0级预警事件。
+    </div>
+  </div>
+
+  <!-- Alert Section -->
+  <div id="alertSection">
+    
+    <div class="alert-banner p1">
+      <h2>🟠 P1 - 重要预警</h2>
+      <div class="alert-item">
+        <span class="level p1">P1</span>
+        <strong>礼来/卫材 | Donanemab & Leqembi</strong>
+        <p style="margin-top:8px"><strong>事件:</strong> NICE重新开启公众咨询，有望纳入NHS</p>
+        <p style="margin-top:4px"><strong>详情:</strong> NICE于2026年3月31日发布第三版草案指南，就donanemab和lecanemab重新开启公众咨询（截止4月28日）。此前NICE两度拒绝推荐，主要原因是成本效益不达标。本次评估焦点包括：护理者负担重新评估、长期数据核实、以及2026年3月新提高的成本效益阈值。预计6月10日委员会会议后有最终结论。</p>
+        <p style="margin-top:4px;color:var(--text-light)">来源: The Pharmaceutical Journal | 日期: 2026-04-01</p>
+      </div>
+    </div>
+    
+    <div class="alert-banner p2">
+      <h2>🟡 P2 - 关注动态</h2>
+      
+      <div class="alert-item">
+        <span class="level p2">P2</span>
+        <strong>礼来 | Kisunla (Donanemab)</strong>
+        <p style="margin-top:8px"><strong>事件:</strong> AD/PD 2026公布三年长期数据，支持有限疗程策略</p>
+        <p style="margin-top:4px"><strong>核心数据:</strong></p>
+        <ul style="margin-top:4px;margin-left:20px">
+          <li>早期停药组（治疗约1年后淀粉样蛋白清除）：<strong>82.6%</strong>患者在第154周仍维持淀粉样蛋白&lt;24.1 CL</li>
+          <li>持续治疗组：<strong>56.8%</strong>患者在第154周达到淀粉样蛋白清除</li>
+          <li>淀粉样蛋白重新积累速率：约<strong>2.4 CL/年</strong>（接近自然积累速率）</li>
+        </ul>
+        <p style="margin-top:4px"><strong>意义:</strong> 验证了Kisunla"有限疗程"疗法的可行性，早期达到清除标准的患者可安全停药</p>
+        <p style="margin-top:4px;color:var(--text-light)">来源: AD/PD 2026会议 | 日期: 2026-03-20</p>
+      </div>
+      
+      <div class="alert-item">
+        <span class="level p2">P2</span>
+        <strong>齐鲁制药 | QLH2405</strong>
+        <p style="margin-top:8px"><strong>事件:</strong> 1类新药QLH2405注射液获NMPA临床试验默示许可</p>
+        <p style="margin-top:4px"><strong>详情:</strong> 齐鲁制药自主研发的1类新药QLH2405注射液于2026年3月13日获得CDE临床试验默示许可，拟定适应症为阿尔茨海默病。这是又一家头部药企入局AD领域。</p>
+        <p style="margin-top:4px;color:var(--text-light)">来源: CDE官网 | 日期: 2026-03-18</p>
+      </div>
+      
+      <div class="alert-item">
+        <span class="level p2">P2</span>
+        <strong>国家科技重大专项 | AD新型生物药</strong>
+        <p style="margin-top:8px"><strong>事件:</strong> "治疗阿尔茨海默病的新型生物药研发"项目启动</p>
+        <p style="margin-top:4px"><strong>详情:</strong> 由中国科学院过程工程研究所牵头的创新药物研发国家科技重大专项"治疗阿尔茨海默病的新型生物药研发"项目启动会于2026年3月20日召开，合作单位包括中国科学院动物研究所、上海恩凯细胞技术有限公司等。</p>
+        <p style="margin-top:4px;color:var(--text-light)">来源: 中国科学院IPE | 日期: 2026-03-26</p>
+      </div>
+      
+      <div class="alert-item">
+        <span class="level p2">P2</span>
+        <strong>卫材/Biogen | Leqembi (Lecanemab)</strong>
+        <p style="margin-top:8px"><strong>事件:</strong> AD/PD 2026展示持续治疗获益数据</p>
+        <p style="margin-top:4px"><strong>详情:</strong> Eisai在AD/PD 2026上展示Leqembi长期扩展研究数据，强调早期开始治疗并持续用药的认知获益。同时公布了真实世界长期用药持续性数据。</p>
+        <p style="margin-top:4px;color:var(--text-light)">来源: AD/PD 2026会议 | 日期: 2026-03-23</p>
+      </div>
+      
+      <div class="alert-item">
+        <span class="level p2">P2</span>
+        <strong>卫材 | Leqembi (Lecanemab)</strong>
+        <p style="margin-top:8px"><strong>事件:</strong> 德国G-BA完成早期效益评估</p>
+        <p style="margin-top:4px"><strong>详情:</strong> 德国联邦联合委员会(G-BA)对Lecanemab进行早期效益评估。作为首个对因疗法于2025年4月在德国获批的药物，Lecanemab的效益评估结果将影响其德国医保覆盖。</p>
+        <p style="margin-top:4px;color:var(--text-light)">来源: 生物谷 | 日期: 2026-04-01</p>
+      </div>
+      
+      <div class="alert-item">
+        <span class="level p2">P2</span>
+        <strong>全球AD研发全景 | 158种在研药物</strong>
+        <p style="margin-top:8px"><strong>事件:</strong> 2026年阿尔茨海默病临床试验全景图发布</p>
+        <p style="margin-top:4px"><strong>详情:</strong> BrightFocus基金会发布的最新数据显示，截至2026年3月，全球共有<strong>158种</strong>阿尔茨海默病在研药物，处于DMT（疾病修饰疗法）时代的关键转折期。</p>
+        <p style="margin-top:4px;color:var(--text-light)">来源: 腾讯新闻 | 日期: 2026-03-25</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- News Section -->
+  <div class="section" id="newsSection">
+    <div class="section-title">📰 今日信息汇总</div>
+    <div id="newsContent">
+      
+      <!-- NICE -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">英国NICE评估委员会</span>
+          <span class="drug-badge">政策/市场准入</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="label">事件类型</div>
+            <div class="value">政策变化 - NHS推荐重新评估</div>
+          </div>
+          <div class="info-item">
+            <div class="label">涉及药物</div>
+            <div class="value">Donanemab (Kisunla) & Lecanemab (Leqembi)</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">一句话结论</div>
+            <div class="value">NICE因评估过程存在争议重新开启咨询，欧洲AD患者有望获得首款DMT药物</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">核心数据</div>
+            <div class="value">
+              - 咨询截止日期：2026年4月28日<br>
+              - 委员会会议：2026年6月10日<br>
+              - 此前两度拒绝（最近一次2025年6月）
+            </div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义</div>
+            <div class="value">如获推荐，将开启欧洲最大单一医疗市场对DMT类AD药物的医保覆盖，对卫材/礼来商业化意义重大</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">风险</div>
+            <div class="value">制药公司需证明成本效益，新阈值提高增加了获批难度；输液成本和护理者负担评估仍是焦点</div>
+          </div>
+          <div class="info-item">
+            <div class="label">来源</div>
+            <div class="value"><a href="https://pharmaceutical-journal.com/article/news/nice-opens-consultation-on-previously-rejected-alzheimers-treatments-donanemab-and-lecanemab" class="source-link">The Pharmaceutical Journal</a></div>
+          </div>
+          <div class="info-item">
+            <div class="label">日期</div>
+            <div class="value">2026-04-01</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Kisunla 3-year -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">礼来 (Eli Lilly)</span>
+          <span class="drug-badge">Donanemab (Kisunla)</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="label">事件类型</div>
+            <div class="value">会议数据 - 长期扩展研究结果</div>
+          </div>
+          <div class="info-item">
+            <div class="label">靶点/机制</div>
+            <div class="value">Aβ (N3pG) 单克隆抗体</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">一句话结论</div>
+            <div class="value">Kisunla三年数据验证"有限疗程"可行性，早期停药患者82.6%维持淀粉样蛋白清除</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">核心数据</div>
+            <div class="value">
+              <strong>早期停药组（达到淀粉样蛋白清除后停药）：</strong><br>
+              - 第154周平均淀粉样蛋白：10.99 CL<br>
+              - 82.6%患者维持&lt;24.1 CL阈值<br>
+              - 淀粉样蛋白重新积累速率：~2.4 CL/年<br><br>
+              <strong>持续治疗组（未达到清除标准继续治疗）：</strong><br>
+              - 56.8%患者在第154周达到淀粉样蛋白清除
+            </div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义</div>
+            <div class="value">首次以长期数据支持Kisunla"有限疗程"策略，降低患者长期用药负担和经济成本；增强差异化竞争力</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">风险</div>
+            <div class="value">再积累后的再治疗策略尚未建立；需明确淀粉样蛋白监测频率</div>
+          </div>
+          <div class="info-item">
+            <div class="label">来源</div>
+            <div class="value"><a href="https://www.clinicaltrialsarena.com/analyst-comment/ad-pd-2026-three-year-data-confirms-slow-amyloid-re-accumulation-following-kisunla-treatment-completion/" class="source-link">Clinical Trials Arena</a></div>
+          </div>
+          <div class="info-item">
+            <div class="label">日期</div>
+            <div class="value">2026-03-20 (AD/PD 2026)</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Qilu -->
+      <div class="company-card">
+        <div class="company-header">
+          <span class="company-name">齐鲁制药</span>
+          <span class="drug-badge">QLH2405</span>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="label">事件类型</div>
+            <div class="value">临床阶段推进 - IND获批</div>
+          </div>
+          <div class="info-item">
+            <div class="label">靶点/机制</div>
+            <div class="value">待披露（1类生物药）</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">一句话结论</div>
+            <div class="value">齐鲁制药又一款AD新药进入临床，中国传统药企转型创新持续加速</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">意义</div>
+            <div class="value">齐鲁制药此前已有AD布局，QLH2405获批IND进一步强化其神经科学管线</div>
+          </div>
+          <div class="info-item full">
+            <div class="label">风险</div>
+            <div class="value">靶点和机制尚未披露，临床开发不确定性较高</div>
+          </div>
+          <div class="info-item">
+            <div class="label">来源</div>
+            <div class="value"><a href="https://finance.sina.com.cn/roll/2026-03-18/doc-inhrmayp7474419.shtml" class="source-link">新浪财经</a></div>
+          </div>
+          <div class="info-item">
+            <div class="label">日期</div>
+            <div class="value">2026-03-18</div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Pipeline Overview -->
+  <div class="section">
+    <div class="section-title">📋 管线状态总览</div>
+    <table class="pipeline-table">
+      <thead>
+        <tr>
+          <th>公司</th>
+          <th>产品</th>
+          <th>靶点/机制</th>
+          <th>当前阶段</th>
+          <th>最近更新</th>
+        </tr>
+      </thead>
+      <tbody id="pipelineBody">
+        <tr>
+          <td>Biogen / Eisai</td>
+          <td>Lecanemab (Leqembi)</td>
+          <td>Aβ 单抗</td>
+          <td><span class="phase-badge phase-approved">已获批</span></td>
+          <td>AD/PD 2026长期数据 | 2026-03</td>
+        </tr>
+        <tr>
+          <td>礼来</td>
+          <td>Donanemab (Kisunla)</td>
+          <td>Aβ (N3pG) 单抗</td>
+          <td><span class="phase-badge phase-approved">已获批</span></td>
+          <td>3年LTE数据 | 2026-03</td>
+        </tr>
+        <tr>
+          <td>礼来</td>
+          <td>Remternetug</td>
+          <td>Aβ 单抗（皮下）</td>
+          <td><span class="phase-badge phase-3">III期</span></td>
+          <td>TRAILBLAZER-ALZ 3进行中</td>
+        </tr>
+        <tr>
+          <td>Biogen</td>
+          <td>BIIB080</td>
+          <td>APP ASO</td>
+          <td><span class="phase-badge phase-2">I/IIa期完成</span></td>
+          <td>评估III期方案 | 2025</td>
+        </tr>
+        <tr>
+          <td>Alnylam</td>
+          <td>Mivelsiran (ALN-APP)</td>
+          <td>APP RNAi</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>HERALD研究进行中</td>
+        </tr>
+        <tr>
+          <td>罗氏</td>
+          <td>Trontinemab</td>
+          <td>Aβ 单抗（Brainshuttle）</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>安全性评估 | 2025</td>
+        </tr>
+        <tr>
+          <td>AC Immune / 强生</td>
+          <td>ACI-35.030 (JNJ-2056)</td>
+          <td>pTau 疫苗</td>
+          <td><span class="phase-badge phase-2">II期</span></td>
+          <td>II期进行中</td>
+        </tr>
+        <tr>
+          <td>AC Immune</td>
+          <td>ACI-24.060</td>
+          <td>Aβ 疫苗</td>
+          <td><span class="phase-badge phase-1">I/II期</span></td>
+          <td>I/II期进行中</td>
+        </tr>
+        <tr>
+          <td>Voyager</td>
+          <td>VY7523</td>
+          <td>AAV基因疗法</td>
+          <td><span class="phase-badge phase-1">早期临床</span></td>
+          <td>预计2026下半年数据 | 2025Q4</td>
+        </tr>
+        <tr>
+          <td>Voyager</td>
+          <td>VY1706</td>
+          <td>Tau AAV基因疗法</td>
+          <td><span class="phase-badge phase-pre">临床前</span></td>
+          <td>预计2026下半年IND | 2025Q4</td>
+        </tr>
+        <tr>
+          <td>Lexeo</td>
+          <td>LX1001</td>
+          <td>APOE2 AAV基因疗法</td>
+          <td><span class="phase-badge phase-1">I/II期</span></td>
+          <td>安全性评估中</td>
+        </tr>
+        <tr>
+          <td>恒瑞医药</td>
+          <td>SHR-1707</td>
+          <td>Aβ 单抗</td>
+          <td><span class="phase-badge phase-2">I期进行中</span></td>
+          <td>首例给药完成 | 2023</td>
+        </tr>
+        <tr>
+          <td>齐鲁制药</td>
+          <td>QLH2405</td>
+          <td>待披露</td>
+          <td><span class="phase-badge phase-1">IND获批</span></td>
+          <td>新获临床许可 | 2026-03</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Upcoming Events -->
+  <div class="section" id="calendarSection">
+    <div class="section-title">📅 近期关注日历（未来7天）</div>
+    <div id="calendarContent">
+      <div class="calendar-item">
+        <span class="calendar-date">2026-04-03</span>
+        <div>
+          <strong>AD/PD 2026会议后续</strong> - 关注更多数据发表
+          <span style="color:var(--text-light)"> | 礼来/Biogen/Eisai</span>
+        </div>
+        <span class="importance-dot medium"></span>
+      </div>
+      <div class="calendar-item">
+        <span class="calendar-date">2026-04-08</span>
+        <div>
+          <strong>礼来财报</strong> - 关注AD药物处方量和商业化进展
+          <span style="color:var(--text-light)"> | LLY</span>
+        </div>
+        <span class="importance-dot medium"></span>
+      </div>
+      <div class="calendar-item">
+        <span class="calendar-date">2026-04-28</span>
+        <div>
+          <strong>NICE公众咨询截止</strong> - donanemab和lecanemab NHS推荐关键节点
+          <span style="color:var(--text-light)"> | 礼来/卫材</span>
+        </div>
+        <span class="importance-dot high"></span>
+      </div>
+      <div class="calendar-item">
+        <span class="calendar-date">2026-06-10</span>
+        <div>
+          <strong>NICE委员会会议</strong> - 预期donanemab/lecanemab英国市场准入最终决定
+          <span style="color:var(--text-light)"> | 礼来/卫材</span>
+        </div>
+        <span class="importance-dot high"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    阿尔茨海默创新药跟踪系统 | 自动生成于 2026-04-02 22:30 | 数据来源于公开信息，仅供参考
+  </div>
+
+</div>
+</body>
+</html>
