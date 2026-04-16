@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>光伏组件价格日报 - 2026-04-15</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; }
+        .header h1 { font-size: 28px; margin-bottom: 10px; }
+        .header .meta { opacity: 0.9; font-size: 14px; }
+        .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .card h2 { color: #1a73e8; border-bottom: 2px solid #e3f2fd; padding-bottom: 12px; margin-bottom: 16px; font-size: 18px; }
+        .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 24px; }
+        .price-card { background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); border-radius: 10px; padding: 20px; border-left: 4px solid; }
+        .price-card.smm { border-left-color: #2196f3; }
+        .price-card.europe { border-left-color: #4caf50; }
+        .price-card.domestic { border-left-color: #ff9800; }
+        .price-card .label { font-size: 13px; color: #666; margin-bottom: 6px; }
+        .price-card .value { font-size: 28px; font-weight: bold; color: #1a1a1a; }
+        .price-card .unit { font-size: 14px; color: #888; }
+        .price-card .change { font-size: 14px; margin-top: 8px; }
+        .change.up { color: #e53935; }
+        .change.down { color: #43a047; }
+        .chart-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+        .chart-box { background: white; border-radius: 10px; padding: 16px; text-align: center; }
+        .chart-box img { max-width: 100%; height: auto; border-radius: 8px; }
+        .chart-box .title { font-size: 14px; color: #666; margin-top: 10px; font-weight: 500; }
+        table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+        th, td { padding: 12px 8px; text-align: center; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; color: #555; font-weight: 600; font-size: 13px; }
+        td { font-size: 13px; }
+        .section { margin-top: 20px; }
+        .analysis-box { background: #fff; border-radius: 10px; padding: 20px; margin-top: 16px; border: 1px solid #e0e0e0; }
+        .analysis-box h3 { color: #1565c0; font-size: 15px; margin-bottom: 10px; }
+        .analysis-box ul { padding-left: 20px; }
+        .analysis-box li { margin-bottom: 8px; font-size: 14px; color: #444; }
+        .risk-box { background: #fff3e0; border-left: 4px solid #ff9800; padding: 16px; border-radius: 0 8px 8px 0; margin-top: 16px; }
+        .risk-box h4 { color: #e65100; font-size: 14px; margin-bottom: 8px; }
+        .risk-box ul { padding-left: 18px; }
+        .risk-box li { font-size: 13px; color: #555; margin-bottom: 6px; }
+        .footer { text-align: center; color: #999; font-size: 12px; margin-top: 30px; padding: 20px; }
+        @media (max-width: 768px) { .header h1 { font-size: 22px; } .price-card .value { font-size: 24px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>☀️ 光伏组件价格日报</h1>
+            <div class="meta">报告日期：2026年4月15日 (周三) | 生成时间：07:36</div>
+        </div>
+
+        <!-- 价格概览卡片 -->
+        <div class="price-grid">
+            <div class="price-card smm">
+                <div class="label">SMM 中国港口FOB (210mm)</div>
+                <div class="value">0.1200 <span class="unit">USD/W</span></div>
+                <div class="change down">日涨跌 -0.0005 (-0.41%)</div>
+            </div>
+            <div class="price-card europe">
+                <div class="label">欧洲市场均价</div>
+                <div class="value">0.095 <span class="unit">USD/W</span></div>
+                <div class="change">周持平</div>
+            </div>
+            <div class="price-card domestic">
+                <div class="label">国内集中式项目</div>
+                <div class="value">0.685 <span class="unit">RMB/W</span></div>
+                <div class="change">周持平</div>
+            </div>
+        </div>
+
+        <!-- 价格走势图 -->
+        <div class="card">
+            <h2>📈 价格走势 (近90天)</h2>
+            <div class="chart-container">
+                <div class="chart-box">
+                    <img src="charts/smm_trend.png" alt="SMM价格走势">
+                    <div class="title">SMM TOPCon组件价格走势</div>
+                </div>
+                <div class="chart-box">
+                    <img src="charts/europe_trend.png" alt="欧洲价格走势">
+                    <div class="title">欧洲TOPCon组件价格走势</div>
+                </div>
+                <div class="chart-box">
+                    <img src="charts/domestic_trend.png" alt="国内价格走势">
+                    <div class="title">国内集中式项目价格走势</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 近7日数据明细 -->
+        <div class="card">
+            <h2>📋 近7日数据明细</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>SMM FOB (USD/W)</th>
+                        <th>欧洲 (USD/W)</th>
+                        <th>国内 (RMB/W)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>2026-04-14</td><td>0.1200</td><td>-</td><td>-</td></tr>
+                    <tr><td>2026-04-13</td><td>-</td><td>-</td><td>-</td></tr>
+                    <tr><td>2026-04-12</td><td>-</td><td>-</td><td>-</td></tr>
+                    <tr><td>2026-04-11</td><td>-</td><td>-</td><td>-</td></tr>
+                    <tr><td>2026-04-10</td><td>0.1210</td><td>0.116</td><td>0.70</td></tr>
+                    <tr><td>2026-04-09</td><td>0.1110</td><td>-</td><td>-</td></tr>
+                    <tr><td>2026-04-08</td><td>0.1257</td><td>0.116</td><td>0.70</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 深度分析 -->
+        <div class="card">
+            <h2>🔍 深度分析 (基金经理+研究员视角)</h2>
+            
+            <div class="analysis-box">
+                <h3>一、价格走势概览</h3>
+                <ul>
+                    <li><strong>SMM中国港口FOB：</strong>最新报价0.120 USD/W，日环比下跌0.41%。近一周呈现震荡下行态势，从4月8日的0.1257美元回落至0.12美元，累计跌幅约4.5%。</li>
+                    <li><strong>欧洲市场：</strong>周度数据最新为0.116 USD/W（4月8日），较前周持平。欧洲价格在3月中旬经历一波快速上涨后，目前进入平台整理期。</li>
+                    <li><strong>国内集中式项目：</strong>持续稳定在0.70 RMB/W，延续年初以来的横盘格局，组件企业对降价已趋于底部共识。</li>
+                </ul>
+            </div>
+
+            <div class="analysis-box">
+                <h3>二、驱动因素分析</h3>
+                <p><strong>供给侧：</strong></p>
+                <ul>
+                    <li>国内一线组件企业维持80%左右产能利用率，二线企业分化明显，部分已降至60%以下</li>
+                    <li>新产能仍在持续释放，2026年Q1新增TOPCon产能约50GW，总产能突破800GW</li>
+                    <li>库存压力边际改善，但仍处于2-3个月的高位水平</li>
+                </ul>
+                <p style="margin-top:12px"><strong>需求侧：</strong></p>
+                <ul>
+                    <li>国内Q1装机超预期，集中式项目招标节奏加快，但价格传导仍需时间</li>
+                    <li>欧洲市场进入传统旺季前的备货期，进口需求环比改善</li>
+                    <li>印度、巴西等新兴市场订单量稳中有升，但价格竞争激烈</li>
+                </ul>
+                <p style="margin-top:12px"><strong>成本端：</strong></p>
+                <ul>
+                    <li>硅料价格延续跌势，致密料主流成交价已至4.5万元/吨附近</li>
+                    <li>辅材价格基本持稳，EVA胶膜、背板等利润空间有所修复</li>
+                    <li>组件成本支撑位在0.10-0.11 USD/W，当前报价已接近部分企业成本线</li>
+                </ul>
+            </div>
+
+            <div class="analysis-box">
+                <h3>三、竞争格局观察</h3>
+                <ul>
+                    <li>一线企业（隆基、晶科、天合、晶澳）凭借品牌和渠道优势，报价相对坚挺，底部支撑较强</li>
+                    <li>二三线企业价格竞争激烈，部分企业已现亏本接单现象，行业出清信号明显</li>
+                    <li>龙头企业近期加快海外产能布局东南亚，以规避贸易壁垒并降低物流成本</li>
+                </ul>
+            </div>
+
+            <div class="risk-box">
+                <h4>⚠️ 风险提示</h4>
+                <ul>
+                    <li>行业产能出清进度不及预期，供给压力可能进一步压制价格</li>
+                    <li>海外贸易政策不确定性（美国201关税、欧洲碳关税等）</li>
+                    <li>光伏产业链技术迭代风险，BC、HJT等新技术路线对TOPCon的替代压力</li>
+                    <li>当前价格已接近部分企业现金成本，需关注二三线企业的现金流压力</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 投资启示 -->
+        <div class="card">
+            <h2>💡 投资启示</h2>
+            <div class="analysis-box">
+                <h3>板块机会</h3>
+                <ul>
+                    <li>组件价格持续下跌空间有限，建议关注一线组件龙头的左侧布局机会，如隆基绿能、晶科能源、天合光能</li>
+                    <li>辅材环节（EVA胶膜、玻璃）盈利已至底部，龙头企业有望受益于行业出清后的份额提升</li>
+                    <li>海外业务占比高的企业具备更强的盈利韧性和估值溢价</li>
+                </ul>
+                <h3 style="margin-top:16px">配置策略</h3>
+                <ul>
+                    <li>短期：光伏设备板块估值处于历史低位，可适度关注超跌反弹机会</li>
+                    <li>中期：聚焦具备技术壁垒和成本优势的龙头企业，回避高负债率二线企业</li>
+                    <li>建议仓位控制在10-15%，分散配置设备/辅材/一体化组件龙头</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>报告由 WorkBuddy AI 生成 | 数据来源：SMM、上海有色网、iFinD | 仅供参考，不构成投资建议</p>
+            <p>公网访问：https://JeremyYu-gif.github.io/PV-price-20260415.html</p>
+        </div>
+    </div>
+</body>
+</html>

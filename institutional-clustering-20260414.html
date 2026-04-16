@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>机构抱团识别 - 2026年4月14日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .header h1 {
+            font-size: 32px;
+            background: linear-gradient(90deg, #f7971e, #ffd200);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .header .date {
+            font-size: 16px;
+            color: #aaa;
+            margin-bottom: 8px;
+        }
+        .header .identity {
+            font-size: 13px;
+            color: #888;
+            padding: 8px 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .section {
+            background: rgba(255,255,255,0.04);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .section h2 {
+            font-size: 20px;
+            color: #ffd200;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,210,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 24px; }
+        .section p {
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        .highlight-box {
+            background: rgba(255,210,0,0.08);
+            border-left: 4px solid #ffd200;
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 15px 0;
+        }
+        .highlight-box strong { color: #ffd200; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        th {
+            background: rgba(255,210,0,0.15);
+            color: #ffd200;
+            padding: 12px 10px;
+            text-align: center;
+            font-weight: 600;
+            border-bottom: 2px solid rgba(255,210,0,0.3);
+        }
+        td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            color: #ddd;
+        }
+        tr:hover { background: rgba(255,255,255,0.05); }
+        .up { color: #ff4444; font-weight: bold; }
+        .down { color: #00cc66; font-weight: bold; }
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .tag-hot { background: #ff4444; color: white; }
+        .tag-warm { background: #ff8c00; color: white; }
+        .tag-cold { background: #4a90d9; color: white; }
+        .analysis-box {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 15px 0;
+        }
+        .analysis-box h4 {
+            color: #f7971e;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        .risk-box {
+            background: rgba(255,68,68,0.08);
+            border: 1px solid rgba(255,68,68,0.2);
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 15px 0;
+        }
+        .risk-box h4 {
+            color: #ff4444;
+            margin-bottom: 8px;
+        }
+        .risk-box ul { padding-left: 20px; }
+        .risk-box li { color: #ccc; margin-bottom: 5px; line-height: 1.6; }
+        .disclaimer {
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 30px;
+            line-height: 1.8;
+        }
+        .data-source {
+            text-align: center;
+            color: #555;
+            font-size: 11px;
+            margin-top: 10px;
+        }
+        .rank-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .rank-1 { background: #ffd200; color: #333; }
+        .rank-2 { background: #c0c0c0; color: #333; }
+        .rank-3 { background: #cd7f32; color: #fff; }
+        .rank-n { background: rgba(255,255,255,0.1); color: #aaa; }
+        .flow-bar {
+            display: inline-block;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #ff4444, #ff8c00);
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .summary-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        .summary-card .label { font-size: 12px; color: #888; margin-bottom: 5px; }
+        .summary-card .value { font-size: 22px; font-weight: bold; }
+        .summary-card .value.red { color: #ff4444; }
+        .summary-card .value.green { color: #00cc66; }
+        .summary-card .value.gold { color: #ffd200; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 机构抱团识别</h1>
+            <div class="date">2026年4月14日 · 周二 · A股收盘后</div>
+            <div class="identity">🔍 分析视角：资深基金经理 × 行业研究员 × 资深散户</div>
+        </div>
+
+        <!-- 市场概览 -->
+        <div class="section">
+            <h2><span class="icon">📋</span> 市场概览</h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="label">上证指数</div>
+                    <div class="value red">~4000点</div>
+                    <div class="label">围绕关键关口震荡</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">创业板指</div>
+                    <div class="value gold">四年半新高</div>
+                    <div class="label">3476点 +0.8%</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">宁德时代</div>
+                    <div class="value red">市值破2万亿</div>
+                    <div class="label">A+H双创新高</div>
+                </div>
+            </div>
+            <p>今日A股市场围绕4000点震荡整固，创业板指盘中再创四年半新高。市场呈现明显的结构性特征：<strong>科技硬件与新能源产业链双轮驱动</strong>，机构资金加速向确定性方向集中。四大主线轮动清晰——能源金属（锂矿）、算力硬件（CPO/光模块）、电池储能、玻璃玻纤，业绩确定性成为机构核心考量。</p>
+        </div>
+
+        <!-- 机构抱团板块 TOP10 -->
+        <div class="section">
+            <h2><span class="icon">🔥</span> 一、机构抱团板块识别 TOP10</h2>
+            <p>基于行业板块主力资金净流入、涨跌幅、成交量变化等综合指标，筛选机构资金持续流入的核心板块。数据来源：同花顺行业资金流向。</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>板块名称</th>
+                        <th>当日涨幅</th>
+                        <th>主力净流入(亿)</th>
+                        <th>抱团强度</th>
+                        <th>核心催化</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="rank-num rank-1">1</span></td>
+                        <td style="text-align:left;font-weight:bold;color:#ffd200;">半导体</td>
+                        <td class="up">+2.45%</td>
+                        <td class="up">+60.00</td>
+                        <td><span class="tag tag-hot">极强</span></td>
+                        <td style="text-align:left;font-size:13px;">AI算力需求持续爆发，国产替代加速</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-2">2</span></td>
+                        <td style="text-align:left;font-weight:bold;">消费电子</td>
+                        <td class="up">+1.81%</td>
+                        <td class="up">+40.63</td>
+                        <td><span class="tag tag-hot">极强</span></td>
+                        <td style="text-align:left;font-size:13px;">AI终端放量，果链旺季备货</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-3">3</span></td>
+                        <td style="text-align:left;font-weight:bold;">电池</td>
+                        <td class="up">+3.01%</td>
+                        <td class="up">+39.68</td>
+                        <td><span class="tag tag-hot">极强</span></td>
+                        <td style="text-align:left;font-size:13px;">3月动力储能电池产量同比+50.2%</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-4">4</span></td>
+                        <td style="text-align:left;font-weight:bold;">元件</td>
+                        <td class="up">+3.12%</td>
+                        <td class="up">+34.16</td>
+                        <td><span class="tag tag-hot">极强</span></td>
+                        <td style="text-align:left;font-size:13px;">CPO/光模块龙头创历史新高</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-5">5</span></td>
+                        <td style="text-align:left;font-weight:bold;">能源金属</td>
+                        <td class="up">+5.05%</td>
+                        <td class="up">+18.40</td>
+                        <td><span class="tag tag-warm">强</span></td>
+                        <td style="text-align:left;font-size:13px;">锂矿供给收缩（津巴布韦出口配额制）</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-6">6</span></td>
+                        <td style="text-align:left;">军工电子</td>
+                        <td class="up">+2.93%</td>
+                        <td class="up">+18.02</td>
+                        <td><span class="tag tag-warm">强</span></td>
+                        <td style="text-align:left;font-size:13px;">国防信息化采购提速</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-7">7</span></td>
+                        <td style="text-align:left;">军工装备</td>
+                        <td class="up">+2.24%</td>
+                        <td class="up">+17.70</td>
+                        <td><span class="tag tag-warm">中强</span></td>
+                        <td style="text-align:left;font-size:13px;">军工周期景气上行</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-8">8</span></td>
+                        <td style="text-align:left;">银行</td>
+                        <td class="up">+0.83%</td>
+                        <td class="up">+20.22</td>
+                        <td><span class="tag tag-warm">中强</span></td>
+                        <td style="text-align:left;font-size:13px;">防御配置+高股息策略</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-9">9</span></td>
+                        <td style="text-align:left;">房地产</td>
+                        <td class="up">+2.04%</td>
+                        <td class="up">+13.82</td>
+                        <td><span class="tag tag-cold">弱</span></td>
+                        <td style="text-align:left;font-size:13px;">政策博弈为主</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-10">10</span></td>
+                        <td style="text-align:left;">通用设备</td>
+                        <td class="up">+1.46%</td>
+                        <td class="up">+11.56</td>
+                        <td><span class="tag tag-cold">弱</span></td>
+                        <td style="text-align:left;font-size:13px;">制造业设备更新周期</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box">
+                <strong>🔑 核心结论：</strong>机构资金高度集中在<strong>半导体+消费电子+电池+元件</strong>四大科技制造板块，合计主力净流入达<strong>174.47亿元</strong>，占全市场流入绝大部分。抱团特征显著：<strong>科技硬件+新能源双主线</strong>格局清晰，与2025年AI算力投资主线一脉相承。
+            </div>
+        </div>
+
+        <!-- 抱团板块核心个股 -->
+        <div class="section">
+            <h2><span class="icon">💎</span> 二、机构重仓核心个股（基金持仓>10%，市值>200亿）</h2>
+            <p>筛选基金持股占流通股比例超过10%、总市值超200亿的个股，按基金持股比例降序排列。数据来源：iFinD MCP（基金持股截至2025年报）。</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>股票代码</th>
+                        <th>股票名称</th>
+                        <th>基金持股比例</th>
+                        <th>总市值(亿)</th>
+                        <th>所属板块</th>
+                        <th>近20日涨跌幅</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="rank-num rank-1">1</span></td>
+                        <td>300502.SZ</td>
+                        <td style="text-align:left;font-weight:bold;">新易盛</td>
+                        <td class="up">34.61%</td>
+                        <td>5,169</td>
+                        <td>光模块/CPO</td>
+                        <td class="up">+17.42%</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-2">2</span></td>
+                        <td>002384.SZ</td>
+                        <td style="text-align:left;font-weight:bold;">东山精密</td>
+                        <td class="up">33.48%</td>
+                        <td>2,674</td>
+                        <td>消费电子/PCB</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-3">3</span></td>
+                        <td>688008.SH</td>
+                        <td style="text-align:left;font-weight:bold;">澜起科技</td>
+                        <td class="up">33.39%</td>
+                        <td>1,897</td>
+                        <td>半导体/DDR5</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-4">4</span></td>
+                        <td>688361.SH</td>
+                        <td style="text-align:left;">中科飞测</td>
+                        <td class="up">36.96%</td>
+                        <td>621</td>
+                        <td>半导体设备</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-5">5</span></td>
+                        <td>688099.SH</td>
+                        <td style="text-align:left;">晶晨股份</td>
+                        <td class="up">34.34%</td>
+                        <td>350</td>
+                        <td>半导体/SoC</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-6">6</span></td>
+                        <td>301377.SZ</td>
+                        <td style="text-align:left;">鼎泰高科</td>
+                        <td class="up">36.62%</td>
+                        <td>937</td>
+                        <td>半导体耗材</td>
+                        <td class="up">+18.11%</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-7">7</span></td>
+                        <td>300308.SZ</td>
+                        <td style="text-align:left;font-weight:bold;">中际旭创</td>
+                        <td class="up">25.12%</td>
+                        <td>8,589</td>
+                        <td>光模块/CPO</td>
+                        <td class="up">+37.62%</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-8">8</span></td>
+                        <td>688525.SH</td>
+                        <td style="text-align:left;font-weight:bold;">佰维存储</td>
+                        <td class="up">26.32%</td>
+                        <td>1,356</td>
+                        <td>半导体/存储</td>
+                        <td class="up">+21.20%</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-9">9</span></td>
+                        <td>688235.SH</td>
+                        <td style="text-align:left;">百济神州</td>
+                        <td class="up">36.00%</td>
+                        <td>2,589</td>
+                        <td>生物医药</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-10">10</span></td>
+                        <td>688037.SH</td>
+                        <td style="text-align:left;">芯源微</td>
+                        <td class="up">32.54%</td>
+                        <td>393</td>
+                        <td>半导体设备</td>
+                        <td>—</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box">
+                <strong>🔑 机构抱团特征：</strong>光模块双雄<strong>新易盛(34.6%)、中际旭创(25.1%)</strong>合计基金持仓超千亿元，是当前机构抱团最密集的方向。半导体设备/材料板块<strong>中科飞测(37%)、鼎泰高科(36.6%)、百济神州(36%)</strong>等个股机构持仓比例极高，显示机构对国产替代赛道的深度布局。
+            </div>
+        </div>
+
+        <!-- 强势股筛选 -->
+        <div class="section">
+            <h2><span class="icon">🚀</span> 三、强势股筛选（基金重仓 × 近期涨幅领先）</h2>
+            <p>在基金持仓>10%、市值>200亿的个股中，进一步筛选近20日涨幅>15%的强势股，按区间涨幅降序排列。数据来源：iFinD MCP。</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>股票代码</th>
+                        <th>股票名称</th>
+                        <th>近20日涨幅</th>
+                        <th>基金持仓</th>
+                        <th>总市值(亿)</th>
+                        <th>当日涨幅</th>
+                        <th>当日主力净流入</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="rank-num rank-1">1</span></td>
+                        <td>300308.SZ</td>
+                        <td style="text-align:left;font-weight:bold;">中际旭创</td>
+                        <td class="up">+37.62%</td>
+                        <td>25.12%</td>
+                        <td>8,589</td>
+                        <td class="up">+4.74%</td>
+                        <td class="up">+2.16亿</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-2">2</span></td>
+                        <td>688525.SH</td>
+                        <td style="text-align:left;font-weight:bold;">佰维存储</td>
+                        <td class="up">+21.20%</td>
+                        <td>26.32%</td>
+                        <td>1,356</td>
+                        <td class="up">+12.61%</td>
+                        <td class="down">-2.98亿</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-3">3</span></td>
+                        <td>002460.SZ</td>
+                        <td style="text-align:left;font-weight:bold;">赣锋锂业</td>
+                        <td class="up">+25.04%</td>
+                        <td>14.07%</td>
+                        <td>1,774</td>
+                        <td class="up">+4.62%</td>
+                        <td class="up">+7.14亿</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-4">4</span></td>
+                        <td>300502.SZ</td>
+                        <td style="text-align:left;font-weight:bold;">新易盛</td>
+                        <td class="up">+17.42%</td>
+                        <td>34.61%</td>
+                        <td>5,169</td>
+                        <td class="up">+1.42%</td>
+                        <td class="down">-5.58亿</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-5">5</span></td>
+                        <td>002008.SZ</td>
+                        <td style="text-align:left;font-weight:bold;">大族激光</td>
+                        <td class="up">+22.77%</td>
+                        <td>15.75%</td>
+                        <td>851</td>
+                        <td class="up">+9.13%</td>
+                        <td class="up">+3.82亿</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-6">6</span></td>
+                        <td>002463.SZ</td>
+                        <td style="text-align:left;font-weight:bold;">沪电股份</td>
+                        <td class="up">+16.19%</td>
+                        <td>23.89%</td>
+                        <td>1,877</td>
+                        <td class="up">+10.00%</td>
+                        <td class="up">+16.52亿</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-7">7</span></td>
+                        <td>002466.SZ</td>
+                        <td style="text-align:left;font-weight:bold;">天齐锂业</td>
+                        <td class="up">+20.44%</td>
+                        <td>11.35%</td>
+                        <td>1,067</td>
+                        <td class="up">+3.91%</td>
+                        <td class="up">+0.47亿</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-8">8</span></td>
+                        <td>301377.SZ</td>
+                        <td style="text-align:left;">鼎泰高科</td>
+                        <td class="up">+18.11%</td>
+                        <td>36.62%</td>
+                        <td>937</td>
+                        <td class="up">+8.02%</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-9">9</span></td>
+                        <td>300408.SZ</td>
+                        <td style="text-align:left;">三环集团</td>
+                        <td class="up">+17.34%</td>
+                        <td>15.76%</td>
+                        <td>1,238</td>
+                        <td class="up">+5.06%</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="rank-num rank-10">10</span></td>
+                        <td>688205.SH</td>
+                        <td style="text-align:left;">德科立</td>
+                        <td class="up">+36.68%</td>
+                        <td>13.79%</td>
+                        <td>398</td>
+                        <td class="up">+7.59%</td>
+                        <td>—</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box">
+                <strong>🔑 强势特征分析：</strong>
+                <ul style="padding-left:20px;margin-top:8px;">
+                    <li><strong>光模块/CPO</strong>：中际旭创(37.62%)、新易盛(17.42%)、沪电股份(16.19%)均涨幅显著，AI算力硬件是最强主线</li>
+                    <li><strong>锂矿资源</strong>：赣锋锂业(25.04%)、天齐锂业(20.44%)在供给收缩催化下强势反弹</li>
+                    <li><strong>半导体存储</strong>：佰维存储(21.20%)、德科立(36.68%)等AI算力配套芯片持续走强</li>
+                    <li><strong>激光设备</strong>：大族激光(22.77%)受益于先进制造需求</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 机构抱团深度分析 -->
+        <div class="section">
+            <h2><span class="icon">🧠</span> 四、机构抱团深度分析</h2>
+
+            <div class="analysis-box">
+                <h4>📌 抱团主线一：AI算力硬件链（半导体+元件）</h4>
+                <p>这是当前机构抱团最核心、最密集的方向。主力资金单日净流入<strong>94.16亿</strong>（半导体60亿+元件34.16亿），涉及光模块、CPO、半导体设备、存储芯片等细分领域。</p>
+                <p><strong>底层逻辑：</strong></p>
+                <ul style="padding-left:20px;">
+                    <li>全球AI算力资本开支持续高增，GPU集群规模扩大带动光模块/CPO需求爆发</li>
+                    <li>800G/1.6T光模块进入量产放量期，龙头公司业绩确定性极强</li>
+                    <li>国产替代加速，半导体设备/材料/EDA全产业链受益</li>
+                    <li>AI端侧（手机、PC、汽车）渗透率提升，SoC/存储/传感器需求共振</li>
+                </ul>
+                <p><strong>抱团集中度：</strong>新易盛(34.6%)、中际旭创(25.1%)、东山精密(33.5%)、澜起科技(33.4%)等核心标的基金持仓比例均在25%以上，属于典型的"机构抱团标的"。</p>
+            </div>
+
+            <div class="analysis-box">
+                <h4>📌 抱团主线二：新能源产业链（电池+能源金属）</h4>
+                <p>新能源板块出现明显的"困境反转+业绩兑现"双击特征。电池板块主力净流入<strong>39.68亿</strong>，能源金属净流入<strong>18.40亿</strong>。</p>
+                <p><strong>底层逻辑：</strong></p>
+                <ul style="padding-left:20px;">
+                    <li>3月动力+储能电池产量177.7GWh，同比+50.2%，景气度持续超预期</li>
+                    <li>宁德时代A+H股市值突破2万亿元创历史新高，龙头效应显著</li>
+                    <li>锂矿供给收缩（津巴布韦出口配额制），锂价反弹预期增强</li>
+                    <li>赣锋锂业(5日涨11.8%)、天齐锂业(5日持续阳线)资金加速回补</li>
+                </ul>
+            </div>
+
+            <div class="analysis-box">
+                <h4>📌 抱团主线三：国防军工（军工电子+军工装备）</h4>
+                <p>军工板块主力净流入合计<strong>35.72亿</strong>，国防信息化与军工装备双轮驱动。</p>
+                <p><strong>底层逻辑：</strong></p>
+                <ul style="padding-left:20px;">
+                    <li>"十四五"规划末年，军工采购进入交付高峰期</li>
+                    <li>军工电子化、智能化趋势明确，信息化装备占比持续提升</li>
+                    <li>地缘风险溢价叠加业绩确定性，机构配置意愿增强</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 风险提示 -->
+        <div class="section">
+            <h2><span class="icon">⚠️</span> 五、风险提示与操作建议</h2>
+
+            <div class="risk-box">
+                <h4>🚨 抱团松动风险</h4>
+                <ul>
+                    <li><strong>光模块高拥挤度风险：</strong>新易盛、中际旭创基金持仓比例均超25%，一旦业绩不及预期或行业增速放缓，可能出现踩踏式减持</li>
+                    <li><strong>锂矿反弹持续性待验证：</strong>当前锂矿反弹主要受供给收缩消息催化，但下游需求未见明显改善，反弹可能反复</li>
+                    <li><strong>估值泡沫风险：</strong>部分AI算力标的PE已超过100倍，估值透支了未来2-3年预期</li>
+                    <li><strong>板块轮动风险：</strong>当前市场主线清晰但轮动较快，追高容易被套</li>
+                </ul>
+            </div>
+
+            <div class="analysis-box">
+                <h4>💡 散户操作建议</h4>
+                <ul style="padding-left:20px;line-height:2;">
+                    <li><strong>跟随不追高：</strong>机构抱团方向明确，但切忌在连续大涨后追高，等待回踩5日线或10日线再介入</li>
+                    <li><strong>仓位管理：</strong>单一个股仓位不超过总仓位20%，避免过度集中于单一抱团方向</li>
+                    <li><strong>关注基金季报：</strong>如2026Q1基金季报显示机构在减仓核心抱团标的，需及时调整</li>
+                    <li><strong>防守品种配置：</strong>银行(今日净流入20亿+)可作防御底仓，对冲抱团松动风险</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 免责声明 -->
+        <div class="disclaimer">
+            <p>⚠️ <strong>免责声明</strong></p>
+            <p>本报告由AI基于iFinD MCP、同花顺、东方财富等公开数据自动生成，仅供参考，不构成任何投资建议。</p>
+            <p>投资者应独立判断，自主决策，自行承担风险。机构抱团存在松动风险，请注意控制仓位。</p>
+            <p>数据截至2026年4月14日收盘，基金持仓数据截至2025年四季报。</p>
+        </div>
+        <div class="data-source">
+            数据来源：iFinD MCP · 同花顺数据中心 · 东方财富 · 希财舆情宝 | 生成时间：2026年4月14日 21:00
+        </div>
+    </div>
+</body>
+</html>

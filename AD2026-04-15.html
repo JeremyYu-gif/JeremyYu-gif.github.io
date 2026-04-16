@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿尔茨海默创新药日报 - 2026-04-15</title>
+<style>
+  :root {
+    --primary: #1a5276;
+    --accent: #2e86c1;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --success: #27ae60;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #2c3e50;
+    --text-light: #7f8c8d;
+    --border: #e0e0e0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  
+  .header {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 15px rgba(26, 82, 118, 0.3);
+  }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header .date { font-size: 16px; opacity: 0.9; }
+  .header .summary {
+    background: rgba(255,255,255,0.15);
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  
+  .alert-banner {
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid;
+  }
+  .alert-banner.p0 { background: #fde8e8; border-color: var(--danger); }
+  .alert-banner.p1 { background: #fef3e2; border-color: var(--warning); }
+  .alert-banner.p2 { background: #e8f6f3; border-color: var(--success); }
+  .alert-banner h2 { margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .alert-item {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .alert-item .level {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  .alert-item .level.p0 { background: var(--danger); }
+  .alert-item .level.p1 { background: var(--warning); }
+  .alert-item .level.p2 { background: var(--success); }
+  
+  .section { margin-bottom: 24px; }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .company-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s;
+  }
+  .company-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .company-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .company-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .drug-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    color: white;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .info-item { padding: 10px 14px; background: var(--bg); border-radius: 6px; }
+  .info-item .label {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .info-item .value { font-size: 14px; }
+  .info-item.full { grid-column: 1 / -1; }
+  
+  .source-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .source-link:hover { text-decoration: underline; }
+  
+  .pipeline-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .pipeline-table th {
+    background: var(--primary);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .pipeline-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .pipeline-table tr:hover { background: #f0f7fc; }
+  .pipeline-table tr:last-child td { border-bottom: none; }
+  
+  .phase-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .phase-approved { background: #d5f5e3; color: #1e8449; }
+  .phase-3 { background: #d4efdf; color: #1e8449; }
+  .phase-2 { background: #fef9e7; color: #b7950b; }
+  .phase-1 { background: #fef3e2; color: #ca6f1e; }
+  .phase-pre { background: #fde8e8; color: #c0392b; }
+  
+  .calendar-item {
+    background: var(--card-bg);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .calendar-date {
+    background: var(--primary);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .importance-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .importance-dot.high { background: var(--danger); }
+  .importance-dot.medium { background: var(--warning); }
+  .importance-dot.low { background: var(--success); }
+  
+  .footer {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 768px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .header { padding: 20px; }
+    .header h1 { font-size: 22px; }
+    body { padding: 12px; }
+  }
+  
+  .no-news {
+    text-align: center;
+    color: var(--text-light);
+    padding: 40px;
+    font-size: 16px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>🧠 阿尔茨海默创新药日报</h1>
+    <div class="date">2026年4月15日（星期三）</div>
+    <div class="summary">
+      <strong>📊 一句话总结：</strong> AXS-05 PDUFA日期（4月30日）临近；Eisai将在AAN年会（4月18-22日）公布14项Lecanemab展示，包括48个月OLE长期数据和皮下制剂临床特征；Lecanemab真实世界24个月持续治疗率达67.3%，长期依从性良好。
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🚨 预警事件</div>
+    
+    <div class="alert-banner p1">
+      <h2>🟠 P1 - 重要关注</h2>
+      <div class="alert-item">
+        <span class="level p1">P1</span>
+        <strong> Axsome Therapeutics | AXS-05</strong><br>
+        FDA优先审评，PDUFA目标日期：<strong>2026年4月30日</strong><br>
+        适应症：阿尔茨海默病相关激越症<br>
+        详情：4项III期试验中3项达成主要终点，ADVANCE-2未达统计显著性。FDA批准决定临近，需关注。
+        <br><a class="source-link" href="https://alzheimersnewstoday.com/news/fda-decision-axs-05-alzheimers-agitation-expected-april-30/" target="_blank">来源：Alzheimer's News Today</a>
+      </div>
+    </div>
+    
+    <div class="alert-banner p2">
+      <h2>🟡 P2 - 关注</h2>
+      <div class="alert-item">
+        <span class="level p2">P2</span>
+        <strong> Eisai/Biogen | Lecanemab (Leqembi®)</strong><br>
+        AAN 2026年会（4月18-22日，芝加哥）将公布14项展示<br>
+        重点：48个月OLE数据、皮下制剂临床特征、10年治疗获益估算
+        <br><a class="source-link" href="https://stage.mediaroom.com/eisaiinc/2026-04-09-Eisai-to-Present-the-Latest-Data-on-Real-World-Treatment-with-Lecanemab-and-Supporting-a-Standardized-Framework-for-Treating-Early-Alzheimers-Disease-at-the-78th-American-Academy-of-Neurologys-Annual-Meeting" target="_blank">来源：Eisai PR Newswire</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📰 今日信息汇总</div>
+    
+    <div class="company-card">
+      <div class="company-header">
+        <span class="company-name">Axsome Therapeutics</span>
+        <span class="drug-badge">AXS-05</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="label">事件类型</div>
+          <div class="value">监管审批 - 优先审评</div>
+        </div>
+        <div class="info-item">
+          <div class="label">当前阶段</div>
+          <div class="value">NDA审评中（PDUFA: 4月30日）</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">一句话结论</div>
+          <div class="value">AXS-05获FDA优先审评，治疗AD相关激越症，4月30日前将揭晓是否获批</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">核心数据</div>
+          <div class="value">
+            • III期ACCORD：停药组激越复发率显著更高（达成主要终点）<br>
+            • III期ADVANCE-1：CMAI评分显著改善（达成主要终点）<br>
+            • III期ADVANCE-2：趋势有利但未达统计显著性<br>
+            • 高达76%的AD患者会出现激越症状，临床需求巨大
+          </div>
+        </div>
+        <div class="info-item full">
+          <div class="label">意义</div>
+          <div class="value">如获批将成为首个专门针对AD相关激越症的治疗药物，填补重要临床空白</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">风险</div>
+          <div class="value">ADVANCE-2未达主要终点，FDA批准存在不确定性；非抗Aβ药物，属于症状改善类治疗</div>
+        </div>
+        <div class="info-item">
+          <div class="label">靶点/机制</div>
+          <div class="value">右美沙芬 + 安非他酮（NMDA拮抗/再摄取抑制剂组合）</div>
+        </div>
+        <div class="info-item">
+          <div class="label">日期</div>
+          <div class="value">2026年1月6日（新闻）</div>
+        </div>
+      </div>
+      <a class="source-link" href="https://alzheimersnewstoday.com/news/fda-decision-axs-05-alzheimers-agitation-expected-april-30/" target="_blank">来源：Alzheimer's News Today</a>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <span class="company-name">Eisai / Biogen</span>
+        <span class="drug-badge">Lecanemab (Leqembi®)</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="label">事件类型</div>
+          <div class="value">学术会议数据 + 真实世界证据</div>
+        </div>
+        <div class="info-item">
+          <div class="label">当前阶段</div>
+          <div class="value">已获批（皮下制剂PDUFA: 5月24日）</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">一句话结论</div>
+          <div class="value">Lecanemab真实世界24个月持续治疗率达67.3%；AAN年会将公布48个月OLE长期数据</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">核心数据</div>
+          <div class="value">
+            <strong>真实世界持久性（AD/PD 2026）:</strong><br>
+            • 18个月：78.4%患者继续治疗<br>
+            • 20个月：71.7%<br>
+            • 24个月：67.3%<br>
+            <strong>AAN 2026重点展示:</strong><br>
+            • 4月19日：48个月OLE初步分析<br>
+            • 皮下制剂启动和维持治疗临床特征<br>
+            • 10年治疗时间节省获益估算<br>
+            • ALZ-NET登记处真实世界安全性数据
+          </div>
+        </div>
+        <div class="info-item full">
+          <div class="label">意义</div>
+          <div class="value">长期真实世界数据验证Lecanemab临床价值，24个月依从性达67%显示患者和医生认可度较高</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">风险</div>
+          <div class="value">ARIA仍需监测管理；皮下制剂尚未正式获批（PDUFA 5月24日）；价格和医保覆盖仍是可及性关键</div>
+        </div>
+        <div class="info-item">
+          <div class="label">靶点/机制</div>
+          <div class="value">抗Aβ单克隆抗体（靶向可溶性Aβ原纤维）</div>
+        </div>
+        <div class="info-item">
+          <div class="label">日期</div>
+          <div class="value">2026年4月9日 / 3月23日</div>
+        </div>
+      </div>
+      <a class="source-link" href="https://stage.mediaroom.com/eisaiinc/2026-04-09-Eisai-to-Present-the-Latest-Data-on-Real-World-Treatment-with-Lecanemab-and-Supporting-a-Standardized-Framework-for-Treating-Early-Alzheimers-Disease-at-the-78th-American-Academy-of-Neurologys-Annual-Meeting" target="_blank">来源：Eisai PR Newswire</a>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <span class="company-name">康方生物</span>
+        <span class="drug-badge">AK152 (AD管线)</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="label">事件类型</div>
+          <div class="value">公司财务/商业化进展</div>
+        </div>
+        <div class="info-item">
+          <div class="label">当前阶段</div>
+          <div class="value">研发中</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">一句话结论</div>
+          <div class="value">康方生物2025年营收超30亿元增长51%，主要产品纳入医保后快速放量，FDA审评处于关键阶段</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">核心数据</div>
+          <div class="value">
+            • 2025年产品销售收入：30.33亿元<br>
+            • 同比增长：51%<br>
+            • 主要驱动：核心产品纳入医保后快速放量<br>
+            • 美国FDA审评处于关键阶段
+          </div>
+        </div>
+        <div class="info-item full">
+          <div class="label">意义</div>
+          <div class="value">康方生物整体实力增强，为AD管线AK152后续开发提供资金支持</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">风险</div>
+          <div class="value">AK152具体靶点和机制尚未公开披露，临床进度需持续跟踪</div>
+        </div>
+        <div class="info-item">
+          <div class="label">靶点/机制</div>
+          <div class="value">待披露（AD治疗性抗体）</div>
+        </div>
+        <div class="info-item">
+          <div class="label">日期</div>
+          <div class="value">2026年4月15日</div>
+        </div>
+      </div>
+      <a class="source-link" href="https://www.akesobio.com/" target="_blank">来源：康方生物官网</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📋 管线状态总览</div>
+    <table class="pipeline-table">
+      <thead>
+        <tr>
+          <th>公司</th>
+          <th>产品</th>
+          <th>靶点/机制</th>
+          <th>当前阶段</th>
+          <th>最近更新</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Biogen / Eisai</td>
+          <td>Lecanemab (Leqembi®)</td>
+          <td>抗Aβ单抗</td>
+          <td><span class="phase-badge phase-approved">已获批</span></td>
+          <td>2026-04-09 AAN展示预告</td>
+        </tr>
+        <tr>
+          <td>Eli Lilly</td>
+          <td>Donanemab (Kisunla®)</td>
+          <td>抗Aβ单抗</td>
+          <td><span class="phase-badge phase-approved">已获批</span></td>
+          <td>2024-07 FDA批准</td>
+        </tr>
+        <tr>
+          <td>Eli Lilly</td>
+          <td>Remternetug</td>
+          <td>抗Aβ单抗（皮下）</td>
+          <td><span class="phase-badge phase-3">III期</span></td>
+          <td>III期TRAILBLAZER-ALZ 3研究中</td>
+        </tr>
+        <tr>
+          <td>Biogen</td>
+          <td>BIIB080</td>
+          <td>ASO（靶向APP）</td>
+          <td><span class="phase-badge phase-2">I/IIa期完成</span></td>
+          <td>评估III期方案中</td>
+        </tr>
+        <tr>
+          <td>Alnylam</td>
+          <td>Mivelsiran (ALN-APP)</td>
+          <td>RNAi（靶向APP）</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>I期临床中</td>
+        </tr>
+        <tr>
+          <td>Roche</td>
+          <td>Trontinemab (RG7986)</td>
+          <td>血脑屏障穿透型抗Aβ单抗</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>I期临床中</td>
+        </tr>
+        <tr>
+          <td>AC Immune</td>
+          <td>ACI-35.030 (JNJ-2056)</td>
+          <td>抗pTau疫苗</td>
+          <td><span class="phase-badge phase-2">II期</span></td>
+          <td>II期临床中</td>
+        </tr>
+        <tr>
+          <td>AC Immune</td>
+          <td>ACI-24.060</td>
+          <td>抗Aβ疫苗</td>
+          <td><span class="phase-badge phase-2">I/II期</span></td>
+          <td>I/II期临床中</td>
+        </tr>
+        <tr>
+          <td>Voyager</td>
+          <td>VY7523</td>
+          <td>AAV基因疗法</td>
+          <td><span class="phase-badge phase-pre">临床前/早期</span></td>
+          <td>临床前/早期临床</td>
+        </tr>
+        <tr>
+          <td>Lexeo</td>
+          <td>LX1001</td>
+          <td>AAV基因疗法（APOE2）</td>
+          <td><span class="phase-badge phase-2">I/II期</span></td>
+          <td>I/II期临床中</td>
+        </tr>
+        <tr>
+          <td>Axsome</td>
+          <td>AXS-05</td>
+          <td>右美沙芬+安非他酮</td>
+          <td><span class="phase-badge phase-3">NDA审评中</span></td>
+          <td>PDUFA: 2026-04-30</td>
+        </tr>
+        <tr>
+          <td>康方生物</td>
+          <td>AK152</td>
+          <td>AD治疗性抗体</td>
+          <td><span class="phase-badge phase-pre">早期研发</span></td>
+          <td>需持续跟踪</td>
+        </tr>
+        <tr>
+          <td>恒瑞医药</td>
+          <td>AD相关管线</td>
+          <td>待披露</td>
+          <td><span class="phase-badge phase-pre">待跟踪</span></td>
+          <td>需从公告跟踪</td>
+        </tr>
+        <tr>
+          <td>新华制药</td>
+          <td>OAB-14</td>
+          <td>AD治疗药物</td>
+          <td><span class="phase-badge phase-pre">临床/注册</span></td>
+          <td>需持续跟踪</td>
+        </tr>
+        <tr>
+          <td>万邦德</td>
+          <td>石杉碱甲控释片</td>
+          <td>乙酰胆碱酯酶抑制剂</td>
+          <td><span class="phase-badge phase-pre">临床试验中</span></td>
+          <td>需持续跟踪</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📅 近期关注日历（未来7天）</div>
+    <div class="calendar-item">
+      <div class="calendar-date">4月18日</div>
+      <span class="importance-dot medium"></span>
+      <div><strong>AAN 2026年会开幕</strong>（芝加哥，4月18-22日）</div>
+    </div>
+    <div class="calendar-item">
+      <div class="calendar-date">4月19日</div>
+      <span class="importance-dot high"></span>
+      <div><strong>Lecanemab AAN重点展示</strong>：48个月OLE数据、皮下制剂临床特征、10年治疗获益估算</div>
+    </div>
+    <div class="calendar-item">
+      <div class="calendar-date">4月30日</div>
+      <span class="importance-dot high"></span>
+      <div><strong>AXS-05 FDA PDUFA日期</strong>（Axsome，AD相关激越症）</div>
+    </div>
+    <div class="calendar-item">
+      <div class="calendar-date">5月24日</div>
+      <span class="importance-dot high"></span>
+      <div><strong>Lecanemab皮下制剂 PDUFA日期</strong>（Eisai，启动治疗适应症）</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    阿尔茨海默创新药跟踪系统 | 自动生成于 2026-04-15 20:05 | 数据来源于公开信息，仅供参考
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿尔茨海默创新药日报 - 2026-04-07</title>
+<style>
+  :root {
+    --primary: #1a5276;
+    --accent: #2e86c1;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --success: #27ae60;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #2c3e50;
+    --text-light: #7f8c8d;
+    --border: #e0e0e0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  
+  .header {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 15px rgba(26, 82, 118, 0.3);
+  }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header .date { font-size: 16px; opacity: 0.9; }
+  .header .summary {
+    background: rgba(255,255,255,0.15);
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  
+  .alert-banner {
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid;
+  }
+  .alert-banner.p0 { background: #fde8e8; border-color: var(--danger); }
+  .alert-banner.p1 { background: #fef3e2; border-color: var(--warning); }
+  .alert-banner.p2 { background: #e8f6f3; border-color: var(--success); }
+  .alert-banner h2 { margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .alert-item {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .alert-item .level {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  .alert-item .level.p0 { background: var(--danger); }
+  .alert-item .level.p1 { background: var(--warning); }
+  .alert-item .level.p2 { background: var(--success); }
+  
+  .section { margin-bottom: 24px; }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .company-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s;
+  }
+  .company-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .company-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .company-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .drug-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    color: white;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .info-item { padding: 10px 14px; background: var(--bg); border-radius: 6px; }
+  .info-item .label {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .info-item .value { font-size: 14px; }
+  .info-item.full { grid-column: 1 / -1; }
+  
+  .source-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .source-link:hover { text-decoration: underline; }
+  
+  .pipeline-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .pipeline-table th {
+    background: var(--primary);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .pipeline-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .pipeline-table tr:hover { background: #f0f7fc; }
+  .pipeline-table tr:last-child td { border-bottom: none; }
+  
+  .phase-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .phase-approved { background: #d5f5e3; color: #1e8449; }
+  .phase-3 { background: #d4efdf; color: #1e8449; }
+  .phase-2 { background: #fef9e7; color: #b7950b; }
+  .phase-1 { background: #fef3e2; color: #ca6f1e; }
+  .phase-pre { background: #fde8e8; color: #c0392b; }
+  
+  .calendar-item {
+    background: var(--card-bg);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .calendar-date {
+    background: var(--primary);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .importance-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .importance-dot.high { background: var(--danger); }
+  .importance-dot.medium { background: var(--warning); }
+  .importance-dot.low { background: var(--success); }
+  
+  .footer {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 768px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .header { padding: 20px; }
+    .header h1 { font-size: 22px; }
+    body { padding: 12px; }
+  }
+  
+  .no-news {
+    text-align: center;
+    color: var(--text-light);
+    padding: 40px;
+    font-size: 16px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>🧠 阿尔茨海默创新药日报</h1>
+    <div class="date">2026-04-07 (周二)</div>
+    <div class="summary">
+      <strong>📊 一句话总结：</strong>11家跟踪公司今日无AD相关新公告；Nature Medicine发布AD治疗TPP指南(4月4日)，万邦德石杉碱甲II/III期入组突破100例；AXS-05 PDUFA倒计时23天(4月30日)，NICE公众咨询截止4月28日。
+    </div>
+  </div>
+
+  <div id="alertSection">
+    <div class="alert-banner p2">
+      <h2>🟡 P2关注（纳入日报）</h2>
+      <div class="alert-item">
+        <span class="level p2">P2</span>
+        <strong>Nature Medicine | AD治疗TPP指南</strong><br>
+        <div style="margin-top:8px;">
+          <strong>事件：</strong>AD治疗目标产品概况(TPP)指南发布(2026-04-04发表)<br>
+          <strong>意义：</strong>为AD延缓/预防疗法提供清晰的研发基准，涵盖临床终点、疗效指标、安全性阈值，对未来AD新药研发具有指导意义<br>
+          <strong>来源：</strong><a href="https://www.nature.com/articles/s41591-026-04305-w" target="_blank">Nature Medicine</a>
+        </div>
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>
+        <strong>万邦德 | 石杉碱甲控释片</strong><br>
+        <div style="margin-top:8px;">
+          <strong>事件：</strong>II/III期临床试验受试者入组突破100例(约3天前)<br>
+          <strong>意义：</strong>中国原创新药关键注册临床试验顺利推进，预计2026年完成入组目标<br>
+          <strong>来源：</strong>万邦德官网公告
+        </div>
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>
+        <strong>Axsome | AXS-05 (Auvelity)</strong><br>
+        <div style="margin-top:8px;">
+          <strong>事件：</strong>PDUFA倒计时23天，FDA优先审评中(4月30日)<br>
+          <strong>意义：</strong>如获批将成为首个用于AD激越的快速起效药物，市场潜力约30亿美元<br>
+          <strong>风险：</strong>需关注FDA审评结果<br>
+          <strong>来源：</strong>Axsome公告(2025-12-31)
+        </div>
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>
+        <strong>NICE | Donanemab & Lecanemab</strong><br>
+        <div style="margin-top:8px;">
+          <strong>事件：</strong>第三版指南草案公众咨询进行中，截止日期4月28日<br>
+          <strong>意义：</strong>英国医保覆盖决定的关键指南，回复此前生产商的申诉<br>
+          <strong>来源：</strong>Pharmaceutical Journal
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="newsSection">
+    <div class="section-title">📰 今日信息汇总</div>
+    <div id="newsContent">
+      <div class="no-news">
+        📋 11家跟踪公司今日(2026-04-07)无阿尔茨海默病相关新公告。<br><br>
+        相关信息回顾：
+        <ul style="text-align:left; display:inline-block; margin-top:12px;">
+          <li>Actinogen XanaMIA OLE启动 (4月1日)</li>
+          <li>Roche/Leqembi皮下注射FDA审评中</li>
+          <li>礼来Remternetug III期预期H1 2026读出</li>
+          <li>Cognition Therapeutics Zervimesine II期GFAP数据发表</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📋 管线状态总览</div>
+    <table class="pipeline-table">
+      <thead>
+        <tr>
+          <th>公司</th>
+          <th>产品</th>
+          <th>靶点/机制</th>
+          <th>当前阶段</th>
+          <th>最近更新</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Biogen / Eisai</td>
+          <td>Lecanemab (Leqembi)</td>
+          <td>抗Aβ单抗</td>
+          <td><span class="phase-badge phase-approved">已获批</span></td>
+          <td>皮下注射笔FDA审评中；德国G-BA评估完成</td>
+        </tr>
+        <tr>
+          <td>礼来</td>
+          <td>Donanemab (Kisunla)</td>
+          <td>抗Aβ单抗(N3pG)</td>
+          <td><span class="phase-badge phase-approved">已获批</span></td>
+          <td>NICE第三版指南草案咨询中</td>
+        </tr>
+        <tr>
+          <td>礼来</td>
+          <td>Remternetug</td>
+          <td>抗Aβ单抗(皮下)</td>
+          <td><span class="phase-badge phase-3">III期</span></td>
+          <td>预期H1 2026读出(TRAILBLAZER-ALZ 3)</td>
+        </tr>
+        <tr>
+          <td>Biogen</td>
+          <td>BIIB080</td>
+          <td>ASO (APP mRNA)</td>
+          <td><span class="phase-badge phase-2">II期</span></td>
+          <td>III期方案评估中</td>
+        </tr>
+        <tr>
+          <td>Alnylam</td>
+          <td>Mivelsiran (ALN-APP)</td>
+          <td>RNAi (APP mRNA)</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>临床进行中</td>
+        </tr>
+        <tr>
+          <td>Roche</td>
+          <td>Trontinemab</td>
+          <td>抗Aβ单抗(Brainshuttle)</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>BBB穿透技术平台</td>
+        </tr>
+        <tr>
+          <td>AC Immune</td>
+          <td>ACI-35.030 (JNJ-2056)</td>
+          <td>抗pTau疫苗</td>
+          <td><span class="phase-badge phase-2">II期</span></td>
+          <td>与强生合作</td>
+        </tr>
+        <tr>
+          <td>AC Immune</td>
+          <td>ACI-24.060</td>
+          <td>抗Aβ疫苗</td>
+          <td><span class="phase-badge phase-1">I/II期</span></td>
+          <td>脂质体纳米颗粒递送</td>
+        </tr>
+        <tr>
+          <td>Voyager</td>
+          <td>VY7523</td>
+          <td>AAV基因疗法</td>
+          <td><span class="phase-badge phase-pre">临床前</span></td>
+          <td>鞘内注射给药</td>
+        </tr>
+        <tr>
+          <td>Lexeo</td>
+          <td>LX1001</td>
+          <td>AAV基因疗法(APOE2)</td>
+          <td><span class="phase-badge phase-2">I/II期</span></td>
+          <td>APOE4纯合子患者</td>
+        </tr>
+        <tr>
+          <td>Axsome</td>
+          <td>AXS-05 (Auvelity)</td>
+          <td>NMDA拮抗/MAO-B抑制</td>
+          <td><span class="phase-badge phase-3">NDA审评</span></td>
+          <td>PDUFA 2026-04-30 (AD激越)</td>
+        </tr>
+        <tr>
+          <td>恒瑞医药</td>
+          <td>SHR-1707</td>
+          <td>抗Aβ单抗</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>早期AD临床进行中</td>
+        </tr>
+        <tr>
+          <td>万邦德</td>
+          <td>石杉碱甲控释片</td>
+          <td>AChE抑制剂</td>
+          <td><span class="phase-badge phase-2">II/III期</span></td>
+          <td>入组突破100例(4月4日)</td>
+        </tr>
+        <tr>
+          <td>Actinogen</td>
+          <td>Xanamem</td>
+          <td>11β-HSD1抑制剂</td>
+          <td><span class="phase-badge phase-2">IIb/III期</span></td>
+          <td>OLE启动中，2026-11读出</td>
+        </tr>
+        <tr>
+          <td>Cognition</td>
+          <td>Zervimesine</td>
+          <td>σ2受体调节剂</td>
+          <td><span class="phase-badge phase-2">II期</span></td>
+          <td>GFAP数据发表(A&D期刊)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section" id="calendarSection">
+    <div class="section-title">📅 近期关注日历（未来7天）</div>
+    <div id="calendarContent">
+      <div class="calendar-item">
+        <div class="calendar-date">04/14</div>
+        <div><strong>🔴 Remternetug III期TRAILBLAZER-ALZ 3</strong> - 预期H1 2026数据读出，关注皮下注射疗效</div>
+        <div class="importance-dot high"></div>
+      </div>
+      <div class="calendar-item">
+        <div class="calendar-date">04/21</div>
+        <div><strong>🟠 AXS-05 PDUFA倒计时9天</strong> - FDA优先审评(AD激越适应症)</div>
+        <div class="importance-dot medium"></div>
+      </div>
+      <div class="calendar-item">
+        <div class="calendar-date">04/28</div>
+        <div><strong>🟡 NICE公众咨询截止</strong> - donanemab和lecanemab第三版指南草案</div>
+        <div class="importance-dot low"></div>
+      </div>
+      <div class="calendar-item">
+        <div class="calendar-date">04/30</div>
+        <div><strong>🔴 AXS-05 PDUFA日期</strong> - FDA对AD激越适应症的审批决定</div>
+        <div class="importance-dot high"></div>
+      </div>
+      <div class="calendar-item">
+        <div class="calendar-date">H1 2026</div>
+        <div><strong>🟠 礼来Remternetug III期</strong> - TRAILBLAZER-ALZ 3数据读出</div>
+        <div class="importance-dot medium"></div>
+      </div>
+      <div class="calendar-item">
+        <div class="calendar-date">2026-11</div>
+        <div><strong>🟡 Actinogen XanaMIA</strong> - IIb/III期XanaMIA试验最终数据</div>
+        <div class="importance-dot low"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    阿尔茨海默创新药跟踪系统 | 自动生成于 2026-04-07 07:50 | 数据来源于公开信息，仅供参考
+  </div>
+
+</div>
+</body>
+</html>

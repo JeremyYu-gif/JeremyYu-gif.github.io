@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>港股每日复盘 2026年4月15日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #0a0e17;
+            color: #e0e6ed;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid #1e2a3a;
+            margin-bottom: 30px;
+        }
+        header h1 {
+            font-size: 2em;
+            color: #00d4aa;
+            margin-bottom: 8px;
+        }
+        header .date {
+            color: #8899aa;
+            font-size: 0.95em;
+        }
+        .summary-bar {
+            display: flex;
+            justify-content: space-around;
+            background: linear-gradient(135deg, #111827, #1a2332);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid #1e2a3a;
+        }
+        .summary-item {
+            text-align: center;
+        }
+        .summary-item .label {
+            color: #8899aa;
+            font-size: 0.85em;
+            margin-bottom: 6px;
+        }
+        .summary-item .value {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .up { color: #ff4757; }
+        .down { color: #2ed573; }
+        .section {
+            background: #111827;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid #1e2a3a;
+        }
+        .section h2 {
+            color: #00d4aa;
+            font-size: 1.3em;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #1e2a3a;
+        }
+        .section h3 {
+            color: #f0b90b;
+            font-size: 1.1em;
+            margin: 16px 0 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+        }
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #1e2a3a;
+            font-size: 0.9em;
+        }
+        th {
+            color: #8899aa;
+            font-weight: 600;
+            background: #0d1117;
+        }
+        tr:hover { background: #161d2a; }
+        .tag-up {
+            display: inline-block;
+            background: rgba(255, 71, 87, 0.15);
+            color: #ff4757;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .tag-down {
+            display: inline-block;
+            background: rgba(46, 213, 115, 0.15);
+            color: #2ed573;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .tag-highlight {
+            display: inline-block;
+            background: rgba(0, 212, 170, 0.15);
+            color: #00d4aa;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .tag-warning {
+            display: inline-block;
+            background: rgba(240, 185, 11, 0.15);
+            color: #f0b90b;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .insight-box {
+            background: #0d1117;
+            border-left: 3px solid #f0b90b;
+            padding: 14px 16px;
+            margin: 12px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9em;
+        }
+        .insight-box.green { border-left-color: #2ed573; }
+        .insight-box.red { border-left-color: #ff4757; }
+        .insight-box.blue { border-left-color: #3b82f6; }
+        .conclusion-box {
+            background: linear-gradient(135deg, rgba(0, 212, 170, 0.1), rgba(59, 130, 246, 0.1));
+            border: 1px solid #00d4aa;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .conclusion-box h3 {
+            color: #00d4aa;
+            margin-bottom: 12px;
+        }
+        .conclusion-box p {
+            margin: 8px 0;
+            line-height: 1.8;
+        }
+        .risk-list {
+            list-style: none;
+            padding: 0;
+        }
+        .risk-list li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        .risk-list li::before {
+            content: "⚠";
+            position: absolute;
+            left: 0;
+            color: #f0b90b;
+        }
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #556677;
+            font-size: 0.8em;
+            border-top: 1px solid #1e2a3a;
+            margin-top: 30px;
+        }
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .summary-bar { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📈 港股每日复盘</h1>
+            <div class="date">2026年4月15日（周三）</div>
+        </header>
+
+        <!-- 核心指数概览 -->
+        <div class="summary-bar">
+            <div class="summary-item">
+                <div class="label">恒生指数 (HSI)</div>
+                <div class="value up">25,947.32</div>
+                <div class="up">+0.29%</div>
+            </div>
+            <div class="summary-item">
+                <div class="label">恒生科技 (HSTECH)</div>
+                <div class="value up">4,911.79</div>
+                <div class="up">+1.23%</div>
+            </div>
+            <div class="summary-item">
+                <div class="label">国企指数 (HSCEI)</div>
+                <div class="value up">8,718.26</div>
+                <div class="up">+0.54%</div>
+            </div>
+            <div class="summary-item">
+                <div class="label">红筹指数</div>
+                <div class="value down">4,321.56</div>
+                <div class="down">-0.25%</div>
+            </div>
+            <div class="summary-item">
+                <div class="label">成交额</div>
+                <div class="value">2,456亿</div>
+                <div>港元</div>
+            </div>
+        </div>
+
+        <!-- 一、大盘全景 -->
+        <div class="section">
+            <h2>一、大盘全景</h2>
+
+            <h3>🇺🇸 隔夜美股映射</h3>
+            <table>
+                <tr><th>指数</th><th>收盘点位</th><th>涨跌幅</th><th>关键事件</th></tr>
+                <tr>
+                    <td>纳斯达克指数</td>
+                    <td>—</td>
+                    <td><span class="tag-up">+1.96%</span></td>
+                    <td>十连阳，创2021年以来最长连涨纪录</td>
+                </tr>
+                <tr>
+                    <td>标普500</td>
+                    <td>—</td>
+                    <td><span class="tag-up">+1.18%</span></td>
+                    <td>逼近历史新高，美伊谈判预期提振风险偏好</td>
+                </tr>
+                <tr>
+                    <td>道琼斯</td>
+                    <td>—</td>
+                    <td><span class="tag-up">+0.68%</span></td>
+                    <td>甲骨文涨超12%领涨科技股</td>
+                </tr>
+            </table>
+            <div class="insight-box blue">
+                <strong>美股映射：</strong>隔夜美股三大指数全线大涨，纳指十连阳创纪录。美伊寻求新一轮和谈推动全球风险偏好回升，港股早盘大幅高开，恒指一度站上26,200点，科技指数一度涨超1.88%。但午后涨幅明显收窄，获利盘出逃拖累大盘。
+            </div>
+
+            <h3>💱 汇率与流动性</h3>
+            <table>
+                <tr><th>指标</th><th>最新值</th><th>变化</th><th>影响</th></tr>
+                <tr>
+                    <td>USD/HKD</td>
+                    <td>7.78-7.79区间</td>
+                    <td>—</td>
+                    <td>港元兑美元稳定，联系汇率制度维持</td>
+                </tr>
+                <tr>
+                    <td>美债10Y收益率</td>
+                    <td>4.25%</td>
+                    <td><span class="tag-down">-0.05%</span></td>
+                    <td>收益率回落利好港股估值</td>
+                </tr>
+                <tr>
+                    <td>中东局势</td>
+                    <td>缓和</td>
+                    <td><span class="tag-up">积极</span></td>
+                    <td>国际油价大幅下跌，航空股受益</td>
+                </tr>
+            </table>
+            <div class="insight-box green">
+                <strong>流动性环境：</strong>美债收益率降至4.25%，海外流动性压力持续缓解。中东局势降温推动油价下跌，降低全球通胀担忧。特朗普访华预期亦有望提振港股风险偏好。
+            </div>
+        </div>
+
+        <!-- 二、板块强弱 -->
+        <div class="section">
+            <h2>二、板块强弱分析</h2>
+
+            <div class="grid-2">
+                <div>
+                    <h3>🟢 领涨板块</h3>
+                    <table>
+                        <tr><th>板块</th><th>代表性个股</th><th>催化因素</th></tr>
+                        <tr>
+                            <td><span class="tag-up">创新药</span></td>
+                            <td>荣昌生物 +9.1%、信达生物 +5.9%</td>
+                            <td>国务院办公厅印发药品价格形成机制意见</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag-up">大型科网</span></td>
+                            <td>京东 +4.4%、百度 +3.2%</td>
+                            <td>纳指映射 + 业绩预期</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag-up">航空</span></td>
+                            <td>东方航空 +3.7%、国航 +2.3%</td>
+                            <td>国际油价大跌 + 燃油附加费落地</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag-up">旅游</span></td>
+                            <td>携程 +4.7%</td>
+                            <td>五一预订升温</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag-up">黄金珠宝</span></td>
+                            <td>老铺黄金 +6.8%</td>
+                            <td>避险需求 + 消费升级</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <h3>🔴 领跌板块</h3>
+                    <table>
+                        <tr><th>板块</th><th>代表性个股</th><th>下跌逻辑</th></tr>
+                        <tr>
+                            <td><span class="tag-down">AI应用</span></td>
+                            <td>MINIMAX -10.9%、智谱 -8.5%</td>
+                            <td>获利回吐，前期涨幅过大</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag-down">光通信</span></td>
+                            <td>长飞光纤 -5.0%、汇聚科技 -3.5%</td>
+                            <td>利好兑现，资金离场</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag-down">石油石化</span></td>
+                            <td>中石油、中海油</td>
+                            <td>中东局势缓和，油价承压</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag-down">教育</span></td>
+                            <td>新东方 -5.9%</td>
+                            <td>业绩不及预期，资金获利了结</td>
+                        </tr>
+                        <tr>
+                            <td><span class="tag-down">保险</span></td>
+                            <td>友邦保险 -3.6%</td>
+                            <td>高位回调，资金轮动</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="insight-box" style="margin-top: 16px;">
+                <strong>🔬 深度解析 — 创新药政策红利：</strong>4月14日国务院办公厅印发《关于健全药品价格形成机制的若干意见》，提出14条举措，包括优化创新药首发价格机制、发挥医保支付标准引导作用等。这是自2015年以来中央在药品定价领域出台的最重要指导性文件，彰显扶持本土创新药产业的明确态度。中信证券表示，创新药板块正迎来从"估值修复到价值重估"的关键窗口期。
+            </div>
+        </div>
+
+        <!-- 三、重点个股复盘 -->
+        <div class="section">
+            <h2>三、重点个股复盘</h2>
+
+            <h3>💊 生物医药 — 政策催化全线爆发</h3>
+            <table>
+                <tr><th>股票</th><th>代码</th><th>涨跌幅</th><th>收盘价(HKD)</th><th>催化逻辑</th></tr>
+                <tr>
+                    <td><strong>荣昌生物</strong></td>
+                    <td>09995</td>
+                    <td><span class="tag-up">+9.13%</span></td>
+                    <td>118.30</td>
+                    <td>药价新政受益 + ADC管线龙头地位</td>
+                </tr>
+                <tr>
+                    <td><strong>三生制药</strong></td>
+                    <td>01530</td>
+                    <td><span class="tag-up">+8.16%</span></td>
+                    <td>24.92</td>
+                    <td>创新药价格机制优化，国内龙头直接受益</td>
+                </tr>
+                <tr>
+                    <td><strong>药明巨诺-B</strong></td>
+                    <td>02126</td>
+                    <td><span class="tag-up">+7.73%</span></td>
+                    <td>—</td>
+                    <td>细胞治疗领域新政利好</td>
+                </tr>
+                <tr>
+                    <td><strong>康诺亚-B</strong></td>
+                    <td>02162</td>
+                    <td><span class="tag-up">+7.02%</span></td>
+                    <td>79.30</td>
+                    <td>自身免疫领域创新药龙头</td>
+                </tr>
+                <tr>
+                    <td><strong>亚盛医药-B</strong></td>
+                    <td>06855</td>
+                    <td><span class="tag-up">+7.01%</span></td>
+                    <td>—</td>
+                    <td>全球首创药物研发能力获认可</td>
+                </tr>
+                <tr>
+                    <td><strong>信达生物</strong></td>
+                    <td>01801</td>
+                    <td><span class="tag-up">+5.91%</span></td>
+                    <td>91.40</td>
+                    <td>PD-1出海 + 新政双催化</td>
+                </tr>
+                <tr>
+                    <td><strong>君实生物</strong></td>
+                    <td>01877</td>
+                    <td><span class="tag-up">+6%+</span></td>
+                    <td>—</td>
+                    <td>创新药政策红利 + 核心管线进展</td>
+                </tr>
+            </table>
+
+            <h3>💻 科技互联网 — 科网股普涨，分化明显</h3>
+            <table>
+                <tr><th>股票</th><th>代码</th><th>涨跌幅</th><th>催化逻辑</th></tr>
+                <tr>
+                    <td><strong>京东集团-SW</strong></td>
+                    <td>09618</td>
+                    <td><span class="tag-up">+4.4%</span></td>
+                    <td>领涨科网股，AI赋能电商 + 业绩预期</td>
+                </tr>
+                <tr>
+                    <td><strong>百度集团-SW</strong></td>
+                    <td>09888</td>
+                    <td><span class="tag-up">+3.2%</span></td>
+                    <td>AI应用落地加速</td>
+                </tr>
+                <tr>
+                    <td><strong>阿里巴巴-W</strong></td>
+                    <td>09988</td>
+                    <td><span class="tag-up">+3.29%</span></td>
+                    <td>发布AI开发工具Meoo（妙悟），集四大模型；收盘价128.6港元</td>
+                </tr>
+                <tr>
+                    <td><strong>哔哩哔哩-W</strong></td>
+                    <td>09626</td>
+                    <td><span class="tag-up">+3%+</span></td>
+                    <td>游戏 + 广告业务增长</td>
+                </tr>
+                <tr>
+                    <td><strong>快手-W</strong></td>
+                    <td>01024</td>
+                    <td><span class="tag-up">+3%+</span></td>
+                    <td>电商GMV增长超预期</td>
+                </tr>
+                <tr>
+                    <td><strong>老铺黄金</strong></td>
+                    <td>06181</td>
+                    <td><span class="tag-up">+6.83%</span></td>
+                    <td>避险需求 + 消费升级龙头溢价；收盘价673港元</td>
+                </tr>
+                <tr>
+                    <td><strong>五一视界</strong></td>
+                    <td>06651</td>
+                    <td><span class="tag-up">+15.21%</span></td>
+                    <td>创始人增持765万股(约1.8%股权)，收盘价56.50港元</td>
+                </tr>
+            </table>
+
+            <h3>📉 下跌个股 — 获利了结与逻辑杀跌</h3>
+            <table>
+                <tr><th>股票</th><th>代码</th><th>涨跌幅</th><th>下跌逻辑</th></tr>
+                <tr>
+                    <td><strong>MINIMAX-W</strong></td>
+                    <td>00100</td>
+                    <td><span class="tag-down">-10.88%</span></td>
+                    <td>AI应用股集体获利回吐，前期涨幅过大</td>
+                </tr>
+                <tr>
+                    <td><strong>智谱</strong></td>
+                    <td>02513</td>
+                    <td><span class="tag-down">-8.54%</span></td>
+                    <td>AI应用炒作退潮</td>
+                </tr>
+                <tr>
+                    <td><strong>迅策</strong></td>
+                    <td>03317</td>
+                    <td><span class="tag-down">-8.48%</span></td>
+                    <td>资金获利了结</td>
+                </tr>
+                <tr>
+                    <td><strong>新东方-S</strong></td>
+                    <td>09901</td>
+                    <td><span class="tag-down">-5.94%</span></td>
+                    <td>收盘价42.12港元；业绩不及预期，资金轮动</td>
+                </tr>
+                <tr>
+                    <td><strong>友邦保险</strong></td>
+                    <td>01299</td>
+                    <td><span class="tag-down">-3.62%</span></td>
+                    <td>收盘价83.85港元；高位回调，资金转向成长</td>
+                </tr>
+                <tr>
+                    <td><strong>长飞光纤光缆</strong></td>
+                    <td>06869</td>
+                    <td><span class="tag-down">-4.99%</span></td>
+                    <td>光通信板块利好兑现，短期调整</td>
+                </tr>
+            </table>
+
+            <h3>✈️ 航空与旅游 — 油价下跌+出行预期</h3>
+            <table>
+                <tr><th>股票</th><th>代码</th><th>涨跌幅</th><th>催化逻辑</th></tr>
+                <tr>
+                    <td><strong>携程集团-S</strong></td>
+                    <td>09961</td>
+                    <td><span class="tag-up">+4.68%</span></td>
+                    <td>五一预订大幅升温，游客提前锁定出行资源</td>
+                </tr>
+                <tr>
+                    <td><strong>东方航空</strong></td>
+                    <td>00670</td>
+                    <td><span class="tag-up">+3.68%</span></td>
+                    <td>油价下跌 + 燃油附加费征收覆盖成本压力</td>
+                </tr>
+                <tr>
+                    <td><strong>国航</strong></td>
+                    <td>00753</td>
+                    <td><span class="tag-up">+2.26%</span></td>
+                    <td>行业复苏态势超预期</td>
+                </tr>
+                <tr>
+                    <td><strong>国泰航空</strong></td>
+                    <td>00293</td>
+                    <td><span class="tag-up">+1.98%</span></td>
+                    <td>国际航线恢复加速</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 四、资金面分析 -->
+        <div class="section">
+            <h2>四、资金面分析</h2>
+
+            <h3>🇨🇳 南向资金（港股通）</h3>
+            <table>
+                <tr><th>指标</th><th>数据</th><th>分析</th></tr>
+                <tr>
+                    <td>当日净买入</td>
+                    <td><strong class="up">+42.21亿港元</strong></td>
+                    <td>较4月14日（净卖出超20亿）大幅逆转，南向资金积极回流</td>
+                </tr>
+                <tr>
+                    <td>成交活跃股</td>
+                    <td>泡泡玛特、创新药ETF等</td>
+                    <td>增量资金借道基金布局港股</td>
+                </tr>
+                <tr>
+                    <td>净卖出方向</td>
+                    <td>阿里巴巴-W、长飞光纤光缆</td>
+                    <td>短线获利了结科技龙头和光通信</td>
+                </tr>
+            </table>
+            <div class="insight-box green">
+                <strong>南向资金点评：</strong>南向资金从前一日的净卖出超20亿港元逆转为净买入42亿港元，显示内资对港股的配置信心回升。从方向看，资金从短线热点（光通信）流向政策受益板块（创新药）和消费赛道（泡泡玛特），属于理性的板块轮动。
+            </div>
+
+            <h3>📊 沽空数据</h3>
+            <table>
+                <tr><th>指标</th><th>数据</th><th>分析</th></tr>
+                <tr>
+                    <td>全日成交额</td>
+                    <td>2,455.88亿港元</td>
+                    <td>较前一交易日（4月13日2079亿）放量约18%</td>
+                </tr>
+                <tr>
+                    <td>沽空活跃股</td>
+                    <td>比亚迪、阿里、小米沽空金额居前</td>
+                    <td>大盘沽空压力仍在，但资金面整体改善</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 五、结论与展望 -->
+        <div class="section">
+            <h2>五、结论与展望</h2>
+
+            <div class="conclusion-box">
+                <h3>🎯 一句话总结</h3>
+                <p><strong>创新药新政引爆医药板块，科网股普涨但午后回落，AI概念遭遇获利了结，港股呈现明显的结构性分化行情。</strong></p>
+
+                <h3 style="margin-top: 20px;">📌 核心结论</h3>
+                <p>1. <strong>创新药是今日最强主线</strong>：国务院药品价格形成机制意见是2015年以来最强政策信号，创新药板块从"估值修复"进入"价值重估"阶段，荣昌生物、三生制药、信达生物等龙头大涨，持续性看政策细则落地和BD出海数据。</p>
+                <p>2. <strong>科技股分化加剧</strong>：阿里、京东、百度等平台型公司受益于纳指映射和AI落地预期，但MINIMAX、智谱等纯AI应用股暴跌10%+，说明市场对AI概念开始"去伪存真"，资金从概念炒作转向有业绩支撑的龙头。</p>
+                <p>3. <strong>航空旅游双重催化</strong>：中东局势降温推动油价下跌+燃油附加费落地覆盖成本+五一预订升温，航空板块迎来基本面和政策面共振。</p>
+                <p>4. <strong>午后冲高回落值得警惕</strong>：恒指早盘一度站上26,200点，但午后涨幅大幅收窄至0.29%，说明上方抛压仍重，26000点附近是关键阻力位。</p>
+
+                <h3 style="margin-top: 20px;">🔮 明日展望</h3>
+                <p>• <strong>关注创新药持续性</strong>：今日大涨后明日将面临分化考验，关注荣昌生物、信达生物等龙头能否维持强势，以及港股通创新药ETF资金流向。</p>
+                <p>• <strong>关注特朗普访华预期</strong>：访华时间窗口临近，中美关系缓和预期有望持续提振港股情绪。</p>
+                <p>• <strong>关注美伊谈判进展</strong>：若谈判顺利，全球风险偏好将进一步回升，港股有望向上突破26000点。</p>
+                <p>• <strong>警惕AI概念股二次回调</strong>：MINIMAX、智谱等个股今日跌幅较大，若明日继续杀跌可能引发连锁反应。</p>
+            </div>
+
+            <div class="insight-box red" style="margin-top: 16px;">
+                <strong>⚠️ 风险提示</strong>
+                <ul class="risk-list" style="margin-top: 8px;">
+                    <li>恒指26000点上方抛压较重，短期可能继续震荡</li>
+                    <li>AI应用股获利回吐可能扩散至其他高估值板块</li>
+                    <li>中东局势反复可能推升油价，冲击航空股收益</li>
+                    <li>创新药板块大涨后需关注政策细则落地节奏</li>
+                    <li>美联储政策预期变化可能影响全球流动性</li>
+                </ul>
+            </div>
+
+            <div class="insight-box" style="margin-top: 16px;">
+                <strong>📊 机构观点</strong>
+                <p style="margin-top: 6px;">广发证券：看好二季度尤其是4-5月的反弹机会（非反转行情），源于三类利空出尽——年报披露完毕、3月解禁高峰结束、海外流动性压力缓解。特朗普访华预期有望进一步提振风险偏好。</p>
+                <p style="margin-top: 6px;">长江证券：燃油附加费征收落地后，国内航空市场收益提升幅度超出预期。尽管航油出厂价同比上涨73.1%，但单位座收涨幅几乎完全覆盖成本压力。</p>
+                <p style="margin-top: 6px;">中信证券：创新药政策红利+BD出海持续爆发+AACR大会催化临近，三重驱动下医药板块正迎来从估值修复到价值重估的关键窗口期。</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>📊 港股每日复盘 | 数据来源：东方财富、财联社、Wind、新浪财经、格隆汇</p>
+            <p>报告生成时间：2026年4月15日 20:00 | 仅供参考，不构成投资建议</p>
+        </footer>
+    </div>
+</body>
+</html>

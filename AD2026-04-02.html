@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -629,3 +630,636 @@
 </div>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿尔茨海默创新药日报 - 2026-04-02</title>
+<style>
+  :root {
+    --primary: #1a5276;
+    --accent: #2e86c1;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --success: #27ae60;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #2c3e50;
+    --text-light: #7f8c8d;
+    --border: #e0e0e0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .header {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 15px rgba(26, 82, 118, 0.3);
+  }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header .date { font-size: 16px; opacity: 0.9; }
+  .header .summary {
+    background: rgba(255,255,255,0.15);
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .alert-banner {
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid;
+  }
+  .alert-banner.p0 { background: #fde8e8; border-color: var(--danger); }
+  .alert-banner.p1 { background: #fef3e2; border-color: var(--warning); }
+  .alert-banner.p2 { background: #e8f6f3; border-color: var(--success); }
+  .alert-banner h2 { margin-bottom: 10px; display: flex; align-items: center; gap: 8px; font-size: 16px; }
+  .alert-item {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .alert-item .level {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  .alert-item .level.p0 { background: var(--danger); }
+  .alert-item .level.p1 { background: var(--warning); }
+  .alert-item .level.p2 { background: var(--success); }
+  .alert-item .content { margin-top: 6px; font-size: 14px; }
+  .alert-item .source { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+
+  .section { margin-bottom: 24px; }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .company-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s;
+  }
+  .company-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .company-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .company-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .drug-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    color: white;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .info-item { padding: 10px 14px; background: var(--bg); border-radius: 6px; }
+  .info-item .label {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .info-item .value { font-size: 14px; }
+  .info-item.full { grid-column: 1 / -1; }
+
+  .source-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .source-link:hover { text-decoration: underline; }
+
+  .pipeline-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .pipeline-table th {
+    background: var(--primary);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .pipeline-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .pipeline-table tr:hover { background: #f0f7fc; }
+  .pipeline-table tr:last-child td { border-bottom: none; }
+
+  .phase-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .phase-approved { background: #d5f5e3; color: #1e8449; }
+  .phase-3 { background: #d4efdf; color: #1e8449; }
+  .phase-2 { background: #fef9e7; color: #b7950b; }
+  .phase-1 { background: #fef3e2; color: #ca6f1e; }
+  .phase-pre { background: #fde8e8; color: #c0392b; }
+
+  .calendar-item {
+    background: var(--card-bg);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .calendar-date {
+    background: var(--primary);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .importance-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .importance-dot.high { background: var(--danger); }
+  .importance-dot.medium { background: var(--warning); }
+  .importance-dot.low { background: var(--success); }
+
+  .footer {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 768px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .header { padding: 20px; }
+    .header h1 { font-size: 22px; }
+    body { padding: 12px; }
+  }
+
+  .no-news {
+    text-align: center;
+    color: var(--text-light);
+    padding: 40px;
+    font-size: 16px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>🧠 阿尔茨海默创新药日报</h1>
+    <div class="date">2026年4月2日</div>
+    <div class="summary">
+      <strong>📊 一句话总结：</strong>Semaglutide(司美格鲁肽)III期EVOKE(+)试验失败，AD领域GLP-1通路未获验证；仑卡奈单抗(Lecanemab) 4年长期数据于ADPD 2026公布，延缓认知衰退效果持续但德国G-BA评估未认可附加疗效；AXS-05的FDA审批决定将于4月30日到期（重要P1事件倒计时）。
+    </div>
+  </div>
+
+  <!-- Alert Section -->
+  <div class="section">
+    <div class="section-title">🚨 预警事件</div>
+
+    <div class="alert-banner p1">
+      <h2>🟠 P1 重要预警 — III期临床结果（阴性）</h2>
+      <div class="alert-item">
+        <span class="level p1">P1</span>
+        <div class="content">
+          <strong>诺和诺德 (Novo Nordisk) | Semaglutide (司美格鲁肽)</strong><br>
+          <strong>事件：</strong>III期EVOKE(+)试验未能达到主要终点，semaglutide未能延缓阿尔茨海默病临床进展<br>
+          <strong>意义：</strong>这是GLP-1受体激动剂在AD领域的首次大规模III期验证，结果为阴性，表明GLP-1通路本身不足以成为AD治疗靶点。此结果对礼来等布局GLP-1AD适应症的企业构成间接压力，同时进一步巩固了Aβ单抗（lecanemab/donanemab）作为AD疾病修饰疗法的核心地位。<br>
+          <strong>风险：</strong>AD领域非Aβ机制药物开发信心受挫；后续GLP-1+AD相关投资可能降温。
+        </div>
+        <div class="source">来源：Nature Medicine News | 2026年3月31日 | https://www.nature.com/articles/d41591-026-00018-2</div>
+      </div>
+    </div>
+
+    <div class="alert-banner p1">
+      <h2>🟠 P1 重要预警 — 监管倒计时</h2>
+      <div class="alert-item">
+        <span class="level p1">P1</span>
+        <div class="content">
+          <strong>Axsome Therapeutics | AXS-05 (右美沙芬+安非他酮)</strong><br>
+          <strong>事件：</strong>FDA优先审评，PDUFA日期为<strong>2026年4月30日</strong>，用于治疗AD患者激越症状（Agitation in Alzheimer's disease）<br>
+          <strong>意义：</strong>若获批，AXS-05将成为首个专门针对AD激越症状的药物，开辟全新细分市场。AD激越症状（ agitation）影响约40-50%的AD患者，目前缺乏有效治疗药物，存在巨大的未满足需求。<br>
+          <strong>风险：</strong>AXS-05并非疾病修饰疗法，无法延缓AD进展；安非他酮成分有精神类药物风险；需关注FDA是否要求补充数据导致延迟。
+        </div>
+        <div class="source">来源：HelpDementia.com | 2026年4月2日 | https://helpdementia.com/regulatory-progress-tracked-for-late-stage-alzheimers-drug-candidates/</div>
+      </div>
+    </div>
+
+    <div class="alert-banner p2">
+      <h2>🟡 P2 关注事件</h2>
+      <div class="alert-item">
+        <span class="level p2">P2</span>
+        <div class="content">
+          <strong>卫材/渤健 (Eisai/Biogen) | Lecanemab (仑卡奈单抗)</strong><br>
+          <strong>事件：</strong>Clarity AD研究4年(48个月)长期随访数据于ADPD 2026大会公布，显示持续延缓认知衰退效果<br>
+          <strong>意义：</strong>首次大规模4年随访数据验证了lecanemab长期使用的持续疗效，对商业化和医生处方信心有积极意义。<br>
+          <strong>风险：</strong>长期ARIA安全性仍需监测；德国G-BA同日发布评估认为"附加疗效未证实"，可能影响欧洲报销谈判。
+        </div>
+        <div class="source">来源：百川资讯/ADPD 2026大会 | 2026年3月31日</div>
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>
+        <div class="content">
+          <strong>德国G-BA | Lecanemab 报销评估</strong><br>
+          <strong>事件：</strong>德国联邦联合委员会(G-BA)完成早期效益评估，结论为"附加疗效未证实"（nicht belegt）<br>
+          <strong>意义：</strong>不影响药品上市许可，但将影响Lecanemab纳入德国法定医保报销的谈判筹码。Lecanemab已在全球53国获得报销，包括美日。<br>
+          <strong>风险：</strong>德国患者可能面临较大自费负担；欧洲其他国家HTA机构可能参考G-BA结论。
+        </div>
+        <div class="source">来源：InFo Neurologie + Psychiatrie / 生物通 | 2026年4月1日</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- News Section -->
+  <div class="section">
+    <div class="section-title">📰 今日信息汇总</div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <span class="company-name">诺和诺德 (Novo Nordisk)</span>
+        <span class="drug-badge">Semaglutide / Ozempic</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-item full">
+          <div class="label">一句话结论</div>
+          <div class="value">GLP-1受体激动剂semaglutide用于AD的III期EVOKE(+)试验宣告失败，未能达到延缓认知衰退的主要终点，宣告GLP-1通路在AD治疗领域走不通。</div>
+        </div>
+        <div class="info-item">
+          <div class="label">靶点/机制</div>
+          <div class="value">GLP-1受体 (非Aβ/Tau靶点)</div>
+        </div>
+        <div class="info-item">
+          <div class="label">事件类型</div>
+          <div class="value">CLINICAL_RESULT (阴性)</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">核心数据</div>
+          <div class="value">EVOKE(+)试验主要终点(临床认知评估)未达到统计学显著改善；具体数值尚未在Nature原文披露（需查NCT04777396 / NCT04777409详细结果）</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">意义</div>
+          <div class="value">1) 首次GLP-1类药物在AD领域完成大规模III期验证，结果为阴性；2) 打破了此前临床前模型和小型研究的乐观预期；3) Aβ/Tau疾病修饰疗法仍是AD主流；4) 对礼来semaglutide布局AD适应症计划有负面参照意义</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">风险</div>
+          <div class="value">1) AD非代谢机制假说受到冲击；2) 相关BD交易和投资可能降温；3) 但需注意该阴性结果仅针对semaglutide特定分子，不能推论所有GLP-1药物</div>
+        </div>
+      </div>
+      <a class="source-link" href="https://www.nature.com/articles/d41591-026-00018-2">来源：Nature Medicine News | 2026年3月31日</a>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <span class="company-name">卫材/渤健 (Eisai & Biogen)</span>
+        <span class="drug-badge">Lecanemab (仑卡奈单抗/Leqembi®)</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-item full">
+          <div class="label">一句话结论</div>
+          <div class="value">Clarity AD研究4年长期数据在ADPD 2026大会公布，持续延缓认知衰退效果确认；但德国G-BA评估认为"附加疗效未证实"，影响德国医保报销谈判。</div>
+        </div>
+        <div class="info-item">
+          <div class="label">靶点/机制</div>
+          <div class="value">抗Aβ单克隆抗体</div>
+        </div>
+        <div class="info-item">
+          <div class="label">事件类型</div>
+          <div class="value">CONFERENCE_DATA + POLICY_CHANGE</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">核心数据</div>
+          <div class="value">4年(48个月)随访数据：持续延缓CDR-SB恶化；具体数值待会议原文披露（来源：百川资讯，ADPD 2026，2026年3月31日）</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">意义</div>
+          <div class="value">首次大规模4年随访数据有力支撑了lecanemab长期疗效，对处方习惯和医保覆盖有积极意义；强化了Aβ致病假说的临床转化价值</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">风险</div>
+          <div class="value">G-BA"附加疗效未证实"结论将影响德国医保报销，若无法达成协议患者需自费（已在全球53国报销）；长期ARIA安全性仍是制约因素</div>
+        </div>
+      </div>
+      <a class="source-link" href="https://baijiahao.baidu.com/s?id=1861167892138044893">来源：百川资讯/ADPD 2026大会 | 2026年3月31日</a><br>
+      <a class="source-link" href="https://cdn.ebiotrade.com/newsf/2026-4/20260401000524005.htm">G-BA评估来源：生物通 | 2026年4月1日</a>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <span class="company-name">Axsome Therapeutics</span>
+        <span class="drug-badge">AXS-05 (右美沙芬+安非他酮)</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-item full">
+          <div class="label">一句话结论</div>
+          <div class="value">AXS-05用于AD患者激越症状的FDA优先审评正在进行，PDUFA日期为2026年4月30日——距今约4周，是当前AD领域最重要的近期监管催化剂。</div>
+        </div>
+        <div class="info-item">
+          <div class="label">靶点/机制</div>
+          <div class="value">NMDAR / σ1受体 (激越症状，非疾病修饰)</div>
+        </div>
+        <div class="info-item">
+          <div class="label">事件类型</div>
+          <div class="value">REGULATORY_APPROVAL (倒计时)</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">核心数据</div>
+          <div class="value">III期临床试验设计：入组约670名AD伴激越症状患者；试验预计2026年6月完成（可能意味着FDA届时已有足够数据做决定）</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">意义</div>
+          <div class="value">若获批将是AD激越症状领域首款专用药，约40-50%的AD患者受激越症状困扰，当前只有非典型抗精神病药物(奥氮平、利培酮)超说明书使用，存在巨大未满足需求</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">风险</div>
+          <div class="value">并非疾病修饰疗法；对激越症状的改善幅度需与安全风险权衡；安非他酮成分有心血管风险；FDA可能要求补充数据导致PDUFA延迟</div>
+        </div>
+      </div>
+      <a class="source-link" href="https://helpdementia.com/regulatory-progress-tracked-for-late-stage-alzheimers-drug-candidates/">来源：HelpDementia.com | 2026年4月2日</a>
+    </div>
+
+    <div class="company-card">
+      <div class="company-header">
+        <span class="company-name">Actinogen</span>
+        <span class="drug-badge">XanaMIA (Xanamem® 改良剂型)</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-item full">
+          <div class="label">一句话结论</div>
+          <div class="value">Actinogen宣布XanaMIA用于AD的临床试验已完成首例患者给药，进入I/II期临床验证阶段，预计2026年11月公布36周完整疗效数据。</div>
+        </div>
+        <div class="info-item">
+          <div class="label">靶点/机制</div>
+          <div class="value">11β-HSD1 (大脑皮质皮质醇调节)</div>
+        </div>
+        <div class="info-item">
+          <div class="label">事件类型</div>
+          <div class="value">PHASE_TRANSITION</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">意义</div>
+          <div class="value">不同于Aβ/Tau机制，XanaMIA靶向大脑糖皮质激素代谢，是AD治疗的新型机制探索；11β-HSD1抑制剂在临床前数据中显示出神经保护作用</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">风险</div>
+          <div class="value">仍处于早期临床阶段，机制新颖但临床验证风险高；需关注入组进度和安全性数据</div>
+        </div>
+      </div>
+      <a class="source-link" href="https://www.yahoo.com/news/articles/actinogen-treats-first-patient-xanamia-095757689.html">来源：Yahoo News / Actinogen官方 | 2026年4月2日</a>
+    </div>
+
+  </div>
+
+  <!-- Pipeline Overview -->
+  <div class="section">
+    <div class="section-title">📋 管线状态总览</div>
+    <table class="pipeline-table">
+      <thead>
+        <tr>
+          <th>公司</th>
+          <th>产品</th>
+          <th>靶点/机制</th>
+          <th>当前阶段</th>
+          <th>最近更新</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>渤健 (Biogen)</td>
+          <td>Lecanemab (Leqembi®)</td>
+          <td>抗Aβ单抗</td>
+          <td><span class="phase-badge phase-approved">已获批</span></td>
+          <td>2026-03-31 ADPD 4年数据</td>
+        </tr>
+        <tr>
+          <td>礼来 (Eli Lilly)</td>
+          <td>Donanemab (Kisunla®)</td>
+          <td>抗N3pG-Aβ单抗</td>
+          <td><span class="phase-badge phase-approved">已获批</span></td>
+          <td>2024-07 获FDA批准</td>
+        </tr>
+        <tr>
+          <td>礼来 (Eli Lilly)</td>
+          <td>Remternetug</td>
+          <td>抗Aβ单抗(皮下)</td>
+          <td><span class="phase-badge phase-3">III期</span></td>
+          <td>III期TRAILBLAZER-ALZ 3</td>
+        </tr>
+        <tr>
+          <td>诺和诺德</td>
+          <td>Semaglutide</td>
+          <td>GLP-1R激动剂</td>
+          <td><span class="phase-badge phase-pre">已终止</span></td>
+          <td>2026-03 EVOKE(+)阴性</td>
+        </tr>
+        <tr>
+          <td>Axsome</td>
+          <td>AXS-05</td>
+          <td>NMDAR/σ1拮抗(激越)</td>
+          <td><span class="phase-badge phase-3">FDA审评中</span></td>
+          <td>PDUFA 2026-04-30</td>
+        </tr>
+        <tr>
+          <td>罗氏 (Roche)</td>
+          <td>Trontinemab</td>
+          <td>血脑屏障穿透型抗Aβ</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>Brainshuttle™平台</td>
+        </tr>
+        <tr>
+          <td>AC Immune</td>
+          <td>ACI-35.030</td>
+          <td>抗pTau疫苗</td>
+          <td><span class="phase-badge phase-2">II期</td>
+          <td>与强生合作</td>
+        </tr>
+        <tr>
+          <td>AC Immune</td>
+          <td>ACI-24.060</td>
+          <td>抗Aβ疫苗</td>
+          <td><span class="phase-badge phase-1">I/II期</span></td>
+          <td>脂质体纳米颗粒递送</td>
+        </tr>
+        <tr>
+          <td>渤健 (Biogen)</td>
+          <td>BIIB080</td>
+          <td>反义寡核苷酸(ASO)</td>
+          <td><span class="phase-badge phase-1">I/II期</span></td>
+          <td>靶向APP mRNA</td>
+        </tr>
+        <tr>
+          <td>Alnylam</td>
+          <td>Mivelsiran (ALN-APP)</td>
+          <td>RNAi疗法</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>鞘内注射给药</td>
+        </tr>
+        <tr>
+          <td>Voyager</td>
+          <td>VY7523</td>
+          <td>AAV基因疗法</td>
+          <td><span class="phase-badge phase-pre">临床前/早期</span></td>
+          <td>鞘内注射</td>
+        </tr>
+        <tr>
+          <td>Lexeo</td>
+          <td>LX1001</td>
+          <td>AAV基因疗法(APOE2)</td>
+          <td><span class="phase-badge phase-1">I/II期</span></td>
+          <td>APOE4纯合子AD</td>
+        </tr>
+        <tr>
+          <td>Actinogen</td>
+          <td>XanaMIA</td>
+          <td>11β-HSD1抑制剂</td>
+          <td><span class="phase-badge phase-1">I/II期</span></td>
+          <td>2026-04 首例给药</td>
+        </tr>
+        <tr>
+          <td>恒瑞医药</td>
+          <td>SHR-1707</td>
+          <td>Aβ相关抗体</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>早期AD首例给药</td>
+        </tr>
+        <tr>
+          <td>康方生物</td>
+          <td>AK152</td>
+          <td>AD治疗性抗体</td>
+          <td><span class="phase-badge phase-pre">临床前</span></td>
+          <td>需持续跟踪</td>
+        </tr>
+        <tr>
+          <td>新华制药</td>
+          <td>OAB-14</td>
+          <td>AD治疗药物</td>
+          <td><span class="phase-badge phase-pre">临床/注册</span></td>
+          <td>需持续跟踪</td>
+        </tr>
+        <tr>
+          <td>万邦德</td>
+          <td>石杉碱甲控释片</td>
+          <td>乙酰胆碱酯酶抑制剂</td>
+          <td><span class="phase-badge phase-pre">临床</span></td>
+          <td>需持续跟踪</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Upcoming Events -->
+  <div class="section">
+    <div class="section-title">📅 近期关注日历（未来7天）</div>
+
+    <div class="calendar-item">
+      <div class="calendar-date">04-07</div>
+      <div>
+        <span class="importance-dot medium"></span>
+        <strong>AXS-05 审评倒计时</strong> — FDA PDUFA 2026-04-30，距今约4周，持续关注是否有预批准信号
+      </div>
+    </div>
+    <div class="calendar-item">
+      <div class="calendar-date">04月</div>
+      <div>
+        <span class="importance-dot low"></span>
+        <strong>Lecanemab 欧洲市场动态</strong> — 关注德国报销谈判进展及对其他国家HTA影响
+      </div>
+    </div>
+    <div class="calendar-item">
+      <div class="calendar-date">Q2 2026</div>
+      <div>
+        <span class="importance-dot low"></span>
+        <strong>Remternetug III期数据</strong> — 礼来新一代皮下注射Aβ单抗，预期近期读出III期数据
+      </div>
+    </div>
+    <div class="calendar-item">
+      <div class="calendar-date">2026-11</div>
+      <div>
+        <span class="importance-dot low"></span>
+        <strong>XanaMIA 36周疗效数据</strong> — Actinogen AD试验关键数据公布(预计)
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    阿尔茨海默创新药跟踪系统 | 自动生成于 2026-04-02 22:44 | 数据来源于公开信息，仅供参考
+  </div>
+
+</div>
+</body>
+</html>
+>>>>>>> 0a58464aa78dbab7fa62771fd64ffb3208f63461

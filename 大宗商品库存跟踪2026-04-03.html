@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大宗商品库存跟踪日报 - 2026-04-03</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a2a4a 0%, #2d4a8a 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1350px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 30px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2d4a8a;
+        }
+        .header h1 { color: #1a2a4a; font-size: 26px; margin-bottom: 8px; }
+        .header .meta { color: #666; font-size: 14px; }
+        .data-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-top: 6px;
+        }
+        .badge-real { background: #d4edda; color: #1a7f3c; border: 1px solid #28a745; }
+        .badge-partial { background: #fff3cd; color: #856404; border: 1px solid #ffc107; }
+        
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .summary-card { padding: 16px; border-radius: 10px; text-align: center; }
+        .summary-card.low { background: #d4edda; border-left: 4px solid #28a745; }
+        .summary-card.high { background: #fde8e8; border-left: 4px solid #c0392b; }
+        .summary-card.lme-high { background: #fff3cd; border-left: 4px solid #ffc107; }
+        .summary-card.normal { background: #e8f0fe; border-left: 4px solid #2d4a8a; }
+        .summary-card h3 { font-size: 28px; margin-bottom: 5px; color: #333; }
+        .summary-card p { color: #666; font-size: 12px; line-height: 1.4; }
+        
+        .notice {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #856404;
+        }
+        
+        h2 { color: #1a2a4a; font-size: 17px; margin: 20px 0 10px; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        th {
+            background: linear-gradient(135deg, #1a2a4a 0%, #2d4a8a 100%);
+            color: white;
+            padding: 10px 8px;
+            text-align: center;
+        }
+        td {
+            padding: 9px 8px;
+            text-align: center;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        tr:hover { filter: brightness(0.97); }
+        
+        .highlight-lme { border-left: 3px solid #c0392b; }
+        
+        .legend {
+            margin-top: 15px;
+            padding: 14px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .legend-item { display: flex; align-items: center; font-size: 12px; }
+        .legend-dot { width: 11px; height: 11px; border-radius: 50%; margin-right: 6px; flex-shrink: 0; }
+        
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            color: #888;
+            font-size: 12px;
+        }
+        
+        @media (max-width: 768px) {
+            .summary { grid-template-columns: repeat(2, 1fr); }
+            table { font-size: 11px; }
+            th, td { padding: 6px 4px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 大宗商品库存跟踪日报</h1>
+            <div class="meta">2026年04月03日 — 每日 07:38 自动更新</div>
+            <div class="data-badge badge-real">✅ 数据来源：同花顺 iFinD EDB 真实数据</div>
+            &nbsp;
+            <div class="data-badge badge-partial">⚠️ 本期数据覆盖率：40%（铜/铝/锌/镍为完整数据）</div>
+        </div>
+        
+        <div class="notice">
+            ⚠️ <strong>数据说明：</strong>本期已成功获取铜、铝、锌、镍 4 种商品的真实库存数据（iFind EDB，2026-04-02/03），并计算了近5年历史分位。
+            铅、锡、黄金、白银、螺纹钢、热轧卷板因本日 API 调用次数已达上限（100次），将在次日自动刷新时补充完整数据。
+        </div>
+        
+        <div class="summary">
+            <div class="summary-card low">
+                <h3>1</h3>
+                <p>SHFE 库存偏低<br>（分位 &lt; 20%）</p>
+            </div>
+            <div class="summary-card high">
+                <h3>1</h3>
+                <p>SHFE 库存偏高<br>（分位 &gt; 80%）</p>
+            </div>
+            <div class="summary-card lme-high">
+                <h3>2</h3>
+                <p>LME 库存极高<br>铜/铝 分位 &gt; 90%</p>
+            </div>
+            <div class="summary-card normal">
+                <h3>4</h3>
+                <p>已获取真实数据<br>铜/铝/锌/镍</p>
+            </div>
+        </div>
+        
+        <h2>🟢 低库存品种汇总（近五年分位 &lt; 30%，含所有交易所）</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>商品名称</th>
+                    <th>交易所</th>
+                    <th>当前库存量</th>
+                    <th>近五年分位</th>
+                    <th>数据更新时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            <tr>
+                <td><strong>铝</strong></td>
+                <td>SHFE</td>
+                <td style="color:#1a7f3c">0 吨</td>
+                <td style="color:#1a7f3c;font-weight:bold">0.0%</td>
+                <td>2026-04-02</td>
+            </tr>
+            <tr>
+                <td><strong>铝</strong></td>
+                <td>LME</td>
+                <td style="color:#1a7f3c">269,200 吨</td>
+                <td style="color:#1a7f3c;font-weight:bold">14.7%</td>
+                <td>2026-04-02</td>
+            </tr>
+            </tbody>
+        </table>
+        
+        <h2>📈 完整库存明细（按 SHFE 分位从低到高排列）</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2">商品</th>
+                    <th colspan="2">SHFE 仓单</th>
+                    <th colspan="2">社会库存</th>
+                    <th colspan="2">LME 注册仓单</th>
+                    <th colspan="2">COMEX 库存</th>
+                </tr>
+                <tr>
+                    <th>库存量</th><th>近五年分位</th>
+                    <th>库存量</th><th>近五年分位</th>
+                    <th>库存量</th><th>近五年分位</th>
+                    <th>库存量</th><th>近五年分位</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            <tr style="background:#d4edda">
+                <td><strong>铝</strong></td>
+                <td style="color:#1a7f3c">0<br><small style="color:#999">当前无SHFE仓单</small></td><td style="color:#1a7f3c;font-weight:bold">0.0%</td>
+                <td style="color:#888">1,550,000 吨<br><small style="color:#999">单位换算中</small></td><td style="color:#888;font-weight:bold">N/A</td>
+                <td style="color:#1a7f3c">269,200 吨</td><td style="color:#1a7f3c;font-weight:bold">14.7%</td>
+                <td style="color:#ccc">-</td><td style="color:#ccc">-</td>
+            </tr>
+            <tr style="background:#f5f5f5">
+                <td><strong>锌</strong></td>
+                <td style="color:#555">19,561 吨</td><td style="color:#555;font-weight:bold">41.5%</td>
+                <td style="color:#d06020">50,900 吨</td><td style="color:#d06020;font-weight:bold">71.9%</td>
+                <td style="color:#555">87,025 吨</td><td style="color:#555;font-weight:bold">30.5%</td>
+                <td style="color:#ccc">-</td><td style="color:#ccc">-</td>
+            </tr>
+            <tr style="background:#fff3e0">
+                <td><strong>铜</strong></td>
+                <td style="color:#d06020">205,418 吨</td><td style="color:#d06020;font-weight:bold">66.8%</td>
+                <td style="color:#d06020">269,900 吨</td><td style="color:#d06020;font-weight:bold">70.2%</td>
+                <td style="color:#c0392b">300,975 吨</td><td style="color:#c0392b;font-weight:bold">97.6%</td>
+                <td style="color:#c0392b">587,780 短吨</td><td style="color:#c0392b;font-weight:bold">97.8%</td>
+            </tr>
+            <tr style="background:#fde8e8">
+                <td><strong>镍</strong></td>
+                <td style="color:#c0392b">41,200 吨</td><td style="color:#c0392b;font-weight:bold">100.0%</td>
+                <td style="color:#c0392b">43,656 吨</td><td style="color:#c0392b;font-weight:bold">100.0%</td>
+                <td style="color:#ccc">-</td><td style="color:#ccc">-</td>
+                <td style="color:#ccc">-</td><td style="color:#ccc">-</td>
+            </tr>
+            <tr>
+                <td><strong>铅</strong></td>
+                <td colspan="8" style="color:#bbb;font-size:12px">⏳ 数据获取中（API 调用次数已达上限，次日自动刷新）</td>
+            </tr>
+            <tr>
+                <td><strong>锡</strong></td>
+                <td colspan="8" style="color:#bbb;font-size:12px">⏳ 数据获取中（API 调用次数已达上限，次日自动刷新）</td>
+            </tr>
+            <tr>
+                <td><strong>黄金</strong></td>
+                <td colspan="8" style="color:#bbb;font-size:12px">⏳ 数据获取中（API 调用次数已达上限，次日自动刷新）</td>
+            </tr>
+            <tr>
+                <td><strong>白银</strong></td>
+                <td colspan="8" style="color:#bbb;font-size:12px">⏳ 数据获取中（API 调用次数已达上限，次日自动刷新）</td>
+            </tr>
+            <tr>
+                <td><strong>螺纹钢</strong></td>
+                <td colspan="8" style="color:#bbb;font-size:12px">⏳ 数据获取中（API 调用次数已达上限，次日自动刷新）</td>
+            </tr>
+            <tr>
+                <td><strong>热轧卷板</strong></td>
+                <td colspan="8" style="color:#bbb;font-size:12px">⏳ 数据获取中（API 调用次数已达上限，次日自动刷新）</td>
+            </tr>
+            </tbody>
+        </table>
+        
+        <div class="legend">
+            <div class="legend-item"><div class="legend-dot" style="background:#1a7f3c"></div><span><b style="color:#1a7f3c">绿 (&lt;20%)</b> 库存历史低位</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#2ea55a"></div><span><b style="color:#2ea55a">浅绿 (20-30%)</b> 库存偏低</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#555"></div><span><b>灰 (30-50%)</b> 库存中等偏低</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#d06020"></div><span><b style="color:#d06020">橙 (50-80%)</b> 库存中等偏高</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background:#c0392b"></div><span><b style="color:#c0392b">红 (&gt;80%)</b> 库存历史高位，价格承压</span></div>
+        </div>
+        
+        <div class="footer">
+            <p>📅 报告生成时间：2026-04-03 08:17:47</p>
+            <p>📊 数据来源：同花顺 iFinD 宏观行业经济数据库（EDB）</p>
+            <p>🔄 分位基于近五年历史 | 仓单数据源：上海期货交易所 | 大宗商品库存跟踪系统 自动生成</p>
+        </div>
+    </div>
+</body>
+</html>
