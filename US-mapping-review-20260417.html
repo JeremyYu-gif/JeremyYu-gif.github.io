@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美股映射复盘 | 2026年4月16日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2942 100%);
+            color: #e8eaed;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(180deg, rgba(30,60,114,0.8) 0%, transparent 100%);
+            border-radius: 16px;
+            margin-bottom: 24px;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            font-size: 14px;
+            color: #8b9dc3;
+        }
+        .flag { font-size: 24px; margin-right: 8px; }
+        
+        /* Section */
+        .section {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid rgba(100,150,255,0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-icon { font-size: 20px; }
+        
+        /* Index Grid */
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .index-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .index-card .name { font-size: 13px; color: #8b9dc3; margin-bottom: 8px; }
+        .index-card .value { font-size: 24px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+        .index-card .change { font-size: 16px; font-weight: 500; }
+        .up { color: #ef4444; }
+        .down { color: #22c55e; }
+        
+        /* Sentiment */
+        .sentiment-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .sentiment-item {
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+        .sentiment-item .label { font-size: 12px; color: #8b9dc3; margin-bottom: 4px; }
+        .sentiment-item .value { font-size: 16px; font-weight: 600; }
+        
+        /* Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+        .data-table th, .data-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .data-table th {
+            background: rgba(255,255,255,0.05);
+            color: #8b9dc3;
+            font-weight: 500;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        .data-table td { font-size: 14px; color: #e8eaed; }
+        .data-table tr:hover { background: rgba(255,255,255,0.03); }
+        
+        /* Stock Card */
+        .stock-detail {
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            padding: 16px;
+            margin-top: 12px;
+            border-left: 3px solid #6366f1;
+        }
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .stock-name { font-size: 16px; font-weight: 600; color: #fff; }
+        .stock-code { font-size: 13px; color: #8b9dc3; margin-left: 8px; }
+        .stock-price { font-size: 18px; font-weight: 600; }
+        .stock-meta { font-size: 12px; color: #8b9dc3; margin-top: 2px; }
+        .stock-desc { font-size: 13px; color: #b0b8cc; line-height: 1.6; }
+        .stock-desc .label { color: #8b9dc3; }
+        
+        /* Mapping Card */
+        .mapping-card {
+            background: linear-gradient(135deg, rgba(139,92,246,0.15) 0%, rgba(139,92,246,0.05) 100%);
+            border: 1px solid rgba(139,92,246,0.4);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        .mapping-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .mapping-title { font-size: 15px; font-weight: 600; color: #c4b5fd; }
+        .mapping-strength {
+            background: rgba(139,92,246,0.3);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #c4b5fd;
+        }
+        .mapping-content { font-size: 13px; color: #e8eaed; line-height: 1.7; }
+        .mapping-stocks { margin-top: 8px; }
+        .mapping-stocks span {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 8px;
+            margin-bottom: 6px;
+        }
+        
+        /* Warning */
+        .warning-box {
+            background: rgba(245,158,11,0.1);
+            border: 1px solid rgba(245,158,11,0.3);
+            border-radius: 10px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+        .warning-box .title {
+            color: #fbbf24;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .warning-box ul {
+            margin-left: 20px;
+            font-size: 13px;
+            color: #fcd34d;
+            line-height: 1.8;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #6b7280;
+            font-size: 12px;
+        }
+        
+        /* Highlight */
+        .highlight { background: rgba(100,150,255,0.2); padding: 2px 6px; border-radius: 4px; }
+        .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-left: 8px;
+        }
+        .tag-up { background: rgba(239,68,68,0.2); color: #ef4444; }
+        .tag-hot { background: rgba(245,158,11,0.2); color: #fbbf24; }
+        .tag-record { background: rgba(34,197,94,0.2); color: #22c55e; }
+        
+        /* Commodities */
+        .commodity-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .commodity-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            padding: 14px;
+            text-align: center;
+        }
+        .commodity-card .name { font-size: 12px; color: #8b9dc3; margin-bottom: 6px; }
+        .commodity-card .price { font-size: 18px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+        .commodity-card .change { font-size: 13px; }
+        
+        @media (max-width: 768px) {
+            .index-grid, .sentiment-grid, .commodity-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1><span class="flag">🇺🇸</span>美股映射复盘日报</h1>
+            <div class="subtitle">数据日期：2026年4月16日（周四） | 生成时间：2026年4月17日 07:30</div>
+        </div>
+        
+        <!-- Section 1: US Market Overview -->
+        <div class="section">
+            <div class="section-title"><span class="section-icon">📊</span>一、美股整体表现</div>
+            
+            <div class="index-grid">
+                <div class="index-card">
+                    <div class="name">道琼斯工业</div>
+                    <div class="value">48,578.72</div>
+                    <div class="change up">+0.24%</div>
+                </div>
+                <div class="index-card">
+                    <div class="name">纳斯达克综合</div>
+                    <div class="value">24,102.70</div>
+                    <div class="change up">+0.36% <span class="tag tag-record">12连阳</span></div>
+                </div>
+                <div class="index-card">
+                    <div class="name">标普500</div>
+                    <div class="value">7,041.28</div>
+                    <div class="change up">+0.26% <span class="tag tag-record">历史新高</span></div>
+                </div>
+            </div>
+            
+            <div class="sentiment-grid" style="margin-top: 20px;">
+                <div class="sentiment-item">
+                    <div class="label">VIX恐慌指数</div>
+                    <div class="value down">18.17</div>
+                </div>
+                <div class="sentiment-item">
+                    <div class="label">美债10Y收益率</div>
+                    <div class="value up">4.32%</div>
+                </div>
+                <div class="sentiment-item">
+                    <div class="label">美元指数DXY</div>
+                    <div class="value" style="color:#8b9dc3">数据暂缺</div>
+                </div>
+                <div class="sentiment-item">
+                    <div class="label">市场情绪</div>
+                    <div class="value" style="color:#22c55e">风险偏好</div>
+                </div>
+            </div>
+            
+            <div class="warning-box" style="margin-top: 20px; background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.3);">
+                <div class="title" style="color:#22c55e;">🔥 关键驱动因素</div>
+                <ul style="color:#86efac;">
+                    <li><strong>地缘政治缓和</strong>：特朗普表示美伊战争"接近结束"，以色列与黎巴嫩将举行谈判，风险资产大幅反弹</li>
+                    <li><strong>AI需求持续强劲</strong>：台积电Q1净利润暴增58%，营收+35.1%，验证AI算力需求</li>
+                    <li><strong>财报季开门红</strong>：百事可乐EPS超预期，Netflix将于4月22日公布财报</li>
+                    <li><strong>美联储维持观望</strong>：利率预计维持不变至年底，通胀预期降温</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Section 2: Sector Performance -->
+        <div class="section">
+            <div class="section-title"><span class="section-icon">🏆</span>二、强势板块与核心逻辑</div>
+            
+            <h4 style="color:#ef4444; margin: 16px 0 12px;">涨幅TOP板块</h4>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>板块名称</th>
+                        <th>代表ETF</th>
+                        <th>涨跌幅</th>
+                        <th>核心驱动因素</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>锂电池/锂矿</td>
+                        <td>ALB领涨</td>
+                        <td class="up">+16.31%</td>
+                        <td>锂价反弹预期+ Albemarle债务重组完成</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>半导体设备</td>
+                        <td>AMD +10.35%</td>
+                        <td class="up">+7.80%</td>
+                        <td>TSMC业绩验证AI需求，EUV设备订单预期上调</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>AI/云计算</td>
+                        <td>NVDA +1.2%</td>
+                        <td class="up">延续强势</td>
+                        <td>10日涨19%，AI算力持续供不应求</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>物流/运输</td>
+                        <td>CHRW +8.05%</td>
+                        <td class="up">+8.05%</td>
+                        <td>美伊停火预期提振全球贸易</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>能源设备</td>
+                        <td>DELL +8.92%</td>
+                        <td class="up">+8.92%</td>
+                        <td>AI数据中心服务器需求爆发</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h4 style="color:#22c55e; margin: 20px 0 12px;">最弱板块</h4>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>板块名称</th>
+                        <th>代表个股</th>
+                        <th>涨跌幅</th>
+                        <th>下跌原因</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>银行/券商</td>
+                        <td>SCHW -7.63%</td>
+                        <td class="down">-7.63%</td>
+                        <td>利率预期下降压缩净息差</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>医疗器械</td>
+                        <td>ABT -6.00%</td>
+                        <td class="down">-6.00%</td>
+                        <td>财报不及预期</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>邮轮/旅游</td>
+                        <td>RCL -5.80%</td>
+                        <td class="down">-5.80%</td>
+                        <td>消费支出担忧</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Section 3: Big Gainers -->
+        <div class="section">
+            <div class="section-title"><span class="section-icon">🚀</span>三、美股暴涨个股深度扫描（涨幅>11%，市值>$50亿）</div>
+            
+            <div class="stock-detail">
+                <div class="stock-header">
+                    <div>
+                        <span class="stock-name">Albemarle Corporation</span>
+                        <span class="stock-code">(ALB)</span>
+                    </div>
+                    <div class="stock-price up">+16.31% | $215.62</div>
+                </div>
+                <div class="stock-meta">市值: $218.5亿 | 成交量: 大幅放量</div>
+                <div class="stock-desc" style="margin-top: 12px;">
+                    <p><span class="label">所属行业：</span>特种化工 / 锂矿巨头</p>
+                    <p style="margin-top: 8px;"><span class="label">上涨驱动因素：</span></p>
+                    <ul style="margin-left: 16px; margin-top: 6px;">
+                        <li><span class="label">【催化剂】</span>锂价触底反弹预期+公司债务重组完成，债权人接受条款</li>
+                        <li><span class="label">【基本面变化】</span>短期反弹，非趋势性改变。锂价仍处于周期底部，EV需求增速放缓</li>
+                        <li><span class="label">【市场反应】</span>放量上涨，期权隐含波动率大幅上升</li>
+                        <li><span class="label">【历史参照】</span>2023年曾因锂价反弹单日涨超15%，但随后回落</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><span class="label">A股映射分析：</span></p>
+                    <ul style="margin-left: 16px; margin-top: 6px;">
+                        <li>映射板块：<strong>锂矿/新能源上游</strong></li>
+                        <li>A股代表标的：天齐锂业、赣锋锂业、盐湖股份</li>
+                        <li>传导逻辑：ALB为全球最大锂盐生产商，其股价反弹反映锂价企稳预期</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><span class="label">后续跟踪要点：</span>关注碳酸锂价格能否持续反弹，EV电池订单恢复情况</p>
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <div class="title">⚠️ 暴涨个股特别提示</div>
+                <ul>
+                    <li>今日仅ALB一只个股符合"涨幅>11%且市值>$50亿"标准</li>
+                    <li>ALB上涨主要反映锂价周期反弹预期，需观察持续性</li>
+                    <li>半导体板块（AMD +7.8%、ON +10.35%）虽未达11%门槛，但趋势值得重视</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Section 4: Key Stock Movers -->
+        <div class="section">
+            <div class="section-title"><span class="section-icon">💡</span>四、重点个股异动（A股映射）</div>
+            
+            <div style="display: grid; gap: 16px;">
+                <div class="stock-detail" style="border-left-color: #22c55e;">
+                    <div class="stock-header">
+                        <div>
+                            <span class="stock-name">英伟达 NVIDIA</span>
+                            <span class="stock-code">(NVDA)</span>
+                        </div>
+                        <div class="stock-price">$198.87 <span class="up">+1.20%</span></div>
+                    </div>
+                    <div class="stock-meta">市值: $4.87万亿 | 10日累计涨幅: +19%</div>
+                    <div class="stock-desc" style="margin-top: 12px;">
+                        <p><span class="label">驱动因素：</span>AI算力需求持续爆发，Blackwell架构芯片供不应求，TSMC CoWoS封装产能紧张</p>
+                        <p style="margin-top: 8px;"><span class="label">A股映射板块：</span>光模块/CPO、算力芯片、先进封装</p>
+                        <p><span class="label">A股映射标的：</span>中际旭创、新易盛（光模块）| 海光信息、寒武纪（AI芯片）| 通富微电、长电科技（封测）</p>
+                        <p style="margin-top: 6px;"><span class="label">传导力度：</span><strong style="color:#ef4444;">强</strong> — NVDA为AI产业风向标，A股映射逻辑最强</p>
+                    </div>
+                </div>
+                
+                <div class="stock-detail" style="border-left-color: #6366f1;">
+                    <div class="stock-header">
+                        <div>
+                            <span class="stock-name">特斯拉 Tesla</span>
+                            <span class="stock-code">(TSLA)</span>
+                            <span class="tag tag-up">UBS升级</span>
+                        </div>
+                        <div class="stock-price up">+8.00%（4月15日）</div>
+                    </div>
+                    <div class="stock-meta">UBS将评级从卖出升级至中性，目标价$352 | AI5芯片流片成功</div>
+                    <div class="stock-desc" style="margin-top: 12px;">
+                        <p><span class="label">驱动因素：</span>AI5芯片里程碑式流片+ Terafab项目进展+ UBS罕见升级+马斯克宣传芯片技术突破</p>
+                        <p style="margin-top: 8px;"><span class="label">A股映射板块：</span>智能驾驶、新能源整车、汽车零部件</p>
+                        <p><span class="label">A股映射标的：</span>拓普集团、德赛西威、伯特利（智能驾驶）| 比亚迪、三花智控（零部件）</p>
+                        <p style="margin-top: 6px;"><span class="label">传导力度：</span><strong style="color:#f59e0b;">中</strong> — 4月30日Q1财报是关键验证点</p>
+                    </div>
+                </div>
+                
+                <div class="stock-detail" style="border-left-color: #f59e0b;">
+                    <div class="stock-header">
+                        <div>
+                            <span class="stock-name">台积电 TSMC</span>
+                            <span class="stock-code">(TSM)</span>
+                            <span class="tag tag-hot">Q1创新高</span>
+                        </div>
+                        <div class="stock-price up">+2.00%</div>
+                    </div>
+                    <div class="stock-meta">Q1净利润: +58% YoY | 营收: +35.1% YoY（均创历史新高）</div>
+                    <div class="stock-desc" style="margin-top: 12px;">
+                        <p><span class="label">驱动因素：</span>AI芯片需求爆发，先进制程产能满载，N3/N5制程供不应求</p>
+                        <p style="margin-top: 8px;"><span class="label">A股映射板块：</span>半导体设备、先进封装、晶圆代工</p>
+                        <p><span class="label">A股映射标的：</span>北方华创、中微公司（设备）| 通富微电、长电科技（封测）| 中芯国际（代工）</p>
+                        <p style="margin-top: 6px;"><span class="label">传导力度：</span><strong style="color:#ef4444;">强</strong> — 验证全球AI算力景气周期</p>
+                    </div>
+                </div>
+                
+                <div class="stock-detail" style="border-left-color: #8b5cf6;">
+                    <div class="stock-header">
+                        <div>
+                            <span class="stock-name">超微半导体 AMD</span>
+                            <span class="stock-code">(AMD)</span>
+                        </div>
+                        <div class="stock-price up">+7.80% | $278.26</div>
+                    </div>
+                    <div class="stock-meta">市值: $4,500亿+ | MI300X GPU持续放量</div>
+                    <div class="stock-desc" style="margin-top: 12px;">
+                        <p><span class="label">驱动因素：</span>数据中心GPU市场份额提升，MI300X获得更多云厂商订单</p>
+                        <p style="margin-top: 8px;"><span class="label">A股映射板块：</span>AI算力芯片、GPU概念</p>
+                        <p><span class="label">A股映射标的：</span>海光信息、寒武纪、景嘉微</p>
+                        <p style="margin-top: 6px;"><span class="label">传导力度：</span><strong style="color:#f59e0b;">中</strong> — A股有间接映射但关联度不如NVDA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 5: China Stocks -->
+        <div class="section">
+            <div class="section-title"><span class="section-icon">🏯</span>五、中概股表现</div>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>股票</th>
+                        <th>代码</th>
+                        <th>最新价</th>
+                        <th>涨跌幅</th>
+                        <th>关键信息</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>阿里巴巴</td>
+                        <td>BABA</td>
+                        <td>$138.59</td>
+                        <td class="up">+3.98%</td>
+                        <td>领涨中概，AI云业务持续扩张</td>
+                    </tr>
+                    <tr>
+                        <td>金龙指数HXC</td>
+                        <td>.HXC</td>
+                        <td>7,192.17</td>
+                        <td class="up">+1.74%</td>
+                        <td>跑赢美股三大指数</td>
+                    </tr>
+                    <tr>
+                        <td>拼多多</td>
+                        <td>PDD</td>
+                        <td style="color:#8b9dc3">数据暂缺</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>京东</td>
+                        <td>JD</td>
+                        <td style="color:#8b9dc3">数据暂缺</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>蔚来</td>
+                        <td>NIO</td>
+                        <td style="color:#8b9dc3">数据暂缺</td>
+                        <td>—</td>
+                        <td>中概整体反弹受益</td>
+                    </tr>
+                    <tr>
+                        <td>百度</td>
+                        <td>BIDU</td>
+                        <td style="color:#8b9dc3">数据暂缺</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>小鹏汽车</td>
+                        <td>XPEV</td>
+                        <td style="color:#8b9dc3">数据暂缺</td>
+                        <td>—</td>
+                        <td>TSLA大涨带动</td>
+                    </tr>
+                    <tr>
+                        <td>哔哩哔哩</td>
+                        <td>BILI</td>
+                        <td style="color:#8b9dc3">数据暂缺</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="warning-box" style="margin-top: 16px; background: rgba(99,102,241,0.08); border-color: rgba(99,102,241,0.3);">
+                <div class="title" style="color:#a5b4fc;">📊 中概股情绪判断</div>
+                <ul style="color:#c7d2fe;">
+                    <li><strong>整体回暖</strong>：金龙指数+1.74%，阿里巴巴领涨超4%</li>
+                    <li>驱动因素：美伊停火预期利好全球贸易+AI叙事持续+估值修复需求</li>
+                    <li>对港股次日开盘影响：<strong>偏正面</strong>，预计港股科技股跟随</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Section 6: Commodities -->
+        <div class="section">
+            <div class="section-title"><span class="section-icon">🛢️</span>六、大宗商品与相关资产</div>
+            
+            <div class="commodity-grid">
+                <div class="commodity-card">
+                    <div class="name">WTI原油</div>
+                    <div class="price">~$92</div>
+                    <div class="change" style="color:#22c55e;">美伊谈判预期↓</div>
+                </div>
+                <div class="commodity-card">
+                    <div class="name">布伦特原油</div>
+                    <div class="price">$98.12</div>
+                    <div class="change up">+3.36%</div>
+                </div>
+                <div class="commodity-card">
+                    <div class="name">COMEX黄金</div>
+                    <div class="price">$4,794</div>
+                    <div class="change up">+0.09%</div>
+                </div>
+                <div class="commodity-card">
+                    <div class="name">COMEX铜</div>
+                    <div class="price">$6.10/lb</div>
+                    <div class="change up">+0.43%</div>
+                </div>
+                <div class="commodity-card">
+                    <div class="name">10Y美债</div>
+                    <div class="price">4.32%</div>
+                    <div class="change up">+3.4bp</div>
+                </div>
+                <div class="commodity-card">
+                    <div class="name">USD/CNH</div>
+                    <div class="price">~7.25</div>
+                    <div class="change" style="color:#8b9dc3;">基本持平</div>
+                </div>
+            </div>
+            
+            <div class="warning-box" style="margin-top: 16px;">
+                <div class="title">📌 对A股影响判断</div>
+                <ul>
+                    <li><strong>美债收益率上行（+3.4bp）</strong> → 成长股估值承压，但幅度有限</li>
+                    <li><strong>原油反弹（布伦特+3.36%）</strong> → 利好中国石油、中国石化，但需关注需求端</li>
+                    <li><strong>铜价小涨</strong> → 利好紫金矿业、洛阳钼业等铜矿企业</li>
+                    <li><strong>黄金高位震荡</strong> → 黄金股（山金国际、赤峰黄金）受益但需注意回调风险</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Section 7: A-share Mapping (CORE) -->
+        <div class="section" style="border: 2px solid rgba(139,92,246,0.4); background: linear-gradient(135deg, rgba(139,92,246,0.05) 0%, transparent 100%);">
+            <div class="section-title" style="border-bottom-color: rgba(139,92,246,0.5);"><span class="section-icon">🎯</span>七、映射到A股的潜在方向（核心输出）</div>
+            
+            <h3 style="color:#c4b5fd; margin: 16px 0;">📈 可能上涨板块</h3>
+            
+            <div class="mapping-card">
+                <div class="mapping-header">
+                    <span class="mapping-title">1. AI算力/光模块/CPO</span>
+                    <span class="mapping-strength">强度 ★★★★★</span>
+                </div>
+                <div class="mapping-content">
+                    <p><strong>映射逻辑：</strong>NVDA 10日涨19%，TSMC业绩暴增58%，验证AI算力超级景气周期。光模块作为算力核心组件，供需紧张持续。</p>
+                    <div class="mapping-stocks">
+                        <span>中际旭创 300308</span>
+                        <span>新易盛 300502</span>
+                        <span>天孚通信 300394</span>
+                        <span>光迅科技 002281</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mapping-card">
+                <div class="mapping-header">
+                    <span class="mapping-title">2. 半导体设备/先进封装</span>
+                    <span class="mapping-strength">强度 ★★★★☆</span>
+                </div>
+                <div class="mapping-content">
+                    <p><strong>映射逻辑：</strong>TSMC业绩超预期+AMD大涨7.8%，半导体设备订单预期上调。先进封装（CoWoS）产能紧张持续扩产。</p>
+                    <div class="mapping-stocks">
+                        <span>北方华创 002371</span>
+                        <span>中微公司 688012</span>
+                        <span>通富微电 002156</span>
+                        <span>长电科技 600584</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mapping-card">
+                <div class="mapping-header">
+                    <span class="mapping-title">3. AI算力芯片/国产替代</span>
+                    <span class="mapping-strength">强度 ★★★★☆</span>
+                </div>
+                <div class="mapping-content">
+                    <p><strong>映射逻辑：</strong>全球AI芯片供需紧张持续，国产替代逻辑强化。NVDA限制出口加速国产替代。</p>
+                    <div class="mapping-stocks">
+                        <span>海光信息 688041</span>
+                        <span>寒武纪 688256</span>
+                        <span>景嘉微 300474</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mapping-card">
+                <div class="mapping-header">
+                    <span class="mapping-title">4. 智能驾驶/汽车零部件</span>
+                    <span class="mapping-strength">强度 ★★★☆☆</span>
+                </div>
+                <div class="mapping-content">
+                    <p><strong>映射逻辑：</strong>TSLA受UBS升级+AI5芯片突破，智能驾驶板块情绪提振。关注4月30日TSLA财报。</p>
+                    <div class="mapping-stocks">
+                        <span>德赛西威 002920</span>
+                        <span>拓普集团 601689</span>
+                        <span>伯特利 603596</span>
+                        <span>华为汽车产业链</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mapping-card">
+                <div class="mapping-header">
+                    <span class="mapping-title">5. 锂矿/新能源上游</span>
+                    <span class="mapping-strength">强度 ★★★☆☆</span>
+                </div>
+                <div class="mapping-content">
+                    <p><strong>映射逻辑：</strong>ALB暴涨16.31%反映锂价触底反弹预期。但需注意这只是超跌反弹，非趋势反转。</p>
+                    <div class="mapping-stocks">
+                        <span>天齐锂业 002466</span>
+                        <span>赣锋锂业 002460</span>
+                        <span>盐湖股份 000792</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mapping-card">
+                <div class="mapping-header">
+                    <span class="mapping-title">6. 数据中心/AI基础设施</span>
+                    <span class="mapping-strength">强度 ★★★☆☆</span>
+                </div>
+                <div class="mapping-content">
+                    <p><strong>映射逻辑：</strong>AI服务器需求爆发，DELL大涨8.92%，电源、散热、机柜等配套需求提升。</p>
+                    <div class="mapping-stocks">
+                        <span>英维克 002837</span>
+                        <span>艾默生（外企）</span>
+                        <span>科华数据 002335</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="color:#f87171; margin: 24px 0 16px;">⚠️ 需规避方向</h3>
+            <table class="data-table" style="background: rgba(239,68,68,0.05);">
+                <thead>
+                    <tr>
+                        <th>方向</th>
+                        <th>美股映射原因</th>
+                        <th>规避理由</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>银行/券商</td>
+                        <td>SCHW -7.63%</td>
+                        <td>降息预期升温压缩净息差，A股银行跟随承压</td>
+                    </tr>
+                    <tr>
+                        <td>医疗器械</td>
+                        <td>ABT -6.00%</td>
+                        <td>财报不及预期，板块情绪偏弱</td>
+                    </tr>
+                    <tr>
+                        <td>邮轮/出境游</td>
+                        <td>RCL/CCL -5~-6%</td>
+                        <td>美伊停火预期可能导致避险情绪降温</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Section 8: Risk Warning -->
+        <div class="section">
+            <div class="section-title"><span class="section-icon">⚠️</span>八、风险提示</div>
+            
+            <div style="display: grid; gap: 16px;">
+                <div class="warning-box">
+                    <div class="title">1. 传导失败风险</div>
+                    <ul>
+                        <li>美股AI行情已持续多日，A股算力板块可能<strong>预期已充分反映</strong></li>
+                        <li>地缘政治缓和是美股银行下跌主因，但A股银行受国内因素主导</li>
+                        <li>TSLA上涨主要反映AI叙事，A股智能驾驶板块与TSLA实际业务关联有限</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box" style="background: rgba(59,130,246,0.08); border-color: rgba(59,130,246,0.3);">
+                    <div class="title" style="color:#60a5fa;">2. 汇率与资金面风险</div>
+                    <ul style="color:#93c5fd;">
+                        <li>美债10Y收益率小幅回升至4.32%，成长股估值仍有压力</li>
+                        <li>人民币汇率暂无明显方向，但美元走强风险需关注</li>
+                        <li>北向资金若持续流出，A股外资重仓股承压</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box" style="background: rgba(168,85,247,0.08); border-color: rgba(168,85,247,0.3);">
+                    <div class="title" style="color:#c084fc;">3. 时差与信息差风险</div>
+                    <ul style="color:#d8b4fe;">
+                        <li>A股开盘前可能发布中国宏观数据或政策</li>
+                        <li>TSLA 4月30日Q1财报是重要验证节点</li>
+                        <li>美伊停火谈判仍有不确定性，若破裂将逆转市场情绪</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box" style="background: rgba(245,101,101,0.08); border-color: rgba(245,101,101,0.3);">
+                    <div class="title" style="color:#f87171;">4. 情绪反向风险</div>
+                    <ul style="color:#fca5a5;">
+                        <li>纳指12连阳为2009年以来最长，情绪极度乐观下谨防反转</li>
+                        <li>摩根大通CEO警告：市场正在低估风险</li>
+                        <li>追高美股映射股需控制仓位，设置止损</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>数据来源：TheStreet, 247WallSt, Trading Economics, 新浪财经, 东方财富, GuruFocus</p>
+            <p style="margin-top: 8px;">⚠️ 本报告仅供参考，不构成投资建议。投资有风险，决策需谨慎。</p>
+        </div>
+    </div>
+</body>
+</html>
