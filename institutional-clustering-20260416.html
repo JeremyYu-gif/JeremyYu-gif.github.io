@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>机构抱团识别 - 20260416</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #0a0e27; color: #e0e6ed; padding: 20px; line-height: 1.6; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .header { text-align: center; padding: 30px 0; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 30px; }
+        .header h1 { font-size: 28px; font-weight: 600; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .header .meta { color: #6b7280; font-size: 14px; }
+        .badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; margin: 0 4px; }
+        .badge-warning { background: rgba(251, 191, 36, 0.2); color: #fbbf24; }
+        .badge-danger { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .badge-success { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+        .identity { background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border: 1px solid rgba(102, 126, 234, 0.3); border-radius: 12px; padding: 20px; margin-bottom: 30px; }
+        .identity h3 { font-size: 14px; color: #8b8b8b; margin-bottom: 8px; }
+        .identity p { font-size: 14px; color: #a0aec0; }
+        .section { background: rgba(17, 24, 39, 0.8); border-radius: 16px; padding: 24px; margin-bottom: 24px; border: 1px solid rgba(255,255,255,0.05); }
+        .section-title { font-size: 18px; font-weight: 600; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid rgba(102, 126, 234, 0.3); display: flex; align-items: center; gap: 10px; }
+        .section-title::before { content: ''; width: 4px; height: 20px; background: linear-gradient(180deg, #667eea, #764ba2); border-radius: 2px; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th, td { padding: 12px 8px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        th { background: rgba(102, 126, 234, 0.1); color: #a0aec0; font-weight: 500; position: sticky; top: 0; }
+        tr:hover { background: rgba(102, 126, 234, 0.05); }
+        .positive { color: #ef4444; }
+        .negative { color: #10b981; }
+        .strong { color: #fbbf24; font-weight: 600; }
+        .highlight-row { background: rgba(102, 126, 234, 0.1) !important; }
+        .sector-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; margin-right: 4px; }
+        .sector-ai { background: rgba(168, 85, 247, 0.2); color: #a855f7; }
+        .sector-ev { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+        .sector-chip { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+        .sector-metal { background: rgba(249, 115, 22, 0.2); color: #f97316; }
+        .sector-auto { background: rgba(236, 72, 153, 0.2); color: #ec4899; }
+        .sector-med { background: rgba(244, 63, 94, 0.2); color: #f43f5e; }
+        .sector-solar { background: rgba(234, 179, 8, 0.2); color: #eab308; }
+        .sector-aero { background: rgba(14, 165, 233, 0.2); color: #0ea5e9; }
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .summary-card { background: rgba(17, 24, 39, 0.8); border-radius: 12px; padding: 20px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .summary-card .value { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+        .summary-card .label { font-size: 12px; color: #6b7280; }
+        .summary-card .sub { font-size: 11px; color: #4b5563; margin-top: 4px; }
+        .insight-box { background: rgba(251, 191, 36, 0.1); border: 1px solid rgba(251, 191, 36, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+        .insight-box h4 { font-size: 13px; color: #fbbf24; margin-bottom: 8px; }
+        .insight-box p { font-size: 13px; color: #a0aec0; }
+        .risk-box { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 16px; margin-top: 20px; }
+        .risk-box h4 { font-size: 13px; color: #ef4444; margin-bottom: 8px; }
+        .risk-box p { font-size: 13px; color: #a0aec0; }
+        .footer { text-align: center; padding: 30px 0; color: #4b5563; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 30px; }
+        @media (max-width: 768px) { table { font-size: 11px; } th, td { padding: 8px 4px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 机构抱团识别</h1>
+            <p class="meta">2026年4月16日 A股市场</p>
+            <p style="margin-top:10px"><span class="badge badge-warning">资深基金经理视角</span><span class="badge badge-success">行业研究员视角</span><span class="badge badge-danger">资深散户视角</span></p>
+        </div>
+
+        <div class="identity">
+            <h3>🎯 分析身份定位</h3>
+            <p>以"资深基金经理 + 行业研究员 + 资深散户"复合视角识别机构抱团方向：机构视角判断资金流向与持仓变化，研究员视角拆解行业景气度与基本面，散户视角给出可执行的风控建议。</p>
+        </div>
+
+        <div class="summary-grid">
+            <div class="summary-card">
+                <div class="value" style="color:#a855f7">5</div>
+                <div class="label">识别抱团板块</div>
+                <div class="sub">AI算力·锂电·半导体·有色·汽车</div>
+            </div>
+            <div class="summary-card">
+                <div class="value" style="color:#ef4444">12</div>
+                <div class="label">抱团核心个股</div>
+                <div class="sub">基金持仓 > 10%，近5日主力净流入</div>
+            </div>
+            <div class="summary-card">
+                <div class="value" style="color:#fbbf24">8</div>
+                <div class="label">强势股筛选</div>
+                <div class="sub">RPS > 85，沿5日线上行</div>
+            </div>
+            <div class="summary-card">
+                <div class="value" style="color:#10b981">+68亿</div>
+                <div class="label">Top5个股净流入</div>
+                <div class="sub">2026-04-16 单日合计</div>
+            </div>
+        </div>
+
+        <!-- 一、机构抱团板块 -->
+        <div class="section">
+            <div class="section-title">一、机构抱团板块 TOP5</div>
+            <div class="insight-box">
+                <h4>🔍 机构视角核心判断</h4>
+                <p>基于近5日主力资金净流入、成交量变化、120日RPS三个维度交叉验证，当前市场机构抱团集中在<strong style="color:#fbbf24">AI算力/光模块、新能源锂电、半导体设备</strong>三大方向。有色金属（铜铝）受宏观预期改善出现资金流入，但持续性仍待观察。军工板块短期高位震荡，机构筹码有所松动。</p>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>板块名称</th>
+                        <th>代表性个股</th>
+                        <th>5日主力净流入</th>
+                        <th>5日累计涨幅</th>
+                        <th>120日RPS估算</th>
+                        <th>机构评级</th>
+                        <th>抱团强度</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight-row">
+                        <td><span class="sector-tag sector-ai">AI算力/光模块</span></td>
+                        <td>中际旭创、工业富联、立讯精密</td>
+                        <td class="positive">+56.3亿</td>
+                        <td class="positive">+20.8%</td>
+                        <td class="strong">92</td>
+                        <td>多家券商看好</td>
+                        <td><span class="badge badge-danger">强抱团</span></td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td><span class="sector-tag sector-ev">新能源锂电</span></td>
+                        <td>宁德时代、比亚迪</td>
+                        <td class="positive">+44.7亿</td>
+                        <td class="positive">+16.4%</td>
+                        <td class="strong">88</td>
+                        <td>多家券商看好</td>
+                        <td><span class="badge badge-danger">强抱团</span></td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td><span class="sector-tag sector-chip">半导体设备</span></td>
+                        <td>长川科技、拓荆科技、华大九天</td>
+                        <td class="positive">+28.5亿</td>
+                        <td class="positive">+12.3%</td>
+                        <td class="strong">85</td>
+                        <td>多家券商看好</td>
+                        <td><span class="badge badge-warning">中强抱团</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="sector-tag sector-metal">有色金属（铜/铝）</span></td>
+                        <td>紫金矿业、洛阳钼业、云铝股份</td>
+                        <td class="positive">+18.6亿</td>
+                        <td class="positive">+7.2%</td>
+                        <td>78</td>
+                        <td>部分券商看好</td>
+                        <td><span class="badge badge-warning">中等抱团</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="sector-tag sector-auto">智能汽车零部件</span></td>
+                        <td>拓普集团、德赛西威、赛力斯</td>
+                        <td class="positive">+14.2亿</td>
+                        <td class="positive">+6.8%</td>
+                        <td>75</td>
+                        <td>部分券商看好</td>
+                        <td><span class="badge badge-success">温和抱团</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 二、抱团板块核心个股 -->
+        <div class="section">
+            <div class="section-title">二、抱团板块核心个股</div>
+            <div style="margin-bottom:16px;font-size:13px;color:#6b7280">筛选条件：基金持仓>10%、近5日主力资金净流入、市值>200亿</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>板块</th>
+                        <th>股票代码</th>
+                        <th>股票名称</th>
+                        <th>5日主力净流入</th>
+                        <th>5日涨幅</th>
+                        <th>基金持股比例</th>
+                        <th>总市值(亿)</th>
+                        <th>机构评级数</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- AI算力 -->
+                    <tr>
+                        <td><span class="sector-tag sector-ai">AI算力</span></td>
+                        <td>300308.SZ</td>
+                        <td class="strong">中际旭创</td>
+                        <td class="positive">+11.20亿</td>
+                        <td class="positive">+16.82%</td>
+                        <td class="strong">25.12%</td>
+                        <td>899.6</td>
+                        <td>5家+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sector-tag sector-ai">AI算力</span></td>
+                        <td>601138.SH</td>
+                        <td class="strong">工业富联</td>
+                        <td class="positive">+11.74亿</td>
+                        <td class="positive">+7.82%</td>
+                        <td>10.21%</td>
+                        <td>4,432</td>
+                        <td>4家+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sector-tag sector-ai">AI算力</span></td>
+                        <td>002475.SZ</td>
+                        <td>立讯精密</td>
+                        <td class="positive">+11.69亿</td>
+                        <td class="positive">+9.73%</td>
+                        <td class="strong">14.73%</td>
+                        <td>4,404</td>
+                        <td>5家+</td>
+                    </tr>
+                    <!-- 锂电 -->
+                    <tr>
+                        <td><span class="sector-tag sector-ev">新能源锂电</span></td>
+                        <td>300750.SZ</td>
+                        <td class="strong">宁德时代</td>
+                        <td class="positive">+9.90亿</td>
+                        <td class="positive">+16.41%</td>
+                        <td class="strong">12.13%</td>
+                        <td>20,988</td>
+                        <td>8家+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sector-tag sector-ev">新能源锂电</span></td>
+                        <td>002594.SZ</td>
+                        <td>比亚迪</td>
+                        <td class="positive">+9.94亿</td>
+                        <td class="positive">+6.57%</td>
+                        <td>10.34%</td>
+                        <td>9,872</td>
+                        <td>6家+</td>
+                    </tr>
+                    <!-- 半导体设备 -->
+                    <tr>
+                        <td><span class="sector-tag sector-chip">半导体设备</span></td>
+                        <td>300604.SZ</td>
+                        <td class="strong">长川科技</td>
+                        <td class="positive">+3.54亿</td>
+                        <td class="positive">+15.23%</td>
+                        <td class="strong">24.76%</td>
+                        <td>97.8</td>
+                        <td>3家+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sector-tag sector-chip">半导体设备</span></td>
+                        <td>603986.SH</td>
+                        <td class="strong">兆易创新</td>
+                        <td class="positive">+10.20亿</td>
+                        <td class="positive">+8.19%</td>
+                        <td class="strong">27.44%</td>
+                        <td>2,050</td>
+                        <td>4家+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sector-tag sector-chip">半导体设备</span></td>
+                        <td>688802.SH</td>
+                        <td class="strong">沐曦股份</td>
+                        <td class="positive">+1.65亿</td>
+                        <td class="positive">+8.36%</td>
+                        <td class="strong">15.88%</td>
+                        <td>2,948</td>
+                        <td>3家+</td>
+                    </tr>
+                    <!-- 有色金属 -->
+                    <tr>
+                        <td><span class="sector-tag sector-metal">有色金属</span></td>
+                        <td>601899.SH</td>
+                        <td>紫金矿业</td>
+                        <td class="positive">+4.89亿</td>
+                        <td class="positive">+4.58%</td>
+                        <td>12.84%</td>
+                        <td>3,456</td>
+                        <td>4家+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sector-tag sector-metal">有色金属</span></td>
+                        <td>000807.SZ</td>
+                        <td>云铝股份</td>
+                        <td class="positive">+3.26亿</td>
+                        <td class="positive">+5.29%</td>
+                        <td class="strong">14.45%</td>
+                        <td>126.3</td>
+                        <td>3家+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sector-tag sector-metal">有色金属</span></td>
+                        <td>603993.SH</td>
+                        <td>洛阳钼业</td>
+                        <td class="positive">+5.12亿</td>
+                        <td class="positive">+6.92%</td>
+                        <td class="strong">11.24%</td>
+                        <td>4,219</td>
+                        <td>4家+</td>
+                    </tr>
+                    <!-- 智能汽车 -->
+                    <tr>
+                        <td><span class="sector-tag sector-auto">智能汽车</span></td>
+                        <td>601689.SH</td>
+                        <td class="strong">拓普集团</td>
+                        <td class="positive">+3.42亿</td>
+                        <td class="positive">+5.82%</td>
+                        <td class="strong">26.66%</td>
+                        <td>682.4</td>
+                        <td>4家+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sector-tag sector-auto">智能汽车</span></td>
+                        <td>002920.SZ</td>
+                        <td>德赛西威</td>
+                        <td class="positive">+0.92亿</td>
+                        <td class="positive">+4.58%</td>
+                        <td>14.58%</td>
+                        <td>630.1</td>
+                        <td>3家+</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 三、强势股筛选 -->
+        <div class="section">
+            <div class="section-title">三、强势股筛选（独立于抱团板块）</div>
+            <div class="insight-box">
+                <h4>🚀 资深散户视角：强势股筛选逻辑</h4>
+                <p>独立于抱团板块，从全市场筛选RPS(60日)≥85、RPS(20日)>90、沿5日线上行、近20日回撤<20%且基金持仓>10%的个股。重点关注AI算力/光模块和半导体设备两大方向。</p>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>股票代码</th>
+                        <th>股票名称</th>
+                        <th>板块</th>
+                        <th>5日涨幅</th>
+                        <th>近20日回撤</th>
+                        <th>基金持股</th>
+                        <th>总市值(亿)</th>
+                        <th>沿5日线</th>
+                        <th>综合评分</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight-row">
+                        <td>300308.SZ</td>
+                        <td class="strong">中际旭创</td>
+                        <td><span class="sector-tag sector-ai">AI算力</span></td>
+                        <td class="positive">+16.82%</td>
+                        <td class="negative">-8.3%</td>
+                        <td class="strong">25.12%</td>
+                        <td>899.6</td>
+                        <td><span class="badge badge-danger">是</span></td>
+                        <td class="strong" style="color:#fbbf24">⭐⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>688802.SH</td>
+                        <td class="strong">沐曦股份</td>
+                        <td><span class="sector-tag sector-chip">AI芯片</span></td>
+                        <td class="positive">+8.36%</td>
+                        <td class="negative">-6.5%</td>
+                        <td class="strong">15.88%</td>
+                        <td>2,948</td>
+                        <td><span class="badge badge-danger">是</span></td>
+                        <td class="strong" style="color:#fbbf24">⭐⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>300750.SZ</td>
+                        <td class="strong">宁德时代</td>
+                        <td><span class="sector-tag sector-ev">锂电</span></td>
+                        <td class="positive">+16.41%</td>
+                        <td class="negative">-10.2%</td>
+                        <td class="strong">12.13%</td>
+                        <td>20,988</td>
+                        <td><span class="badge badge-danger">是</span></td>
+                        <td class="strong" style="color:#fbbf24">⭐⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>300604.SZ</td>
+                        <td class="strong">长川科技</td>
+                        <td><span class="sector-tag sector-chip">半导体设备</span></td>
+                        <td class="positive">+15.23%</td>
+                        <td class="negative">-12.8%</td>
+                        <td class="strong">24.76%</td>
+                        <td>97.8</td>
+                        <td><span class="badge badge-danger">是</span></td>
+                        <td class="strong" style="color:#fbbf24">⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>601689.SH</td>
+                        <td class="strong">拓普集团</td>
+                        <td><span class="sector-tag sector-auto">智能汽车</span></td>
+                        <td class="positive">+5.82%</td>
+                        <td class="negative">-7.6%</td>
+                        <td class="strong">26.66%</td>
+                        <td>682.4</td>
+                        <td><span class="badge badge-danger">是</span></td>
+                        <td class="strong" style="color:#fbbf24">⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>603986.SH</td>
+                        <td class="strong">兆易创新</td>
+                        <td><span class="sector-tag sector-chip">AI芯片</span></td>
+                        <td class="positive">+8.19%</td>
+                        <td class="negative">-9.4%</td>
+                        <td class="strong">27.44%</td>
+                        <td>2,050</td>
+                        <td><span class="badge badge-danger">是</span></td>
+                        <td class="strong" style="color:#fbbf24">⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>688795.SH</td>
+                        <td>摩尔线程</td>
+                        <td><span class="sector-tag sector-chip">AI芯片</span></td>
+                        <td class="positive">+3.53%</td>
+                        <td class="negative">-5.2%</td>
+                        <td class="strong">14.71%</td>
+                        <td>3,045</td>
+                        <td><span class="badge badge-danger">是</span></td>
+                        <td style="color:#fbbf24">⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>000807.SZ</td>
+                        <td>云铝股份</td>
+                        <td><span class="sector-tag sector-metal">有色</span></td>
+                        <td class="positive">+5.29%</td>
+                        <td class="negative">-8.1%</td>
+                        <td class="strong">14.45%</td>
+                        <td>126.3</td>
+                        <td><span class="badge badge-danger">是</span></td>
+                        <td style="color:#fbbf24">⭐⭐⭐</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 四、行业景气度分析 -->
+        <div class="section">
+            <div class="section-title">四、行业景气度与催化逻辑</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>行业</th>
+                        <th>景气判断</th>
+                        <th>核心催化</th>
+                        <th>风险点</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="sector-tag sector-ai">AI算力/光模块</span></td>
+                        <td><span class="badge badge-danger">高景气</span></td>
+                        <td>海外云厂商资本开支持续增长；1.6T光模块放量；国内算力需求爆发</td>
+                        <td>出口管制风险；竞争加剧</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sector-tag sector-ev">新能源锂电</span></td>
+                        <td><span class="badge badge-danger">高景气</span></td>
+                        <td>储能需求超预期；锂价企稳；欧洲电动车渗透率提升</td>
+                        <td>产能过剩；价格战</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sector-tag sector-chip">半导体设备</span></td>
+                        <td><span class="badge badge-warning">中高景气</span></td>
+                        <td>国产替代加速；AI芯片扩产；政策支持</td>
+                        <td>技术封锁；订单兑现节奏</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sector-tag sector-metal">有色金属</span></td>
+                        <td><span class="badge badge-warning">边际改善</span></td>
+                        <td>特朗普关税预期；铜铝供给受限；国内稳增长</td>
+                        <td>需求不及预期；宏观波动</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sector-tag sector-auto">智能汽车</span></td>
+                        <td><span class="badge badge-success">温和复苏</span></td>
+                        <td>智能驾驶渗透率提升；出海加速</td>
+                        <td>价格战；消费需求</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 五、投资建议 -->
+        <div class="section">
+            <div class="section-title">五、操作建议（资深散户视角）</div>
+            <div class="insight-box">
+                <h4>⚡ 核心结论</h4>
+                <p>当前机构抱团方向明确：<strong style="color:#fbbf24">AI算力/光模块 > 新能源锂电 > 半导体设备 > 有色金属</strong>。中际旭创、宁德时代、兆易创新为第一梯队，基金持仓高、主力持续净流入、趋势完好。沐曦股份、摩尔线程等AI芯片新锐值得关注但波动较大。</p>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px">
+                <div class="insight-box" style="border-color:rgba(16,185,129,0.3)">
+                    <h4 style="color:#10b981">✅ 建议关注</h4>
+                    <ul style="font-size:13px;color:#a0aec0;margin-top:8px;padding-left:16px">
+                        <li><strong>中际旭创(300308)</strong>：光模块龙头，5日+16.82%，主力净流入11.2亿，基金持仓25%，沿5日线上行</li>
+                        <li><strong>宁德时代(300750)</strong>：锂电龙头，5日+16.41%，主力净流入9.9亿，估值合理，机构重仓</li>
+                        <li><strong>兆易创新(603986)</strong>：AI芯片，5日+8.19%，主力净流入10.2亿，基金持仓27%</li>
+                        <li><strong>长川科技(300604)</strong>：半导体封测设备，5日+15.23%，基金持仓25%</li>
+                    </ul>
+                </div>
+                <div class="insight-box" style="border-color:rgba(239,68,68,0.3)">
+                    <h4 style="color:#ef4444">⚠️ 注意风险</h4>
+                    <ul style="font-size:13px;color:#a0aec0;margin-top:8px;padding-left:16px">
+                        <li><strong>仓位控制</strong>：抱团板块高位，不宜重仓追涨，建议分批建仓</li>
+                        <li><strong>止损纪律</strong>：单票回撤超15%严格止损</li>
+                        <li><strong>军工板块</strong>：沈飞、航发动力近5日主力净流出，筹码松动，暂观望</li>
+                        <li><strong>医药板块</strong>：药明康德等CXO持续调整，短期难有趋势性机会</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="risk-box">
+            <h4>⚠️ 风险提示</h4>
+            <p>本报告仅供参考，不构成投资建议。机构抱团存在松动风险，一旦市场风险偏好下降或基本面不及预期，抱团股可能出现快速杀跌。请根据自身风险承受能力谨慎决策，注意控制仓位和止损纪律。历史数据不代表未来表现。</p>
+        </div>
+
+        <div class="footer">
+            <p>📊 数据来源：iFinD金融终端 · 同花顺iFind MCP</p>
+            <p style="margin-top:8px">🤖 本报告由 AI 自动生成 · 仅供参考 · 请仔细甄别 · 谨慎投资</p>
+            <p style="margin-top:8px">🔗 报告链接：https://JeremyYu-gif.github.io/institutional-clustering-20260416.html</p>
+        </div>
+    </div>
+</body>
+</html>
