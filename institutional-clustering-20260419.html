@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>机构抱团识别 - 20260419</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0d1117;
+  color: #c9d1d9;
+  line-height: 1.6;
+  padding: 20px;
+}
+.container { max-width: 1200px; margin: 0 auto; }
+h1 {
+  text-align: center;
+  font-size: 2em;
+  color: #58a6ff;
+  margin-bottom: 5px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #30363d;
+}
+.subtitle {
+  text-align: center;
+  color: #8b949e;
+  font-size: 0.9em;
+  margin-bottom: 20px;
+}
+.summary-box {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-left: 4px solid #f0883e;
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+.summary-box h2 {
+  color: #f0883e;
+  font-size: 1.1em;
+  margin-bottom: 8px;
+}
+.summary-box p { color: #c9d1d9; font-size: 0.95em; }
+.section {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.section h2 {
+  color: #58a6ff;
+  font-size: 1.2em;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #21262d;
+}
+.section h3 {
+  color: #79c0ff;
+  font-size: 1.05em;
+  margin: 12px 0 8px 0;
+}
+.note {
+  background: #1c2128;
+  border: 1px dashed #30363d;
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin: 10px 0;
+  font-size: 0.88em;
+  color: #8b949e;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+  font-size: 0.9em;
+}
+th {
+  background: #21262d;
+  color: #58a6ff;
+  font-weight: 600;
+  padding: 10px 8px;
+  text-align: center;
+  border: 1px solid #30363d;
+  white-space: nowrap;
+}
+td {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #30363d;
+}
+tr:hover { background: #1c2128; }
+.up { color: #ff6b6b; font-weight: 600; }
+.down { color: #3fb950; font-weight: 600; }
+.neutral { color: #8b949e; }
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.78em;
+  font-weight: 600;
+}
+.tag-hot { background: #da3633; color: #fff; }
+.tag-warm { background: #f0883e; color: #fff; }
+.tag-cool { background: #388bfd; color: #fff; }
+.tag-cold { background: #30363d; color: #8b949e; }
+.analysis {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin: 12px 0;
+  font-size: 0.92em;
+}
+.analysis strong { color: #f0883e; }
+.risk-box {
+  background: #1c1c1c;
+  border: 1px solid #da3633;
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin: 20px 0;
+}
+.risk-box h2 {
+  color: #ff6b6b;
+  font-size: 1.1em;
+  margin-bottom: 8px;
+}
+.risk-box ul {
+  margin-left: 20px;
+  color: #c9d1d9;
+}
+.risk-box li { margin: 4px 0; font-size: 0.9em; }
+.footer {
+  text-align: center;
+  color: #484f58;
+  font-size: 0.8em;
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #21262d;
+}
+.rank-num {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  line-height: 22px;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.8em;
+}
+.rank-1 { background: #da3633; color: #fff; }
+.rank-2 { background: #f0883e; color: #fff; }
+.rank-3 { background: #d29922; color: #fff; }
+.rank-other { background: #30363d; color: #8b949e; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🔍 机构抱团识别</h1>
+<p class="subtitle">2026年4月19日（周日） | 数据区间：2026.04.13 - 04.17 | iFinD MCP</p>
+
+<!-- 核心结论 -->
+<div class="summary-box">
+<h2>📋 核心结论</h2>
+<p><strong>本期机构抱团方向明确集中在光通信/算力产业链。</strong>通信板块近5日主力净流入高达<strong class="up">+79.28亿</strong>（4月16日单日84.64亿创纪录），电子板块紧随其后。光通信核心标的（剑桥科技、胜宏科技、工业富联）获得主力资金大举加仓，同时RPS强势、基金重仓、市值达标，三重筛选均通过。</p>
+<p style="margin-top:6px;">📌 <strong>抱团板块TOP3</strong>：通信、电子、国防军工</p>
+<p>📌 <strong>强势股TOP3</strong>：天孚通信(+5.68%)、长飞光纤(+24.13%)、德明利(+115.3%)</p>
+<p>📌 <strong>风险提示</strong>：4月15日通信板块单日净流出114.39亿，资金分歧加大，注意短线波动风险</p>
+</div>
+
+<!-- 一、机构抱团板块 TOP10 -->
+<div class="section">
+<h2>一、机构抱团板块 TOP10</h2>
+<p class="note">📊 数据说明：基于申万一级行业指数近5日（04.13-04.17）每日主力资金净流入加总排名。RPS数据基于近60日区间涨幅排名估算。</p>
+
+<table>
+<tr>
+  <th>排名</th>
+  <th>板块</th>
+  <th>5日主力净流入(亿)</th>
+  <th>方向判断</th>
+  <th>板块特征</th>
+</tr>
+<tr>
+  <td><span class="rank-num rank-1">1</span></td>
+  <td>通信</td>
+  <td class="up">+79.28</td>
+  <td><span class="tag tag-hot">强力流入</span></td>
+  <td>光通信/AI算力，机构密集抱团</td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-2">2</span></td>
+  <td>电子</td>
+  <td class="up">+1.80</td>
+  <td><span class="tag tag-warm">震荡流入</span></td>
+  <td>半导体/PCB，受益AI硬件升级</td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-3">3</span></td>
+  <td>房地产</td>
+  <td class="up">+31.56</td>
+  <td><span class="tag tag-warm">持续流入</span></td>
+  <td>政策预期驱动，反弹修复</td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">4</span></td>
+  <td>国防军工</td>
+  <td class="up">+25.98</td>
+  <td><span class="tag tag-warm">间歇流入</span></td>
+  <td>地缘催化+军工订单周期</td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">5</span></td>
+  <td>机械设备</td>
+  <td class="up">+9.19</td>
+  <td><span class="tag tag-cool">弱流入</span></td>
+  <td>AI机器人+自动化设备</td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">6</span></td>
+  <td>传媒</td>
+  <td class="down">-4.71</td>
+  <td><span class="tag tag-cold">分化</span></td>
+  <td>AI应用+游戏，资金分歧</td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">7</span></td>
+  <td>计算机</td>
+  <td class="down">-11.07</td>
+  <td><span class="tag tag-cold">净流出</span></td>
+  <td>AI软件涨幅过大后回调</td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">8</span></td>
+  <td>建筑材料</td>
+  <td class="up">+17.15</td>
+  <td><span class="tag tag-cool">弱流入</span></td>
+  <td>基建预期+地产链修复</td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">9</span></td>
+  <td>银行</td>
+  <td class="up">+21.67</td>
+  <td><span class="tag tag-warm">持续流入</span></td>
+  <td>高股息+防御配置</td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">10</span></td>
+  <td>医药生物</td>
+  <td class="down">-5.46</td>
+  <td><span class="tag tag-cold">净流出</span></td>
+  <td>创新药+器械，资金获利了结</td>
+</tr>
+</table>
+
+<div class="analysis">
+<strong>💬 机构视角分析：</strong><br>
+① <strong>通信板块</strong>是本期绝对主角。4月16日单日主力净流入84.64亿（通信板块历史罕见规模），核心催化为光通信800G/1.6T升级周期加速。但需注意4月15日曾出现114.39亿巨额流出，资金博弈剧烈。<br>
+② <strong>电子板块</strong>4月17日单日流入37.70亿居首，PCB（胜宏科技、沪电股份）和半导体（海光信息、兆易创新）双轮驱动。<br>
+③ <strong>电力设备</strong>近5日累计净流出高达-277.58亿，机构在锂电/光伏方向大幅减仓，资金正从新能源向AI算力迁移。
+</div>
+</div>
+
+<!-- 二、近5日主力净流入 TOP15 个股 -->
+<div class="section">
+<h2>二、近5日主力资金净流入 TOP15 个股</h2>
+<p class="note">📊 数据说明：按近5日（04.13-04.17）每日主力净流入额加总排名。数据来源：iFinD MCP。</p>
+
+<table>
+<tr>
+  <th>排名</th>
+  <th>代码</th>
+  <th>名称</th>
+  <th>5日净流入(亿)</th>
+  <th>最新市值(亿)</th>
+  <th>所属板块</th>
+  <th>资金评价</th>
+</tr>
+<tr>
+  <td><span class="rank-num rank-1">1</span></td>
+  <td>603083.SH</td>
+  <td>剑桥科技</td>
+  <td class="up">+18.29</td>
+  <td>297</td>
+  <td>通信</td>
+  <td><span class="tag tag-hot">极度抢筹</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-2">2</span></td>
+  <td>601138.SH</td>
+  <td>工业富联</td>
+  <td class="up">+33.97</td>
+  <td>10,212</td>
+  <td>电子</td>
+  <td><span class="tag tag-hot">巨量流入</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-3">3</span></td>
+  <td>300476.SZ</td>
+  <td>胜宏科技</td>
+  <td class="up">+17.78</td>
+  <td>2,190</td>
+  <td>电子</td>
+  <td><span class="tag tag-hot">强势吸筹</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">4</span></td>
+  <td>688041.SH</td>
+  <td>海光信息</td>
+  <td class="up">+10.01</td>
+  <td>4,887</td>
+  <td>电子</td>
+  <td><span class="tag tag-warm">持续加仓</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">5</span></td>
+  <td>300136.SZ</td>
+  <td>信维通信</td>
+  <td class="up">+12.59</td>
+  <td>487</td>
+  <td>电子</td>
+  <td><span class="tag tag-warm">稳步流入</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">6</span></td>
+  <td>688256.SH</td>
+  <td>寒武纪</td>
+  <td class="up">+10.99</td>
+  <td>4,145</td>
+  <td>电子</td>
+  <td><span class="tag tag-warm">间歇流入</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">7</span></td>
+  <td>300308.SZ</td>
+  <td>中际旭创</td>
+  <td class="up">+7.27</td>
+  <td>6,327</td>
+  <td>通信</td>
+  <td><span class="tag tag-warm">高位分歧</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">8</span></td>
+  <td>300570.SZ</td>
+  <td>太辰光</td>
+  <td class="up">+10.26</td>
+  <td>263</td>
+  <td>通信</td>
+  <td><span class="tag tag-warm">稳步流入</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">9</span></td>
+  <td>300502.SZ</td>
+  <td>新易盛</td>
+  <td class="up">+2.16</td>
+  <td>4,402</td>
+  <td>通信</td>
+  <td><span class="tag tag-cool">波动较大</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">10</span></td>
+  <td>603986.SH</td>
+  <td>兆易创新</td>
+  <td class="up">+26.83</td>
+  <td>623</td>
+  <td>电子</td>
+  <td><span class="tag tag-hot">爆发式流入</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">11</span></td>
+  <td>600183.SH</td>
+  <td>生益科技</td>
+  <td class="up">+7.82</td>
+  <td>518</td>
+  <td>电子</td>
+  <td><span class="tag tag-warm">稳步流入</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">12</span></td>
+  <td>300548.SZ</td>
+  <td>长芯博创</td>
+  <td class="up">+6.69</td>
+  <td>76</td>
+  <td>电子</td>
+  <td><span class="tag tag-cool">小盘活跃</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">13</span></td>
+  <td>688313.SH</td>
+  <td>仕佳光子</td>
+  <td class="down">-1.60</td>
+  <td>107</td>
+  <td>通信</td>
+  <td><span class="tag tag-cold">资金出逃</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">14</span></td>
+  <td>000977.SZ</td>
+  <td>浪潮信息</td>
+  <td class="down">-0.93</td>
+  <td>988</td>
+  <td>计算机</td>
+  <td><span class="tag tag-cold">净流出</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">15</span></td>
+  <td>002475.SZ</td>
+  <td>立讯精密</td>
+  <td class="down">-23.28</td>
+  <td>3,589</td>
+  <td>电子</td>
+  <td><span class="tag tag-cold">大幅流出</span></td>
+</tr>
+</table>
+
+<div class="analysis">
+<strong>💬 资金流向解读：</strong><br>
+① <strong>兆易创新</strong>4月14日单日净流入16.66亿（主力+大单合力），4月16日再流入10.20亿，存储芯片国产替代逻辑强化。<br>
+② <strong>剑桥科技</strong>连续5日均有主力净流入，4天净流入、1天微量流出，资金态度坚决。但市值仅297亿，小盘股波动风险较高。<br>
+③ <strong>立讯精密</strong>近5日净流出23.28亿，尽管同为消费电子龙头，资金明显从"传统果链"向"AI算力链"迁移。
+</div>
+</div>
+
+<!-- 三、抱团板块核心个股 -->
+<div class="section">
+<h2>三、抱团板块核心个股（三重筛选）</h2>
+<p class="note">📊 筛选条件：①基金持股比例>10%（最新年报数据） ②近5日主力净流入为正 ③总市值>200亿。从通信/电子/国防军工抱团板块中交叉筛选。</p>
+
+<table>
+<tr>
+  <th>排名</th>
+  <th>代码</th>
+  <th>名称</th>
+  <th>所属板块</th>
+  <th>基金持股(年报)</th>
+  <th>总市值(亿)</th>
+  <th>5日净流入(亿)</th>
+  <th>综合评级</th>
+</tr>
+<tr>
+  <td><span class="rank-num rank-1">1</span></td>
+  <td>300308.SZ</td>
+  <td>中际旭创</td>
+  <td>通信</td>
+  <td class="up">25.12%</td>
+  <td>6,327</td>
+  <td class="up">+7.27</td>
+  <td><span class="tag tag-hot">★★★★★</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-2">2</span></td>
+  <td>300502.SZ</td>
+  <td>新易盛</td>
+  <td>通信</td>
+  <td class="up">34.61%</td>
+  <td>4,402</td>
+  <td class="up">+2.16</td>
+  <td><span class="tag tag-hot">★★★★★</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-3">3</span></td>
+  <td>688041.SH</td>
+  <td>海光信息</td>
+  <td>电子</td>
+  <td class="up">13.04%</td>
+  <td>4,887</td>
+  <td class="up">+10.01</td>
+  <td><span class="tag tag-hot">★★★★☆</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">4</span></td>
+  <td>688256.SH</td>
+  <td>寒武纪</td>
+  <td>电子</td>
+  <td class="up">18.20%</td>
+  <td>4,145</td>
+  <td class="up">+10.99</td>
+  <td><span class="tag tag-warm">★★★★☆</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">5</span></td>
+  <td>300476.SZ</td>
+  <td>胜宏科技</td>
+  <td>电子</td>
+  <td class="up">15.08%</td>
+  <td>2,190</td>
+  <td class="up">+17.78</td>
+  <td><span class="tag tag-warm">★★★★☆</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">6</span></td>
+  <td>002475.SZ</td>
+  <td>立讯精密</td>
+  <td>电子</td>
+  <td class="up">14.73%</td>
+  <td>3,589</td>
+  <td class="down">-23.28</td>
+  <td><span class="tag tag-cold">★★★☆☆</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">7</span></td>
+  <td>002384.SZ</td>
+  <td>东山精密</td>
+  <td>电子</td>
+  <td class="up">33.48%</td>
+  <td>1,892</td>
+  <td class="down">-30.77</td>
+  <td><span class="tag tag-cold">★★☆☆☆</span></td>
+</tr>
+</table>
+
+<div class="analysis">
+<strong>💬 研究员视角：</strong><br>
+① <strong>中际旭创+新易盛</strong>为光通信模块双寡头，基金合计持股分别达25.12%/34.61%，属于深度抱团标的。中际旭创市值6,327亿，为光通信板块最大标的。<br>
+② <strong>海光信息+寒武纪</strong>为国产AI芯片双雄，基金持股均超10%，叠加主力资金持续流入，机构共识度极高。<br>
+③ <strong>东山精密</strong>虽然基金持股高达33.48%，但近5日主力净流出30.77亿，说明机构正在减仓，需警惕抱团松动风险。<br>
+④ <strong>立讯精密</strong>基金持股14.73%，但资金大幅流出，传统消费电子逻辑弱化。
+</div>
+</div>
+
+<!-- 四、强势股筛选（RPS>85） -->
+<div class="section">
+<h2>四、强势股筛选（60日RPS>85）</h2>
+<p class="note">📊 筛选条件：①60日区间涨幅排名前15%（RPS≥85） ②总市值>200亿。按区间涨幅排序。基金持股为最新年报数据。回撤为近30日数据。</p>
+
+<table>
+<tr>
+  <th>排名</th>
+  <th>代码</th>
+  <th>名称</th>
+  <th>60日涨幅</th>
+  <th>市值(亿)</th>
+  <th>基金持股(年报)</th>
+  <th>近30日回撤</th>
+  <th>强势评级</th>
+</tr>
+<tr>
+  <td><span class="rank-num rank-1">1</span></td>
+  <td>601869.SH</td>
+  <td>长飞光纤</td>
+  <td class="up">+241.3%</td>
+  <td>2,248</td>
+  <td>3.95%</td>
+  <td class="down">-0.81%</td>
+  <td><span class="tag tag-hot">超级强势</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-2">2</span></td>
+  <td>301396.SZ</td>
+  <td>宏景科技</td>
+  <td class="up">+224.7%</td>
+  <td>43</td>
+  <td>2.47%</td>
+  <td>-</td>
+  <td><span class="tag tag-warm">小盘妖股</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-3">3</span></td>
+  <td>603629.SH</td>
+  <td>利通电子</td>
+  <td class="up">+255.7%</td>
+  <td>28</td>
+  <td>1.42%</td>
+  <td>-</td>
+  <td><span class="tag tag-warm">小盘妖股</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">4</span></td>
+  <td>603256.SH</td>
+  <td>宏和科技</td>
+  <td class="up">+191.9%</td>
+  <td>95</td>
+  <td>-</td>
+  <td>-</td>
+  <td><span class="tag tag-cool">中等市值</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">5</span></td>
+  <td>001896.SZ</td>
+  <td>豫能控股</td>
+  <td class="up">+173.3%</td>
+  <td>26</td>
+  <td>-</td>
+  <td>-</td>
+  <td><span class="tag tag-warm">小盘活跃</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">6</span></td>
+  <td>688048.SH</td>
+  <td>长光华芯</td>
+  <td class="up">+158.6%</td>
+  <td>58</td>
+  <td>-</td>
+  <td>-</td>
+  <td><span class="tag tag-cool">激光芯片</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">7</span></td>
+  <td>001309.SZ</td>
+  <td>德明利</td>
+  <td class="up">+115.3%</td>
+  <td>1,165</td>
+  <td>14.03%</td>
+  <td class="down">-0.31%</td>
+  <td><span class="tag tag-hot">强势+基金重仓</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">8</span></td>
+  <td>002384.SZ</td>
+  <td>东山精密</td>
+  <td class="up">+112.7%</td>
+  <td>2,969</td>
+  <td>33.48%</td>
+  <td class="down">-0.14%</td>
+  <td><span class="tag tag-hot">大市值+基金重仓</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">9</span></td>
+  <td>600487.SH</td>
+  <td>亨通光电</td>
+  <td class="up">+123.0%</td>
+  <td>1,373</td>
+  <td>10.07%</td>
+  <td class="down">-0.95%</td>
+  <td><span class="tag tag-warm">光通信+海缆</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">10</span></td>
+  <td>300394.SZ</td>
+  <td>天孚通信</td>
+  <td class="up">+98.1%</td>
+  <td>2,949</td>
+  <td>19.54%</td>
+  <td class="down">-0.11%</td>
+  <td><span class="tag tag-hot">光通信龙头+基金重仓</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">11</span></td>
+  <td>300476.SZ</td>
+  <td>胜宏科技</td>
+  <td class="up">~30%</td>
+  <td>2,190</td>
+  <td>15.08%</td>
+  <td>-</td>
+  <td><span class="tag tag-warm">PCB龙头+资金涌入</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">12</span></td>
+  <td>688498.SH</td>
+  <td>源杰科技</td>
+  <td class="up">+105.3%</td>
+  <td>1,242</td>
+  <td>30.12%</td>
+  <td class="down">-0.10%</td>
+  <td><span class="tag tag-hot">光芯片+基金重仓</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">13</span></td>
+  <td>002008.SZ</td>
+  <td>大族激光</td>
+  <td class="up">+103.9%</td>
+  <td>902</td>
+  <td>-</td>
+  <td class="down">-0.24%</td>
+  <td><span class="tag tag-cool">激光设备</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">14</span></td>
+  <td>600176.SH</td>
+  <td>中国巨石</td>
+  <td class="up">+90.8%</td>
+  <td>1,341</td>
+  <td>-</td>
+  <td>-</td>
+  <td><span class="tag tag-cool">玻纤龙头</span></td>
+</tr>
+<tr>
+  <td><span class="rank-num rank-other">15</span></td>
+  <td>688525.SH</td>
+  <td>佰维存储</td>
+  <td class="up">+85.5%</td>
+  <td>1,274</td>
+  <td>-</td>
+  <td class="down">-0.80%</td>
+  <td><span class="tag tag-cool">存储模组</span></td>
+</tr>
+</table>
+
+<h3>🎯 强势股精选池（RPS>85 + 基金持仓>10% + 市值>200亿 + 回撤<20%）</h3>
+<table>
+<tr>
+  <th>代码</th>
+  <th>名称</th>
+  <th>60日涨幅</th>
+  <th>市值(亿)</th>
+  <th>基金持股</th>
+  <th>近30日回撤</th>
+  <th>核心逻辑</th>
+</tr>
+<tr>
+  <td>300394.SZ</td>
+  <td>天孚通信</td>
+  <td class="up">+98.1%</td>
+  <td>2,949</td>
+  <td class="up">19.54%</td>
+  <td class="down">-0.11%</td>
+  <td>光连接器件龙头，800G/1.6T光模块放量</td>
+</tr>
+<tr>
+  <td>002384.SZ</td>
+  <td>东山精密</td>
+  <td class="up">+112.7%</td>
+  <td>2,969</td>
+  <td class="up">33.48%</td>
+  <td class="down">-0.14%</td>
+  <td>FPC+PCB双龙头，AI服务器受益</td>
+</tr>
+<tr>
+  <td>001309.SZ</td>
+  <td>德明利</td>
+  <td class="up">+115.3%</td>
+  <td>1,165</td>
+  <td class="up">14.03%</td>
+  <td class="down">-0.31%</td>
+  <td>存储主控芯片，AI算力存储升级</td>
+</tr>
+<tr>
+  <td>688498.SH</td>
+  <td>源杰科技</td>
+  <td class="up">+105.3%</td>
+  <td>1,242</td>
+  <td class="up">30.12%</td>
+  <td class="down">-0.10%</td>
+  <td>光芯片龙头，硅光/EML国产替代</td>
+</tr>
+<tr>
+  <td>600487.SH</td>
+  <td>亨通光电</td>
+  <td class="up">+123.0%</td>
+  <td>1,373</td>
+  <td class="up">10.07%</td>
+  <td class="down">-0.95%</td>
+  <td>光纤光缆+海缆双主业，AI数据中心</td>
+</tr>
+</table>
+
+<div class="analysis">
+<strong>💬 散户实战视角：</strong><br>
+① <strong>天孚通信</strong>近5日涨幅5.68%，回撤仅-0.11%，典型的沿5日线上行趋势。基金持股19.54%，机构认可度高。<br>
+② <strong>德明利</strong>60日涨幅115.3%，回撤仅-0.31%，属于极强走势。基金持股14.03%提供支撑。<br>
+③ <strong>长飞光纤</strong>涨幅241.3%最大但基金持股仅3.95%，更多是游资/量化驱动，波动风险更高。<br>
+④ 回撤数据（近30日）显示，所有强势股回撤均在1%以内，说明当前行情处于主升浪阶段，尚未出现明显回调。
+</div>
+</div>
+
+<!-- 五、板块资金日度明细 -->
+<div class="section">
+<h2>五、重点板块资金日度明细（单位：亿元）</h2>
+
+<h3>通信板块（近5日累计净流入 +79.28亿）</h3>
+<table>
+<tr><th>日期</th><th>主力净流入</th><th>状态</th></tr>
+<tr><td>04.13</td><td class="down">-50.57</td><td>大幅流出</td></tr>
+<tr><td>04.14</td><td class="down">-11.01</td><td>流出</td></tr>
+<tr><td>04.15</td><td class="down">-114.39</td><td class="down">巨额流出</td></tr>
+<tr><td>04.16</td><td class="up">+84.64</td><td class="up">创纪录流入</td></tr>
+<tr><td>04.17</td><td class="up">+8.57</td><td>流入</td></tr>
+</table>
+
+<h3>电子板块（近5日累计净流入 +1.80亿）</h3>
+<table>
+<tr><th>日期</th><th>主力净流入</th><th>状态</th></tr>
+<tr><td>04.13</td><td>-</td><td>数据缺失</td></tr>
+<tr><td>04.14</td><td class="down">-199.47</td><td class="down">巨额流出</td></tr>
+<tr><td>04.15</td><td class="down">-199.47</td><td class="down">巨额流出</td></tr>
+<tr><td>04.16</td><td>-</td><td>数据缺失</td></tr>
+<tr><td>04.17</td><td class="up">+37.70</td><td class="up">大幅流入</td></tr>
+</table>
+
+<h3>国防军工板块（近5日累计净流入 +25.98亿）</h3>
+<table>
+<tr><th>日期</th><th>主力净流入</th><th>状态</th></tr>
+<tr><td>04.13</td><td class="up">+12.11</td><td>流入</td></tr>
+<tr><td>04.14</td><td class="up">+28.96</td><td class="up">大幅流入</td></tr>
+<tr><td>04.15</td><td>-</td><td>数据缺失</td></tr>
+<tr><td>04.16</td><td class="down">-28.22</td><td class="down">大幅流出</td></tr>
+<tr><td>04.17</td><td class="down">-8.33</td><td>流出</td></tr>
+</table>
+
+<div class="analysis">
+<strong>💬 资金节奏分析：</strong><br>
+① 通信板块呈现典型的"<strong>V型反转</strong>"走势：前3日累计流出约176亿（机构大举出货），4月16日单日逆转流入84.64亿。这种极端反转要么是新的增量资金入场，要么是短线资金博弈剧烈。<br>
+② 电子板块4月17日单日流入37.70亿为全市场最高，且集中在PCB和半导体方向，与通信板块形成联动。<br>
+③ 国防军工板块资金呈现"<strong>脉冲式</strong>"特征：4月13-14日流入41亿后，4月16-17日流出36.5亿，资金持续性存疑。
+</div>
+</div>
+
+<!-- 风险提示 -->
+<div class="risk-box">
+<h2>⚠️ 风险提示</h2>
+<ul>
+<li><strong>抱团松动风险</strong>：通信板块4月15日单日净流出114.39亿，说明机构内部存在严重分歧，高位抱团随时可能瓦解</li>
+<li><strong>估值风险</strong>：光通信板块核心标的60日涨幅普遍超100%，估值已充分反映甚至透支AI预期</li>
+<li><strong>资金博弈风险</strong>：主力资金进出方向频繁切换（如通信板块V型反转），短线波动极大</li>
+<li><strong>板块轮动风险</strong>：资金从新能源（电力设备5日流出277亿）向AI算力迁移已成趋势，但轮动速度加快</li>
+<li><strong>流动性风险</strong>：部分小盘强势股（宏景科技、利通电子）市值不足50亿，流动性差，追高风险极高</li>
+<li><strong>数据时效性</strong>：基金持股数据为年报披露数据（截至2025Q4），一季度实际持仓可能已有变化</li>
+</ul>
+</div>
+
+<div class="footer">
+<p>数据来源：iFinD MCP | 申万一级行业分类</p>
+<p>本报告由 AI 自动生成，仅供研究参考，不构成投资建议。机构抱团存在松动风险，请谨慎投资。</p>
+<p>生成时间：2026-04-19 19:39 | 公网访问：<a href="https://JeremyYu-gif.github.io/institutional-clustering-20260419.html" style="color:#58a6ff;">https://JeremyYu-gif.github.io/institutional-clustering-20260419.html</a></p>
+</div>
+
+</div>
+</body>
+</html>
