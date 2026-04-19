@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOP Stock Daily Report - 2026-04-20</title>
+<style>
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:#f3f5f9;margin:0;padding:24px;color:#1f2937}
+.page{max-width:1180px;margin:0 auto}
+.report-header{background:linear-gradient(135deg,#111827,#1f3a8a);color:#fff;padding:28px 32px;border-radius:18px;box-shadow:0 10px 30px rgba(15,23,42,.18);margin-bottom:22px}
+.report-header h1{margin:0;font-size:30px;font-weight:800}
+.subtitle{margin-top:10px;font-size:14px;opacity:.88}
+.meta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px;font-size:13px;opacity:.85}
+.meta-pill{background:rgba(255,255,255,.12);padding:6px 10px;border-radius:999px}
+.public-url-box{margin-top:18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);padding:12px 14px;border-radius:12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.public-url-label{font-weight:700}
+.public-url-box a{color:#fff;text-decoration:none;word-break:break-all}
+.stock-card{background:#fff;border-radius:18px;padding:24px;margin-bottom:18px;box-shadow:0 10px 28px rgba(15,23,42,.08)}
+.stock-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:1px solid #e5e7eb;padding-bottom:14px}
+.stock-title-wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.stock-title-wrap h2{margin:0;font-size:22px}
+.market-tag{font-size:12px;background:#eef2ff;color:#4338ca;border-radius:999px;padding:4px 10px;font-weight:700}
+.price-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.price{font-size:22px;font-weight:800;color:#111827}
+.change{padding:6px 12px;border-radius:999px;font-size:14px;font-weight:800}
+.change-up{background:#fee2e2;color:#b91c1c}
+.change-down{background:#dcfce7;color:#15803d}
+.change-flat{background:#e5e7eb;color:#4b5563}
+.section{margin-top:18px}
+.section h3{margin:0 0 12px;font-size:16px;color:#334155;border-left:4px solid #2563eb;padding-left:10px}
+.news-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.news-summary{font-size:14px;line-height:1.7;color:#0f172a;margin-bottom:8px}
+.news-impact{font-size:13px;line-height:1.6;margin-bottom:6px}
+.impact-up{color:#b91c1c}
+.impact-down{color:#15803d}
+.impact-flat{color:#475569}
+.news-source{font-size:13px;color:#64748b}
+.news-source a{color:#2563eb;text-decoration:none}
+.news-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.news-badge,.news-time{font-size:12px;padding:4px 8px;border-radius:999px;background:#e2e8f0;color:#334155}
+.no-news{color:#64748b;font-style:italic;padding:14px;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:12px}
+.tech-table{width:100%;border-collapse:collapse;background:#fff}
+.tech-table td{padding:10px 12px;border-bottom:1px solid #e5e7eb;font-size:14px;vertical-align:top}
+.tech-table td:first-child{width:132px;color:#475569;font-weight:700;background:#f8fafc}
+.levels{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 12px;font-size:14px}
+.resistance{color:#dc2626;font-weight:700}
+.support{color:#059669;font-weight:700}
+.recommendation{padding:14px 16px;border-radius:14px;font-size:14px;font-weight:800}
+.recommend-add{background:#dcfce7;color:#166534}
+.recommend-reduce{background:#fee2e2;color:#991b1b}
+.recommend-hold{background:#e5e7eb;color:#374151}
+.analyst-section{margin-top:18px}
+.analyst-section h3{margin:0 0 12px;font-size:16px;color:#334155;border-left:4px solid #f59e0b;padding-left:10px}
+.analyst-item{background:#fffbeb;border:1px solid #fde68a;border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.analyst-header{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;align-items:center}
+.analyst-name{font-weight:700;color:#92400e;font-size:14px}
+.analyst-rating{font-size:12px;padding:3px 8px;border-radius:999px;background:#d97706;color:#fff;font-weight:700}
+.analyst-target{font-size:12px;padding:3px 8px;border-radius:999px;background:#059669;color:#fff;font-weight:700}
+.analyst-summary{font-size:13px;line-height:1.6;color:#78350f}
+.analyst-source{font-size:12px;color:#92400e;margin-top:8px}
+.analyst-source a{color:#2563eb;text-decoration:none}
+.no-analyst{color:#92400e;font-style:italic;padding:14px;background:#fffbeb;border:1px dashed #fde68a;border-radius:12px}
+.footer{text-align:center;color:#94a3b8;font-size:12px;margin-top:26px;padding-top:18px;border-top:1px solid #e5e7eb}
+@media (max-width:768px){body{padding:14px}.report-header,.stock-card{padding:18px}.stock-header{flex-direction:column}.price-wrap{align-items:flex-start}.levels{flex-direction:column;gap:8px}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="report-header">
+    <h1>TOP Stock Daily Report</h1>
+    <div class="subtitle">分析身份：资深基金经理 + 行业研究员 + 资深散户</div>
+    <div class="meta-row">
+      <span class="meta-pill">报告日期：2026-04-20</span>
+      <span class="meta-pill">生成时间：2026-04-20 07:05</span>
+      <span class="meta-pill">输出格式：HTML</span>
+      <span class="meta-pill">覆盖股票：12只</span>
+    </div>
+    <div class="public-url-box">
+      <span class="public-url-label">公网访问链接</span>
+      <a href="https://JeremyYu-gif.github.io/TOP-stock-daily-20260420.html" target="_blank">https://JeremyYu-gif.github.io/TOP-stock-daily-20260420.html</a>
+    </div>
+  </header>
+
+  <section class="stock-card">
+    <div class="stock-header">
+      <div class="stock-title-wrap"><h2>Summit Therapeutics Inc（SMMT）</h2><span class="market-tag">NASDAQ</span></div>
+      <div class="price-wrap"><span class="price">$25.15</span><span class="change change-up">+2.99%</span></div>
+    </div>
+    <div class="section"><h3>一、今日资讯</h3>
+      <div class="news-item">
+        <div class="news-summary"><strong>SMMT</strong>股价$25.15，涨2.99%。17位分析师一致"买入"评级，目标价$32.93，潜在涨幅+30.93%。Ivonescimab FDA已受理BLA申请。</div>
+        <div class="news-impact impact-up">正向▲ — 核心资产估值重估进行中</div>
+        <div class="news-source">StockAnalysis</div>
+      </div>
+    </div>
+    <div class="section"><h3>二、技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线系统</td><td>多头排列试探，均线向上发散</td></tr>
+        <tr><td>MACD</td><td>零轴上方运行，柱线持续扩张</td></tr>
+        <tr><td>KDJ</td><td>金叉向上，K值85附近超买区域</td></tr>
+        <tr><td>量价关系</td><td>放量上涨，成交量显著放大</td></tr>
+      </table>
+      <div class="levels"><span class="resistance">压力位：$28.50</span><span class="support">支撑位：$23.00</span></div>
+      <div class="recommendation recommend-add">综合操作建议：增仓 — FDA已受理BLA申请，多个III期试验积极数据，目标价$32.93</div>
+    </div>
+  </section>
+
+  <section class="stock-card">
+    <div class="stock-header">
+      <div class="stock-title-wrap"><h2>Biogen Inc（BIIB）</h2><span class="market-tag">NASDAQ</span></div>
+      <div class="price-wrap"><span class="price">$177.35</span><span class="change change-up">+0.85%</span></div>
+    </div>
+    <div class="section"><h3>一、今日资讯</h3>
+      <div class="news-item">
+        <div class="news-summary"><strong>Piper Sandler</strong>将BIIB评级从"持有"上调至"买入"，目标价从$177上调至$214（+20.67%）。Oppenheimer维持买入，目标价$275。</div>
+        <div class="news-impact impact-up">正向▲ — 多家机构上调评级</div>
+        <div class="news-source">StockAnalysis</div>
+      </div>
+    </div>
+    <div class="section"><h3>二、技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线系统</td><td>均线收敛，底部企稳迹象</td></tr>
+        <tr><td>MACD</td><td>零轴附近金叉形成</td></tr>
+        <tr><td>KDJ</td><td>低位金叉，J值回升</td></tr>
+        <tr><td>量价关系</td><td>量能温和放大</td></tr>
+      </table>
+      <div class="levels"><span class="resistance">压力位：$195.00</span><span class="support">支撑位：$165.00</span></div>
+      <div class="recommendation recommend-add">综合操作建议：增仓 — Piper Sandler大幅上调评级至买入，目标价$214</div>
+    </div>
+  </section>
+
+  <section class="stock-card">
+    <div class="stock-header">
+      <div class="stock-title-wrap"><h2>Alnylam Pharmaceuticals Inc（ALNY）</h2><span class="market-tag">NASDAQ</span></div>
+      <div class="price-wrap"><span class="price">$309.66</span><span class="change change-flat">--</span></div>
+    </div>
+    <div class="section"><h3>一、今日资讯</h3>
+      <div class="news-item">
+        <div class="news-summary"><strong>28位分析师</strong>覆盖ALNY，共识"强力买入"，目标价$471，潜在涨幅+52.10%。Truist目标价$505，HC Wainwright目标价$510。</div>
+        <div class="news-impact impact-up">正向▲ — RNAi龙头稳健</div>
+        <div class="news-source">StockAnalysis</div>
+      </div>
+    </div>
+    <div class="section"><h3>二、技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线系统</td><td>多头排列，均线多头向上</td></tr>
+        <tr><td>MACD</td><td>零轴上方稳健运行</td></tr>
+        <tr><td>KDJ</td><td>高位震荡，J值110</td></tr>
+        <tr><td>量价关系</td><td>量价配合良好</td></tr>
+      </table>
+      <div class="levels"><span class="resistance">压力位：$330.00</span><span class="support">支撑位：$280.00</span></div>
+      <div class="recommendation recommend-hold">综合操作建议：持有 — 共识目标价$471（+52%），短线高位震荡</div>
+    </div>
+  </section>
+
+  <section class="stock-card">
+    <div class="stock-header">
+      <div class="stock-title-wrap"><h2>Vertex Pharmaceuticals Inc（VRTX）</h2><span class="market-tag">NASDAQ</span></div>
+      <div class="price-wrap"><span class="price">$441.20</span><span class="change change-up">+1.27%</span></div>
+    </div>
+    <div class="section"><h3>一、今日资讯</h3>
+      <div class="news-item">
+        <div class="news-summary"><strong>VRTX</strong>市值$1,122亿，29位分析师覆盖，"买入"评级，目标价$539.69，潜在涨幅+22.32%。PE 28.8x合理。</div>
+        <div class="news-impact impact-up">正向▲ — 稳健上行</div>
+        <div class="news-source">StockAnalysis</div>
+      </div>
+    </div>
+    <div class="section"><h3>二、技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线系统</td><td>多头排列，均线向上发散</td></tr>
+        <tr><td>MACD</td><td>零轴上方金叉</td></tr>
+        <tr><td>KDJ</td><td>高位震荡，J值95</td></tr>
+        <tr><td>量价关系</td><td>量能温和</td></tr>
+      </table>
+      <div class="levels"><span class="resistance">压力位：$460.00</span><span class="support">支撑位：$420.00</span></div>
+      <div class="recommendation recommend-hold">综合操作建议：持有 — PE 28.8x合理，长线稳健</div>
+    </div>
+  </section>
+
+  <section class="stock-card">
+    <div class="stock-header">
+      <div class="stock-title-wrap"><h2>Ionis Pharmaceuticals Inc（IONS）</h2><span class="market-tag">NASDAQ</span></div>
+      <div class="price-wrap"><span class="price">$75.71</span><span class="change change-up">+0.60%</span></div>
+    </div>
+    <div class="section"><h3>一、今日资讯</h3>
+      <div class="news-item">
+        <div class="news-summary"><strong>IONS</strong>22位分析师覆盖，"强力买入"，平均目标价$90.14，涨幅+19.06%。B of A目标价$111，HC Wainwright目标价$120。</div>
+        <div class="news-impact impact-up">正向▲ — 反义RNA技术领先</div>
+        <div class="news-source">StockAnalysis</div>
+      </div>
+    </div>
+    <div class="section"><h3>二、技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线系统</td><td>底部反弹，均线收敛</td></tr>
+        <tr><td>MACD</td><td>零轴下方金叉形成</td></tr>
+        <tr><td>KDJ</td><td>低位金叉，J值回升</td></tr>
+        <tr><td>量价关系</td><td>温和放量</td></tr>
+      </table>
+      <div class="levels"><span class="resistance">压力位：$85.00</span><span class="support">支撑位：$68.00</span></div>
+      <div class="recommendation recommend-add">综合操作建议：增仓 — HC Wainwright目标价$120（+58.5%），底部反弹信号</div>
+    </div>
+  </section>
+
+  <section class="stock-card">
+    <div class="stock-header">
+      <div class="stock-title-wrap"><h2>Acumen Pharmaceuticals Inc（ABOS）</h2><span class="market-tag">NASDAQ</span></div>
+      <div class="price-wrap"><span class="price">$2.82</span><span class="change change-up">+4.83%</span></div>
+    </div>
+    <div class="section"><h3>一、今日资讯</h3>
+      <div class="news-item">
+        <div class="news-summary"><strong>ABOS</strong>涨4.83%至$2.82。2位分析师覆盖，"强烈买入"，目标价$8.00，涨幅+183.69%。专注阿尔茨海默病，Sabirnetug处于II期临床。</div>
+        <div class="news-impact impact-up">正向▲ — AD领域长期赛道</div>
+        <div class="news-source">StockAnalysis</div>
+      </div>
+    </div>
+    <div class="section"><h3>二、技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线系统</td><td>低位反弹，均线空头排列</td></tr>
+        <tr><td>MACD</td><td>零轴下方柱线收缩</td></tr>
+        <tr><td>KDJ</td><td>低位金叉</td></tr>
+        <tr><td>量价关系</td><td>温和放量</td></tr>
+      </table>
+      <div class="levels"><span class="resistance">压力位：$3.50</span><span class="support">支撑位：$2.20</span></div>
+      <div class="recommendation recommend-hold">综合操作建议：持有 — AD领域长期布局，财报5月12日</div>
+    </div>
+  </section>
+
+  <section class="stock-card">
+    <div class="stock-header">
+      <div class="stock-title-wrap"><h2>Vor Biopharma Inc（VOR）</h2><span class="market-tag">NASDAQ</span></div>
+      <div class="price-wrap"><span class="price">$16.59</span><span class="change change-up">+10.82%</span></div>
+    </div>
+    <div class="section"><h3>一、今日资讯</h3>
+      <div class="news-item">
+        <div class="news-summary"><strong>VOR</strong>暴涨10.82%至$16.59。10位分析师覆盖，"买入"，目标价$45.33，涨幅+173.24%。Telitacicept多项III期积极数据。</div>
+        <div class="news-impact impact-up">正向▲ — 多项III期达到主要终点</div>
+        <div class="news-source">StockAnalysis</div>
+      </div>
+    </div>
+    <div class="section"><h3>二、技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线系统</td><td>低位反弹，均线收敛</td></tr>
+        <tr><td>MACD</td><td>零轴下方金叉</td></tr>
+        <tr><td>KDJ</td><td>低位反弹，J值快速回升</td></tr>
+        <tr><td>量价关系</td><td>放量上涨</td></tr>
+      </table>
+      <div class="levels"><span class="resistance">压力位：$22.00</span><span class="support">支撑位：$14.00</span></div>
+      <div class="recommendation recommend-hold">综合操作建议：持有 — 暴涨后波动风险，财报5月13日，控制仓位</div>
+    </div>
+  </section>
+
+  <section class="stock-card">
+    <div class="stock-header">
+      <div class="stock-title-wrap"><h2>AC Immune SA（ACIU）</h2><span class="market-tag">NASDAQ</span></div>
+      <div class="price-wrap"><span class="price">$3.01</span><span class="change change-down">-1.95%</span></div>
+    </div>
+    <div class="section"><h3>一、今日资讯</h3>
+      <div class="news-item">
+        <div class="news-summary"><strong>ACIU</strong>收跌1.95%至$3.01。2位分析师覆盖，"强烈买入"，目标价$10.00，涨幅+232.23%。BTIG重申强烈买入，目标价$8.00。</div>
+        <div class="news-impact impact-flat">中性 — AD领域布局，短期调整</div>
+        <div class="news-source">StockAnalysis</div>
+      </div>
+    </div>
+    <div class="section"><h3>二、技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线系统</td><td>均线空头排列</td></tr>
+        <tr><td>MACD</td><td>零轴下方运行</td></tr>
+        <tr><td>KDJ</td><td>低位震荡</td></tr>
+        <tr><td>量价关系</td><td>量能萎缩</td></tr>
+      </table>
+      <div class="levels"><span class="resistance">压力位：$4.00</span><span class="support">支撑位：$2.50</span></div>
+      <div class="recommendation recommend-hold">综合操作建议：持有 — AD领域，分析师目标价$10.00（+232%），耐心等待催化剂</div>
+    </div>
+  </section>
+
+  <section class="stock-card">
+    <div class="stock-header">
+      <div class="stock-title-wrap"><h2>药明生物（02269）</h2><span class="market-tag">HKEX</span></div>
+      <div class="price-wrap"><span class="price">HKD 35.72</span><span class="change change-down">-3.93%</span></div>
+    </div>
+    <div class="section"><h3>一、今日资讯</h3>
+      <div class="news-item">
+        <div class="news-summary"><strong>药明生物</strong>收跌3.93%至HKD 35.72，成交额11.21亿港元。21位分析师"买入"，目标价HKD 46.10，涨幅+29.06%。ADC CDMO全球龙头。</div>
+        <div class="news-impact impact-flat">中性 — CXO板块短期承压，基本面无虞</div>
+        <div class="news-source">Investing.com</div>
+      </div>
+    </div>
+    <div class="section"><h3>二、技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线系统</td><td>均线收敛，震荡整理</td></tr>
+        <tr><td>MACD</td><td>零轴附近运行</td></tr>
+        <tr><td>KDJ</td><td>中位震荡</td></tr>
+        <tr><td>量价关系</td><td>缩量调整</td></tr>
+      </table>
+      <div class="levels"><span class="resistance">压力位：HKD 40.00</span><span class="support">支撑位：HKD 33.00</span></div>
+      <div class="recommendation recommend-hold">综合操作建议：持有 — CXO龙头，分析师目标价$46.10（+29%）</div>
+    </div>
+  </section>
+
+  <section class="stock-card">
+    <div class="stock-header">
+      <div class="stock-title-wrap"><h2>荣昌生物（688331）</h2><span class="market-tag">SHSE</span></div>
+      <div class="price-wrap"><span class="price">¥150.11</span><span class="change change-down">-2.06%</span></div>
+    </div>
+    <div class="section"><h3>一、今日资讯</h3>
+      <div class="news-item">
+        <div class="news-summary"><strong>荣昌生物</strong>维迪西妥单抗第五适应症（一线治疗HER2表达尿路上皮癌）获批。主力净流出9941万元。</div>
+        <div class="news-impact impact-flat">中性 — 新适应症获批利好，短期资金流出</div>
+        <div class="news-source">新浪财经</div>
+      </div>
+    </div>
+    <div class="section"><h3>二、技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线系统</td><td>均线多头排列，强势整理</td></tr>
+        <tr><td>MACD</td><td>零轴上方柱线收缩</td></tr>
+        <tr><td>KDJ</td><td>高位死叉，J值回落</td></tr>
+        <tr><td>量价关系</td><td>缩量调整，换手率5.85%</td></tr>
+      </table>
+      <div class="levels"><span class="resistance">压力位：¥165.00</span><span class="support">支撑位：¥140.00</span></div>
+      <div class="recommendation recommend-hold">综合操作建议：持有 — 维迪西妥单抗五适应症获批，长期价值凸显</div>
+    </div>
+  </section>
+
+  <section class="stock-card">
+    <div class="stock-header">
+      <div class="stock-title-wrap"><h2>卓胜微（300782）</h2><span class="market-tag">SZSE</span></div>
+      <div class="price-wrap"><span class="price">¥106.00</span><span class="change change-up">+2.45%</span></div>
+    </div>
+    <div class="section"><h3>一、今日资讯</h3>
+      <div class="news-item">
+        <div class="news-summary"><strong>卓胜微</strong>涨2.45%至¥106.00，成交额32.61亿元，换手率6.76%。射频前端芯片龙头，国产替代核心标的。</div>
+        <div class="news-impact impact-up">正向▲ — 射频芯片需求回暖</div>
+        <div class="news-source">新浪财经</div>
+      </div>
+    </div>
+    <div class="section"><h3>二、技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线系统</td><td>均线多头排列</td></tr>
+        <tr><td>MACD</td><td>零轴上方金叉</td></tr>
+        <tr><td>KDJ</td><td>高位金叉</td></tr>
+        <tr><td>量价关系</td><td>放量上涨</td></tr>
+      </table>
+      <div class="levels"><span class="resistance">压力位：¥115.00</span><span class="support">支撑位：¥95.00</span></div>
+      <div class="recommendation recommend-hold">综合操作建议：持有 — 射频前端龙头，国产替代核心受益</div>
+    </div>
+  </section>
+
+  <section class="stock-card">
+    <div class="stock-header">
+      <div class="stock-title-wrap"><h2>有研新材（600206）</h2><span class="market-tag">SHSE</span></div>
+      <div class="price-wrap"><span class="price">¥23.29</span><span class="change change-up">+4.30%</span></div>
+    </div>
+    <div class="section"><h3>一、今日资讯</h3>
+      <div class="news-item">
+        <div class="news-summary"><strong>有研新材</strong>涨4.30%至¥23.29，成交额13.51亿元，主力净流入1.10亿元。业绩预增公告发布后持续强势。</div>
+        <div class="news-impact impact-up">正向▲ — 业绩预增利好，主力资金净流入</div>
+        <div class="news-source">新浪财经</div>
+      </div>
+    </div>
+    <div class="section"><h3>二、技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线系统</td><td>均线多头排列，强势上涨</td></tr>
+        <tr><td>MACD</td><td>零轴上方持续扩张</td></tr>
+        <tr><td>KDJ</td><td>高位金叉</td></tr>
+        <tr><td>量价关系</td><td>放量上涨，价量配合良好</td></tr>
+      </table>
+      <div class="levels"><span class="resistance">压力位：¥25.00</span><span class="support">支撑位：¥21.00</span></div>
+      <div class="recommendation recommend-hold">综合操作建议：持有 — 业绩预增+主力净流入，PE 70.8x注意估值</div>
+    </div>
+  </section>
+
+  <div class="footer">本报告由 AI 生成，仅供参考，请仔细甄别，谨慎投资。</div>
+</div>
+</body>
+</html>
