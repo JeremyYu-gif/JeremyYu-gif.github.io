@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>机构抱团识别日报 · 2026-04-20</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --red: #f85149;
+      --green: #3fb950;
+      --gold: #d29922;
+      --blue: #58a6ff;
+      --purple: #bc8cff;
+      --cyan: #79c0ff;
+      --orange: #ffa657;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'SF Pro Display', 'PingFang SC', 'Helvetica Neue', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .container { max-width: 1280px; margin: 0 auto; padding: 24px 20px; }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #1a1f2e 0%, #161b22 100%);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--purple), var(--blue), var(--cyan));
+    }
+    .header-top { display: flex; justify-content: space-between; align-items: flex-start; }
+    .header-title { font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .header-subtitle { font-size: 13px; color: var(--text-muted); }
+    .header-date {
+      background: rgba(188, 140, 255, 0.1);
+      border: 1px solid rgba(188, 140, 255, 0.3);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 13px;
+      color: var(--purple);
+    }
+    .identity-bar {
+      display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;
+    }
+    .identity-tag {
+      background: rgba(88, 166, 255, 0.1);
+      border: 1px solid rgba(88, 166, 255, 0.25);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 12px;
+      color: var(--blue);
+    }
+
+    /* Market Overview */
+    .market-overview {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .market-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+    .market-card .label { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+    .market-card .value { font-size: 20px; font-weight: 700; }
+    .market-card .change { font-size: 12px; margin-top: 4px; }
+    .up { color: var(--red); }
+    .down { color: var(--green); }
+    .neutral { color: var(--text-muted); }
+
+    /* Section */
+    .section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .section-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-number {
+      width: 24px; height: 24px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, var(--purple), var(--blue));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: #fff;
+      flex-shrink: 0;
+    }
+    .section-title { font-size: 16px; font-weight: 600; color: var(--text); }
+    .section-desc { font-size: 12px; color: var(--text-muted); margin-left: auto; }
+
+    /* Table */
+    .table-wrap { overflow-x: auto; padding: 0 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    thead th {
+      background: rgba(48, 54, 61, 0.6);
+      color: var(--text-muted);
+      font-weight: 500;
+      padding: 10px 14px;
+      text-align: center;
+      white-space: nowrap;
+      border-bottom: 1px solid var(--border);
+    }
+    tbody td {
+      padding: 10px 14px;
+      text-align: center;
+      border-bottom: 1px solid rgba(48, 54, 61, 0.4);
+      white-space: nowrap;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: rgba(48, 54, 61, 0.3); }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .badge-red { background: rgba(248, 81, 73, 0.15); color: var(--red); border: 1px solid rgba(248, 81, 73, 0.3); }
+    .badge-green { background: rgba(63, 185, 80, 0.15); color: var(--green); border: 1px solid rgba(63, 185, 80, 0.3); }
+    .badge-gold { background: rgba(210, 153, 34, 0.15); color: var(--gold); border: 1px solid rgba(210, 153, 34, 0.3); }
+    .badge-blue { background: rgba(88, 166, 255, 0.15); color: var(--blue); border: 1px solid rgba(88, 166, 255, 0.3); }
+    .badge-purple { background: rgba(188, 140, 255, 0.15); color: var(--purple); border: 1px solid rgba(188, 140, 255, 0.3); }
+
+    .rank-1 { color: var(--gold); font-weight: 700; }
+    .rank-2 { color: var(--text); font-weight: 600; }
+    .rank-3 { color: var(--orange); font-weight: 600; }
+
+    /* Insight Box */
+    .insight-box {
+      margin: 16px 20px;
+      background: rgba(88, 166, 255, 0.05);
+      border: 1px solid rgba(88, 166, 255, 0.2);
+      border-left: 3px solid var(--blue);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .insight-box strong { color: var(--blue); }
+
+    /* Alert / Risk box */
+    .risk-box {
+      margin: 16px 20px;
+      background: rgba(248, 81, 73, 0.05);
+      border: 1px solid rgba(248, 81, 73, 0.2);
+      border-left: 3px solid var(--red);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .risk-box strong { color: var(--red); }
+
+    /* Star stocks */
+    .stock-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding: 16px 20px;
+    }
+    .stock-card {
+      background: rgba(48, 54, 61, 0.3);
+      border: 1px solid rgba(188, 140, 255, 0.2);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .stock-card:hover { border-color: var(--purple); }
+    .stock-card-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 10px;
+    }
+    .stock-name { font-size: 15px; font-weight: 700; color: var(--text); }
+    .stock-code { font-size: 11px; color: var(--text-muted); }
+    .stock-price { font-size: 18px; font-weight: 700; }
+    .stock-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .meta-item { font-size: 11px; color: var(--text-muted); }
+    .meta-item span { color: var(--text); font-weight: 500; }
+
+    /* Summary stats */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      padding: 16px 20px;
+    }
+    .stat-item {
+      background: rgba(48, 54, 61, 0.3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+    .stat-label { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+    .stat-value { font-size: 16px; font-weight: 700; }
+
+    /* Footer */
+    .footer {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-top: 20px;
+    }
+    .footer-title { font-size: 13px; font-weight: 600; color: var(--gold); margin-bottom: 10px; }
+    .footer-text { font-size: 12px; color: var(--text-muted); line-height: 1.8; }
+
+    @media (max-width: 768px) {
+      .market-overview { grid-template-columns: repeat(2, 1fr); }
+      .stock-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="header-title">📊 机构抱团识别日报</div>
+        <div class="header-subtitle">主力资金流向 · 板块RPS筛选 · 核心个股深度扫描</div>
+      </div>
+      <div class="header-date">2026年04月20日（周一）</div>
+    </div>
+    <div class="identity-bar">
+      <span class="identity-tag">🏦 资深基金经理视角</span>
+      <span class="identity-tag">🔬 行业研究员视角</span>
+      <span class="identity-tag">📈 资深散户视角</span>
+      <span class="identity-tag">数据来源：NeoData实时行情</span>
+    </div>
+  </div>
+
+  <!-- Market Overview -->
+  <div class="market-overview">
+    <div class="market-card">
+      <div class="label">上证指数</div>
+      <div class="value up">4,082.13</div>
+      <div class="change up">▲ +0.76% | 5日+2.35%</div>
+    </div>
+    <div class="market-card">
+      <div class="label">深证成指</div>
+      <div class="value up">14,966.75</div>
+      <div class="change up">▲ +0.55% | 5日+3.88%</div>
+    </div>
+    <div class="market-card">
+      <div class="label">全市场成交额</div>
+      <div class="value up">2.61万亿</div>
+      <div class="change up">▲ 近6周新高</div>
+    </div>
+    <div class="market-card">
+      <div class="label">主力净流出（全市场）</div>
+      <div class="value down">-68.1亿</div>
+      <div class="change neutral">11行业净流入 / 20行业净流出</div>
+    </div>
+  </div>
+
+  <!-- 板块资金流向 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <div class="section-title">今日行业板块主力资金排行</div>
+      <div class="section-desc">申万一级 | 2026-04-20</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>排名</th>
+            <th>板块名称</th>
+            <th>今日涨跌幅</th>
+            <th>5日涨跌幅</th>
+            <th>20日涨跌幅</th>
+            <th>今日主力净流入</th>
+            <th>5日主力净流入</th>
+            <th>换手率</th>
+            <th>领涨股</th>
+            <th>抱团信号</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rank-1">🥇 1</td>
+            <td><strong>国防军工</strong></td>
+            <td class="up">+3.47%</td>
+            <td class="up">+约8%</td>
+            <td class="up">+约12%</td>
+            <td class="up">+35.51亿</td>
+            <td class="up">+46.70亿</td>
+            <td>约5%</td>
+            <td>中国卫通+10.01%</td>
+            <td><span class="badge badge-red">强势抱团</span></td>
+          </tr>
+          <tr>
+            <td class="rank-1">🥇 2</td>
+            <td><strong>消费电子</strong></td>
+            <td class="up">+3.27%</td>
+            <td class="up">+9.17%</td>
+            <td class="up">+18.57%</td>
+            <td class="up">+37.28亿</td>
+            <td class="up">+60.63亿</td>
+            <td>3.37%</td>
+            <td>立讯精密+10.01%</td>
+            <td><span class="badge badge-red">强势抱团</span></td>
+          </tr>
+          <tr>
+            <td class="rank-2">🥈 3</td>
+            <td><strong>传媒</strong></td>
+            <td class="up">+约2%</td>
+            <td class="up">+约5%</td>
+            <td class="up">+约8%</td>
+            <td class="up">+13亿+</td>
+            <td class="up">+约30亿</td>
+            <td>约3%</td>
+            <td>蓝色光标等</td>
+            <td><span class="badge badge-gold">持续流入</span></td>
+          </tr>
+          <tr>
+            <td class="rank-2">🥈 4</td>
+            <td><strong>电子</strong></td>
+            <td class="up">+1.56%</td>
+            <td class="up">+约7%</td>
+            <td class="up">+约15%</td>
+            <td class="up">+13亿+</td>
+            <td class="up">+约25亿</td>
+            <td>约3%</td>
+            <td>立讯精密/浪潮信息</td>
+            <td><span class="badge badge-gold">持续流入</span></td>
+          </tr>
+          <tr>
+            <td class="rank-3">🥉 5</td>
+            <td><strong>航天装备Ⅱ</strong></td>
+            <td class="up">+8.87%</td>
+            <td class="up">+17.51%</td>
+            <td class="up">+16.04%</td>
+            <td class="up">+34.80亿</td>
+            <td class="up">+46.70亿</td>
+            <td>6.04%</td>
+            <td>中国卫通+10.01%</td>
+            <td><span class="badge badge-red">爆发性</span></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>机械设备</td>
+            <td class="up">+约1%</td>
+            <td class="up">+约3%</td>
+            <td class="up">+约5%</td>
+            <td class="up">+2亿+</td>
+            <td class="neutral">持平</td>
+            <td>约2%</td>
+            <td>—</td>
+            <td><span class="badge badge-blue">弱流入</span></td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>交通运输</td>
+            <td class="up">+约0.5%</td>
+            <td class="neutral">—</td>
+            <td class="neutral">—</td>
+            <td class="up">+2亿+</td>
+            <td class="neutral">持平</td>
+            <td>约1%</td>
+            <td>—</td>
+            <td><span class="badge badge-blue">弱流入</span></td>
+          </tr>
+          <tr>
+            <td>净流出1</td>
+            <td>通信</td>
+            <td class="up">+0.65%</td>
+            <td class="up">+约5%</td>
+            <td class="up">+约10%</td>
+            <td class="down">-50.51亿</td>
+            <td class="up">+约80亿</td>
+            <td>约3%</td>
+            <td>亨通光电+9.42%</td>
+            <td><span class="badge badge-purple">获利回吐</span></td>
+          </tr>
+          <tr>
+            <td>净流出2</td>
+            <td>基础化工</td>
+            <td class="neutral">混合</td>
+            <td class="neutral">—</td>
+            <td class="neutral">—</td>
+            <td class="down">-21.17亿</td>
+            <td class="down">负向</td>
+            <td>约2%</td>
+            <td>—</td>
+            <td><span class="badge badge-green">资金撤出</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight-box">
+      <strong>📌 机构视角解读：</strong>今日全市场主力净流出68.1亿，但结构性分化极为明显。<strong>国防军工+航天装备</strong>合计净流入逾35亿，为近3个月最强，核心催化是4月19日中美贸易谈判进展与"6G卫星互联网"政策加持；<strong>消费电子板块</strong>在立讯精密（+10%，成交额251亿史上第三高）带动下强势突破，荣耀机器人夺冠+AI端侧算力重构逻辑持续兑现。通信板块今日净流出-50.51亿，为获利兑现，但5日维度仍保持正向流入，主力方向并未逆转。
+    </div>
+  </div>
+
+  <!-- 机构抱团板块 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <div class="section-title">机构抱团板块识别（RPS高强度）</div>
+      <div class="section-desc">筛选标准：5日主力净流入 + 强势趋势 + 研报催化</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>板块</th>
+            <th>60日涨跌幅</th>
+            <th>RPS强度</th>
+            <th>5日主力净流入</th>
+            <th>基金重仓季度占比变化</th>
+            <th>近月研报数</th>
+            <th>抱团逻辑</th>
+            <th>风险提示</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>光模块（通信设备）</strong></td>
+            <td class="up">+约60%</td>
+            <td><span class="badge badge-red">RPS≈95</span></td>
+            <td class="up">+80亿+（近5日）</td>
+            <td class="up">+3.36pct至7.14%（历史最高）</td>
+            <td>50+家</td>
+            <td>AI算力超级周期，海内外CSP资本开支加速，光模块需求爆发</td>
+            <td class="down">今日净流出50.51亿，获利盘压力大</td>
+          </tr>
+          <tr>
+            <td><strong>消费电子（机器人）</strong></td>
+            <td class="up">+88.68%（52周）</td>
+            <td><span class="badge badge-red">RPS≈93</span></td>
+            <td class="up">+60.63亿（5日）</td>
+            <td class="up">持续上升</td>
+            <td>30+家</td>
+            <td>AI端侧推理重构硬件需求，立讯精密是荣耀机器人核心供应商，AI手机/PC爆发</td>
+            <td class="neutral">PE估值偏高，需跟踪业绩兑现节奏</td>
+          </tr>
+          <tr>
+            <td><strong>航天装备/国防军工</strong></td>
+            <td class="up">+约30%（52周）</td>
+            <td><span class="badge badge-gold">RPS≈90</span></td>
+            <td class="up">+46.70亿（5日）</td>
+            <td class="up">近期快速提升</td>
+            <td>20+家</td>
+            <td>6G卫星互联网国家战略，中美缓和背景下军工景气，低空经济协同</td>
+            <td class="neutral">今日超速上涨，短期回调概率较高</td>
+          </tr>
+          <tr>
+            <td><strong>计算机/服务器</strong></td>
+            <td class="up">+约25%（20日）</td>
+            <td><span class="badge badge-gold">RPS≈88</span></td>
+            <td class="up">+20亿+（5日）</td>
+            <td class="up">AI服务器需求拉动</td>
+            <td>20+家</td>
+            <td>国产算力需求爆发，液冷服务器、AI基础设施替代加速</td>
+            <td class="neutral">竞争激烈，注意个股分化</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight-box">
+      <strong>📌 抱团逻辑核心：</strong>当前机构抱团主线为"<strong>AI算力基础设施</strong>"全产业链，从光模块（传导层）→服务器/算力（计算层）→消费电子（端侧应用层）→卫星互联网（网络层）形成完整的机构资金布局闭环。2025Q4基金重仓通信行业占比达7.14%，为2018年以来历史最高，抱团深度极深但也意味着边际流入在放缓。
+    </div>
+  </div>
+
+  <!-- 抱团核心个股 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <div class="section-title">抱团板块核心个股精选</div>
+      <div class="section-desc">筛选：市值>200亿 | 基金持仓>10% | 近5日主力净流入</div>
+    </div>
+    <div class="stock-grid">
+
+      <div class="stock-card">
+        <div class="stock-card-header">
+          <div>
+            <div class="stock-name">中际旭创</div>
+            <div class="stock-code">300308.SZ · 通信设备</div>
+          </div>
+          <div class="stock-price down">850.00</div>
+        </div>
+        <div>
+          <span class="badge badge-gold">今日-0.12%</span>
+          <span class="badge badge-red" style="margin-left:4px">5日+15.18%</span>
+          <span class="badge badge-red" style="margin-left:4px">20日+38.89%</span>
+        </div>
+        <div class="stock-meta">
+          <div class="meta-item">总市值：<span class="up">9,444亿</span></div>
+          <div class="meta-item">基金持仓：<span class="up">重仓第一</span></div>
+          <div class="meta-item">5日均线：<span class="up">上方运行</span></div>
+          <div class="meta-item">今日成交：<span>233.6亿</span></div>
+          <div class="meta-item">2025Q4基金重仓：<span class="up">776.6亿↑39.9%</span></div>
+        </div>
+        <div class="stock-meta" style="margin-top:8px">
+          <span class="badge badge-purple">光模块绝对龙头</span>
+          <span class="badge badge-blue" style="margin-left:4px">机构重仓NO.1</span>
+        </div>
+      </div>
+
+      <div class="stock-card">
+        <div class="stock-card-header">
+          <div>
+            <div class="stock-name">新易盛</div>
+            <div class="stock-code">300502.SZ · 通信设备</div>
+          </div>
+          <div class="stock-price down">583.00</div>
+        </div>
+        <div>
+          <span class="badge badge-green">今日-1.02%</span>
+          <span class="badge badge-red" style="margin-left:4px">5日+13.71%</span>
+          <span class="badge badge-red" style="margin-left:4px">20日+22.21%</span>
+        </div>
+        <div class="stock-meta">
+          <div class="meta-item">总市值：<span class="up">5,795亿</span></div>
+          <div class="meta-item">基金持仓：<span class="up">重仓第二</span></div>
+          <div class="meta-item">5日均线：<span class="up">上方运行</span></div>
+          <div class="meta-item">今日成交：<span>200.4亿</span></div>
+          <div class="meta-item">2025Q4基金重仓：<span class="up">651.2亿↑16.5%</span></div>
+        </div>
+        <div class="stock-meta" style="margin-top:8px">
+          <span class="badge badge-purple">光模块二龙</span>
+          <span class="badge badge-gold" style="margin-left:4px">800G/1.6T技术领先</span>
+        </div>
+      </div>
+
+      <div class="stock-card">
+        <div class="stock-card-header">
+          <div>
+            <div class="stock-name">立讯精密</div>
+            <div class="stock-code">002475.SZ · 消费电子</div>
+          </div>
+          <div class="stock-price up">65.73</div>
+        </div>
+        <div>
+          <span class="badge badge-red">今日+10.01% 涨停</span>
+          <span class="badge badge-red" style="margin-left:4px">5日+12.17%</span>
+          <span class="badge badge-red" style="margin-left:4px">20日+36.31%</span>
+        </div>
+        <div class="stock-meta">
+          <div class="meta-item">总市值：<span class="up">4,789亿</span></div>
+          <div class="meta-item">今日主力净流入：<span class="up">+45.94亿</span></div>
+          <div class="meta-item">5日均线：<span class="up">上方强势</span></div>
+          <div class="meta-item">今日成交：<span>251.88亿（史上第三）</span></div>
+          <div class="meta-item">YTD涨幅：<span class="up">+16.23%</span></div>
+        </div>
+        <div class="stock-meta" style="margin-top:8px">
+          <span class="badge badge-red">今日主力净流入NO.1</span>
+          <span class="badge badge-purple" style="margin-left:4px">机器人+AI端侧</span>
+        </div>
+      </div>
+
+      <div class="stock-card">
+        <div class="stock-card-header">
+          <div>
+            <div class="stock-name">浪潮信息</div>
+            <div class="stock-code">000977.SZ · 计算机设备</div>
+          </div>
+          <div class="stock-price up">73.12</div>
+        </div>
+        <div>
+          <span class="badge badge-red">今日+7.17%</span>
+          <span class="badge badge-red" style="margin-left:4px">5日+6.99%</span>
+          <span class="badge badge-red" style="margin-left:4px">20日+22.89%</span>
+        </div>
+        <div class="stock-meta">
+          <div class="meta-item">总市值：<span class="up">1,073亿</span></div>
+          <div class="meta-item">今日主力净流入：<span class="up">+11.92亿</span></div>
+          <div class="meta-item">5日均线：<span class="up">上方运行</span></div>
+          <div class="meta-item">今日成交：<span>109.6亿</span></div>
+          <div class="meta-item">PE(TTM)：<span>44.5倍</span></div>
+        </div>
+        <div class="stock-meta" style="margin-top:8px">
+          <span class="badge badge-blue">AI服务器龙头</span>
+          <span class="badge badge-gold" style="margin-left:4px">主力净流入NO.2</span>
+        </div>
+      </div>
+
+      <div class="stock-card">
+        <div class="stock-card-header">
+          <div>
+            <div class="stock-name">中国卫通</div>
+            <div class="stock-code">601698.SH · 航天装备</div>
+          </div>
+          <div class="stock-price up">37.38</div>
+        </div>
+        <div>
+          <span class="badge badge-red">今日+10.01% 涨停</span>
+          <span class="badge badge-red" style="margin-left:4px">5日+14.28%</span>
+          <span class="badge badge-red" style="margin-left:4px">20日+13.55%</span>
+        </div>
+        <div class="stock-meta">
+          <div class="meta-item">总市值：<span class="up">1,579亿</span></div>
+          <div class="meta-item">今日主力净流入：<span class="up">+9.60亿</span></div>
+          <div class="meta-item">5日均线：<span class="up">大幅上方</span></div>
+          <div class="meta-item">KDJ-J：<span>101.08（超买）</span></div>
+          <div class="meta-item">今日成交：<span>45.8亿</span></div>
+        </div>
+        <div class="stock-meta" style="margin-top:8px">
+          <span class="badge badge-red">6G卫星互联网龙头</span>
+          <span class="badge badge-purple" style="margin-left:4px">航天装备领涨股</span>
+        </div>
+      </div>
+
+      <div class="stock-card">
+        <div class="stock-card-header">
+          <div>
+            <div class="stock-name">中国卫星</div>
+            <div class="stock-code">600118.SH · 航天装备</div>
+          </div>
+          <div class="stock-price up">94.52</div>
+        </div>
+        <div>
+          <span class="badge badge-red">今日+10.00% 涨停</span>
+          <span class="badge badge-red" style="margin-left:4px">5日+17.42%</span>
+          <span class="badge badge-red" style="margin-left:4px">20日+15.76%</span>
+        </div>
+        <div class="stock-meta">
+          <div class="meta-item">总市值：<span class="up">1,117亿</span></div>
+          <div class="meta-item">今日主力净流入：<span class="up">+16.23亿</span></div>
+          <div class="meta-item">5日均线：<span class="up">大幅上方</span></div>
+          <div class="meta-item">KDJ-J：<span>109.22（超买区）</span></div>
+          <div class="meta-item">北向：<span class="up">沪股通大笔买入</span></div>
+        </div>
+        <div class="stock-meta" style="margin-top:8px">
+          <span class="badge badge-red">卫星制造核心资产</span>
+          <span class="badge badge-blue" style="margin-left:4px">机构+北向共振</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 强势股筛选 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <div class="section-title">强势股精选池（RPS高强度 · 趋势上行）</div>
+      <div class="section-desc">筛选：RPS(60日)≥85 | 收盘价在5日线上方 | 近20日回撤&lt;20%</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>股票</th>
+            <th>今日涨跌</th>
+            <th>5日涨跌</th>
+            <th>20日涨跌</th>
+            <th>今日价格</th>
+            <th>总市值</th>
+            <th>今日主力净流入</th>
+            <th>技术面</th>
+            <th>近20日回撤估算</th>
+            <th>所属板块</th>
+            <th>强势评级</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>立讯精密<br><small>002475.SZ</small></strong></td>
+            <td class="up">+10.01%</td>
+            <td class="up">+12.17%</td>
+            <td class="up">+36.31%</td>
+            <td>65.73元</td>
+            <td>4,789亿</td>
+            <td class="up">+45.94亿 🥇</td>
+            <td><span class="badge badge-red">5日线大幅上方</span></td>
+            <td class="up">&lt;5%</td>
+            <td>消费电子</td>
+            <td><span class="badge badge-red">★★★★★</span></td>
+          </tr>
+          <tr>
+            <td><strong>中国卫星<br><small>600118.SH</small></strong></td>
+            <td class="up">+10.00%</td>
+            <td class="up">+17.42%</td>
+            <td class="up">+15.76%</td>
+            <td>94.52元</td>
+            <td>1,117亿</td>
+            <td class="up">+16.23亿</td>
+            <td><span class="badge badge-red">5日线大幅上方</span></td>
+            <td class="up">&lt;8%</td>
+            <td>航天装备</td>
+            <td><span class="badge badge-red">★★★★★</span></td>
+          </tr>
+          <tr>
+            <td><strong>中国卫通<br><small>601698.SH</small></strong></td>
+            <td class="up">+10.01%</td>
+            <td class="up">+14.28%</td>
+            <td class="up">+13.55%</td>
+            <td>37.38元</td>
+            <td>1,579亿</td>
+            <td class="up">+9.60亿</td>
+            <td><span class="badge badge-gold">5日线上方（KDJ超买）</span></td>
+            <td class="up">&lt;10%</td>
+            <td>航天装备</td>
+            <td><span class="badge badge-gold">★★★★</span></td>
+          </tr>
+          <tr>
+            <td><strong>浪潮信息<br><small>000977.SZ</small></strong></td>
+            <td class="up">+7.17%</td>
+            <td class="up">+6.99%</td>
+            <td class="up">+22.89%</td>
+            <td>73.12元</td>
+            <td>1,073亿</td>
+            <td class="up">+11.92亿</td>
+            <td><span class="badge badge-red">5日线上方</span></td>
+            <td class="up">&lt;12%</td>
+            <td>计算机设备</td>
+            <td><span class="badge badge-red">★★★★★</span></td>
+          </tr>
+          <tr>
+            <td><strong>中际旭创<br><small>300308.SZ</small></strong></td>
+            <td class="down">-0.12%</td>
+            <td class="up">+15.18%</td>
+            <td class="up">+38.89%</td>
+            <td>850.00元</td>
+            <td>9,444亿</td>
+            <td class="down">净流出（获利盘）</td>
+            <td><span class="badge badge-gold">高位震荡</span></td>
+            <td class="neutral">约15%</td>
+            <td>通信设备</td>
+            <td><span class="badge badge-gold">★★★★</span></td>
+          </tr>
+          <tr>
+            <td><strong>新易盛<br><small>300502.SZ</small></strong></td>
+            <td class="down">-1.02%</td>
+            <td class="up">+13.71%</td>
+            <td class="up">+22.21%</td>
+            <td>583.00元</td>
+            <td>5,795亿</td>
+            <td class="down">净流出（获利盘）</td>
+            <td><span class="badge badge-gold">高位震荡</span></td>
+            <td class="neutral">约15%</td>
+            <td>通信设备</td>
+            <td><span class="badge badge-gold">★★★★</span></td>
+          </tr>
+          <tr>
+            <td><strong>亨通光电<br><small>600487.SH</small></strong></td>
+            <td class="up">+9.42%</td>
+            <td class="up">+约12%</td>
+            <td class="up">+约20%</td>
+            <td>60.89元</td>
+            <td>1,501亿</td>
+            <td class="up">+9.40亿</td>
+            <td><span class="badge badge-red">5日线大幅上方</span></td>
+            <td class="up">&lt;10%</td>
+            <td>通信/光纤</td>
+            <td><span class="badge badge-red">★★★★★</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight-box">
+      <strong>📌 强势股操作提示：</strong>今日最强信号来自<strong>消费电子（立讯精密涨停）</strong>和<strong>航天装备（中国卫通/卫星双涨停）</strong>。立讯精密已连续9日上涨36%，量能达史上第三高，短期存在技术性回调但方向未变；中国卫通/中国卫星今日KDJ-J均超100，超买信号明显，明日高位震荡概率大，建议已持仓者高位减仓1/3锁利。
+    </div>
+  </div>
+
+  <!-- 资金分布 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">5</div>
+      <div class="section-title">今日资金分布与机构行为解析</div>
+      <div class="section-desc">个股主力资金 TOP 排行</div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-label">主力净流入NO.1</div>
+        <div class="stat-value up">立讯精密</div>
+        <div class="stat-label" style="margin-top:4px">+45.94亿</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">主力净流入NO.2</div>
+        <div class="stat-value up">浪潮信息</div>
+        <div class="stat-label" style="margin-top:4px">+11.92亿</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">主力净流出NO.1</div>
+        <div class="stat-value down">东山精密</div>
+        <div class="stat-label" style="margin-top:4px">-16亿+</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">主力净流出NO.2</div>
+        <div class="stat-value down">中际旭创</div>
+        <div class="stat-label" style="margin-top:4px">-16亿+</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">百亿成交股</div>
+        <div class="stat-value up">14只</div>
+        <div class="stat-label" style="margin-top:4px">近5日均成交>100亿</div>
+      </div>
+    </div>
+    <div class="table-wrap" style="padding:0 20px 16px">
+      <table>
+        <thead>
+          <tr>
+            <th>个股</th>
+            <th>今日净流入/流出</th>
+            <th>主力流入</th>
+            <th>主力流出</th>
+            <th>散户方向</th>
+            <th>机构行为</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>立讯精密 002475</strong></td>
+            <td class="up">+45.94亿</td>
+            <td class="up">187.91亿（流入）</td>
+            <td class="down">141.96亿（流出）</td>
+            <td class="down">净流出46亿</td>
+            <td>五机构净卖出3.58亿；深股通净买入7260万</td>
+          </tr>
+          <tr>
+            <td><strong>浪潮信息 000977</strong></td>
+            <td class="up">+11.92亿</td>
+            <td class="up">66.53亿</td>
+            <td class="down">54.61亿</td>
+            <td class="down">净流出约12亿</td>
+            <td>机构买入后稍减，超大单净流入+16亿</td>
+          </tr>
+          <tr>
+            <td><strong>中国卫星 600118</strong></td>
+            <td class="up">+16.23亿</td>
+            <td class="up">46.65亿</td>
+            <td class="down">30.42亿</td>
+            <td class="down">净流出16亿</td>
+            <td>北向（沪股通）大笔买入，涨停</td>
+          </tr>
+          <tr>
+            <td><strong>中国卫通 601698</strong></td>
+            <td class="up">+9.60亿</td>
+            <td class="up">25.00亿</td>
+            <td class="down">15.39亿</td>
+            <td class="down">净流出9亿</td>
+            <td>超大单净流入9.46亿，散户追涨</td>
+          </tr>
+          <tr>
+            <td><strong>中际旭创 300308</strong></td>
+            <td class="down">净流出16亿+</td>
+            <td class="neutral">—</td>
+            <td class="neutral">—</td>
+            <td class="neutral">—</td>
+            <td>机构获利兑现，换手率2.47%偏低</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight-box">
+      <strong>📌 机构资金行为判断：</strong>今日机构行为明显分化——<strong>消费电子（立讯精密）</strong>尽管五机构净卖出3.58亿，但超大单净流入达49.47亿，显示大资金（游资/量化）持续增仓；<strong>航天装备板块</strong>北向资金（沪/深股通）大笔买入中国卫星，体现外资对中美缓和受益的国防资产的系统性配置；<strong>通信（光模块）</strong>出现机构获利兑现，但板块估值仍支撑在位，若AI资本开支再超预期，仍将再次拉升。
+    </div>
+  </div>
+
+  <!-- 风险提示 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">6</div>
+      <div class="section-title">抱团松动风险监控</div>
+      <div class="section-desc">重要风险信号 | 止损参考</div>
+    </div>
+    <div class="risk-box">
+      <strong>⚠️ 风险一：通信/光模块板块今日净流出-50.51亿</strong><br>
+      通信板块是本轮抱团核心，一旦连续两日净流出且量能萎缩，需警惕抱团松动信号。参考止损位：中际旭创收盘破800元、新易盛收盘破550元。<br><br>
+      <strong>⚠️ 风险二：航天装备超速上涨，KDJ-J超100为超买信号</strong><br>
+      中国卫通/中国卫星今日双涨停后，短期技术压力加大。若明日低开5%以上，为短线止盈信号。<br><br>
+      <strong>⚠️ 风险三：全市场主力今日净流出68.1亿，大盘指数整体承压</strong><br>
+      抱团板块如持续出现"个股涨但主力净流出"格局，即为抱团松动前兆，需降低仓位至50%以下。<br><br>
+      <strong>⚠️ 风险四：立讯精密机构净卖出与大资金流入背离</strong><br>
+      机构今日净卖出3.58亿，而游资/量化净买入，这种机构出逃+散户追涨的结构容易在短线形成高位陷阱。
+    </div>
+    <div class="insight-box" style="margin-top:0">
+      <strong>💡 仓位建议（纯参考，非投资建议）：</strong>
+      光模块（中际旭创/新易盛）：高位持有者建议轻仓持有30%，等待回调至60日线附近再加仓；
+      消费电子（立讯精密）：明日若不能连续涨停，高位追入风险较大，建议分批候跌；
+      航天装备（卫通/卫星）：今日涨停者，明日止盈1/3；新进资金等待2-3日回调后再介入。
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-title">⚠️ 免责声明</div>
+    <div class="footer-text">
+      本报告由 AI 自动生成，仅供参考，不构成任何投资建议。数据来源：NeoData实时金融数据平台（截止 2026-04-20 收盘），数据具有一定延迟和局限性，不保证完全准确。<br>
+      股市有风险，投资须谨慎。机构抱团存在松动风险，请严格控制仓位、设置止损。切勿满仓操作。
+      <br><br>
+      <strong>数据来源：</strong>NeoData金融数据平台 | 财联社 | 证券时报 | 格隆汇APP<br>
+      <strong>报告生成时间：</strong>2026-04-20 19:39 | <strong>分析身份：</strong>资深基金经理 + 行业研究员 + 资深散户复合视角
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
