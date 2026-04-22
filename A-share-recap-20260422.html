@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A股每日复盘 2026-04-22</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: #1a1a2e; color: #eee; padding: 20px; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { text-align: center; padding: 30px 0; border-bottom: 2px solid #4a4a6a; margin-bottom: 30px; }
+        .header h1 { font-size: 2.5em; color: #ff6b6b; margin-bottom: 10px; }
+        .header .subtitle { color: #888; font-size: 1.1em; }
+        .section { background: #16213e; border-radius: 12px; padding: 25px; margin-bottom: 25px; border-left: 4px solid #4a4a6a; }
+        .section.conclusion { border-left-color: #ff6b6b; }
+        .section.capital { border-left-color: #4ecdc4; }
+        .section.sentiment { border-left-color: #ffe66d; }
+        .section.industry { border-left-color: #95e1d3; }
+        .section.leader { border-left-color: #f38181; }
+        .section.risk { border-left-color: #e94560; }
+        .section.ah { border-left-color: #a8d8ea; }
+        .section.strategy { border-left-color: #aa96da; }
+        .section.us-cn { border-left-color: #f5a623; }
+        .section-title { font-size: 1.4em; color: #fff; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #2a2a4a; }
+        th { background: #1a1a2e; color: #4ecdc4; font-weight: 600; }
+        tr:hover { background: #1f2f5a; }
+        .up { color: #ff4757; }
+        .down { color: #2ed573; }
+        .flat { color: #ffa502; }
+        .tag { display: inline-block; padding: 3px 10px; border-radius: 15px; font-size: 0.85em; margin: 2px; }
+        .tag-red { background: rgba(255, 71, 87, 0.2); color: #ff4757; }
+        .tag-green { background: rgba(46, 213, 115, 0.2); color: #2ed573; }
+        .tag-yellow { background: rgba(255, 165, 2, 0.2); color: #ffa502; }
+        .tag-blue { background: rgba(78, 205, 196, 0.2); color: #4ecdc4; }
+        .highlight { background: linear-gradient(120deg, #ff6b6b 0%, #ff8e53 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .conclusion-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 10px; font-size: 1.2em; text-align: center; margin-bottom: 20px; }
+        .chart-container { background: #0f0f23; border-radius: 10px; padding: 20px; margin: 15px 0; }
+        .summary-table { margin-top: 20px; }
+        .summary-table th { background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%); }
+        .footer { text-align: center; padding: 30px 0; color: #666; border-top: 1px solid #2a2a4a; margin-top: 40px; }
+        .warning { background: rgba(233, 69, 96, 0.1); border: 1px solid #e94560; border-radius: 8px; padding: 15px; margin: 10px 0; }
+        .positive { background: rgba(46, 213, 115, 0.1); border: 1px solid #2ed573; border-radius: 8px; padding: 15px; margin: 10px 0; }
+        .score { display: inline-flex; align-items: center; justify-content: center; width: 35px; height: 35px; border-radius: 50%; font-weight: bold; font-size: 1.1em; }
+        .score-high { background: linear-gradient(135deg, #ff6b6b, #ff8e53); }
+        .score-mid { background: linear-gradient(135deg, #feca57, #ff9f43); color: #333; }
+        .score-low { background: linear-gradient(135deg, #2ed573, #7bed9f); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .mapping-card { border: 2px solid #9b59b6; border-radius: 10px; padding: 15px; margin: 10px 0; background: rgba(155, 89, 182, 0.1); }
+        .mapping-card h4 { color: #9b59b6; margin-bottom: 10px; }
+        .mapping-intensity { display: flex; gap: 5px; margin-bottom: 8px; }
+        .intensity-dot { width: 12px; height: 12px; border-radius: 50%; background: #ddd; }
+        .intensity-dot.active { background: #9b59b6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 A股每日复盘</h1>
+            <div class="subtitle">2026年4月22日 | 资深基金经理 + 行业首席研究员 + 实战散户视角</div>
+        </div>
+
+        <!-- 1. 今日核心结论 -->
+        <div class="section conclusion">
+            <div class="section-title"><span class="icon">🎯</span>今日核心结论</div>
+            <div class="conclusion-box">A股放量上涨，沪指重返4100点实现五连阳，创业板指创逾十年新高，成长风格明显强于价值，CPO/算力主线持续爆发，赚钱效应结构性扩散。</div>
+            <table>
+                <thead>
+                    <tr><th>指数</th><th>收盘价</th><th>涨跌幅</th><th>量能</th><th>强弱排序</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>创业板指</td><td>约3710点</td><td class="up">+1.73%</td><td>放量</td><td><span class="score score-high">1</span></td></tr>
+                    <tr><td>深成指</td><td>约15076点</td><td class="up">+1.30%</td><td>放量</td><td><span class="score score-high">2</span></td></tr>
+                    <tr><td>科创综指</td><td>-</td><td class="up">+1.75%</td><td>放量</td><td><span class="score score-high">3</span></td></tr>
+                    <tr><td>上证指数</td><td>4106.26点</td><td class="up">+0.52%</td><td>放量</td><td><span class="score score-mid">4</span></td></tr>
+                    <tr><td>沪深300</td><td>-</td><td class="up">约+0.5%</td><td>平量</td><td><span class="score score-low">5</span></td></tr>
+                </tbody>
+            </table>
+            <div class="positive" style="margin-top:20px;">
+                <strong>📈 市场特征：</strong>全市场超2900只个股上涨，A股平均股价创近11年新高（30.80元），成交额2.58万亿，量能充沛。
+            </div>
+        </div>
+
+        <!-- 2. 资金面 -->
+        <div class="section capital">
+            <div class="section-title"><span class="icon">💰</span>资金面（机构视角）</div>
+            <h3>北向资金</h3>
+            <p>今日北向资金数据暂缺。参考近期数据，外资对中国资产配置意愿有所回升，关注政策预期和地缘局势演变。</p>
+            
+            <h3>两融余额</h3>
+            <p>两融数据暂缺。但从市场整体表现来看，杠杆情绪整体偏暖，创业板新高带动风险偏好提升。</p>
+            
+            <h3>主力资金动向</h3>
+            <div class="positive">
+                <strong>✓ 资金净流入板块TOP5：</strong><br>
+                • 通信设备：+55.59亿元（算力硬件主线）<br>
+                • 电子行业：+53亿元<br>
+                • 基础化工：+49亿元<br>
+                • 电力设备：+逾30亿元<br>
+                • 消费电子：+21.70亿元
+            </div>
+            <p>科技成长方向获主力资金持续净流入，机构参与度较高，市场主线明确。</p>
+        </div>
+
+        <!-- 3. 市场情绪 -->
+        <div class="section sentiment">
+            <div class="section-title"><span class="icon">😊</span>市场情绪（散户+游资视角）</div>
+            <table>
+                <thead>
+                    <tr><th>指标</th><th>数值</th><th>解读</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>涨跌家数</td><td>上涨超2900家 / 下跌约1600家</td><td>多头占优，赚钱效应较好</td></tr>
+                    <tr><td>涨停数</td><td>54只（含新股）</td><td>封板率68.35%，情绪稳定</td></tr>
+                    <tr><td>跌停数</td><td>数据暂缺</td><td>-</td></tr>
+                    <tr><td>创业板涨停</td><td>3只</td><td>科创板1只</td></tr>
+                    <tr><td>涨幅超10%</td><td>创业板20只 + 科创板13只</td><td>成长股活跃度高</td></tr>
+                </tbody>
+            </table>
+            <h3 style="margin-top:20px;">连板情况</h3>
+            <div class="positive">
+                <strong>核心连板股：</strong><br>
+                • 株冶集团：5连板（金属铟概念）<br>
+                • 金螳螂/金富科技/圣龙股份：3连板<br>
+                • 神剑股份/青山纸业等：2连板
+            </div>
+            <h3>高位股风险</h3>
+            <p>今日高位股未出现明显核按钮，连板股整体封板率尚可。但需注意部分蹭热点的纯情绪标的可能随时结束。</p>
+            <h3>题材持续性</h3>
+            <p><strong>主线判断：</strong>CPO/算力硬件为最强主线，连续多日强势；<br>
+            <strong>轮动节奏：</strong>题材内部快速轮动（光纤、存储器、服务器、PCB等细分方向轮番表现）；<br>
+            <strong>暗线机会：</strong>金属铟/锗等小金属概念持续活跃。</p>
+        </div>
+
+        <!-- 4. 行业主线复盘 -->
+        <div class="section industry">
+            <div class="section-title"><span class="icon">🏭</span>行业主线复盘（研究员视角）</div>
+            <table>
+                <thead>
+                    <tr><th>排名</th><th>板块</th><th>今日表现</th><th>催化/利空</th><th>持续性</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="score score-high">1</span></td><td><strong>CPO/光模块</strong></td><td class="up">暴涨，多股涨停创历史新高</td><td>AI算力需求爆发，龙头业绩超预期</td><td><span class="tag tag-red">强持续</span></td></tr>
+                    <tr><td><span class="score score-high">2</span></td><td><strong>算力硬件</strong></td><td class="up">存储器、服务器、PCB、算电协同全线走强</td><td>国产算力替代加速，订单预期提升</td><td><span class="tag tag-red">强持续</span></td></tr>
+                    <tr><td><span class="score score-high">3</span></td><td><strong>光纤概念</strong></td><td class="up">永鼎股份续创历史新高，杭电股份涨停</td><td>光通信高景气，海外订单超预期</td><td><span class="tag tag-red">强持续</span></td></tr>
+                    <tr><td><span class="score score-mid">4</span></td><td><strong>小金属（铟/锗）</strong></td><td class="up">株冶集团5连板，云南锗业4天3板</td><td>稀缺资源属性，国产替代逻辑</td><td><span class="tag tag-yellow">中等</span></td></tr>
+                    <tr><td><span class="score score-mid">5</span></td><td><strong>半导体</strong></td><td class="up">路维光电、先导基电涨停</td><td>国产化率提升，AI芯片需求</td><td><span class="tag tag-blue">中期看好</span></td></tr>
+                    <tr><td><span class="score score-low">6</span></td><td><strong>影视院线</strong></td><td class="down">集体调整，光线传媒等下跌</td><td>基本面偏弱，题材退潮</td><td><span class="tag tag-green">规避</span></td></tr>
+                </tbody>
+            </table>
+            <h3 style="margin-top:25px;">重点行业详细复盘</h3>
+            <div class="mapping-card">
+                <h4>🔥 CPO/光模块产业链深度分析</h4>
+                <p><strong>核心逻辑：</strong>AI数据中心对光互连需求爆发，CPO（光电共封装）技术成为下一代算力基础设施核心。</p>
+                <p><strong>今日亮点：</strong></p>
+                <ul>
+                    <li>长光华芯：20%涨停创历史新高</li>
+                    <li>东山精密：涨停创历史新高</li>
+                    <li>新易盛：涨超7%，市值突破6000亿创历史新高</li>
+                    <li>永鼎股份：涨停续创历史新高</li>
+                    <li>中际旭创：创历史新高（权重标的）</li>
+                    <li>三安光电、光电股份涨停</li>
+                </ul>
+                <p><strong>资金信号：</strong>通信ETF（515050）规模超100亿，近10日吸金超3亿，机构持续配置。</p>
+            </div>
+        </div>
+
+        <!-- 5. 龙头梯队 -->
+        <div class="section leader">
+            <div class="section-title"><span class="icon">🐉</span>龙头梯队（实战交易视角）</div>
+            <table>
+                <thead>
+                    <tr><th>类型</th><th>标的</th><th>逻辑</th><th>状态</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>主线龙头</strong></td><td>新易盛、中际旭创</td><td>CPO/光模块龙头，辨识度最高</td><td><span class="tag tag-red">强势</span></td></tr>
+                    <tr><td><strong>中军标的</strong></td><td>工业富联、三安光电</td><td>大市值稳涨，机构重仓</td><td><span class="tag tag-red">趋势完好</span></td></tr>
+                    <tr><td><strong>补涨龙</strong></td><td>长光华芯、协创数据</td><td>低位启动，20CM强势</td><td><span class="tag tag-red">启动</span></td></tr>
+                    <tr><td><strong>强趋势股</strong></td><td>永鼎股份、东山精密</td><td>沿5日线强势</td><td><span class="tag tag-red">强趋势</span></td></tr>
+                    <tr><td><strong>资源龙头</strong></td><td>株冶集团、云南锗业</td><td>小金属稀缺属性</td><td><span class="tag tag-yellow">高位连板</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 6. 风险信号 -->
+        <div class="section risk">
+            <div class="section-title"><span class="icon">⚠️</span>风险信号（基金经理风控视角）</div>
+            <table>
+                <thead>
+                    <tr><th>风险项</th><th>状态</th><th>影响程度</th><th>备注</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>高位抱团松动</td><td><span class="tag tag-green">无</span></td><td>低</td><td>CPO主线筹码稳定</td></tr>
+                    <tr><td>强势股补跌</td><td><span class="tag tag-green">无</span></td><td>低</td><td>龙头股维持强势</td></tr>
+                    <tr><td>量价背离</td><td><span class="tag tag-green">无</span></td><td>低</td><td>放量上涨，量价配合</td></tr>
+                    <tr><td>地缘政治扰动</td><td><span class="tag tag-yellow">存在</span></td><td>中</td><td>美伊局势仍有不确定性</td></tr>
+                    <tr><td>题材轮动过快</td><td><span class="tag tag-yellow">存在</span></td><td>中</td><td>主线内部分化</td></tr>
+                    <tr><td>指数关键支撑</td><td><span class="tag tag-green">守住</span></td><td>-</td><td>沪指五连阳</td></tr>
+                </tbody>
+            </table>
+            <div class="warning" style="margin-top:15px;">
+                <strong>⚠️ 风险提示：</strong>创业板综指创历史新高，警惕获利回吐压力；小金属高位连板股筹码松动风险。
+            </div>
+        </div>
+
+        <!-- 7. AH联动 -->
+        <div class="section ah">
+            <div class="section-title"><span class="icon">🌏</span>AH联动</div>
+            <p><strong>联动方向：</strong>A强港弱（A股今日明显强于港股）</p>
+            <p><strong>分析：</strong>A股科技成长主线爆发，带动部分港股科技股跟涨，但港股整体弹性弱于A股。溢价率方面，A股科技股估值溢价扩大。</p>
+            <p><strong>外资态度：</strong>关注北向资金动向，外资对A股科技资产配置比例有望继续提升。</p>
+        </div>
+
+        <!-- 8. A美联动 -->
+        <div class="section us-cn">
+            <div class="section-title"><span class="icon">🇺🇸</span>A美联动（中美市场联动分析）</div>
+            <h3>隔夜美股指数表现（4月21日）</h3>
+            <table>
+                <thead>
+                    <tr><th>指数</th><th>收盘价</th><th>涨跌幅</th><th>对A股影响判断</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>标普500</td><td>7109.14点</td><td class="down">-0.24%</td><td>小幅回调，影响有限</td></tr>
+                    <tr><td>纳斯达克</td><td>24404.39点</td><td class="down">-0.26%</td><td>13连涨终结，正常消化</td></tr>
+                    <tr><td>道琼斯</td><td>-</td><td class="down">小幅下跌</td><td>-</td></tr>
+                </tbody>
+            </table>
+            <p style="margin-top:15px;"><strong>分析：</strong>纳指13连涨纪录终结属正常获利了结，美股整体仍在高位。交易员押注美伊停火协议有望达成，地缘风险有所缓和。</p>
+            
+            <h3 style="margin-top:20px;">美股映射A股联动板块</h3>
+            <div class="mapping-card">
+                <h4>📡 科技/AI/算力映射</h4>
+                <div class="mapping-intensity">
+                    <span>映射强度：</span>
+                    <span class="intensity-dot active"></span>
+                    <span class="intensity-dot active"></span>
+                    <span class="intensity-dot active"></span>
+                    <span class="intensity-dot active"></span>
+                    <span class="intensity-dot active"></span>
+                </div>
+                <p><strong>美股：</strong>英伟达、AMD等算力芯片股高位震荡</p>
+                <p><strong>A股映射：</strong>CPO、光模块、算力硬件（工业富联、中际旭创、新易盛、海光信息等）</p>
+                <p><strong>联动逻辑：</strong>全球AI算力需求共振，中国光模块/CPO技术全球领先，业绩确定性高</p>
+            </div>
+            
+            <div class="mapping-card">
+                <h4>🚗 新能源汽车映射</h4>
+                <div class="mapping-intensity">
+                    <span>映射强度：</span>
+                    <span class="intensity-dot active"></span>
+                    <span class="intensity-dot active"></span>
+                    <span class="intensity-dot"></span>
+                    <span class="intensity-dot"></span>
+                    <span class="intensity-dot"></span>
+                </div>
+                <p><strong>美股：</strong>特斯拉近期回调</p>
+                <p><strong>A股映射：</strong>锂电、零部件（宁德时代、比亚迪等）</p>
+                <p><strong>联动逻辑：</strong>新能源汽车渗透率提升，中美市场联动</p>
+            </div>
+            
+            <h3 style="margin-top:20px;">联动强度判断</h3>
+            <p><strong>强联动（当日必反应）：</strong>CPO/算力主线，美股科技回调A股反而走强，显示独立行情特征</p>
+            <p><strong>中联动（影响开盘）：</strong>整体情绪传导有限</p>
+            <p><strong>弱联动（仅供参考）：</strong>常规美股波动</p>
+        </div>
+
+        <!-- 9. 明日策略 -->
+        <div class="section strategy">
+            <div class="section-title"><span class="icon">🎯</span>明日策略</div>
+            <div class="grid-2">
+                <div class="positive">
+                    <h3>仓位建议</h3>
+                    <p style="font-size:2em; font-weight:bold; text-align:center;">7<span style="font-size:0.5em;">成</span></p>
+                    <p style="text-align:center; margin-top:10px;">市场量能充沛，主线明确</p>
+                </div>
+                <div class="positive">
+                    <h3>主攻方向</h3>
+                    <p><strong>CPO/光模块算力硬件</strong></p>
+                    <p>逻辑：AI产业趋势确定，业绩超预期，机构持续配置</p>
+                </div>
+            </div>
+            <h3 style="margin-top:20px;">观察标的</h3>
+            <ul>
+                <li><strong>新易盛</strong>（300308）：CPO龙头，市值超6000亿，趋势完好</li>
+                <li><strong>中际旭创</strong>（300308）：光模块龙头，创历史新高</li>
+                <li><strong>工业富联</strong>（601138）：算力服务器中军，大资金首选</li>
+                <li><strong>永鼎股份</strong>（600105）：光纤概念，补涨空间</li>
+                <li><strong>长光华芯</strong>（688048）：CPO概念，20CM强势</li>
+            </ul>
+            <h3>禁忌方向</h3>
+            <p>• <strong>影视院线：</strong>基本面弱，题材退潮明显</p>
+            <p>• <strong>纯情绪高位连板：</strong>筹码松动风险大</p>
+            <p>• <strong>无业绩支撑的纯概念炒作：</strong>市场风险偏好边际变化时首杀</p>
+            
+            <h3>关键点位</h3>
+            <table>
+                <thead>
+                    <tr><th>指数</th><th>支撑位</th><th>压力位</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>上证指数</td><td>4080点（5日线）</td><td>4150点（心理关口）</td></tr>
+                    <tr><td>创业板指</td><td>3650点</td><td>3800点</td></tr>
+                    <tr><td>科创综指</td><td>高位整固</td><td>历史新高区间</td></tr>
+                </tbody>
+            </table>
+            
+            <h3 style="margin-top:25px;">📋 主线板块极简对比</h3>
+            <table class="summary-table">
+                <thead>
+                    <tr><th>主线板块</th><th>强度评分</th><th>催化</th><th>风险</th><th>明日关注标的</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>CPO/光模块</strong></td><td><span class="score score-high">9</span></td><td>AI算力爆发</td><td>高位震荡</td><td>新易盛、中际旭创</td></tr>
+                    <tr><td><strong>算力硬件</strong></td><td><span class="score score-high">8</span></td><td>国产替代</td><td>轮动过快</td><td>工业富联、海光信息</td></tr>
+                    <tr><td><strong>光纤概念</strong></td><td><span class="score score-mid">7</span></td><td>光通信景气</td><td>追高风险</td><td>永鼎股份、长飞光纤</td></tr>
+                    <tr><td><strong>小金属</strong></td><td><span class="score score-mid">6</span></td><td>稀缺资源</td><td>高位连板风险</td><td>观察为主</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p>数据来源：财联社、东方财富、同花顺、新浪财经 | 报告生成时间：2026-04-22 20:50</p>
+            <p>本报告仅供参考，不构成投资建议</p>
+        </div>
+    </div>
+</body>
+</html>
