@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>港股每日复盘 2026-04-22</title>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-card: #1c2128;
+            --bg-hover: #22262e;
+            --border-color: #30363d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            --red: #e85a5a;
+            --green: #4cc17c;
+            --blue: #58a6ff;
+            --purple: #bc8cff;
+            --orange: #f0b059;
+            --yellow: #e3b341;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container { max-width: 1100px; margin: 0 auto; }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #1a1f35 0%, #0d1117 100%);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 24px;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--blue), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .header .date { color: var(--text-secondary); font-size: 14px; }
+        .header .summary {
+            margin-top: 16px;
+            padding: 14px 20px;
+            background: rgba(88,166,255,0.08);
+            border-left: 3px solid var(--blue);
+            border-radius: 6px;
+            display: inline-block;
+            text-align: left;
+            max-width: 800px;
+            font-size: 15px;
+        }
+
+        /* Section */
+        .section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            padding: 16px 24px;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .icon { font-size: 22px; }
+        .section-body { padding: 20px 24px; }
+
+        /* Index Cards */
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .index-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.2s;
+        }
+        .index-card:hover { transform: translateY(-2px); border-color: var(--blue); }
+        .index-name { color: var(--text-secondary); font-size: 13px; margin-bottom: 8px; }
+        .index-value { font-size: 32px; font-weight: 700; margin-bottom: 6px; }
+        .index-change { font-size: 15px; font-weight: 500; }
+        .up { color: var(--red); }
+        .down { color: var(--green); }
+        .index-extra {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Table */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 600;
+            text-align: left;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            white-space: nowrap;
+        }
+        td {
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+        tr:hover { background: var(--bg-hover); }
+
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .tag-red { background: rgba(232,90,90,0.15); color: var(--red); }
+        .tag-green { background: rgba(76,193,124,0.15); color: var(--green); }
+        .tag-blue { background: rgba(88,166,255,0.15); color: var(--blue); }
+        .tag-purple { background: rgba(188,140,255,0.15); color: var(--purple); }
+        .tag-orange { background: rgba(240,176,89,0.15); color: var(--orange); }
+        .tag-yellow { background: rgba(227,179,65,0.15); color: var(--yellow); }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+        .highlight-box .label { color: var(--text-muted); font-size: 12px; margin-bottom: 6px; }
+        .highlight-box .value { font-size: 15px; line-height: 1.7; }
+
+        /* Stock Grid */
+        .stock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 14px;
+            margin-top: 12px;
+        }
+        .stock-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px;
+            position: relative;
+        }
+        .stock-card .name { font-weight: 600; font-size: 15px; margin-bottom: 6px; }
+        .stock-card .code { color: var(--text-muted); font-size: 12px; margin-bottom: 8px; }
+        .stock-card .price-row { display: flex; justify-content: space-between; align-items: center; }
+        .stock-card .price { font-size: 22px; font-weight: 700; }
+        .stock-card .change { font-size: 16px; font-weight: 600; }
+        .stock-card .detail {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px;
+        }
+
+        /* Logic Card */
+        .logic-card {
+            border-left: 3px solid var(--purple);
+            padding: 12px 18px;
+            background: rgba(188,140,255,0.06);
+            border-radius: 0 8px 8px 0;
+            margin: 10px 0;
+        }
+        .logic-title { font-weight: 600; color: var(--purple); margin-bottom: 6px; font-size: 14px; }
+        .logic-content { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+
+        /* Risk Section */
+        .risk-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(232,90,90,0.06);
+            border: 1px solid rgba(232,90,90,0.2);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .risk-item .risk-icon { font-size: 18px; flex-shrink: 0; }
+        .risk-item .risk-text { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+
+        /* Conclusion */
+        .conclusion-box {
+            background: linear-gradient(135deg, rgba(88,166,255,0.08), rgba(188,140,255,0.08));
+            border: 1px solid rgba(88,166,255,0.25);
+            border-radius: 10px;
+            padding: 24px;
+            margin-top: 12px;
+        }
+        .conclusion-box h3 { color: var(--blue); margin-bottom: 12px; font-size: 16px; }
+        .conclusion-box p { font-size: 14px; line-height: 1.9; color: var(--text-secondary); }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        /* Two column layout for some sections */
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 720px) { .two-col { grid-template-columns: 1fr; } }
+
+        strong { color: var(--text-primary); }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<header class="header">
+    <h1>📊 港股每日复盘</h1>
+    <div class="date">2026年4月22日（周三） | 数据来源：东方财富 / NeoData / 财联社等</div>
+    <div class="summary">
+        <strong>一句话：</strong>三大指数集体回调，恒科失守5000点，但光通信/半导体逆市爆发——<span class="down">结构性行情极致演绎，资金从大消费/锂电撤出，涌向AI硬件链。</span>南向逆势净买入48.9亿港元，内资"越跌越买"信号明确。
+    </div>
+</header>
+
+<!-- 一、大盘全景 -->
+<section class="section">
+    <div class="section-title"><span class="icon">📈</span> 一、大盘全景</div>
+    <div class="section-body">
+        <div class="index-grid">
+            <div class="index-card">
+                <div class="index-name">恒生指数 HSI</div>
+                <div class="index-value down">26,163.24</div>
+                <div class="index-change down">▼ 324.24 (-1.22%)</div>
+                <div class="index-extra">
+                    <span>开盘：26,303.60</span>
+                    <span>成交：2,283亿 HK$</span>
+                    <span>最高：26,303.60</span>
+                    <span>量比：0.92（缩量）</span>
+                </div>
+            </div>
+            <div class="index-card">
+                <div class="index-name">恒生科技 HSTECH</div>
+                <div class="index-value down">4,963.94</div>
+                <div class="index-change down">▼ 97.56 (-1.93%) ⚠️失守5000</div>
+                <div class="index-extra">
+                    <span>开盘：5,009.76</span>
+                    <span>振幅：1.38%</span>
+                    <span>YTD：-10.01%</span>
+                    <span>5日：+1.06%</span>
+                </div>
+            </div>
+            <div class="index-card">
+                <div class="index-name">国企指数 HSCEI</div>
+                <div class="index-value down">8,801.78</div>
+                <div class="index-change down">▼ -1.59%</div>
+                <div class="index-extra">
+                    <span>跟随恒指走弱</span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 美股隔夜映射 -->
+        <div class="highlight-box">
+            <div class="label">🇺🇸 美股隔夜收盘（4月21日）— 港股外盘拖累因素</div>
+            <div class="value">
+                道指 <span class="down">49,149 (-0.59%)</span> &nbsp;|&nbsp;
+                标普500 <span class="down">-0.63%</span> &nbsp;|&nbsp;
+                纳指 <span class="down">24,260 (-0.59%)</span><br>
+                <strong style="font-size:13px;color:var(--text-secondary)">⚠️ 关键催化：</strong>
+                美股尾盘跳水 — 伊朗宣布<strong>不参加周三停火谈判</strong>，万斯取消巴基斯坦之行，
+                地缘风险重新升温。纳指盘初一度创历史新高后回落。中概股普跌。
+            </div>
+        </div>
+
+        <!-- 市场情绪指标 -->
+        <div class="two-col" style="margin-top:20px;">
+            <div class="highlight-box">
+                <div class="label">💡 市场特征</div>
+                <div class="value">
+                    • 成交2,283亿HK$（前日2,052亿），<strong style="color:var(--blue)">小幅放量下跌</strong><br>
+                    • 恒指量比0.92，卖压释放但未恐慌<br>
+                    • 恒科失守5000点关口，心理支撑位下移<br>
+                    • 科网权重集体杀跌 vs AI硬件逆势走强<br>
+                    • <strong>极致分化行情</strong>，指数掩盖了结构性机会
+                </div>
+            </div>
+            <div class="highlight-box">
+                <div class="label">🌡️ 核心驱动因素</div>
+                <div class="value">
+                    ① <strong>美伊谈判变数</strong>：伊朗拒参谈判→地缘升温→避险情绪<br>
+                    ② <strong>美股尾盘跳水</strong>：三大指数全线收跌，外围传导<br>
+                    ③ <strong>宁德时代发布会后获利回吐</strong>：锂电池板块领跌<br>
+                    ④ <strong>AI硬件链独立逻辑</strong>：光通信/CPO/AI算力需求催化
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 二、板块强弱 -->
+<section class="section">
+    <div class="section-title"><span class="icon">🔥</span> 二、板块强弱分析</div>
+    <div class="section-body">
+        <h4 style="margin-bottom:14px;color:var(--red);">🔴 今日领涨板块</h4>
+        <table>
+            <thead>
+                <tr><th>板块</th><th>涨幅</th><th>核心标的</th><th>驱动逻辑</th><th>持续性判断</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>光通信 / CPO</strong> <span class="tag tag-purple">最强主线</span></td>
+                    <td class="up">+16.75%（板块）</td>
+                    <td>剑桥科技<span class="up">+21.08%</span>、长飞光纤<span class="up">+17.16%</span></td>
+                    <td>AI算力需求持续爆发 + A股光模块映射联动 + CPO技术路线加速落地</td>
+                    <td><span class="tag tag-purple">强</span> AI资本开支高增周期中</td>
+                </tr>
+                <tr>
+                    <td><strong>半导体设备</strong></td>
+                    <td class="up">+2.60%</td>
+                    <td>华虹半导体<span class="up">+4.51%</span>、联想集团<span class="up">+5.73%</span></td>
+                    <td>国产替代加速 + AI芯片扩产需求 + 国产算力自主可控</td>
+                    <td><span class="tag tag-blue">中强</span> 政策+产业双轮驱动</td>
+                </tr>
+                <tr>
+                    <td><strong>茶饮/消费新势力</strong></td>
+                    <td class="up">局部走强</td>
+                    <td>沪上阿姨<span class="up">+13.89%</span>、茶百道<span class="up">+9%+</span></td>
+                    <td>IPO热度带动板块关注 + 消费复苏预期 + 新茶饮赛道出清</td>
+                    <td><span class="tag tag-orange">中等</span> 个股行情为主</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4 style="margin:20px 0 14px;color:var(--green);">🟢 今日领跌板块</h4>
+        <table>
+            <thead>
+                <tr><th>板块</th><th>跌幅</th><th>核心标的</th><th>下跌原因</th><th>展望</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>锂电池 / 新能源车</strong> <span class="tag tag-red">最弱</span></td>
+                    <td class="down">-4.72%（能源储存）</td>
+                    <td>宁德时代<span class="down">-5.03%</span>、理士国际<span class="down">-7.63%</span>、赣锋锂业<span class="down">-2.61%</span></td>
+                    <td>宁德时代超级科技日后<strong>获利回吐</strong>；市场担忧产能过剩+价格战</td>
+                    <td><span class="tag tag-green">短线承压</span> 中期看技术迭代</td>
+                </tr>
+                <tr>
+                    <td><strong>科网互联网</strong></td>
+                    <td class="down">-1.84% ~ -3.26%</td>
+                    <td>阿里<span class="down">-3.52%</span>、腾讯<span class="down">-2.89%</span>、美团<span class="down">-2.54%</span>、B站<span class="down">-5.75%</span></td>
+                    <td>恒科成分股集体杀跌，外卖大战/AI投入/监管预期等多重压力叠加</td>
+                    <td><span class="tag tag-green">估值底部区域</span> 机构称"中高赔率+高胜率"</td>
+                </tr>
+                <tr>
+                    <td><strong>光伏太阳能</strong></td>
+                    <td class="down">-2.45%</td>
+                    <td>信义光能<span class="down">-4.40%</span></td>
+                    <td>"反内卷"利好已部分兑现 + 行业供需仍待改善</td>
+                    <td><span class="tag tag-orange">震荡整理</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="logic-card" style="margin-top:18px;">
+            <div class="logic-title">🔍 板块分化底层逻辑</div>
+            <div class="logic-content">
+                今日是典型的<strong>"指数跌、结构涨"</strong>格局。<strong>核心矛盾在于：</strong><br><br>
+                ① <strong>旧动能退潮</strong>：锂电池（宁德时代发布会后利好出尽）、光伏（反内卷政策效应递减）、传统科网（盈利预期下修）同步回调，拖累指数。<br>
+                ② <strong>新动能崛起</strong>：以剑桥科技为代表的光通信/AI硬件链走出<strong>独立行情</strong>，核心驱动力是全球AI算力军备竞赛加速——CPO（共封装光学）作为下一代数据中心核心技术，正处于0→1的爆发前夜。剑桥科技港股5日涨76%、20日涨101%，资金抢筹意图明显。<br>
+                ③ <strong>南向资金"越跌越买"</strong>：48.9亿净流入显示内地机构对港股中长期信心未动摇，主要加仓方向为中海油等红利资产和科技龙头。
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 三、重点个股复盘 -->
+<section class="section">
+    <div class="section-title"><span class="icon">🎯</span> 三、重点个股深度扫描</div>
+    <div class="section-body">
+
+        <h4 style="color:var(--red);margin-bottom:12px;">🔥 涨幅&gt;5%个股深度分析</h4>
+        
+        <div class="stock-grid">
+            <!-- 剑桥科技 -->
+            <div class="stock-card" style="border-color:rgba(232,90,90,0.4);">
+                <div class="name">剑桥科技 <span class="tag tag-red">+21.08%</span> 🏆今日冠军</div>
+                <div class="code">06166.HK | 电讯网路基建设施 | 市值 536.73亿 HK$</div>
+                <div class="price-row">
+                    <span class="price up">152.20</span>
+                    <span class="change up">+26.50 (+21.08%)</span>
+                </div>
+                <div class="detail">
+                    <span>振幅：30.07%</span><span>换手率：28.29%</span>
+                    <span>成交额：30.6亿</span><span>量比：1.60</span>
+                    <span>5日涨：+76.26%</span><span>20日涨：+101.06%</span>
+                    <span colspan="2" style="grid-column:1/-1;margin-top:4px;"><strong>AH溢价：-23%</strong>（H较A折价）</span>
+                </div>
+                <div class="logic-card" style="margin-top:10px;">
+                    <div class="logic-content">
+                        <strong>核心逻辑：</strong>CPO/光通信赛道绝对龙头，受益全球AI算力基建浪潮。
+                        5日累涨76%，20日翻倍，资金疯狂涌入。<br>
+                        ⚠️ <strong>风险提示</strong>：短期涨幅过大（PE 184x），换手率28%极高，注意追高风险；
+                        AH折价23%说明H相对A股仍便宜，但也反映两地定价差异。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 长飞光纤 -->
+            <div class="stock-card" style="border-color:rgba(232,90,90,0.3);">
+                <div class="name">长飞光纤光缆 <span class="tag tag-red">+17.16%</span></div>
+                <div class="code">06989.HK | 光通信产业链</div>
+                <div class="price-row">
+                    <span class="price up">—</span>
+                    <span class="change up">+17.16%</span>
+                </div>
+                <div class="logic-card" style="margin-top:10px;">
+                    <div class="logic-content">
+                        光通信板块跟涨剑桥科技，光纤光缆需求随数据中心建设加速而提升。
+                        与剑桥科技形成板块联动效应。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 沪上阿姨 -->
+            <div class="stock-card" style="border-color:rgba(232,90,90,0.3);">
+                <div class="name">沪上阿姨 <span class="tag tag-red">+13.89%</span></div>
+                <div class="code">02589.HK | 茶饮 | 市值 138.87亿 HK$</div>
+                <div class="price-row">
+                    <span class="price up">132.00</span>
+                    <span class="change up">+16.10 (+13.89%)</span>
+                </div>
+                <div class="detail">
+                    <span>振幅：25.02%</span><span>换手率：4.03%</span>
+                    <span>5日涨：+68.26%</span><span>YTD：+54.21%</span>
+                    <span colspan="2" style="grid-column:1/-1;"><strong>4日累计涨幅超50%</strong>，茶饮IPO概念炒作</span>
+                </div>
+                <div class="logic-card" style="margin-top:10px;">
+                    <div class="logic-content">
+                        茶饮赛道新秀，近期因行业IPO热潮+业绩增长预期获得资金追捧。
+                        4日累涨50%+，投机性较强，注意波动风险。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 联想集团 -->
+            <div class="stock-card">
+                <div class="name">联想集团 <span class="tag tag-red">+5.73%</span></div>
+                <div class="code">00992.HK | 电脑器材 | 市值 1,442.66亿 HK$</div>
+                <div class="price-row">
+                    <span class="price up">11.63</span>
+                    <span class="change up">+0.63 (+5.73%)</span>
+                </div>
+                <div class="detail">
+                    <span>5日涨：+9.92%</span><span>20日涨：+25.87%</span>
+                    <span>YTD：+25.59%</span><span>PE(TTM)：12.52</span>
+                    <span colspan="2" style="grid-column:1/-1;">AI PC概念 + 服务器业务增长预期</span>
+                </div>
+            </div>
+
+            <!-- 华虹半导体 -->
+            <div class="stock-card">
+                <div class="name">华虹半导体 <span class="tag tag-red">+4.51%</span></div>
+                <div class="code">01347.HK | 半导体 | 市值 1,732.42亿 HK$</div>
+                <div class="price-row">
+                    <span class="price up">99.70</span>
+                    <span class="change up">+4.30 (+4.51%)</span>
+                </div>
+                <div class="detail">
+                    <span>5日涨：+10.29%</span><span>YTD：+34.19%</span>
+                    <span>AH溢价：-32.85%</span><span>PE(TTM)：405.64</span>
+                    <span colspan="2" style="grid-column:1/-1;">成熟制程产能满载 + 功率半导体需求旺盛</span>
+                </div>
+            </div>
+        </div>
+
+        <h4 style="color:var(--green);margin:24px 0 12px;">🟢 权重股跌幅榜（关注企稳信号）</h4>
+        <table>
+            <thead>
+                <tr><th>股票</th><th>代码</th><th>收盘价</th><th>涨跌幅</th><th>成交额</th><th>简评</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>宁德时代</strong></td>
+                    <td>03750.HK</td>
+                    <td>699.00</td>
+                    <td class="down"><strong>-5.03%</strong></td>
+                    <td>95.3亿</td>
+                    <td>发布会后获利回吐，AH溢价39.54%，5日仍+6.64%</td>
+                </tr>
+                <tr>
+                    <td><strong>阿里巴巴-W</strong></td>
+                    <td>09988.HK</td>
+                    <td>131.50</td>
+                    <td class="down">-3.52%</td>
+                    <td>91.5亿</td>
+                    <td>恒科最大权重拖累项，平台经济监管常态化长期利好</td>
+                </tr>
+                <tr>
+                    <td><strong>腾讯控股</strong></td>
+                    <td>00700.HK</td>
+                    <td>504.00</td>
+                    <td class="down">-2.89%</td>
+                    <td>117.2亿</td>
+                    <td>成交额榜首，YTD -15.86%，估值吸引力渐显</td>
+                </tr>
+                <tr>
+                    <td><strong>美团-W</strong></td>
+                    <td>03690.HK</td>
+                    <td>84.25</td>
+                    <td class="down">-2.54%</td>
+                    <td>26.2亿</td>
+                    <td>外卖补贴战降温利好，但短期承压</td>
+                </tr>
+                <tr>
+                    <td><strong>哔哩哔哩-W</strong></td>
+                    <td>09626.HK*</td>
+                    <td>—</td>
+                    <td class="down"><strong>-5.75%</strong></td>
+                    <td>—</td>
+                    <td>恒科跌幅居首，广告+游戏业务待验证</td>
+                </tr>
+                <tr>
+                    <td><strong>快手-W</strong></td>
+                    <td>01024.HK</td>
+                    <td>45.34</td>
+                    <td class="down">-2.24%</td>
+                    <td>17.1亿</td>
+                    <td>YTD -29.10%，电商业务增速放缓</td>
+                </tr>
+                <tr>
+                    <td><strong>信义光能</strong></td>
+                    <td>00968.HK</td>
+                    <td>3.04</td>
+                    <td class="down">-4.40%</td>
+                    <td>1.55亿</td>
+                    <td>光伏"反内卷"利好兑现后回调</td>
+                </tr>
+                <tr>
+                    <td><strong>小米集团-W</strong></td>
+                    <td>01810.HK</td>
+                    <td>31.80</td>
+                    <td class="down">-1.85%</td>
+                    <td>26.0亿</td>
+                    <td>汽车交付爬坡期，手机业务稳健</td>
+                </tr>
+                <tr>
+                    <td><strong>比亚迪股份</strong></td>
+                    <td>01211.HK</td>
+                    <td>107.00</td>
+                    <td class="down">-1.92%</td>
+                    <td>18.0亿</td>
+                    <td>AH溢价-8.28%，H较A更贵，海外扩张顺利</td>
+                </tr>
+                <tr>
+                    <td><strong>京东集团-SW</strong></td>
+                    <td>09618.HK</td>
+                    <td>120.20</td>
+                    <td class="down">-2.28%</td>
+                    <td>9.5亿</td>
+                    <td>YTD +11.62%，相对抗跌</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- 四、资金面分析 -->
+<section class="section">
+    <div class="section-title"><span class="icon">💰</span> 四、资金面分析（港股核心）</div>
+    <div class="section-body">
+
+        <h4 style="margin-bottom:14px;">📊 南向资金（港股通）</h4>
+        <div class="index-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+            <div class="index-card">
+                <div class="index-name">当日净流入</div>
+                <div class="index-value up" style="font-size:26px;">+48.90 亿 HK$</div>
+                <div class="index-change up">逆势抄底 🔄</div>
+            </div>
+            <div class="index-card">
+                <div class="index-name">沪港通净买入</div>
+                <div class="index-value up" style="font-size:26px;">+42.52 亿</div>
+                <div class="index-change">占总量 87%</div>
+            </div>
+            <div class="index-card">
+                <div class="index-name">深港通净买入</div>
+                <div class="index-value up" style="font-size:26px;">+6.38 亿</div>
+                <div class="index-change">占总量 13%</div>
+            </div>
+            <div class="index-card">
+                <div class="index-name">成交总额</div>
+                <div class="index-value" style="font-size:22px;color:var(--text-primary);">989.76 亿</div>
+                <div class="index-change" style="color:var(--text-secondary);">占大市成交 43.35%</div>
+            </div>
+        </div>
+
+        <div class="logic-card" style="margin-top:18px;">
+            <div class="logic-title">南向资金解读</div>
+            <div class="logic-content">
+                • 大市跌1.22%背景下，南向<strong>逆势净买入48.9亿</strong>，"越跌越买"信号明确<br>
+                • <strong>沪深分化显著</strong>：沪港通贡献87%（42.5亿），深港通仅6.4亿——说明机构资金（沪）在积极布局，散户/游资（深）偏谨慎<br>
+                • 较前一日放量约163亿，占比回升至43%+，南向参与度提高<br>
+                • 主要加仓方向：<strong>中国海洋石油</strong>等红利资产，以及科技龙头低吸
+            </div>
+        </div>
+
+        <div class="two-col" style="margin-top:20px;">
+            <div class="highlight-box">
+                <div class="label">📉 外资 & 沽空</div>
+                <div class="value">
+                    • 外资方面：美伊谈判变数引发避险情绪上升<br>
+                    • EPFR数据暂缺（通常T+1公布）<br>
+                    • 沽空比率：需关注科技板块沽空是否上升<br>
+                    • <strong>外资若持续流出，对流动性敏感的科技股压力更大</strong>
+                </div>
+            </div>
+            <div class="highlight-box">
+                <div class="label">♻️ 回购 & 增持</div>
+                <div class="value">
+                    • 近期多家科技巨头持续回购（腾讯、阿里等）<br>
+                    • 回购=管理层认为股价被低估的<strong>强力底部信号</strong><br>
+                    • 关注后续回购公告及规模变化<br>
+                    • 大股东增持动态需持续跟踪
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top:16px;">
+            <div class="label">🌍 外围环境</div>
+            <div class="value">
+                <strong>汇率：</strong>USD/HKD 维持7.75-7.85联系汇率制区间 &nbsp;|&nbsp;
+                <strong>HIBOR：</strong>港元拆息维持低位 &nbsp;|&nbsp;
+                <strong>美债10Y：</strong>关注美联储政策路径<br><br>
+                <strong>地缘政治（今日关键变量）：</strong>
+                特朗普称美方将暂缓对伊朗军事打击，但<strong>伊朗宣布不参加周三停火谈判</strong>，
+                万斯取消巴基斯坦之行 → 地缘风险<strong>重新升温</strong> → 美股尾盘跳水 → 港股承压。
+                但中国银河证券判断：<em>最坏的阶段或已过去</em>，若谈判推进，港股仍有反弹空间。
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 五、结论与展望 -->
+<section class="section">
+    <div class="section-title"><span class="icon">🎯</span> 五、结论与展望</div>
+    <div class="section-body">
+        <div class="conclusion-box">
+            <h3>📌 核心结论</h3>
+            <p>
+                <strong>今日港股呈现"指数调整、结构火爆"的极致分化格局。</strong>恒指跌1.22%、恒科跌破5000点，
+                表面偏弱；但光通信（剑桥科技+21%）、半导体（华虹+4.5%）逆市暴涨，AI硬件链走出独立牛市。<br><br>
+
+                <strong>三大利空共振导致回调：</strong>①美股尾盘跳水（伊朗拒绝谈判）；②宁德时代发布会后锂电池板块获利回吐；
+                ③科网权重集体下修（阿里-3.5%、腾讯-2.9%、B站-5.8%）。<br><br>
+
+                <strong>但积极信号同样明显：</strong>南向逆势净买入48.9亿（其中沪港通42.5亿，机构主力积极抄底）；
+                多家机构认为恒科当前处于"中高赔率+高胜率"配置窗口；《互联网平台价格行为规则》正式生效，
+                对平台经济长期利好；美伊冲突最坏阶段或已过去。<br><br>
+
+                <strong>明日关注：</strong><br>
+                ① 美伊谈判是否有新进展（周三停火协议到期日）<br>
+                ② 光通信/CPO板块能否持续强势（A股联动性极强）<br>
+                ③ 宁德时代能否企稳（若继续大跌将拖累新能源全链条）<br>
+                ④ 南向资金是否延续大幅净流入<br>
+                ⑤ 科技权重股（腾讯/阿里）能否在当前位置获得支撑
+            </p>
+        </div>
+
+        <h4 style="margin-top:24px;margin-bottom:14px;">⚠️ 风险提示</h4>
+        <div class="risk-item">
+            <span class="risk-icon">🔴</span>
+            <div class="risk-text">
+                <strong>地缘政治风险：</strong>美伊局势反复，伊朗拒绝参加谈判，万斯行程变动，中东不确定性可能持续扰动市场情绪。
+                若局势进一步恶化，避险资产（美元/黄金/美债）将受益，权益资产承压。
+            </div>
+        </div>
+        <div class="risk-item">
+            <span class="risk-icon">🔴</span>
+            <div class="risk-text">
+                <strong>结构分化风险：</strong>指数失真严重，光通信/半导体大涨的同时，科网/锂电/光伏全面回调。
+                若追高热门品种，一旦AI硬件链出现获利回吐，回调幅度可能远超指数。
+                <strong>剑桥科技5日涨76%、PE 184x，追高需极度谨慎。</strong>
+            </div>
+        </div>
+        <div class="risk-item">
+            <span class="risk-icon">🟡</span>
+            <div class="risk-text">
+                <strong>恒科破位风险：</strong>恒生科技失守5000点整数关口，若不能快速收复，可能触发技术性止损盘。
+                年初以来恒科已跌超10%，跑输大市和沪深300，弱势修复格局未改。
+            </div>
+        </div>
+        <div class="risk-item">
+            <span class="risk-icon">🟡</span>
+            <div class="risk-text">
+                <strong>流动性边际收紧风险：</strong>若地缘风险持续发酵，外资可能阶段性撤离港股（尤其是流动性较好的科技龙头），
+                南向资金虽然积极但难以完全对冲外资流出压力。
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="footer">
+    <p>📊 港股每日复盘 · 2026-04-22 · 自动生成</p>
+    <p>数据来源：NeoData / 东方财富 / 财联社 / 新浪财经 等 | 仅供参考，不构成投资建议</p>
+    <p>Generated by WorkBuddy Automation @ <span id="timestamp"></span></p>
+</div>
+
+</div>
+
+<script>
+document.getElementById('timestamp').textContent = new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
+</script>
+</body>
+</html>
