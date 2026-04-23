@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿尔茨海默创新药日报 - 2026-04-24</title>
+<style>
+  :root {
+    --primary: #1a5276;
+    --accent: #2e86c1;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --success: #27ae60;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #2c3e50;
+    --text-light: #7f8c8d;
+    --border: #e0e0e0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 15px rgba(26, 82, 118, 0.3);
+  }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header .date { font-size: 16px; opacity: 0.9; }
+  .header .summary {
+    background: rgba(255,255,255,0.15);
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  
+  /* Alert Banner */
+  .alert-banner {
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid;
+  }
+  .alert-banner.p0 { background: #fde8e8; border-color: var(--danger); }
+  .alert-banner.p1 { background: #fef3e2; border-color: var(--warning); }
+  .alert-banner.p2 { background: #e8f6f3; border-color: var(--success); }
+  .alert-banner h2 { margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .alert-item {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .alert-item .level {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  .alert-item .level.p0 { background: var(--danger); }
+  .alert-item .level.p1 { background: var(--warning); }
+  .alert-item .level.p2 { background: var(--success); }
+  
+  /* News Section */
+  .section { margin-bottom: 24px; }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Company Card */
+  .company-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s;
+  }
+  .company-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .company-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .company-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .drug-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    color: white;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .info-item { padding: 10px 14px; background: var(--bg); border-radius: 6px; }
+  .info-item .label {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .info-item .value { font-size: 14px; }
+  .info-item.full { grid-column: 1 / -1; }
+  
+  .source-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .source-link:hover { text-decoration: underline; }
+  
+  /* Pipeline Table */
+  .pipeline-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .pipeline-table th {
+    background: var(--primary);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .pipeline-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .pipeline-table tr:hover { background: #f0f7fc; }
+  .pipeline-table tr:last-child td { border-bottom: none; }
+  
+  .phase-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .phase-approved { background: #d5f5e3; color: #1e8449; }
+  .phase-3 { background: #d4efdf; color: #1e8449; }
+  .phase-2 { background: #fef9e7; color: #b7950b; }
+  .phase-1 { background: #fef3e2; color: #ca6f1e; }
+  .phase-pre { background: #fde8e8; color: #c0392b; }
+  
+  /* Calendar */
+  .calendar-item {
+    background: var(--card-bg);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .calendar-date {
+    background: var(--primary);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .importance-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .importance-dot.high { background: var(--danger); }
+  .importance-dot.medium { background: var(--warning); }
+  .importance-dot.low { background: var(--success); }
+  
+  /* Footer */
+  .footer {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .header { padding: 20px; }
+    .header h1 { font-size: 22px; }
+    body { padding: 12px; }
+  }
+  
+  .no-news {
+    text-align: center;
+    color: var(--text-light);
+    padding: 40px;
+    font-size: 16px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>🧠 阿尔茨海默创新药日报</h1>
+    <div class="date">2026年4月24日（周五）</div>
+    <div class="summary">
+      <strong>📊 一句话总结：</strong>AXS-05 PDUFA倒计时6天，Psychiatry Times发布专家综述力挺其临床数据；中国仑卡奈单抗SAIL真实世界研究发布，29.2%患者6个月Aβ-PET转阴；万邦德石杉碱甲II/III期临床全国启动大会召开。
+    </div>
+  </div>
+
+  <!-- Alert Section -->
+  <div id="alertSection">
+    <div class="alert-banner p1">
+      <h2>🟠 P1 - 重要关注</h2>
+      <div class="alert-item">
+        <span class="level p1">P1</span>
+        <strong> Axsome / AXS-05</strong>：PDUFA倒计时6天，Psychiatry Times发布深度综述评估临床数据优势
+        <br><small>来源: Psychiatric Times | 2026-04-23</small>
+      </div>
+    </div>
+    
+    <div class="alert-banner p2">
+      <h2>🟡 P2 - 行业动态</h2>
+      <div class="alert-item">
+        <span class="level p2">P2</span>
+        <strong> 广州医科大学 / SAIL研究</strong>：仑卡奈单抗真实世界数据发布，261例中国患者6个月29.2%Aβ-PET转阴
+        <br><small>来源: 科学网 | 2026-04-21</small>
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>
+        <strong> 万邦德 / 石杉碱甲控释片</strong>：II/III期临床试验全国启动大会在京召开，贾建平教授牵头
+        <br><small>来源: 万邦德官网 | 2026-04-02</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- News Section -->
+  <div class="section">
+    <div class="section-title">📰 今日信息汇总</div>
+    
+    <!-- AXS-05 -->
+    <div class="company-card">
+      <div class="company-header">
+        <span class="company-name">Axsome Therapeutics</span>
+        <span class="drug-badge">AXS-05 (Auvelity)</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-item full">
+          <div class="label">一句话结论</div>
+          <div class="value">AXS-05 PDUFA倒计时6天，Psychiatry Times发布深度综述力挺其III期ACCORD研究数据</div>
+        </div>
+        <div class="info-item">
+          <div class="label">核心数据</div>
+          <div class="value">• III期ACCORD研究：显著延迟 Alzheimer's Agitation Scale 恶化时间<br>• 突破性疗法认定(2020年6月获FDA授予)<br>• 优先审评资格(2025年12月获批)</div>
+        </div>
+        <div class="info-item">
+          <div class="label">意义</div>
+          <div class="value">全球首个进入FDA审评的AD相关躁动症治疗药物；若获批将成为50年来首个AD行为症状新药</div>
+        </div>
+        <div class="info-item">
+          <div class="label">风险</div>
+          <div class="value">右美沙芬代谢基因多态性可能影响疗效；临床试验样本量相对有限</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">PDUFA日期</div>
+          <div class="value"><strong style="color: #e74c3c;">⏰ 2026年4月30日（倒计时6天）</strong></div>
+        </div>
+      </div>
+      <a class="source-link" href="https://www.psychiatrictimes.com/view/a-review-of-data-on-axs-05-for-alzheimer-disease-agitation-in-advance-of-next-weeks-pdufa-date" target="_blank">来源: Psychiatric Times - A Review of Data on AXS-05</a>
+    </div>
+    
+    <!-- SAIL研究 -->
+    <div class="company-card">
+      <div class="company-header">
+        <span class="company-name">仑卡奈单抗 (Lecanemab) 真实世界研究</span>
+        <span class="drug-badge">SAIL研究</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-item full">
+          <div class="label">一句话结论</div>
+          <div class="value">国内最大规模仑卡奈单抗前瞻性真实世界研究数据发布，261例患者6个月治疗29.2%Aβ-PET转阴</div>
+        </div>
+        <div class="info-item">
+          <div class="label">核心数据</div>
+          <div class="value">• 参与中心: 21家全国医疗中心<br>• 患者数: 261例<br>• 6个月Aβ-PET转阴率: 29.2%<br>• 安全性: 中度AD患者ARIA发生率与早期AD相当</div>
+        </div>
+        <div class="info-item">
+          <div class="label">意义</div>
+          <div class="value">首次在中国人群大样本、多中心数据中验证血浆p-Tau217与Aβ-PET清除相关性；为便捷无创疗效监测方案奠定基础</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">研究机构</div>
+          <div class="value">广州医科大学神经科学研究所 | 刘军教授牵头 | 发表于《阿尔茨海默病与痴呆症》</div>
+        </div>
+      </div>
+      <a class="source-link" href="https://news.sciencenet.cn/htmlnews/2026/4/563415.shtm" target="_blank">来源: 科学网 | 2026-04-21</a>
+    </div>
+    
+    <!-- 万邦德石杉碱甲 -->
+    <div class="company-card">
+      <div class="company-header">
+        <span class="company-name">万邦德制药</span>
+        <span class="drug-badge">石杉碱甲控释片</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-item full">
+          <div class="label">一句话结论</div>
+          <div class="value">II/III期关键注册临床试验已完成100例入组，全国启动大会在京召开</div>
+        </div>
+        <div class="info-item">
+          <div class="label">核心进展</div>
+          <div class="value">• 2.2类新药(改良型新药)<br>• 适应症: 轻、中度阿尔茨海默病型痴呆<br>• 已完成100例受试者入组<br>• PI: 贾建平教授(首都医科大学宣武医院)</div>
+        </div>
+        <div class="info-item">
+          <div class="label">意义</div>
+          <div class="value">石杉碱甲为乙酰胆碱酯酶抑制剂，控释剂型可改善依从性；入选国家科技重大专项</div>
+        </div>
+        <div class="info-item">
+          <div class="label">风险</div>
+          <div class="value">传统靶点，临床获益有限；股价近期翻倍后面临回调风险</div>
+        </div>
+      </div>
+      <a class="source-link" href="https://www.wanbang.com.cn/NewsDtail/11.html" target="_blank">来源: 万邦德官网 | 2026-04-02</a>
+    </div>
+    
+    <!-- Cochrane综述 -->
+    <div class="company-card">
+      <div class="company-header">
+        <span class="company-name">Cochrane系统综述后续</span>
+        <span class="drug-badge">行业反思</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-item full">
+          <div class="label">一句话结论</div>
+          <div class="value">Cochrane综述(4月16日发布)持续引发行业反思，学界对其方法学提出质疑</div>
+        </div>
+        <div class="info-item">
+          <div class="label">综述结论</div>
+          <div class="value">9种抗Aβ单抗清除Aβ有效但认知获益"微乎其微"</div>
+        </div>
+        <div class="info-item">
+          <div class="label">学界回应</div>
+          <div class="value">UK DRI等质疑方法学，认为lecanemab/donanemab获益"modest but meaningful"</div>
+        </div>
+      </div>
+      <a class="source-link" href="https://finance.sina.com.cn/stock/stockzmt/2026-04-18/doc-inhuwsse1607096.shtml" target="_blank">来源: 新浪财经 | 2026-04-18</a>
+    </div>
+    
+    <!-- AL002 TREM2 -->
+    <div class="company-card">
+      <div class="company-header">
+        <span class="company-name">Alector / AL002</span>
+        <span class="drug-badge">TREM2激动剂</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-item full">
+          <div class="label">一句话结论</div>
+          <div class="value">AL002 Phase 2 INVOKE-2试验结果在Nature Medicine发表，显示靶点结合有效但未达主要终点</div>
+        </div>
+        <div class="info-item">
+          <div class="label">核心数据</div>
+          <div class="value">• 381例早期AD患者<br>• 治疗周期: 48-96周<br>• 结果: 靶点结合有效，主要终点未达</div>
+        </div>
+        <div class="info-item">
+          <div class="label">意义</div>
+          <div class="value">TREM2通路在AD中的治疗潜力仍需更多探索</div>
+        </div>
+      </div>
+      <a class="source-link" href="https://www.nature.com/articles/s41591-026-04273-1" target="_blank">来源: Nature Medicine | 2026-03-05</a>
+    </div>
+  </div>
+
+  <!-- Pipeline Overview -->
+  <div class="section">
+    <div class="section-title">📋 管线状态总览</div>
+    <table class="pipeline-table">
+      <thead>
+        <tr>
+          <th>公司</th>
+          <th>产品</th>
+          <th>靶点/机制</th>
+          <th>当前阶段</th>
+          <th>最近更新</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Biogen/Eisai</td>
+          <td>Lecanemab (Leqembi)</td>
+          <td>抗Aβ单抗</td>
+          <td><span class="phase-badge phase-approved">已获批</span></td>
+          <td>SAIL真实世界研究(4/21)</td>
+        </tr>
+        <tr>
+          <td>礼来</td>
+          <td>Donanemab (Kisunla)</td>
+          <td>抗Aβ单抗</td>
+          <td><span class="phase-badge phase-approved">已获批</span></td>
+          <td>2024年7月FDA批准</td>
+        </tr>
+        <tr>
+          <td>Axsome</td>
+          <td>AXS-05 (Auvelity)</td>
+          <td>NMDA拮抗/抗抑郁复方</td>
+          <td><span class="phase-badge phase-3">NDA审评中</span></td>
+          <td>PDUFA 4/30</td>
+        </tr>
+        <tr>
+          <td>Alzheon</td>
+          <td>ALZ-801</td>
+          <td>口服抗Aβ寡聚体</td>
+          <td><span class="phase-badge phase-3">III期</span></td>
+          <td>APOLLOE4数据(4/19 AAN)</td>
+        </tr>
+        <tr>
+          <td>绿叶制药</td>
+          <td>LY03017</td>
+          <td>5-HT2AR反向激动剂</td>
+          <td><span class="phase-badge phase-2">II期</span></td>
+          <td>中国II期首例入组(4/15)</td>
+        </tr>
+        <tr>
+          <td>万邦德</td>
+          <td>石杉碱甲控释片</td>
+          <td>AChE抑制剂</td>
+          <td><span class="phase-badge phase-2">II/III期</span></td>
+          <td>100例入组完成(2/1)</td>
+        </tr>
+        <tr>
+          <td>AC Immune/礼来</td>
+          <td>ACI-35.030 (JNJ-2056)</td>
+          <td>抗pTau疫苗</td>
+          <td><span class="phase-badge phase-2">II期</span></td>
+          <td>合作协议修订(4/7)</td>
+        </tr>
+        <tr>
+          <td>Alector</td>
+          <td>AL002</td>
+          <td>TREM2激动剂单抗</td>
+          <td><span class="phase-badge phase-2">II期</span></td>
+          <td>Nature Medicine发表(3/5)</td>
+        </tr>
+        <tr>
+          <td>Roche</td>
+          <td>Trontinemab</td>
+          <td>BBB穿透型抗Aβ单抗</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>Brainshuttle平台</td>
+        </tr>
+        <tr>
+          <td>Voyager</td>
+          <td>VY1706/VY7523</td>
+          <td>AAV基因疗法</td>
+          <td><span class="phase-badge phase-pre">临床前</span></td>
+          <td>H2 2026计划进入临床</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Upcoming Events -->
+  <div class="section">
+    <div class="section-title">📅 近期关注日历（未来7天）</div>
+    <div class="calendar-item">
+      <div class="calendar-date">4月28日</div>
+      <div>
+        <strong>NICE donanemab+lecanemab第三版指南草案公众咨询截止</strong>
+        <br><small>影响: 英国医保覆盖决策 | 重要性: 中</small>
+      </div>
+      <div class="importance-dot medium"></div>
+    </div>
+    <div class="calendar-item">
+      <div class="calendar-date">4月30日</div>
+      <div>
+        <strong>🔴 AXS-05 PDUFA日期 (Axsome/AD躁动症)</strong>
+        <br><small>影响: 若获批将成为50年来首个AD行为症状新药 | 重要性: 高</small>
+      </div>
+      <div class="importance-dot high"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    阿尔茨海默创新药跟踪系统 | 自动生成于 2026-04-24 07:50 | 数据来源于公开信息，仅供参考
+  </div>
+
+</div>
+</body>
+</html>
