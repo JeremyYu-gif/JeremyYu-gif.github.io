@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>锡价格和库存日报 2026-04-24</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Microsoft YaHei', Arial, sans-serif; background: #0d1117; color: #e6edf3; min-height: 100vh; }
+  .header { background: linear-gradient(135deg, #1e3a5f 0%, #0d2137 100%); padding: 24px 32px; border-bottom: 1px solid #21262d; }
+  .header h1 { font-size: 22px; font-weight: 700; color: #58a6ff; letter-spacing: 1px; }
+  .header .subtitle { font-size: 13px; color: #8b949e; margin-top: 6px; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 24px 20px; }
+  .section-title { font-size: 16px; font-weight: 600; color: #58a6ff; margin-bottom: 16px; padding-left: 12px; border-left: 3px solid #1f6feb; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px; }
+  @media(max-width: 900px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+  .kpi-card { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 18px 20px; transition: border-color 0.2s; }
+  .kpi-card:hover { border-color: #388bfd; }
+  .kpi-label { font-size: 12px; color: #8b949e; margin-bottom: 6px; }
+  .kpi-value { font-size: 24px; font-weight: 700; color: #e6edf3; }
+  .kpi-value.red { color: #f85149; }
+  .kpi-value.green { color: #3fb950; }
+  .kpi-sub { font-size: 12px; margin-top: 6px; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; margin-right: 4px; }
+  .tag.up { background: rgba(248,81,73,0.15); color: #f85149; }
+  .tag.down { background: rgba(63,185,80,0.15); color: #3fb950; }
+  .tag.flat { background: rgba(88,166,255,0.15); color: #58a6ff; }
+  .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+  @media(max-width: 800px) { .chart-grid { grid-template-columns: 1fr; } }
+  .chart-box { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 18px; }
+  .chart-box h3 { font-size: 14px; color: #e6edf3; margin-bottom: 14px; font-weight: 600; }
+  .chart-container { height: 300px; }
+  .analysis-box { background: #161b22; border: 1px solid #21262d; border-radius: 10px; padding: 20px; margin-bottom: 28px; }
+  .analysis-box h3 { font-size: 14px; color: #e6edf3; margin-bottom: 14px; font-weight: 600; }
+  .analysis-content p { font-size: 13px; line-height: 1.8; color: #c9d1d9; margin-bottom: 8px; }
+  .analysis-content p strong { color: #58a6ff; }
+  .alert-box { background: rgba(187,128,9,0.1); border: 1px solid rgba(187,128,9,0.4); border-radius: 8px; padding: 14px 18px; margin-bottom: 20px; }
+  .alert-box p { font-size: 13px; color: #e3b341; line-height: 1.7; }
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .data-table th { background: #0d2137; color: #58a6ff; padding: 10px 14px; text-align: left; font-weight: 600; border-bottom: 1px solid #21262d; }
+  .data-table td { padding: 9px 14px; border-bottom: 1px solid #161b22; color: #c9d1d9; }
+  .data-table tr:hover td { background: rgba(88,166,255,0.04); }
+  .source-note { font-size: 11px; color: #6e7681; margin-top: 10px; }
+  .footer { background: #0d1117; border-top: 1px solid #21262d; padding: 16px 32px; font-size: 12px; color: #6e7681; display: flex; justify-content: space-between; align-items: center; }
+  .section-gap { margin-bottom: 32px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🔩 锡价格和库存日报</h1>
+  <div class="subtitle">报告日期：2026-04-24（周五）&nbsp;&nbsp;｜&nbsp;&nbsp;数据截至：2026-04-23&nbsp;&nbsp;｜&nbsp;&nbsp;生成时间：2026-04-24 08:52&nbsp;&nbsp;｜&nbsp;&nbsp;数据来源：同花顺iFinD（EDB） / 上海期货交易所</div>
+</div>
+
+<div class="container">
+
+  <!-- KPI核心数据 -->
+  <div class="section-gap">
+    <div class="section-title">核心数据速览</div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">🏷️ 锡现货价（生意社）</div>
+        <div class="kpi-value" style="font-size:20px;">39.04 万元/吨</div>
+        <div class="kpi-sub">
+          <span class="tag down">日环比 -0.56%</span>
+          <span class="tag up">同比 +50.97%</span>
+        </div>
+        <div class="source-note">来源：生意社 | 截至 2026-04-23</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">📦 SHFE仓单（日报）</div>
+        <div class="kpi-value green">7,248 吨</div>
+        <div class="kpi-sub">
+          <span class="tag down">日环比 -2.63%</span>
+          <span class="tag down">较4/17 -9.49%</span>
+        </div>
+        <div class="source-note">来源：上海期货交易所 | 截至 2026-04-23</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">🏭 SHFE总库存（周频）</div>
+        <div class="kpi-value green">8,238 吨</div>
+        <div class="kpi-sub">
+          <span class="tag down">周环比 -3.25%</span>
+          <span class="tag down">同比 -13.93%</span>
+        </div>
+        <div class="source-note">来源：上海期货交易所 | 截至 2026-04-17</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">🌍 LME库存</div>
+        <div class="kpi-value green">8,795 吨</div>
+        <div class="kpi-sub">
+          <span class="tag down">日环比 -0.51%</span>
+          <span class="tag up">同比 +210.81%</span>
+        </div>
+        <div class="source-note">来源：LME | 截至 2026-04-23</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 市场分析 -->
+  <div class="section-gap">
+    <div class="section-title">市场分析与解读</div>
+    <div class="analysis-box">
+      <h3>📊 价格与库存综合分析（2026-04-24）</h3>
+      <div class="analysis-content">
+        <p><strong>现货价格：</strong>锡现货价格为39.04万元/吨，较上一交易日（39.26万元/吨）小幅下跌0.56%，未触发5%重大波动阈值。同比去年同期（25.87万元/吨）大幅上涨50.97%，价格仍处于历史高位区间。</p>
+        <p><strong>SHFE仓单：</strong>截至4月23日，SHFE仓单为7,248吨，较前日7,444吨减少196吨（-2.63%）。自3月11日高点10,050吨以来，仓单已累计下降27.9%，持续呈现去库趋势，供应端偏紧信号明确。</p>
+        <p><strong>SHFE总库存：</strong>最新周频数据（4月17日）为8,238吨，较上周（4月10日）8,515吨减少277吨（-3.25%）。较去年同期（9,571吨）下降13.93%，显示国内库存中期持续去化。</p>
+        <p><strong>LME库存：</strong>LME库存8,795吨，较前日8,840吨略降45吨（-0.51%）。同比去年同期（2,830吨）大幅增加210.81%，LME库存仍处于近年相对高位，海外锡供应相对充裕。</p>
+        <p><strong>综合研判：</strong>国内SHFE仓单与库存持续双降，去库节奏加快，供应偏紧；LME库存同比大增但日环比略降，海外偏充裕。价格在39万元/吨附近震荡，国内供需偏紧对价格有所支撑，但高同比基数下追多需谨慎，关注仓单能否继续快速去化。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 图表区域 -->
+  <div class="section-gap">
+    <div class="section-title">数据图表</div>
+    <div class="chart-grid">
+      <div class="chart-box">
+        <h3>锡现货价格（元/吨）近五年走势</h3>
+        <div id="chart_price" class="chart-container"></div>
+      </div>
+      <div class="chart-box">
+        <h3>SHFE仓单日报（吨）近30日趋势</h3>
+        <div id="chart_warrant" class="chart-container"></div>
+      </div>
+      <div class="chart-box">
+        <h3>SHFE锡库存（吨）近五年走势</h3>
+        <div id="chart_shfe" class="chart-container"></div>
+      </div>
+      <div class="chart-box">
+        <h3>LME锡库存（吨）近五年走势</h3>
+        <div id="chart_lme" class="chart-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 仓单数据表格 -->
+  <div class="section-gap">
+    <div class="section-title">SHFE仓单近30日明细</div>
+    <div class="chart-box">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>仓单总量（吨）</th>
+            <th>日环比变化</th>
+          </tr>
+        </thead>
+        <tbody id="warrant_table_body"></tbody>
+      </table>
+      <div class="source-note">数据来源：上海期货交易所官网 stock_sn API</div>
+    </div>
+  </div>
+
+  <!-- 数据来源 -->
+  <div class="section-gap">
+    <div class="section-title">数据来源说明</div>
+    <div class="analysis-box">
+      <div class="analysis-content">
+        <p><strong>锡现货价格：</strong>同花顺iFinD EDB数据库，指标代码 S004242377，数据来源：生意社，日频</p>
+        <p><strong>SHFE仓单日报：</strong>上海期货交易所官网实时API（stock_sn_{date}.dat），每交易日更新，单位：吨</p>
+        <p><strong>SHFE锡库存：</strong>同花顺iFinD EDB数据库，指标代码 S005580375，数据来源：上海期货交易所，周频</p>
+        <p><strong>LME锡库存：</strong>同花顺iFinD EDB数据库，指标代码 S000025732，数据来源：LME，日频</p>
+        <p><strong>免责声明：</strong>本报告数据均来源于公开数据库，仅供参考，不构成投资建议。</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div>锡价格和库存日报 | 自动生成</div>
+  <div>2026-04-24 08:52 | 数据来源：同花顺iFinD / 上海期货交易所</div>
+</div>
+
+<script>
+// ===== 现货价格数据（月度抽样） =====
+var priceData = [
+  ['2021-01-04',153500],['2021-02-08',166750],['2021-03-09',173000],['2021-04-22',184500],
+  ['2021-05-19',200000],['2021-06-10',208500],['2021-07-26',236250],['2021-08-17',246000],
+  ['2021-09-08',249750],['2021-10-11',286250],['2021-11-23',299250],['2021-12-16',293500],
+  ['2022-01-07',304300],['2022-02-07',333850],['2022-03-22',344287.5],['2022-04-15',343912.5],
+  ['2022-05-12',306012.5],['2022-06-06',262137.5],['2022-07-19',194262.5],['2022-08-10',199512.5],
+  ['2022-09-23',187825],['2022-10-24',175575],['2022-11-15',179700],['2022-12-07',196137.5],
+  ['2023-01-20',226887.5],['2023-02-20',208262.5],['2023-03-14',186950],['2023-04-06',197575],
+  ['2023-04-28',209575],['2023-05-24',195450],['2023-06-15',213825],['2023-07-11',229512.5],
+  ['2023-08-23',218887.5],['2023-09-14',217137.5],['2023-10-16',218387.5],['2023-11-07',208137.5],
+  ['2023-12-20',208637.5],['2024-01-12',206700],['2024-02-13',211387.5],['2024-03-06',218012.5],
+  ['2024-04-22',281325],['2024-05-17',273762.5],['2024-06-11',264200],['2024-07-03',271750],
+  ['2024-07-25',248887.5],['2024-08-15',256662.5],['2024-09-06',250262.5],['2024-10-09',265200],
+  ['2024-10-31',253637.5],['2024-11-21',243450],['2024-12-13',248387.5],
+  ['2025-01-07',248100],['2025-02-07',259537.5],['2025-03-03',255887.5],['2025-03-24',277075],
+  ['2025-04-07',278287.5],['2025-04-16',259287.5],['2025-04-23',258662.5],
+  ['2025-05-13',262125],['2025-06-05',259812.5],['2025-06-27',269425],
+  ['2025-07-18',265575],['2025-08-11',268075],['2025-09-02',273387.5],
+  ['2025-09-24',271350],['2025-10-23',280325],['2025-11-14',292687.5],
+  ['2025-12-08',314012.5],['2025-12-30',322700],
+  ['2026-01-09',350700],['2026-01-23',423037.5],['2026-01-29',437687.5],
+  ['2026-02-13',378525],['2026-02-27',430950],['2026-03-02',434575],['2026-03-10',400887.5],
+  ['2026-03-17',380875],['2026-03-25',357500],['2026-03-31',371037.5],
+  ['2026-04-01',375900],['2026-04-07',363875],['2026-04-09',370462.5],['2026-04-10',378037.5],
+  ['2026-04-13',371525],['2026-04-14',383087.5],['2026-04-15',390775],['2026-04-16',389375],
+  ['2026-04-17',389325],['2026-04-20',392437.5],['2026-04-21',395862.5],['2026-04-22',392612.5],
+  ['2026-04-23',390400]
+];
+
+// ===== SHFE仓单30日数据 =====
+var warrantHistory = [
+  ['2026-03-11',10050],['2026-03-12',12380],['2026-03-13',12292],['2026-03-16',12014],
+  ['2026-03-17',11692],['2026-03-18',11330],['2026-03-19',10290],['2026-03-20',9500],
+  ['2026-03-23',8990],['2026-03-24',8564],['2026-03-25',8154],['2026-03-26',7768],
+  ['2026-03-27',7414],['2026-03-30',7048],['2026-03-31',6784],['2026-04-01',6686],
+  ['2026-04-02',6490],['2026-04-03',6366],['2026-04-07',6120],['2026-04-08',8560],
+  ['2026-04-09',8468],['2026-04-10',8368],['2026-04-13',8272],['2026-04-14',8188],
+  ['2026-04-15',8178],['2026-04-16',8160],['2026-04-17',8008],['2026-04-20',7800],
+  ['2026-04-21',7550],['2026-04-22',7444],['2026-04-23',7248]
+];
+// 取最近30条
+var warrantLast30 = warrantHistory.slice(-30);
+
+// ===== SHFE库存月度数据 =====
+var shfeData = [
+  ['2021-01-01',5475],['2021-02-05',7450],['2021-03-05',8740],['2021-04-16',7702],
+  ['2021-05-07',8256],['2021-06-04',5159],['2021-06-25',3418],['2021-07-16',3649],
+  ['2021-08-06',2193],['2021-08-27',1197],['2021-09-17',1702],['2021-10-08',1841],
+  ['2021-11-05',1256],['2021-11-26',1911],['2021-12-17',2089],
+  ['2022-01-07',1723],['2022-01-28',2829],['2022-02-25',2936],['2022-03-18',2290],
+  ['2022-04-08',2557],['2022-05-06',1740],['2022-05-27',2028],['2022-06-17',4022],
+  ['2022-07-08',4014],['2022-07-29',3960],['2022-08-19',2826],['2022-09-09',2149],
+  ['2022-10-14',2754],['2022-11-04',2202],['2022-11-25',4064],['2022-12-16',5896],
+  ['2023-01-06',5722],['2023-02-03',7026],['2023-02-24',8664],['2023-03-24',8745],
+  ['2023-04-14',9056],['2023-05-05',9353],['2023-05-26',8915],['2023-06-16',8964],
+  ['2023-07-07',9203],['2023-07-28',9314],['2023-08-18',8411],['2023-09-15',7735],
+  ['2023-10-13',6421],['2023-11-03',6310],['2023-11-24',5876],['2023-12-15',5430],
+  ['2024-01-05',6402],['2024-01-26',8148],['2024-02-23',10403],['2024-03-01',10610],
+  ['2024-03-22',12021],['2024-04-12',14098],['2024-05-03',15766],['2024-05-24',17818],
+  ['2024-06-14',16155],['2024-07-05',14982],['2024-07-26',12982],['2024-08-09',10822],
+  ['2024-08-23',10509],['2024-09-06',9794],['2024-09-13',9499],['2024-10-04',8698],
+  ['2024-10-25',8637],['2024-11-01',8522],['2024-11-15',8889],['2024-12-06',6920],
+  ['2024-12-27',6722],
+  ['2025-01-03',6389],['2025-01-24',7038],['2025-02-14',6006],['2025-02-28',7369],
+  ['2025-03-07',7421],['2025-03-28',9255],['2025-04-04',9872],['2025-04-11',10377],
+  ['2025-04-18',9571],['2025-04-25',9249],['2025-05-09',8719],['2025-05-30',8107],
+  ['2025-06-06',7372],['2025-06-27',6955],['2025-07-18',7148],['2025-07-25',7417],
+  ['2025-08-08',7805],['2025-08-29',7566],['2025-09-05',7773],['2025-09-19',6988],
+  ['2025-10-10',5879],['2025-10-31',5919],['2025-11-07',5992],['2025-11-28',6359],
+  ['2025-12-05',6865],['2025-12-19',8095],['2025-12-26',8477],
+  ['2026-01-02',7936],['2026-01-09',6935],['2026-01-23',9720],['2026-01-30',10468],
+  ['2026-02-06',8750],['2026-02-13',11014],['2026-02-27',12253],['2026-03-06',11663],
+  ['2026-03-13',12514],['2026-03-20',10042],['2026-03-27',8400],['2026-04-03',7467],
+  ['2026-04-10',8515],['2026-04-17',8238]
+];
+
+// ===== LME库存月度数据 =====
+var lmeData = [
+  ['2021-01-04',1860],['2021-02-08',785],['2021-03-26',1705],['2021-04-21',1600],
+  ['2021-05-14',1260],['2021-06-09',1915],['2021-07-02',2025],['2021-07-26',2350],
+  ['2021-08-17',1750],['2021-09-10',1205],['2021-10-27',915],['2021-11-18',840],
+  ['2021-12-13',1640],
+  ['2022-01-10',2070],['2022-02-23',2250],['2022-03-18',2270],['2022-04-12',2765],
+  ['2022-05-09',3120],['2022-06-17',3260],['2022-07-20',3440],['2022-08-11',4015],
+  ['2022-09-09',4715],['2022-10-21',4625],['2022-11-14',3725],['2022-12-06',3075],
+  ['2023-01-03',2995],['2023-02-17',3105],['2023-03-13',2650],['2023-04-05',1855],
+  ['2023-05-03',1535],['2023-05-26',1925],['2023-06-20',2290],['2023-07-13',4345],
+  ['2023-08-07',5555],['2023-08-30',6205],['2023-09-21',6925],['2023-10-16',7390],
+  ['2023-11-08',7380],['2023-11-30',8110],['2023-12-22',7755],
+  ['2024-01-19',7030],['2024-02-13',6280],['2024-03-06',5520],['2024-03-28',4570],
+  ['2024-04-24',4450],['2024-05-20',5000],['2024-06-12',4665],['2024-07-04',4565],
+  ['2024-07-29',4605],['2024-08-21',4230],['2024-09-13',4725],['2024-10-07',4525],
+  ['2024-10-30',4620],['2024-11-22',4860],['2024-12-16',4625],
+  ['2025-01-10',4755],['2025-02-04',4265],['2025-02-27',3675],['2025-03-21',3760],
+  ['2025-04-14',3090],['2025-04-23',2830],['2025-05-12',2790],['2025-06-05',2445],
+  ['2025-06-27',2175],['2025-07-21',1885],['2025-08-13',1780],['2025-09-08',2280],
+  ['2025-09-30',2750],['2025-10-22',2745],['2025-11-14',3065],['2025-12-09',3050],
+  ['2026-01-05',5415],['2026-01-27',7085],['2026-02-19',7645],['2026-03-02',7470],
+  ['2026-03-16',8715],['2026-03-27',8720],['2026-04-01',8675],['2026-04-07',8815],
+  ['2026-04-09',8600],['2026-04-10',8600],['2026-04-13',8550],['2026-04-14',8525],
+  ['2026-04-15',8715],['2026-04-16',8710],['2026-04-17',8630],['2026-04-20',8445],
+  ['2026-04-21',8260],['2026-04-22',8840],['2026-04-23',8795]
+];
+
+// ===== 图表配置 =====
+var commonAxis = {
+  splitLine: { lineStyle: { color: '#21262d' } },
+  axisLine: { lineStyle: { color: '#30363d' } },
+  axisLabel: { color: '#8b949e', fontSize: 11 }
+};
+
+// 价格图
+var chartPrice = echarts.init(document.getElementById('chart_price'));
+chartPrice.setOption({
+  backgroundColor: 'transparent',
+  tooltip: { trigger: 'axis', backgroundColor: '#161b22', borderColor: '#30363d', textStyle: { color: '#e6edf3', fontSize: 12 } },
+  grid: { left: '8%', right: '4%', top: '10%', bottom: '12%' },
+  xAxis: { type: 'category', data: priceData.map(d=>d[0]), ...commonAxis, axisLabel: { ...commonAxis.axisLabel, interval: Math.floor(priceData.length/8), rotate: 30 } },
+  yAxis: { type: 'value', ...commonAxis, axisLabel: { ...commonAxis.axisLabel, formatter: v => (v/10000).toFixed(0)+'万' } },
+  series: [{
+    type: 'line', data: priceData.map(d=>d[1]),
+    lineStyle: { color: '#f79334', width: 2 },
+    itemStyle: { color: '#f79334' },
+    areaStyle: { color: { type: 'linear', x:0,y:0,x2:0,y2:1, colorStops: [{offset:0,color:'rgba(247,147,52,0.3)'},{offset:1,color:'rgba(247,147,52,0.02)'}] } },
+    symbol: 'none',
+    markLine: { data: [{ type: 'max', label: { formatter: v => (v.value/10000).toFixed(1)+'万', color:'#f85149' }, lineStyle: { color: '#f85149', type: 'dashed' } }], silent: true }
+  }]
+});
+
+// 仓单图
+var chartWarrant = echarts.init(document.getElementById('chart_warrant'));
+chartWarrant.setOption({
+  backgroundColor: 'transparent',
+  tooltip: { trigger: 'axis', backgroundColor: '#161b22', borderColor: '#30363d', textStyle: { color: '#e6edf3', fontSize: 12 } },
+  grid: { left: '10%', right: '4%', top: '10%', bottom: '15%' },
+  xAxis: { type: 'category', data: warrantLast30.map(d=>d[0]), ...commonAxis, axisLabel: { ...commonAxis.axisLabel, interval: 3, rotate: 30 } },
+  yAxis: { type: 'value', ...commonAxis, axisLabel: { ...commonAxis.axisLabel, formatter: v => v.toLocaleString() } },
+  series: [{
+    type: 'bar', data: warrantLast30.map(d=>d[1]),
+    itemStyle: { color: { type: 'linear', x:0,y:0,x2:0,y2:1, colorStops: [{offset:0,color:'#388bfd'},{offset:1,color:'#1f3a6e'}] }, borderRadius: [3,3,0,0] },
+    markLine: { data: [{ yAxis: 7248, label: { formatter: '当前:7,248', color:'#58a6ff' }, lineStyle: { color:'#58a6ff', type:'dashed' } }], silent: true }
+  }]
+});
+
+// SHFE库存图
+var chartShfe = echarts.init(document.getElementById('chart_shfe'));
+chartShfe.setOption({
+  backgroundColor: 'transparent',
+  tooltip: { trigger: 'axis', backgroundColor: '#161b22', borderColor: '#30363d', textStyle: { color: '#e6edf3', fontSize: 12 } },
+  grid: { left: '10%', right: '4%', top: '10%', bottom: '12%' },
+  xAxis: { type: 'category', data: shfeData.map(d=>d[0]), ...commonAxis, axisLabel: { ...commonAxis.axisLabel, interval: Math.floor(shfeData.length/8), rotate: 30 } },
+  yAxis: { type: 'value', ...commonAxis, axisLabel: { ...commonAxis.axisLabel, formatter: v => v.toLocaleString() } },
+  series: [{
+    type: 'line', data: shfeData.map(d=>d[1]),
+    lineStyle: { color: '#3fb950', width: 2 },
+    itemStyle: { color: '#3fb950' },
+    areaStyle: { color: { type: 'linear', x:0,y:0,x2:0,y2:1, colorStops: [{offset:0,color:'rgba(63,185,80,0.3)'},{offset:1,color:'rgba(63,185,80,0.02)'}] } },
+    symbol: 'none'
+  }]
+});
+
+// LME库存图
+var chartLme = echarts.init(document.getElementById('chart_lme'));
+chartLme.setOption({
+  backgroundColor: 'transparent',
+  tooltip: { trigger: 'axis', backgroundColor: '#161b22', borderColor: '#30363d', textStyle: { color: '#e6edf3', fontSize: 12 } },
+  grid: { left: '10%', right: '4%', top: '10%', bottom: '12%' },
+  xAxis: { type: 'category', data: lmeData.map(d=>d[0]), ...commonAxis, axisLabel: { ...commonAxis.axisLabel, interval: Math.floor(lmeData.length/8), rotate: 30 } },
+  yAxis: { type: 'value', ...commonAxis, axisLabel: { ...commonAxis.axisLabel, formatter: v => v.toLocaleString() } },
+  series: [{
+    type: 'line', data: lmeData.map(d=>d[1]),
+    lineStyle: { color: '#bc8cff', width: 2 },
+    itemStyle: { color: '#bc8cff' },
+    areaStyle: { color: { type: 'linear', x:0,y:0,x2:0,y2:1, colorStops: [{offset:0,color:'rgba(188,140,255,0.3)'},{offset:1,color:'rgba(188,140,255,0.02)'}] } },
+    symbol: 'none'
+  }]
+});
+
+// 渲染仓单表格（最近30条，倒序）
+var tbody = document.getElementById('warrant_table_body');
+var tableData = warrantLast30.slice().reverse();
+for (var i = 0; i < tableData.length; i++) {
+  var row = tableData[i];
+  var prev = i < tableData.length - 1 ? tableData[i+1][1] : null;
+  var pct = prev ? ((row[1] - prev) / prev * 100).toFixed(2) : '--';
+  var pctStr = prev ? (pct > 0 ? '+'+pct+'%' : pct+'%') : '--';
+  var pctClass = prev ? (parseFloat(pct) > 0 ? 'up' : 'down') : 'flat';
+  tbody.innerHTML += '<tr><td>' + row[0] + '</td><td>' + row[1].toLocaleString() + '</td><td><span class="tag ' + pctClass + '">' + pctStr + '</span></td></tr>';
+}
+
+// 响应窗口调整
+window.addEventListener('resize', function() {
+  chartPrice.resize(); chartWarrant.resize(); chartShfe.resize(); chartLme.resize();
+});
+</script>
+</body>
+</html>
