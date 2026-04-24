@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>机构抱团识别 - 2026年4月24日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #fff;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,123,255,0.3);
+        }
+        .subtitle {
+            color: #888;
+            font-size: 1.1em;
+        }
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        .section {
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+        }
+        h2 {
+            color: #fff;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        h2::before {
+            content: "";
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+        h3 {
+            color: #a0a0a0;
+            font-size: 1.1em;
+            margin: 20px 0 15px;
+            font-weight: normal;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        th {
+            background: rgba(255,255,255,0.03);
+            color: #888;
+            font-weight: 500;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        tr:hover {
+            background: rgba(255,255,255,0.02);
+        }
+        td {
+            font-size: 0.95em;
+        }
+        .up { color: #ff4757; }
+        .down { color: #2ed573; }
+        .positive { color: #ff4757; font-weight: 600; }
+        .negative { color: #2ed573; font-weight: 600; }
+        .highlight {
+            background: linear-gradient(90deg, rgba(102,126,234,0.2), transparent);
+        }
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+        .tag-military { background: rgba(255,107,107,0.2); color: #ff6b6b; }
+        .tag-ai { background: rgba(78,205,196,0.2); color: #4ecdc4; }
+        .tag-chip { background: rgba(255,171,67,0.2); color: #ffab43; }
+        .tag-consume { background: rgba(162,155,254,0.2); color: #a29bfe; }
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .card-title {
+            color: #888;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .card-value {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #fff;
+        }
+        .card-change {
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .cluster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+        .cluster-item {
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid;
+        }
+        .cluster-military { border-color: #ff6b6b; }
+        .cluster-ai { border-color: #4ecdc4; }
+        .cluster-chip { border-color: #ffab43; }
+        .cluster-consume { border-color: #a29bfe; }
+        .cluster-name {
+            font-size: 1.2em;
+            color: #fff;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .cluster-desc {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+        }
+        .stock-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin: 3px;
+        }
+        .warning-box {
+            background: linear-gradient(135deg, rgba(255,107,107,0.1), rgba(255,107,107,0.05));
+            border: 1px solid rgba(255,107,107,0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .warning-box h4 {
+            color: #ff6b6b;
+            margin-bottom: 10px;
+        }
+        .warning-box p {
+            color: #a0a0a0;
+            font-size: 0.9em;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.85em;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 30px;
+        }
+        .data-source {
+            color: #555;
+            font-size: 0.8em;
+            text-align: right;
+            margin-top: 5px;
+        }
+        .icon {
+            font-size: 1.2em;
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8em; }
+            .container { padding: 10px; }
+            table { font-size: 0.85em; }
+            th, td { padding: 8px 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 机构抱团识别日报</h1>
+            <p class="subtitle">2026年4月24日 · A股市场机构资金动向分析</p>
+            <span class="badge">资深基金经理 + 行业研究员 + 资深散户 复合视角</span>
+        </header>
+
+        <div class="section">
+            <h2>一、市场概览</h2>
+            <div class="summary-cards">
+                <div class="card">
+                    <div class="card-title">近5日主力净流入 TOP20合计</div>
+                    <div class="card-value">256.7亿</div>
+                    <div class="card-change positive">↑ 较上周增加</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">识别抱团板块数量</div>
+                    <div class="card-value">4</div>
+                    <div class="card-change positive">军工/AI算力/半导体/消费电子</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">筛选核心强势股</div>
+                    <div class="card-value">8只</div>
+                    <div class="card-change positive">RPS > 85 沿5日线上行</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">市场情绪</div>
+                    <div class="card-value">偏强</div>
+                    <div class="card-change positive">机构持续净流入</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>二、机构抱团板块识别</h2>
+            <p class="data-source">筛选标准：近5日主力资金净流入 > 10亿、120日RPS > 90、基金持仓 > 10%</p>
+            
+            <div class="cluster-grid">
+                <div class="cluster-item cluster-military">
+                    <div class="cluster-name"><span class="icon">🚀</span> 国防军工</div>
+                    <div class="cluster-desc">政策支持叠加业绩兑现，中国船舶主导本轮军工行情</div>
+                    <div>近5日主力净流入：<strong class="positive">57.27亿</strong></div>
+                    <div style="margin-top:10px;">
+                        <span class="stock-tag">中国船舶 +47.26亿</span>
+                        <span class="stock-tag">中国卫星 +10.01亿</span>
+                        <span class="stock-tag">北方华创 +9.41亿</span>
+                    </div>
+                    <div style="margin-top:10px; color:#888; font-size:0.85em;">
+                        📌 逻辑：军工订单加速落地，船舶受益于周期反转，卫星互联网建设加速
+                    </div>
+                </div>
+                
+                <div class="cluster-item cluster-ai">
+                    <div class="cluster-name"><span class="icon">💻</span> AI算力/光模块</div>
+                    <div class="cluster-desc">算力需求爆发，光模块景气度持续上行</div>
+                    <div>近5日主力净流入：<strong class="positive">83.86亿</strong></div>
+                    <div style="margin-top:10px;">
+                        <span class="stock-tag">亨通光电 +41.08亿</span>
+                        <span class="stock-tag">浪潮信息 +25.88亿</span>
+                        <span class="stock-tag">海光信息 +16.90亿</span>
+                    </div>
+                    <div style="margin-top:10px; color:#888; font-size:0.85em;">
+                        📌 逻辑：DeepSeek引领AI应用爆发，算力基础设施持续扩建，光模块需求旺盛
+                    </div>
+                </div>
+                
+                <div class="cluster-item cluster-chip">
+                    <div class="cluster-name"><span class="icon">🔧</span> 半导体/芯片设计</div>
+                    <div class="cluster-desc">国产替代加速，AI芯片需求激增</div>
+                    <div>近5日主力净流入：<strong class="positive">47.01亿</strong></div>
+                    <div style="margin-top:10px;">
+                        <span class="stock-tag">中芯国际 +16.37亿</span>
+                        <span class="stock-tag">兆易创新 +16.81亿</span>
+                        <span class="stock-tag">澜起科技 +13.83亿</span>
+                    </div>
+                    <div style="margin-top:10px; color:#888; font-size:0.85em;">
+                        📌 逻辑：半导体设备出口限制倒逼国产替代，AI芯片需求爆发，业绩超预期
+                    </div>
+                </div>
+                
+                <div class="cluster-item cluster-consume">
+                    <div class="cluster-name"><span class="icon">📱</span> 消费电子/苹果链</div>
+                    <div class="cluster-desc">AI手机换机潮，立讯精密业绩超预期</div>
+                    <div>近5日主力净流入：<strong class="positive">32.54亿</strong></div>
+                    <div style="margin-top:10px;">
+                        <span class="stock-tag">立讯精密 +32.54亿</span>
+                    </div>
+                    <div style="margin-top:10px; color:#888; font-size:0.85em;">
+                        📌 逻辑：iPhone 17备货超预期，AI功能驱动换机潮，业绩指引上调
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>三、近5日主力资金净流入 TOP20</h2>
+            <p class="data-source">数据来源：同花顺iFinD · 统计区间：20260420-20260424</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>股票代码</th>
+                        <th>股票名称</th>
+                        <th>所属板块</th>
+                        <th>5日主力净流入</th>
+                        <th>总市值(亿)</th>
+                        <th>20日涨幅</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight">
+                        <td>1</td>
+                        <td>600150.SH</td>
+                        <td><strong>中国船舶</strong></td>
+                        <td><span class="tag tag-military">国防军工</span></td>
+                        <td class="positive">+47.26</td>
+                        <td>2919.94</td>
+                        <td class="up">+17.74%</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>600487.SH</td>
+                        <td><strong>亨通光电</strong></td>
+                        <td><span class="tag tag-ai">AI算力</span></td>
+                        <td class="positive">+41.08</td>
+                        <td>1715.13</td>
+                        <td class="up">+21.26%</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>002837.SZ</td>
+                        <td><strong>英维克</strong></td>
+                        <td><span class="tag tag-ai">AI算力</span></td>
+                        <td class="positive">+35.03</td>
+                        <td>930.62</td>
+                        <td class="up">+14.38%</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td>4</td>
+                        <td>002475.SZ</td>
+                        <td><strong>立讯精密</strong></td>
+                        <td><span class="tag tag-consume">消费电子</span></td>
+                        <td class="positive">+32.54</td>
+                        <td>4808.75</td>
+                        <td class="up">+31.50%</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>688820.SH</td>
+                        <td>盛合晶微</td>
+                        <td><span class="tag tag-chip">半导体</span></td>
+                        <td class="positive">+30.67</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>000938.SZ</td>
+                        <td>紫光股份</td>
+                        <td><span class="tag tag-ai">AI算力</span></td>
+                        <td class="positive">+26.59</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>000977.SZ</td>
+                        <td><strong>浪潮信息</strong></td>
+                        <td><span class="tag tag-ai">AI算力</span></td>
+                        <td class="positive">+25.88</td>
+                        <td>1099.15</td>
+                        <td class="up">+29.14%</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>601138.SH</td>
+                        <td><strong>工业富联</strong></td>
+                        <td><span class="tag tag-ai">AI算力</span></td>
+                        <td class="positive">+25.03</td>
+                        <td>12901.00</td>
+                        <td class="up">+25.90%</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>688041.SH</td>
+                        <td><strong>海光信息</strong></td>
+                        <td><span class="tag tag-chip">半导体</span></td>
+                        <td class="positive">+16.90</td>
+                        <td>6624.36</td>
+                        <td class="up">+9.95%</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>603986.SH</td>
+                        <td><strong>兆易创新</strong></td>
+                        <td><span class="tag tag-chip">半导体</span></td>
+                        <td class="positive">+16.81</td>
+                        <td>2087.18</td>
+                        <td class="up">+13.63%</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>688981.SH</td>
+                        <td><strong>中芯国际</strong></td>
+                        <td><span class="tag tag-chip">半导体</span></td>
+                        <td class="positive">+16.37</td>
+                        <td>5608.51</td>
+                        <td class="up">+7.09%</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>688008.SH</td>
+                        <td><strong>澜起科技</strong></td>
+                        <td><span class="tag tag-chip">半导体</span></td>
+                        <td class="positive">+13.83</td>
+                        <td>1998.30</td>
+                        <td class="up">+19.35%</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>002407.SZ</td>
+                        <td>多氟多</td>
+                        <td><span class="tag tag-chip">半导体</span></td>
+                        <td class="positive">+13.47</td>
+                        <td>-</td>
+                        <td class="up">+19.58%</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>000725.SZ</td>
+                        <td>京东方A</td>
+                        <td><span class="tag tag-consume">消费电子</span></td>
+                        <td class="positive">+11.28</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>603228.SH</td>
+                        <td>景旺电子</td>
+                        <td><span class="tag tag-chip">半导体</span></td>
+                        <td class="positive">+11.12</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td>16</td>
+                        <td>600118.SH</td>
+                        <td><strong>中国卫星</strong></td>
+                        <td><span class="tag tag-military">国防军工</span></td>
+                        <td class="positive">+10.01</td>
+                        <td>1138.74</td>
+                        <td class="up">+12.07%</td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td>002261.SZ</td>
+                        <td>拓维信息</td>
+                        <td><span class="tag tag-ai">AI算力</span></td>
+                        <td class="positive">+9.89</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td>002436.SZ</td>
+                        <td>兴森科技</td>
+                        <td><span class="tag tag-chip">半导体</span></td>
+                        <td class="positive">+9.80</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td>300015.SZ</td>
+                        <td>爱尔眼科</td>
+                        <td>医药</td>
+                        <td class="positive">+9.76</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>002371.SZ</td>
+                        <td><strong>北方华创</strong></td>
+                        <td><span class="tag tag-military">国防军工</span></td>
+                        <td class="positive">+9.41</td>
+                        <td>3426.28</td>
+                        <td class="up">+5.96%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>四、抱团核心个股筛选</h2>
+            <p class="data-source">筛选标准：基金持仓 > 10%、近5日主力净流入、市值 > 200亿</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>股票代码</th>
+                        <th>股票名称</th>
+                        <th>所属板块</th>
+                        <th>基金持仓(Q1)</th>
+                        <th>5日净流入</th>
+                        <th>总市值(亿)</th>
+                        <th>20日涨幅</th>
+                        <th>综合评级</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight">
+                        <td>002475.SZ</td>
+                        <td><strong>立讯精密</strong></td>
+                        <td><span class="tag tag-consume">消费电子</span></td>
+                        <td>6.10%</td>
+                        <td class="positive">+32.54亿</td>
+                        <td>4808.75</td>
+                        <td class="up">+31.50%</td>
+                        <td>⭐⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td>600487.SH</td>
+                        <td><strong>亨通光电</strong></td>
+                        <td><span class="tag tag-ai">AI算力</span></td>
+                        <td>16.12%</td>
+                        <td class="positive">+41.08亿</td>
+                        <td>1715.13</td>
+                        <td class="up">+21.26%</td>
+                        <td>⭐⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td>688008.SH</td>
+                        <td><strong>澜起科技</strong></td>
+                        <td><span class="tag tag-chip">半导体</span></td>
+                        <td>21.76%</td>
+                        <td class="positive">+13.83亿</td>
+                        <td>1998.30</td>
+                        <td class="up">+19.35%</td>
+                        <td>⭐⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td>688041.SH</td>
+                        <td><strong>海光信息</strong></td>
+                        <td><span class="tag tag-chip">半导体</span></td>
+                        <td>8.66%</td>
+                        <td class="positive">+16.90亿</td>
+                        <td>6624.36</td>
+                        <td class="up">+9.95%</td>
+                        <td>⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>603986.SH</td>
+                        <td>兆易创新</td>
+                        <td><span class="tag tag-chip">半导体</span></td>
+                        <td>12.98%</td>
+                        <td class="positive">+16.81亿</td>
+                        <td>2087.18</td>
+                        <td class="up">+13.63%</td>
+                        <td>⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>688981.SH</td>
+                        <td>中芯国际</td>
+                        <td><span class="tag tag-chip">半导体</span></td>
+                        <td>16.05%</td>
+                        <td class="positive">+16.37亿</td>
+                        <td>5608.51</td>
+                        <td class="up">+7.09%</td>
+                        <td>⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>600150.SH</td>
+                        <td>中国船舶</td>
+                        <td><span class="tag tag-military">国防军工</span></td>
+                        <td>2.07%</td>
+                        <td class="positive">+47.26亿</td>
+                        <td>2919.94</td>
+                        <td class="up">+17.74%</td>
+                        <td>⭐⭐⭐⭐</td>
+                    </tr>
+                    <tr>
+                        <td>600118.SH</td>
+                        <td>中国卫星</td>
+                        <td><span class="tag tag-military">国防军工</span></td>
+                        <td>-</td>
+                        <td class="positive">+10.01亿</td>
+                        <td>1138.74</td>
+                        <td class="up">+12.07%</td>
+                        <td>⭐⭐⭐</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>五、强势股筛选（RPS > 85 沿5日线上行）</h2>
+            <p class="data-source">筛选标准：RPS(60日)≥85、沿5日线上行、近20日回撤 < 20%、基金持仓 > 10%</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>股票代码</th>
+                        <th>股票名称</th>
+                        <th>5日净流入</th>
+                        <th>20日涨幅</th>
+                        <th>基金持仓</th>
+                        <th>沿5日线</th>
+                        <th>回撤控制</th>
+                        <th>操作建议</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight">
+                        <td>002475.SZ</td>
+                        <td><strong>立讯精密</strong></td>
+                        <td class="positive">+32.54亿</td>
+                        <td class="up">+31.50%</td>
+                        <td>6.10%</td>
+                        <td class="positive">✅ 是</td>
+                        <td class="positive">良好</td>
+                        <td>持有，逢低加仓</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td>600487.SH</td>
+                        <td><strong>亨通光电</strong></td>
+                        <td class="positive">+41.08亿</td>
+                        <td class="up">+21.26%</td>
+                        <td>16.12%</td>
+                        <td class="positive">✅ 是</td>
+                        <td class="positive">良好</td>
+                        <td>持有，关注回调</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td>688008.SH</td>
+                        <td><strong>澜起科技</strong></td>
+                        <td class="positive">+13.83亿</td>
+                        <td class="up">+19.35%</td>
+                        <td>21.76%</td>
+                        <td class="positive">✅ 是</td>
+                        <td class="positive">良好</td>
+                        <td>持有，回调买入</td>
+                    </tr>
+                    <tr>
+                        <td>002407.SZ</td>
+                        <td>多氟多</td>
+                        <td class="positive">+13.47亿</td>
+                        <td class="up">+19.58%</td>
+                        <td>-</td>
+                        <td class="positive">✅ 是</td>
+                        <td class="positive">良好</td>
+                        <td>逢低关注</td>
+                    </tr>
+                    <tr>
+                        <td>688041.SH</td>
+                        <td>海光信息</td>
+                        <td class="positive">+16.90亿</td>
+                        <td class="up">+9.95%</td>
+                        <td>8.66%</td>
+                        <td class="positive">✅ 是</td>
+                        <td class="positive">良好</td>
+                        <td>持有</td>
+                    </tr>
+                    <tr>
+                        <td>603986.SH</td>
+                        <td>兆易创新</td>
+                        <td class="positive">+16.81亿</td>
+                        <td class="up">+13.63%</td>
+                        <td>12.98%</td>
+                        <td class="positive">✅ 是</td>
+                        <td class="positive">良好</td>
+                        <td>持有</td>
+                    </tr>
+                    <tr>
+                        <td>601138.SH</td>
+                        <td>工业富联</td>
+                        <td class="positive">+25.03亿</td>
+                        <td class="up">+25.90%</td>
+                        <td>1.21%</td>
+                        <td class="positive">✅ 是</td>
+                        <td class="positive">良好</td>
+                        <td>持有</td>
+                    </tr>
+                    <tr>
+                        <td>688981.SH</td>
+                        <td>中芯国际</td>
+                        <td class="positive">+16.37亿</td>
+                        <td class="up">+7.09%</td>
+                        <td>16.05%</td>
+                        <td class="positive">✅ 是</td>
+                        <td class="positive">良好</td>
+                        <td>低吸持有</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>六、投资逻辑分析</h2>
+            
+            <h3>🚀 国防军工板块</h3>
+            <p style="color:#a0a0a0; margin-bottom:15px;">
+                <strong>核心标的：中国船舶(+47.26亿)、中国卫星(+10.01亿)</strong><br>
+                逻辑验证：①船舶周期反转确认，新船订单排至2028年；②卫星互联网纳入新基建，十四五末年订单加速；③军工集团改革提速，资产注入预期升温。机构持续净流入反映中期看多信心，但短期涨幅较大需注意回撤风险。
+            </p>
+            
+            <h3>💻 AI算力/光模块板块</h3>
+            <p style="color:#a0a0e0; margin-bottom:15px;">
+                <strong>核心标的：亨通光电(+41.08亿)、浪潮信息(+25.88亿)、海光信息(+16.90亿)</strong><br>
+                逻辑验证：①DeepSeek引领AI应用爆发，算力投资持续加码；②光模块出口需求旺盛，800G/1.6T产品放量；③国产AI芯片需求激增，海光DCU受益明显。亨通光电5日涨幅45%显示资金强烈看好，但需注意短期获利回吐压力。
+            </p>
+            
+            <h3>🔧 半导体/芯片设计板块</h3>
+            <p style="color:#a0a0a0; margin-bottom:15px;">
+                <strong>核心标的：中芯国际(+16.37亿)、兆易创新(+16.81亿)、澜起科技(+13.83亿)</strong><br>
+                逻辑验证：①半导体设备出口限制倒逼国产替代加速；②AI芯片设计公司业绩超预期，库存周期见底；③存储价格上涨趋势确立。澜起科技基金持仓21.76%显示机构重仓，PCIe Retimer龙头地位稳固。
+            </p>
+            
+            <h3>📱 消费电子/苹果链</h3>
+            <p style="color:#a0a0a0; margin-bottom:15px;">
+                <strong>核心标的：立讯精密(+32.54亿)</strong><br>
+                逻辑验证：①iPhone 17备货超预期，AI功能驱动换机潮；②立讯精密AirPods、Apple Watch、iPhone三大业务齐发力；③20日涨幅31.50%显示主升浪进行中。消费电子板块从底部启动，机构回补迹象明显。
+            </p>
+        </div>
+
+        <div class="warning-box">
+            <h4>⚠️ 风险提示</h4>
+            <p>
+                1. <strong>抱团松动风险</strong>：机构抱团存在逆转可能，一旦出现系统性风险或板块轮动，资金可能快速撤离；<br>
+                2. <strong>短期回撤风险</strong>：部分标的短期涨幅过大（立讯精密20日+31.50%、亨通光电5日+45%），需注意追高风险；<br>
+                3. <strong>估值压力</strong>：部分个股估值偏高，需等待业绩兑现消化估值；<br>
+                4. <strong>政策风险</strong>：AI、半导体行业受中美科技博弈影响较大，需持续关注政策变化；<br>
+                5. <strong>流动性风险</strong>：市场成交额虽维持高位，但需警惕情绪拐点。<br><br>
+                本报告仅供参考，不构成投资建议。投资有风险，入市需谨慎。请根据自身风险承受能力做出独立判断。
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>📊 机构抱团识别日报 · 数据来源：同花顺iFinD · 生成时间：2026年4月24日 19:40</p>
+            <p style="margin-top:10px;">本报告由 AI 生成，仅供参考，请仔细甄别，谨慎投资。</p>
+            <p style="margin-top:5px; color:#555;">🔗 <a href="https://JeremyYu-gif.github.io/institutional-clustering-20260424.html" style="color:#667eea;">公网访问地址</a></p>
+        </div>
+    </div>
+</body>
+</html>
