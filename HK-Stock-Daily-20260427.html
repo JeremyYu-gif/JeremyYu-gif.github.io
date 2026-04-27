@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>港股每日复盘 2026年4月27日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.6;
+        }
+        /* 顶部标题 */
+        .header {
+            background: linear-gradient(135deg, #161b22 0%, #1f2937 50%, #161b22 100%);
+            border-bottom: 1px solid #30363d;
+            padding: 28px 40px 20px;
+        }
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+        .header h1 span {
+            color: #f85149;
+            margin-right: 8px;
+        }
+        .header .date-badge {
+            background: #1f6feb;
+            color: #fff;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .header .subtitle {
+            color: #8b949e;
+            font-size: 13px;
+            margin-top: 6px;
+        }
+        /* 主容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 20px;
+        }
+        /* 章节标题 */
+        .section {
+            margin-bottom: 32px;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 17px;
+            font-weight: 700;
+            color: #e6edf3;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #21262d;
+        }
+        .section-title .icon {
+            width: 28px; height: 28px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .icon-blue { background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; }
+        .icon-green { background: #23863622; color: #3fb950; border: 1px solid #23863644; }
+        .icon-red { background: #da363333; color: #f85149; border: 1px solid #da363355; }
+        .icon-purple { background: #8957e522; color: #d2a8ff; border: 1px solid #8957e544; }
+        .icon-yellow { background: #d2993222; color: #e3b341; border: 1px solid #d2993244; }
+        /* 指数卡片 */
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .index-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 18px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .index-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+        .index-card.up::before { background: linear-gradient(90deg, #22c55e, #16a34a); }
+        .index-card.down::before { background: linear-gradient(90deg, #ef4444, #dc2626); }
+        .index-card .name { font-size: 13px; color: #8b949e; margin-bottom: 8px; }
+        .index-card .price { font-size: 26px; font-weight: 700; color: #e6edf3; margin-bottom: 4px; }
+        .index-card .change-row { display: flex; gap: 12px; align-items: center; }
+        .index-card .pct.up { color: #22c55e; font-size: 18px; font-weight: 700; }
+        .index-card .pct.down { color: #ef4444; font-size: 18px; font-weight: 700; }
+        .index-card .pts { font-size: 13px; color: #8b949e; }
+        .index-card .vol { font-size: 12px; color: #8b949e; margin-top: 8px; }
+        /* 信息网格 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .info-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 14px 16px;
+            text-align: center;
+        }
+        .info-card .label { font-size: 12px; color: #8b949e; margin-bottom: 6px; }
+        .info-card .value { font-size: 18px; font-weight: 700; color: #e6edf3; }
+        .info-card .value.up { color: #22c55e; }
+        .info-card .value.down { color: #ef4444; }
+        .info-card .sub { font-size: 11px; color: #8b949e; margin-top: 4px; }
+        /* 表格 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+        thead tr { background: #1c2128; }
+        th {
+            padding: 10px 14px;
+            text-align: left;
+            font-size: 12px;
+            color: #8b949e;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        td {
+            padding: 10px 14px;
+            font-size: 13px;
+            border-top: 1px solid #21262d;
+            color: #c9d1d9;
+        }
+        tr:hover td { background: #1c2128; }
+        .up-text { color: #22c55e; font-weight: 600; }
+        .down-text { color: #ef4444; font-weight: 600; }
+        /* 板块卡片 */
+        .sector-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .sector-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 16px;
+        }
+        .sector-card h4 {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .sector-card h4.up { color: #22c55e; }
+        .sector-card h4.down { color: #ef4444; }
+        .sector-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 0;
+            border-bottom: 1px solid #21262d;
+        }
+        .sector-item:last-child { border-bottom: none; }
+        .sector-item .sname { font-size: 13px; color: #c9d1d9; }
+        .sector-item .schange { font-size: 13px; font-weight: 700; }
+        .sector-item .sreason { font-size: 11px; color: #8b949e; margin-top: 2px; }
+        /* 个股卡片 */
+        .stock-row {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+        }
+        .stock-row-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .stock-name { font-size: 15px; font-weight: 700; color: #e6edf3; }
+        .stock-code { font-size: 11px; color: #8b949e; margin-left: 8px; }
+        .stock-pct { font-size: 20px; font-weight: 800; }
+        .stock-desc { font-size: 12px; color: #8b949e; line-height: 1.5; }
+        /* 资金面卡片 */
+        .fund-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        .fund-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 16px;
+        }
+        .fund-card h4 {
+            font-size: 13px;
+            color: #8b949e;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .fund-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 7px 0;
+            border-bottom: 1px solid #21262d;
+        }
+        .fund-item:last-child { border-bottom: none; }
+        .fund-item .flabel { font-size: 13px; color: #c9d1d9; }
+        .fund-item .fvalue { font-size: 13px; font-weight: 700; text-align: right; }
+        /* 警报信号 */
+        .alert-box {
+            background: #161b22;
+            border: 1px solid;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .alert-box.warning { border-color: #e3b34144; }
+        .alert-box.danger { border-color: #f8514944; }
+        .alert-box.success { border-color: #3fb95044; }
+        .alert-box .alert-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+        .alert-box .alert-content {}
+        .alert-box .alert-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+        .alert-box.warning .alert-title { color: #e3b341; }
+        .alert-box.danger .alert-title { color: #f85149; }
+        .alert-box.success .alert-title { color: #3fb950; }
+        .alert-box .alert-desc { font-size: 12px; color: #8b949e; }
+        /* 结论卡片 */
+        .conclusion-card {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            border: 1px solid #374151;
+            border-radius: 12px;
+            padding: 24px;
+        }
+        .conclusion-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #f3f4f6;
+            margin-bottom: 16px;
+        }
+        .conclusion-summary {
+            font-size: 15px;
+            color: #d1d5db;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            padding: 14px;
+            background: #1c2128;
+            border-radius: 8px;
+            border-left: 3px solid #1f6feb;
+        }
+        .outlook-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .outlook-item {
+            background: #1c2128;
+            border-radius: 8px;
+            padding: 12px;
+        }
+        .outlook-item .olabel { font-size: 11px; color: #8b949e; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
+        .outlook-item .ovalue { font-size: 13px; color: #c9d1d9; }
+        /* 标签 */
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 4px;
+        }
+        .tag-red { background: #da363322; color: #f85149; border: 1px solid #da363344; }
+        .tag-green { background: #23863622; color: #3fb950; border: 1px solid #23863644; }
+        .tag-blue { background: #1f6feb22; color: #58a6ff; border: 1px solid #1f6feb44; }
+        .tag-yellow { background: #d2993222; color: #e3b341; border: 1px solid #d2993244; }
+        .tag-purple { background: #8957e522; color: #d2a8ff; border: 1px solid #8957e544; }
+        /* 分割线 */
+        .divider { border: none; border-top: 1px solid #21262d; margin: 20px 0; }
+        /* 滚动通知 */
+        .ticker-bar {
+            background: #1c2128;
+            border-bottom: 1px solid #30363d;
+            padding: 8px 40px;
+            font-size: 12px;
+            color: #8b949e;
+            overflow: hidden;
+        }
+        .ticker-bar span { color: #58a6ff; margin: 0 16px; }
+        /* 脚注 */
+        .footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 12px;
+            color: #484f58;
+            border-top: 1px solid #21262d;
+        }
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .index-grid { grid-template-columns: 1fr; }
+            .info-grid { grid-template-columns: repeat(2, 1fr); }
+            .sector-grid { grid-template-columns: 1fr; }
+            .fund-grid { grid-template-columns: 1fr; }
+            .outlook-grid { grid-template-columns: 1fr; }
+        }
+        .highlight-box {
+            background: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+        }
+        .highlight-box .hl-title { font-size: 13px; font-weight: 700; color: #e3b341; margin-bottom: 8px; }
+        .highlight-box .hl-desc { font-size: 12px; color: #9ca3af; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+<!-- 标题栏 -->
+<div class="header">
+    <div class="header-top">
+        <div>
+            <h1><span>🇭🇰</span>港股每日复盘</h1>
+            <div class="subtitle">资深基金经理 · 行业研究员 · 实战散户 · 三重视角</div>
+        </div>
+        <div class="date-badge">2026年4月27日（周一）</div>
+    </div>
+</div>
+
+<!-- 滚动快讯 -->
+<div class="ticker-bar">
+    📌 今日核心：<span>DeepSeek V4开源</span>引爆半导体链 · 澜起科技+13.78% · 中芯+6.14% · 华虹+6.01% ·
+    <span>长飞光纤+7.17%</span> · 腾讯-3.00% · 南向净卖出40.92亿（连续4日买入后中断）· 结构性行情延续
+</div>
+
+<div class="container">
+
+    <!-- ===== 一、大盘全景 ===== -->
+    <div class="section">
+        <div class="section-title">
+            <div class="icon icon-blue">📊</div>
+            一、大盘全景（基金经理视角）
+        </div>
+
+        <!-- 三大指数 -->
+        <div class="index-grid">
+            <div class="index-card down">
+                <div class="name">恒生指数 · HSI</div>
+                <div class="price">25,925.65</div>
+                <div class="change-row">
+                    <div class="pct down">▼ -0.20%</div>
+                    <div class="pts">-52.42点</div>
+                </div>
+                <div class="vol">全日主板成交 2,516.34亿港元</div>
+            </div>
+            <div class="index-card up">
+                <div class="name">恒生科技 · HSTECH</div>
+                <div class="price">4,939.84</div>
+                <div class="change-row">
+                    <div class="pct up">▲ +0.77%</div>
+                    <div class="pts">+37.64点</div>
+                </div>
+                <div class="vol">连续两个交易日上涨 ✦ 科技独立走强</div>
+            </div>
+            <div class="index-card down">
+                <div class="name">国企指数 · HSCEI</div>
+                <div class="price">8,756.32</div>
+                <div class="change-row">
+                    <div class="pct down">▼ -0.22%</div>
+                    <div class="pts">-19.30点</div>
+                </div>
+                <div class="vol">蓝筹消费/金融拖累整体</div>
+            </div>
+        </div>
+
+        <!-- 宏观流动性指标 -->
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="label">美债10Y收益率</div>
+                <div class="value" style="color:#e3b341;">4.32%</div>
+                <div class="sub">较上周小幅下行</div>
+            </div>
+            <div class="info-card">
+                <div class="label">USD/HKD</div>
+                <div class="value">7.7785</div>
+                <div class="sub">港元联系汇率稳定</div>
+            </div>
+            <div class="info-card">
+                <div class="label">VIX 恐慌指数</div>
+                <div class="value" style="color:#3fb950;">~17</div>
+                <div class="sub">市场情绪偏中性</div>
+            </div>
+            <div class="info-card">
+                <div class="label">主板成交额</div>
+                <div class="value" style="color:#58a6ff;">2,516亿</div>
+                <div class="sub">较前一日微幅增量</div>
+            </div>
+        </div>
+
+        <!-- 美股映射 -->
+        <div class="highlight-box">
+            <div class="hl-title">🌐 隔夜美股映射（4月25日收盘）</div>
+            <div class="hl-desc">
+                纳斯达克 <span class="up-text">+1.63%</span>（再创历史新高）&nbsp;|&nbsp;
+                标普500 <span class="up-text">+0.80%</span>（创历史新高）&nbsp;|&nbsp;
+                道指 <span class="down-text">-0.16%</span>&nbsp;|&nbsp;
+                英特尔Q1业绩超预期（EPS +$0.29 vs 预期$0.01），INTC单日 <span class="up-text">+23.6%</span> 拉动半导体链爆发。
+                中概股普涨：百度 <span class="up-text">+5%</span>，阿里 <span class="up-text">+3%</span>，小鹏 <span class="up-text">+4%</span>。
+                英伟达 <span class="up-text">+4%</span> 市值重返5万亿美元。SOX半导体指数连续18日上涨。
+                → <strong style="color:#d2a8ff;">核心映射：港股半导体链今日延续多头，澜起/中芯/华虹接力爆发。</strong>
+            </div>
+        </div>
+
+        <!-- 核心催化 -->
+        <div class="highlight-box">
+            <div class="hl-title">⚡ 今日核心催化：DeepSeek V4 正式发布开源</div>
+            <div class="hl-desc">
+                4月24日，DeepSeek正式发布新一代旗舰MoE模型DeepSeek-V4预览版（V4-Pro/V4-Flash双版本），
+                同步MIT协议全量开源，搭载<strong>百万Token超长上下文</strong>，
+                Agent能力与推理性能国内开源领域领先，进入全球开源模型TOP2。
+                华为昇腾国产芯片原生适配，直接利好国产AI算力产业链（澜起/中芯/华虹/英诺赛科）。
+                <br>另一催化：澜起科技(06809)发布Q1财报，净利润8.47亿元，<strong>同比增长61.30%</strong>，超预期。
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 二、板块强弱 ===== -->
+    <div class="section">
+        <div class="section-title">
+            <div class="icon icon-green">📈</div>
+            二、板块强弱（行业研究员视角）
+        </div>
+
+        <div class="sector-grid">
+            <!-- 领涨板块 -->
+            <div class="sector-card">
+                <h4 class="up">▲ 今日领涨板块</h4>
+                <div class="sector-item">
+                    <div>
+                        <div class="sname">存储芯片 / 半导体设计</div>
+                        <div class="sreason">DeepSeek V4 + 澜起Q1净利+61% 双重催化</div>
+                    </div>
+                    <div class="schange up-text">+8%~+14%</div>
+                </div>
+                <div class="sector-item">
+                    <div>
+                        <div class="sname">半导体制造（晶圆代工）</div>
+                        <div class="sreason">AI算力国产化加速，中芯/华虹受益</div>
+                    </div>
+                    <div class="schange up-text">+5%~+7%</div>
+                </div>
+                <div class="sector-item">
+                    <div>
+                        <div class="sname">光通信 / CPO</div>
+                        <div class="sreason">AI数据中心建设持续提速，剑桥+长飞延续强势</div>
+                    </div>
+                    <div class="schange up-text">+4%~+7%</div>
+                </div>
+                <div class="sector-item">
+                    <div>
+                        <div class="sname">汽车整车（比亚迪）</div>
+                        <div class="sreason">销量超预期，估值修复逻辑</div>
+                    </div>
+                    <div class="schange up-text">+4%</div>
+                </div>
+                <div class="sector-item">
+                    <div>
+                        <div class="sname">商业航天</div>
+                        <div class="sreason">卫星互联网政策预期</div>
+                    </div>
+                    <div class="schange up-text">+7%</div>
+                </div>
+            </div>
+
+            <!-- 领跌板块 -->
+            <div class="sector-card">
+                <h4 class="down">▼ 今日领跌板块</h4>
+                <div class="sector-item">
+                    <div>
+                        <div class="sname">科网权重（腾讯/阿里）</div>
+                        <div class="sreason">南向大幅净卖出，指数ETF赎回压制</div>
+                    </div>
+                    <div class="schange down-text">-1%~-3%</div>
+                </div>
+                <div class="sector-item">
+                    <div>
+                        <div class="sname">黄金矿业</div>
+                        <div class="sreason">阿塞拜疆主权基金减持22吨黄金，避险退潮</div>
+                    </div>
+                    <div class="schange down-text">-2%~-4%</div>
+                </div>
+                <div class="sector-item">
+                    <div>
+                        <div class="sname">茶饮消费（蜜雪/古茗）</div>
+                        <div class="sreason">前期快速上涨后获利回吐，资金向科技切换</div>
+                    </div>
+                    <div class="schange down-text">-1%~-2.5%</div>
+                </div>
+                <div class="sector-item">
+                    <div>
+                        <div class="sname">AI应用（MiniMax/智谱）</div>
+                        <div class="sreason">上市后估值泡沫消化，早盘深跌午后回升</div>
+                    </div>
+                    <div class="schange down-text">-2%~-3.5%</div>
+                </div>
+                <div class="sector-item">
+                    <div>
+                        <div class="sname">医药生物</div>
+                        <div class="sreason">估值分化，缺乏催化</div>
+                    </div>
+                    <div class="schange down-text">偏弱</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 三、重点个股复盘 ===== -->
+    <div class="section">
+        <div class="section-title">
+            <div class="icon icon-yellow">🔍</div>
+            三、重点个股复盘（涨幅 > 5% 深度分析）
+        </div>
+
+        <!-- 半导体链爆发 -->
+        <table>
+            <thead>
+                <tr>
+                    <th>个股</th>
+                    <th>代码</th>
+                    <th>涨幅</th>
+                    <th>催化逻辑</th>
+                    <th>信号</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="font-weight:700;color:#e6edf3;">澜起科技</td>
+                    <td style="color:#8b949e;">06809.HK</td>
+                    <td class="up-text" style="font-size:16px;font-weight:800;">+13.78%</td>
+                    <td>Q1净利8.47亿元同比+61.3%超预期；内存接口芯片受益AI服务器爆发式需求，DDR5需求高景气延续</td>
+                    <td><span class="tag tag-red">强烈买入</span><span class="tag tag-blue">业绩超预期</span></td>
+                </tr>
+                <tr>
+                    <td style="font-weight:700;color:#e6edf3;">中芯国际</td>
+                    <td style="color:#8b949e;">00981.HK</td>
+                    <td class="up-text" style="font-size:16px;font-weight:800;">+6.14%</td>
+                    <td>DeepSeek V4国产芯片适配受益；南向净买入9.28亿港元（当日第二大净买入）；晶圆代工国产化逻辑持续兑现</td>
+                    <td><span class="tag tag-green">南向加仓</span><span class="tag tag-blue">AI算力</span></td>
+                </tr>
+                <tr>
+                    <td style="font-weight:700;color:#e6edf3;">华虹半导体</td>
+                    <td style="color:#8b949e;">01347.HK</td>
+                    <td class="up-text" style="font-size:16px;font-weight:800;">+6.01%</td>
+                    <td>功率半导体+特种工艺国产替代；汽车电子景气+智能制造需求旺盛；与中芯形成联动效应</td>
+                    <td><span class="tag tag-blue">AI算力</span><span class="tag tag-yellow">联动</span></td>
+                </tr>
+                <tr>
+                    <td style="font-weight:700;color:#e6edf3;">长飞光纤</td>
+                    <td style="color:#8b949e;">06869.HK</td>
+                    <td class="up-text" style="font-size:16px;font-weight:800;">+7.17%</td>
+                    <td>AI数据中心互联全球需求爆发，产能建设周期18-24个月形成供给刚性缺口；CPO/光模块方向旗舰股</td>
+                    <td><span class="tag tag-blue">光通信</span><span class="tag tag-yellow">景气高峰</span></td>
+                </tr>
+                <tr>
+                    <td style="font-weight:700;color:#e6edf3;">英诺赛科</td>
+                    <td style="color:#8b949e;">02577.HK</td>
+                    <td class="up-text" style="font-size:16px;font-weight:800;">+5.06%</td>
+                    <td>氮化镓功率器件龙头，AI服务器电源效率提升受益；光伏逆变器+汽车电子三重驱动</td>
+                    <td><span class="tag tag-blue">AI算力</span></td>
+                </tr>
+                <tr>
+                    <td style="font-weight:700;color:#e6edf3;">浪潮数字企业</td>
+                    <td style="color:#8b949e;">00596.HK</td>
+                    <td class="up-text" style="font-size:16px;font-weight:800;">+20.37%</td>
+                    <td>发布浪潮海岳企业AI智能原生产品体系，2026年AI业务收入增长预期100%；企业级AI落地标的</td>
+                    <td><span class="tag tag-red">超强异动</span><span class="tag tag-purple">企业AI</span></td>
+                </tr>
+                <tr>
+                    <td style="font-weight:700;color:#e6edf3;">比亚迪股份</td>
+                    <td style="color:#8b949e;">01211.HK</td>
+                    <td class="up-text" style="font-size:16px;font-weight:800;">+4.20%</td>
+                    <td>销量超预期、智驾升级持续；港股汽车板块今日表现较好，估值仍处低位</td>
+                    <td><span class="tag tag-blue">估值修复</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 重点下跌个股 -->
+        <table>
+            <thead>
+                <tr>
+                    <th>个股</th>
+                    <th>代码</th>
+                    <th>涨幅</th>
+                    <th>下跌逻辑</th>
+                    <th>风险信号</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="font-weight:700;color:#e6edf3;">腾讯控股</td>
+                    <td style="color:#8b949e;">00700.HK</td>
+                    <td class="down-text" style="font-size:16px;font-weight:800;">-3.00%</td>
+                    <td>南向净流出6.54亿港元；资金切换至科技硬件链；主力资金净流出，当日成交217亿</td>
+                    <td><span class="tag tag-red">南向卖出</span><span class="tag tag-yellow">资金切换</span></td>
+                </tr>
+                <tr>
+                    <td style="font-weight:700;color:#e6edf3;">MiniMax</td>
+                    <td style="color:#8b949e;">HK00100</td>
+                    <td class="down-text" style="font-size:16px;font-weight:800;">-3.54%</td>
+                    <td>早盘一度跌超15%，午后显著回升；上市后估值消化阶段，DeepSeek V4竞争压力影响市场预期</td>
+                    <td><span class="tag tag-yellow">估值消化</span></td>
+                </tr>
+                <tr>
+                    <td style="font-weight:700;color:#e6edf3;">阿里巴巴-W</td>
+                    <td style="color:#8b949e;">09988.HK</td>
+                    <td class="down-text" style="font-size:16px;font-weight:800;">-1.21%</td>
+                    <td>南向净流出6.77亿港元（今日最大流出）；电商增速预期下修；短线获利回吐</td>
+                    <td><span class="tag tag-red">南向持续减持</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ===== 四、资金面分析 ===== -->
+    <div class="section">
+        <div class="section-title">
+            <div class="icon icon-purple">💰</div>
+            四、资金面分析（港股最关键维度）
+        </div>
+
+        <!-- 南向资金核心数据 -->
+        <div class="alert-box danger">
+            <div class="alert-icon">⚠️</div>
+            <div class="alert-content">
+                <div class="alert-title">南向资金今日净卖出 40.92亿港元 — 中断连续4日净买入趋势</div>
+                <div class="alert-desc">沪港通净流入+48.82亿 vs 深港通净流出-89.74亿，内部严重分歧。ETF主导流出：盈富基金卖出32.08亿、南方恒生科技卖出10.99亿、恒生中国企业卖出8.19亿，表明存在系统性减仓（可能与A股资产组合再平衡相关）。</div>
+            </div>
+        </div>
+
+        <div class="fund-grid">
+            <div class="fund-card">
+                <h4>📥 南向资金净买入 TOP3（个股）</h4>
+                <div class="fund-item">
+                    <div class="flabel">中国移动 (00941)</div>
+                    <div class="fvalue up-text">+9.77亿港元</div>
+                </div>
+                <div class="fund-item">
+                    <div class="flabel">中芯国际 (00981)</div>
+                    <div class="fvalue up-text">+9.28亿港元</div>
+                </div>
+                <div class="fund-item">
+                    <div class="flabel">中国海洋石油 (00883)</div>
+                    <div class="fvalue up-text">+6.68亿港元</div>
+                </div>
+                <div class="fund-item" style="margin-top:8px; border-top: 1px solid #30363d; padding-top:8px;">
+                    <div class="flabel" style="font-size:11px; color:#8b949e;">特征：聚焦"中字头"防御+科技自主替代</div>
+                </div>
+            </div>
+            <div class="fund-card">
+                <h4>📤 南向资金净卖出 TOP3（个股）</h4>
+                <div class="fund-item">
+                    <div class="flabel">阿里巴巴-W (09988)</div>
+                    <div class="fvalue down-text">-6.77亿港元</div>
+                </div>
+                <div class="fund-item">
+                    <div class="flabel">腾讯控股 (00700)</div>
+                    <div class="fvalue down-text">-6.54亿港元</div>
+                </div>
+                <div class="fund-item">
+                    <div class="flabel">长飞光纤光缆 (06869)</div>
+                    <div class="fvalue down-text">-4.57亿港元</div>
+                </div>
+                <div class="fund-item" style="margin-top:8px; border-top: 1px solid #30363d; padding-top:8px;">
+                    <div class="flabel" style="font-size:11px; color:#8b949e;">特征：流出互联网巨头 + 高涨幅获利了结</div>
+                </div>
+            </div>
+            <div class="fund-card">
+                <h4>🏦 ETF资金流向</h4>
+                <div class="fund-item">
+                    <div class="flabel">盈富基金 (02800)</div>
+                    <div class="fvalue down-text">-32.08亿港元</div>
+                </div>
+                <div class="fund-item">
+                    <div class="flabel">南方恒生科技 ETF</div>
+                    <div class="fvalue down-text">-10.99亿港元</div>
+                </div>
+                <div class="fund-item">
+                    <div class="flabel">恒生中国企业 ETF</div>
+                    <div class="fvalue down-text">-8.19亿港元</div>
+                </div>
+                <div class="fund-item" style="margin-top:8px; border-top: 1px solid #30363d; padding-top:8px;">
+                    <div class="flabel" style="font-size:11px; color:#e3b341;">⚠️ 宽基ETF大幅赎回，疑似机构再平衡操作</div>
+                </div>
+            </div>
+            <div class="fund-card">
+                <h4>🌐 外资动向（周度）</h4>
+                <div class="fund-item">
+                    <div class="flabel">全球主动外资</div>
+                    <div class="fvalue" style="color:#58a6ff;">净流入（抢筹恒科）</div>
+                </div>
+                <div class="fund-item">
+                    <div class="flabel">本周南向累计</div>
+                    <div class="fvalue up-text">净买入约168亿港元</div>
+                </div>
+                <div class="fund-item">
+                    <div class="flabel">南向今日成交额</div>
+                    <div class="fvalue">1,062.81亿港元</div>
+                </div>
+                <div class="fund-item">
+                    <div class="flabel">占全市场比例</div>
+                    <div class="fvalue" style="color:#8b949e;">42.24%（偏低）</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 资金面关键结论 -->
+        <div class="alert-box warning" style="margin-top:12px;">
+            <div class="alert-icon">📌</div>
+            <div class="alert-content">
+                <div class="alert-title">资金面核心解读：弃科网、入中字头+硬件链</div>
+                <div class="alert-desc">
+                    今日南向资金呈现明显的"哑铃策略"：一端加仓防御性中字头（移动/中芯/中海油），另一端卖出腾讯/阿里等互联网巨头。
+                    ETF大额赎回（-51亿）叠加深港通净流出（-89亿），反映部分机构存在仓位腾挪需求，而非市场看空信号。
+                    外资维持净流入，主要聚集于恒生科技成分股，中信证券看好4-5月估值扩张行情。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 五、风险提示 ===== -->
+    <div class="section">
+        <div class="section-title">
+            <div class="icon icon-red">⚡</div>
+            五、风险提示
+        </div>
+
+        <div class="alert-box danger">
+            <div class="alert-icon">🔴</div>
+            <div class="alert-content">
+                <div class="alert-title">AI应用股估值泡沫风险</div>
+                <div class="alert-desc">MiniMax、智谱、群核科技等近期上市AI股估值高企，开盘即大幅波动（MiniMax早盘-15%），DeepSeek V4开源可能加剧AI应用层竞争格局恶化，相关股票面临估值重估压力。</div>
+            </div>
+        </div>
+        <div class="alert-box warning">
+            <div class="alert-icon">🟡</div>
+            <div class="alert-content">
+                <div class="alert-title">南向ETF赎回信号需观察持续性</div>
+                <div class="alert-desc">盈富基金单日净卖出32亿+南恒科技11亿，合计占南向总流出约130%，若明日继续，需警惕A股机构主动减配港股资产。当前南向4日净买入被一日逆转，短期资金面承压。</div>
+            </div>
+        </div>
+        <div class="alert-box warning">
+            <div class="alert-icon">🟡</div>
+            <div class="alert-content">
+                <div class="alert-title">美伊谈判变数与地缘风险</div>
+                <div class="alert-desc">美伊谈判进程反复，油气板块短线波动加大。若停火谈判破裂，黄金避险重启，油气、黄金方向将分别受到短期扰动。</div>
+            </div>
+        </div>
+        <div class="alert-box success">
+            <div class="alert-icon">🟢</div>
+            <div class="alert-content">
+                <div class="alert-title">看多信号：半导体独立行情可持续性较强</div>
+                <div class="alert-desc">澜起Q1净利+61%为硬催化，叠加DeepSeek V4开源驱动国产算力需求，中芯/华虹/澜起的基本面底层逻辑未变。外资持续净流入恒科方向，恒科指数已连续两日上涨，技术面转强。中信证券判断4-5月仍有估值扩张空间。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 六、结论与展望 ===== -->
+    <div class="section">
+        <div class="section-title">
+            <div class="icon icon-purple">🎯</div>
+            六、结论与明日展望
+        </div>
+
+        <div class="conclusion-card">
+            <div class="conclusion-title">📝 今日一句话总结</div>
+            <div class="conclusion-summary">
+                4月27日港股呈现典型的<strong>结构性行情</strong>：
+                恒指微跌-0.20%，但恒生科技+0.77%（连涨两日）独立走强，
+                DeepSeek V4开源+澜起Q1业绩大超预期，驱动半导体链（澜起+14%/中芯+6%/华虹+6%/长飞+7%）爆发，
+                资金从科网权重（腾讯-3%/阿里-1.2%）切换至硬科技链条；
+                南向净卖出41亿中断连续4日买入，但内部分歧显著——中字头硬件链持续获机构主动加仓。
+            </div>
+            <div class="outlook-grid">
+                <div class="outlook-item">
+                    <div class="olabel">明日关注方向</div>
+                    <div class="ovalue">
+                        ① 半导体链（澜起/中芯）能否延续；<br>
+                        ② 腾讯能否企稳反弹（财报窗口临近）；<br>
+                        ③ 南向资金是否恢复净买入
+                    </div>
+                </div>
+                <div class="outlook-item">
+                    <div class="olabel">操作建议（仅供参考）</div>
+                    <div class="ovalue">
+                        ✦ 半导体链：短期保持仓位，等候回调加仓<br>
+                        ✦ 腾讯/阿里：中线关注，下跌可逢低布局<br>
+                        ✦ ETF赎回若延续：警惕恒科短线回调风险
+                    </div>
+                </div>
+                <div class="outlook-item">
+                    <div class="olabel">关键宏观日历</div>
+                    <div class="ovalue">
+                        本周：美联储FOMC会议（4月28-29日）<br>
+                        关注：美债收益率走向与港股流动性影响
+                    </div>
+                </div>
+                <div class="outlook-item">
+                    <div class="olabel">整体市场判断</div>
+                    <div class="ovalue">
+                        <strong style="color:#22c55e;">看多结构性机会 / 短期震荡整固</strong><br>
+                        恒科仍是主战场，AI硬件链独立逻辑未被破坏
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+    <p>📊 港股每日复盘 · 2026年4月27日 · 数据来源：财联社、新华财经、每经网、Wind</p>
+    <p style="margin-top:4px;">本报告仅供参考，不构成投资建议。市场有风险，投资需谨慎。</p>
+</div>
+
+</body>
+</html>
