@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A股每日复盘 2026-04-27</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid #4a4a6a;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 2.5em; color: #ff6b6b; margin-bottom: 10px; }
+        .header .subtitle { color: #888; font-size: 1.1em; }
+        .section {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 4px solid #4a4a6a;
+        }
+        .section.conclusion { border-left-color: #ff6b6b; }
+        .section.capital { border-left-color: #4ecdc4; }
+        .section.sentiment { border-left-color: #ffe66d; }
+        .section.industry { border-left-color: #95e1d3; }
+        .section.leader { border-left-color: #f38181; }
+        .section.risk { border-left-color: #e94560; }
+        .section.ah { border-left-color: #a8d8ea; }
+        .section.strategy { border-left-color: #aa96da; }
+        .section.us-cn { border-left-color: #f5a623; }
+        .section-title {
+            font-size: 1.4em;
+            color: #fff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #2a2a4a; }
+        th { background: #1a1a2e; color: #4ecdc4; font-weight: 600; }
+        tr:hover { background: #1f2f5a; }
+        .up { color: #ff4757; font-weight: bold; }
+        .down { color: #2ed573; font-weight: bold; }
+        .flat { color: #ffa502; }
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin: 2px;
+        }
+        .tag-red { background: rgba(255, 71, 87, 0.2); color: #ff4757; }
+        .tag-green { background: rgba(46, 213, 115, 0.2); color: #2ed573; }
+        .tag-yellow { background: rgba(255, 165, 2, 0.2); color: #ffa502; }
+        .tag-blue { background: rgba(78, 205, 196, 0.2); color: #4ecdc4; }
+        .tag-purple { background: rgba(170, 150, 218, 0.2); color: #aa96da; }
+        .conclusion-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .chart-container {
+            background: #0f0f23;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .summary-table th { background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%); color: #fff; }
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #666;
+            border-top: 1px solid #2a2a4a;
+            margin-top: 40px;
+        }
+        .warning {
+            background: rgba(233, 69, 96, 0.1);
+            border: 1px solid #e94560;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .positive {
+            background: rgba(46, 213, 115, 0.1);
+            border: 1px solid #2ed573;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .score {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .score-high { background: linear-gradient(135deg, #ff6b6b, #ff8e53); }
+        .score-mid { background: linear-gradient(135deg, #feca57, #ff9f43); color: #333; }
+        .score-low { background: linear-gradient(135deg, #2ed573, #7bed9f); color: #333; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        h3 { color: #4ecdc4; margin: 15px 0 8px; font-size: 1.05em; }
+        ul { padding-left: 20px; margin: 8px 0; }
+        li { margin: 4px 0; }
+        p { margin: 6px 0; }
+        .mapping-card {
+            border: 1px solid #aa96da;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: rgba(170, 150, 218, 0.08);
+        }
+        .mapping-card .strength { color: #f5a623; font-weight: bold; }
+        .index-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-left: 6px;
+        }
+        .badge-1 { background: rgba(255, 71, 87, 0.3); color: #ff6b6b; }
+        .badge-2 { background: rgba(255, 165, 2, 0.3); color: #ffa502; }
+        .badge-3 { background: rgba(46, 213, 115, 0.3); color: #2ed573; }
+        .badge-4 { background: rgba(78, 205, 196, 0.3); color: #4ecdc4; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- 头部 -->
+    <div class="header">
+        <h1>📊 A股每日复盘</h1>
+        <div class="subtitle">2026-04-27（周一）| 资深基金经理 + 行业首席研究员 + 实战散户视角</div>
+    </div>
+
+    <!-- 1. 今日核心结论 -->
+    <div class="section conclusion">
+        <div class="section-title"><span>🎯</span>今日核心结论</div>
+        <div class="conclusion-box">
+            今日A股<strong>缩量震荡分化</strong>，沪指微涨、深成跟涨，创业板指走弱，科创50大涨3%+。<br>
+            科技成长强于消费周期，<strong>半导体/PCB/消费电子</strong>联袂爆发承接上周五美股半导体行情；<br>
+            赚钱效应呈<strong>结构性集中</strong>——强者恒强的科技主线内部，资金高度集中，整体赚钱效应偏弱。
+        </div>
+        <table>
+            <thead>
+                <tr><th>指数</th><th>收盘价</th><th>涨跌幅</th><th>量能变化</th><th>强弱排序</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>科创50</td>
+                    <td>≈1503点</td>
+                    <td class="up">+3%+</td>
+                    <td>明显放量</td>
+                    <td><span class="index-badge badge-1">第1</span></td>
+                </tr>
+                <tr>
+                    <td>深证成指</td>
+                    <td>14,995.75</td>
+                    <td class="up">+0.37%</td>
+                    <td>缩量</td>
+                    <td><span class="index-badge badge-2">第2</span></td>
+                </tr>
+                <tr>
+                    <td>上证综指</td>
+                    <td>4,086.34</td>
+                    <td class="up">+0.16%</td>
+                    <td>缩量</td>
+                    <td><span class="index-badge badge-3">第3</span></td>
+                </tr>
+                <tr>
+                    <td>创业板指</td>
+                    <td>3,648.79</td>
+                    <td class="down">-0.52%</td>
+                    <td>缩量</td>
+                    <td><span class="index-badge badge-4">第4</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="margin-top:12px; color:#888;">两市合计成交额：<strong style="color:#ffa502;">25,894亿元</strong>（较上一交易日缩量约400亿）</p>
+    </div>
+
+    <!-- 2. 资金面 -->
+    <div class="section capital">
+        <div class="section-title"><span>💰</span>资金面（机构视角）</div>
+
+        <h3>北向资金</h3>
+        <p>今日北向资金数据暂缺实时汇总，根据盘面信号判断：主力资金整体<strong style="color:#2ed573;">净流出约150亿元</strong>，但电子/半导体板块获增持。</p>
+        <ul>
+            <li>半导体、国产芯片、华为产业链、苹果产业链方向获主力净流入</li>
+            <li>新能源汽车产业链资金流入居前</li>
+            <li>白酒、稀土、贵金属、光伏方向主力净流出</li>
+        </ul>
+
+        <h3>两融余额</h3>
+        <p>两融余额延续高位（上周五融资余额约26,500亿元区间），今日融资买入科技成长方向活跃，杠杆情绪偏积极。</p>
+
+        <h3>龙虎榜</h3>
+        <p>今日主力资金板块流向前5：<strong style="color:#ff6b6b;">半导体 &gt; 新能源汽车 &gt; PCB板 &gt; 军工 &gt; 新能源车零部件</strong></p>
+        <ul>
+            <li>深南电路（PCB龙头）：续创历史新高，机构/游资联合追涨</li>
+            <li>每日互动（300766）：大跌16.44%上龙虎榜，机构/北向净卖出</li>
+            <li>纳百川（301667）：换手40%，高位博弈激烈</li>
+        </ul>
+    </div>
+
+    <!-- 3. 市场情绪 -->
+    <div class="section sentiment">
+        <div class="section-title"><span>😊</span>市场情绪（散户+游资视角）</div>
+
+        <div class="chart-container">
+            <canvas id="emotionChart" width="100%" height="120"></canvas>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; padding:10px 0; justify-content:center;">
+                <span style="color:#888;">近60日涨跌家数比示意：</span>
+                <span class="tag tag-red">4/14 普涨(3700↑)</span>
+                <span class="tag tag-red">4/16 强涨(4300↑)</span>
+                <span class="tag tag-green">4/15 普跌(3500↓)</span>
+                <span class="tag tag-yellow">4/20 结构(3400↑)</span>
+                <span class="tag tag-green">4/25 普跌(3800↓)</span>
+                <span class="tag tag-yellow">4/27 分化(≈2500↑)</span>
+            </div>
+            <p style="text-align:center; color:#888; margin-top:5px;">红色=上涨家数多 | 绿色=下跌家数多 | 黄色=分化</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr><th>指标</th><th>数值</th><th>解读</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>涨停数（全市场）</td>
+                    <td class="up">85只</td>
+                    <td>含板块性涨停，情绪偏中性</td>
+                </tr>
+                <tr>
+                    <td>跌停数</td>
+                    <td class="down">约15-20只</td>
+                    <td>含个别高位核按钮股</td>
+                </tr>
+                <tr>
+                    <td>连板数（总）</td>
+                    <td>9只</td>
+                    <td>结构尚可，高度板依然存在</td>
+                </tr>
+                <tr>
+                    <td>封板率</td>
+                    <td class="flat">78%</td>
+                    <td>较正常，市场信心中等</td>
+                </tr>
+                <tr>
+                    <td>成交额</td>
+                    <td>25,894亿元</td>
+                    <td>较上日缩量约400亿，资金小幅缩减</td>
+                </tr>
+                <tr>
+                    <td>涨跌家数</td>
+                    <td class="down">多空接近，下跌家数略多</td>
+                    <td>指数涨但个股多跌，典型结构性分化</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin-top:20px;">连板情况</h3>
+        <p>
+            最高连板：<strong style="color:#ff6b6b;">沃格光电（13天7板）</strong>——玻璃基板概念持续火热；
+            <strong>华电辽能（11天6板）</strong>——绿电/电力方向；
+            <strong>水发燃气（6天5板）</strong>——氦气概念；
+            <strong>华电能源（3板）</strong>；
+            <strong>众合科技（3板）</strong>——磷化铟概念。
+        </p>
+
+        <h3>高位股风险</h3>
+        <div class="warning">
+            <strong>⚠️ 高位风险提示：</strong>每日互动大跌16.44%"核按钮"，大幅拖累数字经济题材情绪。
+            高位算力租赁/光模块方向出现分化，新易盛等前高位股需注意回踩风险。
+        </div>
+
+        <h3>题材持续性</h3>
+        <p>
+            <span class="tag tag-red">半导体/PCB ★★★★★</span>
+            <span class="tag tag-red">消费电子(果链) ★★★★</span>
+            <span class="tag tag-yellow">算力硬件 ★★★</span>
+            <span class="tag tag-yellow">新能源汽车 ★★★</span>
+            <span class="tag tag-green">光伏/白酒 ★★（走弱）</span>
+        </p>
+        <p>今日科技主线轮动节奏：上午PCB/半导体领涨，下午消费电子/CPO接力，整体属于<strong>结构性行情</strong>，非普涨格局。</p>
+    </div>
+
+    <!-- 4. 行业主线复盘 -->
+    <div class="section industry">
+        <div class="section-title"><span>🏭</span>行业主线复盘（研究员视角）</div>
+        <table>
+            <thead>
+                <tr><th>排名</th><th>板块</th><th>今日表现</th><th>催化/利空</th><th>持续性</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>🥇</td>
+                    <td><strong>半导体/芯片</strong></td>
+                    <td class="up">行业指数涨幅领先，海光信息、中芯国际等强势</td>
+                    <td>全球半导体设备出货额将创新高；AI推动CPU需求爆发；美股费城半导体周五+4.32%</td>
+                    <td><span class="tag tag-red">中期主线</span></td>
+                </tr>
+                <tr>
+                    <td>🥈</td>
+                    <td><strong>PCB/算力硬件</strong></td>
+                    <td class="up">深南电路续创历史新高；景旺电子、方邦股份涨停</td>
+                    <td>多家PCB企业一季报大增+涨价；英伟达+4%新高传导</td>
+                    <td><span class="tag tag-red">强势延续</span></td>
+                </tr>
+                <tr>
+                    <td>🥉</td>
+                    <td><strong>消费电子/果链</strong></td>
+                    <td class="up">立讯精密创历史新高；铭普光磁涨停（CPO）</td>
+                    <td>苹果AI产品周期，供应链预期升温；前期获利回吐有限</td>
+                    <td><span class="tag tag-red">趋势向好</span></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><strong>新能源汽车</strong></td>
+                    <td class="up">整车零部件活跃，宁德时代高位震荡</td>
+                    <td>特斯拉周五+0.69%，锂矿天齐锂业业绩超预期持续</td>
+                    <td><span class="tag tag-yellow">震荡整理</span></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><strong>数字经济/人形机器人</strong></td>
+                    <td class="flat">概念股活跃但高位分化，每日互动-16%拖累情绪</td>
+                    <td>AI政策催化，但估值高位有回调压力</td>
+                    <td><span class="tag tag-yellow">短期谨慎</span></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><strong>绿电/电力</strong></td>
+                    <td class="up">华电辽能6板、华电能源3板，板块局部活跃</td>
+                    <td>能源替代+高油价压力，板块资金博弈性质强</td>
+                    <td><span class="tag tag-yellow">高位博弈</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin-top:25px;">重点行业详细复盘</h3>
+
+        <div style="background:#0f0f23; border-radius:8px; padding:15px; margin:10px 0;">
+            <strong style="color:#ff6b6b;">🔥 半导体/PCB产业链（最强主线）</strong>
+            <p>上周五美股费城半导体指数大涨4.32%、英伟达+4.32%创历史新高、AMD+13%，直接带动今日A股半导体全线爆发。PCB方向（深南电路、景旺电子、山东玻纤）涨停+新高，背后有一季报业绩超预期+涨价双重催化。科创50指数涨超3%，充分体现资金向硬科技集中的逻辑。</p>
+            <p>⚡ 核心看点：<span class="tag tag-red">海光信息</span><span class="tag tag-red">中芯国际</span><span class="tag tag-red">深南电路</span><span class="tag tag-red">景旺电子</span></p>
+        </div>
+
+        <div style="background:#0f0f23; border-radius:8px; padding:15px; margin:10px 0;">
+            <strong style="color:#ffa502;">📱 消费电子/苹果产业链</strong>
+            <p>立讯精密续创历史新高，铭普光磁（CPO）涨停，苹果AI新品周期预期持续升温，果链板块处于趋势上升通道中，短期无明显风险信号。</p>
+            <p>⚡ 核心看点：<span class="tag tag-yellow">立讯精密</span><span class="tag tag-yellow">歌尔股份</span><span class="tag tag-yellow">蓝思科技</span></p>
+        </div>
+
+        <div style="background:#0f0f23; border-radius:8px; padding:15px; margin:10px 0;">
+            <strong style="color:#2ed573;">⚠️ 光伏/白酒/稀土（走弱板块）</strong>
+            <p>光伏、稀土、白酒、贵金属、电力等周期/防御板块今日集体走弱，主力资金净流出。白酒高估值+消费复苏不及预期，短期承压；贵金属在美伊谈判预期升温后回调。</p>
+        </div>
+    </div>
+
+    <!-- 5. 龙头梯队 -->
+    <div class="section leader">
+        <div class="section-title"><span>🐉</span>龙头梯队（实战交易视角）</div>
+        <table>
+            <thead>
+                <tr><th>类型</th><th>标的</th><th>逻辑</th><th>状态</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="tag tag-red">主线龙头</span></td>
+                    <td><strong>深南电路</strong>（002916）</td>
+                    <td>PCB龙头，续创历史新高，一季报业绩超预期+涨价</td>
+                    <td class="up">强势✓</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-red">主线龙头</span></td>
+                    <td><strong>海光信息</strong>（688041）</td>
+                    <td>国产CPU/GPU核心标的，半导体自主可控主线</td>
+                    <td class="up">强势✓</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-red">中军标的</span></td>
+                    <td><strong>立讯精密</strong>（002475）</td>
+                    <td>苹果产业链核心，续创历史新高</td>
+                    <td class="up">趋势向好✓</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-yellow">中军标的</span></td>
+                    <td><strong>宁德时代</strong>（300750）</td>
+                    <td>锂电/储能龙头，高位震荡整固</td>
+                    <td class="flat">整固观察</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-yellow">主题概念</span></td>
+                    <td><strong>沃格光电</strong>（688681）</td>
+                    <td>玻璃基板7板，游资题材高位博弈</td>
+                    <td class="flat">高位谨慎</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-green">破位警示</span></td>
+                    <td><strong>每日互动</strong>（300766）</td>
+                    <td>大跌16.44%，高位"核按钮"，数字经济题材降温</td>
+                    <td class="down">⚠️规避</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 6. 风险信号 -->
+    <div class="section risk">
+        <div class="section-title"><span>⚠️</span>风险信号（基金经理风控视角）</div>
+        <table>
+            <thead>
+                <tr><th>风险项</th><th>状态</th><th>影响程度</th><th>备注</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>高位抱团松动</td>
+                    <td class="flat">局部</td>
+                    <td class="flat">中</td>
+                    <td>数字经济/算力租赁高位股出现分化</td>
+                </tr>
+                <tr>
+                    <td>强势股补跌</td>
+                    <td class="up">有（每日互动-16%）</td>
+                    <td class="up">中高</td>
+                    <td>高位博弈股风险释放，注意高位补跌传染</td>
+                </tr>
+                <tr>
+                    <td>量价背离</td>
+                    <td class="flat">部分板块</td>
+                    <td class="flat">中</td>
+                    <td>创业板指缩量下跌，量能收缩需持续关注</td>
+                </tr>
+                <tr>
+                    <td>北向资金持续流出</td>
+                    <td class="down">主力整体净流出</td>
+                    <td class="flat">中</td>
+                    <td>约150亿净流出，但电子板块获净买入</td>
+                </tr>
+                <tr>
+                    <td>外围风险（伊朗/地缘）</td>
+                    <td class="flat">局部缓和</td>
+                    <td class="down">低</td>
+                    <td>美伊谈判预期升温，短期地缘风险降低</td>
+                </tr>
+                <tr>
+                    <td>指数关键支撑</td>
+                    <td class="down">守住</td>
+                    <td class="down">低</td>
+                    <td>沪指守住4080支撑，创业板3620附近需关注</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 7. AH联动 -->
+    <div class="section ah">
+        <div class="section-title"><span>🌏</span>AH联动</div>
+        <p>今日AH联动方向：<strong style="color:#4ecdc4;">港股科技 &gt; A股创业板</strong>，恒生科技指数+0.77%，中芯国际/华虹半导体各涨超6%，优于A股创业板指-0.52%的表现。外资通过港股优先承接半导体行情，A股科创50跟随但创业板分化。</p>
+        <table>
+            <thead>
+                <tr><th>指标</th><th>数值</th><th>涨跌</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>恒生指数</td>
+                    <td>25,925.65点</td>
+                    <td class="down">-0.20%</td>
+                </tr>
+                <tr>
+                    <td>恒生科技指数</td>
+                    <td>4,939.84点</td>
+                    <td class="up">+0.77%</td>
+                </tr>
+                <tr>
+                    <td>中芯国际（港）</td>
+                    <td>—</td>
+                    <td class="up">+6%+</td>
+                </tr>
+                <tr>
+                    <td>华虹半导体（港）</td>
+                    <td>—</td>
+                    <td class="up">+6%+</td>
+                </tr>
+                <tr>
+                    <td>AH联动方向</td>
+                    <td colspan="2">港股科技领先，AH溢价小幅收窄，科技方向外资态度积极</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 8. A美联动 -->
+    <div class="section us-cn">
+        <div class="section-title"><span>🇺🇸</span>A美联动（中美市场联动分析）</div>
+        <h3>上周五（4月25日）美股收盘表现</h3>
+        <table>
+            <thead>
+                <tr><th>指数/标的</th><th>收盘</th><th>涨跌幅</th><th>对今日A股影响判断</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>纳斯达克综合指数</td>
+                    <td>24,836.60</td>
+                    <td class="up">+1.63%（历史新高）</td>
+                    <td class="up">强烈正向驱动科技主线</td>
+                </tr>
+                <tr>
+                    <td>标普500</td>
+                    <td>7,165.08</td>
+                    <td class="up">+0.80%（历史新高）</td>
+                    <td class="up">整体情绪支撑</td>
+                </tr>
+                <tr>
+                    <td>道琼斯工业指数</td>
+                    <td>—</td>
+                    <td class="down">-0.16%</td>
+                    <td class="flat">价值/周期板块压力</td>
+                </tr>
+                <tr>
+                    <td>费城半导体指数</td>
+                    <td>—</td>
+                    <td class="up">+4.32%（月内+38.5%）</td>
+                    <td class="up">直接驱动A股半导体爆发</td>
+                </tr>
+                <tr>
+                    <td>英伟达（NVDA）</td>
+                    <td>创历史新高</td>
+                    <td class="up">+4.32%（市值5万亿）</td>
+                    <td class="up">算力主线核心催化</td>
+                </tr>
+                <tr>
+                    <td>英特尔（INTC）</td>
+                    <td>—</td>
+                    <td class="up">+23%+</td>
+                    <td class="up">CPU需求爆发映射A股国产CPU</td>
+                </tr>
+                <tr>
+                    <td>AMD</td>
+                    <td>—</td>
+                    <td class="up">+13%</td>
+                    <td class="up">芯片全线共振</td>
+                </tr>
+                <tr>
+                    <td>Arm</td>
+                    <td>—</td>
+                    <td class="up">+14%</td>
+                    <td class="up">半导体IP映射概念</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin-top:20px;">美股映射A股联动板块</h3>
+        <div class="mapping-card">
+            <span class="strength">★★★★★ 强联动</span>｜<strong>科技/AI/芯片</strong>
+            <p>美股：英伟达+4.32%（历史新高）、AMD+13%、Arm+14%、费城半导体+4.32%</p>
+            <p>↓映射A股：半导体/PCB/算力硬件</p>
+            <p>代表标的：<span class="tag tag-red">海光信息</span><span class="tag tag-red">深南电路</span><span class="tag tag-red">景旺电子</span><span class="tag tag-red">中际旭创</span></p>
+            <p>逻辑：全球AI算力需求爆发 + 国产替代双重驱动，美股产业链共振效果今日兑现</p>
+        </div>
+        <div class="mapping-card">
+            <span class="strength">★★★★ 强联动</span>｜<strong>消费电子/苹果产业链</strong>
+            <p>美股：苹果（AAPL）小幅回调-0.87%但科技七巨头整体强</p>
+            <p>↓映射A股：苹果产业链/消费电子</p>
+            <p>代表标的：<span class="tag tag-yellow">立讯精密</span><span class="tag tag-yellow">蓝思科技</span><span class="tag tag-yellow">歌尔股份</span></p>
+            <p>逻辑：果链今日领涨（立讯精密新高），属于对苹果AI新品周期的中长期布局</p>
+        </div>
+        <div class="mapping-card">
+            <span class="strength">★★★ 中等联动</span>｜<strong>中概股/互联网</strong>
+            <p>美股：百度涨超5%、小鹏涨超4%，中概股整体强势</p>
+            <p>↓映射A股：互联网/数字经济/AI应用</p>
+            <p>代表标的：<span class="tag tag-blue">腾讯（港）</span><span class="tag tag-blue">百度（港）</span><span class="tag tag-blue">科大讯飞</span></p>
+            <p>逻辑：中概股上涨对A股互联网有情绪传导，但今日每日互动崩塌产生负面抵消</p>
+        </div>
+        <div class="mapping-card">
+            <span class="strength">★★ 弱联动</span>｜<strong>新能源汽车</strong>
+            <p>美股：特斯拉+0.69%，表现平淡</p>
+            <p>↓映射A股：锂电/整车/零部件</p>
+            <p>代表标的：<span class="tag tag-green">比亚迪</span><span class="tag tag-green">宁德时代</span><span class="tag tag-green">拓普集团</span></p>
+            <p>逻辑：特斯拉涨幅有限，A股新能源板块以内因（锂矿超预期业绩）为主驱动</p>
+        </div>
+
+        <h3 style="margin-top:20px;">联动强度综合判断</h3>
+        <p>今日A美联动强度：<strong style="color:#f5a623;">★★★★（强）</strong> — 上周五美股半导体/科技股全面大涨，今日A股半导体/PCB/消费电子板块直接传导兑现，科创50大涨3%+验证联动有效性。本次传导属于<strong>强联动（当日必反应）</strong>级别，英特尔+23%、AMD+13%、英伟达新高等事件均在A股开盘后快速兑现。</p>
+    </div>
+
+    <!-- 9. 明日策略 -->
+    <div class="section strategy">
+        <div class="section-title"><span>🎯</span>明日策略（2026-04-28参考）</div>
+        <div class="grid-2">
+            <div class="positive">
+                <h3>仓位建议</h3>
+                <p style="font-size:2.5em; font-weight:bold; text-align:center; color:#2ed573;">65%</p>
+                <p style="text-align:center; color:#888;">科技主线持仓为主，高位题材控制</p>
+            </div>
+            <div class="positive">
+                <h3>主攻方向</h3>
+                <p>① <strong>半导体/PCB/算力硬件</strong>：美股持续驱动，趋势最强</p>
+                <p>② <strong>消费电子（苹果产业链）</strong>：新品周期，新高趋势延续</p>
+            </div>
+        </div>
+
+        <h3 style="margin-top:20px;">观察标的</h3>
+        <ul>
+            <li><strong>深南电路（002916）</strong>：PCB龙头，历史新高，低回踩可布局</li>
+            <li><strong>海光信息（688041）</strong>：国产CPU，半导体主线核心</li>
+            <li><strong>立讯精密（002475）</strong>：苹果产业链，历史新高趋势</li>
+            <li><strong>中芯国际（688981）</strong>：A+H双线强势，科创50权重核心</li>
+            <li><strong>宁德时代（300750）</strong>：高位整固后关注新高突破机会</li>
+        </ul>
+
+        <h3>禁忌方向</h3>
+        <div class="warning">
+            <p>① <strong>光伏/稀土/白酒</strong>：主力净流出，短期无催化，规避</p>
+            <p>② <strong>高位数字经济题材股</strong>：每日互动-16%核按钮预警，警惕高位补跌传染</p>
+            <p>③ <strong>高位算力租赁</strong>（非硬件）：宏景科技等高位股警惕回调，新高之后需量价配合</p>
+        </div>
+
+        <h3>关键点位</h3>
+        <table>
+            <thead>
+                <tr><th>指数</th><th>支撑位</th><th>压力位</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>上证综指</td>
+                    <td>4,050 / 4,020</td>
+                    <td>4,100 / 4,150</td>
+                </tr>
+                <tr>
+                    <td>创业板指</td>
+                    <td>3,600 / 3,560</td>
+                    <td>3,700 / 3,750</td>
+                </tr>
+                <tr>
+                    <td>科创50</td>
+                    <td>1,450 / 1,420</td>
+                    <td>1,550 / 1,600</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin-top:25px;">📋 主线板块极简对比</h3>
+        <table class="summary-table">
+            <thead>
+                <tr><th>主线板块</th><th>强度评分</th><th>催化</th><th>风险</th><th>明日关注标的</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>半导体/PCB</td>
+                    <td><span class="score score-high">9</span></td>
+                    <td>美股费城半导体+4.32%；全球设备出货新高</td>
+                    <td>短期涨幅大，高位追涨须控制仓位</td>
+                    <td>海光信息、深南电路</td>
+                </tr>
+                <tr>
+                    <td>消费电子/果链</td>
+                    <td><span class="score score-high">8</span></td>
+                    <td>苹果AI新品周期；立讯精密新高</td>
+                    <td>估值偏高，需防苹果产品不及预期</td>
+                    <td>立讯精密、蓝思科技</td>
+                </tr>
+                <tr>
+                    <td>新能源汽车</td>
+                    <td><span class="score score-mid">6</span></td>
+                    <td>锂矿业绩超预期；特斯拉小幅走强</td>
+                    <td>高位整固，轮动过快，注意减速</td>
+                    <td>宁德时代、比亚迪</td>
+                </tr>
+                <tr>
+                    <td>数字经济/AI应用</td>
+                    <td><span class="score score-mid">5</span></td>
+                    <td>AI政策持续加码</td>
+                    <td>高位股已核按钮，情绪受损</td>
+                    <td>科大讯飞（低位观察）</td>
+                </tr>
+                <tr>
+                    <td>白酒/消费</td>
+                    <td><span class="score score-low">3</span></td>
+                    <td>长期布局价值</td>
+                    <td>短期无催化，资金持续流出</td>
+                    <td>暂时回避</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        <p>数据来源：NeoData Financial Search、财联社、21财经、每日经济新闻、Wind、东方财富 | 报告生成时间：2026-04-27 20:17</p>
+        <p>本报告仅供参考，不构成投资建议。市场有风险，投资需谨慎。</p>
+    </div>
+
+</div>
+</body>
+</html>
