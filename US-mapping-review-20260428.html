@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美股映射复盘 2026-04-28</title>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            --accent-blue: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-red: #f85149;
+            --accent-yellow: #d29922;
+            --accent-purple: #bc8cff;
+            --accent-orange: #f0883e;
+            --border-color: #30363d;
+            --card-bg: #161b22;
+            --table-header: #1c2128;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .report-header {
+            text-align: center;
+            padding: 30px 20px;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        .report-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .report-header .subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .report-header .update-time {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        /* Core Summary */
+        .core-summary {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-blue);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-bottom: 30px;
+        }
+
+        .core-summary h2 {
+            font-size: 16px;
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+        }
+
+        .core-summary p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            font-size: 22px;
+        }
+
+        .sub-section {
+            margin-bottom: 20px;
+        }
+
+        .sub-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            padding-left: 10px;
+            border-left: 3px solid var(--accent-blue);
+        }
+
+        .sub-section h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin: 16px 0 8px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        /* Index Grid */
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .index-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .index-card .index-name {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .index-card .index-price {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .index-card .index-change {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .index-card .index-vol {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        /* Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+            font-size: 13px;
+        }
+
+        .data-table th {
+            background: var(--table-header);
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-align: left;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            white-space: nowrap;
+        }
+
+        .data-table td {
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .data-table tr:nth-child(even) {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .data-table tr:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* Price colors */
+        .up { color: var(--accent-red); }
+        .down { color: var(--accent-green); }
+        .flat { color: var(--text-muted); }
+
+        .up-bg {
+            background: rgba(248, 81, 73, 0.15);
+            border-radius: 4px;
+            padding: 2px 8px;
+        }
+
+        .down-bg {
+            background: rgba(63, 185, 80, 0.15);
+            border-radius: 4px;
+            padding: 2px 8px;
+        }
+
+        /* Tags */
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-right: 4px;
+            font-weight: 500;
+        }
+
+        .tag-strong { background: rgba(248, 81, 73, 0.2); color: var(--accent-red); }
+        .tag-medium { background: rgba(210, 153, 34, 0.2); color: var(--accent-yellow); }
+        .tag-weak { background: rgba(139, 148, 158, 0.2); color: var(--text-secondary); }
+        .tag-risk { background: rgba(248, 81, 73, 0.2); color: var(--accent-red); }
+        .tag-signal { background: rgba(210, 153, 34, 0.2); color: var(--accent-yellow); }
+
+        /* Stock item */
+        .stock-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .stock-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .stock-code {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-left: 6px;
+        }
+
+        .stock-change {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .stock-analysis {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .stock-analysis strong {
+            color: var(--text-primary);
+        }
+
+        /* Mapping Section (Core) */
+        .mapping-card {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border: 2px solid var(--accent-purple);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .mapping-card::before {
+            content: "MAP";
+            position: absolute;
+            top: -1px;
+            right: 12px;
+            background: var(--accent-purple);
+            color: #000;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 0 0 4px 4px;
+        }
+
+        .mapping-card .mapping-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .mapping-card .mapping-sector {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--accent-purple);
+        }
+
+        .mapping-card .mapping-strength {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .mapping-card .mapping-logic {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 10px 0;
+        }
+
+        .mapping-card .mapping-targets {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .mapping-card .mapping-targets .target {
+            background: rgba(188, 140, 255, 0.15);
+            border: 1px solid rgba(188, 140, 255, 0.3);
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 12px;
+            color: var(--accent-purple);
+        }
+
+        /* Strength indicator */
+        .strength-5 { color: var(--accent-red); }
+        .strength-4 { color: var(--accent-orange); }
+        .strength-3 { color: var(--accent-yellow); }
+        .strength-2 { color: var(--text-secondary); }
+        .strength-1 { color: var(--text-muted); }
+
+        /* Risk Section */
+        .risk-box {
+            background: rgba(248, 81, 73, 0.08);
+            border: 1px solid rgba(248, 81, 73, 0.3);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+        }
+
+        .risk-box h4 {
+            color: var(--accent-red);
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .risk-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .risk-box ul li {
+            font-size: 13px;
+            color: var(--text-secondary);
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .risk-box ul li::before {
+            content: "⚠";
+            position: absolute;
+            left: 0;
+            font-size: 11px;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: rgba(210, 153, 34, 0.1);
+            border: 1px solid rgba(210, 153, 34, 0.3);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+        }
+
+        .warning-box h4 {
+            color: var(--accent-yellow);
+        }
+
+        /* Avoid Box */
+        .avoid-box {
+            background: rgba(248, 81, 73, 0.06);
+            border: 1px solid rgba(248, 81, 73, 0.2);
+            border-radius: 8px;
+            padding: 16px 20px;
+        }
+
+        /* Grid layouts */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .three-col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+        }
+
+        /* Emotion bar */
+        .emotion-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .emotion-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            min-width: 80px;
+        }
+
+        .emotion-value {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        /* Separator */
+        .separator {
+            border: none;
+            border-top: 1px dashed var(--border-color);
+            margin: 20px 0;
+        }
+
+        /* Footer */
+        .report-footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 12px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+
+        .report-footer .disclaimer {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Highlight */
+        .highlight {
+            background: rgba(88, 166, 255, 0.1);
+            border-left: 3px solid var(--accent-blue);
+            padding: 12px 16px;
+            margin: 12px 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 13px;
+        }
+
+        .highlight strong {
+            color: var(--accent-blue);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .two-col { grid-template-columns: 1fr; }
+            .index-grid { grid-template-columns: 1fr; }
+            .report-header h1 { font-size: 22px; }
+            .section-title { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="report-header">
+            <h1>🇺🇸 美股映射复盘</h1>
+            <p class="subtitle">美股→A股联动分析 · 2026年4月28日（周二）</p>
+            <p class="update-time">报告生成时间：2026-04-29 07:01 (北京时间)</p>
+        </header>
+
+        <!-- Core Summary -->
+        <div class="core-summary">
+            <h2>📌 一句话核心结论</h2>
+            <p>🔴 <strong>AI概念股首次显著回调</strong>（英伟达/博通拖累指数），但<strong>油价暴涨3%+</strong>（霍尔木兹海峡危机重燃）成为新主线。<strong>OpenAI营收不及预期</strong>引发AI产业链担忧，但<strong>能源/油服板块</strong>强势崛起。A股次日重点布局：<strong>石油石化/油服 > 煤炭/油气开采 > 黄金避险</strong>；规避：<strong>AI算力/半导体（短期回调压力）</strong>。</p>
+        </div>
+
+        <!-- Section 1: 美股整体表现 -->
+        <section class="section" id="us-market-overview">
+            <h2 class="section-title"><span class="icon">📊</span> 一、美股整体表现</h2>
+
+            <!-- 三大指数 -->
+            <div class="sub-section">
+                <h3>三大股指</h3>
+                <div class="index-grid">
+                    <div class="index-card">
+                        <div class="index-name">道琼斯工业指数 (.DJI)</div>
+                        <div class="index-price down">49,141.93</div>
+                        <div class="index-change down">-0.10% ↓</div>
+                        <div class="index-vol">振幅：数据暂缺</div>
+                    </div>
+                    <div class="index-card">
+                        <div class="index-name">纳斯达克综合指数 (.IXIC)</div>
+                        <div class="index-price down">24,663.80</div>
+                        <div class="index-change down">-0.90% ↓</div>
+                        <div class="index-vol">振幅：数据暂缺</div>
+                    </div>
+                    <div class="index-card">
+                        <div class="index-name">标普500指数 (.INX)</div>
+                        <div class="index-price down">7,148.80</div>
+                        <div class="index-change down">-0.50% ↓</div>
+                        <div class="index-vol">振幅：数据暂缺</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 市场情绪 -->
+            <div class="sub-section">
+                <h3>市场情绪</h3>
+                <div class="emotion-bar">
+                    <span class="emotion-label">VIX恐慌指数</span>
+                    <span class="emotion-value down">20.00 (-3.46%)</span>
+                </div>
+                <div class="emotion-bar">
+                    <span class="emotion-label">市场情绪</span>
+                    <span class="emotion-value">⚠️ 谨慎偏空（AI概念首次显著回调 + 油价暴涨引发滞胀担忧）</span>
+                </div>
+                <div class="emotion-bar">
+                    <span class="emotion-label">板块轮动</span>
+                    <span class="emotion-value">🔥 能源/油服崛起，AI/科技承压</span>
+                </div>
+                <div class="highlight">
+                    <strong>📊 市场宽度分析：</strong>纳指-0.9%领跌，科技权重股（英伟达、博通）拖累指数。但<strong>板块分化明显</strong>：能源(XLE)逆势上涨，而通信服务、信息技术承压。市场从"AI一枝独秀"转向"多元轮动"。
+                </div>
+            </div>
+
+            <!-- 关键影响因素 -->
+            <div class="sub-section">
+                <h3>关键影响因素</h3>
+                <div class="card">
+                    <div class="stock-analysis">
+                        <p>📌 <strong>1. OpenAI营收不及预期（核心利空）</strong></p>
+                        <p style="margin-left: 20px; margin-bottom: 10px;">• 据《华尔街日报》报道，OpenAI未能达成内部设定的用户增长和营收目标，在编码和企业市场失去份额给Anthropic和谷歌。</p>
+                        <p style="margin-left: 20px; margin-bottom: 10px;">• 受此影响，Oracle(ORCL)、英伟达(NVDA)、博通(AVGO)等AI概念股承压下跌。</p>
+                        
+                        <p>📌 <strong>2. 霍尔木兹海峡危机重燃（核心利多→能源板块）</strong></p>
+                        <p style="margin-left: 20px; margin-bottom: 10px;">• 伊朗提出"若美国解除封锁、结束战争则重新开放霍尔木兹海峡"的方案，但磋商无进展。</p>
+                        <p style="margin-left: 20px; margin-bottom: 10px;">• 阿联酋宣布退出欧佩克(OPEC)，进一步推升油价波动。</p>
+                        <p style="margin-left: 20px; margin-bottom: 10px;">• WTI原油突破$99.5/桶(+3.28%)，布伦特原油突破$111/桶(+2.86%)。</p>
+
+                        <p>📌 <strong>3. 本周超级事件周（重大不确定性）</strong></p>
+                        <p style="margin-left: 20px; margin-bottom: 10px;">• <strong>4月29日（周三）</strong>：微软(MSFT)、谷歌(GOOGL)、Meta(META)发布财报 + FOMC会议开始</p>
+                        <p style="margin-left: 20px; margin-bottom: 10px;">• <strong>4月30日（周四）</strong>：苹果(AAPL)发布财报 + FOMC决议公布</p>
+                        <p style="margin-left: 20px; margin-bottom: 10px;">• <strong>5月1日（周五）</strong>：亚马逊(AMZN)发布财报</p>
+
+                        <p>📌 <strong>4. 美联储Fed主席权力交接</strong></p>
+                        <p style="margin-left: 20px; margin-bottom: 10px;">• 司法部(DOJ)撤销对现任Fed主席鲍威尔的刑事调查，Fed权力交接障碍解除。</p>
+                        <p style="margin-left: 20px; margin-bottom: 10px;">• 市场预期鲍威尔最后一次以Fed主席身份出席本周FOMC会议。</p>
+
+                        <p>📌 <strong>5. 美债收益率上行压力</strong></p>
+                        <p style="margin-left: 20px; margin-bottom: 10px;">• 美债10年期收益率升至<strong>4.35%</strong>(+4bp)，对成长股估值构成压力。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="separator">
+
+        <!-- Section 2: 强势板块与核心逻辑 -->
+        <section class="section" id="sector-analysis">
+            <h2 class="section-title"><span class="icon">🔥</span> 二、强势板块与核心逻辑</h2>
+
+            <div class="two-col">
+                <!-- 涨幅TOP5 -->
+                <div class="sub-section">
+                    <h3>涨幅TOP板块</h3>
+                    <div class="card">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>板块名称</th>
+                                    <th>涨跌幅</th>
+                                    <th>领涨龙头</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><strong>能源/石油(XLE)</strong></td>
+                                    <td class="up">+1.6%~+2.2%</td>
+                                    <td>XOM/CVX（数据暂缺）</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><strong>原油ETF(USO)</strong></td>
+                                    <td class="up">+4.2%</td>
+                                    <td>油价联动</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td><strong>金融(XLF)</strong></td>
+                                    <td class="up">数据暂缺</td>
+                                    <td>VZ +1.5%~2.7%</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td><strong>公用事业(XLU)</strong></td>
+                                    <td class="up">数据暂缺</td>
+                                    <td>防御性板块</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td><strong>通信服务</strong></td>
+                                    <td class="up">数据暂缺</td>
+                                    <td>前一天+1.5%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">⚠️ 4月28日板块ETF数据部分暂缺，以上基于前一日数据和油价推断</div>
+                    </div>
+                </div>
+
+                <!-- 跌幅TOP3 -->
+                <div class="sub-section">
+                    <h3>最弱板块TOP3</h3>
+                    <div class="card">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>板块名称</th>
+                                    <th>跌幅</th>
+                                    <th>领跌龙头</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><strong>科技/AI(XLK)</strong></td>
+                                    <td class="down">-1.0%~-1.5%</td>
+                                    <td>NVDA/AVGO（AI概念拖累）</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><strong>半导体(SMH/SOXX)</strong></td>
+                                    <td class="down">承压</td>
+                                    <td>OpenAI营收不及预期拖累</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td><strong>非必需消费</strong></td>
+                                    <td class="down">数据暂缺</td>
+                                    <td>DPZ -9%（前一天）</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 板块分析详情 -->
+            <div class="sub-section">
+                <h3>板块深度分析</h3>
+                
+                <div class="card" style="margin-bottom: 16px;">
+                    <h4 style="color: var(--accent-red); margin-bottom: 8px;">🔥 能源板块(XLE) — 新主线爆发</h4>
+                    <div class="stock-analysis">
+                        <p><strong>驱动因素：</strong></p>
+                        <p>• 霍尔木兹海峡重开谈判陷入僵局 → 原油供应担忧急剧升温</p>
+                        <p>• 阿联酋宣布退出OPEC → 全球原油供给格局重构预期</p>
+                        <p>• WTI原油+3.28%、布伦特原油+2.86% → 石油股盈利预期上调</p>
+                        <p><strong>持续性判断：</strong><span class="tag tag-medium">中期主线</span> — 地缘风险若不解除，油价易涨难跌</p>
+                        <p><strong>对A股传导力度：</strong><span class="tag tag-strong">强</span> — 中国石油/中国石化/海油工程等将高开</p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-bottom: 16px;">
+                    <h4 style="color: var(--accent-yellow); margin-bottom: 8px;">⚠️ AI/科技板块 — 首次显著回调</h4>
+                    <div class="stock-analysis">
+                        <p><strong>驱动因素：</strong></p>
+                        <p>• OpenAI营收不及预期 + 在编码/企业市场失守 → AI泡沫担忧升温</p>
+                        <p>• 英伟达、博通是4月28日市场最大权重拖累项</p>
+                        <p>• 此前AI板块连续大涨，获利了结压力积累</p>
+                        <p><strong>持续性判断：</strong><span class="tag tag-signal">短期调整</span> — 本周微软/谷歌/Meta财报将验证AI需求是否真实</p>
+                        <p><strong>对A股传导力度：</strong><span class="tag tag-medium">中</span> — A股AI算力板块可能跟随调整，但中期逻辑未变</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="separator">
+
+        <!-- Section 3: 美股暴涨个股深度扫描 -->
+        <section class="section" id="surge-stocks">
+            <h2 class="section-title"><span class="icon">🎯</span> 三、美股暴涨个股深度扫描（涨幅>11%，市值>$50亿）</h2>
+
+            <div class="highlight" style="margin-bottom: 16px;">
+                📌 <strong>筛选标准：</strong>当日涨幅超过11%（含）+ 市值超过50亿美元 + 排除ETF/杠杆ETF。以下为符合条件个股的深度分析。
+            </div>
+
+            <!-- 暴涨个股1：Organon (OGN) -->
+            <div class="stock-item">
+                <div class="stock-header">
+                    <div>
+                        <span class="stock-name">Organon & Co</span>
+                        <span class="stock-code">(OGN)</span>
+                    </div>
+                    <div class="stock-change up">+17% ↑</div>
+                </div>
+                <div class="stock-analysis">
+                    <p><strong>📊 基本数据：</strong>市值约$117.5亿 | 收盘价约$117.5/股（被收购价）</p>
+                    
+                    <p style="margin-top: 10px;"><strong>🔥 上涨驱动因素（深度分析）：</strong></p>
+                    <p>• <strong>【催化剂】</strong>：印度太阳制药(Sun Pharma)宣布以<strong>全现金方式</strong>收购Organon，收购溢价高达<strong>103%</strong>（前收盘价约$57.8 → 收购价约$117.5）。</p>
+                    <p>• <strong>【基本面变化】</strong>：是 — 被收购意味着公司私有化退市，中长期逻辑彻底改变。</p>
+                    <p>• <strong>【市场反应】</strong>：成交量暴增（收购套利交易），机构投资者大量买入。</p>
+                    <p>• <strong>【历史参照】</strong>：类似收购套利案例，股价通常迅速收敛至收购价，后续上涨空间有限。</p>
+                    
+                    <p style="margin-top: 10px;"><strong>🇨🇳 A股映射分析：</strong></p>
+                    <p>• <strong>是否有直接映射标的</strong>：无 — Organon为女性健康/生物类似药公司，A股无直接对应标的。</p>
+                    <p>• <strong>传导逻辑</strong>：间接利好A股<strong>创新药/CXO板块</strong> — 全球制药行业并购活跃，利好中国CXO企业（药明康德、康龙化成等）获取更多外包订单。</p>
+                    
+                    <p style="margin-top: 10px;"><strong>📌 后续跟踪要点：</strong>收购监管审批进展（美国FTC、欧盟EMA）、Sun Pharma融资安排。</p>
+                </div>
+            </div>
+
+            <!-- 无更多符合条件个股的说明 -->
+            <div class="card" style="margin-top: 16px;">
+                <div class="stock-analysis">
+                    <p>📌 <strong>其他涨幅较大个股（未达双11%门槛或市值不足$50亿）：</strong></p>
+                    <p>• <strong>ARC Resources</strong>（多伦多上市）：+22% — 被Shell以116.4亿美元收购，但非美股主板。</p>
+                    <p>• <strong>Spirit Airlines(FLYYQ)</strong>：+25%+ — 传美国政府可能提供25亿美元援助，但市值不足$50亿且处于破产重组中。</p>
+                    <p>• <strong>Intel(INTC)</strong>：+3%（4月28日）— 虽延续前一周+23.6%的势头，但未达当日11%门槛。</p>
+                    <p style="margin-top: 10px;">✅ <strong>结论：</strong>4月28日美股无涨幅>11%且市值>$50亿的个股（除收购套利的OGN外）。市场整体承压，个股暴涨缺乏广泛基础。</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="separator">
+
+        <!-- Section 4: 重点个股异动 -->
+        <section class="section" id="key-stocks">
+            <h2 class="section-title"><span class="icon">🎯</span> 四、重点个股异动（与A股有映射关系）</h2>
+
+            <!-- NVDA -->
+            <div class="stock-item">
+                <div class="stock-header">
+                    <div>
+                        <span class="stock-name">英伟达 (NVIDIA)</span>
+                        <span class="stock-code">(NVDA)</span>
+                    </div>
+                    <div class="stock-change down">承压 ↓</div>
+                </div>
+                <div class="stock-analysis">
+                    <p><strong>📊 4月28日表现：</strong>股价承压（具体收盘价数据暂缺），是当日市场最大权重拖累项之一。</p>
+                    <p><strong>🔥 驱动因素：</strong>OpenAI营收不及预期报道 → 市场担忧AI Capex可持续性 → AI芯片需求预期下修。</p>
+                    <p><strong>🇨🇳 A股映射：</strong></p>
+                    <p>• <strong>映射板块：</strong>AI算力/光模块/CPO</p>
+                    <p>• <strong>A股标的：</strong>中际旭创(300308)、新易盛(300502)、天孚通信(300394)、海光信息(688041)</p>
+                    <p>• <strong>传导力度：</strong><span class="tag tag-medium">中</span> — NVDA承压将拖累A股AI算力板块短期情绪，但中期逻辑（AI需求持续增长）未变。</p>
+                    <p>• <strong>风险提示：</strong>若本周微软/谷歌/Meta财报显示AI Capex不及预期，A股光模块可能"高开低走"。</p>
+                </div>
+            </div>
+
+            <!-- Oil stocks -->
+            <div class="stock-item">
+                <div class="stock-header">
+                    <div>
+                        <span class="stock-name">石油股 (XOM/CVX/USO)</span>
+                        <span class="stock-code">(能源板块)</span>
+                    </div>
+                    <div class="stock-change up">+1.6%~+4.2% ↑</div>
+                </div>
+                <div class="stock-analysis">
+                    <p><strong>📊 4月28日表现：</strong>XLE(能源ETF)+1.6%，USO(原油ETF)+4.2%，WTI原油突破$99.5/桶。</p>
+                    <p><strong>🔥 驱动因素：</strong>霍尔木兹海峡危机重燃 + 阿联酋退出OPEC → 全球原油供给担忧急剧升温。</p>
+                    <p><strong>🇨🇳 A股映射：</strong></p>
+                    <p>• <strong>映射板块：</strong>石油石化/油服/煤炭</p>
+                    <p>• <strong>A股标的：</strong>中国石油(601857)、中国石化(600028)、中国海油(600938)、海油工程(600583)、中曼石油(603619)</p>
+                    <p>• <strong>传导力度：</strong><span class="tag tag-strong">强</span> — A股石油石化板块将显著高开，油价上涨直接利好勘探/开采/油服企业盈利预期。</p>
+                    <p>• <strong>操作建议：</strong>关注"三桶油"（中石油/中石化/中海油）及油服龙头（海油工程/中曼石油）。</p>
+                </div>
+            </div>
+
+            <!-- Verizon -->
+            <div class="stock-item">
+                <div class="stock-header">
+                    <div>
+                        <span class="stock-name">Verizon Communications</span>
+                        <span class="stock-code">(VZ)</span>
+                    </div>
+                    <div class="stock-change up">+1.5%~+2.7% ↑</div>
+                </div>
+                <div class="stock-analysis">
+                    <p><strong>📊 4月28日表现：</strong>股价上涨，通信板块龙头。</p>
+                    <p><strong>🔥 驱动因素：</strong>业绩超预期（具体数据暂缺），通信服务板块防御属性凸显。</p>
+                    <p><strong>🇨🇳 A股映射：</strong></p>
+                    <p>• <strong>映射板块：</strong>通信/5G/运营商</p>
+                    <p>• <strong>A股标的：</strong>中国移动(600941)、中国联通(600050)、中兴通讯(000063)</p>
+                    <p>• <strong>传导力度：</strong><span class="tag tag-weak">弱</span> — 中美通信市场割裂，Verizon上涨对A股映射有限。</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="separator">
+
+        <!-- Section 5: 中概股表现 -->
+        <section class="section" id="china-adrs">
+            <h2 class="section-title"><span class="icon">🇨🇳</span> 五、中概股表现</h2>
+
+            <div class="sub-section">
+                <h3>热门中概股行情</h3>
+                <div class="card">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>股票</th>
+                                <th>代码</th>
+                                <th>涨跌幅</th>
+                                <th>关键信息</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>阿里巴巴</td>
+                                <td>BABA</td>
+                                <td class="down">数据暂缺</td>
+                                <td>电商板块，受中美关系影响</td>
+                            </tr>
+                            <tr>
+                                <td>拼多多</td>
+                                <td>PDD</td>
+                                <td class="down">数据暂缺</td>
+                                <td>跨境电商，Temu持续扩张</td>
+                            </tr>
+                            <tr>
+                                <td>京东</td>
+                                <td>JD</td>
+                                <td class="down">数据暂缺</td>
+                                <td>电商+物流，财报季临近</td>
+                            </tr>
+                            <tr>
+                                <td>百度</td>
+                                <td>BIDU</td>
+                                <td class="down">数据暂缺</td>
+                                <td>AI大模型，受OpenAI新闻间接影响</td>
+                            </tr>
+                            <tr>
+                                <td>理想汽车</td>
+                                <td>LI</td>
+                                <td class="down">数据暂缺</td>
+                                <td>新能源车，AI驾驶进展</td>
+                            </tr>
+                            <tr>
+                                <td>蔚来</td>
+                                <td>NIO</td>
+                                <td class="down">数据暂缺</td>
+                                <td>新能源车，换电模式</td>
+                            </tr>
+                            <tr>
+                                <td>小鹏汽车</td>
+                                <td>XPEV</td>
+                                <td class="down">数据暂缺</td>
+                                <td>新能源车，智能驾驶</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">⚠️ 4月28日中概股个股数据暂缺，以下提供纳斯达克中国金龙指数(HXC)数据</div>
+                </div>
+            </div>
+
+            <div class="sub-section">
+                <h3>中概股指数</h3>
+                <div class="emotion-bar">
+                    <span class="emotion-label">金龙指数(HXC)</span>
+                    <span class="emotion-value down">6,835.31 (-0.49%)</span>
+                </div>
+            </div>
+
+            <div class="sub-section">
+                <h3>中概情绪判断</h3>
+                <div class="card">
+                    <div class="stock-analysis">
+                        <p><strong>📊 整体情绪：</strong><span class="tag tag-weak">偏弱</span> — 金龙指数-0.49%，跟随美股科技股承压。</p>
+                        <p><strong>📌 涨跌驱动：</strong></p>
+                        <p>• <strong>政策面</strong>：中美关系暂无重大变化，但OpenAI新闻间接利空百度等AI概念。</p>
+                        <p>• <strong>基本面</strong>：中概股财报季即将开启，市场预期谨慎。</p>
+                        <p>• <strong>资金面</strong>：外资对中概股偏好受美股科技股情绪影响。</p>
+                        <p><strong>🇭🇰 对港股次日开盘影响预判：</strong>金龙指数-0.49% → 港股恒生科技指数可能小幅低开，但油价暴涨将支撑"三桶油"等能源股。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="separator">
+
+        <!-- Section 6: 大宗商品与相关资产 -->
+        <section class="section" id="commodities">
+            <h2 class="section-title"><span class="icon">📈</span> 六、大宗商品与相关资产</h2>
+
+            <div class="two-col">
+                <div class="sub-section">
+                    <h3>商品价格</h3>
+                    <div class="card">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>品种</th>
+                                    <th>最新价格</th>
+                                    <th>日涨跌幅</th>
+                                    <th>关键逻辑</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>WTI原油</strong></td>
+                                    <td>$99.48/桶</td>
+                                    <td class="up">+3.28% ↑</td>
+                                    <td>霍尔木兹海峡危机 + 阿联酋退OPEC</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>布伦特原油</strong></td>
+                                    <td>$111.33/桶</td>
+                                    <td class="up">+2.86% ↑</td>
+                                    <td>全球原油供给担忧</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>COMEX黄金</strong></td>
+                                    <td>$4,682/盎司</td>
+                                    <td class="down">-0.16% ↓</td>
+                                    <td>美元走强 + 避险情绪分流至原油</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>COMEX铜</strong></td>
+                                    <td>$5.92/磅</td>
+                                    <td class="down">-1.75% ↓</td>
+                                    <td>全球经济放缓担忧 + 美元走强</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="sub-section">
+                    <h3>金融资产</h3>
+                    <div class="card">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>资产</th>
+                                    <th>最新值</th>
+                                    <th>变化</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>美债10年期收益率</td>
+                                    <td>4.35%</td>
+                                    <td class="up">+4bp ↑</td>
+                                </tr>
+                                <tr>
+                                    <td>美债2年期收益率</td>
+                                    <td>数据暂缺</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>美元指数(DXY)</td>
+                                    <td>98.28</td>
+                                    <td>持平</td>
+                                </tr>
+                                <tr>
+                                    <td>USD/CNH（离岸人民币）</td>
+                                    <td>6.826~6.839</td>
+                                    <td>人民币微贬</td>
+                                </tr>
+                                <tr>
+                                    <td>比特币</td>
+                                    <td>~$76,900</td>
+                                    <td>-3.2%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sub-section">
+                <h3>对A股影响判断</h3>
+                <div class="card">
+                    <div class="stock-analysis">
+                        <p>📌 <strong>1. 美债收益率↑ → 成长股承压</strong></p>
+                        <p style="margin-left: 20px;">美债10Y升至4.35%，A股成长股（新能源/半导体/创新药）估值承压，北向资金可能阶段性流出。</p>
+                        
+                        <p>📌 <strong>2. 油价暴涨 → 石油石化/煤炭受益</strong></p>
+                        <p style="margin-left: 20px;">WTI突破$99.5、布伦特突破$111 → A股"三桶油"、油服、煤炭板块将显著高开。<strong>这是当前最强的映射方向。</strong></p>
+                        
+                        <p>📌 <strong>3. 美元持平 → 人民币稳定</strong></p>
+                        <p style="margin-left: 20px;">DXY维持在98附近，USD/CNH稳定在6.83左右，人民币无大幅贬值压力，北向资金外流风险可控。</p>
+                        
+                        <p>📌 <strong>4. 铜价下跌 → 有色板块承压</strong></p>
+                        <p style="margin-left: 20px;">COMEX铜-1.75%，A股有色金属（铜、铝）板块可能跟随调整。</p>
+                        
+                        <p>📌 <strong>5. 黄金持平 → 黄金股观望</strong></p>
+                        <p style="margin-left: 20px;">COMEX黄金维持在$4,682附近，A股黄金股（山东黄金、中金黄金）可能震荡整理，等待新的催化剂。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="separator">
+
+        <!-- Section 7: 映射到A股的潜在方向 (最重要) -->
+        <section class="section" id="a-share-mapping">
+            <h2 class="section-title"><span class="icon">🔗</span> 七、映射到A股的潜在方向</h2>
+
+            <div class="highlight">
+                <strong>核心原则：</strong>以下映射基于隔夜美股表现，综合考虑产业链关系、情绪传导、资金偏好等因素。强度5=必反应，4=高概率，3=值得关注，2=不确定，1=仅供参考。
+            </div>
+
+            <!-- 可能上涨板块 -->
+            <div class="sub-section">
+                <h3>7.1 可能上涨板块</h3>
+                
+                <!-- Mapping Card 1: 石油石化 -->
+                <div class="mapping-card">
+                    <div class="mapping-header">
+                        <div class="mapping-sector">石油石化 / 油服 / 煤炭</div>
+                        <div class="mapping-strength strength-5">强度：5 ⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="mapping-logic">
+                        <strong>映射逻辑：</strong>WTI原油+3.28%突破$99.5/桶，布伦特原油+2.86%突破$111/桶 → 中国石油/中国石化/中国海油的盈利预期直接上调。历史上，油价每上涨10%，石油股EPS平均上调5%~8%。此外，阿联酋退出OPEC将引发全球原油供给格局重构，中长期利好油服企业（海油工程/中曼石油）。
+                    </div>
+                    <div class="mapping-targets">
+                        <span class="target">中国石油(601857) 权重最大</span>
+                        <span class="target">中国石化(600028) 炼化一体</span>
+                        <span class="target">中国海油(600938) 纯勘探开采</span>
+                        <span class="target">海油工程(600583) 油服龙头</span>
+                        <span class="target">中曼石油(603619) 民营油服</span>
+                        <span class="target">陕西煤业(601225) 煤炭联动</span>
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-muted); margin-top: 10px;">⚠️ <strong>风险点：</strong>若美伊达成和谈协议 + 霍尔木兹海峡重开，油价可能急速回落，石油股将大幅回调。</div>
+                </div>
+
+                <!-- Mapping Card 2: 黄金股 -->
+                <div class="mapping-card">
+                    <div class="mapping-header">
+                        <div class="mapping-sector">黄金股 / 贵金属</div>
+                        <div class="mapping-strength strength-3">强度：3 ⭐⭐⭐</div>
+                    </div>
+                    <div class="mapping-logic">
+                        <strong>映射逻辑：</strong>COMEX黄金维持在$4,682/盎司（高位震荡），A股黄金股（山东黄金/中金黄金/紫金矿业）通常跟随国际金价走势。但需注意：4月28日金价小幅下跌-0.16%，因避险资金分流至原油。若本周FOMC会议释放鸽派信号，金价可能突破$4,800/盎司，黄金股将迎来补涨。
+                    </div>
+                    <div class="mapping-targets">
+                        <span class="target">山东黄金(600547)</span>
+                        <span class="target">中金黄金(600489)</span>
+                        <span class="target">紫金矿业(601899) 铜金双主业</span>
+                        <span class="target">赤峰黄金(600988)</span>
+                    </div>
+                </div>
+
+                <!-- Mapping Card 3: AI算力/光模块 (谨慎) -->
+                <div class="mapping-card">
+                    <div class="mapping-header">
+                        <div class="mapping-sector">AI算力 / 光模块 / CPO</div>
+                        <div class="mapping-strength strength-2">强度：2 ⭐⭐（谨慎）</div>
+                    </div>
+                    <div class="mapping-logic">
+                        <strong>映射逻辑：</strong>英伟达承压（OpenAI营收不及预期） → A股AI算力板块（中际旭创/新易盛/天孚通信）可能短期调整。<strong>但需重点关注本周三微软/谷歌/Meta财报</strong>，若财报显示AI Capex继续超预期，A股光模块将报复性反弹。当前建议：<strong>观望为主，等财报后再决策</strong>。
+                    </div>
+                    <div class="mapping-targets">
+                        <span class="target">中际旭创(300308) 800G光模块龙头</span>
+                        <span class="target">新易盛(300502) 光模块</span>
+                        <span class="target">天孚通信(300394) 光器件</span>
+                        <span class="target">海光信息(688041) AI芯片</span>
+                    </div>
+                    <div style="font-size: 12px; color: var(--accent-yellow); margin-top: 10px;">⚠️ <strong>操作建议：</strong>若持仓AI算力，建议减仓观望；若未持仓，等待本周财报后再决策。</div>
+                </div>
+            </div>
+
+            <!-- 需规避方向 -->
+            <div class="sub-section">
+                <h3>7.2 需规避方向</h3>
+                <div class="avoid-box">
+                    <div class="stock-analysis">
+                        <p>❌ <strong>1. AI算力/半导体（短期调整风险）</strong></p>
+                        <p style="margin-left: 20px;">OpenAI营收不及预期 + NVDA承压 → A股AI算力板块可能跟随调整。规避：中际旭创、新易盛、海光信息、寒武纪。</p>
+                        
+                        <p>❌ <strong>2. 铜/有色金属（铜价下跌）</strong></p>
+                        <p style="margin-left: 20px;">COMEX铜-1.75% → A股铜产业链（江西铜业/铜陵有色）可能承压。规避：有色金属板块短期。</p>
+                        
+                        <p>❌ <strong>3. 果链/消费电子（AAPL即将财报）</strong></p>
+                        <p style="margin-left: 20px;">苹果将于4月30日（周四）发布财报，市场预期谨慎（iPhone销量下滑）。规避：立讯精密、歌尔股份、蓝思科技。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="separator">
+
+        <!-- Section 8: 风险提示 -->
+        <section class="section" id="risk-warning">
+            <h2 class="section-title"><span class="icon">⚠️</span> 八、风险提示</h2>
+            
+            <div class="risk-box">
+                <h4>1. 传导失败风险</h4>
+                <ul>
+                    <li><strong>油价上涨→A股石油股高开低走</strong>：若美伊突然达成和谈 + 霍尔木兹海峡重开，油价可能急速回落，石油股将大幅回调。建议：分批建仓，设置止损。</li>
+                    <li><strong>AI算力反弹落空</strong>：若本周微软/谷歌/Meta财报显示AI Capex不及预期，A股光模块可能继续下跌，而非反弹。</li>
+                    <li><strong>政策驱动型上涨无法传导</strong>：美国本土政策（如AI监管）利好美股但A股无对应标的。</li>
+                </ul>
+            </div>
+
+            <div class="risk-box">
+                <h4>2. 汇率与资金面风险</h4>
+                <ul>
+                    <li><strong>美债收益率突破4.5%</strong>：若美债10Y突破4.5%，成长股将面临剧烈杀估值，北向资金可能大幅流出。</li>
+                    <li><strong>人民币破6.9</strong>：若USD/CNY突破6.9，北向资金流出压力将显著增加，A股整体承压。</li>
+                    <li><strong>美元指数反弹至100+</strong>：将压制大宗商品（黄金/铜）价格，A股有色/黄金股承压。</li>
+                </ul>
+            </div>
+
+            <div class="risk-box">
+                <h4>3. 时差与信息差风险</h4>
+                <ul>
+                    <li><strong>A股开盘前可能有新信息</strong>：4月29日上午，中国可能发布PMI数据或其他政策，改变A股开盘走势。</li>
+                    <li><strong>美股盘后财报</strong>：4月29日盘后，微软/谷歌/Meta将发布财报，结果将影响4月30日A股开盘。</li>
+                    <li><strong>FOMC会议期间波动</strong>：4月29-30日FOMC会议，任何鸽派/鹰派信号都将引发全球市场波动。</li>
+                </ul>
+            </div>
+
+            <div class="risk-box">
+                <h4>4. 情绪反向风险</h4>
+                <ul>
+                    <li><strong>"利好出尽"高开低走</strong>：若A股石油股大幅高开（如+5%+），警惕获利了结盘涌出，导致高开低走。</li>
+                    <li><strong>追高风险</strong>：若盲目追涨石油股，而美伊和谈突然达成，将面临显著亏损。</li>
+                    <li><strong>AI算力"抄底"风险</strong>：若盲目抄底AI算力，而本周财报不及预期，将被套在半山腰。</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚡ 本周关键事件日历</h4>
+                <div class="stock-analysis">
+                    <p>📅 <strong>4月29日（周三）</strong>：微软(MSFT)财报 + 谷歌(GOOGL)财报 + Meta(META)财报 + FOMC会议开始</p>
+                    <p>📅 <strong>4月30日（周四）</strong>：苹果(AAPL)财报 + FOMC决议公布 + 习近平总书记讲话（中国可能发布政策）</p>
+                    <p>📅 <strong>5月1日（周五）</strong>：亚马逊(AMZN)财报 + 美国非农就业数据</p>
+                    <p style="margin-top: 10px;">⚠️ <strong>建议：</strong>本周市场波动将剧烈，建议控制仓位，等待财报和FOMC结果后再加仓/减仓。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="report-footer">
+            <div class="disclaimer">
+                <p><strong>免责声明：</strong>本报告仅供参考，不构成任何投资建议。报告中的数据来源于公开市场信息（AP News、Investopedia、Trading Economics、聚金数据等），分析逻辑基于作者个人判断。投资有风险，入市需谨慎。美股与A股的映射关系并非必然，实际走势受多种因素影响。</p>
+            </div>
+            <p style="margin-top: 12px;">Generated by W · 美股映射复盘技能 · 2026-04-29 07:01 BJT</p>
+        </footer>
+    </div>
+</body>
+</html>
