@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>港股每日复盘 20260505</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 14px; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; padding: 30px 0 20px; border-bottom: 1px solid #30363d; margin-bottom: 30px; }
+        header h1 { font-size: 28px; font-weight: 700; color: #58a6ff; letter-spacing: 2px; }
+        header .subtitle { color: #8b949e; margin-top: 8px; font-size: 14px; }
+        .badge-row { display: flex; gap: 12px; justify-content: center; margin-top: 12px; flex-wrap: wrap; }
+        .badge { padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .badge-red { background: rgba(255, 80, 80, 0.15); color: #ff5050; border: 1px solid rgba(255, 80, 80, 0.3); }
+        .badge-yellow { background: rgba(255, 189, 46, 0.15); color: #ffbd2e; border: 1px solid rgba(255, 189, 46, 0.3); }
+        .badge-blue { background: rgba(88, 166, 255, 0.15); color: #58a6ff; border: 1px solid rgba(88, 166, 255, 0.3); }
+        .badge-green { background: rgba(63, 185, 80, 0.15); color: #3fb950; border: 1px solid rgba(63, 185, 80, 0.3); }
+        .badge-purple { background: rgba(163, 113, 247, 0.15); color: #a371f7; border: 1px solid rgba(163, 113, 247, 0.3); }
+
+        section { margin-bottom: 32px; }
+        .section-title { font-size: 18px; font-weight: 700; color: #e6edf3; padding-bottom: 10px; border-bottom: 2px solid #30363d; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .section-title::before { content: ""; width: 4px; height: 18px; background: #58a6ff; border-radius: 2px; }
+
+        /* 核心指标表格 */
+        .index-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+        .index-card { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 16px; text-align: center; transition: border-color 0.3s; }
+        .index-card:hover { border-color: #58a6ff; }
+        .index-card .label { font-size: 12px; color: #8b949e; margin-bottom: 6px; }
+        .index-card .value { font-size: 22px; font-weight: 700; color: #e6edf3; }
+        .index-card .change { font-size: 14px; font-weight: 600; margin-top: 4px; }
+        .up { color: #ff5050; }
+        .down { color: #3fb950; }
+        .flat { color: #8b949e; }
+
+        /* 市场情绪 */
+        .emotion-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .emotion-card { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 14px; }
+        .emotion-card .label { font-size: 12px; color: #8b949e; margin-bottom: 4px; }
+        .emotion-card .value { font-size: 16px; font-weight: 600; color: #e6edf3; }
+
+        /* 流动性 */
+        .liquid-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+        .liquid-card { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 14px; text-align: center; }
+        .liquid-card .label { font-size: 12px; color: #8b949e; margin-bottom: 6px; }
+        .liquid-card .value { font-size: 16px; font-weight: 600; color: #e6edf3; }
+
+        /* 催化卡片 */
+        .catalyst-box { background: linear-gradient(135deg, rgba(88, 166, 255, 0.08), rgba(163, 113, 247, 0.05)); border: 1px solid rgba(88, 166, 255, 0.2); border-radius: 10px; padding: 16px; margin-bottom: 20px; }
+        .catalyst-title { font-size: 14px; font-weight: 700; color: #58a6ff; margin-bottom: 10px; }
+        .catalyst-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; font-size: 13px; color: #c9d1d9; }
+        .catalyst-item .bullet { color: #58a6ff; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+        .catalyst-item.negative .bullet { color: #ff5050; }
+        .catalyst-item.positive .bullet { color: #3fb950; }
+
+        /* 板块表格 */
+        .sector-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .sector-card { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 16px; }
+        .sector-card.up-card { border-color: rgba(255, 80, 80, 0.3); }
+        .sector-card.down-card { border-color: rgba(63, 185, 80, 0.3); }
+        .sector-header { font-size: 14px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+        .up-card .sector-header { color: #ff5050; }
+        .down-card .sector-header { color: #3fb950; }
+        .sector-list { list-style: none; }
+        .sector-list li { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #21262d; font-size: 13px; }
+        .sector-list li:last-child { border-bottom: none; }
+        .sector-list li .name { color: #c9d1d9; }
+        .sector-list li .chg { font-weight: 600; }
+        .sector-list li .chg.up { color: #ff5050; }
+        .sector-list li .chg.down { color: #3fb950; }
+
+        /* 个股复盘 */
+        .stock-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .stock-card { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 16px; }
+        .stock-card.up-stock { border-color: rgba(255, 80, 80, 0.3); }
+        .stock-card.down-stock { border-color: rgba(63, 185, 80, 0.3); }
+        .stock-card.neutral-stock { border-color: rgba(163, 113, 247, 0.3); }
+        .stock-header { font-size: 14px; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+        .up-stock .stock-header { color: #ff5050; }
+        .down-stock .stock-header { color: #3fb950; }
+        .neutral-stock .stock-header { color: #a371f7; }
+        .stock-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #21262d; font-size: 13px; }
+        .stock-row:last-child { border-bottom: none; }
+        .stock-row .name { color: #c9d1d9; }
+        .stock-row .chg { font-weight: 600; }
+        .stock-row .chg.up { color: #ff5050; }
+        .stock-row .chg.down { color: #3fb950; }
+        .stock-row .chg.flat { color: #8b949e; }
+
+        /* 资金面 */
+        .fund-section { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 20px; margin-bottom: 16px; }
+        .fund-row { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px solid #21262d; font-size: 13px; }
+        .fund-row:last-child { border-bottom: none; }
+        .fund-row .label { color: #8b949e; width: 180px; flex-shrink: 0; }
+        .fund-row .bar-wrap { flex: 1; display: flex; align-items: center; gap: 8px; }
+        .bar-in { height: 8px; background: #ff5050; border-radius: 4px; }
+        .bar-out { height: 8px; background: #3fb950; border-radius: 4px; }
+        .fund-row .value { width: 120px; text-align: right; font-weight: 600; flex-shrink: 0; }
+        .fund-row .value.up { color: #ff5050; }
+        .fund-row .value.down { color: #3fb950; }
+
+        /* 结论框 */
+        .conclusion-box { background: linear-gradient(135deg, rgba(255, 80, 80, 0.06), rgba(163, 113, 247, 0.04)); border: 1px solid #30363d; border-radius: 10px; padding: 20px; }
+        .conclusion-title { font-size: 15px; font-weight: 700; color: #e6edf3; margin-bottom: 12px; }
+        .conclusion-text { font-size: 13px; color: #c9d1d9; margin-bottom: 10px; }
+        .conclusion-text strong { color: #ffbd2e; }
+        .risk-box { background: rgba(255, 80, 80, 0.06); border: 1px solid rgba(255, 80, 80, 0.2); border-radius: 8px; padding: 12px; margin-top: 12px; }
+        .risk-box .risk-title { font-size: 13px; font-weight: 700; color: #ff5050; margin-bottom: 8px; }
+        .risk-item { font-size: 12px; color: #8b949e; padding: 3px 0; display: flex; gap: 6px; }
+        .risk-item::before { content: "•"; color: #ff5050; }
+
+        .footer { text-align: center; padding: 20px 0; color: #484f58; font-size: 12px; border-top: 1px solid #30363d; margin-top: 40px; }
+
+        @media (max-width: 768px) {
+            .index-grid { grid-template-columns: repeat(2, 1fr); }
+            .emotion-grid { grid-template-columns: 1fr; }
+            .liquid-grid { grid-template-columns: repeat(2, 1fr); }
+            .sector-grid { grid-template-columns: 1fr; }
+            .stock-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>港股每日复盘</h1>
+        <div class="subtitle">2026年5月5日（周二）</div>
+        <div class="badge-row">
+            <span class="badge badge-red">恒指 -0.76%</span>
+            <span class="badge badge-red">恒科 -0.94%</span>
+            <span class="badge badge-red">失守26000</span>
+            <span class="badge badge-yellow">中东局势升温</span>
+            <span class="badge badge-purple">北水缺席</span>
+        </div>
+    </header>
+
+    <!-- 一、大盘全景 -->
+    <section>
+        <div class="section-title">一、大盘全景</div>
+
+        <div class="index-grid">
+            <div class="index-card">
+                <div class="label">恒生指数 HSI</div>
+                <div class="value">25,898.61</div>
+                <div class="change down">▼ 0.76%</div>
+            </div>
+            <div class="index-card">
+                <div class="label">恒生科技 HSTECH</div>
+                <div class="value">4,929.68</div>
+                <div class="change down">▼ 0.94%</div>
+            </div>
+            <div class="index-card">
+                <div class="label">国企指数 HSCEI</div>
+                <div class="value">8,730.49</div>
+                <div class="change down">▼ 0.50%</div>
+            </div>
+            <div class="index-card">
+                <div class="label">红筹指数</div>
+                <div class="value">4,406.42</div>
+                <div class="change down">▼ 0.11%</div>
+            </div>
+        </div>
+
+        <div class="catalyst-box">
+            <div class="catalyst-title">🔑 核心催化：双重压制叠加</div>
+            <div class="catalyst-item negative">
+                <span class="bullet">✗</span>
+                <span><strong>中东局势骤升</strong>：阿联酋自美伊临时停火以来首次遭袭，美国启动"自由计划"协助船只通过霍尔木兹海峡，伊朗发射导弹回应特朗普，美伊停火协议岌岌可危</span>
+            </div>
+            <div class="catalyst-item negative">
+                <span class="bullet">✗</span>
+                <span><strong>国际油价暴涨</strong>：布伦特原油7月合约昨夜大涨5.8%，结算价114.44美元/桶，能源成本上升压制风险资产</span>
+            </div>
+            <div class="catalyst-item negative">
+                <span class="bullet">✗</span>
+                <span><strong>北水缺席</strong>：5月5日南向资金（港股通）暂停交易，恒指成分股成交额仅1222亿港元，内资买盘真空</span>
+            </div>
+            <div class="catalyst-item negative">
+                <span class="bullet">✗</span>
+                <span><strong>美股隔夜大跌</strong>：道指跌557点（-1.13%），纳指跌破25000点关口，纳指标普高位回调</span>
+            </div>
+            <div class="catalyst-item positive">
+                <span class="bullet">✓</span>
+                <span><strong>周一"开门红"未续</strong>：5月4日恒指涨1.24%、恒科涨2.16%未能持续，显示市场信心仍脆弱</span>
+            </div>
+        </div>
+
+        <div class="emotion-grid" style="margin-bottom:16px;">
+            <div class="emotion-card">
+                <div class="label">主板成交额</div>
+                <div class="value">1,222.35亿港元</div>
+                <div class="label" style="margin-top:4px; color:#ffbd2e;">⚠ 北水缺席，成交缩减</div>
+            </div>
+            <div class="emotion-card">
+                <div class="label">恒指本周走势</div>
+                <div class="value">周一+1.24% → 周二-0.76%</div>
+                <div class="label" style="margin-top:4px;">先扬后抑，未能突破26000</div>
+            </div>
+            <div class="emotion-card">
+                <div class="label">市场情绪</div>
+                <div class="value" style="color:#ffbd2e;">谨慎偏弱</div>
+                <div class="label" style="margin-top:4px;">中东>北水缺席>外围</div>
+            </div>
+        </div>
+
+        <div class="liquid-grid">
+            <div class="liquid-card">
+                <div class="label">布伦特原油</div>
+                <div class="value" style="color:#ff5050;">$114.44/桶</div>
+                <div class="change up" style="font-size:13px;">▲ 5.8%</div>
+            </div>
+            <div class="liquid-card">
+                <div class="label">美道指(5.2)</div>
+                <div class="value" style="color:#ff5050;">48,941</div>
+                <div class="change down" style="font-size:13px;">▼ 1.13%</div>
+            </div>
+            <div class="liquid-card">
+                <div class="label">纳指(5.2)</div>
+                <div class="value">25,067</div>
+                <div class="change down" style="font-size:13px;">▼ 0.19%</div>
+            </div>
+            <div class="liquid-card">
+                <div class="label">标普500(5.2)</div>
+                <div class="value">7,200</div>
+                <div class="change down" style="font-size:13px;">▼ 0.41%</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 二、板块强弱 -->
+    <section>
+        <div class="section-title">二、板块强弱</div>
+        <div class="sector-grid">
+            <div class="sector-card up-card">
+                <div class="sector-header">▲ 今日领涨板块</div>
+                <ul class="sector-list">
+                    <li><span class="name">🔋 锂电池/锂电</span><span class="chg up">+3~4%</span></li>
+                    <li><span class="name">🏭 油气/能源设备</span><span class="chg up">+4%</span></li>
+                    <li><span class="name">🏗 基建/综合企业</span><span class="chg up">+4%</span></li>
+                    <li><span class="name">📊 半导体（分化）</span><span class="chg flat">小跌</span></li>
+                </ul>
+                <div style="font-size:12px;color:#8b949e;margin-top:10px;">
+                    <strong style="color:#c9d1d9;">逻辑：</strong>宁德H股配售落地（4月30日完成6238.5万股@$628.2港元），锂电产业链情绪修复；中东冲突升级推动油气/能源设备板块；长和业绩/分拆预期提振基建综合板块
+                </div>
+            </div>
+            <div class="sector-card down-card">
+                <div class="sector-header">▼ 今日杀跌板块</div>
+                <ul class="sector-list">
+                    <li><span class="name">💻 大模型/AI应用</span><span class="chg down">-2~-4%</span></li>
+                    <li><span class="name">🖥 芯片/半导体</span><span class="chg down">-1.7~-2%</span></li>
+                    <li><span class="name">🚗 汽车/新能源车</span><span class="chg down">-2~-4%</span></li>
+                    <li><span class="name">👟 体育/服饰消费</span><span class="chg down">-4%</span></li>
+                    <li><span class="name">💊 医药/制药</span><span class="chg down">-1~-2%</span></li>
+                    <li><span class="name">🎮 游戏/互联网</span><span class="chg down">-1%</span></li>
+                </ul>
+                <div style="font-size:12px;color:#8b949e;margin-top:10px;">
+                    <strong style="color:#c9d1d9;">逻辑：</strong>周一AI概念暴涨后（天数智芯+20%）昨日回调，获利回吐明显；大模型/AI应用（智谱-4%/Minimax-2%）随美股AI板块回落；体育消费受李宁安踏-4%拖累；汽车股随大盘调整
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 三、重点个股复盘 -->
+    <section>
+        <div class="section-title">三、重点个股复盘</div>
+        <div class="stock-grid">
+            <div class="stock-card down-stock">
+                <div class="stock-header">▼ 领跌个股</div>
+                <div class="stock-row"><span class="name">汇丰控股 (00005)</span><span class="chg down">-5%+</span></div>
+                <div class="stock-row"><span class="name">李宁 (02331)</span><span class="chg down">-4%</span></div>
+                <div class="stock-row"><span class="name">安踏体育 (02020)</span><span class="chg down">-4%</span></div>
+                <div class="stock-row"><span class="name">小米集团 (01810)</span><span class="chg down">-1.68%</span></div>
+                <div class="stock-row"><span class="name">美团-W (03690)</span><span class="chg down">-1.07%</span></div>
+                <div class="stock-row"><span class="name">中芯国际 (00981)</span><span class="chg down">-1.87%</span></div>
+                <div class="stock-row"><span class="name">华虹半导体 (01347)</span><span class="chg down">-1.65%</span></div>
+                <div style="font-size:12px;color:#8b949e;margin-top:10px;">
+                    <strong style="color:#c9d1d9;">汇丰：</strong>绩后大跌，Q1业绩不及预期，净利息收入承压，分红政策引发市场担忧，领跌蓝筹成分股
+                </div>
+            </div>
+            <div class="stock-card up-stock">
+                <div class="stock-header">▲ 逆市走强个股</div>
+                <div class="stock-row"><span class="name">长和 (00001)</span><span class="chg up">+4%+</span></div>
+                <div class="stock-row"><span class="name">宁德时代 (03050)</span><span class="chg up">+3%+</span></div>
+                <div class="stock-row"><span class="name">山东墨龙 (00568)</span><span class="chg up">+4%+</span></div>
+                <div class="stock-row"><span class="name">百度集团 (09888)</span><span class="chg up">+2%+</span></div>
+                <div class="stock-row"><span class="name">腾讯控股 (00700)</span><span class="chg down">-0.17%</span></div>
+                <div class="stock-row"><span class="name">阿里巴巴-W (09988)</span><span class="chg down">-0.38%</span></div>
+                <div style="font-size:12px;color:#8b949e;margin-top:10px;">
+                    <strong style="color:#c9d1d9;">宁德时代：</strong>H股配售落地（6238.5万股@$628.2），融资392亿港元靴子落地，股价企稳走强；长和业务分拆/重组预期升温；百度逆势涨2%+独立走强
+                </div>
+            </div>
+            <div class="stock-card neutral-stock" style="grid-column:1/-1;">
+                <div class="stock-header">📋 5月4日复盘回顾（周一开门红次日退潮）</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;">
+                    <div>
+                        <div style="font-size:13px;color:#3fb950;font-weight:700;margin-bottom:6px;">▲ 科技爆发</div>
+                        <div class="stock-row"><span class="name">天数智芯 (09903)</span><span class="chg up">+20.22%</span></div>
+                        <div class="stock-row"><span class="name">群核科技 (00068)</span><span class="chg up">+18.63%</span></div>
+                        <div class="stock-row"><span class="name">剑桥科技 (06166)</span><span class="chg up">+16.39%</span></div>
+                        <div class="stock-row"><span class="name">小米集团</span><span class="chg up">+6~8%</span></div>
+                        <div class="stock-row"><span class="name">阿里巴巴</span><span class="chg up">+4~5%</span></div>
+                        <div class="stock-row"><span class="name">潍柴动力</span><span class="chg up">+12%+</span></div>
+                    </div>
+                    <div>
+                        <div style="font-size:13px;color:#ff5050;font-weight:700;margin-bottom:6px;">🔍 今日验证</div>
+                        <div style="font-size:12px;color:#8b949e;line-height:2;">天数智芯/群核/剑桥：昨日暴涨20%+，今日随AI板块整体回调 → <strong style="color:#ffbd2e;">高位题材炒作持续性差</strong></div>
+                        <div style="font-size:12px;color:#8b949e;line-height:2;">小米/阿里/潍柴：今日均有不同程度回调 → <strong style="color:#ffbd2e;">5月开门后首个交易日即遭遇中东黑天鹅</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 四、资金面 -->
+    <section>
+        <div class="section-title">四、资金面分析</div>
+        <div class="fund-section">
+            <div style="font-size:14px;font-weight:700;color:#e6edf3;margin-bottom:12px;">💰 南向资金（4月全月数据）</div>
+            <div class="fund-row">
+                <span class="label">4月南向净流入</span>
+                <div class="bar-wrap">
+                    <div class="bar-in" style="width:70%;"></div>
+                </div>
+                <span class="value up">+565.4亿港元</span>
+            </div>
+            <div class="fund-row">
+                <span class="label">中国移动 (00941)</span>
+                <div class="bar-wrap"><span style="font-size:12px;color:#8b949e;">4月净买入居首</span></div>
+                <span class="value up">≈+29亿港元</span>
+            </div>
+            <div class="fund-row">
+                <span class="label">互联网龙头（腾讯/阿里）</span>
+                <div class="bar-wrap"><span style="font-size:12px;color:#8b949e;">遭持续大额卖出</span></div>
+                <span class="value down">减持</span>
+            </div>
+            <div class="fund-row">
+                <span class="label">中芯国际 (00981)</span>
+                <div class="bar-wrap"><span style="font-size:12px;color:#8b949e;">4月28日净买入居前</span></div>
+                <span class="value up">大额买入</span>
+            </div>
+            <div style="font-size:12px;color:#8b949e;margin-top:10px;padding:8px;background:#21262d;border-radius:6px;">
+                ⚠️ 5月5日（周二）南向资金暂停，5月6日（周三）恢复。历史经验：内地五一假期后南向资金回归，往往对港股有正向支撑
+            </div>
+        </div>
+
+        <div class="fund-section">
+            <div style="font-size:14px;font-weight:700;color:#e6edf3;margin-bottom:12px;">🔍 沽空数据（5月5日）</div>
+            <div class="fund-row">
+                <span class="label">吉利汽车-R (00175)</span>
+                <div class="bar-wrap"><span style="font-size:12px;color:#8b949e;">沽空比率</span></div>
+                <span class="value" style="color:#ff5050;">100%</span>
+            </div>
+            <div class="fund-row">
+                <span class="label">长城汽车-R (02333)</span>
+                <div class="bar-wrap"><span style="font-size:12px;color:#8b949e;">沽空比率</span></div>
+                <span class="value" style="color:#ff5050;">100%</span>
+            </div>
+            <div class="fund-row">
+                <span class="label">比亚迪股份-R (01211)</span>
+                <div class="bar-wrap"><span style="font-size:12px;color:#8b949e;">沽空比率</span></div>
+                <span class="value" style="color:#ff5050;">90.44%</span>
+            </div>
+            <div class="fund-row">
+                <span class="label">小米集团 (01810)</span>
+                <div class="bar-wrap"><span style="font-size:12px;color:#8b949e;">沽空金额居首</span></div>
+                <span class="value">30.98亿</span>
+            </div>
+            <div class="fund-row">
+                <span class="label">阿里巴巴-W (09988)</span>
+                <div class="bar-wrap"><span style="font-size:12px;color:#8b949e;">沽空金额第二</span></div>
+                <span class="value">较大额</span>
+            </div>
+            <div style="font-size:12px;color:#8b949e;margin-top:10px;padding:8px;background:#21262d;border-radius:6px;">
+                ⚠️ 汽车三杰（吉利/长城/比亚迪）R类股票沽空比率极高（90~100%），反映空头极度看空，但R类股票本身成交量极低（只能卖空），需区分对待。小米沽空金额最大，说明空头力量集中
+            </div>
+        </div>
+
+        <div class="fund-section">
+            <div style="font-size:14px;font-weight:700;color:#e6edf3;margin-bottom:12px;">🔄 回购动态</div>
+            <div class="fund-row">
+                <span class="label">小米集团 (01810)</span>
+                <div class="bar-wrap"><span style="font-size:12px;color:#3fb950;">5月5日回购</span></div>
+                <span class="value up">+9,999.7万港元</span>
+            </div>
+            <div class="fund-row">
+                <span class="label">回购数量</span>
+                <div class="bar-wrap"><span style="font-size:12px;color:#8b949e;">329.02万股</span></div>
+                <span class="value" style="color:#e6edf3;">积极护盘</span>
+            </div>
+            <div style="font-size:12px;color:#8b949e;margin-top:8px;">
+                小米在大盘走弱当日积极回购，传递管理层对股价信心，构成一定底部支撑。但回购金额约1亿港元，相较于日均成交额（数十亿港元）力度有限
+            </div>
+        </div>
+    </section>
+
+    <!-- 五、结论与展望 -->
+    <section>
+        <div class="section-title">五、结论与展望</div>
+        <div class="conclusion-box">
+            <div class="conclusion-title">📌 一句话总结</div>
+            <div class="conclusion-text">
+                <strong>恒指失守26000，</strong>中东局势骤升+油价暴涨+北水缺席三重压力叠加，恒科同步回落，宁德H股配售落地逆势走强；<strong style="color:#58a6ff;">5月开门红仅"一日游"，</strong>市场等待周三内地资金回归确认方向。
+            </div>
+
+            <div class="conclusion-title">🔮 明日展望（5月6日，周三）</div>
+            <div class="conclusion-text">
+                <strong>关键变量：</strong>①南向资金恢复买卖（重点关注净流向，若继续买入互联网龙头则港股企稳）；②中东局势进一步演化（美伊谈判/军事行动）；③布伦特油价能否维持在$114上方（能源股关键支撑）；④美股期货表现
+            </div>
+            <div class="conclusion-text">
+                <strong>情景判断：</strong>渣打预测5月"先跌后升"，今日港股下跌符合预判。若周三南向资金大额净买入+中东局势无重大升级，恒指有望在25,700~26,000区间震荡整固；恒科4,900为关键支撑，失守则AI板块面临更大抛压
+            </div>
+
+            <div class="risk-box">
+                <div class="risk-title">⚠️ 风险提示</div>
+                <div class="risk-item">中东冲突升级——霍尔木兹海峡封锁/美伊直接军事对抗，油价突破$120，港股能源/航空板块重挫</div>
+                <div class="risk-item">恒科有效跌破4,900——AI算力/大模型板块面临更大技术性抛压（周一暴涨追高资金止损）</div>
+                <div class="risk-item">南向资金不及预期——若周三北水恢复后净流出，港股进一步失去内资支撑</div>
+                <div class="risk-item">汇丰业绩引发银行股连锁——恒指权重股业绩不及预期拖累指数</div>
+                <div class="risk-item">美股高位持续回调——纳指/标普高位破位将传导至港股科网权重（腾讯/阿里/小米）</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer">
+        港股每日复盘 | 2026年5月5日 | 数据来源：Wind/同花顺/财联社/格隆汇/智通财经<br>
+        免责声明：本报告仅供参考，不构成投资建议
+    </div>
+</div>
+</body>
+</html>
