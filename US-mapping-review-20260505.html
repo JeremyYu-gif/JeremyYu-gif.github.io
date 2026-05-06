@@ -3,89 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>美股映射复盘 2026年5月5日</title>
+    <title>缇庤偂鏄犲皠澶嶇洏 2026-05-05</title>
     <style>
-        :root {
-            --bg-primary: #0d1117;
-            --bg-secondary: #161b22;
-            --bg-card: #21262d;
-            --text-primary: #e6edf3;
-            --text-secondary: #8b949e;
-            --accent-red: #f85149;
-            --accent-green: #3fb950;
-            --accent-blue: #58a6ff;
-            --accent-purple: #a371f7;
-            --accent-orange: #d29922;
-            --border-color: #30363d;
-        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e8e8e8;
+            min-height: 100vh;
             padding: 20px;
         }
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
         }
         .header {
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-card) 100%);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 24px;
             text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
         }
         .header h1 {
             font-size: 2.5em;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            background: linear-gradient(90deg, #FFD700, #FFA500);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
+            margin-bottom: 10px;
         }
-        .header .date {
-            color: var(--text-secondary);
-            font-size: 1.2em;
+        .header .subtitle {
+            color: #888;
+            font-size: 1.1em;
         }
-        .header .summary {
-            margin-top: 15px;
-            padding: 15px 25px;
-            background: var(--bg-primary);
-            border-radius: 8px;
-            display: inline-block;
-            border-left: 4px solid var(--accent-blue);
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 24px;
-            margin-bottom: 24px;
-        }
-        .card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 24px;
-        }
-        .card h2 {
+        .section-title {
             font-size: 1.4em;
+            color: #FFD700;
             margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255,215,0,0.3);
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        .card h2 .icon {
-            font-size: 1.2em;
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
         }
+        .index-card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .index-card .name {
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .index-card .value {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .index-card .change {
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        .up { color: #ff4757; }
+        .down { color: #2ed573; }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -94,802 +91,608 @@
         th, td {
             padding: 12px 15px;
             text-align: left;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         th {
-            background: var(--bg-primary);
-            color: var(--text-secondary);
+            background: rgba(255,215,0,0.1);
+            color: #FFD700;
             font-weight: 600;
-            font-size: 0.9em;
-            text-transform: uppercase;
         }
         tr:hover {
-            background: var(--bg-card);
+            background: rgba(255,255,255,0.05);
         }
-        .up { color: var(--accent-red); font-weight: 600; }
-        .down { color: var(--accent-green); font-weight: 600; }
-        .neutral { color: var(--text-secondary); }
-        .strength-5 { background: linear-gradient(90deg, rgba(63, 185, 80, 0.3) 0%, transparent 100%); }
-        .strength-4 { background: linear-gradient(90deg, rgba(63, 185, 80, 0.2) 0%, transparent 100%); }
-        .strength-3 { background: linear-gradient(90deg, rgba(88, 166, 255, 0.2) 0%, transparent 100%); }
         .mapping-card {
-            border: 2px solid var(--accent-purple);
-            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
             padding: 20px;
-            margin-bottom: 15px;
-            background: var(--bg-card);
+            margin: 15px 0;
+            border: 2px solid rgba(255,255,255,0.2);
         }
-        .mapping-card h3 {
-            color: var(--accent-purple);
-            margin-bottom: 10px;
-        }
-        .mapping-meta {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 10px;
-            flex-wrap: wrap;
-        }
-        .mapping-tag {
+        .mapping-card .strength {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
             padding: 4px 12px;
             border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 600;
+            font-size: 0.9em;
+            margin-left: 10px;
         }
-        .tag-red { background: rgba(248, 81, 73, 0.2); color: var(--accent-red); }
-        .tag-green { background: rgba(63, 185, 80, 0.2); color: var(--accent-green); }
-        .tag-blue { background: rgba(88, 166, 255, 0.2); color: var(--accent-blue); }
-        .tag-purple { background: rgba(163, 113, 247, 0.2); color: var(--accent-purple); }
-        .tag-orange { background: rgba(210, 153, 34, 0.2); color: var(--accent-orange); }
-        .stock-detail {
-            background: var(--bg-primary);
-            border-radius: 8px;
-            padding: 15px;
-            margin: 10px 0;
+        .stock-up { color: #ff4757; }
+        .stock-down { color: #2ed573; }
+        .risk-section {
+            background: linear-gradient(135deg, rgba(255,107,107,0.1) 0%, rgba(255,107,107,0.05) 100%);
+            border: 1px solid rgba(255,107,107,0.3);
         }
-        .stock-detail h4 {
-            color: var(--accent-blue);
-            margin-bottom: 8px;
+        .risk-section .section-title {
+            color: #ff6b6b;
+            border-bottom-color: rgba(255,107,107,0.3);
         }
-        .stock-detail .metrics {
-            display: flex;
-            gap: 20px;
+        .hero-stock {
+            background: linear-gradient(135deg, rgba(46,213,115,0.1) 0%, rgba(46,213,115,0.05) 100%);
+            border: 1px solid rgba(46,213,115,0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .hero-stock h4 {
+            color: #2ed573;
             margin-bottom: 10px;
-            flex-wrap: wrap;
-        }
-        .metric {
-            display: flex;
-            flex-direction: column;
-        }
-        .metric-label {
-            font-size: 0.8em;
-            color: var(--text-secondary);
-        }
-        .metric-value {
-            font-size: 1.1em;
-            font-weight: 600;
-        }
-        .risk-warning {
-            background: linear-gradient(135deg, rgba(248, 81, 73, 0.1) 0%, rgba(210, 153, 34, 0.1) 100%);
-            border: 1px solid var(--accent-orange);
-            border-radius: 8px;
-            padding: 15px;
-            margin: 10px 0;
-        }
-        .risk-warning h4 {
-            color: var(--accent-orange);
-            margin-bottom: 8px;
+            font-size: 1.2em;
         }
         .footer {
             text-align: center;
-            padding: 30px;
-            color: var(--text-secondary);
+            padding: 20px;
+            color: #666;
             font-size: 0.9em;
+            margin-top: 30px;
         }
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
-            margin: 30px 0;
-        }
-        .highlight-box {
-            background: var(--bg-card);
-            border-left: 4px solid var(--accent-red);
+        .highlight {
+            background: rgba(255,215,0,0.1);
             padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
+            border-radius: 8px;
+            margin: 10px 0;
         }
-        .index-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+        .sentiment {
+            display: flex;
+            align-items: center;
             gap: 15px;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
             margin-top: 15px;
         }
-        .index-item {
-            background: var(--bg-primary);
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
+        .sentiment-icon {
+            font-size: 2em;
         }
-        .index-item .name {
-            color: var(--text-secondary);
-            font-size: 0.9em;
-            margin-bottom: 5px;
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            margin-left: 8px;
         }
-        .index-item .value {
-            font-size: 1.8em;
-            font-weight: 700;
+        .badge-up {
+            background: rgba(255,71,87,0.2);
+            color: #ff4757;
         }
-        .index-item .change {
-            font-size: 1.1em;
-            margin-top: 5px;
-        }
-        .emoji-icon {
-            font-size: 1.3em;
-        }
-        @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr; }
-            .index-grid { grid-template-columns: 1fr; }
+        .badge-down {
+            background: rgba(46,213,115,0.2);
+            color: #2ed573;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🇺🇸 美股映射复盘</h1>
-            <div class="date">2026年5月5日（周一）收盘</div>
-            <div class="summary">
-                <strong>📌 一句话总结：</strong>美股周一收跌，道指暴跌1.13%；但AMD财报超预期引爆半导体板块，AI存储芯片逆势爆发，中概股涨跌分化
+            <h1>馃嚭馃嚫 缇庤偂鏄犲皠澶嶇洏</h1>
+            <div class="subtitle">2026骞?鏈?鏃ワ紙鍛ㄤ簩锛墊 鏁版嵁鏉ユ簮锛歐eb鎼滅储+鍏紑甯傚満鏁版嵁</div>
+        </div>
+
+        <!-- 涓€銆佺編鑲℃暣浣撹〃鐜?-->
+        <div class="section">
+            <div class="section-title">馃搳 涓€銆佺編鑲℃暣浣撹〃鐜?/div>
+            
+            <div class="index-grid">
+                <div class="index-card">
+                    <div class="name">閬撶惣鏂?/div>
+                    <div class="value">49,292</div>
+                    <div class="change up">鈻?+0.70%</div>
+                    <div style="color:#888;font-size:0.8em;margin-top:5px">+350鐐?/div>
+                </div>
+                <div class="index-card">
+                    <div class="name">绾虫柉杈惧厠</div>
+                    <div class="value">25,319</div>
+                    <div class="change up">鈻?+1.00%</div>
+                    <div style="color:#888;font-size:0.8em;margin-top:5px">鍒涘巻鍙叉柊楂?/div>
+                </div>
+                <div class="index-card">
+                    <div class="name">鏍囨櫘500</div>
+                    <div class="value">7,259</div>
+                    <div class="change up">鈻?+0.80%</div>
+                    <div style="color:#888;font-size:0.8em;margin-top:5px">鍒涘巻鍙叉柊楂?/div>
+                </div>
+                <div class="index-card">
+                    <div class="name">Russell 2000</div>
+                    <div class="value">2,xxx</div>
+                    <div class="change up">鈻?鍒涘巻鍙叉柊楂?/div>
+                    <div style="color:#888;font-size:0.8em;margin-top:5px">灏忕洏鑲¤窡娑?/div>
+                </div>
+            </div>
+
+            <div class="sentiment">
+                <div class="sentiment-icon">馃槹</div>
+                <div>
+                    <strong>VIX鎭愭厡鎸囨暟锛?/strong> 19.49 <span class="down">鈻?-0.6%</span>
+                    <br><small style="color:#888">甯傚満椋庨櫓鍋忓ソ鍥炲崌锛屾亹鎱屾儏缁紦瑙?/small>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong>馃搶 鍏抽敭褰卞搷鍥犵礌锛?/strong>
+                <ul style="margin-top:10px;line-height:1.8">
+                    <li><strong>AMD涓氱哗瓒呴鏈?/strong>锛歈1钀ユ敹$103浜?+38%)锛屾暟鎹腑蹇?57%锛孮2鎸囧紩+46%锛岀洏鍚庢定6%</li>
+                    <li><strong>绉戞妧鑲℃暣浣撹蛋寮?/strong>锛欰I绠楀姏闇€姹傛寔缁紝鍗婂浣撴澘鍧楅娑?/li>
+                    <li><strong>娌逛环鍥炶惤</strong>锛歐TI -3.51%鑷?102.68锛岀紦瑙ｉ€氳儉鎷呭咖</li>
+                    <li><strong>涓笢灞€鍔?/strong>锛氶湇灏旀湪鍏圭揣寮犳湁鎵€缂撳拰锛屽競鍦洪闄╁亸濂藉洖鍗?/li>
+                    <li><strong>灏忕洏鑲¤窡娑?/strong>锛歊ussell 2000鍒涘巻鍙叉柊楂橈紝鏄剧ず甯傚満瀹藉害鏀瑰杽</li>
+                </ul>
             </div>
         </div>
 
-        <!-- 一、美股整体表现 -->
-        <div class="grid">
-            <div class="card" style="grid-column: span 2;">
-                <h2><span class="icon">📊</span> 一、美股整体表现</h2>
-                
-                <h3 style="margin: 15px 0 10px; color: var(--accent-blue);">三大股指涨跌幅</h3>
-                <div class="index-grid">
-                    <div class="index-item">
-                        <div class="name">道琼斯工业平均指数</div>
-                        <div class="value">48,941.90</div>
-                        <div class="change down">▼ 1.13%</div>
-                    </div>
-                    <div class="index-item">
-                        <div class="name">纳斯达克综合指数</div>
-                        <div class="value">25,067.80</div>
-                        <div class="change down">▼ 0.19%</div>
-                    </div>
-                    <div class="index-item">
-                        <div class="name">标准普尔500指数</div>
-                        <div class="value">7,200.75</div>
-                        <div class="change down">▼ 0.41%</div>
-                    </div>
-                </div>
+        <!-- 浜屻€佸己鍔挎澘鍧?-->
+        <div class="section">
+            <div class="section-title">馃敟 浜屻€佸己鍔挎澘鍧椾笌鏍稿績閫昏緫</div>
+            
+            <h4 style="color:#ff4757;margin:15px 0">娑ㄥ箙TOP鏉垮潡</h4>
+            <table>
+                <tr>
+                    <th>鎺掑悕</th>
+                    <th>鏉垮潡鍚嶇О</th>
+                    <th>浠ｈ〃ETF</th>
+                    <th>娑ㄨ穼骞?/th>
+                    <th>鏍稿績椹卞姩鍥犵礌</th>
+                    <th>鎸佺画鎬?/th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>鍗婂浣?/td>
+                    <td>SMH/SOXX</td>
+                    <td class="stock-up">鈻?+5.5%</td>
+                    <td>AMD涓氱哗瓒呴鏈?AI鍔犻€熷櫒闇€姹傜垎鍙?/td>
+                    <td>涓湡涓荤嚎</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>AI鍩虹璁炬柦</td>
+                    <td>BAI/XLK</td>
+                    <td class="stock-up">鈻?+4.0%</td>
+                    <td>鏁版嵁涓績鎵╁紶+绠楀姏闇€姹?/td>
+                    <td>涓湡涓荤嚎</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>閲忓瓙璁＄畻</td>
+                    <td>QTUM</td>
+                    <td class="stock-up">鈻?+5.0%</td>
+                    <td>AI绠楀姏澶栨孩+鏀跨瓥鏀寔</td>
+                    <td>鐭湡涓婚</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>绉戞妧宸ㄥご</td>
+                    <td>XLK</td>
+                    <td class="stock-up">鈻?+3.3%</td>
+                    <td>Alphabet/Amazon涓氱哗棰勬湡鍚戝ソ</td>
+                    <td>涓湡涓荤嚎</td>
+                </tr>
+            </table>
 
-                <h3 style="margin: 20px 0 10px; color: var(--accent-blue);">市场情绪指标</h3>
-                <table>
-                    <tr>
-                        <th>指标</th>
-                        <th>数值</th>
-                        <th>解读</th>
-                    </tr>
-                    <tr>
-                        <td>VIX恐慌指数</td>
-                        <td class="neutral">19.49</td>
-                        <td class="down">▼ 0.6% — 恐慌情绪略有缓解</td>
-                    </tr>
-                    <tr>
-                        <td>10年期美债收益率</td>
-                        <td class="neutral">~4.37%</td>
-                        <td class="neutral">维持区间震荡</td>
-                    </tr>
-                    <tr>
-                        <td>美元指数(DXY)</td>
-                        <td class="neutral">98.50</td>
-                        <td class="up">▲ 0.12% — 小幅走强</td>
-                    </tr>
-                </table>
+            <h4 style="color:#2ed573;margin:20px 0 15px 0">鏈€寮辨澘鍧?/h4>
+            <table>
+                <tr>
+                    <th>鎺掑悕</th>
+                    <th>鏉垮潡鍚嶇О</th>
+                    <th>璺岃穼骞?/th>
+                    <th>涓嬭穼鍘熷洜</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>娌规皵寮€閲?/td>
+                    <td class="stock-down">鈻?-2.1%</td>
+                    <td>娌逛环鍥炶惤缂撹В鑳芥簮鑲￠€昏緫</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>閲戣瀺</td>
+                    <td class="stock-down">鈻?-0.3%</td>
+                    <td>鍊哄埜鏀剁泭鐜囪蛋骞冲帇鍒堕摱琛岃偂</td>
+                </tr>
+            </table>
 
-                <div class="highlight-box">
-                    <strong>⚠️ 关键影响因素：</strong>
-                    <ul style="margin-top: 10px; padding-left: 20px;">
-                        <li><strong>地缘政治：</strong>中东局势升温，美伊霍尔木兹海峡交火，伊朗向阿联酋发射导弹</li>
-                        <li><strong>原油压力：</strong>油价飙升突破$105/桶，打压市场风险偏好</li>
-                        <li><strong>Fed政策：</strong>美联储4月维持利率3.50-3.75%不变，通胀担忧持续</li>
-                        <li><strong>财报季：</strong>AMD Q1财报超预期，盘后大涨15%</li>
-                    </ul>
-                </div>
+            <div class="mapping-card">
+                <strong>馃搶 鏉垮潡鍒嗘瀽锛?/strong>
+                <ul style="margin-top:10px;line-height:1.8">
+                    <li><strong>鍗婂浣?/strong>锛氭牳蹇冧富绾匡紝AMD/QCOM绛堿I鑺墖鍏徃涓氱哗鎸佺画楠岃瘉闇€姹傦紝SMH鍐嶅垱鏂伴珮</li>
+                    <li><strong>鎸佺画鎬у垽鏂?/strong>锛氫腑鏈熶富绾匡紙3-6涓湀锛夛紝AI绠楀姏寤鸿鏄‘瀹氭€ц秼鍔?/li>
+                    <li><strong>瀵笰鑲′紶瀵?/strong>锛氬己锛堢畻鍔涜姱鐗団啋鍏夋ā鍧?CPO鈫掑皝娴嬶級</li>
+                </ul>
             </div>
         </div>
 
-        <!-- 二、强势板块与核心逻辑 -->
-        <div class="grid">
-            <div class="card">
-                <h2><span class="icon">🔥</span> 二、强势板块与核心逻辑</h2>
-                
-                <h3 style="color: var(--accent-red); margin: 15px 0 10px;">涨幅居前板块 TOP5</h3>
-                <table>
-                    <tr>
-                        <th>排名</th>
-                        <th>板块</th>
-                        <th>涨跌幅</th>
-                        <th>领涨龙头</th>
-                        <th>驱动因素</th>
-                    </tr>
-                    <tr class="strength-5">
-                        <td>1</td>
-                        <td>量化策略</td>
-                        <td class="up">+5.8%</td>
-                        <td>QTUM</td>
-                        <td>AI量化策略需求激增</td>
-                    </tr>
-                    <tr class="strength-5">
-                        <td>2</td>
-                        <td>半导体</td>
-                        <td class="up">+5.3%</td>
-                        <td>AMD+15%、SMCI+18%</td>
-                        <td>AI芯片需求爆发</td>
-                    </tr>
-                    <tr class="strength-4">
-                        <td>3</td>
-                        <td>AI人工智能</td>
-                        <td class="up">+3.5%</td>
-                        <td>多股联动</td>
-                        <td>数据中心扩张</td>
-                    </tr>
-                    <tr class="strength-4">
-                        <td>4</td>
-                        <td>科技板块</td>
-                        <td class="up">+3.3%</td>
-                        <td>XLK</td>
-                        <td>财报预期乐观</td>
-                    </tr>
-                    <tr class="strength-3">
-                        <td>5</td>
-                        <td>新兴市场</td>
-                        <td class="up">+2.2%</td>
-                        <td>EEM</td>
-                        <td>资金轮动配置</td>
-                    </tr>
+        <!-- 涓夈€佹毚娑ㄤ釜鑲?-->
+        <div class="section">
+            <div class="section-title">馃挜 涓夈€佺編鑲℃毚娑ㄤ釜鑲℃繁搴︽壂鎻忥紙娑ㄥ箙>11%涓斿競鍊?$50浜匡級</div>
+            
+            <div class="hero-stock">
+                <h4>銆愯嫳鐗瑰皵銆慖NTC 娑ㄨ穼骞咃細<span class="stock-up">鈻?+13%</span> | 甯傚€硷細~$1000浜?/h4>
+                <table style="font-size:0.9em">
+                    <tr><td><strong>鎵€灞炶涓氾細</strong></td><td>鍗婂浣?/td></tr>
+                    <tr><td><strong>鍌寲鍓傦細</strong></td><td>AI杞瀷鏁呬簨鎸佺画鍙戦叺锛屽競鍦哄Intel 18A鍒剁▼鍜孉I PC棰勬湡鎻愬崌</td></tr>
+                    <tr><td><strong>鍩烘湰闈㈠彉鍖栵細</strong></td><td>2026骞寸疮璁℃定骞?166%锛?鏈堝崟鏈?114%锛岃浆鍨嬮€昏緫閫愭琚競鍦鸿鍙?/td></tr>
+                    <tr><td><strong>甯傚満鍙嶅簲锛?/strong></td><td>鏀鹃噺涓婃定锛屾棩鍐呮尝鍔ㄥ墽鐑堬紝鏄剧ず璧勯噾婵€鐑堝崥寮?/td></tr>
+                    <tr><td><strong>鍘嗗彶鍙傜収锛?/strong></td><td>4鏈?6鏃ュ崟鏃ユ定骞呭垱1987骞翠互鏉ユ渶浣筹紝绌哄ご琚揩骞充粨</td></tr>
+                    <tr><td><strong>A鑲℃槧灏勶細</strong></td><td><strong>鏈?/strong> 鈫?鍗婂浣撹澶?鍏堣繘灏佽锛氬寳鏂瑰崕鍒涖€佷腑寰叕鍙搞€侀€氬瘜寰數</td></tr>
+                    <tr><td><strong>鍚庣画璺熻釜锛?/strong></td><td>鍏虫敞Q2鎸囧紩鑳藉惁鎸佺画楠岃瘉AI杞瀷閫昏緫锛岃鎯曚及鍊兼场娌?/td></tr>
                 </table>
+            </div>
 
-                <h3 style="color: var(--accent-green); margin: 20px 0 10px;">最弱板块 TOP3</h3>
-                <table>
-                    <tr>
-                        <th>排名</th>
-                        <th>板块</th>
-                        <th>涨跌幅</th>
-                        <th>下跌原因</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>原油/能源</td>
-                        <td class="down">▼ 4.1%</td>
-                        <td>地缘缓和预期+库存增加</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>核能</td>
-                        <td class="down">▼ 1.1%</td>
-                        <td>获利了结</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>电信</td>
-                        <td class="down">▼ 0.4%</td>
-                        <td>板块轮动</td>
-                    </tr>
-                </table>
-
-                <div style="margin-top: 15px; padding: 12px; background: var(--bg-card); border-radius: 8px;">
-                    <strong>📈 板块持续性判断：</strong>
-                    <ul style="margin-top: 8px; padding-left: 20px;">
-                        <li>半导体/AI：<strong style="color: var(--accent-red);">中期主线</strong> — AMD财报验证AI芯片需求，订单能见度高</li>
-                        <li>量化策略：<strong style="color: var(--accent-orange);">短期主题</strong> — 需观察资金持续流入情况</li>
-                        <li>能源：<strong style="color: var(--accent-green);">震荡整理</strong> — 地缘反复扰动</li>
-                    </ul>
-                </div>
+            <div class="highlight">
+                <strong>馃搶 鍏朵粬娑ㄥ箙杈冨ぇ涓偂锛堟湭杈炬毚娑ㄦ爣鍑嗕絾鍊煎緱鍏虫敞锛夛細</strong>
+                <ul style="margin-top:10px">
+                    <li><strong>Micron (MU)</strong>锛?span class="stock-up">鈻?+5.1%~+10.6%</span> | AI鍐呭瓨闇€姹傜垎鍙戯紝CEO绉癆I鍐呭瓨绻佽崳鎵嶅垰寮€濮?/li>
+                    <li><strong>AMD</strong>锛?span class="stock-up">鈻?+4%</span> | 鏁版嵁涓績+57%锛孮2鎸囧紩+46%瓒呴鏈?/li>
+                    <li><strong>ARM</strong>锛?span class="stock-up">鈻?+4.19%</span> | Q4璐㈡姤灏嗕簬5鏈?鏃ュ彂甯冿紝甯傚満鎻愬墠鎶兼敞</li>
+                </ul>
             </div>
         </div>
 
-        <!-- 三、美股暴涨个股深度扫描 -->
-        <div class="grid">
-            <div class="card" style="grid-column: span 2;">
-                <h2><span class="icon">💥</span> 三、美股暴涨个股深度扫描（涨幅>11%且市值>$50亿）</h2>
-                
-                <div class="stock-detail">
-                    <h4>【AMD】超威半导体 涨跌幅：+15% | 市值：~$3,500亿</h4>
-                    <div class="metrics">
-                        <div class="metric">
-                            <span class="metric-label">Q1营收</span>
-                            <span class="metric-value">$103亿</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-label">同比增长</span>
-                            <span class="metric-value up">+38%</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-label">Non-GAAP EPS</span>
-                            <span class="metric-value">$1.37</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-label">数据中心增长</span>
-                            <span class="metric-value up">+57%</span>
-                        </div>
-                    </div>
-                    
-                    <div style="margin-top: 10px;">
-                        <strong>上涨驱动因素：</strong>
-                        <ul style="margin-top: 8px; padding-left: 20px;">
-                            <li><strong>【催化剂】</strong>财报超预期：营收$103亿 vs 预期$98.8亿，大幅beat；数据中心业务首次成为主收入来源</li>
-                            <li><strong>【基本面变化】</strong>是 — MI300系列GPU竞争力提升，与Meta合作部署6GW Instinct GPU，客户覆盖AWS、Google、Azure、腾讯云</li>
-                            <li><strong>【市场反应】</strong>放量上涨，分析师纷纷上调目标价，期权市场隐含波动率上升</li>
-                            <li><strong>【历史参照】</strong>2024年Q4曾因数据中心业务爆发单日涨超10%，随后进入高位震荡</li>
-                        </ul>
-                    </div>
+        <!-- 鍥涖€侀噸鐐逛釜鑲″紓鍔?-->
+        <div class="section">
+            <div class="section-title">馃幆 鍥涖€侀噸鐐逛釜鑲″紓鍔紙涓嶢鑲℃湁鏄犲皠鍏崇郴锛?/div>
+            
+            <table>
+                <tr>
+                    <th>缇庤偂鏍囩殑</th>
+                    <th>娑ㄨ穼骞?/th>
+                    <th>椹卞姩鍥犵礌</th>
+                    <th>A鑲℃槧灏勬澘鍧?/th>
+                    <th>A鑲′唬琛ㄦ爣鐨?/th>
+                    <th>浼犲鍔涘害</th>
+                </tr>
+                <tr>
+                    <td><strong>AMD</strong></td>
+                    <td class="stock-up">鈻?+4%</td>
+                    <td>Q1涓氱哗瓒呴鏈燂紝鏁版嵁涓績+57%</td>
+                    <td>AI绠楀姏鑺墖</td>
+                    <td>娴峰厜淇℃伅銆佸瘨姝︾邯</td>
+                    <td>寮?/td>
+                </tr>
+                <tr>
+                    <td><strong>NVIDIA</strong></td>
+                    <td class="stock-up">鈻?+0.8%</td>
+                    <td>AI绠楀姏闇€姹傛寔缁?/td>
+                    <td>CPO/鍏夋ā鍧?/td>
+                    <td>涓檯鏃垱銆佹柊鏄撶洓銆佸ぉ瀛氶€氫俊</td>
+                    <td>寮?/td>
+                </tr>
+                <tr>
+                    <td><strong>Micron</strong></td>
+                    <td class="stock-up">鈻?+5.1%</td>
+                    <td>AI鍐呭瓨闇€姹傜垎鍙?/td>
+                    <td>HBM/瀛樺偍鑺墖</td>
+                    <td>婢滆捣绉戞妧銆佸厗鏄撳垱鏂?/td>
+                    <td>涓?/td>
+                </tr>
+                <tr>
+                    <td><strong>Intel</strong></td>
+                    <td class="stock-up">鈻?+13%</td>
+                    <td>AI杞瀷鏁呬簨+绌哄ご骞充粨</td>
+                    <td>鍗婂浣撹澶?/td>
+                    <td>鍖楁柟鍗庡垱銆佷腑寰叕鍙?/td>
+                    <td>涓?/td>
+                </tr>
+                <tr>
+                    <td><strong>鑻规灉 AAPL</strong></td>
+                    <td class="stock-up">鈻?+2.7%</td>
+                    <td>iPhone闇€姹傞鏈?AI鍔熻兘</td>
+                    <td>鏋滈摼</td>
+                    <td>绔嬭绮惧瘑銆佹瓕灏旇偂浠?/td>
+                    <td>涓?/td>
+                </tr>
+                <tr>
+                    <td><strong>鐗规柉鎷?TSLA</strong></td>
+                    <td class="stock-down">鈻?-0.9%</td>
+                    <td>浼板€煎帇鍔?绔炰簤鍔犲墽</td>
+                    <td>鏂拌兘婧愭苯杞?/td>
+                    <td>姣斾簹杩€佹嫇鏅泦鍥?/td>
+                    <td>寮?/td>
+                </tr>
+                <tr>
+                    <td><strong>Alphabet GOOGL</strong></td>
+                    <td class="stock-up">鈻?+7%+</td>
+                    <td>璐㈡姤瓒呴鏈燂紝AI浜戜笟鍔″己鍔?/td>
+                    <td>AI搴旂敤/浜戣绠?/td>
+                    <td>绉戝ぇ璁銆侀噾灞卞姙鍏?/td>
+                    <td>涓?/td>
+                </tr>
+                <tr>
+                    <td><strong>Amazon AMZN</strong></td>
+                    <td class="stock-up">鈻?+3%+</td>
+                    <td>AWS闇€姹?鐢靛晢绋冲仴</td>
+                    <td>鐢靛晢/浜戣绠?/td>
+                    <td>闃块噷宸村反銆佹嫾澶氬</td>
+                    <td>寮?/td>
+                </tr>
+            </table>
+        </div>
 
-                    <div style="margin-top: 10px; padding: 10px; background: var(--bg-primary); border-radius: 6px;">
-                        <strong>A股映射分析：</strong>
-                        <ul style="margin-top: 5px; padding-left: 20px;">
-                            <li>映射板块：<strong>AI芯片/算力</strong></li>
-                            <li>A股代表标的：<span class="tag-blue">海光信息</span> <span class="tag-blue">寒武纪</span> <span class="tag-blue">龙芯中科</span></li>
-                            <li>传导逻辑：AMD数据中心业务暴涨验证AI算力需求爆发，A股算力芯片厂商直接受益</li>
-                        </ul>
-                    </div>
-                </div>
+        <!-- 浜斻€佷腑姒傝偂琛ㄧ幇 -->
+        <div class="section">
+            <div class="section-title">馃彌 浜斻€佷腑姒傝偂琛ㄧ幇</div>
+            
+            <table>
+                <tr>
+                    <th>鑲＄エ</th>
+                    <th>浠ｇ爜</th>
+                    <th>娑ㄨ穼骞?/th>
+                    <th>鍏抽敭淇℃伅</th>
+                </tr>
+                <tr>
+                    <td>灏忛┈鏅鸿</td>
+                    <td>PONY</td>
+                    <td class="stock-up">鈻?+5.16%</td>
+                    <td>鑷姩椹鹃┒姒傚康鎸佺画鍙楀叧娉?/td>
+                </tr>
+                <tr>
+                    <td>鍗庝綇閰掑簵</td>
+                    <td>HTHT</td>
+                    <td class="stock-down">鈻?-5.87%</td>
+                    <td>娑堣垂鏁版嵁鐤茶蒋褰卞搷</td>
+                </tr>
+                <tr>
+                    <td>闃块噷宸村反</td>
+                    <td>BABA</td>
+                    <td>娑ㄨ穼浜掔幇</td>
+                    <td>鐢靛晢绔炰簤+AI甯冨眬</td>
+                </tr>
+                <tr>
+                    <td>鎷煎澶?/td>
+                    <td>PDD</td>
+                    <td>鐩樺墠寰穼</td>
+                    <td>Temu娴峰鎵╁紶鎵垮帇</td>
+                </tr>
+                <tr>
+                    <td>鐞嗘兂姹借溅</td>
+                    <td>LI</td>
+                    <td class="stock-down">鐩樺墠璺岃秴1%</td>
+                    <td>浠锋牸鎴樺奖鍝嶅埄娑︾巼</td>
+                </tr>
+                <tr>
+                    <td>钄氭潵</td>
+                    <td>NIO</td>
+                    <td class="stock-down">鐩樺墠璺岃秴1%</td>
+                    <td>閿€閲忓帇鍔?绔炰簤鍔犲墽</td>
+                </tr>
+            </table>
 
-                <div class="stock-detail">
-                    <h4>【SMCI】超微电脑 涨跌幅：+18% | 市值：~$200亿</h4>
-                    <div class="metrics">
-                        <div class="metric">
-                            <span class="metric-label">涨跌幅</span>
-                            <span class="metric-value up">+18%</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-label">成交量</span>
-                            <span class="metric-value">2620万股</span>
-                        </div>
-                    </div>
-                    
-                    <div style="margin-top: 10px;">
-                        <strong>上涨驱动因素：</strong>
-                        <ul style="margin-top: 8px; padding-left: 20px;">
-                            <li><strong>【催化剂】</strong>AI服务器需求旺盛，与AMD、英伟达深度合作，订单持续增长</li>
-                            <li><strong>【基本面变化】</strong>待观察 — 此前因会计问题承压，本次反弹更多是超跌修复</li>
-                            <li><strong>【市场反应】</strong>成交量放大，资金积极介入</li>
-                        </ul>
-                    </div>
-
-                    <div style="margin-top: 10px; padding: 10px; background: var(--bg-primary); border-radius: 6px;">
-                        <strong>A股映射分析：</strong>
-                        <ul style="margin-top: 5px; padding-left: 20px;">
-                            <li>映射板块：<strong>AI服务器/算力基础设施</strong></li>
-                            <li>A股代表标的：<span class="tag-blue">浪潮信息</span> <span class="tag-blue">中科曙光</span> <span class="tag-blue">工业富联</span></li>
-                            <li>传导逻辑：AI服务器需求爆发，A股服务器厂商订单饱满</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div style="margin-top: 15px; padding: 12px; background: var(--bg-card); border-radius: 8px;">
-                    <strong>💡 暴涨个股总结：</strong>
-                    <p style="margin-top: 8px;">昨夜（5月5日夜盘）共有<strong>2只</strong>符合条件的大涨股（涨幅>11%且市值>$50亿），均属<strong>AI/半导体</strong>产业链。AMD是真正意义的业绩驱动，SMCI更多是超跌反弹。两者对A股均有较强的映射逻辑。</p>
-                </div>
+            <div class="mapping-card">
+                <strong>馃搶 涓鑲℃儏缁垽鏂細</strong>
+                <ul style="margin-top:10px;line-height:1.8">
+                    <li><strong>鏁翠綋琛ㄧ幇锛?/strong>娑ㄨ穼涓嶄竴锛屽垎鍖栨槑鏄?/li>
+                    <li><strong>椹卞姩鍥犵礌锛?/strong>鍥藉唴娑堣垂鏁版嵁鐤茶蒋 + 涓編鍏崇郴涓嶇‘瀹氭€?+ 缇庣鎶€鑲℃槧灏?/li>
+                    <li><strong>瀵规腐鑲℃鏃ュ紑鐩樺奖鍝嶏細</strong>鍋忎腑鎬э紝闇€鍏虫敞鍐呭湴鏀跨瓥淇″彿</li>
+                </ul>
             </div>
         </div>
 
-        <!-- 四、重点个股异动 -->
-        <div class="grid">
-            <div class="card">
-                <h2><span class="icon">🎯</span> 四、重点个股异动（A股映射标的）</h2>
-                
-                <table>
-                    <tr>
-                        <th>美股标的</th>
-                        <th>涨跌幅</th>
-                        <th>驱动因素</th>
-                        <th>A股映射板块</th>
-                        <th>A股代表标的</th>
-                    </tr>
-                    <tr>
-                        <td><strong>AMD</strong></td>
-                        <td class="up">+15%</td>
-                        <td>财报超预期，数据中心+57%</td>
-                        <td>AI芯片/算力</td>
-                        <td>海光信息、寒武纪</td>
-                    </tr>
-                    <tr>
-                        <td><strong>美光(MU)</strong></td>
-                        <td class="up">+5.9%</td>
-                        <td>HBM需求旺盛，AI存储芯片爆发</td>
-                        <td>HBM/存储芯片</td>
-                        <td>澜起科技、兆易创新</td>
-                    </tr>
-                    <tr>
-                        <td><strong>超微(SMCI)</strong></td>
-                        <td class="up">+18%</td>
-                        <td>AI服务器需求强劲</td>
-                        <td>AI服务器</td>
-                        <td>浪潮信息、工业富联</td>
-                    </tr>
-                    <tr>
-                        <td><strong>英特尔(INTC)</strong></td>
-                        <td class="up">+5.4%</td>
-                        <td>AI PC预期，制程进展</td>
-                        <td>半导体设备</td>
-                        <td>北方华创、中微公司</td>
-                    </tr>
-                    <tr>
-                        <td><strong>英伟达(NVDA)</strong></td>
-                        <td class="up">+0.2%</td>
-                        <td>高位震荡</td>
-                        <td>光模块/CPO</td>
-                        <td>中际旭创、天孚通信</td>
-                    </tr>
-                    <tr>
-                        <td><strong>特斯拉(TSLA)</strong></td>
-                        <td class="down">▼ 0.3%</td>
-                        <td>交付压力</td>
-                        <td>智能驾驶/新能源车</td>
-                        <td>比亚迪、拓普集团</td>
-                    </tr>
-                    <tr>
-                        <td><strong>苹果(AAPL)</strong></td>
-                        <td class="down">▼ 0.5%</td>
-                        <td>财报后回调</td>
-                        <td>消费电子/果链</td>
-                        <td>立讯精密、歌尔股份</td>
-                    </tr>
-                </table>
+        <!-- 鍏€佸ぇ瀹楀晢鍝?-->
+        <div class="section">
+            <div class="section-title">馃洟 鍏€佸ぇ瀹楀晢鍝佷笌鐩稿叧璧勪骇</div>
+            
+            <table>
+                <tr>
+                    <th>鍝佺</th>
+                    <th>鏈€鏂颁环鏍?/th>
+                    <th>娑ㄨ穼骞?/th>
+                    <th>鍏抽敭閫昏緫</th>
+                </tr>
+                <tr>
+                    <td><strong>WTI鍘熸补</strong></td>
+                    <td>$102.68/妗?/td>
+                    <td class="stock-down">鈻?-3.51%</td>
+                    <td>闇嶅皵鏈ㄥ吂绱у紶缂撳拰锛屼緵搴旀媴蹇х紦瑙?/td>
+                </tr>
+                <tr>
+                    <td><strong>甯冧鸡鐗瑰師娌?/strong></td>
+                    <td>~$114/妗?/td>
+                    <td>鈻?鍥炶惤</td>
+                    <td>浠庨珮鐐瑰洖钀斤紝浣嗕粛澶勯珮浣?/td>
+                </tr>
+                <tr>
+                    <td><strong>COMEX榛勯噾</strong></td>
+                    <td>$4,539.75/鐩庡徃</td>
+                    <td class="stock-up">鈻?+0.40%</td>
+                    <td>浠庝綆鐐瑰弽寮癸紝鍦扮紭椋庨櫓鏀拺</td>
+                </tr>
+                <tr>
+                    <td><strong>COMEX閾?/strong></td>
+                    <td>$5.94/纾?/td>
+                    <td class="stock-up">鈻?+2.50%</td>
+                    <td>AI鐢ㄧ數闇€姹?鐢电綉寤鸿</td>
+                </tr>
+            </table>
 
-                <div style="margin-top: 15px; padding: 12px; background: var(--bg-card); border-radius: 8px;">
-                    <strong>📊 传导力度评估：</strong>
-                    <ul style="margin-top: 8px; padding-left: 20px;">
-                        <li><strong>AMD→A股算力芯片：</strong><span class="tag-red">强</span> — 业绩验证需求，A股映射清晰</li>
-                        <li><strong>美光→A股存储：</strong><span class="tag-orange">中</span> — 逻辑类似但A股标的质地有差异</li>
-                        <li><strong>NVDA→A股光模块：</span><span class="tag-orange">中</span> — NVDA涨幅有限，传导力度减弱</li>
-                        <li><strong>TSLA→A股新能源车：</span><span class="tag-green">弱</span> — TSLA自身走弱，映射效应有限</li>
-                    </ul>
-                </div>
+            <table style="margin-top:20px">
+                <tr>
+                    <th>鍝佺</th>
+                    <th>鏁板€?/th>
+                    <th>鍙樺寲鏂瑰悜</th>
+                    <th>瀵笰鑲″奖鍝?/th>
+                </tr>
+                <tr>
+                    <td><strong>10骞存湡缇庡€?/strong></td>
+                    <td>4.43%</td>
+                    <td>鎸佸钩</td>
+                    <td>鎴愰暱鑲′及鍊煎帇鍔涗腑鎬?/td>
+                </tr>
+                <tr>
+                    <td><strong>缇庡厓鎸囨暟</strong></td>
+                    <td>鏁版嵁鏆傜己</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><strong>绂诲哺浜烘皯甯?/strong></td>
+                    <td>~7.25</td>
+                    <td>鐣ユ湁璐€?/td>
+                    <td>鍖楀悜璧勯噾灏忓箙娴佸嚭鍘嬪姏</td>
+                </tr>
+            </table>
+
+            <div class="mapping-card">
+                <strong>馃搶 閲戣瀺鐜鍒嗘瀽锛?/strong>
+                <ul style="margin-top:10px;line-height:1.8">
+                    <li><strong>缇庡€烘敹鐩婄巼</strong>锛?.43%闄勮繎浼佺ǔ锛岀煭鏈熷A鑲℃垚闀胯偂鍘嬪埗鏈夐檺</li>
+                    <li><strong>娌逛环鍥炶惤</strong>锛氱紦瑙ｅ叏鐞冮€氳儉棰勬湡锛屽姞鎭鏈熼檷娓╋紝鏈夊埄浜庡叏鐞冮闄╄祫浜?/li>
+                    <li><strong>閾滀环璧板己</strong>锛欰I鐢ㄧ數+鐢电綉寤鸿閫昏緫锛屽埄濂芥湁鑹叉澘鍧?/li>
+                    <li><strong>榛勯噾鍙嶅脊</strong>锛氬湴缂橀闄╀粛瀛橈紝榛勯噾閰嶇疆浠峰€间粛鍦?/li>
+                </ul>
             </div>
         </div>
 
-        <!-- 五、中概股表现 -->
-        <div class="grid">
-            <div class="card">
-                <h2><span class="icon">🇨🇳</span> 五、中概股表现</h2>
-                
-                <table>
-                    <tr>
-                        <th>股票</th>
-                        <th>代码</th>
-                        <th>涨跌幅</th>
-                        <th>关键信息</th>
-                    </tr>
-                    <tr>
-                        <td>阿里巴巴</td>
-                        <td>BABA</td>
-                        <td class="down">▼ ~2%</td>
-                        <td>美股盘前跌超2%</td>
-                    </tr>
-                    <tr>
-                        <td>拼多多</td>
-                        <td>PDD</td>
-                        <td class="down">▼ ~0.05%</td>
-                        <td>基本持平</td>
-                    </tr>
-                    <tr>
-                        <td>京东</td>
-                        <td>JD</td>
-                        <td class="down">▼ ~0.3%</td>
-                        <td>小幅下跌</td>
-                    </tr>
-                    <tr>
-                        <td>百度</td>
-                        <td>BIDU</td>
-                        <td class="up">▲ ~0.64%</td>
-                        <td>小幅上涨</td>
-                    </tr>
-                    <tr>
-                        <td>理想汽车</td>
-                        <td>LI</td>
-                        <td class="down">▼ ~1%</td>
-                        <td>新能源车承压</td>
-                    </tr>
-                    <tr>
-                        <td>蔚来</td>
-                        <td>NIO</td>
-                        <td class="down">▼ 2.47%</td>
-                        <td>跌幅较大</td>
-                    </tr>
-                    <tr>
-                        <td>小鹏汽车</td>
-                        <td>XPEV</td>
-                        <td class="down">▼ ~0.38%</td>
-                        <td>小幅下跌</td>
-                    </tr>
-                    <tr>
-                        <td>哔哩哔哩</td>
-                        <td>BILI</td>
-                        <td class="down">▼ ~2%</td>
-                        <td>盘前跌超2%</td>
-                    </tr>
-                    <tr>
-                        <td>小马智行</td>
-                        <td>PONY</td>
-                        <td class="up">▲ +5.16%</td>
-                        <td>自动驾驶概念活跃</td>
-                    </tr>
-                </table>
+        <!-- 涓冦€佹槧灏勫埌A鑲?-->
+        <div class="section">
+            <div class="section-title">馃幆 涓冦€佹槧灏勫埌A鑲＄殑娼滃湪鏂瑰悜锛堟渶閲嶈锛?/div>
+            
+            <h4 style="color:#FFD700;margin:15px 0">鍙兘涓婃定鏉垮潡</h4>
+            
+            <div class="mapping-card">
+                <h3 style="color:#fff;margin-bottom:10px">馃敟 TOP1锛欰I绠楀姏鑺墖/鍏夋ā鍧?CPO</h3>
+                <p><strong>缇庤偂鏄犲皠鏍囩殑锛?/strong>AMD(+4%) + NVIDIA(+0.8%) + Micron(+5%)</p>
+                <p><strong>鏄犲皠閫昏緫锛?/strong>AMD鏁版嵁涓績涓氬姟Q1鍚屾瘮+57%锛孮2鎸囧紩+46%瓒呴鏈燂紝楠岃瘉鍏ㄧ悆AI绠楀姏寤鸿鎸佺画鍔犻€熴€傚厜妯″潡浣滀负鏁版嵁涓績鏍稿績閮ㄤ欢锛岀洿鎺ュ彈鐩婁簬绠楀姏闇€姹傜垎鍙戙€?/p>
+                <p><strong>寮哄害璇勫垎锛?/strong><span class="strength">猸愨瓙猸愨瓙猸?5/5</span></p>
+                <p><strong>A鑲′唬琛ㄦ爣鐨勶細</strong></p>
+                <ul>
+                    <li><strong>鍏夋ā鍧楅緳澶达細</strong>涓檯鏃垱(300308)銆佹柊鏄撶洓(300502)銆佸ぉ瀛氶€氫俊(300394)</li>
+                    <li><strong>CPO姒傚康锛?/strong>鐢熺泭绉戞妧(600183)銆佸厜杩呯鎶€(002281)</li>
+                    <li><strong>绠楀姏鑺墖锛?/strong>娴峰厜淇℃伅(688041)銆佸瘨姝︾邯(688256)</li>
+                </ul>
+                <p style="color:#ff6b6b"><strong>鈿狅笍 椋庨櫓锛?/strong>A鑲″厜妯″潡鏉垮潡鍓嶆湡宸叉湁杈冨ぇ娑ㄥ箙锛岄渶娉ㄦ剰棰勬湡宸查儴鍒嗗弽鏄?/p>
+            </div>
 
-                <div style="margin-top: 15px;">
-                    <div style="padding: 12px; background: var(--bg-card); border-radius: 8px; margin-bottom: 10px;">
-                        <strong>中概情绪判断：</strong>
-                        <ul style="margin-top: 8px; padding-left: 20px;">
-                            <li>整体表现：<strong style="color: var(--accent-green);">普跌</strong>，互联网/新能源车领跌</li>
-                            <li>涨跌驱动：美股科技股回调+地缘担忧+财报后获利了结</li>
-                            <li>亮点：小马智行(PONY)逆势涨5.16%，自动驾驶概念持续活跃</li>
-                        </ul>
-                    </div>
-                    
-                    <div style="padding: 12px; background: var(--bg-card); border-radius: 8px;">
-                        <strong>对港股次日开盘影响：</strong>
-                        <p style="margin-top: 8px;">中概股普跌预计对港股科技股形成压力，<strong>阿里巴巴(9988.HK)</strong>、<strong>京东(9618.HK)</strong>、<strong>蔚来(9866.HK)</strong>明日开盘大概率承压。需关注A股开盘后科技板块能否独立走强。</p>
-                    </div>
-                </div>
+            <div class="mapping-card">
+                <h3 style="color:#fff;margin-bottom:10px">馃敟 TOP2锛氬崐瀵间綋璁惧/鍏堣繘灏佽</h3>
+                <p><strong>缇庤偂鏄犲皠鏍囩殑锛?/strong>Intel(+13%) + AMD(+4%)</p>
+                <p><strong>鏄犲皠閫昏緫锛?/strong>Intel 2026骞寸疮娑?66%锛孉I杞瀷鏁呬簨鎸佺画鍙戦叺銆傚叏鐞冨崐瀵间綋鎵╀骇鎸佺画锛屽厛杩涘皝瑁?HBM/CoWoS)闇€姹傛椇鐩涳紝甯﹀姩璁惧闇€姹傘€?/p>
+                <p><strong>寮哄害璇勫垎锛?/strong><span class="strength">猸愨瓙猸愨瓙 4/5</span></p>
+                <p><strong>A鑲′唬琛ㄦ爣鐨勶細</strong></p>
+                <ul>
+                    <li><strong>璁惧榫欏ご锛?/strong>鍖楁柟鍗庡垱(002371)銆佷腑寰叕鍙?688012)</li>
+                    <li><strong>鍏堣繘灏佽锛?/strong>閫氬瘜寰數(002156)銆侀暱鐢电鎶€(600584)銆佸崕澶╃鎶€(002185)</li>
+                    <li><strong>HBM鏉愭枡锛?/strong>闆呭厠绉戞妧(002409)銆佸崕娴锋竻绉?688120)</li>
+                </ul>
+            </div>
+
+            <div class="mapping-card">
+                <h3 style="color:#fff;margin-bottom:10px">馃敟 TOP3锛欻BM瀛樺偍鑺墖</h3>
+                <p><strong>缇庤偂鏄犲皠鏍囩殑锛?/strong>Micron(+5.1%)</p>
+                <p><strong>鏄犲皠閫昏緫锛?/strong>Micron CEO绉癆I鍐呭瓨绻佽崳鎵嶅垰寮€濮嬶紝HBM闇€姹傜垎鍙戝紡澧為暱銆侶BM鏄疉I GPU鐨勬牳蹇冨瓨鍌ㄧ粍浠讹紝渚涗笉搴旀眰銆?/p>
+                <p><strong>寮哄害璇勫垎锛?/strong><span class="strength">猸愨瓙猸愨瓙 4/5</span></p>
+                <p><strong>A鑲′唬琛ㄦ爣鐨勶細</strong></p>
+                <ul>
+                    <li><strong>瀛樺偍鑺墖锛?/strong>婢滆捣绉戞妧(688008)銆佸厗鏄撳垱鏂?603986)</li>
+                    <li><strong>HBM灏佽锛?/strong>閫氬瘜寰數銆侀暱鐢电鎶€</li>
+                </ul>
+            </div>
+
+            <div class="mapping-card">
+                <h3 style="color:#fff;margin-bottom:10px">馃搶 TOP4锛氶摐/鏈夎壊閲戝睘锛圓I鐢ㄧ數+鐢电綉寤鸿锛?/h3>
+                <p><strong>缇庤偂鏄犲皠鏍囩殑锛?/strong>閾滀环+2.5%</p>
+                <p><strong>鏄犲皠閫昏緫锛?/strong>AI鏁版嵁涓績寤鸿甯︽潵鐢靛姏闇€姹傜垎鍙戯紝鐢电綉鏀归€犲崌绾ч渶瑕佸ぇ閲忛摐缂嗐€傞摐浠锋寔缁蛋寮恒€?/p>
+                <p><strong>寮哄害璇勫垎锛?/strong><span class="strength">猸愨瓙猸?3/5</span></p>
+                <p><strong>A鑲′唬琛ㄦ爣鐨勶細</strong>绱噾鐭夸笟(601899)銆佹礇闃抽捈涓?603993)銆佽タ閮ㄧ熆涓?601168)</p>
+            </div>
+
+            <h4 style="color:#FFD700;margin:20px 0 15px 0">闇€瑙勯伩鏂瑰悜</h4>
+            <table>
+                <tr>
+                    <th>鏂瑰悜</th>
+                    <th>缇庤偂鏄犲皠鍘熷洜</th>
+                    <th>瑙勯伩鐞嗙敱</th>
+                </tr>
+                <tr>
+                    <td>鏂拌兘婧愭暣杞?/td>
+                    <td>鐗规柉鎷?0.9%</td>
+                    <td>浠锋牸鎴?浼板€煎帇鍔涳紝A鑲℃瘮浜氳开绛夎窡璺岄闄?/td>
+                </tr>
+                <tr>
+                    <td>鏋滈摼锛堣皑鎱庯級</td>
+                    <td>鑻规灉+2.7%</td>
+                    <td>iPhone閿€閲忛鏈熶笅淇紝鐭湡鎯呯华闅句紶瀵?/td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 鍏€侀闄╂彁绀?-->
+        <div class="section risk-section">
+            <div class="section-title">鈿狅笍 鍏€侀闄╂彁绀?/div>
+            
+            <div style="background:rgba(255,107,107,0.1);padding:15px;border-radius:8px;margin:10px 0">
+                <h4 style="color:#ff6b6b">1. 浼犲澶辫触椋庨櫓</h4>
+                <ul style="margin-top:8px;line-height:1.8">
+                    <li><strong>Intel鏆存定13%</strong>涓虹壒娈婃渚嬶紙绌哄ご鍥炶ˉ+AI鏁呬簨锛夛紝A鑲″崐瀵间綋璁惧铏藉彲鑳借窡娑ㄤ絾骞呭害鏈夐檺</li>
+                    <li><strong>缇庤偂绉戞妧鑲?/strong>鎸佺画鍒涙柊楂橈紝浣咥鑲＄鎶€鑲′及鍊间綋绯讳笉鍚岋紝瀛樺湪鍒嗗寲</li>
+                    <li><strong>棰勬湡宸插弽鏄?/strong>锛氬厜妯″潡鏉垮潡鏈疆娑ㄥ箙杈冨ぇ锛岄渶璀︽儠鍒╁ソ鍏戠幇</li>
+                </ul>
+            </div>
+
+            <div style="background:rgba(255,107,107,0.1);padding:15px;border-radius:8px;margin:10px 0">
+                <h4 style="color:#ff6b6b">2. 姹囩巼涓庤祫閲戦潰椋庨櫓</h4>
+                <ul style="margin-top:8px;line-height:1.8">
+                    <li><strong>缇庡€烘敹鐩婄巼</strong>缁存寔鍦?.43%楂樹綅锛屽A鑲℃垚闀胯偂浼板€间粛鏈夊帇鍒?/li>
+                    <li><strong>浜烘皯甯佹眹鐜?/strong>鐣ユ湁璐€硷紝鑻ョ編鍏冩寔缁己鍔匡紝鍖楀悜璧勯噾鍙兘娴佸嚭</li>
+                    <li><strong>娌逛环鍥炶惤</strong>缂撹В閫氳儉锛屼絾鍦扮紭椋庨櫓浠嶅彲鑳介殢鏃跺崌娓?/li>
+                </ul>
+            </div>
+
+            <div style="background:rgba(255,107,107,0.1);padding:15px;border-radius:8px;margin:10px 0">
+                <h4 style="color:#ff6b6b">3. 鏃跺樊涓庝俊鎭樊</h4>
+                <ul style="margin-top:8px;line-height:1.8">
+                    <li><strong>ARM璐㈡姤</strong>灏嗕簬5鏈?鏃ョ洏鍚庡彂甯冿紝鍙兘褰卞搷鏄庢棩A鑲″紑鐩?/li>
+                    <li><strong>涓笢灞€鍔?/strong>浠嶆湁涓嶇‘瀹氭€э紝鍙兘鎵板姩澶у畻鍟嗗搧</li>
+                    <li><strong>鍥藉唴鏀跨瓥</strong>鍙兘鏃╀簬A鑲″紑鐩樺彂甯冿紝閫犳垚棰勬湡宸?/li>
+                </ul>
+            </div>
+
+            <div style="background:rgba(255,107,107,0.1);padding:15px;border-radius:8px;margin:10px 0">
+                <h4 style="color:#ff6b6b">4. 鎯呯华鍙嶅悜椋庨櫓</h4>
+                <ul style="margin-top:8px;line-height:1.8">
+                    <li><strong>缇庤偂澶ф定鍚?/strong>锛孉鑲″彲鑳藉嚭鐜?楂樺紑浣庤蛋"鐨勮幏鍒╀簡缁?/li>
+                    <li><strong>杩介珮椋庨櫓</strong>锛氳嫢A鑲″紑鐩樿烦绌洪珮寮€锛岄渶璋ㄦ厧杩藉叆</li>
+                    <li><strong>杞姩鍔犻€?/strong>锛氱鎶€鑲¤繛缁蛋寮哄悗锛屽彲鑳藉嚭鐜扮煭鏈熻皟鏁?/li>
+                </ul>
             </div>
         </div>
 
-        <!-- 六、大宗商品与相关资产 -->
-        <div class="grid">
-            <div class="card">
-                <h2><span class="icon">🛢️</span> 六、大宗商品与相关资产</h2>
-                
-                <h3 style="color: var(--accent-blue); margin: 15px 0 10px;">商品价格变化</h3>
-                <table>
-                    <tr>
-                        <th>品种</th>
-                        <th>最新价格</th>
-                        <th>日涨跌幅</th>
-                        <th>关键逻辑</th>
-                    </tr>
-                    <tr>
-                        <td>WTI原油</td>
-                        <td>~$106/桶</td>
-                        <td class="down">▼ ~3%</td>
-                        <td>地缘缓和预期+库存增加</td>
-                    </tr>
-                    <tr>
-                        <td>布伦特原油</td>
-                        <td>$110.13/桶</td>
-                        <td class="down">▼ 3.76%</td>
-                        <td>霍尔木兹紧张局势缓和</td>
-                    </tr>
-                    <tr>
-                        <td>COMEX黄金</td>
-                        <td>$4,556/盎司</td>
-                        <td class="up">▲ 上涨</td>
-                        <td>避险需求支撑</td>
-                    </tr>
-                    <tr>
-                        <td>COMEX铜</td>
-                        <td>$5.96/磅</td>
-                        <td class="up">▲ +2.89%</td>
-                        <td>AI数据中心建设拉动</td>
-                    </tr>
-                    <tr>
-                        <td>碳酸锂</td>
-                        <td>数据暂缺</td>
-                        <td class="neutral">—</td>
-                        <td>新能源需求待观察</td>
-                    </tr>
-                </table>
-
-                <h3 style="color: var(--accent-blue); margin: 20px 0 10px;">金融资产</h3>
-                <table>
-                    <tr>
-                        <th>品种</th>
-                        <th>数值</th>
-                        <th>变化方向</th>
-                        <th>对A股影响</th>
-                    </tr>
-                    <tr>
-                        <td>10年期美债</td>
-                        <td>~4.37%</td>
-                        <td class="neutral">震荡</td>
-                        <td>影响有限，关注外资流向</td>
-                    </tr>
-                    <tr>
-                        <td>美元指数</td>
-                        <td>98.50</td>
-                        <td class="up">小幅走强</td>
-                        <td>人民币承压，北向流出</td>
-                    </tr>
-                    <tr>
-                        <td>VIX</td>
-                        <td>19.49</td>
-                        <td class="down">-0.6%</td>
-                        <td>恐慌情绪略有缓解</td>
-                    </tr>
-                </table>
-
-                <div style="margin-top: 15px; padding: 12px; background: var(--bg-card); border-radius: 8px;">
-                    <strong>📊 大宗商品对A股影响判断：</strong>
-                    <ul style="margin-top: 8px; padding-left: 20px;">
-                        <li><strong>原油下跌：</strong>▼ 能源股承压，但利好航空/化工中下游</li>
-                        <li><strong>黄金上涨：</strong>▲ 黄金股受益，避险情绪升温信号</li>
-                        <li><strong>铜价上涨：</strong>▲ 铜陵有色、洛阳钼业等受益，AI基建逻辑</li>
-                        <li><strong>美元走强：</strong>▼ 人民币贬值压力，北向资金可能流出，成长股承压</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- 七、映射到A股的潜在方向（最重要） -->
-        <div class="grid">
-            <div class="card" style="grid-column: span 2;">
-                <h2><span class="icon">🎯</span> 七、映射到A股的潜在方向（核心）</h2>
-                
-                <h3 style="color: var(--accent-red); margin: 15px 0 15px;">🔥 可能上涨板块 TOP5</h3>
-                
-                <div class="mapping-card">
-                    <h3>1. AI算力芯片/服务器</h3>
-                    <div class="mapping-meta">
-                        <span class="mapping-tag tag-red">映射强度：5/5</span>
-                        <span class="mapping-tag tag-blue">美股映射：AMD+15%、SMCI+18%</span>
-                    </div>
-                    <p><strong>映射逻辑：</strong>AMD Q1财报验证AI数据中心需求爆发（+57%），数据中心首次成为主收入来源。MI300/MI350系列GPU供不应求，订单能见度延伸至2027年。超微电脑AI服务器订单饱满。</p>
-                    <p style="margin-top: 8px;"><strong>A股代表标的：</strong></p>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;">
-                        <span class="tag-blue">海光信息(688041)</span>
-                        <span class="tag-blue">寒武纪(688256)</span>
-                        <span class="tag-blue">浪潮信息(000977)</span>
-                        <span class="tag-blue">中科曙光(603019)</span>
-                        <span class="tag-blue">工业富联(601138)</span>
-                    </div>
-                    <div class="risk-warning" style="margin-top: 10px;">
-                        <h4>⚠️ 风险提示</h4>
-                        <p>AMD已大涨，A股算力芯片可能高开；警惕\"利好兑现\"走势。若A股算力股大幅高开，需警惕获利了结压力。</p>
-                    </div>
-                </div>
-
-                <div class="mapping-card">
-                    <h3>2. HBM存储/先进封装</h3>
-                    <div class="mapping-meta">
-                        <span class="mapping-tag tag-red">映射强度：4/5</span>
-                        <span class="mapping-tag tag-blue">美股映射：美光+5.9%</span>
-                    </div>
-                    <p><strong>映射逻辑：</strong>AI服务器对HBM（高带宽内存）需求激增，美光HBM市占率提升。三星、SK海力士也在扩产。HBM是AI芯片的关键配套，A股封装测试厂商有望受益于先进封装需求。</p>
-                    <p style="margin-top: 8px;"><strong>A股代表标的：</strong></p>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;">
-                        <span class="tag-blue">澜起科技(688008)</span>
-                        <span class="tag-blue">兆易创新(603986)</span>
-                        <span class="tag-blue">通富微电(002156)</span>
-                        <span class="tag-blue">长电科技(600584)</span>
-                    </div>
-                </div>
-
-                <div class="mapping-card">
-                    <h3>3. 光模块/CPO（共封装光学）</h3>
-                    <div class="mapping-meta">
-                        <span class="mapping-tag tag-orange">映射强度：3/5</span>
-                        <span class="mapping-tag tag-blue">美股映射：英伟达+0.2%（高位震荡）</span>
-                    </div>
-                    <p><strong>映射逻辑：</strong>AI数据中心扩张带动光模块需求，但英伟达昨夜涨幅有限（+0.2%），映射力度有所减弱。需关注是否有其他催化（如Google、Meta光模块采购消息）。</p>
-                    <p style="margin-top: 8px;"><strong>A股代表标的：</strong></p>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;">
-                        <span class="tag-blue">中际旭创(300308)</span>
-                        <span class="tag-blue">新易盛(300502)</span>
-                        <span class="tag-blue">天孚通信(300688)</span>
-                    </div>
-                </div>
-
-                <div class="mapping-card">
-                    <h3>4. 半导体设备/材料</h3>
-                    <div class="mapping-meta">
-                        <span class="mapping-tag tag-orange">映射强度：3/5</span>
-                        <span class="mapping-tag tag-blue">美股映射：英特尔+5.4%</span>
-                    </div>
-                    <p><strong>映射逻辑：</strong>英特尔制程进展+AI PC预期提升，半导体设备需求预期改善。ASML、应用材料等美股设备股大涨，对A股设备股形成情绪映射。</p>
-                    <p style="margin-top: 8px;"><strong>A股代表标的：</strong></p>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;">
-                        <span class="tag-blue">北方华创(002371)</span>
-                        <span class="tag-blue">中微公司(688012)</span>
-                        <span class="tag-blue">华海清科(688347)</span>
-                    </div>
-                </div>
-
-                <div class="mapping-card">
-                    <h3>5. 铜/有色金属（AI基建逻辑）</h3>
-                    <div class="mapping-meta">
-                        <span class="mapping-tag tag-blue">映射强度：3/5</span>
-                        <span class="mapping-tag tag-blue">商品映射：铜价+2.89%</span>
-                    </div>
-                    <p><strong>映射逻辑：</strong>AI数据中心建设+新能源需求+铜矿供应收缩共振，铜价强势。铜陵有色、洛阳钼业等铜矿龙头受益。</p>
-                    <p style="margin-top: 8px;"><strong>A股代表标的：</strong></p>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;">
-                        <span class="tag-blue">紫金矿业(601899)</span>
-                        <span class="tag-blue">铜陵有色(000630)</span>
-                        <span class="tag-blue">洛阳钼业(603993)</span>
-                    </div>
-                </div>
-
-                <h3 style="color: var(--accent-green); margin: 25px 0 15px;">❌ 需规避方向</h3>
-                <table>
-                    <tr>
-                        <th>方向</th>
-                        <th>美股映射原因</th>
-                        <th>规避理由</th>
-                    </tr>
-                    <tr>
-                        <td>新能源车/特斯拉映射</td>
-                        <td>TSLA -0.3%</td>
-                        <td>特斯拉走弱，A股新能源车难跟涨；中概新能源车普跌</td>
-                    </tr>
-                    <tr>
-                        <td>原油/能源股</td>
-                        <td>原油 -4%</td>
-                        <td>地缘缓和预期，原油回调；A股能源股承压</td>
-                    </tr>
-                    <tr>
-                        <td>消费电子/果链</td>
-                        <td>AAPL -0.5%</td>
-                        <td>苹果财报后回调，A股果链承压</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
-        <!-- 八、风险提示 -->
-        <div class="grid">
-            <div class="card">
-                <h2><span class="icon">⚠️</span> 八、风险提示</h2>
-                
-                <div class="risk-warning">
-                    <h4>1. 传导失败风险</h4>
-                    <ul style="margin-top: 8px; padding-left: 20px;">
-                        <li><strong>半导体设备：</strong>美股设备大涨，但A股设备厂商与美股客户结构不同，业绩传导需要时间</li>
-                        <li><strong>估值差异：</strong>AMD PE ~35x，A股算力芯片PE普遍更高，高估值增加回调风险</li>
-                        <li><strong>流动性：</strong>美股放量，A股若缩量则跟涨动力不足</li>
-                    </ul>
-                </div>
-
-                <div class="risk-warning">
-                    <h4>2. 汇率与资金面风险</h4>
-                    <ul style="margin-top: 8px; padding-left: 20px;">
-                        <li><strong>美元走强：</strong>DXY +0.12%，人民币面临贬值压力，北向资金可能流出</li>
-                        <li><strong>外资偏好：</strong>若外资持续撤离A股，蓝筹/成长股承压</li>
-                        <li><strong>美债震荡：</strong>10Y维持4.37%，对成长股估值压制有限</li>
-                    </ul>
-                </div>
-
-                <div class="risk-warning">
-                    <h4>3. 时差与信息差</h4>
-                    <ul style="margin-top: 8px; padding-left: 20px;">
-                        <li><strong>A股开盘前：</strong>可能有新的政策发布、A股公司公告打断预期</li>
-                        <li><strong>美股盘后：</strong>AMD盘后继续涨超15%，其他AI股可能跟涨</li>
-                        <li><strong>地缘反复：</strong>美伊局势仍有不确定性，油价可能再度反弹</li>
-                    </ul>
-                </div>
-
-                <div class="risk-warning">
-                    <h4>4. 情绪反向风险</h4>
-                    <ul style="margin-top: 8px; padding-left: 20px;">
-                        <li><strong>高开低走：</strong>美股大涨后A股\"高开低走\"是常见走法，需警惕追高</li>
-                        <li><strong>预期透支：</strong>AMD+15%已充分反映AI需求，若A股算力股大幅高开可能是卖点</li>
-                        <li><strong>获利了结：</strong>部分短线资金可能趁高开出局</li>
-                    </ul>
-                </div>
-
-                <div style="margin-top: 20px; padding: 15px; background: linear-gradient(135deg, rgba(88, 166, 255, 0.1), rgba(163, 113, 247, 0.1)); border-radius: 8px;">
-                    <strong>📌 综合判断：</strong>
-                    <p style="margin-top: 8px;">昨夜美股半导体/AI板块是真正的业绩驱动行情，AMD财报超预期是核心催化。对A股的映射逻辑清晰，但需注意：<strong>1）若算力股大幅高开，警惕利好兑现；2）关注成交量是否配合；3）原油下跌+中概普跌对港股有压制，A股独立行情难度较大。</strong></p>
-                </div>
+        <!-- 缁撹 -->
+        <div class="section" style="background:linear-gradient(135deg,rgba(46,213,115,0.1) 0%,rgba(46,213,115,0.05) 100%);border-color:rgba(46,213,115,0.3)">
+            <div class="section-title" style="color:#2ed573">鉁?涔濄€佹牳蹇冪粨璁?/div>
+            
+            <div style="font-size:1.1em;line-height:1.8">
+                <p><strong>馃幆 浠婃棩缇庤偂鏍稿績椹卞姩锛?/strong>AMD涓氱哗瓒呴鏈?AI绠楀姏闇€姹傞獙璇侊紝绉戞妧鑲″叏闈㈣蛋寮?/p>
+                <p style="margin-top:15px"><strong>馃搱 A鑲℃鏃ラ噸鐐瑰叧娉細</strong></p>
+                <ol style="margin-top:10px;margin-left:20px">
+                    <li><strong>AI绠楀姏绾匡紙鏈€寮猴級</strong>锛氫腑闄呮棴鍒涖€佹柊鏄撶洓銆佹捣鍏変俊鎭€佸瘨姝︾邯</li>
+                    <li><strong>鍗婂浣撹澶?/strong>锛氬寳鏂瑰崕鍒涖€佷腑寰叕鍙搞€侀€氬瘜寰數</li>
+                    <li><strong>HBM瀛樺偍</strong>锛氭緶璧风鎶€銆佸厗鏄撳垱鏂?/li>
+                    <li><strong>閾?鏈夎壊</strong>锛氱传閲戠熆涓氾紙鍏虫敞鍥炶皟鏈轰細锛?/li>
+                </ol>
+                <p style="margin-top:15px;color:#ff6b6b"><strong>鈿狅笍 娉ㄦ剰浜嬮」锛?/strong>鍏夋ā鍧楁澘鍧楅鏈熷凡杈冨厖鍒嗭紝寤鸿绛夊緟鍥炶皟鍚庡啀浠嬪叆锛汭ntel鏆存定13%鏈夌壒娈婃€э紝A鑲¤窡娑ㄩ渶璋ㄦ厧</p>
             </div>
         </div>
 
         <div class="footer">
-            <p>📅 报告生成时间：2026年5月6日 07:00（北京时间）</p>
-            <p>📊 数据来源：iFinD、东方财富、Yahoo Finance、MarketWatch、AMD财报公告</p>
-            <p style="margin-top: 10px;">⚠️ 本报告仅供参考，不构成投资建议</p>
+            <p>鎶ュ憡鐢熸垚鏃堕棿锛?026骞?鏈?鏃?08:48 (鍖椾含鏃堕棿)</p>
+            <p style="margin-top:5px">鏁版嵁鏉ユ簮锛歐eb鎼滅储 | 甯傚満鏈夐闄╋紝鎶曡祫闇€璋ㄦ厧</p>
         </div>
     </div>
 </body>
