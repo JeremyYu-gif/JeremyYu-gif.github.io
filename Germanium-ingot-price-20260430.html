@@ -2,125 +2,170 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>閿楅敪浠锋牸鏃ユ姤 2026-04-30</title>
 <style>
-    body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; margin: 0; padding: 20px; background: #f5f5f5; color: #333; }
-    .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    h1 { color: #1a1a1a; border-bottom: 3px solid #1890ff; padding-bottom: 10px; }
-    h2 { color: #333; margin-top: 25px; }
-    h3 { color: #333; }
-    .meta { color: #888; font-size: 14px; margin-bottom: 20px; }
-    .price-card { background: linear-gradient(135deg, #1890ff, #096dd9); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; }
-    .price-card .label { font-size: 14px; opacity: 0.8; }
-    .price-card .value { font-size: 36px; font-weight: bold; margin: 5px 0; }
-    .price-card .unit { font-size: 14px; opacity: 0.8; }
-    .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
-    .price-item { background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center; }
-    .price-item .label { font-size: 12px; color: #666; }
-    .price-item .value { font-size: 20px; font-weight: bold; margin: 5px 0; }
-    .price-item .change { font-size: 12px; }
-    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
-    th { background: #fafafa; font-weight: 600; }
-    .positive { color: #ff4d4f; font-weight: bold; }
-    .negative { color: #52c41a; font-weight: bold; }
-    .neutral { color: #666; }
-    .warning { background: #fff7e6; border-left: 4px solid #fa8c16; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0; }
-    .warning h3 { margin-top: 0; color: #d46b08; }
-    .warning p { line-height: 1.8; margin: 8px 0; }
-    .analysis { background: #f6ffed; border-left: 4px solid #52c41a; padding: 15px; margin: 20px 0; border-radius: 0 8px 8px 0; }
-    .analysis h3 { margin-top: 0; color: #389e0d; }
-    .analysis p { line-height: 1.8; margin: 8px 0; }
-    .chart { margin: 20px 0; text-align: center; }
-    .chart img { max-width: 100%; border: 1px solid #ddd; border-radius: 8px; }
-    .source { color: #888; font-size: 12px; margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px; }
-    .footer { color: #aaa; font-size: 12px; text-align: center; margin-top: 20px; }
-    .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; margin-left: 8px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; padding: 20px; color: #333; }
+    .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 16px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+    h1 { color: #1a1a1a; font-size: 28px; border-bottom: 4px solid #1890ff; padding-bottom: 15px; margin-bottom: 20px; }
+    .meta { color: #666; font-size: 14px; margin-bottom: 25px; padding: 10px; background: #f8f9fa; border-radius: 8px; }
+    .price-hero { background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%); color: white; padding: 30px; border-radius: 16px; margin: 25px 0; text-align: center; }
+    .price-hero .label { font-size: 16px; opacity: 0.9; margin-bottom: 10px; }
+    .price-hero .value { font-size: 56px; font-weight: bold; margin: 10px 0; }
+    .price-hero .unit { font-size: 18px; opacity: 0.8; }
+    .price-hero .date { margin-top: 15px; font-size: 14px; opacity: 0.7; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 25px 0; }
+    .stat-card { background: #f8f9fa; padding: 20px; border-radius: 12px; text-align: center; border: 1px solid #e8e8e8; }
+    .stat-card .label { font-size: 13px; color: #666; margin-bottom: 8px; }
+    .stat-card .value { font-size: 24px; font-weight: bold; }
+    .stat-card .sub { font-size: 12px; color: #999; margin-top: 5px; }
+    .stat-card.up .value { color: #ff4d4f; }
+    .stat-card.flat .value { color: #666; }
+    .section { margin: 30px 0; }
+    .section h2 { color: #1a1a1a; font-size: 18px; margin-bottom: 15px; padding-left: 12px; border-left: 4px solid #1890ff; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; background: white; border-radius: 8px; overflow: hidden; }
+    th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #f0f0f0; }
+    th { background: #fafafa; font-weight: 600; color: #333; }
+    tr:hover { background: #f8f9fa; }
+    .tag { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 12px; font-weight: 500; }
     .tag-up { background: #fff1f0; color: #ff4d4f; }
     .tag-flat { background: #f5f5f5; color: #666; }
-    .tag-high { background: #fff7e6; color: #fa8c16; }
+    .tag-high { background: #fff7e6; color: #d46b08; }
+    .alert { background: linear-gradient(135deg, #fff7e6 0%, #ffe7c4 100%); border-left: 5px solid #fa8c16; padding: 20px; margin: 20px 0; border-radius: 0 12px 12px 0; }
+    .alert h3 { color: #d46b08; margin-bottom: 12px; font-size: 16px; }
+    .alert p { line-height: 1.8; color: #8a5a00; margin: 8px 0; }
+    .chart-container { background: #fafafa; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: center; }
+    .chart-container h3 { color: #333; margin-bottom: 15px; font-size: 16px; }
+    .chart-container img { max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .timeline { position: relative; padding-left: 30px; margin: 20px 0; }
+    .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: #e8e8e8; }
+    .timeline-item { position: relative; margin-bottom: 20px; }
+    .timeline-item::before { content: ''; position: absolute; left: -24px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: #1890ff; }
+    .timeline-item .time { font-size: 13px; color: #999; margin-bottom: 4px; }
+    .timeline-item .price { font-size: 18px; font-weight: bold; color: #333; }
+    .timeline-item .event { font-size: 13px; color: #666; margin-top: 4px; }
+    .source { color: #888; font-size: 12px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; line-height: 1.8; }
+    .footer { color: #aaa; font-size: 12px; text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid #f0f0f0; }
+    .data-table { margin-top: 15px; }
+    .data-table td:nth-child(2) { font-weight: 600; color: #1890ff; }
+    @media (max-width: 768px) {
+        .stats-grid { grid-template-columns: 1fr; }
+        .price-hero .value { font-size: 40px; }
+    }
 </style>
 </head>
 <body>
 <div class="container">
-    <h1>馃攳 閿楅敪浠锋牸鏃ユ姤</h1>
-    <div class="meta">鎶ュ憡鏃ユ湡锛?026-04-30 | 鏁版嵁鏉ユ簮锛歩FinD EDB锛堝叏鍥铰峰浗閲戦噾灞炵綉锛墊 鐢熸垚鏃堕棿锛?026-05-06 08:35</div>
+    <h1>&#128269; &#38124;&#38124;&#20215;&#26684;&#26085;&#25253;</h1>
+    <div class="meta">&#25253;&#21578;&#26085;&#26399;&#65306;2026-04-30 | &#25968;&#25454;&#26469;&#28304;&#65306;iFinD EDB&#65288;&#22269;&#37329;&#23646;&#23646;&#32593;&#65289;</div>
     
-    <div class="price-card">
-        <div class="label">閿楅敪(50惟/cm) 鏈€鏂颁环鏍硷紙鍏ㄥ浗路鍥介噾閲戝睘缃戯級</div>
-        <div class="value">楼18,500</div>
-        <div class="unit">鍏?鍗冨厠 | 2026-04-30</div>
+    <div class="price-hero">
+        <div class="label">&#38124;&#38124;(50&#937;/cm) &#26368;&#26032;&#20215;&#26684;&#65288;&#22269;&#37329;&#23646;&#23646;&#32593;&#65289;</div>
+        <div class="value">&#165;18,500</div>
+        <div class="unit">&#20803;/&#21315;&#20811;</div>
+        <div class="date">&#26356;&#26032;&#20110; 2026-04-30</div>
     </div>
     
-    <h2>馃搳 娑ㄨ穼鎯呭喌</h2>
-    <div class="price-grid">
-        <div class="price-item">
-            <div class="label">鏈€鏂颁环鏍?/div>
-            <div class="value">楼18,500</div>
-            <div class="change">2026-04-30</div>
+    <div class="stats-grid">
+        <div class="stat-card flat">
+            <div class="label">&#29615;&#27604;&#65288;&#26126;&#260鏃?#65289;</div>
+            <div class="value">0.00%</div>
+            <div class="sub">&#20215;&#26684;&#25345;&#24179;</div>
         </div>
-        <div class="price-item">
-            <div class="label">鐜瘮锛堟槰鏃ワ級</div>
-            <div class="value neutral">0.00%</div>
-            <div class="change tag tag-flat">浠锋牸鎸佸钩</div>
+        <div class="stat-card up">
+            <div class="label">&#21516;&#27604;&#65288;&#21435;&#24180;&#21516;&#26399;&#65289;</div>
+            <div class="value">+21.31%</div>
+            <div class="sub">&#24120;&#22823;&#19978;&#28072;</div>
         </div>
-        <div class="price-item">
-            <div class="label">鍚屾瘮锛堝幓骞村悓鏈燂級</div>
-            <div class="value positive">+21.31%</div>
-            <div class="change tag tag-up">澶у箙涓婃定</div>
+        <div class="stat-card up">
+            <div class="label">&#36731;&#26376;&#27604;</div>
+            <div class="value">+7.25%</div>
+            <div class="sub">&#33267;&#20173;&#26410;&#26411;</div>
         </div>
     </div>
     
-    <table>
-        <tr><th>鎸囨爣</th><th>鏃ユ湡</th><th>浠锋牸锛堝厓/鍗冨厠锛?/th><th>娑ㄨ穼骞?/th></tr>
-        <tr><td>鏈€鏂颁环鏍?/td><td>2026-04-30</td><td><b>18,500</b></td><td>-</td></tr>
-        <tr><td>鏄ㄦ棩浠锋牸</td><td>2026-04-29</td><td>18,500</td><td class="neutral">0.00%</td></tr>
-        <tr><td>鍘诲勾鍚屾湡</td><td>2025-04-30</td><td>15,250</td><td class="positive">+21.31%</td></tr>
-    </table>
-    
-    <div class="analysis">
-        <h3>馃挕 甯傚満鐐硅瘎</h3>
-        <p><b>浠锋牸璧板娍锛?/b>閿楅敪浠锋牸缁存寔鍦?8,500鍏?鍗冨厠鐨勯珮浣嶏紝杈冧笂鏈堝悓鏈燂紙绾?7,250鍏冿級涓婃定绾?.2%锛屽憟鐜版寔缁攢鍗囨€佸娍銆?/p>
-        <p><b>鍚屾瘮瑙嗚锛?/b>鍚屾瘮娑ㄥ箙杈?1.31%锛屽弽鏄犻敆浠峰湪鎴樼暐灏忛噾灞炲睘鎬у己鍖栥€佸嚭鍙ｇ鍒舵寔缁殑鑳屾櫙涓嬶紝涓湡涓灑鏄庢樉涓婄Щ銆?/p>
-        <p><b>鍦哄鏁版嵁楠岃瘉锛?/b>鎹甌rading Economics鏁版嵁锛岄敆浠疯繎涓€鏈堟定骞?7.19%锛屽勾娑ㄥ箙21.75%锛屼笌iFinD鏁版嵁瓒嬪娍涓€鑷淬€?/p>
+    <div class="section">
+        <h2>&#128202; &#36141;&#38144;&#24773;&#20917;</h2>
+        <table>
+            <tr><th>&#25351;&#26631;</th><th>&#26085;&#26399;</th><th>&#20215;&#26684;&#65288;&#20803;/&#21315;&#20811;&#65289;</th><th>&#28072;&#36127;&#24133;</th></tr>
+            <tr><td>&#26368;&#26032;&#20215;&#26684;</td><td>2026-04-30</td><td><b>18,500</b></td><td>-</td></tr>
+            <tr><td>&#26126;&#26032;&#20215;&#26684;</td><td>2026-04-29</td><td>18,500</td><td><span class="tag tag-flat">0.00%</span></td></tr>
+            <tr><td>&#21435;&#24180;&#21516;&#26399;</td><td>2025-04-30</td><td>15,250</td><td><span class="tag tag-up">+21.31%</span></td></tr>
+            <tr><td>&#36731;&#26376;&#21516;&#26399;</td><td>2026-03-31</td><td>16,000</td><td><span class="tag tag-up">+15.63%</span></td></tr>
+        </table>
     </div>
     
-    <div class="chart">
-        <h3>馃搱 杩?骞翠环鏍艰蛋鍔垮浘锛?016-2026锛?/h3>
-        <img src="Germanium-ingot-5yr.png" alt="閿楅敪杩?骞翠环鏍艰蛋鍔垮浘" style="max-width:100%;border:1px solid #ddd;border-radius:8px;">
-        <p style="color:#888;font-size:12px;margin-top:10px;">鏁版嵁鏉ユ簮锛歩FinD EDB锛堝钩鍧囦环:閿楅敪(50惟/cm):鍏ㄥ浗路鍥介噾閲戝睘缃戯級</p>
+    <div class="alert">
+        <h3>&#128161; &#24066;&#22330;&#28857;&#35780;</h3>
+        <p><b>&#20215;&#26684;&#36208;&#21183;&#65306;</b>&#38124;&#38124;&#20215;&#26684;&#32500;&#25345;&#22312;18,500&#20803;/&#21315;&#20811;&#30340;&#39640;&#20301;&#65292;&#36739;&#19978;&#26376;&#21516;&#26399;&#32422;&#19978;&#28072;7.2%&#65292;&#21576;&#29616;&#25345;&#32493;&#32321;&#21319;&#24577;&#21183;&#12290;</p>
+        <p><b>&#21516;&#27604;&#35270;&#35282;&#65306;</b>&#21516;&#27604;&#28072;&#24133;&#36798;21.31%&#65292;&#21453;&#26144;&#38124;&#20215;&#22312;&#25112;&#30053;&#23567;&#37329;&#23646;&#23648;&#23646;&#24615;&#24378;&#21270;&#12281;&#20986;&#21475;&#31649;&#21046;&#25345;&#32493;&#30340;&#32972;&#26223;&#19979;&#65292;&#20013;&#26399;&#20013;&#24515;&#26126;&#26174;&#19978;&#31227;&#12290;</p>
+        <p><b>&#22330;&#22806;&#25968;&#25454;&#39564;&#35777;&#65306;</b>&#25454;Trading Economics&#25968;&#25454;&#65292;&#38124;&#20215;&#36817;&#19968;&#26376;&#28072;&#24133;17.19%&#65292;&#24180;&#28072;&#24133;21.75%&#65292;&#19982;iFinD&#25968;&#25454;&#36235;&#21183;&#19968;&#33268;&#12290;</p>
     </div>
     
-    <h2>馃攽 鍏抽敭鏁版嵁鑺傜偣</h2>
-    <table>
-        <tr><th>鏃堕棿</th><th>浠锋牸锛堝厓/鍗冨厠锛?/th><th>浜嬩欢/鑳屾櫙</th></tr>
-        <tr><td>2016骞村垵</td><td>~7,000</td><td>閿椾环鍘嗗彶浣庝綅鍖洪棿</td></tr>
-        <tr><td>2024骞?鏈?/td><td>~18,750</td><td>鍓嶆湡楂樼偣锛屽嚭鍙ｇ鍒堕鏈熷崌娓?/td></tr>
-        <tr><td>2024骞碤3</td><td>~18,750</td><td>鍘嗗彶宄板€煎尯闂?/td></tr>
-        <tr><td>2025骞碤1</td><td>~14,500</td><td>浠锋牸鍥炶皟鏁村浐</td></tr>
-        <tr><td>2026骞碤1</td><td>~14,000</td><td>瑙﹀簳鍙嶅脊</td></tr>
-        <tr><td>2026骞?鏈?/td><td>~18,500</td><td>寮哄娍鍥炲崌锛岄€艰繎鍓嶉珮</td></tr>
-    </table>
-    
-    <h2>馃搵 鏁版嵁鏉ユ簮璇存槑</h2>
-    <div class="source">
-        <p><b>iFinD EDB 鏁版嵁锛?/b></p>
-        <ul>
-            <li>鎸囨爣鍚嶇О锛氬钩鍧囦环:閿楅敪(50惟/cm):鍏ㄥ浗</li>
-            <li>鏁版嵁鏉ユ簮锛氬浗閲戦噾灞炵綉</li>
-            <li>鏇存柊棰戠巼锛氭棩棰?/li>
-            <li>鍗曚綅锛氬厓/鍗冨厠</li>
-        </ul>
-        <p><b>鍙傝€冩暟鎹細</b></p>
-        <ul>
-            <li>Trading Economics鍦哄浜ゆ槗(OTC)浠锋牸</li>
-            <li>杩戜竴鏈堟定骞咃細+17.19%</li>
-            <li>杩戜竴骞存定骞咃細+21.75%</li>
-        </ul>
+    <div class="chart-container">
+        <h3>&#128200; &#36817;5&#24180;&#20215;&#26684;&#36208;&#21183;&#22270;</h3>
+        <img src="https://JeremyYu-gif.github.io/Germanium-ingot-5yr.png" alt="Germanium 5-Year Price Trend" onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjVmNWY1Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIE5vdCBGb3VuZDwvdGV4dD48L3N2Zz4=';">
+        <p style="color:#888;font-size:12px;margin-top:10px;">&#25968;&#25454;&#26469;&#28304;&#65306;iFinD EDB&#65288;&#24179;&#22343;&#20215;: &#38124;&#38124;(50&#937;/cm):&#20840;&#22269;&#183;&#22269;&#37329;&#23646;&#23646;&#32593;&#65289;</p>
     </div>
     
-    <div class="footer">鏈姤鍛婄敱 AI 鑷姩鐢熸垚锛屼粎渚涘弬鑰冿紝涓嶆瀯鎴愭姇璧勫缓璁€傛暟鎹互瀹樻柟鍙戝竷涓哄噯銆?/div>
+    <div class="section">
+        <h2>&#128197; &#20851;&#38190;&#25968;&#25454;&#33410;&#28857;</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="time">2016&#24180;&#21021;</div>
+                <div class="price">&#7,000&#20803;/&#21315;&#20811;</div>
+                <div class="event">&#38124;&#20215;&#21382;&#21490;&#20302;&#20301;&#21306;&#38388;</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">2024&#24180;1&#26376;</div>
+                <div class="price">&#7,000&#20803;/&#21315;&#20811;</div>
+                <div class="event">&#21069;&#26399;&#39640;&#28857;&#65292;&#20986;&#21475;&#31649;&#21046;&#39044;&#26399;&#21152;&#28201;</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">2024&#24180;Q3</div>
+                <div class="price">&#8,750&#20803;/&#21315;&#20811;</div>
+                <div class="event">&#21382;&#21490;&#23792;&#20540;&#21306;&#38388;</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">2025&#24180;Q1</div>
+                <div class="price">&#4,500&#20803;/&#21315;&#20811;</div>
+                <div class="event">&#20215;&#26684;&#22238;&#35843;&#22266;&#22797;</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">2026&#24180;Q1</div>
+                <div class="price">&#4,000&#20803;/&#21315;&#20811;</div>
+                <div class="event">&#35270;&#24213;&#21453;&#36712;</div>
+            </div>
+            <div class="timeline-item">
+                <div class="time">2026&#24180;4&#26376;</div>
+                <div class="price">&#8,500&#20803;/&#21315;&#20811;</div>
+                <div class="event">&#24378;&#21183;&#22269;&#21319;&#65292;&#36817;&#25509;&#21069;&#39640;</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>&#128203; &#25968;&#25454;&#26469;&#28304;&#35828;&#26126;</h2>
+        <div class="source">
+            <p><b>iFinD EDB &#25968;&#25454;&#65306;</b></p>
+            <ul>
+                <li>&#25351;&#26631;&#21517;&#31216;&#65306;&#24179;&#22343;&#20215;:&#38124;&#38124;(50&#937;/cm):&#20840;&#22269;</li>
+                <li>&#25968;&#25454;&#26469;&#28304;&#65306;&#22269;&#37329;&#23646;&#23646;&#32593;</li>
+                <li>&#26356;&#26032;&#39057;&#29575;&#65306;&#26085;&#39057;</li>
+                <li>&#21333;&#20301;&#65306;&#20803;/&#21315;&#20811;</li>
+            </ul>
+            <p style="margin-top:10px;"><b>&#21442;&#32771;&#25968;&#25454;&#65306;</b></p>
+            <ul>
+                <li>Trading Economics&#22330;&#22806;&#20132;&#26131;(OTC)&#20215;&#26684;</li>
+                <li>&#36817;&#19968;&#26376;&#28072;&#24133;&#65306;+17.19%</li>
+                <li>&#36817;&#19968;&#24180;&#28072;&#24133;&#65306;+21.75%</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer">&#26412;&#25253;&#21578;&#30001; AI &#33258;&#21160;&#29983;&#25104;&#65292;&#20165;&#20379;&#21442;&#32771;&#65292;&#19981;&#26500;&#25104;&#25237;&#36164;&#24314;&#35758;&#12290;&#25968;&#25454;&#20197;&#23448;&#26041;&#21457;&#24067;&#20026;&#20934;&#12290;</div>
 </div>
 </body>
 </html>
