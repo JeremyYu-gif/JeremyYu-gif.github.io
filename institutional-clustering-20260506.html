@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>机构抱团识别 - 2026年5月6日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #fff;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,123,255,0.3);
+        }
+        .subtitle { color: #888; font-size: 1.1em; }
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        .section {
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+        }
+        h2 {
+            color: #fff;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        h2::before {
+            content: "";
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(180deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+        h3 { color: #a0a0a0; font-size: 1.1em; margin: 20px 0 15px; font-weight: normal; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        th {
+            background: rgba(255,255,255,0.03);
+            color: #888;
+            font-weight: 500;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        .up { color: #ff4757; font-weight: 600; }
+        .down { color: #2ed573; font-weight: 600; }
+        .highlight { color: #ffa502; font-weight: 600; }
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            margin-right: 5px;
+        }
+        .tag-red { background: rgba(255,71,87,0.2); color: #ff4757; }
+        .tag-green { background: rgba(46,213,115,0.2); color: #2ed573; }
+        .tag-yellow { background: rgba(255,165,2,0.2); color: #ffa502; }
+        .tag-blue { background: rgba(0,123,255,0.2); color: #007bff; }
+        .tag-purple { background: rgba(102,126,234,0.2); color: #667eea; }
+        .market-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .metric-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .metric-value { font-size: 2em; font-weight: 700; margin-bottom: 5px; }
+        .metric-label { color: #888; font-size: 0.85em; }
+        .insight-box {
+            background: rgba(255,165,2,0.08);
+            border-left: 4px solid #ffa502;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .insight-box strong { color: #ffa502; }
+        .risk-box {
+            background: rgba(255,71,87,0.08);
+            border-left: 4px solid #ff4757;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .risk-box strong { color: #ff4757; }
+        .flow-bar {
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255,255,255,0.1);
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        .flow-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+        .flow-positive { background: linear-gradient(90deg, #ff4757, #ff6b81); }
+        .flow-negative { background: linear-gradient(90deg, #2ed573, #7bed9f); }
+        .rps-indicator {
+            display: inline-block;
+            width: 60px;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255,255,255,0.1);
+            position: relative;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+        .rps-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 30px;
+            border-top: 2px solid rgba(255,255,255,0.1);
+            color: #666;
+            font-size: 0.85em;
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 1.5em; }
+            .container { padding: 10px; }
+            th, td { padding: 8px 10px; font-size: 0.85em; }
+            .market-summary { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>机构抱团识别</h1>
+            <p class="subtitle">2026年5月6日（周三） | A股5月"开门红"</p>
+            <span class="badge">AI算力芯片全线爆发 | 科创50 +5.47%</span>
+        </header>
+
+        <!-- 市场概览 -->
+        <div class="section">
+            <h2>一、市场概览</h2>
+            <div class="market-summary">
+                <div class="metric-card">
+                    <div class="metric-value up">+1.17%</div>
+                    <div class="metric-label">上证指数 4160.17</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value up">+2.33%</div>
+                    <div class="metric-label">深证成指 15459.62</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value up">+2.75%</div>
+                    <div class="metric-label">创业板指 3778.16</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value up" style="color:#ffa502">+5.47%</div>
+                    <div class="metric-label">科创50 1656.95</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" style="color:#667eea">3.23万亿</div>
+                    <div class="metric-label">成交额（+4859亿）</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value up">125涨停</div>
+                    <div class="metric-label">3889涨 / 1482跌</div>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <strong>核心结论：</strong>五一节后首日A股迎来5月"开门红"，科技成长风格显著占优。算力芯片全线爆发，科创50指数飙涨5.47%，半导体/存储/CPO等AI产业链成为最强主线。电子行业当日主力资金净流入超360亿元，近5日累计流入934亿元。市场做多情绪高涨，成交额放量近5000亿至3.23万亿。
+            </div>
+        </div>
+
+        <!-- 机构抱团板块 TOP10 -->
+        <div class="section">
+            <h2>二、机构抱团板块识别 TOP10</h2>
+            <p class="subtitle">筛选标准：近5日主力资金净流入 + 120日RPS强度 + 机构调研热度 + 一季度基金持仓变化</p>
+            <p style="color:#666; font-size:0.85em; margin-top:8px;">数据来源：东方财富数据宝、证券时报、新浪财经 | RPS为基于近120日涨幅相对强度估算</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>板块名称</th>
+                        <th>当日涨幅</th>
+                        <th>近5日主力净流入</th>
+                        <th>120日RPS</th>
+                        <th>基金持仓趋势</th>
+                        <th>机构调研</th>
+                        <th>抱团强度</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background:rgba(255,71,87,0.05)">
+                        <td><span class="tag tag-red">1</span></td>
+                        <td><strong>电子/半导体</strong></td>
+                        <td class="up">+6.06%</td>
+                        <td class="up">+42.36亿（当日+360亿）</td>
+                        <td>98 <span class="rps-indicator"><span class="rps-fill" style="width:98%"></span></span></td>
+                        <td><span class="tag tag-red">大幅加仓</span></td>
+                        <td>4月调研82家/1052次</td>
+                        <td><span class="tag tag-red">极度拥挤</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-red">2</span></td>
+                        <td><strong>通信/CPO</strong></td>
+                        <td class="up">+3.89%</td>
+                        <td class="up">+10.33亿（近5日累积）</td>
+                        <td>95 <span class="rps-indicator"><span class="rps-fill" style="width:95%"></span></span></td>
+                        <td><span class="tag tag-yellow">分化加仓</span></td>
+                        <td>活跃</td>
+                        <td><span class="tag tag-red">高拥挤</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-yellow">3</span></td>
+                        <td><strong>有色金属/小金属</strong></td>
+                        <td class="up">+5.43%</td>
+                        <td class="up">+52.72亿（当日行业第1）</td>
+                        <td>93 <span class="rps-indicator"><span class="rps-fill" style="width:93%"></span></span></td>
+                        <td><span class="tag tag-yellow">部分减持</span></td>
+                        <td>活跃</td>
+                        <td><span class="tag tag-yellow">中等拥挤</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-yellow">4</span></td>
+                        <td><strong>计算机/软件开发</strong></td>
+                        <td class="up">+3.05%</td>
+                        <td class="up">+31.81亿</td>
+                        <td>92 <span class="rps-indicator"><span class="rps-fill" style="width:92%"></span></span></td>
+                        <td><span class="tag tag-blue">维持</span></td>
+                        <td>活跃</td>
+                        <td><span class="tag tag-yellow">中等拥挤</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-yellow">5</span></td>
+                        <td><strong>电力设备/电池</strong></td>
+                        <td class="up">+3.0%+</td>
+                        <td class="up">+30亿+</td>
+                        <td>91 <span class="rps-indicator"><span class="rps-fill" style="width:91%"></span></span></td>
+                        <td><span class="tag tag-yellow">分化</span></td>
+                        <td>活跃</td>
+                        <td><span class="tag tag-yellow">中等拥挤</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-blue">6</span></td>
+                        <td><strong>机械设备</strong></td>
+                        <td class="up">+3.5%+</td>
+                        <td class="up">+20亿+</td>
+                        <td>88 <span class="rps-indicator"><span class="rps-fill" style="width:88%"></span></span></td>
+                        <td><span class="tag tag-blue">维持</span></td>
+                        <td>一般</td>
+                        <td><span class="tag tag-blue">低拥挤</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-blue">7</span></td>
+                        <td><strong>公用事业</strong></td>
+                        <td class="up">+1.5%+</td>
+                        <td class="up">+20亿+</td>
+                        <td>85 <span class="rps-indicator"><span class="rps-fill" style="width:85%"></span></span></td>
+                        <td><span class="tag tag-blue">维持</span></td>
+                        <td>一般</td>
+                        <td><span class="tag tag-blue">低拥挤</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-blue">8</span></td>
+                        <td><strong>消费电子</strong></td>
+                        <td class="up">+4.14%</td>
+                        <td class="up">+18.43亿</td>
+                        <td>84 <span class="rps-indicator"><span class="rps-fill" style="width:84%"></span></span></td>
+                        <td><span class="tag tag-green">部分减持</span></td>
+                        <td>活跃</td>
+                        <td><span class="tag tag-blue">低拥挤</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-blue">9</span></td>
+                        <td><strong>汽车零部件</strong></td>
+                        <td class="up">+3.54%</td>
+                        <td class="up">+12.41亿</td>
+                        <td>82 <span class="rps-indicator"><span class="rps-fill" style="width:82%"></span></span></td>
+                        <td><span class="tag tag-blue">维持</span></td>
+                        <td>一般</td>
+                        <td><span class="tag tag-blue">低拥挤</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-blue">10</span></td>
+                        <td><strong>银行</strong></td>
+                        <td class="down">-0.38%</td>
+                        <td class="up">+9.36亿</td>
+                        <td>80 <span class="rps-indicator"><span class="rps-fill" style="width:80%"></span></span></td>
+                        <td><span class="tag tag-blue">维持</span></td>
+                        <td>一般</td>
+                        <td><span class="tag tag-blue">低拥挤</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="insight-box" style="margin-top:20px">
+                <strong>抱团逻辑解析：</strong>
+                <ol style="margin-left:20px; margin-top:10px">
+                    <li><strong>电子/半导体（RPS=98）：</strong>机构"极致抱团"方向。一季度基金持仓居全行业首位，海光信息/寒武纪/兆易创新等算力芯片龙头获集中加仓。电子行业近20日主力资金净流入3132亿元，4月私募调研82家/1052次均为全行业第一。今日兆易创新涨停吸金36.5亿元登顶A股榜首。</li>
+                    <li><strong>通信/CPO（RPS=95）：</strong>公募基金一季度第一大重仓股中际旭创、第三大重仓股新易盛均属光模块方向。但今日出现<strong>抱团松动信号</strong>——新易盛净流出超11亿、中际旭创净流出超11亿，资金从高位光模块向低位算力芯片切换。</li>
+                    <li><strong>有色金属/小金属（RPS=93）：</strong>贵金属板块涨幅5.53%领涨全市场，云南锗业涨停，全球有色金属资源定价权逻辑叠加地缘避险需求。</li>
+                    <li><strong>计算机/软件开发（RPS=92）：</strong>算力租赁、AI应用方向，资金持续流入。</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- 抱团板块核心个股 -->
+        <div class="section">
+            <h2>三、抱团板块核心个股</h2>
+            <p class="subtitle">筛选标准：基金持仓Top10重仓股 + 近5日主力资金净流入 + 市值>200亿</p>
+
+            <h3>A. 公募基金一季度十大重仓股</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>股票名称</th>
+                        <th>所属板块</th>
+                        <th>基金持股市值</th>
+                        <th>Q1持仓变化</th>
+                        <th>5月6日表现</th>
+                        <th>近5日资金流向</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background:rgba(255,71,87,0.05)">
+                        <td><span class="tag tag-red">1</span></td>
+                        <td><strong>中际旭创</strong></td>
+                        <td>通信/光模块</td>
+                        <td>738.96亿</td>
+                        <td class="down">减持45亿+</td>
+                        <td>—</td>
+                        <td class="down">净流出11亿+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-red">2</span></td>
+                        <td><strong>宁德时代</strong></td>
+                        <td>电力设备</td>
+                        <td>千亿+</td>
+                        <td class="up">增持70亿+</td>
+                        <td>—</td>
+                        <td class="up">净流入11.71亿</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-red">3</span></td>
+                        <td><strong>新易盛</strong></td>
+                        <td>通信/光模块</td>
+                        <td>千亿+</td>
+                        <td class="down">减持</td>
+                        <td>—</td>
+                        <td class="down">净流出11亿+</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-blue">4</span></td>
+                        <td><strong>腾讯控股</strong></td>
+                        <td>互联网</td>
+                        <td>—</td>
+                        <td class="down">减持245亿</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-blue">5</span></td>
+                        <td><strong>贵州茅台</strong></td>
+                        <td>食品饮料</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-blue">6</span></td>
+                        <td><strong>东山精密</strong></td>
+                        <td>电子/PCB</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-blue">7</span></td>
+                        <td><strong>紫金矿业</strong></td>
+                        <td>有色金属</td>
+                        <td>—</td>
+                        <td class="down">减持100亿+</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-blue">8</span></td>
+                        <td><strong>阿里巴巴-W</strong></td>
+                        <td>互联网</td>
+                        <td>—</td>
+                        <td class="down">减持100亿+</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-purple">9</span></td>
+                        <td><strong>药明康德</strong></td>
+                        <td>医药生物</td>
+                        <td>—</td>
+                        <td class="up">新进前10</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-blue">10</span></td>
+                        <td><strong>立讯精密</strong></td>
+                        <td>电子/消费电子</td>
+                        <td>—</td>
+                        <td class="down">减持</td>
+                        <td>—</td>
+                        <td class="down">净流出11亿+</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>B. 公募基金Q1大幅增持个股（市值>200亿）</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>股票名称</th>
+                        <th>所属板块</th>
+                        <th>Q1增持市值</th>
+                        <th>5月6日表现</th>
+                        <th>总市值</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background:rgba(46,213,115,0.05)">
+                        <td>1</td>
+                        <td><strong>亨通光电</strong></td>
+                        <td>通信/光纤光缆</td>
+                        <td class="up">+131.78亿</td>
+                        <td>—</td>
+                        <td>500亿+</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><strong>长飞光纤光缆</strong></td>
+                        <td>通信/光纤光缆</td>
+                        <td class="up">+100亿+</td>
+                        <td>—</td>
+                        <td>300亿+</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><strong>宁德时代</strong></td>
+                        <td>电力设备</td>
+                        <td class="up">+70亿+</td>
+                        <td>—</td>
+                        <td>万亿+</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><strong>源杰科技</strong></td>
+                        <td>电子/激光器芯片</td>
+                        <td class="up">+70亿+</td>
+                        <td>—</td>
+                        <td>300亿+</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><strong>中天科技</strong></td>
+                        <td>通信/光纤光缆</td>
+                        <td class="up">+70亿+</td>
+                        <td>—</td>
+                        <td>500亿+</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="insight-box">
+                <strong>持仓趋势分析：</strong>一季度公募基金"极致加仓"光纤光缆产业链（亨通光电+131亿居首），光模块龙头（中际旭创/新易盛）仍为前三大重仓但已开始减持。AI算力从光模块向芯片端扩散——源杰科技（激光器芯片）新进基金前十大重仓，海光信息获大幅加仓。互联网巨头（腾讯/阿里）遭集中减持，资金转向硬科技。
+            </div>
+        </div>
+
+        <!-- 强势股筛选 -->
+        <div class="section">
+            <h2>四、强势股筛选（RPS>85）</h2>
+            <p class="subtitle">筛选标准：120日RPS>85、沿5日线上行、近20日回撤&lt;20%、市值>200亿</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>股票名称</th>
+                        <th>代码</th>
+                        <th>板块</th>
+                        <th>5/6日涨幅</th>
+                        <th>近20日最大回撤</th>
+                        <th>5日线状态</th>
+                        <th>总市值</th>
+                        <th>当日主力资金</th>
+                        <th>基金持仓</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background:rgba(255,71,87,0.05)">
+                        <td><strong>海光信息</strong></td>
+                        <td>688041</td>
+                        <td>算力芯片</td>
+                        <td class="up">+20.00%</td>
+                        <td>&lt;10%</td>
+                        <td><span class="tag tag-red">上方</span></td>
+                        <td>8200亿</td>
+                        <td class="up">TOP5</td>
+                        <td><span class="tag tag-red">大幅加仓</span></td>
+                    </tr>
+                    <tr style="background:rgba(255,71,87,0.05)">
+                        <td><strong>兆易创新</strong></td>
+                        <td>603986</td>
+                        <td>存储芯片</td>
+                        <td class="up">+10.00%</td>
+                        <td>&lt;15%</td>
+                        <td><span class="tag tag-red">上方</span></td>
+                        <td>2100亿+</td>
+                        <td class="up">+17.96亿</td>
+                        <td><span class="tag tag-red">加仓</span></td>
+                    </tr>
+                    <tr style="background:rgba(255,71,87,0.05)">
+                        <td><strong>寒武纪</strong></td>
+                        <td>688256</td>
+                        <td>AI芯片</td>
+                        <td class="up">+7.36%</td>
+                        <td>&lt;12%</td>
+                        <td><span class="tag tag-red">上方</span></td>
+                        <td>8500亿+</td>
+                        <td>—</td>
+                        <td><span class="tag tag-green">减持160亿</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>澜起科技</strong></td>
+                        <td>688008</td>
+                        <td>存储接口</td>
+                        <td class="up">+14.82%</td>
+                        <td>&lt;15%</td>
+                        <td><span class="tag tag-red">上方</span></td>
+                        <td>1200亿+</td>
+                        <td class="up">TOP5</td>
+                        <td><span class="tag tag-red">加仓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>佰维存储</strong></td>
+                        <td>688525</td>
+                        <td>存储芯片</td>
+                        <td class="up">+17.37%</td>
+                        <td>&lt;15%</td>
+                        <td><span class="tag tag-red">上方</span></td>
+                        <td>700亿+</td>
+                        <td class="up">TOP5</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>通富微电</strong></td>
+                        <td>002156</td>
+                        <td>半导体封测</td>
+                        <td class="up">+10.01%</td>
+                        <td>&lt;18%</td>
+                        <td><span class="tag tag-red">上方</span></td>
+                        <td>500亿+</td>
+                        <td class="up">TOP5</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>宁德时代</strong></td>
+                        <td>300750</td>
+                        <td>动力电池</td>
+                        <td>—</td>
+                        <td>&lt;10%</td>
+                        <td><span class="tag tag-red">上方</span></td>
+                        <td>万亿+</td>
+                        <td class="up">+11.71亿</td>
+                        <td><span class="tag tag-red">加仓70亿+</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>云南锗业</strong></td>
+                        <td>002428</td>
+                        <td>小金属</td>
+                        <td class="up">+10.00%</td>
+                        <td>&lt;15%</td>
+                        <td><span class="tag tag-red">上方</span></td>
+                        <td>200亿+</td>
+                        <td class="up">TOP5</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>源杰科技</strong></td>
+                        <td>688749</td>
+                        <td>激光器芯片</td>
+                        <td>—</td>
+                        <td>&lt;15%</td>
+                        <td><span class="tag tag-red">上方</span></td>
+                        <td>300亿+</td>
+                        <td>—</td>
+                        <td><span class="tag tag-red">新进前10</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>亨通光电</strong></td>
+                        <td>600487</td>
+                        <td>光纤光缆</td>
+                        <td>—</td>
+                        <td>&lt;18%</td>
+                        <td><span class="tag tag-red">上方</span></td>
+                        <td>500亿+</td>
+                        <td>—</td>
+                        <td><span class="tag tag-red">增持131亿</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="insight-box">
+                <strong>强势股特征：</strong>当日TOP强势股几乎全部集中在半导体/存储/算力芯片方向，与一季度机构"极致加仓"方向高度吻合。海光信息(20CM涨停，市值8200亿)、寒武纪(+7.36%，市值超8500亿)成为A股"双王"。存储赛道（兆易创新/佰维存储/澜起科技）集体爆发，验证了SK海力士/美光海外映射逻辑。
+            </div>
+        </div>
+
+        <!-- 资金流向 -->
+        <div class="section">
+            <h2>五、资金流向与风险信号</h2>
+
+            <h3>A. 行业主力资金净流入TOP5（5月6日）</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>行业</th>
+                        <th>净流入金额</th>
+                        <th>资金占比</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><strong>有色金属</strong></td>
+                        <td class="up">+52.72亿</td>
+                        <td><div class="flow-bar"><div class="flow-bar-fill flow-positive" style="width:100%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><strong>电子</strong></td>
+                        <td class="up">+42.36亿</td>
+                        <td><div class="flow-bar"><div class="flow-bar-fill flow-positive" style="width:80%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><strong>电力设备</strong></td>
+                        <td class="up">+30亿+</td>
+                        <td><div class="flow-bar"><div class="flow-bar-fill flow-positive" style="width:57%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><strong>计算机</strong></td>
+                        <td class="up">+30亿+</td>
+                        <td><div class="flow-bar"><div class="flow-bar-fill flow-positive" style="width:57%"></div></div></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><strong>公用事业</strong></td>
+                        <td class="up">+20亿+</td>
+                        <td><div class="flow-bar"><div class="flow-bar-fill flow-positive" style="width:38%"></div></div></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>B. 主力资金大幅流出个股（净流出>11亿）</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>股票名称</th>
+                        <th>净流出金额</th>
+                        <th>所属板块</th>
+                        <th>信号解读</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>新易盛</strong></td>
+                        <td class="down">>11亿</td>
+                        <td>通信/CPO</td>
+                        <td class="down">光模块抱团松动</td>
+                    </tr>
+                    <tr>
+                        <td><strong>中际旭创</strong></td>
+                        <td class="down">>11亿</td>
+                        <td>通信/光模块</td>
+                        <td class="down">基金第一大重仓减仓</td>
+                    </tr>
+                    <tr>
+                        <td><strong>五粮液</strong></td>
+                        <td class="down">>11亿</td>
+                        <td>食品饮料/白酒</td>
+                        <td class="down">消费板块资金撤离</td>
+                    </tr>
+                    <tr>
+                        <td><strong>立讯精密</strong></td>
+                        <td class="down">>11亿</td>
+                        <td>电子/消费电子</td>
+                        <td class="down">消费电子承压</td>
+                    </tr>
+                    <tr>
+                        <td><strong>比亚迪</strong></td>
+                        <td class="down">>11亿</td>
+                        <td>汽车/新能源</td>
+                        <td class="down">高位兑现</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="risk-box">
+                <strong>⚠️ 抱团松动信号：</strong>
+                <ol style="margin-left:20px; margin-top:10px">
+                    <li><strong>光模块"拥挤度创历史最高"：</strong>长江证券统计显示，截至4月24日光模块交易热度与讨论热度均达年内高点。今日新易盛/中际旭创两大光模块龙头同时遭主力净流出超11亿元，是典型的抱团松动信号。</li>
+                    <li><strong>机构持仓分化加剧：</strong>公募基金Q1减持中际旭创45亿+、减持寒武纪160亿+，同时大幅加仓亨通光电131亿、源杰科技70亿+，表明资金从高估值龙头向中低估值标的迁移。</li>
+                    <li><strong>行业轮动加速：</strong>今日有色金属（+52亿）超越电子（+42亿）成为资金净流入第一大行业，可能预示短期风格切换——从纯科技向科技+资源双轮驱动转变。</li>
+                    <li><strong>成交额暴增：</strong>两市成交额放量近5000亿至3.23万亿，需警惕短期获利盘回吐压力。</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- 操作建议 -->
+        <div class="section">
+            <h2>六、机构视角操作建议</h2>
+
+            <div class="insight-box">
+                <strong>基金经理观点汇总：</strong>
+                <ul style="margin-left:20px; margin-top:10px">
+                    <li><strong>广发基金唐晓斌：</strong>聚焦存储、CPO、光模块、液冷、光纤光缆、AI电源等细分领域。多数产业链的"量变到质变"或于2028年集中显现，部分板块有望在2026年率先迎来需求爆发。</li>
+                    <li><strong>兴证全球谢治宇：</strong>AI飞速发展和宏观经济企稳回升是全年主线。光模块、存储、储能、燃气轮机产业链中能提供稳定供给的龙头将持续获得极高溢价。</li>
+                    <li><strong>华西证券李立峰：</strong>5月A股慢牛趋势有望再次确认，国际云厂商AI资本开支大幅上修叠加中国AI产业建设积极推进，强化慢牛行情。</li>
+                    <li><strong>华金证券：</strong>5月A股可能震荡偏强，政策偏积极+经济盈利继续回升。</li>
+                    <li><strong>兴业证券：</strong>国内AI硬件产业链（光通信、存储）为结构性亮点，深度绑定海外科技巨头。</li>
+                </ul>
+            </div>
+
+            <h3>操作策略</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>策略方向</th>
+                        <th>标的类型</th>
+                        <th>风险等级</th>
+                        <th>建议</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="tag tag-red">主线进攻</span></td>
+                        <td>算力芯片（海光信息、寒武纪）</td>
+                        <td class="down">高风险高回报</td>
+                        <td>持有为主，逢回调低吸，注意海光已20CM涨停勿追高</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-yellow">弹性补涨</span></td>
+                        <td>存储芯片（兆易创新、佰维存储）</td>
+                        <td class="highlight">中风险中回报</td>
+                        <td>存储涨价周期+AI服务器需求，可关注回调后的介入机会</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-yellow">轮动切换</span></td>
+                        <td>光纤光缆（亨通光电、中天科技）</td>
+                        <td class="up">低风险中回报</td>
+                        <td>Q1获基金大幅加仓，从光模块溢出资金可能流入</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-blue">防御配置</span></td>
+                        <td>有色金属/小金属</td>
+                        <td class="up">低风险</td>
+                        <td>贵金属涨幅5.53%，地缘避险+资源定价，可小仓配置</td>
+                    </tr>
+                    <tr style="background:rgba(255,71,87,0.05)">
+                        <td><span class="tag tag-green">减仓回避</span></td>
+                        <td>高位光模块（新易盛、中际旭创）</td>
+                        <td class="down">高拥挤风险</td>
+                        <td>抱团松动信号明确，建议逢高减仓或止盈</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 社保基金/QFII -->
+        <div class="section">
+            <h2>七、长线资金持仓参考</h2>
+
+            <h3>A. 社保基金前五大重仓股</h3>
+            <table>
+                <thead>
+                    <tr><th>排名</th><th>股票名称</th><th>持股市值</th><th>持股特征</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td><strong>比亚迪</strong></td><td>—</td><td>—</td></tr>
+                    <tr><td>2</td><td><strong>万华化学</strong></td><td>—</td><td>—</td></tr>
+                    <tr><td>3</td><td><strong>三一重工</strong></td><td>40.95亿</td><td>长期持有</td></tr>
+                    <tr><td>4</td><td><strong>华鲁恒升</strong></td><td>44.27亿</td><td>连续持有13年</td></tr>
+                    <tr><td>5</td><td><strong>中国巨石</strong></td><td>—</td><td>—</td></tr>
+                </tbody>
+            </table>
+            <p style="color:#888; font-size:0.85em; margin-top:8px">社保基金合计持股市值2534.58亿元，现身702只个股</p>
+
+            <h3>B. QFII行业配置TOP5</h3>
+            <table>
+                <thead>
+                    <tr><th>排名</th><th>行业</th><th>持股市值</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td><strong>银行</strong></td><td>474.01亿</td></tr>
+                    <tr><td>2</td><td><strong>电子</strong></td><td>335.88亿</td></tr>
+                    <tr><td>3</td><td><strong>通信</strong></td><td>>100亿</td></tr>
+                    <tr><td>4</td><td><strong>机械设备</strong></td><td>>100亿</td></tr>
+                    <tr><td>5</td><td><strong>有色金属</strong></td><td>>100亿</td></tr>
+                </tbody>
+            </table>
+            <p style="color:#888; font-size:0.85em; margin-top:8px">QFII合计持股市值1946.65亿元，现身1518只个股</p>
+        </div>
+
+        <!-- 免责声明 -->
+        <footer>
+            <p><strong>数据来源：</strong>东方财富数据宝、证券时报、新浪财经、财联社、中国新闻网、中国经济网、天相投顾、申万宏源</p>
+            <p><strong>分析视角：</strong>资深基金经理 + 行业研究员 + 资深散户 复合视角</p>
+            <p style="margin-top:15px">本报告由 AI 生成，所有数据均来自公开市场信息，仅供参考，请仔细甄别，谨慎投资。</p>
+            <p>机构抱团存在松动风险，请注意控制仓位。过往数据不代表未来表现。</p>
+            <p style="margin-top:10px; color:#555">报告生成时间：2026年5月6日 19:40 | GitHub Pages 自动发布</p>
+        </footer>
+    </div>
+</body>
+</html>
