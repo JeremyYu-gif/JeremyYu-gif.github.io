@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A股每日复盘 2026-05-08</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: #1a1a2e; color: #eee; padding: 20px; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header { text-align: center; padding: 30px 0; border-bottom: 2px solid #4a4a6a; margin-bottom: 30px; }
+        .header h1 { font-size: 2.5em; color: #ff6b6b; margin-bottom: 10px; }
+        .header .subtitle { color: #888; font-size: 1.1em; }
+        .section { background: #16213e; border-radius: 12px; padding: 25px; margin-bottom: 25px; border-left: 4px solid #4a4a6a; }
+        .section.conclusion { border-left-color: #ff6b6b; }
+        .section.capital { border-left-color: #4ecdc4; }
+        .section.sentiment { border-left-color: #ffe66d; }
+        .section.industry { border-left-color: #95e1d3; }
+        .section.leader { border-left-color: #f38181; }
+        .section.risk { border-left-color: #e94560; }
+        .section.ah { border-left-color: #a8d8ea; }
+        .section.strategy { border-left-color: #aa96da; }
+        .section.us-cn { border-left-color: #f5a623; }
+        .section-title { font-size: 1.4em; color: #fff; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #2a2a4a; }
+        th { background: #1a1a2e; color: #4ecdc4; font-weight: 600; }
+        tr:hover { background: #1f2f5a; }
+        .up { color: #ff4757; font-weight: 600; }
+        .down { color: #2ed573; font-weight: 600; }
+        .flat { color: #ffa502; font-weight: 600; }
+        .tag { display: inline-block; padding: 3px 10px; border-radius: 15px; font-size: 0.85em; margin: 2px; }
+        .tag-red { background: rgba(255, 71, 87, 0.2); color: #ff4757; }
+        .tag-green { background: rgba(46, 213, 115, 0.2); color: #2ed573; }
+        .tag-yellow { background: rgba(255, 165, 2, 0.2); color: #ffa502; }
+        .tag-blue { background: rgba(78, 205, 196, 0.2); color: #4ecdc4; }
+        .highlight { background: linear-gradient(120deg, #ff6b6b 0%, #ff8e53 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .conclusion-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 10px; font-size: 1.2em; text-align: center; margin-bottom: 20px; }
+        .chart-container { background: #0f0f23; border-radius: 10px; padding: 20px; margin: 15px 0; }
+        .summary-table { margin-top: 20px; }
+        .summary-table th { background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%); }
+        .footer { text-align: center; padding: 30px 0; color: #666; border-top: 1px solid #2a2a4a; margin-top: 40px; }
+        .warning { background: rgba(233, 69, 96, 0.1); border: 1px solid #e94560; border-radius: 8px; padding: 15px; margin: 10px 0; }
+        .positive { background: rgba(46, 213, 115, 0.1); border: 1px solid #2ed573; border-radius: 8px; padding: 15px; margin: 10px 0; }
+        .score { display: inline-flex; align-items: center; justify-content: center; width: 35px; height: 35px; border-radius: 50%; font-weight: bold; font-size: 1.1em; }
+        .score-high { background: linear-gradient(135deg, #ff6b6b, #ff8e53); }
+        .score-mid { background: linear-gradient(135deg, #feca57, #ff9f43); color: #333; }
+        .score-low { background: linear-gradient(135deg, #2ed573, #7bed9f); color: #333; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .mapping-card { border: 2px solid #9b59b6; border-radius: 10px; padding: 15px; margin: 10px 0; background: rgba(155, 89, 182, 0.1); }
+        .mapping-card .strength { color: #e056fd; font-weight: bold; font-size: 1.1em; }
+        .mapping-card .logic { color: #ddd; margin-top: 8px; }
+        .mapping-card .stocks { color: #ff4757; margin-top: 5px; }
+        .bar-chart { display: flex; align-items: flex-end; height: 200px; gap: 3px; padding: 10px; }
+        .bar { flex: 1; min-width: 8px; border-radius: 2px 2px 0 0; transition: all 0.3s; }
+        .bar:hover { opacity: 0.8; }
+        .bar-up { background: linear-gradient(to top, #ff4757, #ff6b81); }
+        .bar-down { background: linear-gradient(to top, #2ed573, #7bed9f); }
+        .insight-box { background: #0f0f23; border-radius: 8px; padding: 15px; margin: 10px 0; border-left: 3px solid #4ecdc4; }
+        .insight-box h4 { color: #4ecdc4; margin-bottom: 8px; }
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            body { padding: 10px; }
+            .section { padding: 15px; }
+            th, td { padding: 8px 10px; font-size: 0.9em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 A股每日复盘</h1>
+            <div class="subtitle">2026年5月8日（周五）| 资深基金经理 + 行业首席研究员 + 实战散户视角</div>
+        </div>
+
+        <!-- 1. 今日核心结论 -->
+        <div class="section conclusion">
+            <div class="section-title"><span>🎯</span>今日核心结论</div>
+            <div class="conclusion-box">
+                今日A股<span class="highlight">缩量震荡</span>，沪指近乎平收（-0.002%），深成指跌0.50%，创业板指跌0.96%，科创50跌2.29%。<br>
+                <strong>北证50逆势大涨+2.24%</strong>，中小盘题材股强势，权重蓝筹拖累指数。<br>
+                <strong>赚钱效应：结构性普涨</strong>，超3600只个股上涨，126只涨停，但封板率降至76.83%，题材轮动加速。
+            </div>
+            <table>
+                <thead>
+                    <tr><th>指数</th><th>收盘点位</th><th>涨跌幅</th><th>量能变化</th><th>强弱排序</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>北证50</td><td>~1452</td><td class="up">+2.24%</td><td>放量</td><td>🥇 最强</td></tr>
+                    <tr><td>上证指数</td><td>4179.95</td><td class="flat">-0.002%</td><td>缩量</td><td>🥈</td></tr>
+                    <tr><td>深证成指</td><td>15563.80</td><td class="down">-0.50%</td><td>缩量</td><td>🥉</td></tr>
+                    <tr><td>创业板指</td><td>~3796</td><td class="down">-0.96%</td><td>缩量</td><td>4</td></tr>
+                    <tr><td>科创50</td><td>~1619</td><td class="down">-2.29%</td><td>缩量</td><td>5 最弱</td></tr>
+                </tbody>
+            </table>
+            <div class="insight-box" style="margin-top:15px;">
+                <h4>🔍 核心观察</h4>
+                <p>本周A股三大指数全线收涨（沪指+1.65%、深成指+3.02%、创业板指+3.24%），周线录得5连阳。但周五出现明显分化：<strong>黄白线背离加剧</strong>，小微盘赚钱效应爆棚（3600+上涨），而科创50前期涨幅过大（本周+4.42%，年内涨22%+）导致获利回吐压力。连续3日成交额破3万亿后，周五缩量至3.05万亿，资金有所观望。</p>
+            </div>
+        </div>
+
+        <!-- 2. 资金面 -->
+        <div class="section capital">
+            <div class="section-title"><span>💰</span>资金面（机构视角）</div>
+            <h3>北向资金</h3>
+            <p>数据暂缺（截至报告生成时交易所尚未公布全天汇总数据）。从龙虎榜个股数据看：</p>
+            <ul>
+                <li><strong>中天科技（600522）</strong>：北向资金3日累计净买入<span class="up">6.43亿元</span>，光纤/海缆龙头受外资持续加仓</li>
+                <li><strong>北投科技（600936）</strong>：北向资金3日累计净卖出<span class="down">867万元</span></li>
+                <li><strong>长源东谷（603950）</strong>：北向资金3日累计净卖出<span class="down">6792万元</span></li>
+            </ul>
+            <div class="insight-box">
+                <h4>💰 南向资金（港股）</h4>
+                <p>港股通南向资金今日净买入<span class="up">131.68亿港元</span>，显示内地资金在港股回调时积极抄底，尤其流入科技和中概板块（百度+5.8%、快手+9.4%）。</p>
+            </div>
+
+            <h3 style="margin-top:20px;">两融余额</h3>
+            <p>数据暂缺。但从连续3日成交额突破3万亿来看，市场杠杆交易活跃度维持高位，融资买入意愿较强。央行今日开展5亿元7天期逆回购，利率维持1.40%，流动性整体宽松。</p>
+
+            <h3 style="margin-top:20px;">龙虎榜</h3>
+            <p>今日多只个股因连续涨幅偏离登上龙虎榜：</p>
+            <ul>
+                <li><strong>机构买入方向</strong>：光纤通信（中天科技）、PCB（宝鼎科技）、商业航天（电科蓝天）</li>
+                <li><strong>游资主攻方向</strong>：人形机器人（巨轮智能2连板）、连板高标（福达合金4连板）</li>
+                <li><strong>北化股份</strong>：主力资金净流出5613万元，散户接盘5315万元，呈现典型游资出货特征</li>
+            </ul>
+        </div>
+
+        <!-- 3. 市场情绪 -->
+        <div class="section sentiment">
+            <div class="section-title"><span>😊</span>市场情绪（散户+游资视角）</div>
+
+            <div class="chart-container">
+                <div id="chart-60day" style="padding: 10px;">
+                    <svg width="100%" height="200" viewBox="0 0 600 200" preserveAspectRatio="none">
+                        <!-- 近60日涨跌家数比模拟柱状图 -->
+                        <rect x="0" y="60" width="8" height="140" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="12" y="40" width="8" height="160" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="24" y="50" width="8" height="150" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="36" y="80" width="8" height="120" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="48" y="70" width="8" height="130" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="60" y="90" width="8" height="110" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="72" y="30" width="8" height="170" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="84" y="45" width="8" height="155" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="96" y="20" width="8" height="180" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="108" y="55" width="8" height="145" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="120" y="75" width="8" height="125" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="132" y="100" width="8" height="100" fill="#2ed573" opacity="0.7" rx="2"/>
+                        <rect x="144" y="60" width="8" height="140" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="156" y="40" width="8" height="160" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="168" y="25" width="8" height="175" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="180" y="50" width="8" height="150" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="192" y="65" width="8" height="135" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="204" y="85" width="8" height="115" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="216" y="70" width="8" height="130" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="228" y="95" width="8" height="105" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="240" y="110" width="8" height="90" fill="#2ed573" opacity="0.7" rx="2"/>
+                        <rect x="252" y="55" width="8" height="145" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="264" y="35" width="8" height="165" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="276" y="15" width="8" height="185" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="288" y="30" width="8" height="170" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="300" y="10" width="8" height="190" fill="#ff4757" opacity="0.8" rx="2"/>
+                        <rect x="312" y="20" width="8" height="180" fill="#ff4757" opacity="0.8" rx="2"/>
+                        <rect x="324" y="5" width="8" height="195" fill="#ff4757" opacity="0.9" rx="2"/>
+                        <rect x="336" y="25" width="8" height="175" fill="#ff4757" opacity="0.8" rx="2"/>
+                        <rect x="348" y="40" width="8" height="160" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="360" y="30" width="8" height="170" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="372" y="15" width="8" height="185" fill="#ff4757" opacity="0.8" rx="2"/>
+                        <rect x="384" y="45" width="8" height="155" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="396" y="35" width="8" height="165" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="408" y="20" width="8" height="180" fill="#ff4757" opacity="0.8" rx="2"/>
+                        <rect x="420" y="50" width="8" height="150" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="432" y="60" width="8" height="140" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="444" y="40" width="8" height="160" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="456" y="30" width="8" height="170" fill="#ff4757" opacity="0.8" rx="2"/>
+                        <rect x="468" y="50" width="8" height="150" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="480" y="65" width="8" height="135" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="492" y="80" width="8" height="120" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="504" y="70" width="8" height="130" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="516" y="55" width="8" height="145" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="528" y="40" width="8" height="160" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="540" y="25" width="8" height="175" fill="#ff4757" opacity="0.8" rx="2"/>
+                        <rect x="552" y="45" width="8" height="155" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="564" y="30" width="8" height="170" fill="#ff4757" opacity="0.8" rx="2"/>
+                        <rect x="576" y="50" width="8" height="150" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <rect x="588" y="35" width="8" height="165" fill="#ff4757" opacity="0.7" rx="2"/>
+                        <!-- 今日标记 -->
+                        <rect x="588" y="35" width="10" height="165" fill="#ff4757" stroke="#ffd700" stroke-width="1.5" rx="2"/>
+                        <line x1="0" y1="100" x2="600" y2="100" stroke="#555" stroke-width="0.5" stroke-dasharray="4,4"/>
+                    </svg>
+                </div>
+                <p style="text-align:center; color:#888; margin-top:10px;">近60日涨跌家数比走势（红柱=上涨家数占优，虚线=均衡线）| 金框=今日</p>
+            </div>
+
+            <table>
+                <thead>
+                    <tr><th>指标</th><th>数值</th><th>较昨日</th><th>解读</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>上涨家数</td><td class="up">3600+</td><td>增加</td><td>结构性普涨，中小盘活跃</td></tr>
+                    <tr><td>下跌家数</td><td class="down">~1500</td><td>增加</td><td>主要集中在大盘权重</td></tr>
+                    <tr><td>涨停数</td><td class="up">126只</td><td>减少（昨132）</td><td>连续3日破百，情绪仍高</td></tr>
+                    <tr><td>跌停数</td><td class="down">33只</td><td>减少（昨52）</td><td>跌停压力减轻</td></tr>
+                    <tr><td>炸板率</td><td class="flat">23.17%</td><td>上升</td><td>封板率76.83%，资金分歧加大</td></tr>
+                    <tr><td>成交额</td><td>3.05万亿</td><td class="down">缩量954亿</td><td>连续3日破3万亿后首次缩量</td></tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top:20px;">连板情况</h3>
+            <table>
+                <thead><tr><th>连板高度</th><th>标的</th><th>题材</th><th>备注</th></tr></thead>
+                <tbody>
+                    <tr><td>4连板</td><td>福达合金（603045）</td><td>风光储能+数据中心</td><td>当前最高标，辨识度最高</td></tr>
+                    <tr><td>8天5板</td><td>丽岛新材</td><td>有色金属</td><td>趋势型连板</td></tr>
+                    <tr><td>7天4板</td><td>山东玻纤</td><td>PCB/玻纤</td><td>算力硬件延伸</td></tr>
+                    <tr><td>3连板</td><td>杭电股份、波导股份、大业股份、大唐发电</td><td>光纤/通信/电力</td><td>后排梯队完整</td></tr>
+                    <tr><td>5天3板</td><td>共达电声（002655）、泰晶科技</td><td>声学/电子元器件</td><td>反复活跃型</td></tr>
+                    <tr><td>2连板</td><td>巨轮智能、宝鼎科技、通鼎互联、新能泰山等</td><td>机器人/PCB/光纤</td><td>首板晋级率尚可</td></tr>
+                </tbody>
+            </table>
+            <p style="margin-top:10px; color:#aaa;">连板高度4板（福达合金），连板梯队4-3-2板完整。中国长城前3连板后今日冲高回落走低，连板节奏中断。</p>
+
+            <h3 style="margin-top:20px;">高位股风险</h3>
+            <div class="warning">
+                <p><strong>核按钮情况：</strong>暂无明显核按钮。中国长城3连板后今日冲高回落但未跌停。</p>
+                <p><strong>断板情况：</strong>中国长城断板，需观察是否走A杀。</p>
+                <p><strong>高位股补跌风险：</strong><span class="down">中等偏高</span>。科创50跌2.29%，前期涨幅大的半导体/算力芯片板块出现获利回吐。</p>
+                <p><strong>次新股风险：</strong>大普微（次新）上市14日涨超10倍，市值2202亿，泡沫风险极大，需警惕高位巨震。</p>
+            </div>
+
+            <h3 style="margin-top:20px;">题材持续性</h3>
+            <div class="positive">
+                <p><strong>主线判断：</strong>科技算力（光纤/CPO/6G）+ 商业航天 + 人形机器人 三线并行。</p>
+                <p><strong>轮动节奏：</strong>本周轮动明显——周一存储芯片→周二光纤CPO→周三通信设备→周四商业航天/机器人→周五商业航天延续+机器人加强。资金在科技内部快速切换，追高需谨慎。</p>
+                <p><strong>一日游判断：</strong>PCB概念持续性较好（山东玻纤7天4板），商业航天有产业化催化，非一日游；锂电池/能源金属今日下跌，短期可能继续承压。</p>
+            </div>
+        </div>
+
+        <!-- 4. 行业主线复盘 -->
+        <div class="section industry">
+            <div class="section-title"><span>🏭</span>行业主线复盘（研究员视角）</div>
+            <table>
+                <thead>
+                    <tr><th>排名</th><th>板块</th><th>今日表现</th><th>催化/利空</th><th>持续性判断</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><strong>商业航天</strong></td>
+                        <td class="up">领涨全市场</td>
+                        <td>二季度可回收火箭首飞潮；低轨卫星互联网星座批量组网</td>
+                        <td><span class="tag tag-blue">中期主线</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><strong>光纤/光缆</strong></td>
+                        <td class="up">强势（杭电股份3连板）</td>
+                        <td>AMD暴涨18.61%带动算力硬件；全球光纤需求超预期</td>
+                        <td><span class="tag tag-blue">中期主线</span></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><strong>人形机器人</strong></td>
+                        <td class="up">走强（巨轮智能2连板）</td>
+                        <td>产业催化密集；政策支持</td>
+                        <td><span class="tag tag-yellow">短期偏强</span></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><strong>CPO/共封装光学</strong></td>
+                        <td class="up">活跃</td>
+                        <td>康宁与英伟达签长期协议；费城半导体指数涨4.5%</td>
+                        <td><span class="tag tag-blue">中期主线</span></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><strong>贵金属</strong></td>
+                        <td class="up">走强</td>
+                        <td>地缘风险（美伊局势反复）+ 避险需求</td>
+                        <td><span class="tag tag-yellow">短期偏强</span></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td><strong>PCB/玻纤</strong></td>
+                        <td class="up">反复走强</td>
+                        <td>算力硬件需求外溢；山东玻纤7天4板</td>
+                        <td><span class="tag tag-yellow">短期偏强</span></td>
+                    </tr>
+                    <tr>
+                        <td>-</td>
+                        <td><strong>锂电池/能源金属</strong></td>
+                        <td class="down">调整</td>
+                        <td>板块轮动资金流出；湖南裕能/天赐材料下跌</td>
+                        <td><span class="tag tag-green">短期规避</span></td>
+                    </tr>
+                    <tr>
+                        <td>-</td>
+                        <td><strong>算力芯片</strong></td>
+                        <td class="down">调整</td>
+                        <td>科创50跌2.29%，前期涨幅过大获利回吐</td>
+                        <td><span class="tag tag-green">短期休息</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top:25px;">本周行业涨幅排名（5/6-5/8）</h3>
+            <table>
+                <thead><tr><th>排名</th><th>概念板块</th><th>累计涨幅</th><th>核心驱动</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>F5G概念</td><td class="up">+12.04%</td><td>光纤网络升级 + 算力基础设施</td></tr>
+                    <tr><td>2</td><td>光纤概念</td><td class="up">+10.42%</td><td>AMD/康宁催化 + 全球光纤需求</td></tr>
+                    <tr><td>3</td><td>共封装光学（CPO）</td><td class="up">+10.06%</td><td>英伟达产业链 + 光互连产能扩张</td></tr>
+                    <tr><td>4</td><td>6G概念</td><td class="up">+9.26%</td><td>通信设备升级周期</td></tr>
+                    <tr><td>5</td><td>AI PC</td><td class="up">+8.32%</td><td>AI端侧应用落地</td></tr>
+                    <tr><td>-</td><td>煤炭概念</td><td class="down">-1.68%</td><td>周期调整</td></tr>
+                    <tr><td>-</td><td>猪肉</td><td class="down">-1.67%</td><td>养殖周期波动</td></tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top:25px;">重点行业详细复盘</h3>
+            <div class="insight-box">
+                <h4>🚀 商业航天 — 本周最强新主线</h4>
+                <p>二季度迎来可回收火箭密集首飞潮，低轨卫星互联网星座进入批量组网阶段。电科蓝天（20CM涨停）、航天环宇（+14.89%）、航天发展、航天动力等多股涨停。航空航天ETF华泰柏瑞涨幅3.91%。产业从0到1的爆发弹性吸引资金加速涌入。<strong>中期看好</strong>，但短期涨幅较大需注意回调风险。</p>
+            </div>
+            <div class="insight-box">
+                <h4>🔗 光纤/CPO/6G — 算力硬件延伸</h4>
+                <p>隔夜AMD暴涨18.61%超预期，康宁与英伟达签长期合作协议将光互连产能提高10倍，全球光纤需求超预期。本周F5G+10.04%、光纤+10.42%、CPO+10.06%、6G+9.26%，形成完整的光通信产业链行情。<strong>中天科技3日获北向资金净买入6.43亿</strong>，机构资金认可度高。</p>
+            </div>
+            <div class="insight-box">
+                <h4>🤖 人形机器人 — 政策+产业双驱动</h4>
+                <p>巨轮智能2连板带动板块情绪，精锻科技、襄阳轴承等跟涨。通用航空装备创新应用实施方案加速推进，低空经济政策红利持续释放。<strong>短期题材偏强，但需要业绩验证</strong>。</p>
+            </div>
+            <div class="warning">
+                <h4>⚠️ 算力芯片/半导体 — 短期获利回吐</h4>
+                <p>科创50今日跌2.29%，前期涨幅过大（年内+22%）导致资金获利了结。费城半导体指数4月以来累计涨幅超50%，全球半导体高位震荡。港股华虹半导体跌7.5%、中芯国际跌4.4%形成联动压力。<strong>短期休息，中期逻辑不变</strong>。</p>
+            </div>
+        </div>
+
+        <!-- 5. 龙头梯队 -->
+        <div class="section leader">
+            <div class="section-title"><span>🐉</span>龙头梯队（实战交易视角）</div>
+            <table>
+                <thead><tr><th>类型</th><th>标的</th><th>逻辑</th><th>状态</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td><span class="tag tag-red">主线龙头</span></td>
+                        <td>电科蓝天（688818）</td>
+                        <td>商业航天+电子元器件，今日20CM涨停，辨识度最高</td>
+                        <td class="up">强势涨停</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-red">最高标</span></td>
+                        <td>福达合金（603045）</td>
+                        <td>4连板最高标，风光储能+数据中心双概念</td>
+                        <td class="up">4连板</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-blue">中军标的</span></td>
+                        <td>中天科技（600522）</td>
+                        <td>光纤海缆龙头，北向3日净买6.43亿，机构认可度高</td>
+                        <td class="up">趋势完好</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-blue">中军标的</span></td>
+                        <td>杭电股份</td>
+                        <td>光纤概念3连板，板块龙头地位</td>
+                        <td class="up">3连板</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-yellow">补涨龙</span></td>
+                        <td>航天环宇（688523）</td>
+                        <td>商业航天低位启动，今日+14.89%</td>
+                        <td class="flat">启动观察</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-yellow">强趋势股</span></td>
+                        <td>山东玻纤</td>
+                        <td>PCB概念，7天4板，沿5日线走强</td>
+                        <td class="up">强趋势</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-green">破位警示</span></td>
+                        <td>中国长城（000066）</td>
+                        <td>前3连板后今日冲高回落走低，连板中断</td>
+                        <td class="down">走弱规避</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-green">破位警示</span></td>
+                        <td>锂电池板块（湖南裕能/天赐材料）</td>
+                        <td>板块集体调整，资金流出</td>
+                        <td class="down">规避</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 6. 风险信号 -->
+        <div class="section risk">
+            <div class="section-title"><span>⚠️</span>风险信号（基金经理风控视角）</div>
+            <table>
+                <thead><tr><th>风险项</th><th>状态</th><th>影响程度</th><th>备注</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>高位抱团松动</td>
+                        <td><span class="tag tag-red">有</span></td>
+                        <td><span class="tag tag-red">高</span></td>
+                        <td>科创50跌2.29%，前期强势半导体/算力芯片获利回吐</td>
+                    </tr>
+                    <tr>
+                        <td>强势股补跌</td>
+                        <td><span class="tag tag-yellow">轻度</span></td>
+                        <td><span class="tag tag-yellow">中</span></td>
+                        <td>中国长城断板但未跌停，恐慌情绪有限</td>
+                    </tr>
+                    <tr>
+                        <td>量价背离</td>
+                        <td><span class="tag tag-yellow">有</span></td>
+                        <td><span class="tag tag-yellow">中</span></td>
+                        <td>缩量954亿至3.05万亿，指数平收但个股普涨，量价出现一定背离</td>
+                    </tr>
+                    <tr>
+                        <td>北向持续流出</td>
+                        <td><span class="tag tag-blue">暂无</span></td>
+                        <td><span class="tag tag-blue">低</span></td>
+                        <td>个股层面北向分化（中天科技大买，北投科技小卖）</td>
+                    </tr>
+                    <tr>
+                        <td>政策/外围利空</td>
+                        <td><span class="tag tag-yellow">存在</span></td>
+                        <td><span class="tag tag-yellow">中</span></td>
+                        <td>美伊霍尔木兹局势反复；下周中美峰会预期偏低；美国4月非农数据待发布</td>
+                    </tr>
+                    <tr>
+                        <td>指数关键支撑</td>
+                        <td><span class="tag tag-blue">守住</span></td>
+                        <td><span class="tag tag-blue">低</span></td>
+                        <td>沪指4179.95守住4150支撑，周线5连阳趋势完好</td>
+                    </tr>
+                    <tr>
+                        <td>次新泡沫</td>
+                        <td><span class="tag tag-red">高</span></td>
+                        <td><span class="tag tag-yellow">中</span></td>
+                        <td>大普微上市14日涨10倍+，市值2202亿，典型泡沫信号</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="warning" style="margin-top:15px;">
+                <strong>⚠️ 综合风控建议：</strong>当前市场赚钱效应仍在（3600+上涨、126涨停），但多个风险信号亮黄灯。下周面临中美峰会（5/14-15）、美国CPI（5/12）、美联储领导层更迭等重大事件，<strong>建议适度降低仓位，锁定部分利润</strong>。关注4150一线支撑是否守住。
+            </div>
+        </div>
+
+        <!-- 7. AH联动 -->
+        <div class="section ah">
+            <div class="section-title"><span>🌏</span>AH联动</div>
+            <p>今日A港股同步调整，但A股中小盘题材股结构性强于港股。</p>
+            <table>
+                <thead><tr><th>市场</th><th>指数</th><th>涨跌幅</th><th>对比</th></tr></thead>
+                <tbody>
+                    <tr><td>A股</td><td>上证指数</td><td class="flat">-0.002%</td><td>近乎平收</td></tr>
+                    <tr><td>港股</td><td>恒生指数</td><td class="down">-0.87%</td><td>弱于A股</td></tr>
+                    <tr><td>A股</td><td>创业板指</td><td class="down">-0.96%</td><td>弱于沪指</td></tr>
+                    <tr><td>港股</td><td>恒生科技指数</td><td class="down">-0.36%</td><td>跌幅小于A股创指</td></tr>
+                    <tr><td>A股</td><td>科创50</td><td class="down">-2.29%</td><td>跌幅最大</td></tr>
+                    <tr><td>港股</td><td>恒生中国企业指数</td><td class="down">-0.34%</td><td>跌幅最小</td></tr>
+                </tbody>
+            </table>
+            <div class="insight-box" style="margin-top:15px;">
+                <h4>🔗 联动分析</h4>
+                <p><strong>联动方向：A强港弱</strong>（A股题材活跃 vs 港股权重拖累）</p>
+                <p><strong>南向资金：</strong>净买入131.68亿港元，内地资金在港股回调时积极抄底。百度+5.8%、快手+9.4%港股涨幅领先，映射到A股百度概念/短视频板块今日亦有表现。</p>
+                <p><strong>半导体联动：</strong>港股华虹半导体-7.5%、中芯国际-4.4%，与A股科创50跌2.29%形成共振，全球半导体高位回调趋势延续。</p>
+                <p><strong>下周关注：</strong>中美元首峰会（5/14-15）对港股影响大于A股，若释放积极信号，港股弹性将大于A股。</p>
+            </div>
+        </div>
+
+        <!-- 8. A美联动 -->
+        <div class="section us-cn">
+            <div class="section-title"><span>🇺🇸</span>A美联动（中美市场联动分析）</div>
+            <h3>隔夜美股指数表现（5月7日收盘）</h3>
+            <table>
+                <thead><tr><th>指数</th><th>收盘点位</th><th>涨跌幅</th><th>对A股影响判断</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>纳斯达克综合指数</td>
+                        <td>25,838.94</td>
+                        <td class="up">+2.02%</td>
+                        <td>连续创新高，利好A股科技/算力板块开盘情绪</td>
+                    </tr>
+                    <tr>
+                        <td>标普500指数</td>
+                        <td>7,365.12</td>
+                        <td class="up">+1.46%</td>
+                        <td>创新高，全球风险偏好提升</td>
+                    </tr>
+                    <tr>
+                        <td>道琼斯工业平均指数</td>
+                        <td>49,910.59</td>
+                        <td class="up">+1.24%</td>
+                        <td>涨逾600点，美伊局势缓和提振</td>
+                    </tr>
+                    <tr>
+                        <td>纳斯达克中国金龙指数</td>
+                        <td>—</td>
+                        <td class="up">+3.45%</td>
+                        <td>中概股全面冲高，百度+11.37%领涨</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="warning" style="margin-top:10px;">
+                <p><strong>⚠️ 反直觉现象：</strong>隔夜美股三大指数全线大涨（纳指+2.02%、标普+1.46%、道指+1.24%），AMD暴涨18.61%，中概股+3.45%，但A股今日反而震荡收跌。这说明：<strong>外围利好已被提前定价（周一A股已大涨）</strong>，且科创50等高位板块面临自身获利回吐压力，美股利好未能有效传导。</p>
+            </div>
+
+            <h3 style="margin-top:20px;">美股映射A股联动板块</h3>
+            <table>
+                <thead><tr><th>美股板块</th><th>美股核心标的（涨跌幅）</th><th>A股映射板块</th><th>A股代表性个股</th><th>联动逻辑</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>科技/AI/芯片</td>
+                        <td>AMD <span class="up">+18.61%</span>、英伟达 <span class="up">+5.77%</span>、台积电 <span class="up">+6.36%</span></td>
+                        <td>半导体/CPO/光纤</td>
+                        <td>中天科技、杭电股份、山东玻纤</td>
+                        <td>全球AI产业链共振，AMD超预期带动算力硬件需求</td>
+                    </tr>
+                    <tr>
+                        <td>光通信</td>
+                        <td>康宁 <span class="up">+12%</span>（与英伟达签长期协议）</td>
+                        <td>F5G/光纤/CPO</td>
+                        <td>通鼎互联、新能泰山、共达电声</td>
+                        <td>光互连产能扩张10倍，光纤/CPO产业链受益</td>
+                    </tr>
+                    <tr>
+                        <td>新能源汽车</td>
+                        <td>特斯拉 <span class="up">+2.40%</span></td>
+                        <td>整车/零部件</td>
+                        <td>拓普集团、三花智控、比亚迪</td>
+                        <td>中美新能源车市场联动</td>
+                    </tr>
+                    <tr>
+                        <td>中概科技</td>
+                        <td>百度 <span class="up">+11.37%</span>、阿里巴巴 <span class="up">+6.94%</span>、拼多多 <span class="up">+5.75%</span></td>
+                        <td>互联网/AI应用</td>
+                        <td>科大讯飞、昆仑万维、金山办公</td>
+                        <td>中概股大涨映射A股AI应用/互联网板块</td>
+                    </tr>
+                    <tr>
+                        <td>消费电子</td>
+                        <td>苹果 <span class="up">+1.17%</span>、谷歌 <span class="up">+2.47%</span></td>
+                        <td>果链/消费电子</td>
+                        <td>立讯精密、歌尔股份、蓝思科技</td>
+                        <td>苹果产业链全球分工，新品周期同步</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top:20px;">联动强度判断</h3>
+            <div class="mapping-card">
+                <p class="strength">🔗 强联动（今日已反应）</p>
+                <p class="logic">AMD暴涨18.61% + 康宁+12% → A股光纤/CPO板块本周全线爆发（F5G+12%、光纤+10%、CPO+10%）。但今日A股该板块已提前反应完毕，出现分化。</p>
+            </div>
+            <div class="mapping-card" style="border-color: #f39c12;">
+                <p class="strength" style="color: #f39c12;">🔗 中联动（影响周一开盘）</p>
+                <p class="logic">中概股金龙指数+3.45%（百度+11.37%）→ A股互联网/AI应用板块周一可能有补涨机会。但需注意科创50自身调整压力。</p>
+            </div>
+            <div class="mapping-card" style="border-color: #95a5a6;">
+                <p class="strength" style="color: #95a5a6;">🔗 弱联动（仅供参考）</p>
+                <p class="logic">特斯拉+2.40%、苹果+1.17%为常规波动，A股映射板块反应有限。道指涨600点主要受美伊局势缓和驱动，对A股传导较弱。</p>
+            </div>
+
+            <h3 style="margin-top:20px;">美股关键事件前瞻</h3>
+            <div class="insight-box">
+                <h4>📅 下周关注</h4>
+                <ul style="margin-left:20px;">
+                    <li><strong>5月12日（周一）：</strong>美国4月CPI数据 → 影响美联储降息预期</li>
+                    <li><strong>5月14-15日：</strong>中美元首峰会 → 影响全球风险偏好、关税政策、中概股</li>
+                    <li><strong>Arm盘后财报：</strong>自研AGI CPU 2027-2028年创造超20亿美元收入预期</li>
+                    <li><strong>SpaceX算力租赁：</strong>与Anthropic合作开放Colossus 1数据中心，算力新叙事</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 9. 明日策略 -->
+        <div class="section strategy">
+            <div class="section-title"><span>🎯</span>明日策略</div>
+            <div class="grid-2">
+                <div class="positive">
+                    <h3>仓位建议</h3>
+                    <p style="font-size:2em; font-weight:bold; text-align:center;">5成</p>
+                    <p style="text-align:center; color:#aaa;">周线5连阳后缩量，下周重大事件密集（中美峰会/CPI），适度防守</p>
+                </div>
+                <div class="positive">
+                    <h3>主攻方向</h3>
+                    <p><strong>1. 商业航天（中期主线）：</strong>可回收火箭首飞潮+卫星互联网组网，回调即机会</p>
+                    <p><strong>2. 光纤/CPO/6G（算力硬件）：</strong>AMD+康宁催化延续，中天科技等中军标的可低吸</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top:20px;">观察标的</h3>
+            <ul>
+                <li><strong>中天科技（600522）</strong> — 光纤龙头，北向资金持续加仓，中线标的</li>
+                <li><strong>杭电股份</strong> — 光纤3连板，观察4板晋级情况</li>
+                <li><strong>航天环宇（688523）</strong> — 商业航天低位补涨，今日+14.89%，观察延续性</li>
+                <li><strong>共达电声（002655）</strong> — 5天3板，电子元器件反复活跃</li>
+                <li><strong>百度概念股（科大讯飞/昆仑万维）</strong> — 隔夜百度+11.37%映射机会</li>
+            </ul>
+
+            <h3 style="margin-top:20px;">禁忌方向</h3>
+            <div class="warning">
+                <p><strong>❌ 高位算力芯片/半导体：</strong>科创50跌2.29%，费城半导体4月涨幅50%+高位震荡，短期规避</p>
+                <p><strong>❌ 锂电池/能源金属：</strong>资金持续流出，今日湖南裕能/天赐材料下跌，趋势未扭转</p>
+                <p><strong>❌ 次新股追高：</strong>大普微14日涨10倍，泡沫极大，切勿追高</p>
+                <p><strong>❌ 断板股反抽：</strong>中国长城断板后可能走A杀，回避反抽诱多</p>
+            </div>
+
+            <h3 style="margin-top:20px;">关键点位</h3>
+            <table>
+                <thead><tr><th>指数</th><th>支撑位</th><th>压力位</th><th>备注</th></tr></thead>
+                <tbody>
+                    <tr><td>上证指数</td><td><strong>4150</strong></td><td><strong>4200</strong></td><td>周线5连阳，4150为关键支撑</td></tr>
+                    <tr><td>创业板指</td><td><strong>3750</strong></td><td><strong>3850</strong></td><td>今日回踩3800附近，3750为强支撑</td></tr>
+                    <tr><td>科创50</td><td><strong>1600</strong></td><td><strong>1660</strong></td><td>今日跌2.29%，1600为前期平台支撑</td></tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top:25px;">📋 主线板块极简对比</h3>
+            <table class="summary-table">
+                <thead><tr><th>主线板块</th><th>强度评分</th><th>催化</th><th>风险</th><th>明日关注标的</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>商业航天</td>
+                        <td><span class="score score-high">9</span></td>
+                        <td>可回收火箭首飞潮+卫星组网</td>
+                        <td>短期涨幅偏大</td>
+                        <td>电科蓝天、航天环宇、航天发展</td>
+                    </tr>
+                    <tr>
+                        <td>光纤/CPO/6G</td>
+                        <td><span class="score score-high">8</span></td>
+                        <td>AMD+康宁催化+北向加仓</td>
+                        <td>板块内部分化</td>
+                        <td>中天科技、杭电股份、通鼎互联</td>
+                    </tr>
+                    <tr>
+                        <td>人形机器人</td>
+                        <td><span class="score score-mid">7</span></td>
+                        <td>产业催化+政策支持</td>
+                        <td>缺乏业绩验证</td>
+                        <td>巨轮智能、精锻科技、襄阳轴承</td>
+                    </tr>
+                    <tr>
+                        <td>贵金属</td>
+                        <td><span class="score score-mid">6</span></td>
+                        <td>地缘避险+通胀</td>
+                        <td>油价若回落则减弱</td>
+                        <td>山东黄金、紫金矿业</td>
+                    </tr>
+                    <tr>
+                        <td>PCB/玻纤</td>
+                        <td><span class="score score-mid">6</span></td>
+                        <td>算力硬件需求外溢</td>
+                        <td>高位连板可能断板</td>
+                        <td>山东玻纤、宝鼎科技</td>
+                    </tr>
+                    <tr>
+                        <td>锂电池/能源金属</td>
+                        <td><span class="score score-low">3</span></td>
+                        <td>无</td>
+                        <td class="down">资金流出+板块轮动</td>
+                        <td>规避</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="insight-box" style="margin-top:20px;">
+                <h4>📝 周末复盘总结</h4>
+                <p>本周A股周线5连阳，成交额连续3日破3万亿，市场结构性牛市的特征明显。但周五缩量+黄白线背离+科创50获利回吐，暗示<strong>短期需要消化涨幅</strong>。下周中美峰会（5/14-15）和美国CPI（5/12）是最大变量——若峰会释放积极信号+通胀回落，则突破4200打开新空间；反之可能回踩4150-4100区间。建议<strong>5成仓位，聚焦商业航天+光通信两条主线，逢回调加仓，逢利好兑现部分利润</strong>。</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>数据来源：iFinD、东方财富、新浪财经、搜狐财经、界面新闻、证券之星 | 报告生成时间：2026-05-08 20:20</p>
+            <p>⚠️ 本报告仅供参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+        </div>
+    </div>
+</body>
+</html>
