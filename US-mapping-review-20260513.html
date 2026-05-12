@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美股映射复盘 2026-05-13</title>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            --accent-blue: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-red: #f85149;
+            --accent-yellow: #d29922;
+            --accent-purple: #bc8cff;
+            --accent-orange: #f0883e;
+            --border-color: #30363d;
+            --card-bg: #161b22;
+            --table-header: #1c2128;
+        }
+        * { margin:0; padding:0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height:1.6;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .report-header {
+            text-align: center;
+            padding: 30px 20px;
+            border-bottom:2px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+        .report-header h1 { font-size: 28px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+        .report-header .subtitle { font-size: 14px; color: var(--text-secondary); }
+        .report-header .update-time { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
+        .core-summary {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border:1px solid var(--border-color);
+            border-left: 4px solid var(--accent-blue);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin-bottom: 30px;
+        }
+        .core-summary h2 { font-size: 16px; color: var(--accent-blue); margin-bottom: 12px; }
+        .core-summary p { font-size: 15px; line-height:1.8; color: var(--text-primary); }
+        .section { margin-bottom: 30px; }
+        .section-title {
+            font-size: 20px; font-weight: 700; color: var(--text-primary);
+            padding-bottom: 10px; border-bottom:1px solid var(--border-color);
+            margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+        }
+        .index-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 20px; }
+        .index-card { background: var(--card-bg); border:1px solid var(--border-color); border-radius: 8px; padding: 20px; text-align: center; }
+        .index-card .index-name { font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; }
+        .index-card .index-price { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+        .index-card .index-change { font-size: 16px; font-weight: 600; }
+        .data-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 13px; }
+        .data-table th { background: var(--table-header); color: var(--text-secondary); font-weight: 600; text-align: left; padding: 10px 12px; border:1px solid var(--border-color); white-space: nowrap; }
+        .data-table td { padding: 10px 12px; border:1px solid var(--border-color); color: var(--text-primary); }
+        .data-table tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+        .data-table tr:hover { background: rgba(255,255,255,0.05); }
+        .up { color: var(--accent-red); }
+        .down { color: var(--accent-green); }
+        .tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 12px; margin-right: 4px; font-weight: 500; }
+        .mapping-card {
+            background: var(--card-bg);
+            border:1px solid var(--accent-purple);
+            border-left: 4px solid var(--accent-purple);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+        }
+        .mapping-card h4 { font-size: 15px; color: var(--accent-purple); margin-bottom: 8px; }
+        .mapping-card p { font-size: 13px; color: var(--text-primary); line-height: 1.6; }
+        .risk-box {
+            background: rgba(248, 81, 73, 0.1);
+            border:1px solid var(--accent-red);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+        }
+        .risk-box h4 { font-size: 14px; color: var(--accent-red); margin-bottom: 8px; }
+        .risk-box p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+        .stock-card { background: var(--card-bg); border:1px solid var(--border-color); border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+        .stock-card h4 { font-size: 14px; color: var(--text-primary); margin-bottom: 6px; }
+        .stock-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="report-header">
+        <h1>🇺🇸 美股映射复盘</h1>
+        <div class="subtitle">2026-05-13 | 隔夜美股复盘 & A股映射分析</div>
+        <div class="update-time">报告生成时间：2026-05-13 07:45 (北京时间) | 数据截止：2026-05-12 美股收盘</div>
+    </div>
+
+    <div class="core-summary">
+        <h2>📊 核心结论（一句话）</h2>
+        <p>美股5月12日收盘分化：道指微涨+0.11%，标普-0.16%、纳指-0.71%；CPI通胀超预期（3.8% vs 预期3.7%）叠加美伊地缘紧张推升油价+4%，半导体板块获利回吐（SOXX -5%，QCOM -11-13%）； commodities全线走强（铜逼近$14,000/吨历史高位，黄金$4,670/盎司）；A股映射重点关注<strong class="up">能源/油气板块</strong>、<strong class="down">规避半导体高位回调风险</strong>。</p>
+    </div>
+
+    <!-- 一、美股整体表现 -->
+    <div class="section">
+        <div class="section-title">📈 一、美股整体表现</div>
+        <div class="index-grid">
+            <div class="index-card">
+                <div class="index-name">道琼斯工业指数 (DJI)</div>
+                <div class="index-price" style="color: var(--accent-red);">49,760.56</div>
+                <div class="index-change up">+0.11% (+56.09点)</div>
+            </div>
+            <div class="index-card">
+                <div class="index-name">标普500 (INX)</div>
+                <div class="index-price" style="color: var(--accent-green);">7,400.96</div>
+                <div class="index-change down">-0.16%</div>
+            </div>
+            <div class="index-card">
+                <div class="index-name">纳斯达克综指 (IXIC)</div>
+                <div class="index-price" style="color: var(--accent-green);">26,088.20</div>
+                <div class="index-change down">-0.71%</div>
+            </div>
+        </div>
+
+        <div class="stock-card">
+            <h4>📊 市场情绪</h4>
+            <p><strong>VIX恐慌指数：</strong>17.99（数据暂缺前日对比，处于相对低位，市场恐慌情绪不高）<br>
+            <strong>关键影响因素：</strong><br>
+            1. <strong>CPI通胀超预期</strong>：4月CPI同比3.8%（预期3.7%），为2023年5月以来最高；环比+0.6%（符合预期）；核心CPI同比2.8%。电价环比+2.1%、食品价格环比+0.5%推动通胀超预期。<br>
+            2. <strong>美伊地缘紧张</strong>：特朗普称美伊停火协议"极其脆弱"，伊朗提出的反提案（要求战争赔款、霍尔木兹海峡完全主权、解冻资产、全面解除制裁）被拒，油价大涨。<br>
+            3. <strong>半导体获利回吐</strong>：前期AI驱动的大涨后，板块出现明显获利了结，SOXX -5%，QCOM -11-13%。<br>
+            4. <strong>油价飙升</strong>：WTI +4.19%至$102.18/桶，布伦特+3.42%至$107.77/桶，推升能源板块并加剧通胀担忧。</p>
+        </div>
+    </div>
+
+    <!-- 二、强势板块与核心逻辑 -->
+    <div class="section">
+        <div class="section-title">🔥 二、强势板块与核心逻辑</div>
+        <table class="data-table">
+            <tr>
+                <th>排名</th>
+                <th>板块名称</th>
+                <th>ETF</th>
+                <th>涨跌幅</th>
+                <th>领涨龙头</th>
+                <th>核心驱动因素</th>
+                <th>对A股传导力度</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>能源</td>
+                <td>XLE</td>
+                <td class="up">数据暂缺</td>
+                <td>油气股</td>
+                <td>美伊紧张推升油价+4%，能源板块受益</td>
+                <td><span class="tag" style="background: rgba(188,140,255,0.2); color: var(--accent-purple);">强</span></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>材料</td>
+                <td>XLB</td>
+                <td class="up">数据暂缺</td>
+                <td>铜相关</td>
+                <td>铜价逼近$14,000/吨历史高位，材料板块受益</td>
+                <td><span class="tag" style="background: rgba(88,166,255,0.2); color: var(--accent-blue);">中</span></td>
+            </tr>
+        </table>
+        <table class="data-table">
+            <tr>
+                <th>排名</th>
+                <th>板块名称</th>
+                <th>涨跌幅</th>
+                <th>领跌龙头</th>
+                <th>下跌原因</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>半导体</td>
+                <td class="down">-5% (SOXX)</td>
+                <td>QCOM -11-13%, INTC -8%, MU -3.6%</td>
+                <td>前期AI大涨后获利回吐；CPI超预期推升利率预期，高估值科技股承压</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>科技（部分）</td>
+                <td class="down">数据暂缺</td>
+                <td>芯片股普跌</td>
+                <td>半导体板块拖累整体科技；10年期美债收益率升至4.47%</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 三、美股暴涨个股深度扫描 -->
+    <div class="section">
+        <div class="section-title">🚀 三、美股暴涨个股深度扫描（涨幅>11%，市值>$50亿）</div>
+        <div class="stock-card">
+            <h4>📌 特殊案例：QCOM -11-13%（不是暴涨，是暴跌）</h4>
+            <p><strong>Qualcomm (QCOM) -11-13%</strong>，可能创2020年以来最大单日跌幅。原因：财报或指引不及预期，或市场担忧手机芯片需求。对A股映射：<strong>手机产业链（立讯精密、歌尔股份）需关注</strong>。</p>
+        </div>
+        <div class="stock-card">
+            <h4>🔍 涨幅>11%且市值>$50亿个股</h4>
+            <p>经搜索，5月12日美股无明显符合"涨幅>11%且市值>$50亿"的个股（QCOM是跌幅>11%）。半导体板块整体大跌，能源板块虽有表现但无单日暴涨超11%的大市值个股。<br><em>注：如需完整暴涨个股列表，可查询MarketBeat或StockAnalysis.com的"Biggest Gainers Today"榜单。</em></p>
+        </div>
+    </div>
+
+    <!-- 四、重点个股异动（与A股映射） -->
+    <div class="section">
+        <div class="section-title">🎯 四、重点个股异动（与A股映射关系）</div>
+        <div class="stock-card">
+            <h4>🔴 Nvidia (NVDA) — 获花旗维持买入评级，目标价$300（较5月11日收盘价溢价约37%）</h4>
+            <p><strong>驱动因素：</strong>花旗在NVDA 5月20日财报前发布乐观预期，预计Q1 2026营收约$80亿（超预期$78.6亿），并将2028年数据中心半导体TAM上调至$8510亿（较前次预估+16%）。<br>
+            <strong>A股映射：</strong><span class="tag" style="background: rgba(248,81,73,0.15); color: var(--accent-red);">光模块/CPO</span> → 中际旭创(300308)、新易盛(300502)、天孚通信(300394)<br>
+            <strong>传导力度：</strong><span class="tag" style="background: rgba(248,81,73,0.2); color: var(--accent-red);">强</span> — NVDA财报预期+评级上调，A股算力链通常跟涨</p>
+        </div>
+        <div class="stock-card">
+            <h4>🟢 半导体板块整体承压 — MU -3.6%, AMD -2%, INTC -8%, QCOM -11-13%</h4>
+            <p><strong>驱动因素：</strong>前期AI驱动的暴涨后获利了结；CPI超预期推升利率预期，高估值科技股承压；费城半导体指数相对200日均线超买程度为历史仅见两次（2000年、1995年）之一。<br>
+            <strong>A股映射：</strong><span class="tag" style="background: rgba(63,185,80,0.15); color: var(--accent-green);">短期规避半导体</span> → A股半导体板块（北方华创、中微公司、兆易创新）可能跟随调整<br>
+            <strong>传导力度：</strong><span class="tag" style="background: rgba(210,153,34,0.2); color: var(--accent-yellow);">中</span> — A股半导体板块前期已有较大涨幅，需注意高位回调风险</p>
+        </div>
+    </div>
+
+    <!-- 五、中概股表现 -->
+    <div class="section">
+        <div class="section-title">🇨🇳 五、中概股表现</div>
+        <table class="data-table">
+            <tr>
+                <th>股票</th>
+                <th>代码</th>
+                <th>收盘价($)</th>
+                <th>涨跌幅</th>
+                <th>关键信息</th>
+            </tr>
+            <tr>
+                <td>阿里巴巴</td>
+                <td>BABA</td>
+                <td>134.78</td>
+                <td class="down">数据暂缺</td>
+                <td>5月12日收盘$134.78；中美关系与国内消费预期是主要驱动</td>
+            </tr>
+            <tr>
+                <td>拼多多</td>
+                <td>PDD</td>
+                <td>-</td>
+                <td class="down">数据暂缺</td>
+                <td>数据暂缺，关注国内电商竞争格局</td>
+            </tr>
+            <tr>
+                <td>京东</td>
+                <td>JD</td>
+                <td>-</td>
+                <td class="down">数据暂缺</td>
+                <td>数据暂缺</td>
+            </tr>
+            <tr>
+                <td>百度</td>
+                <td>BIDU</td>
+                <td>-</td>
+                <td class="down">数据暂缺</td>
+                <td>数据暂缺，AI搜索 competion是焦点</td>
+            </tr>
+            <tr>
+                <td>蔚来</td>
+                <td>NIO</td>
+                <td>-</td>
+                <td class="down">数据暂缺</td>
+                <td>数据暂缺，新能源汽车竞争持续</td>
+            </tr>
+        </table>
+        <div class="stock-card">
+            <h4>📊 中概情绪判断</h4>
+            <p><strong>情绪：</strong>数据暂缺完整涨跌幅，但BABA $134.78处于近期中等水平。整体来看，CPI超预期+美伊紧张对风险资产偏利空，中概股可能承压。<br>
+            <strong>对港股次日开盘影响：</strong>偏向谨慎，能源/商品类港股（中海油、中石化）可能受益油价上涨；科技港股（腾讯、阿里）需关注美股中概情绪。</p>
+        </div>
+    </div>
+
+    <!-- 六、大宗商品与相关资产 -->
+    <div class="section">
+        <div class="section-title">🏗️ 六、大宗商品与相关资产</div>
+        <table class="data-table">
+            <tr>
+                <th>品种</th>
+                <th>最新价格</th>
+                <th>日涨跌幅</th>
+                <th>关键逻辑</th>
+            </tr>
+            <tr>
+                <td>WTI原油</td>
+                <td>$102.18/桶</td>
+                <td class="up">+4.19%</td>
+                <td>美伊地缘紧张，停火协议濒临破裂，油价大幅上涨</td>
+            </tr>
+            <tr>
+                <td>布伦特原油</td>
+                <td>$107.77/桶</td>
+                <td class="up">+3.42%</td>
+                <td>同上，地缘溢价回归</td>
+            </tr>
+            <tr>
+                <td>COMEX黄金</td>
+                <td>$4,670.74/盎司</td>
+                <td class="down">数据暂缺</td>
+                <td>通胀超预期+美元走强预期，黄金短期承压；但地缘风险提供支撑</td>
+            </tr>
+            <tr>
+                <td>COMEX铜</td>
+                <td>$6.53/磅 ($14,000/吨 LME)</td>
+                <td class="up">+1.74%</td>
+                <td>铜价逼近历史高位，AI数据中心+电网建设需求驱动；月涨幅+9.19%，年涨幅+39.71%</td>
+            </tr>
+        </table>
+        <div class="stock-card">
+            <h4>📊 金融资产</h4>
+            <p><strong>10年期美债收益率：</strong>4.47%（较前一交易日+0.05个百分点）—— 通胀超预期推动收益率上行，利空高估值成长股。<br>
+            <strong>2年期美债收益率：</strong>数据暂缺<br>
+            <strong>美元指数(DXY)：</strong>数据暂缺（通胀超预期+美债收益率上行，美元倾向走强）<br>
+            <strong>人民币离岸汇率(USD/CNH)：</strong>数据暂缺</p>
+        </div>
+        <div class="stock-card">
+            <h4>📊 对A股影响判断</h4>
+            <p>① <strong>美债收益率↑ → 成长股承压</strong>：10Y已至4.47%，A股高估值成长板块（新能源、半导体、创新药）估值承压，北向资金可能流出。<br>
+            ② <strong>油价↑ → 能源/油气板块受益</strong>：中海油、中石化、中石油（A股+港股）将明显受益；同时推升国内通胀预期，限制货币政策空间。<br>
+            ③ <strong>铜价↑ → 有色板块受益</strong>：江西铜业、铜陵有色、紫金矿业受益；铜价年涨幅近40%，A股铜板块已有较大涨幅，注意高位风险。<br>
+            ④ <strong>黄金↑ → 黄金股受益</strong>：中金黄金、山东黄金、赤峰黄金受益；但$4,670/盎司处于高位，波动风险较大。</p>
+        </div>
+    </div>
+
+    <!-- 七、映射到A股的潜在方向（最重要） -->
+    <div class="section">
+        <div class="section-title">🎯 七、映射到A股的潜在方向（核心输出）</div>
+        
+        <div class="mapping-card">
+            <h4>🟢 方向1：能源/油气板块 【强度：5】</h4>
+            <p><strong>美股映射标的：</strong>油气股（XLE能源ETF）<br>
+            <strong>映射逻辑：</strong>美伊地缘紧张推动WTI +4.19%至$102.18，布伦特+3.42%至$107.77。A股能源板块（中海油、中石化、中石油）与油价高度正相关，且A股油气板块前期涨幅不及美股，存在补涨空间。<br>
+            <strong>A股代表标的：</strong>中国海油(600938)、中国石化(600028)、中国石油(601857)、广汇能源(600256)<br>
+            <strong>风险点：</strong>地缘风险具有不确定性，若美伊局势缓和，油价可能快速回落；A股油气板块国企属性强，弹性相对有限。</p>
+        </div>
+
+        <div class="mapping-card">
+            <h4>🟡 方向2：铜/有色板块 【强度：4】</h4>
+            <p><strong>美股映射标的：</strong>铜相关ETF/个股<br>
+            <strong>映射逻辑：</strong>LME铜逼近$14,000/吨历史高位，月涨+9.19%，年涨+39.71%。AI数据中心+电网建设对铜的需求持续强劲。A股铜板块（江西铜业、紫金矿业）通常跟随LME铜价走势。<br>
+            <strong>A股代表标的：</strong>紫金矿业(601899)、江西铜业(600362)、铜陵有色(000630)、洛阳钼业(603993)<br>
+            <strong>风险点：</strong>铜价已处历史高位，A股铜板块前期已有较大涨幅，注意高位回调风险。</p>
+        </div>
+
+        <div class="mapping-card">
+            <h4>🔴 方向3：光模块/CPO（NVDA财报预期） 【强度：4】</h4>
+            <p><strong>美股映射标的：</strong>Nvidia (NVDA)<br>
+            <strong>映射逻辑：</strong>花旗维持NVDA买入评级，目标价$300（溢价约37%），预计Q1 2026营收$80亿超市场预期，2028年数据中心TAM上调至$8510亿。A股光模块是全球AI算力链的核心受益环节，通常NVDA财报前后有明显表现。<br>
+            <strong>A股代表标的：</strong>中际旭创(300308)、新易盛(300502)、天孚通信(300394)、华工科技(000988)<br>
+            <strong>风险点：</strong>A股光模块板块前期已有较大涨幅，注意"利好出尽"风险（NVDA财报后可能高开低走）。</p>
+        </div>
+
+        <div class="mapping-card">
+            <h4>🔴 方向4：半导体设备（规避） 【强度：1 — 需规避】</h4>
+            <p><strong>美股映射标的：</strong>QCOM(-11-13%), INTC(-8%), MU(-3.6%), AMD(-2%), SOXX(-5%)<br>
+            <strong>映射逻辑：</strong>美股半导体板块单日大跌，费城半导体指数处于历史极端超买状态。A股半导体板块（北方华创、中微公司、兆易创新、韦尔股份）可能跟随调整。<br>
+            <strong>建议：</strong>短期规避半导体板块，等待调整到位后再介入。<br>
+            <strong>风险点：</strong>若A股半导体板块已充分调整，可能存在"美股跌、A股不跟"的情况，需结合A股技术面判断。</p>
+        </div>
+
+        <table class="data-table">
+            <tr>
+                <th>序号</th>
+                <th>A股公司</th>
+                <th>代码</th>
+                <th>映射美股标的</th>
+                <th>关系说明</th>
+                <th>关注理由</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>中国海油</td>
+                <td>600938</td>
+                <td>油气股/XLE</td>
+                <td>油价上涨直接受益</td>
+                <td>WTI $102+，公司盈利弹性大</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>中际旭创</td>
+                <td>300308</td>
+                <td>Nvidia (NVDA)</td>
+                <td>800G光模块核心供应商</td>
+                <td>NVDA财报预期+AI算力需求持续</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>紫金矿业</td>
+                <td>601899</td>
+                <td>铜价/LME Copper</td>
+                <td>铜价上涨直接受益</td>
+                <td>LME铜逼近$14,000/吨历史高位</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>北方华创</td>
+                <td>002371</td>
+                <td>半导体设备股</td>
+                <td>半导体设备国产替代</td>
+                <td>美股半导体大跌，短期规避</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 八、风险提示 -->
+    <div class="section">
+        <div class="section-title">⚠️ 八、风险提示</div>
+        <div class="risk-box">
+            <h4>1. 传导失败风险</h4>
+            <p>① 美股能源股上涨 → A股能源板块跟涨：两者相关性较高，传导成功概率大；但A股能源板块国企属性强，弹性可能不及美股。<br>
+            ② 美股半导体大跌 → A股半导体跟跌：需结合A股半导体板块自身位置判断，若A股已充分调整，可能不跟跌。<br>
+            ③ 估值体系差异：美股半导体估值处于历史高位，A股半导体估值相对合理，传导效应可能不对称。</p>
+        </div>
+        <div class="risk-box">
+            <h4>2. 汇率与资金面风险</h4>
+            <p>① <strong>美债10Y 4.47%且上行</strong> → 成长股杀估值压力，A股高估值板块（新能源、半导体、创新药）承压。<br>
+            ② <strong>CPI超预期（3.8%）</strong> → 美联储降息预期进一步推迟，美元走强，人民币贬值压力上升，北向资金可能流出。<br>
+            ③ <strong>油价上涨</strong> → 输入性通胀压力上升，国内货币政策宽松空间受限。</p>
+        </div>
+        <div class="risk-box">
+            <h4>3. 时差与信息差风险</h4>
+            <p>① A股开盘前（北京时间09:30），美股盘后可能有新信息发布（如公司公告、联储官员讲话）。<br>
+            ② 美伊地缘局势可能在数小时内快速变化，导致油价剧烈波动，进而冲击全球股市。<br>
+            ③ 中国政策（如央行操作、行业政策）可能在A股开盘前发布，改变市场走势。</p>
+        </div>
+        <div class="risk-box">
+            <h4>4. 情绪反向风险</h4>
+            <p>① <strong>美股能源股大涨 → A股高开低走</strong>：A股能源板块弹性有限，若油价已透支涨幅，可能出现"利好出尽"走势。<br>
+            ② <strong>NVDA财报预期 → 光模块"见光死"</strong>：若NVDA财报后股价回落，A股光模块可能高开低走，追高风险大。<br>
+            ③ <strong>半导体板块调整</strong>：美股半导体单日大跌后，可能出现技术性反弹，盲目追跌同样风险大。</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="stock-card">
+            <h4>📊 数据来源说明</h4>
+            <p>本报告数据来源于：CNBC、MarketWatch、TradingEconomics、Investing.com、MacroTrends、CnVive等。<br>
+            <strong>数据暂缺部分：</strong>中概股完整涨跌幅（PDD/JD/BIDU/NIO等）、VIX前日对比、2年期美债收益率、美元指数、人民币离岸汇率。上述数据将在后续版本中补充。<br>
+            <strong>免责声明：</strong>本报告仅供参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
