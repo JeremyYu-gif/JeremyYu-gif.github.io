@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>锡价格和库存日报 - 2026-05-12</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #f0f2f5; color: #333; }
+  .header { background: linear-gradient(135deg, #1a2980, #26d0ce); color: white; padding: 28px 40px; }
+  .header h1 { font-size: 26px; font-weight: 700; letter-spacing: 2px; }
+  .header .subtitle { margin-top: 8px; font-size: 14px; opacity: 0.85; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 24px 20px; }
+  .section { background: white; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 24px; padding: 24px; }
+  .section-title { font-size: 18px; font-weight: 700; color: #1a2980; border-left: 4px solid #26d0ce; padding-left: 12px; margin-bottom: 20px; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px; }
+  .kpi-card { background: linear-gradient(135deg, #f8f9ff, #e8ecff); border-radius: 10px; padding: 18px 20px; border: 1px solid #dde3ff; }
+  .kpi-card.up { background: linear-gradient(135deg, #fff5f5, #ffe8e8); border-color: #ffcccc; }
+  .kpi-card.down { background: linear-gradient(135deg, #f0fff4, #e6ffe8); border-color: #b2dfdb; }
+  .kpi-card.neutral { background: linear-gradient(135deg, #fffde7, #fff9c4); border-color: #ffe082; }
+  .kpi-label { font-size: 12px; color: #666; margin-bottom: 8px; font-weight: 500; }
+  .kpi-value { font-size: 28px; font-weight: 800; color: #1a2980; }
+  .kpi-value.red { color: #e53935; }
+  .kpi-value.green { color: #43a047; }
+  .kpi-change { margin-top: 8px; font-size: 13px; }
+  .kpi-change .tag { display: inline-block; padding: 2px 8px; border-radius: 12px; font-weight: 600; font-size: 12px; }
+  .tag-up { background: #ffebee; color: #c62828; }
+  .tag-down { background: #e8f5e9; color: #2e7d32; }
+  .tag-neutral { background: #fff8e1; color: #f57f17; }
+  .chart-box { height: 380px; width: 100%; }
+  .chart-box-sm { height: 300px; width: 100%; }
+  .analysis-box { background: #f8f9ff; border-radius: 8px; padding: 16px 20px; margin-top: 16px; font-size: 14px; line-height: 1.8; color: #444; border-left: 4px solid #5c6bc0; }
+  .analysis-box.alert { border-left-color: #e53935; background: #fff5f5; }
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .data-table th { background: #e8ecff; color: #1a2980; padding: 10px 14px; text-align: left; font-weight: 600; }
+  .data-table td { padding: 9px 14px; border-bottom: 1px solid #eee; }
+  .data-table tr:hover td { background: #f5f7ff; }
+  .source-bar { background: #f5f5f5; border-radius: 6px; padding: 10px 16px; font-size: 12px; color: #888; margin-top: 12px; }
+  .source-bar span { margin-right: 16px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .alert-box { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border-radius: 10px; padding: 20px; border: 1px solid #ffb74d; margin-bottom: 24px; }
+  .alert-box h3 { color: #e65100; font-size: 16px; margin-bottom: 10px; }
+  .alert-box p { font-size: 14px; line-height: 1.8; color: #555; }
+  .footer { text-align: center; padding: 20px; color: #999; font-size: 12px; }
+  @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🔩 锡价格和库存日报</h1>
+  <div class="subtitle">报告日期：2026-05-12（周二）&nbsp;&nbsp;|&nbsp;&nbsp;生成时间：2026-05-12 08:37&nbsp;&nbsp;|&nbsp;&nbsp;数据来源：iFinD同花顺 / 生意社 / 上海期货交易所 / LME</div>
+</div>
+
+<div class="container">
+
+  <!-- 价格波动预警 -->
+  <div class="alert-box">
+    <h3>⚠️ 价格显著上涨提示</h3>
+    <p>锡现货价自2026-04-30（38.66万元/吨）至2026-05-11（43.025万元/吨）累计上涨约11.3%，5月以来连续拉升。本周一（05-08）至最新数据（05-11）日涨幅+1.26%，价格处于近一年高位区间。需关注需求端及宏观政策变化。</p>
+  </div>
+
+  <!-- 一、锡现货价格 -->
+  <div class="section">
+    <div class="section-title">一、锡现货价格分析（来源：生意社）</div>
+    <div class="kpi-grid">
+      <div class="kpi-card up">
+        <div class="kpi-label">最新价格（2026-05-11）</div>
+        <div class="kpi-value red">43.03</div>
+        <div class="kpi-label" style="margin-top:4px">万元/吨</div>
+        <div class="kpi-change"><span class="tag tag-up">▲ 日环比 +1.26%</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">前一交易日（2026-05-08）</div>
+        <div class="kpi-value">42.49</div>
+        <div class="kpi-label" style="margin-top:4px">万元/吨</div>
+        <div class="kpi-change"><span class="tag tag-neutral">424,887.5 元/吨</span></div>
+      </div>
+      <div class="kpi-card up">
+        <div class="kpi-label">同比（去年同期 2025-05-12）</div>
+        <div class="kpi-value red">+63.88%</div>
+        <div class="kpi-label" style="margin-top:4px">去年：26.25万元/吨</div>
+        <div class="kpi-change"><span class="tag tag-up">大幅领涨</span></div>
+      </div>
+      <div class="kpi-card up">
+        <div class="kpi-label">近5年最高</div>
+        <div class="kpi-value">43.46</div>
+        <div class="kpi-label" style="margin-top:4px">万元/吨（2026-03-02）</div>
+        <div class="kpi-change"><span class="tag tag-neutral">距高点 -0.98%</span></div>
+      </div>
+    </div>
+    <div id="priceChart" class="chart-box"></div>
+    <div class="analysis-box alert">
+      <strong>📊 价格分析：</strong>锡现货价2026-05-11报43.03万元/吨，较前日(05-08)上涨1.26%，未超5%预警阈值。但5月以来持续上行，累计涨幅达11.3%，同比去年同期大幅上涨63.88%。价格当前处于近1年内的高位水平，接近2026年3月初的年内峰值43.46万元/吨。<br>
+      <strong>近期驱动因素：</strong>①中缅矿山端供应扰动持续，原料紧缺；②光伏、汽车电子等下游需求旺盛；③中美贸易阶段性缓和提振风险情绪，金属整体走强。
+    </div>
+    <div class="source-bar"><span>📌 数据来源：同花顺iFinD EDB，指标ID：S004242377</span><span>现货价:锡（生意社）</span></div>
+  </div>
+
+  <!-- 二、仓单日报 -->
+  <div class="section">
+    <div class="section-title">二、SHFE仓单日报分析（来源：上海期货交易所）</div>
+    <div class="kpi-grid">
+      <div class="kpi-card down">
+        <div class="kpi-label">最新仓单（2026-05-11）</div>
+        <div class="kpi-value green">8,975</div>
+        <div class="kpi-label" style="margin-top:4px">吨</div>
+        <div class="kpi-change"><span class="tag tag-down">▼ 日环比 -1.50%</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">前一交易日（2026-05-08）</div>
+        <div class="kpi-value">9,112</div>
+        <div class="kpi-label" style="margin-top:4px">吨</div>
+        <div class="kpi-change"><span class="tag tag-neutral">-137吨</span></div>
+      </div>
+      <div class="kpi-card up">
+        <div class="kpi-label">30日前（2026-04-13）</div>
+        <div class="kpi-value">8,264</div>
+        <div class="kpi-label" style="margin-top:4px">吨</div>
+        <div class="kpi-change"><span class="tag tag-up">▲ 较30日前 +8.60%</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">近30日仓单区间</div>
+        <div class="kpi-value">5,956</div>
+        <div class="kpi-label" style="margin-top:4px">~ 9,112 吨</div>
+        <div class="kpi-change"><span class="tag tag-neutral">低点5月7日</span></div>
+      </div>
+    </div>
+    <div id="warehouseChart" class="chart-box-sm"></div>
+    <div class="analysis-box">
+      <strong>📊 仓单分析：</strong>SHFE锡仓单2026-05-11为8,975吨，较前日小幅下降-1.50%，仍处于近30日较高水平。注意5月7日出现异常低值5,956吨（可能为当日注销/大量交割），5月8日迅速恢复至9,112吨。整体来看，5月以来仓单水平相比4月中旬有所回升，反映近期货物入库节奏加快，供应相对宽松。
+    </div>
+    <div class="source-bar"><span>📌 数据来源：同花顺iFinD EDB，指标ID：S004322736</span><span>仓单数量:锡:总计</span></div>
+  </div>
+
+  <!-- 三、上期所库存 + 四、LME库存 并排 -->
+  <div class="two-col">
+    <!-- 三、SHFE库存 -->
+    <div class="section">
+      <div class="section-title">三、SHFE库存分析（来源：上海期货交易所）</div>
+      <div class="kpi-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="kpi-card up">
+          <div class="kpi-label">最新库存（2026-05-08）</div>
+          <div class="kpi-value red">9,414</div>
+          <div class="kpi-label" style="margin-top:4px">吨</div>
+          <div class="kpi-change"><span class="tag tag-up">▲ 周环比 +32.13%</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">上周（2026-05-01）</div>
+          <div class="kpi-value">7,126</div>
+          <div class="kpi-label" style="margin-top:4px">吨</div>
+          <div class="kpi-change"><span class="tag tag-neutral">去年同期：8,719吨</span></div>
+        </div>
+      </div>
+      <div class="kpi-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="kpi-card up">
+          <div class="kpi-label">同比（2025-05-09）</div>
+          <div class="kpi-value red">+7.97%</div>
+          <div class="kpi-label" style="margin-top:4px">小幅高于去年</div>
+        </div>
+        <div class="kpi-card neutral">
+          <div class="kpi-label">近5年库存区间</div>
+          <div class="kpi-value" style="font-size:20px">1,009~17,818</div>
+          <div class="kpi-label" style="margin-top:4px">吨</div>
+        </div>
+      </div>
+      <div id="shfeChart" class="chart-box"></div>
+      <div class="analysis-box">
+        <strong>SHFE库存：</strong>最新（5月8日）库存9,414吨，较上周大幅增加2,288吨（+32.13%），同比去年同期略高约7.97%。库存快速攀升，供应端修复明显，可能对近期锡价高位形成一定压力。
+      </div>
+      <div class="source-bar"><span>📌 数据来源：iFinD EDB S005580375 | 上海期货交易所</span></div>
+    </div>
+
+    <!-- 四、LME库存 -->
+    <div class="section">
+      <div class="section-title">四、LME库存分析（来源：LME伦敦金属交易所）</div>
+      <div class="kpi-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="kpi-card down">
+          <div class="kpi-label">最新库存（2026-05-11）</div>
+          <div class="kpi-value green">8,360</div>
+          <div class="kpi-label" style="margin-top:4px">吨</div>
+          <div class="kpi-change"><span class="tag tag-down">▼ 日环比 -1.07%</span></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">前一交易日（2026-05-08）</div>
+          <div class="kpi-value">8,450</div>
+          <div class="kpi-label" style="margin-top:4px">吨</div>
+          <div class="kpi-change"><span class="tag tag-neutral">-90吨</span></div>
+        </div>
+      </div>
+      <div class="kpi-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="kpi-card up">
+          <div class="kpi-label">同比（2025-05-12）</div>
+          <div class="kpi-value red">+199.64%</div>
+          <div class="kpi-label" style="margin-top:4px">去年同期：2,790吨</div>
+          <div class="kpi-change"><span class="tag tag-up">近3倍增量</span></div>
+        </div>
+        <div class="kpi-card neutral">
+          <div class="kpi-label">近5年LME库存区间</div>
+          <div class="kpi-value" style="font-size:20px">645~9,112</div>
+          <div class="kpi-label" style="margin-top:4px">吨</div>
+        </div>
+      </div>
+      <div id="lmeChart" class="chart-box"></div>
+      <div class="analysis-box">
+        <strong>LME库存：</strong>LME锡库存2026-05-11报8,360吨，日环比小降-1.07%，但同比大幅增长+199.64%，处于近5年偏高水平。自2025年底以来，LME锡库存持续大幅回升（由4,675吨增至当前8,360吨），反映欧美市场供应宽松，海外备货意愿增强，与SHFE形成共振。
+      </div>
+      <div class="source-bar"><span>📌 数据来源：iFinD EDB S004303580 | LME</span></div>
+    </div>
+  </div>
+
+  <!-- 综合分析 -->
+  <div class="section">
+    <div class="section-title">五、综合市场分析</div>
+    <div class="analysis-box">
+      <strong>🔍 市场综述（2026-05-12）：</strong><br><br>
+      <strong>【价格】</strong>锡现货价格43.03万元/吨，同比大幅上涨63.88%，近期价格驱动来自：①中缅矿山持续供应扰动（缅甸佤邦矿区管理趋严）；②焊料及光伏等下游需求旺季效应；③5月美中贸易谈判阶段性进展带动风险偏好回升，工业金属整体走强。<br><br>
+      <strong>【库存】</strong>SHFE仓单8,975吨，仓单与库存同步攀升（SHFE库存本周大增32%），显示国内现货补库明显。LME库存8,360吨，同比增逾199%，但日环比续降，海外实物取货节奏稳定。<br><br>
+      <strong>【研判】</strong>当前锡价处于高位，短期需关注：①SHFE库存大幅增加是否形成压力；②矿端供给修复节奏；③下游（焊料/光伏）是否维持高开工率。供需整体仍偏紧，但价格短期高位存在技术回调风险，建议关注43-44万元/吨区间的多空博弈。
+    </div>
+  </div>
+
+  <!-- 数据来源 -->
+  <div class="section">
+    <div class="section-title">数据来源说明</div>
+    <table class="data-table">
+      <thead><tr><th>数据项</th><th>来源</th><th>频率</th><th>最新日期</th><th>指标ID</th></tr></thead>
+      <tbody>
+        <tr><td>现货价:锡</td><td>生意社 via 同花顺iFinD EDB</td><td>日频</td><td>2026-05-11</td><td>S004242377</td></tr>
+        <tr><td>仓单数量:锡:总计</td><td>上海期货交易所 via 同花顺iFinD EDB</td><td>日频</td><td>2026-05-11</td><td>S004322736</td></tr>
+        <tr><td>库存:锡:总计（SHFE）</td><td>上海期货交易所 via 同花顺iFinD EDB</td><td>周频</td><td>2026-05-08</td><td>S005580375</td></tr>
+        <tr><td>LME锡:库存:合计</td><td>LME via 同花顺iFinD EDB</td><td>日频</td><td>2026-05-11</td><td>S004303580</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="footer">本报告由WorkBuddy自动生成，数据来源：同花顺iFinD。报告仅供参考，不构成投资建议。</div>
+
+<script>
+// ===================== 现货价格图（近5年，取关键节点）=====================
+(function() {
+  var chart = echarts.init(document.getElementById('priceChart'));
+  var priceData = [
+    ["2021-01-04",153500],["2021-03-31",173750],["2021-06-10",208500],["2021-09-09",252000],
+    ["2021-12-17",296000],["2022-01-10",305300],["2022-03-24",355162.5],["2022-04-19",346912.5],
+    ["2022-05-16",300012.5],["2022-06-30",210012.5],["2022-08-15",198887.5],["2022-10-27",173762.5],
+    ["2022-12-12",189575],["2023-01-04",209450],["2023-03-20",187637.5],["2023-05-08",207700],
+    ["2023-07-17",231887.5],["2023-09-21",221325],["2023-11-14",213700],["2024-01-19",214200],
+    ["2024-03-13",218887.5],["2024-04-08",235012.5],["2024-05-27",272262.5],["2024-07-11",281762.5],
+    ["2024-08-23",267200],["2024-09-18",256012.5],["2024-10-17",264125],["2024-11-08",261850],
+    ["2024-12-24",243562.5],["2025-01-16",247350],["2025-02-18",263300],["2025-03-12",263850],
+    ["2025-04-03",290700],["2025-04-07",278287.5],["2025-04-28",260175],["2025-05-12",262537.5],
+    ["2025-06-16",265350],["2025-08-21",266850],["2025-09-12",274212.5],["2025-10-14",282262.5],
+    ["2025-11-05",281325],["2025-12-18",333012.5],["2025-12-31",326300],
+    ["2026-01-13",381175],["2026-01-29",437687.5],["2026-02-04",395600],["2026-03-02",434575],
+    ["2026-03-06",401025],["2026-03-24",343362.5],["2026-03-31",371037.5],
+    ["2026-04-07",363875],["2026-04-13",371525],["2026-04-20",392437.5],
+    ["2026-04-22",392612.5],["2026-04-24",390375],["2026-04-28",383137.5],
+    ["2026-04-29",385775],["2026-04-30",386637.5],["2026-05-06",395575],
+    ["2026-05-07",418087.5],["2026-05-08",424887.5],["2026-05-11",430250]
+  ];
+  chart.setOption({
+    backgroundColor:'#fff',
+    title:{text:'锡现货价格走势（近5年）',left:'center',top:4,textStyle:{fontSize:14,color:'#1a2980'}},
+    tooltip:{trigger:'axis',formatter:function(p){return p[0].axisValue+'<br/>现货价：'+(p[0].value/10000).toFixed(2)+'万元/吨';}},
+    grid:{top:48,left:60,right:20,bottom:60},
+    xAxis:{type:'category',data:priceData.map(d=>d[0]),axisLabel:{rotate:45,fontSize:10},boundaryGap:false},
+    yAxis:{type:'value',name:'元/吨',axisLabel:{formatter:v=>v/10000+'万'},splitLine:{lineStyle:{type:'dashed'}}},
+    series:[{
+      type:'line',data:priceData.map(d=>d[1]),smooth:true,
+      lineStyle:{width:2,color:'#e53935'},
+      areaStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'rgba(229,57,53,0.25)'},{offset:1,color:'rgba(229,57,53,0.02)'}]}},
+      itemStyle:{color:'#e53935'},
+      markPoint:{data:[{type:'max',name:'最高'},{type:'min',name:'最低'}],label:{fontSize:11}},
+      markLine:{data:[{type:'average',name:'均值',label:{formatter:'均:{c}',fontSize:11}}],lineStyle:{type:'dashed'}}
+    }]
+  });
+})();
+
+// ===================== 仓单走势图（近30日）=====================
+(function() {
+  var chart = echarts.init(document.getElementById('warehouseChart'));
+  var data = [
+    ["04-13",8264],["04-14",8181],["04-15",8171],["04-16",8153],["04-17",8001],
+    ["04-20",7793],["04-21",7545],["04-22",7439],["04-23",7245],["04-24",6858],
+    ["04-27",6827],["04-28",6697],["04-29",6341],["04-30",6150],
+    ["05-06",6040],["05-07",5956],["05-08",9112],["05-11",8975]
+  ];
+  chart.setOption({
+    backgroundColor:'#fff',
+    title:{text:'SHFE锡仓单走势（近30日）',left:'center',top:4,textStyle:{fontSize:14,color:'#1a2980'}},
+    tooltip:{trigger:'axis'},
+    grid:{top:48,left:70,right:20,bottom:50},
+    xAxis:{type:'category',data:data.map(d=>d[0]),axisLabel:{fontSize:11}},
+    yAxis:{type:'value',name:'吨',splitLine:{lineStyle:{type:'dashed'}}},
+    series:[{
+      type:'bar',data:data.map(d=>d[1]),
+      itemStyle:{color:function(p){return p.data<7000?'#26d0ce':p.data>8500?'#e53935':'#5c6bc0';}},
+      label:{show:true,position:'top',fontSize:10,formatter:function(p){return p.value.toLocaleString();}}
+    }]
+  });
+})();
+
+// ===================== SHFE库存5年图 =====================
+(function() {
+  var chart = echarts.init(document.getElementById('shfeChart'));
+  var data = [
+    ["2021-01-01",5475],["2021-01-08",6268],["2021-01-22",5152],["2021-02-05",7450],
+    ["2021-03-05",8740],["2021-03-26",8415],["2021-04-16",7702],["2021-05-07",8256],
+    ["2021-05-14",6967],["2021-05-21",6024],["2021-06-04",5159],["2021-06-25",3418],
+    ["2021-07-16",3649],["2021-08-06",2193],["2021-08-27",1197],["2021-09-24",1551],
+    ["2021-10-15",1672],["2021-11-05",1256],["2021-11-26",1911],["2021-12-17",2089],
+    ["2022-01-07",1723],["2022-02-11",3415],["2022-03-04",2938],["2022-04-15",3045],
+    ["2022-05-06",1740],["2022-06-03",2703],["2022-06-24",3726],["2022-07-15",3883],
+    ["2022-08-05",3557],["2022-08-26",2431],["2022-09-16",1992],["2022-10-21",2727],
+    ["2022-11-11",2671],["2022-12-02",4708],["2022-12-23",4901],["2023-01-13",6671],
+    ["2023-02-10",7856],["2023-03-10",9106],["2023-04-21",9065],["2023-05-12",9673],
+    ["2023-06-02",9037],["2023-06-23",8875],["2023-07-21",9222],["2023-08-11",9184],
+    ["2023-09-01",8136],["2023-09-22",7630],["2023-10-20",6798],["2023-11-17",5841],
+    ["2023-12-08",5077],["2023-12-29",6346],["2024-01-19",6584],["2024-02-09",9033],
+    ["2024-03-08",11072],["2024-04-05",12823],["2024-04-26",15707],["2024-05-17",17373],
+    ["2024-05-24",17818],["2024-06-07",16297],["2024-06-28",15127],["2024-07-19",14549],
+    ["2024-08-02",11628],["2024-08-16",10786],["2024-09-06",9794],["2024-09-27",8736],
+    ["2024-10-18",8477],["2024-11-08",8975],["2024-11-29",7239],["2024-12-27",6722],
+    ["2025-01-17",6426],["2025-02-07",7123],["2025-02-28",7369],["2025-03-21",8605],
+    ["2025-04-04",9872],["2025-04-18",9571],["2025-04-25",9249],["2025-05-09",8719],
+    ["2025-05-23",8445],["2025-05-30",8107],["2025-06-20",6965],["2025-07-11",7097],
+    ["2025-08-01",7671],["2025-08-29",7566],["2025-09-19",6988],["2025-10-10",5879],
+    ["2025-10-31",5919],["2025-11-21",6229],["2025-12-12",7391],["2025-12-26",8477],
+    ["2026-01-09",6935],["2026-01-30",10468],["2026-02-06",8750],["2026-02-27",12253],
+    ["2026-03-06",11663],["2026-03-13",12514],["2026-03-20",10042],["2026-03-27",8400],
+    ["2026-04-03",7467],["2026-04-10",8515],["2026-04-17",8238],["2026-04-24",7834],
+    ["2026-05-01",7126],["2026-05-08",9414]
+  ];
+  chart.setOption({
+    backgroundColor:'#fff',
+    title:{text:'SHFE锡库存（近5年，周频）',left:'center',top:4,textStyle:{fontSize:14,color:'#1a2980'}},
+    tooltip:{trigger:'axis'},
+    grid:{top:48,left:70,right:20,bottom:60},
+    xAxis:{type:'category',data:data.map(d=>d[0]),axisLabel:{rotate:45,fontSize:9},boundaryGap:false},
+    yAxis:{type:'value',name:'吨',splitLine:{lineStyle:{type:'dashed'}}},
+    series:[{
+      type:'line',data:data.map(d=>d[1]),smooth:true,
+      lineStyle:{width:2,color:'#5c6bc0'},
+      areaStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'rgba(92,107,192,0.3)'},{offset:1,color:'rgba(92,107,192,0.02)'}]}},
+      itemStyle:{color:'#5c6bc0'},
+      markPoint:{data:[{type:'max',name:'峰值'},{type:'min',name:'谷值'}]}
+    }]
+  });
+})();
+
+// ===================== LME库存5年图 =====================
+(function() {
+  var chart = echarts.init(document.getElementById('lmeChart'));
+  var data = [
+    ["2021-01-04",1860],["2021-02-09",775],["2021-03-01",1745],["2021-04-01",1740],
+    ["2021-05-04",1245],["2021-06-01",755],["2021-07-05",1895],["2021-08-06",2245],
+    ["2021-09-09",1215],["2021-10-29",680],["2021-11-22",955],["2021-12-15",1735],
+    ["2022-01-12",2085],["2022-02-28",2265],["2022-03-23",2245],["2022-04-14",2665],
+    ["2022-05-12",3110],["2022-06-08",3005],["2022-07-22",3490],["2022-08-17",4145],
+    ["2022-09-09",4715],["2022-10-27",4490],["2022-11-18",3415],["2022-12-13",3030],
+    ["2023-01-10",3070],["2023-02-01",3015],["2023-02-24",3190],["2023-03-20",2370],
+    ["2023-04-14",1780],["2023-05-10",1610],["2023-06-02",1970],["2023-06-27",2905],
+    ["2023-07-20",4710],["2023-08-11",5780],["2023-09-06",6410],["2023-09-29",7350],
+    ["2023-10-23",7335],["2023-11-15",7475],["2023-12-08",8025],["2024-01-04",7755],
+    ["2024-01-29",6340],["2024-02-21",5980],["2024-03-14",5055],["2024-04-10",4185],
+    ["2024-05-03",4835],["2024-05-29",4940],["2024-06-21",4735],["2024-07-15",4440],
+    ["2024-08-07",4570],["2024-09-02",4630],["2024-09-24",4780],["2024-10-17",4595],
+    ["2024-11-11",4495],["2024-12-03",4790],["2024-12-30",4775],["2025-01-23",4570],
+    ["2025-02-14",3910],["2025-03-11",3720],["2025-04-03",3035],["2025-04-22",2880],
+    ["2025-05-12",2790],["2025-06-18",2175],["2025-07-10",2015],["2025-08-04",1900],
+    ["2025-08-28",1895],["2025-09-19",2505],["2025-10-14",2385],["2025-11-05",2940],
+    ["2025-11-28",3160],["2025-12-23",4675],["2026-01-19",6440],["2026-02-11",7550],
+    ["2026-03-06",7775],["2026-03-10",8015],["2026-03-19",8955],["2026-03-27",8720],
+    ["2026-04-01",8675],["2026-04-07",8815],["2026-04-13",8550],["2026-04-17",8630],
+    ["2026-04-22",8840],["2026-04-24",8710],["2026-04-27",8700],["2026-04-28",8650],
+    ["2026-04-29",8630],["2026-04-30",8590],["2026-05-01",8475],["2026-05-06",8500],
+    ["2026-05-07",8475],["2026-05-08",8450],["2026-05-11",8360]
+  ];
+  chart.setOption({
+    backgroundColor:'#fff',
+    title:{text:'LME锡库存（近5年）',left:'center',top:4,textStyle:{fontSize:14,color:'#1a2980'}},
+    tooltip:{trigger:'axis'},
+    grid:{top:48,left:70,right:20,bottom:60},
+    xAxis:{type:'category',data:data.map(d=>d[0]),axisLabel:{rotate:45,fontSize:9},boundaryGap:false},
+    yAxis:{type:'value',name:'吨',splitLine:{lineStyle:{type:'dashed'}}},
+    series:[{
+      type:'line',data:data.map(d=>d[1]),smooth:true,
+      lineStyle:{width:2,color:'#26d0ce'},
+      areaStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'rgba(38,208,206,0.3)'},{offset:1,color:'rgba(38,208,206,0.02)'}]}},
+      itemStyle:{color:'#26d0ce'},
+      markPoint:{data:[{type:'max',name:'峰值'},{type:'min',name:'谷值'}]}
+    }]
+  });
+})();
+
+window.addEventListener('resize', function() {
+  ['priceChart','warehouseChart','shfeChart','lmeChart'].forEach(function(id) {
+    var c = echarts.getInstanceByDom(document.getElementById(id));
+    if(c) c.resize();
+  });
+});
+</script>
+</body>
+</html>
