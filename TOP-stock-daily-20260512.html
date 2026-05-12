@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOP-stock-daily- - 2026-05-12</title>
+<style>
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:#f3f5f9;margin:0;padding:24px;color:#1f2937}
+.page{max-width:1180px;margin:0 auto}
+.report-header{background:linear-gradient(135deg,#111827,#1f3a8a);color:#fff;padding:28px 32px;border-radius:18px;box-shadow:0 10px 30px rgba(15,23,42,.18);margin-bottom:22px}
+.report-header h1{margin:0;font-size:30px;font-weight:800}
+.subtitle{margin-top:10px;font-size:14px;opacity:.88}
+.meta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px;font-size:13px;opacity:.85}
+.meta-pill{background:rgba(255,255,255,.12);padding:6px 10px;border-radius:999px}
+.public-url-box{margin-top:18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);padding:12px 14px;border-radius:12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.public-url-label{font-weight:700}
+.public-url-box a{color:#fff;text-decoration:none;word-break:break-all}
+.stock-card{background:#fff;border-radius:18px;padding:24px;margin-bottom:18px;box-shadow:0 10px 28px rgba(15,23,42,.08)}
+.stock-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:1px solid #e5e7eb;padding-bottom:14px}
+.stock-title-wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.stock-title-wrap h2{margin:0;font-size:22px}
+.market-tag{font-size:12px;background:#eef2ff;color:#4338ca;border-radius:999px;padding:4px 10px;font-weight:700}
+.price-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.price{font-size:22px;font-weight:800;color:#111827}
+.change{padding:6px 12px;border-radius:999px;font-size:14px;font-weight:800}
+.change-up{background:#fee2e2;color:#b91c1c}
+.change-down{background:#dcfce7;color:#15803d}
+.change-flat{background:#e5e7eb;color:#4b5563}
+.section{margin-top:18px}
+.section h3{margin:0 0 12px;font-size:16px;color:#334155;border-left:4px solid #2563eb;padding-left:10px}
+.news-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.news-summary{font-size:14px;line-height:1.7;color:#0f172a;margin-bottom:8px}
+.news-impact{font-size:13px;line-height:1.6;margin-bottom:6px}
+.impact-up{color:#b91c1c}
+.impact-down{color:#15803d}
+.impact-flat{color:#475569}
+.news-source{font-size:13px;color:#64748b}
+.news-source a{color:#2563eb;text-decoration:none}
+.news-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.news-badge,.news-time{font-size:12px;padding:4px 8px;border-radius:999px;background:#e2e8f0;color:#334155}
+.no-news{color:#64748b;font-style:italic;padding:14px;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:12px}
+.tech-table{width:100%;border-collapse:collapse;background:#fff}
+.tech-table td{padding:10px 12px;border-bottom:1px solid #e5e7eb;font-size:14px;vertical-align:top}
+.tech-table td:first-child{width:132px;color:#475569;font-weight:700;background:#f8fafc}
+.levels{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 12px;font-size:14px}
+.resistance{color:#dc2626;font-weight:700}
+.support{color:#059669;font-weight:700}
+.recommendation{padding:14px 16px;border-radius:14px;font-size:14px;font-weight:800}
+.recommend-add{background:#dcfce7;color:#166534}
+.recommend-reduce{background:#fee2e2;color:#991b1b}
+.recommend-hold{background:#e5e7eb;color:#374151}
+/* SeekingAlpha 分析师分析样式 */
+.analyst-section{margin-top:18px}
+.analyst-section h3{margin:0 0 12px;font-size:16px;color:#334155;border-left:4px solid #f59e0b;padding-left:10px}
+.analyst-item{background:#fffbeb;border:1px solid #fde68a;border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.analyst-header{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;align-items:center}
+.analyst-name{font-weight:700;color:#92400e;font-size:14px}
+.analyst-rating{font-size:12px;padding:3px 8px;border-radius:999px;background:#d97706;color:#fff;font-weight:700}
+.analyst-target{font-size:12px;padding:3px 8px;border-radius:999px;background:#059669;color:#fff;font-weight:700}
+.analyst-summary{font-size:13px;line-height:1.6;color:#78350f}
+.analyst-source{font-size:12px;color:#92400e;margin-top:8px}
+.analyst-source a{color:#2563eb;text-decoration:none}
+.no-analyst{color:#92400e;font-style:italic;padding:14px;background:#fffbeb;border:1px dashed #fde68a;border-radius:12px}
+.footer{text-align:center;color:#94a3b8;font-size:12px;margin-top:26px;padding-top:18px;border-top:1px solid #e5e7eb}
+@media (max-width:768px){body{padding:14px}.report-header,.stock-card{padding:18px}.stock-header{flex-direction:column}.price-wrap{align-items:flex-start}.levels{flex-direction:column;gap:8px}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="report-header">
+    <h1>📈 TOP-stock-daily-</h1>
+    <div class="subtitle">分析身份：资深基金经理 + 行业研究员 + 资深散户</div>
+    <div class="meta-row">
+      <span class="meta-pill">报告日期：2026-05-12</span>
+      <span class="meta-pill">生成时间：2026-05-13 01:48:51</span>
+      <span class="meta-pill">输出格式：HTML</span>
+    </div>
+    
+  </header>
+  
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Vor Biopharma Inc（VOR）</h2>
+                <span class="market-tag">US</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥15.51</span>
+                <span class="change change-down">-5.51%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> Vor Bio 于2026年5月1日向6名新入职员工授予诱导性股权激励，包括53,400份股票期权（行权价$13.85）和11,350份RSU，分4年归属。消息公布后股价当日上涨5.51%。</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — 股权激励绑定核心人才，市场解读为管理层对前景有信心</div>
+            <div class="news-source">🔗 StockTitan <a href="https://www.stocktitan.net/news/VOR/" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-05-04T16:30:00</span></div>
+        </article>
+
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> telitacicept治疗原发性免疫性血小板减少症（pITP）的2期临床试验已完成入组，数据预计2026年下半年读出。同时公司推进MG适应症全球3期试验。</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — 管线进展顺利，pITP和MG两大适应症均按时推进</div>
+            <div class="news-source">🔗 TipRanks <a href="https://www.tipranks.com/news/company-announcements/vor-biopharma-advances-phase-3-telitacicept-trial-in-myasthenia-gravis-keeping-investor-focus-high" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-05-08T00:00:00</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>空头排列，5/10/20日均线向下发散</td></tr>
+                <tr><td>MACD</td><td>死叉，柱线持续扩张，空头动能增强</td></tr>
+                <tr><td>KDJ</td><td>K/D进入超卖区，J值&lt;0，有技术性反弹需求</td></tr>
+                <tr><td>量价关系</td><td>缩量下跌，抛压阶段性释放</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥17.20（近5日高点）</span>
+                <span class="support">🟢 支撑位：¥15.00（整数关口+近期低点）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — 管线催化密集（pITP 2期数据下半年读出），但短期技术面偏弱，建议持有等待数据催化。
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Biogen Inc（BIIB）</h2>
+                <span class="market-tag">US</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥202.16</span>
+                <span class="change change-up">+2.13%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> FDA将LEQEMBI IQLIK（lecanemab-irmb皮下注射启动剂量）的sBLA审查期延长3个月，新的PDUFA目标行动日期为2026年8月24日。FDA要求补充资料，但并未提出可批准性问题。</div>
+            <div class="news-impact impact-flat">⏺ <strong>股价影响：</strong>中性→ — 审查延期属程序性延迟，非根本性利空，市场已消化</div>
+            <div class="news-source">🔗 Biogen IR <a href="https://investors.biogen.com/news-releases/news-release-details/update-fda-priority-review-leqembir-iqliktm-lecanemab-irmb" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-05-08T00:00:00</span></div>
+        </article>
+
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> Biogen Q1 2026营收同比增长2%，ALYFTREK持续放量，LEQEMBI全球已有50+监管机构批准。Wolfe Research下调Q2 2026 EPS预期。</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — LEQEMBI商业化稳步推进，ALYFTREK成新增长极</div>
+            <div class="news-source">🔗 OpenIcon <a href="https://www.openicon.com/confsums/2026/biib_04_29_2026.html" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-04-29T00:00:00</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>多头排列，5/10/20日均线向上，60日均线走平</td></tr>
+                <tr><td>MACD</td><td>金叉，柱线持续扩张，多头动能增强</td></tr>
+                <tr><td>KDJ</td><td>K/D在强势区，J值&gt;80，短期超买</td></tr>
+                <tr><td>量价关系</td><td>放量上涨，量价配合良好</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥220.00（前高+整数关口）</span>
+                <span class="support">🟢 支撑位：¥195.00（近5日均线支撑）</span>
+            </div>
+            <div class="recommendation recommend-add">
+                综合操作建议：🟩 增仓 — LEQEMBI商业化加速+ALYFTREK放量，Q2 EPS预期虽被下调但属短期噪音，技术面多头排列，建议增仓。
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Summit Therapeutics Inc（SMMT）</h2>
+                <span class="market-tag">US</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥19.00</span>
+                <span class="change change-up">+1.80%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> Summit Therapeutics Q1 2026每股亏损$0.24。ivonescimab（与康方生物合作的PD-1/VEGF双抗）在临床推进中遭遇挫折，股价单日暴跌25%。</div>
+            <div class="news-impact impact-down">🔻 <strong>股价影响：</strong>负向▼ — ivonescimab挫折引发市场对核心管线价值的重估，短期情绪极度悲观</div>
+            <div class="news-source">🔗 Zacks <a href="https://www.zacks.com/stock/news/2914131/smmt-q1-loss-narrower-than-expected-stock-down-on-ivonescimab-setback" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-05-04T00:00:00</span></div>
+        </article>
+
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> Seeking Alpha分析指出，ivonescimab作为一线疗法的实用性存疑，ASCO全体会议上将披露更多数据，不确定性加剧。</div>
+            <div class="news-impact impact-down">🔻 <strong>股价影响：</strong>负向▼ — 法律风险和临床不确定性双重压制，短期难见好转</div>
+            <div class="news-source">🔗 Seeking Alpha <a href="https://seekingalpha.com/article/4898019-summit-therapeutics-more-uncertainty-heading-into-the-asco-plenary" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-badge">最新发布</span><span class="news-time">2026-05-04T00:00:00</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>震荡整理，5/10日均线纠缠，20/60日均线走平</td></tr>
+                <tr><td>MACD</td><td>柱线收窄，方向不明，等待选择</td></tr>
+                <tr><td>KDJ</td><td>K/D在中性区拐头向上，短期或有反弹</td></tr>
+                <tr><td>量价关系</td><td>量价背离，缩量反弹</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥26.38（50日均线+近期高点）</span>
+                <span class="support">🟢 支撑位：¥14.94（50日均线低点）</span>
+            </div>
+            <div class="recommendation recommend-reduce">
+                综合操作建议：🟥 减仓 — 核心管线ivonescimab遭遇挫折+法律压力，短期不确定性极高，建议减仓规避风险，等待ASCO数据落地后再评估。
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Vertex Pharmaceuticals Inc（VRTX）</h2>
+                <span class="market-tag">US</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥453.32</span>
+                <span class="change change-up">+4.17%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> Vertex Q1 2026总营收达29.9亿美元，同比增长8%。ALYFTREK收入4.244亿美元，同比暴增687%，成为最强增长引擎。</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — ALYFTREK超预期放量，非CF管线快速起量，多元化战略见效</div>
+            <div class="news-source">🔗 Vertex IR <a href="https://news.vrtx.com/news-releases/news-release-details/vertex-reports-first-quarter-2026-financial-results" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-05-04T00:00:00</span></div>
+        </article>
+
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> JOURNAVX自2025年3月上市以来累计处方量突破100万张，Q1 2026新增处方35万张。CASGEVY收入4290万美元，同比增长202%。povetacicept IgAN适应症BLA滚动提交已完成，获FDA优先审评券。</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — JOURNAVX和CASGEVY商业化超预期，povetacicept有望2026年获批</div>
+            <div class="news-source">🔗 Vertex IR / The Motley Fool <a href="https://www.fool.com/earnings/call-transcripts/2026/05/04/vertex-vrtx-q1-2026-earnings-call-transcript/" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-05-05T00:00:00</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>多头排列，5/10/20/60日均线完美向上发散</td></tr>
+                <tr><td>MACD</td><td>金叉后柱线持续扩张，多头动能强劲</td></tr>
+                <tr><td>KDJ</td><td>K/D在超买区，J值&gt;90，短期注意回调风险</td></tr>
+                <tr><td>量价关系</td><td>放量上涨，量价配合极佳</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥480.00（前高+整数关口）</span>
+                <span class="support">🟢 支撑位：¥436.00（今日低点+近5日均线）</span>
+            </div>
+            <div class="recommendation recommend-add">
+                综合操作建议：🟩 增仓 — Q1业绩全面超预期，ALYFTREK+JOURNAVX+CASGEVY三线放量，povetacicept即将获批，技术面多头强势，建议增仓。
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Acumen Pharmaceuticals Inc（ABOS）</h2>
+                <span class="market-tag">US</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥2.52</span>
+                <span class="change change-down">-2.14%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> Acumen Q1 2026净亏损2070万美元，同比收窄28.1%，每股亏损$0.33。现金储备1.284亿美元，预计可支撑运营至2027年初。</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — 亏损收窄+现金充裕，财务压力减轻，ALTITUDE-AD数据年底前读出是核心催化</div>
+            <div class="news-source">🔗 GlobeNewswire <a href="https://www.manilatimes.net/2026/05/12/tmt-newswire/globenewswire/acumen-pharmaceuticals-reports-first-quarter-2026-financial-results-and-business-highlights/2341551" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-05-12T00:00:00</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>空头排列，均线系统全面向下</td></tr>
+                <tr><td>MACD</td><td>死叉，柱线扩张，空头动能强</td></tr>
+                <tr><td>KDJ</td><td>超卖区，J值&lt;10，技术性反弹窗口临近</td></tr>
+                <tr><td>量价关系</td><td>缩量下跌，抛压减轻</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥2.62（今日高点）</span>
+                <span class="support">🟢 支撑位：¥2.30（历史低点附近）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — ALTITUDE-AD数据年底前读出是核心价值支撑，当前价位风险收益比合理，建议持有等待数据催化，不追空。
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Ionis Pharmaceuticals Inc（IONS）</h2>
+                <span class="market-tag">US</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥77.00</span>
+                <span class="change change-up">+2.15%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> Ionis Q1 2026营收同比暴增86%至2.46亿美元，由TRQENZA和DAWNZERA商业销售放量驱动。公司上调olezarsen峰值销售指引从20亿美元以上至30亿美元以上。</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — 营收超预期+olezarsen销售指引大幅上调，市场重估管线价值</div>
+            <div class="news-source">🔗 Intellectia AI <a href="https://intellectia.ai/news/stock/ionis-pharmaceuticals-q1-2026-earnings-call-highlights" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-04-29T00:00:00</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>多头排列，均线系统向上</td></tr>
+                <tr><td>MACD</td><td>金叉，柱线扩张，多头占优</td></tr>
+                <tr><td>KDJ</td><td>强势区，J值&gt;80，短期超买注意回调</td></tr>
+                <tr><td>量价关系</td><td>放量上涨，量价配合良好</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥80.00（整数关口+前高）</span>
+                <span class="support">🟢 支撑位：¥75.00（今日低点+均线支撑）</span>
+            </div>
+            <div class="recommendation recommend-add">
+                综合操作建议：🟩 增仓 — Q1营收暴增86%，olezarsen峰值销售指引大幅上调，分析师一致看好，技术面多头，建议增仓。
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Alnylam Pharmaceuticals Inc（ALNY）</h2>
+                <span class="market-tag">US</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥295.10</span>
+                <span class="change change-up">+3.60%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> Alnylam Q1 2026实现历史性转折，从净亏损转为净利润，合并产品收入突破10亿美元，同比增长121%。AMVUTTRA在获批后首个完整季度商业化表现强劲。</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — 首次实现季度盈利+产品收入翻倍，AMVUTTRA商业化超预期</div>
+            <div class="news-source">🔗 Sahm Capital <a href="https://www.sahmcapital.com/news/content/alnylam-pharmaceuticals-alny-valuation-after-q1-2026-profit-breakthrough-and-revenue-surge-2026-05-05" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-05-05T00:00:00</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>多头排列，均线系统完美向上</td></tr>
+                <tr><td>MACD</td><td>金叉，柱线持续扩张，多头动能强劲</td></tr>
+                <tr><td>KDJ</td><td>超买区，J值&gt;90，短期有回调压力</td></tr>
+                <tr><td>量价关系</td><td>放量上涨，量价配合良好</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥310.00（前高+整数关口）</span>
+                <span class="support">🟢 支撑位：¥286.00（今日低点）</span>
+            </div>
+            <div class="recommendation recommend-add">
+                综合操作建议：🟩 增仓 — Q1首次实现盈利，AMVUTTRA商业化超预期，ATTR-CM市场空间巨大，技术面强势，建议增仓。
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 AC Immune SA（ACIU）</h2>
+                <span class="market-tag">US</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥2.76</span>
+                <span class="change change-down">-2.47%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> AC Immune联合创始人兼CEO Dr. Andrea Pfeifer宣布将于2026年6月11日AGM后退休，结束23年任期。董事会任命现任董事长Dr. Martin Zügel为临时CEO。</div>
+            <div class="news-impact impact-down">🔻 <strong>股价影响：</strong>负向▼ — 创始人CEO离职带来领导层不确定性，短期情绪偏负面，但过渡安排较为平稳</div>
+            <div class="news-source">🔗 StockTitan <a href="https://www.stocktitan.net/news/ACIU/ac-immune-announces-retirement-of-ceo-dr-andrea-pfeifer-at-upcoming-5x5dnu4di9id.html" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-05-12T00:00:00</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>空头排列，均线系统向下</td></tr>
+                <tr><td>MACD</td><td>死叉，柱线扩张，空头动能强</td></tr>
+                <tr><td>KDJ</td><td>超卖区，J值&lt;20，关注技术性反弹</td></tr>
+                <tr><td>量价关系</td><td>缩量下跌</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥2.86（今日高点）</span>
+                <span class="support">🟢 支撑位：¥2.50（历史低点+整数关口）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — CEO离职短期压制情绪，但公司管线稳健、现金充裕、合作方强大，当前价位具备中长期布局价值，建议持有。
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 药明生物（02269）</h2>
+                <span class="market-tag">HK</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥32.50</span>
+                <span class="change change-up">+1.20%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 药明生物入选港股通创新药ETF前三大重仓股，机构持续增配。2026年5月8日港股通创新药ETF嘉实基金份额增加400万份，万家基金增加100万份。</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — ETF持续扩容带来被动资金流入，药明生物作为龙头直接受益</div>
+            <div class="news-source">🔗 证券之星 <a href="https://hk.stockstar.com/hshare/02269" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-05-09T00:00:00</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>均线纠缠，短期方向不明</td></tr>
+                <tr><td>MACD</td><td>金叉雏形，柱线由负转正</td></tr>
+                <tr><td>KDJ</td><td>拐头向上，短期或有反弹</td></tr>
+                <tr><td>量价关系</td><td>量能温和放大</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥35.00（前高+整数关口）</span>
+                <span class="support">🟢 支撑位：¥30.00（整数关口+近期低点）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — 港股医药板块整体估值低位，药明生物作为CDMO龙头长期价值稳固，但短期均线纠缠方向不明，建议持有等待方向选择。
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 荣昌生物（688331）</h2>
+                <span class="market-tag">CN</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥124.63</span>
+                <span class="change change-up">+0.59%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 荣昌生物2026年一季报显示，一季度主营收入6.56亿元，同比上升24.76%；归母净利润3.28亿元，同比暴增229.06%。毛利率82.18%，盈利能力强劲。</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — Q1业绩大超市场预期，归母净利润暴增229%，盈利能力大幅改善</div>
+            <div class="news-source">🔗 搜狐财经 <a href="https://www.sohu.com/a/1015945151_122121789" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-05-01T00:00:00</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>均线死叉，短期走势偏弱</td></tr>
+                <tr><td>MACD</td><td>死叉，柱线扩张，空头占优</td></tr>
+                <tr><td>KDJ</td><td>超卖区，J值&lt;20，关注反弹机会</td></tr>
+                <tr><td>量价关系</td><td>缩量整理</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥140.00（前高+整数关口）</span>
+                <span class="support">🟢 支撑位：¥120.00（整数关口+近期低点）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — Q1业绩暴增229%验证基本面，短期技术面调整提供布局机会，建议持有，待调整结束后再考虑增仓。
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 卓胜微（300782）</h2>
+                <span class="market-tag">CN</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥109.90</span>
+                <span class="change change-up">+2.34%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 卓胜微2026年5月7日召开业绩说明会，公司表示已具备射频前端全品类产品能力，其中全国产供应链L-PMID系列产品已成为驱动公司未来营收增长的明珠型产品。</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — L-PMID全国产供应链产品是未来增长核心，业绩说明会释放积极信号</div>
+            <div class="news-source">🔗 同花顺财经 <a href="https://stock.10jqka.com.cn/20260507/c676521916.shtml" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-05-07T00:00:00</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>均线金叉雏形，短期走势转强</td></tr>
+                <tr><td>MACD</td><td>金叉初步形成，柱线由负转正</td></tr>
+                <tr><td>KDJ</td><td>拐头向上，短期强势</td></tr>
+                <tr><td>量价关系</td><td>放量上涨，主力资金净流入5.44亿元，量价配合良好</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥120.00（前高+整数关口）</span>
+                <span class="support">🟢 支撑位：¥100.00（整数关口+近期低点）</span>
+            </div>
+            <div class="recommendation recommend-add">
+                综合操作建议：🟩 增仓 — L-PMID全国产供应链产品放量在即，业绩说明会释放积极信号，主力资金大幅净流入，技术面转强，建议增仓。
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 有研新材（600206）</h2>
+                <span class="market-tag">CN</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥31.92</span>
+                <span class="change change-down">-2.89%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 有研新材2026年5月12日收盘报31.92元，下跌2.89%，换手率11.35%，成交额30.43亿元。公司铂族产品原材料主要为贵金属，受益于贵金属价格上涨。</div>
+            <div class="news-impact impact-down">🔻 <strong>股价影响：</strong>负向▼ — 主力资金净卖出+短期涨幅较大后调整，但贵金属涨价逻辑未变</div>
+            <div class="news-source">🔗 证券之星 <a href="https://wap.stockstar.com/detail/RB2026051200034349" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"><span class="news-time">2026-05-12T00:00:00</span></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>短期均线上穿后回踩，走势震荡</td></tr>
+                <tr><td>MACD</td><td>金叉后柱线收窄，短期调整</td></tr>
+                <tr><td>KDJ</td><td>拐头向下，短期调整压力</td></tr>
+                <tr><td>量价关系</td><td>换手率11.35%，筹码充分交换</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥36.00（前高）</span>
+                <span class="support">🟢 支撑位：¥30.00（整数关口+均线支撑）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — 贵金属+稀土+半导体材料三轮驱动逻辑长期成立，短期调整后仍是布局机会，建议持有，等待调整结束。
+            </div>
+        </div>
+    </section>
+  <div class="footer">本报告由 AI 生成，仅供参考，请仔细甄别，谨慎投资。</div>
+</div>
+</body>
+</html>
