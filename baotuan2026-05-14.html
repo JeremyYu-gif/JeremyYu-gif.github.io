@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股机构抱团识别报告 2026-05-14</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0e17;
+    color: #d1d5db;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    padding: 40px 20px;
+    line-height: 1.6;
+  }
+  .container { max-width: 1280px; margin: 0 auto; }
+  
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 40px 0 30px;
+    border-bottom: 1px solid #1e293b;
+    margin-bottom: 40px;
+  }
+  .header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .header .subtitle {
+    color: #6b7280;
+    font-size: 14px;
+  }
+  .header .badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #1e40af, #7c3aed);
+    color: #fff;
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-top: 12px;
+  }
+
+  /* Cards */
+  .card {
+    background: #111827;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  }
+  .card h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card h2 .icon {
+    font-size: 22px;
+  }
+  .card h2 .tag {
+    font-size: 12px;
+    font-weight: 400;
+    background: #1e293b;
+    color: #9ca3af;
+    padding: 2px 10px;
+    border-radius: 10px;
+    margin-left: 8px;
+  }
+
+  /* Tables */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid #1e293b;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  thead th {
+    background: #1a2332;
+    color: #9ca3af;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 1px solid #2d3748;
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 11px 14px;
+    border-bottom: 1px solid #1e293b;
+  }
+  tbody tr:hover { background: #1a2332; }
+  tbody tr:last-child td { border-bottom: none; }
+
+  .stock-code {
+    font-family: 'SF Mono', 'Courier New', monospace;
+    color: #60a5fa;
+    font-size: 13px;
+  }
+  .highlight { color: #34d399; font-weight: 600; }
+  .warn { color: #f59e0b; }
+  .danger { color: #ef4444; }
+  .value-up { color: #34d399; }
+  .value-down { color: #ef4444; }
+
+  /* Summary stats */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .stat-item {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+    padding: 18px;
+    text-align: center;
+  }
+  .stat-item .num {
+    font-size: 28px;
+    font-weight: 700;
+    color: #60a5fa;
+  }
+  .stat-item .label {
+    font-size: 13px;
+    color: #6b7280;
+    margin-top: 4px;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 30px 0;
+    border-top: 1px solid #1e293b;
+    margin-top: 40px;
+    color: #4b5563;
+    font-size: 12px;
+    line-height: 2;
+  }
+
+  @media (max-width: 768px) {
+    body { padding: 16px 10px; }
+    .header h1 { font-size: 24px; }
+    .card { padding: 16px; }
+    table { font-size: 13px; }
+    thead th, tbody td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>🔍 A股机构抱团识别报告</h1>
+  <div class="subtitle">报告日期：2026-05-14（周四）</div>
+  <div class="badge">📊 数据驱动 · 客观筛选 · 三条件交集</div>
+</div>
+
+<!-- Summary Cards -->
+<div class="stats-grid">
+  <div class="stat-item">
+    <div class="num">3</div>
+    <div class="label">入选行业板块</div>
+  </div>
+  <div class="stat-item">
+    <div class="num">16</div>
+    <div class="label">候选个股（基金持股>10%）</div>
+  </div>
+  <div class="stat-item">
+    <div class="num">8</div>
+    <div class="label">技术面强势个股</div>
+  </div>
+  <div class="stat-item">
+    <div class="num">6</div>
+    <div class="label">三重筛选全部达标</div>
+  </div>
+</div>
+
+<!-- =================== Part 1: 入选行业板块 =================== -->
+<div class="card">
+  <h2>
+    <span class="icon">🏭</span>
+    一、入选行业板块（三条件交集）
+    <span class="tag">交集条件：RRPS(120)>90 · 资金持续净流入 · ≥3家机构看好</span>
+  </h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>板块名称</th>
+          <th style="text-align:center">120日RRPS</th>
+          <th style="text-align:center">资金流入情况</th>
+          <th style="text-align:center">近1月机构看好数量</th>
+          <th>核心驱动</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>📡 通信（光模块/CPO/光纤光缆）</strong></td>
+          <td class="highlight" style="text-align:center">98+</td>
+          <td class="value-up" style="text-align:center">持续净流入 ⬆️</td>
+          <td style="text-align:center">≥10家</td>
+          <td>AI算力需求爆发，800G/1.6T光模块量价齐升，CPO商用元年</td>
+        </tr>
+        <tr>
+          <td><strong>🛰️ 国防军工（航天装备/商业航天）</strong></td>
+          <td class="highlight" style="text-align:center">97+</td>
+          <td class="value-up" style="text-align:center">持续净流入 ⬆️</td>
+          <td style="text-align:center">≥8家</td>
+          <td>"十五五"开局，商业航天密集发射，可回收火箭技术突破</td>
+        </tr>
+        <tr>
+          <td><strong>💾 电子（半导体/存储芯片/设备）</strong></td>
+          <td class="highlight" style="text-align:center">99+</td>
+          <td class="value-up" style="text-align:center">持续净流入 ⬆️</td>
+          <td style="text-align:center">≥8家</td>
+          <td>AI芯片需求+国产替代加速，存储涨价周期，半导体设备放量</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- =================== Part 2: 板块内个股 =================== -->
+<div class="card">
+  <h2>
+    <span class="icon">📋</span>
+    二、板块内候选个股
+    <span class="tag">基金持股>10% · 市值>200亿</span>
+  </h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>代码</th>
+          <th>名称</th>
+          <th style="text-align:center">板块</th>
+          <th style="text-align:center">基金持股(%)</th>
+          <th style="text-align:center">近1月机构评级</th>
+          <th style="text-align:center">总市值(亿)</th>
+          <th style="text-align:center">2025年净利(亿)</th>
+          <th style="text-align:center">ROE(%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="stock-code">300308.SZ</td>
+          <td>中际旭创</td>
+          <td style="text-align:center">通信</td>
+          <td class="highlight" style="text-align:center">20.87%</td>
+          <td class="value-up" style="text-align:center">强烈推荐/买入</td>
+          <td style="text-align:center">12,005</td>
+          <td style="text-align:center">108.0</td>
+          <td class="value-up" style="text-align:center">44.6%</td>
+        </tr>
+        <tr>
+          <td class="stock-code">300502.SZ</td>
+          <td>新易盛</td>
+          <td style="text-align:center">通信</td>
+          <td class="highlight" style="text-align:center">29.22%</td>
+          <td class="value-up" style="text-align:center">买入/强烈推荐</td>
+          <td style="text-align:center">6,142</td>
+          <td style="text-align:center">95.3</td>
+          <td class="value-up" style="text-align:center">72.4%</td>
+        </tr>
+        <tr>
+          <td class="stock-code">300394.SZ</td>
+          <td>天孚通信</td>
+          <td style="text-align:center">通信</td>
+          <td class="highlight" style="text-align:center">10.71%</td>
+          <td class="value-up" style="text-align:center">买入(花旗目标价446元)</td>
+          <td style="text-align:center">3,054</td>
+          <td style="text-align:center">20.2</td>
+          <td class="value-up" style="text-align:center">42.5%</td>
+        </tr>
+        <tr>
+          <td class="stock-code">600487.SH</td>
+          <td>亨通光电</td>
+          <td style="text-align:center">通信</td>
+          <td class="highlight" style="text-align:center">16.12%</td>
+          <td class="value-up" style="text-align:center">强烈推荐/买入</td>
+          <td style="text-align:center">1,825</td>
+          <td style="text-align:center">26.8</td>
+          <td style="text-align:center">8.7%</td>
+        </tr>
+        <tr>
+          <td class="stock-code">600522.SH</td>
+          <td>中天科技</td>
+          <td style="text-align:center">通信</td>
+          <td class="highlight" style="text-align:center">13.08%</td>
+          <td style="text-align:center">-</td>
+          <td style="text-align:center">1,505</td>
+          <td style="text-align:center">-</td>
+          <td style="text-align:center">-</td>
+        </tr>
+        <tr>
+          <td class="stock-code">688256.SH</td>
+          <td>寒武纪</td>
+          <td style="text-align:center">半导体</td>
+          <td class="highlight" style="text-align:center">11.60%</td>
+          <td class="value-up" style="text-align:center">买入(大摩列核心标的)</td>
+          <td style="text-align:center">7,920</td>
+          <td style="text-align:center">-</td>
+          <td style="text-align:center">-</td>
+        </tr>
+        <tr>
+          <td class="stock-code">688981.SH</td>
+          <td>中芯国际</td>
+          <td style="text-align:center">半导体</td>
+          <td class="highlight" style="text-align:center">16.05%</td>
+          <td class="value-up" style="text-align:center">买入</td>
+          <td style="text-align:center">6,114</td>
+          <td style="text-align:center">-</td>
+          <td style="text-align:center">-</td>
+        </tr>
+        <tr>
+          <td class="stock-code">688008.SH</td>
+          <td>澜起科技</td>
+          <td style="text-align:center">半导体</td>
+          <td class="highlight" style="text-align:center">21.71%</td>
+          <td class="value-up" style="text-align:center">买入</td>
+          <td style="text-align:center">3,358</td>
+          <td style="text-align:center">-</td>
+          <td style="text-align:center">-</td>
+        </tr>
+        <tr>
+          <td class="stock-code">688012.SH</td>
+          <td>中微公司</td>
+          <td style="text-align:center">半导体</td>
+          <td class="highlight" style="text-align:center">20.13%</td>
+          <td class="value-up" style="text-align:center">买入(目标价380元)</td>
+          <td style="text-align:center">2,427</td>
+          <td style="text-align:center">21.1</td>
+          <td class="value-up" style="text-align:center">-</td>
+        </tr>
+        <tr>
+          <td class="stock-code">603986.SH</td>
+          <td>兆易创新</td>
+          <td style="text-align:center">半导体</td>
+          <td class="highlight" style="text-align:center">13.78%</td>
+          <td class="value-up" style="text-align:center">买入</td>
+          <td style="text-align:center">2,531</td>
+          <td style="text-align:center">-</td>
+          <td style="text-align:center">-</td>
+        </tr>
+        <tr>
+          <td class="stock-code">688347.SH</td>
+          <td>华虹公司</td>
+          <td style="text-align:center">半导体</td>
+          <td class="highlight" style="text-align:center">12.68%</td>
+          <td style="text-align:center">-</td>
+          <td style="text-align:center">2,119</td>
+          <td style="text-align:center">-</td>
+          <td style="text-align:center">-</td>
+        </tr>
+        <tr>
+          <td class="stock-code">300604.SZ</td>
+          <td>长川科技</td>
+          <td style="text-align:center">半导体</td>
+          <td class="highlight" style="text-align:center">18.05%</td>
+          <td style="text-align:center">-</td>
+          <td style="text-align:center">1,325</td>
+          <td style="text-align:center">-</td>
+          <td style="text-align:center">-</td>
+        </tr>
+        <tr>
+          <td class="stock-code">688072.SH</td>
+          <td>拓荆科技</td>
+          <td style="text-align:center">半导体</td>
+          <td class="highlight" style="text-align:center">21.40%</td>
+          <td class="value-up" style="text-align:center">买入</td>
+          <td style="text-align:center">1,394</td>
+          <td style="text-align:center">-</td>
+          <td style="text-align:center">-</td>
+        </tr>
+        <tr>
+          <td class="stock-code">600879.SH</td>
+          <td>航天电子</td>
+          <td style="text-align:center">国防军工</td>
+          <td class="highlight" style="text-align:center">13.86%</td>
+          <td class="value-up" style="text-align:center">买入/增持(6家买入)</td>
+          <td style="text-align:center">795</td>
+          <td style="text-align:center">-</td>
+          <td style="text-align:center">-</td>
+        </tr>
+        <tr>
+          <td class="stock-code">688523.SH</td>
+          <td>航天环宇</td>
+          <td style="text-align:center">国防军工</td>
+          <td class="highlight" style="text-align:center">12.02%</td>
+          <td style="text-align:center">-</td>
+          <td style="text-align:center">315</td>
+          <td style="text-align:center">-</td>
+          <td style="text-align:center">-</td>
+        </tr>
+        <tr>
+          <td class="stock-code">688563.SH</td>
+          <td>航材股份</td>
+          <td style="text-align:center">国防军工</td>
+          <td class="highlight" style="text-align:center">10.53%</td>
+          <td class="value-up" style="text-align:center">增持/买入(多家机构)</td>
+          <td style="text-align:center">266</td>
+          <td style="text-align:center">5.36</td>
+          <td style="text-align:center">-</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- =================== Part 3: 技术面强势个股 =================== -->
+<div class="card">
+  <h2>
+    <span class="icon">📈</span>
+    三、技术面强势个股筛选
+    <span class="tag">RPS60≥85 · RPS20>90 · 回撤<20% · 基金持股>10% · 市值>200亿</span>
+  </h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>代码</th>
+          <th>名称</th>
+          <th style="text-align:center">板块</th>
+          <th style="text-align:center">60日涨幅</th>
+          <th style="text-align:center">RPS60</th>
+          <th style="text-align:center">20日涨幅</th>
+          <th style="text-align:center">RPS20</th>
+          <th style="text-align:center">近60日最大回撤</th>
+          <th style="text-align:center">沿5MA</th>
+          <th style="text-align:center">基金持股</th>
+          <th style="text-align:center">市值(亿)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="stock-code">300308.SZ</td>
+          <td>中际旭创</td>
+          <td style="text-align:center">通信</td>
+          <td class="value-up" style="text-align:center">+91.8%</td>
+          <td class="highlight" style="text-align:center">99✓</td>
+          <td class="value-up" style="text-align:center">+46.1%</td>
+          <td class="highlight" style="text-align:center">99✓</td>
+          <td class="value-up" style="text-align:center">~12%✓</td>
+          <td style="text-align:center">✅</td>
+          <td style="text-align:center">20.87%</td>
+          <td style="text-align:center">12,005</td>
+        </tr>
+        <tr>
+          <td class="stock-code">300502.SZ</td>
+          <td>新易盛</td>
+          <td style="text-align:center">通信</td>
+          <td class="value-up" style="text-align:center">+61.3%</td>
+          <td class="highlight" style="text-align:center">98✓</td>
+          <td class="value-up" style="text-align:center">+20.5%</td>
+          <td class="highlight" style="text-align:center">95✓</td>
+          <td class="value-up" style="text-align:center">~12%✓</td>
+          <td style="text-align:center">✅</td>
+          <td style="text-align:center">29.22%</td>
+          <td style="text-align:center">6,142</td>
+        </tr>
+        <tr>
+          <td class="stock-code">600487.SH</td>
+          <td>亨通光电</td>
+          <td style="text-align:center">通信</td>
+          <td class="value-up" style="text-align:center">+113.1%</td>
+          <td class="highlight" style="text-align:center">99✓</td>
+          <td class="value-up" style="text-align:center">+38.3%</td>
+          <td class="highlight" style="text-align:center">98✓</td>
+          <td class="value-up" style="text-align:center">~15%✓</td>
+          <td style="text-align:center">✅</td>
+          <td style="text-align:center">16.12%</td>
+          <td style="text-align:center">1,825</td>
+        </tr>
+        <tr>
+          <td class="stock-code">300394.SZ</td>
+          <td>天孚通信</td>
+          <td style="text-align:center">通信</td>
+          <td class="value-up" style="text-align:center">+55.6%</td>
+          <td class="highlight" style="text-align:center">98✓</td>
+          <td class="value-up" style="text-align:center">+11.7%</td>
+          <td class="highlight" style="text-align:center">92✓</td>
+          <td class="value-up" style="text-align:center">~15%✓</td>
+          <td style="text-align:center">✅</td>
+          <td style="text-align:center">10.71%</td>
+          <td style="text-align:center">3,054</td>
+        </tr>
+        <tr>
+          <td class="stock-code">600522.SH</td>
+          <td>中天科技</td>
+          <td style="text-align:center">通信</td>
+          <td class="value-up" style="text-align:center">+54.6%</td>
+          <td class="highlight" style="text-align:center">98✓</td>
+          <td class="value-up" style="text-align:center">+54.6%</td>
+          <td class="highlight" style="text-align:center">99✓</td>
+          <td class="value-up" style="text-align:center">~10%✓</td>
+          <td style="text-align:center">✅</td>
+          <td style="text-align:center">13.08%</td>
+          <td style="text-align:center">1,505</td>
+        </tr>
+        <tr>
+          <td class="stock-code">688008.SH</td>
+          <td>澜起科技</td>
+          <td style="text-align:center">半导体</td>
+          <td class="value-up" style="text-align:center">+74.1%</td>
+          <td class="highlight" style="text-align:center">99✓</td>
+          <td class="value-up" style="text-align:center">+74.1%</td>
+          <td class="highlight" style="text-align:center">99✓</td>
+          <td class="value-up" style="text-align:center">~8%✓</td>
+          <td style="text-align:center">✅</td>
+          <td style="text-align:center">21.71%</td>
+          <td style="text-align:center">3,358</td>
+        </tr>
+        <tr>
+          <td class="stock-code">600879.SH</td>
+          <td>航天电子</td>
+          <td style="text-align:center">国防军工</td>
+          <td class="value-down" style="text-align:center">-7.6%</td>
+          <td class="warn" style="text-align:center">35✗</td>
+          <td style="text-align:center">-</td>
+          <td class="warn" style="text-align:center">-✗</td>
+          <td class="danger" style="text-align:center">~30%✗</td>
+          <td style="text-align:center">❌</td>
+          <td style="text-align:center">13.86%</td>
+          <td style="text-align:center">795</td>
+        </tr>
+        <tr>
+          <td class="stock-code">688256.SH</td>
+          <td>寒武纪</td>
+          <td style="text-align:center">半导体</td>
+          <td class="value-up" style="text-align:center">+19.1%</td>
+          <td class="warn" style="text-align:center">70✗</td>
+          <td style="text-align:center">-</td>
+          <td class="warn" style="text-align:center">-✗</td>
+          <td class="danger" style="text-align:center">~30%✗</td>
+          <td style="text-align:center">❌</td>
+          <td style="text-align:center">11.60%</td>
+          <td style="text-align:center">7,920</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="margin-top:16px; padding:12px 16px; background:#0f172a; border-radius:8px; border:1px solid #1e293b;">
+    <p style="color:#34d399; font-size:14px; font-weight:600;">✅ 六只个股通过全部技术面筛选：</p>
+    <p style="color:#d1d5db; font-size:13px; margin-top:6px;">
+      <strong>中际旭创</strong>、<strong>新易盛</strong>、<strong>亨通光电</strong>、<strong>天孚通信</strong>、<strong>中天科技</strong>、<strong>澜起科技</strong>
+    </p>
+    <p style="color:#6b7280; font-size:12px; margin-top:4px;">
+      👆 以上个股RPS60≥85、20日RPS>90、沿5日均线上行、回撤<20%、基金持股>10%、市值>200亿 — 六项全部达标
+    </p>
+    <p style="color:#f59e0b; font-size:12px; margin-top:6px;">
+      ⚠️ 航天电子（60日-7.6%）、寒武纪（60日+19.1%，但最大回撤超30%）暂未通过技术面筛选
+    </p>
+  </div>
+</div>
+
+<!-- =================== 小结 =================== -->
+<div class="card">
+  <h2>
+    <span class="icon">💡</span>
+    四、综合研判小结
+  </h2>
+  <div style="padding: 0 4px;">
+    <p style="color:#d1d5db; margin-bottom:12px;">
+      <strong style="color:#60a5fa;">📡 通信（光模块/CPO）</strong> — 当前市场第一主线。AI算力需求爆发驱动800G→1.6T光模块量价齐升，CPO技术进入商用元年。
+      中际旭创（千元股，A股史上第十只千元股）、新易盛（净利增速236%）为板块双龙头，基金重仓锁定。亨通光电、中天科技受益光纤光缆量价齐升。
+    </p>
+    <p style="color:#d1d5db; margin-bottom:12px;">
+      <strong style="color:#a78bfa;">💾 电子（半导体）</strong> — 国产替代+AI芯片双轮驱动。中芯国际406亿并购落地，中微公司平台化布局加速，澜起科技受益DDR5渗透。
+      多家国际投行（摩根士丹利等）持续看好中国半导体本土化趋势。
+    </p>
+    <p style="color:#d1d5db; margin-bottom:12px;">
+      <strong style="color:#34d399;">🛰️ 国防军工（商业航天）</strong> — "十五五"开局叠加全球军备扩张，商业航天进入密集发射期。蓝箭航天IPO、朱雀三号可回收火箭成功首飞等催化不断。
+      航天电子多机构买入评级，但短期技术面偏弱，需等待调整充分。
+    </p>
+    <p style="color:#f59e0b; margin-top:12px; font-size:13px;">
+      ⚠️ 当前三大板块均处于较高位置，通信板块尤甚（中际旭创60日涨幅91.8%）。建议关注回调后的布局机会，避免追高。
+    </p>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>📊 数据来源：同花顺iFind MCP · 东方财富妙想API</p>
+  <p>⏰ 生成时间：2026-05-14 17:43 CST</p>
+  <p>筛选条件：机构抱团三条件交集（资金净流入 ∩ RRPS(120)>90 ∩ 多机构看好）</p>
+  <p style="margin-top:8px; color:#374151;">
+    ⚠️ 免责声明：本报告仅供研究参考，不构成任何投资建议。投资有风险，入市需谨慎。报告中所有结论基于公开数据的客观筛选，不代表对未来表现的承诺或保证。
+  </p>
+</div>
+
+</div>
+</body>
+</html>
