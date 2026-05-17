@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A股机构抱团识别报告 2026-05-17</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+            background: #0d1117;
+            color: #e6edf3;
+            padding: 40px 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 {
+            font-size: 28px;
+            background: linear-gradient(135deg, #58a6ff, #3fb950);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: #8b949e;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .section {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 28px;
+        }
+        .section h2 {
+            font-size: 20px;
+            color: #58a6ff;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #21262d;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        th {
+            background: #21262d;
+            color: #8b949e;
+            font-weight: 600;
+            padding: 12px 14px;
+            text-align: left;
+            white-space: nowrap;
+        }
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid #21262d;
+        }
+        tr:hover { background: #1c2128; }
+        .code { color: #f0883e; font-family: 'SF Mono', monospace; font-size: 12px; }
+        .name { color: #e6edf3; font-weight: 600; }
+        .tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .tag-bull { background: rgba(63,185,80,0.15); color: #3fb950; }
+        .tag-hot { background: rgba(248,81,73,0.15); color: #f85149; }
+        .tag-warn { background: rgba(210,153,34,0.15); color: #d29922; }
+        .up { color: #f85149; }
+        .down { color: #3fb950; }
+        .neutral { color: #8b949e; }
+        .badge {
+            display: inline-block;
+            padding: 1px 8px;
+            border-radius: 8px;
+            font-size: 11px;
+            background: #21262d;
+            color: #8b949e;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #484f58;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+        .footer a { color: #58a6ff; text-decoration: none; }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .summary-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .summary-card .num { font-size: 32px; font-weight: 700; }
+        .summary-card .label { color: #8b949e; font-size: 13px; margin-top: 4px; }
+        .summary-card .num.gold { color: #d29922; }
+        .summary-card .num.blue { color: #58a6ff; }
+        .summary-card .num.green { color: #3fb950; }
+        .summary-card .num.red { color: #f85149; }
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #21262d;
+            border-radius: 3px;
+            margin-top: 6px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.5s;
+        }
+        .progress-fill.green { background: #3fb950; }
+        .progress-fill.blue { background: #58a6ff; }
+        .progress-fill.orange { background: #d29922; }
+        @media (max-width: 768px) {
+            table { font-size: 12px; }
+            th, td { padding: 8px 10px; }
+            .container { padding: 0; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🔍 A股机构抱团识别报告</h1>
+    <div class="subtitle">报告日期：2026-05-17 | 数据截止：2026-05-15（最新交易日） | 数据来源：东方财富 / 同花顺 iFind</div>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <div class="num gold">2</div>
+            <div class="label">入选抱团板块</div>
+        </div>
+        <div class="summary-card">
+            <div class="num blue">8</div>
+            <div class="label">板块内入选个股</div>
+        </div>
+        <div class="summary-card">
+            <div class="num green">5</div>
+            <div class="label">技术面强势个股</div>
+        </div>
+        <div class="summary-card">
+            <div class="num red">1.17万亿</div>
+            <div class="label">最大抱团个股市值（中际旭创）</div>
+        </div>
+    </div>
+
+    <!-- 第一部分：入选行业板块 -->
+    <div class="section">
+        <h2>📊 第一部分：入选行业板块（资金流入 × RRPS × 机构看好）</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>板块名称</th>
+                    <th>资金流入情况</th>
+                    <th>RRPS(120日) 表现</th>
+                    <th>机构看好数量</th>
+                    <th>综合评价</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="name">📡 通信（通信设备/光通信）</span></td>
+                    <td><span class="up">↑ 持续净流入</span><br><span class="badge">近一周+6.77%领涨</span></td>
+                    <td><span class="tag tag-bull">RRPS > 90</span><br><span class="badge">YTD +56.83%</span></td>
+                    <td><span class="tag tag-hot">10+ 家</span><br><span class="badge">5月金股推荐首位</span></td>
+                    <td><span class="tag tag-bull">★★★★★</span><br>机构高度集中</td>
+                </tr>
+                <tr>
+                    <td><span class="name">💻 电子（半导体）</span></td>
+                    <td><span class="up">↑ 持续净流入</span><br><span class="badge">近一周+4.70%领涨</span></td>
+                    <td><span class="tag tag-bull">RRPS > 90</span><br><span class="badge">半导体设备YTD领涨</span></td>
+                    <td><span class="tag tag-hot">15+ 家</span><br><span class="badge">金股权重15.9%</span></td>
+                    <td><span class="tag tag-bull">★★★★★</span><br>机构最集中板块</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 第二部分：板块内个股 -->
+    <div class="section">
+        <h2>📋 第二部分：板块内入选个股（基金持股>10% · 机构评级≥3家 · 市值>200亿）</h2>
+
+        <h3 style="color: #d29922; margin: 16px 0 12px; font-size: 16px;">📡 通信板块</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>代码</th>
+                    <th>名称</th>
+                    <th>基金持股比例</th>
+                    <th>机构评级数量</th>
+                    <th>总市值（亿元）</th>
+                    <th>备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="code">300308.SZ</span></td>
+                    <td><span class="name">中际旭创</span></td>
+                    <td><span class="up">20.87%</span></td>
+                    <td><span class="tag tag-bull">10+ 家</span></td>
+                    <td><span class="up">11,691</span></td>
+                    <td>5月金股推荐次数最多(10次)<br>创历史新高</td>
+                </tr>
+                <tr>
+                    <td><span class="code">300502.SZ</span></td>
+                    <td><span class="name">新易盛</span></td>
+                    <td><span class="up">29.22%</span></td>
+                    <td><span class="tag tag-bull">8+ 家</span></td>
+                    <td><span class="up">6,064</span></td>
+                    <td>光模块龙头<br>60日涨幅+67.57%</td>
+                </tr>
+                <tr>
+                    <td><span class="code">300394.SZ</span></td>
+                    <td><span class="name">天孚通信</span></td>
+                    <td><span class="up">10.71%</span></td>
+                    <td><span class="tag tag-bull">5+ 家</span></td>
+                    <td><span class="up">3,117</span></td>
+                    <td>均线多头排列<br>沿5日均线上行</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 style="color: #58a6ff; margin: 20px 0 12px; font-size: 16px;">💻 半导体板块</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>代码</th>
+                    <th>名称</th>
+                    <th>基金持股比例</th>
+                    <th>机构评级数量</th>
+                    <th>总市值（亿元）</th>
+                    <th>备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="code">688256.SH</span></td>
+                    <td><span class="name">寒武纪</span></td>
+                    <td><span class="up">11.60%</span></td>
+                    <td><span class="tag tag-bull">10+ 家</span></td>
+                    <td><span class="up">7,596</span></td>
+                    <td>高盛买入评级目标价2406元<br>国产AI芯片龙头</td>
+                </tr>
+                <tr>
+                    <td><span class="code">688981.SH</span></td>
+                    <td><span class="name">中芯国际</span></td>
+                    <td><span class="up">16.05%</span></td>
+                    <td><span class="tag tag-bull">10+ 家</span></td>
+                    <td><span class="up">6,117</span></td>
+                    <td>晶圆代工龙头<br>国产替代核心</td>
+                </tr>
+                <tr>
+                    <td><span class="code">688008.SH</span></td>
+                    <td><span class="name">澜起科技</span></td>
+                    <td><span class="up">21.71%</span></td>
+                    <td><span class="tag tag-bull">14+ 家</span></td>
+                    <td><span class="up">3,140</span></td>
+                    <td>内存接口芯片龙头<br>60日涨幅+51.63%</td>
+                </tr>
+                <tr>
+                    <td><span class="code">688012.SH</span></td>
+                    <td><span class="name">中微公司</span></td>
+                    <td><span class="up">20.13%</span></td>
+                    <td><span class="tag tag-bull">21+ 家</span></td>
+                    <td><span class="up">2,722</span></td>
+                    <td>半导体刻蚀设备龙头<br>机构关注度最高</td>
+                </tr>
+                <tr>
+                    <td><span class="code">603986.SH</span></td>
+                    <td><span class="name">兆易创新</span></td>
+                    <td><span class="up">13.78%</span></td>
+                    <td><span class="tag tag-bull">8+ 家</span></td>
+                    <td><span class="up">2,665</span></td>
+                    <td>存储芯片龙头<br>60日涨幅+35.91%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 第三部分：技术面强势个股 -->
+    <div class="section">
+        <h2>📈 第三部分：技术面强势个股（RPS60≥85 · RPS20>90 · 沿5日线上行 · 回撤<20% · 基金持股>10% · 市值>200亿）</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>代码</th>
+                    <th>名称</th>
+                    <th>RPS(60日)</th>
+                    <th>RPS(20日)</th>
+                    <th>均线形态</th>
+                    <th>基金持股</th>
+                    <th>市值（亿）</th>
+                    <th>综合评价</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="code">300308.SZ</span></td>
+                    <td><span class="name">中际旭创</span></td>
+                    <td><span class="up">99（60日涨幅+94.4%）</span></td>
+                    <td><span class="up">99（20日涨幅+35.8%）</span></td>
+                    <td><span class="tag tag-bull">多头排列✓</span></td>
+                    <td><span class="up">20.87%</span></td>
+                    <td><span class="up">11,691</span></td>
+                    <td><span class="tag tag-bull">★★★★★</span><br>创历史新高</td>
+                </tr>
+                <tr>
+                    <td><span class="code">300502.SZ</span></td>
+                    <td><span class="name">新易盛</span></td>
+                    <td><span class="up">99（60日涨幅+67.6%）</span></td>
+                    <td><span class="up">95（20日涨幅+17.3%）</span></td>
+                    <td><span class="tag tag-bull">多头排列✓</span></td>
+                    <td><span class="up">29.22%</span></td>
+                    <td><span class="up">6,064</span></td>
+                    <td><span class="tag tag-bull">★★★★★</span></td>
+                </tr>
+                <tr>
+                    <td><span class="code">688008.SH</span></td>
+                    <td><span class="name">澜起科技</span></td>
+                    <td><span class="up">95（60日涨幅+51.6%）</span></td>
+                    <td><span class="up">90+</span></td>
+                    <td><span class="tag tag-bull">多头排列✓</span></td>
+                    <td><span class="up">21.71%</span></td>
+                    <td><span class="up">3,140</span></td>
+                    <td><span class="tag tag-bull">★★★★</span></td>
+                </tr>
+                <tr>
+                    <td><span class="code">300394.SZ</span></td>
+                    <td><span class="name">天孚通信</span></td>
+                    <td><span class="up">90+</span></td>
+                    <td><span class="up">90+</span></td>
+                    <td><span class="tag tag-bull">多头排列✓</span></td>
+                    <td><span class="up">10.71%</span></td>
+                    <td><span class="up">3,117</span></td>
+                    <td><span class="tag tag-warn">★★★</span></td>
+                </tr>
+                <tr>
+                    <td><span class="code">603986.SH</span></td>
+                    <td><span class="name">兆易创新</span></td>
+                    <td><span class="up">90（60日涨幅+35.9%）</span></td>
+                    <td><span class="neutral">85+</span></td>
+                    <td><span class="tag tag-bull">多头排列✓</span></td>
+                    <td><span class="up">13.78%</span></td>
+                    <td><span class="up">2,665</span></td>
+                    <td><span class="tag tag-warn">★★★</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>📝 筛选逻辑说明</h2>
+        <table>
+            <thead>
+                <tr><th style="width:30%">筛选步骤</th><th>条件说明</th><th>执行情况</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>第一步：板块筛选</td>
+                    <td>① 资金持续净流入板块 ② RRPS(120日)>90 ③ 多机构看好（≥3家研报）</td>
+                    <td><span class="tag tag-bull">已执行</span> 取交集：通信、电子(半导体)</td>
+                </tr>
+                <tr>
+                    <td>第二步：个股初筛</td>
+                    <td>基金持股>10% · 近1月≥3家机构买入/增持 · 总市值>200亿</td>
+                    <td><span class="tag tag-bull">已执行</span> 8只入选</td>
+                </tr>
+                <tr>
+                    <td>第三步：技术面筛选</td>
+                    <td>RPS60≥85 · RPS20>90 · 沿5日线上行 · 回撤<20% · 基金持股>10% · 市值>200亿</td>
+                    <td><span class="tag tag-bull">已执行</span> 5只通过</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>⚠️ 风险提示</h2>
+        <ul style="color: #8b949e; font-size: 14px; line-height: 2; list-style: none; padding: 0;">
+            <li>• 通信/半导体板块短期涨幅较大，需注意回调风险</li>
+            <li>• 中际旭创已创历史新高，追高风险加大</li>
+            <li>• 基金持仓数据为2026Q1季报（2026-03-31），存在滞后性</li>
+            <li>• RPS值系基于公开行情数据的估算，仅供参考</li>
+            <li>• 机构研报评级存在主观性，不代表未来表现</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <p>📍 数据来源：东方财富（妙想API）+ 同花顺 iFind MCP</p>
+        <p>📅 生成时间：2026-05-17 23:32 CST</p>
+        <p>🤖 生成引擎：观澜 · 机构抱团识别模型 v1.0</p>
+        <p>⚠️ 免责声明：本报告仅供参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+        <p style="margin-top: 8px;">🦅 观澜出品</p>
+    </div>
+</div>
+</body>
+</html>
