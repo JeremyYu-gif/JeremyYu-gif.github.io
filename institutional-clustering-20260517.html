@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>机构抱团识别 | 2026-05-17</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #0d1117; color: #e6edf3; font-size: 14px; line-height: 1.6; }
+.container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding: 20px; background: linear-gradient(135deg, #1a1f2e 0%, #16213e 100%); border-radius: 12px; border: 1px solid #30363d; }
+.header-left h1 { font-size: 22px; color: #58a6ff; margin-bottom: 4px; }
+.header-left .subtitle { color: #8b949e; font-size: 13px; }
+.header-right { text-align: right; }
+.header-right .badge { background: #238636; color: #fff; padding: 4px 12px; border-radius: 12px; font-size: 12px; }
+.header-right .disclaimer { color: #6e7681; font-size: 11px; margin-top: 4px; }
+.summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+.summary-card { background: #161b22; border-radius: 10px; padding: 16px; border: 1px solid #30363d; }
+.summary-card .label { color: #8b949e; font-size: 12px; margin-bottom: 6px; }
+.summary-card .value { font-size: 22px; font-weight: 700; }
+.summary-card .value.up { color: #f85149; }
+.summary-card .value.down { color: #3fb950; }
+.summary-card .sub { color: #8b949e; font-size: 11px; margin-top: 4px; }
+.section-title { font-size: 16px; font-weight: 600; color: #58a6ff; margin: 28px 0 12px; padding-left: 12px; border-left: 3px solid #58a6ff; }
+.section-title.red { color: #f85149; border-color: #f85149; }
+.section-title.green { color: #3fb950; border-color: #3fb950; }
+.section-title.orange { color: #d29922; border-color: #d29922; }
+table { width: 100%; border-collapse: collapse; background: #161b22; border-radius: 8px; overflow: hidden; border: 1px solid #30363d; }
+thead th { background: #1c2128; color: #8b949e; font-weight: 500; font-size: 12px; padding: 10px 12px; text-align: left; border-bottom: 1px solid #30363d; }
+tbody td { padding: 10px 12px; font-size: 13px; border-bottom: 1px solid #21262d; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: #1c2128; }
+.up { color: #f85149; }
+.down { color: #3fb950; }
+.flat { color: #8b949e; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; margin: 1px; }
+.tag-red { background: rgba(248, 81, 73, 0.15); color: #f85149; border: 1px solid rgba(248, 81, 73, 0.3); }
+.tag-green { background: rgba(63, 185, 80, 0.15); color: #3fb950; border: 1px solid rgba(63, 185, 80, 0.3); }
+.tag-orange { background: rgba(210, 153, 34, 0.15); color: #d29922; border: 1px solid rgba(210, 153, 34, 0.3); }
+.tag-blue { background: rgba(88, 166, 255, 0.15); color: #58a6ff; border: 1px solid rgba(88, 166, 255, 0.3); }
+.tag-purple { background: rgba(188, 140, 255, 0.15); color: #bc8cff; border: 1px solid rgba(188, 140, 255, 0.3); }
+.tag-yellow { background: rgba(255, 213, 0, 0.12); color: #ffd000; border: 1px solid rgba(255, 213, 0, 0.3); }
+.signal-card { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+.signal { background: #161b22; border-radius: 8px; padding: 14px; border: 1px solid #30363d; }
+.signal .s-title { font-size: 12px; color: #8b949e; margin-bottom: 6px; }
+.signal .s-value { font-size: 15px; font-weight: 600; }
+.warning-box { background: rgba(210, 153, 34, 0.1); border: 1px solid rgba(210, 153, 34, 0.3); border-radius: 8px; padding: 14px; margin-top: 20px; }
+.warning-box .title { color: #d29922; font-weight: 600; font-size: 13px; margin-bottom: 8px; }
+.warning-box ul { margin-left: 18px; color: #c9a227; font-size: 13px; }
+.warning-box li { margin-bottom: 4px; }
+.footer { text-align: center; color: #6e7681; font-size: 11px; margin-top: 40px; padding: 16px; border-top: 1px solid #21262d; }
+.risk-tag { color: #f85149; font-size: 11px; }
+.info-tag { color: #58a6ff; font-size: 11px; }
+.fund-tag { color: #3fb950; font-size: 11px; }
+.chart-container { background: #161b22; border-radius: 8px; border: 1px solid #30363d; padding: 16px; margin-bottom: 20px; }
+.row-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.highlight-row { background: rgba(88, 166, 255, 0.05); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <h1>📊 机构抱团识别日报</h1>
+      <div class="subtitle">A股 · 近5日主力资金追踪 · 2026年5月17日（周六非交易日，数据截至5月15日）</div>
+    </div>
+    <div class="header-right">
+      <div class="badge">🕵️ 公募基金经理 + 行业研究员 + 实战散户</div>
+      <div class="disclaimer">数据来源：东方财富/同花顺iFinD | AI分析仅供参考，不构成投资建议</div>
+    </div>
+  </div>
+
+  <!-- Market Summary -->
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="label">上证指数</div>
+      <div class="value down">4135.39</div>
+      <div class="sub">-1.02% | 近5日 -1.07%</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">深证成指</div>
+      <div class="value down">15561.37</div>
+      <div class="sub">-1.17% | 近5日 -0.02%</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">两市成交额</div>
+      <div class="value up">~1.3万亿</div>
+      <div class="sub">（5月15日） | 量能有所放大</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">市场情绪</div>
+      <div class="value" style="color:#d29922">结构分化</div>
+      <div class="sub">电子出逃 248亿 | 电力设备分化</div>
+    </div>
+  </div>
+
+  <!-- Signal Cards -->
+  <div class="signal-card">
+    <div class="signal">
+      <div class="s-title">⚡ 抱团方向</div>
+      <div class="s-value" style="color:#f85149">光模块产业链<br><span style="font-size:13px;color:#8b949e">天孚通信 · 新易盛 · 中际旭创</span></div>
+    </div>
+    <div class="signal">
+      <div class="s-title">🚀 资金新宠</div>
+      <div class="s-value" style="color:#3fb950">光伏储能 + 电力设备<br><span style="font-size:13px;color:#8b949e">阳光电源 · 三花智控</span></div>
+    </div>
+    <div class="signal">
+      <div class="s-title">⚠️ 抱团松动</div>
+      <div class="s-value" style="color:#f85149">电子/半导体<br><span style="font-size:13px;color:#8b949e">连续3日出逃，机构减仓明显</span></div>
+    </div>
+  </div>
+
+  <!-- 一、近5日主力资金净流入板块 -->
+  <div class="section-title">一、机构抱团板块 TOP10（近5日主力资金净流入）</div>
+  <table>
+    <thead>
+      <tr>
+        <th>板块名称</th>
+        <th>今日涨跌幅</th>
+        <th>今日主力净流入(亿)</th>
+        <th>近5日资金特征</th>
+        <th>120日RPS</th>
+        <th>研报催化</th>
+        <th>综合评价</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:rgba(63,185,80,0.05)">
+        <td><span class="tag tag-blue">电力设备</span> 光伏/储能</td>
+        <td class="up">阳光电源 +13.27%</td>
+        <td class="up">+22.23亿</td>
+        <td><span class="tag tag-green">持续吸金</span> 多日净流入</td>
+        <td><span class="tag tag-orange">高</span></td>
+        <td><span class="info-tag">⭐⭐⭐⭐</span></td>
+        <td><span class="risk-tag">机构新宠</span></td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-blue">基础化工</span> 氟化工/固态电池</td>
+        <td class="up">多氟多涨停 +10.02%</td>
+        <td class="up">+21.69亿</td>
+        <td><span class="tag tag-green">单日爆发</span> 主力净流入</td>
+        <td><span class="tag tag-orange">高</span></td>
+        <td><span class="info-tag">⭐⭐⭐</span></td>
+        <td><span class="risk-tag">题材驱动</span></td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-purple">通信</span> 光模块/CPO</td>
+        <td>天孚通信 +2.04%</td>
+        <td>+8.46亿</td>
+        <td><span class="tag tag-yellow">高位震荡</span> 5日+20%</td>
+        <td><span class="tag tag-orange">极高</span></td>
+        <td><span class="info-tag">⭐⭐⭐⭐⭐</span></td>
+        <td><span class="risk-tag">AI算力核心</span></td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-blue">电力设备</span> 热管理</td>
+        <td class="up">三花智控 +5.32%</td>
+        <td class="up">+16.12亿</td>
+        <td><span class="tag tag-green">持续吸金</span> 20日+14%</td>
+        <td><span class="tag tag-orange">高</span></td>
+        <td><span class="info-tag">⭐⭐⭐</span></td>
+        <td><span class="risk-tag">新能源汽车热管理</span></td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-blue">机械设备</span></td>
+        <td>+0.92%</td>
+        <td>+30亿</td>
+        <td><span class="tag tag-green">板块整体净流入</span></td>
+        <td>中</td>
+        <td><span class="info-tag">⭐⭐</span></td>
+        <td>主题扩散</td>
+      </tr>
+      <tr style="background:rgba(248,81,73,0.05)">
+        <td><span class="tag tag-red">电子</span> 半导体/消费电子</td>
+        <td class="down">-1.12%</td>
+        <td class="up" style="color:#f85149">-248亿</td>
+        <td><span class="tag tag-red">出逃严重</span> 连续3日净流出</td>
+        <td><span class="tag tag-orange">高</span></td>
+        <td><span class="info-tag">⭐⭐⭐⭐⭐</span></td>
+        <td><span class="risk-tag">⚠️ 抱团松动</span></td>
+      </tr>
+      <tr style="background:rgba(248,81,73,0.05)">
+        <td><span class="tag tag-red">有色金属</span></td>
+        <td class="down">-4.10%</td>
+        <td class="up" style="color:#f85149">-151亿</td>
+        <td><span class="tag tag-red">大幅出逃</span> 云南锗业-13.78亿</td>
+        <td>高</td>
+        <td><span class="info-tag">⭐⭐⭐</span></td>
+        <td><span class="risk-tag">⚠️ 获利了结</span></td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-purple">通信设备</span></td>
+        <td class="down">-2.72%</td>
+        <td class="up" style="color:#f85149">-125亿</td>
+        <td><span class="tag tag-yellow">分化</span> 光模块内部轮动</td>
+        <td><span class="tag tag-orange">高</span></td>
+        <td><span class="info-tag">⭐⭐⭐⭐</span></td>
+        <td>内部结构性机会</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-blue">家用电器</span></td>
+        <td class="up">+0.81%</td>
+        <td class="up">+15.05亿</td>
+        <td><span class="tag tag-green">回暖</span> 三花智控带动</td>
+        <td>中</td>
+        <td><span class="info-tag">⭐⭐</span></td>
+        <td>稳健</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-orange">汽车零部件</span></td>
+        <td class="up">+1.43%</td>
+        <td class="up">+27.26亿</td>
+        <td><span class="tag tag-green">回暖</span> 巨轮智能涨停</td>
+        <td>中</td>
+        <td><span class="info-tag">⭐⭐</span></td>
+        <td>题材轮动</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 二、抱团板块核心个股 -->
+  <div class="section-title green">二、抱团板块核心个股（基金持仓 > 10%、近5日主力净流入、市值 > 200亿）</div>
+  <table>
+    <thead>
+      <tr>
+        <th>股票代码</th>
+        <th>股票名称</th>
+        <th>所属板块</th>
+        <th>总市值(亿)</th>
+        <th>基金持仓比例</th>
+        <th>近5日涨幅</th>
+        <th>今日主力净流入(亿)</th>
+        <th>机构评级</th>
+        <th>抱团逻辑</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:rgba(63,185,80,0.05)">
+        <td>sz300502</td>
+        <td><b style="color:#f85149">新易盛</b></td>
+        <td><span class="tag tag-purple">通信/光模块</span></td>
+        <td class="up">6,063.95</td>
+        <td><span class="fund-tag">17.86% ✅</span></td>
+        <td class="up">+10.58%</td>
+        <td class="down">-23.83</td>
+        <td><span class="info-tag">3+家买入</span></td>
+        <td>全球光模块龙头，800G/1.6T量产，基金重仓</td>
+      </tr>
+      <tr>
+        <td>sz300308</td>
+        <td><b style="color:#f85149">中际旭创</b></td>
+        <td><span class="tag tag-purple">通信/光模块</span></td>
+        <td class="up">11,691.36</td>
+        <td><span class="fund-tag">12.47% ✅</span></td>
+        <td class="up">+18.50%</td>
+        <td class="down">-14.24</td>
+        <td><span class="info-tag">3+家买入</span></td>
+        <td>全球光模块龙头，谷歌/英伟达核心供应商</td>
+      </tr>
+      <tr>
+        <td>sz300394</td>
+        <td><b style="color:#d29922">天孚通信</b></td>
+        <td><span class="tag tag-purple">通信/光模块</span></td>
+        <td class="up">3,116.57</td>
+        <td><span class="fund-tag" style="color:#d29922">8.19% ⚠️</span></td>
+        <td class="up">+20.51%</td>
+        <td class="up">+8.52</td>
+        <td><span class="info-tag">3+家买入</span></td>
+        <td>光无源器件龙头，AI算力必备，ROE极高</td>
+      </tr>
+      <tr>
+        <td>sz300274</td>
+        <td><b style="color:#3fb950">阳光电源</b></td>
+        <td><span class="tag tag-blue">电力设备/光伏</span></td>
+        <td class="up">3,170.98</td>
+        <td><span class="fund-tag" style="color:#d29922">6.07% ⚠️</span></td>
+        <td class="up">+9.91%</td>
+        <td class="up">+22.23</td>
+        <td><span class="info-tag">3+家买入</span></td>
+        <td>全球光伏逆变器龙头，储能爆发，大户选股标配</td>
+      </tr>
+      <tr>
+        <td>sh688820</td>
+        <td><b style="color:#d29922">盛合晶微</b></td>
+        <td><span class="tag tag-red">电子/半导体</span></td>
+        <td class="up">3,424.52</td>
+        <td><span class="info-tag">次新股</span></td>
+        <td class="up">+44.76%</td>
+        <td>--</td>
+        <td><span class="info-tag">次新炒作</span></td>
+        <td>次新股，半导体封装，YTD +834%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 三、强势股筛选 -->
+  <div class="section-title red">三、强势股筛选（RPS > 85、沿5日线、回撤 < 20%）</div>
+  <table>
+    <thead>
+      <tr>
+        <th>股票代码</th>
+        <th>股票名称</th>
+        <th>近5日涨幅</th>
+        <th>近20日涨幅</th>
+        <th>60日RPS</th>
+        <th>120日RPS</th>
+        <th>5日线状态</th>
+        <th>近20日回撤</th>
+        <th>总市值(亿)</th>
+        <th>基金持仓</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:rgba(248,81,73,0.05)">
+        <td>sz300394</td>
+        <td><b style="color:#f85149">天孚通信</b></td>
+        <td class="up">+20.51%</td>
+        <td class="up">+15.66%</td>
+        <td><span class="tag tag-red">极高</span></td>
+        <td><span class="tag tag-red">极高</span></td>
+        <td><span class="tag tag-green">✅ 强势</span></td>
+        <td class="up">小回撤</td>
+        <td>3,116.57</td>
+        <td>8.19%</td>
+      </tr>
+      <tr>
+        <td>sz300308</td>
+        <td><b style="color:#f85149">中际旭创</b></td>
+        <td class="up">+18.50%</td>
+        <td class="up">+35.99%</td>
+        <td><span class="tag tag-red">极高</span></td>
+        <td><span class="tag tag-red">极高</span></td>
+        <td><span class="tag tag-green">✅ 5日线上</span></td>
+        <td class="up">小回撤</td>
+        <td>11,691.36</td>
+        <td>12.47%</td>
+      </tr>
+      <tr>
+        <td>sh688820</td>
+        <td><b style="color:#d29922">盛合晶微</b></td>
+        <td class="up">+44.76%</td>
+        <td class="up">+834%</td>
+        <td><span class="tag tag-red">极高</span></td>
+        <td><span class="tag tag-red">极高</span></td>
+        <td><span class="tag tag-green">✅ 涨停</span></td>
+        <td>--</td>
+        <td>3,424.52</td>
+        <td>次新</td>
+      </tr>
+      <tr>
+        <td>sh688143</td>
+        <td><b style="color:#d29922">长盈通</b></td>
+        <td class="up">+52.91%</td>
+        <td class="up">+71.45%</td>
+        <td><span class="tag tag-red">极高</span></td>
+        <td><span class="tag tag-red">极高</span></td>
+        <td><span class="tag tag-green">✅ 涨停</span></td>
+        <td>小回撤</td>
+        <td>139.34 ⚠️</td>
+        <td>3.23%</td>
+      </tr>
+      <tr>
+        <td>sz300502</td>
+        <td><b style="color:#58a6ff">新易盛</b></td>
+        <td class="up">+10.58%</td>
+        <td class="up">+17.32%</td>
+        <td><span class="tag tag-red">极高</span></td>
+        <td><span class="tag tag-red">极高</span></td>
+        <td><span class="tag tag-yellow">⚠️ 高位震荡</span></td>
+        <td>有回撤压力</td>
+        <td>6,063.95</td>
+        <td>17.86%</td>
+      </tr>
+      <tr>
+        <td>sz300274</td>
+        <td><b style="color:#3fb950">阳光电源</b></td>
+        <td class="up">+9.91%</td>
+        <td class="up">+10.21%</td>
+        <td><span class="tag tag-orange">高</span></td>
+        <td><span class="tag tag-orange">高</span></td>
+        <td><span class="tag tag-green">✅ 5日线上</span></td>
+        <td>小回撤</td>
+        <td>3,170.98</td>
+        <td>6.07%</td>
+      </tr>
+      <tr>
+        <td>sz002407</td>
+        <td><b style="color:#bc8cff">多氟多</b></td>
+        <td class="up">+4.23%</td>
+        <td class="up">+18.10%</td>
+        <td><span class="tag tag-orange">高</span></td>
+        <td>高</td>
+        <td><span class="tag tag-green">✅ 涨停</span></td>
+        <td>小回撤</td>
+        <td>434.15</td>
+        <td>2.38% ⚠️</td>
+      </tr>
+      <tr>
+        <td>sz002050</td>
+        <td><b style="color:#3fb950">三花智控</b></td>
+        <td class="up">+0.72%</td>
+        <td class="up">+14.32%</td>
+        <td><span class="tag tag-orange">高</span></td>
+        <td>中</td>
+        <td><span class="tag tag-green">✅ 5日线上</span></td>
+        <td>小回撤</td>
+        <td>2,190.69</td>
+        <td>1.71% ⚠️</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 四、今日个股资金排行榜 -->
+  <div class="section-title orange">四、今日（5月15日）个股主力资金净流入 TOP10</div>
+  <table>
+    <thead>
+      <tr>
+        <th>排名</th>
+        <th>股票名称</th>
+        <th>今日涨跌幅</th>
+        <th>主力净流入(亿)</th>
+        <th>近5日净流入合计(亿)</th>
+        <th>总市值(亿)</th>
+        <th>基金持仓</th>
+        <th>资金性质</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:rgba(63,185,80,0.05)">
+        <td><b>1</b></td>
+        <td><b style="color:#3fb950">阳光电源</b></td>
+        <td class="up">+13.27%</td>
+        <td class="up">+22.23</td>
+        <td class="up">~30亿+</td>
+        <td>3,170.98</td>
+        <td>6.07%</td>
+        <td><span class="tag tag-green">机构+游资共振</span></td>
+      </tr>
+      <tr>
+        <td><b>2</b></td>
+        <td><b style="color:#bc8cff">多氟多</b></td>
+        <td class="up">+10.02% 🔥</td>
+        <td class="up">+21.69</td>
+        <td>~20亿</td>
+        <td>434.15</td>
+        <td>2.38%</td>
+        <td><span class="tag tag-yellow">游资主导</span></td>
+      </tr>
+      <tr>
+        <td><b>3</b></td>
+        <td>N维通利</td>
+        <td class="up">+297.20% 🆕</td>
+        <td class="up">+19.27</td>
+        <td>--</td>
+        <td>300.87</td>
+        <td>次新</td>
+        <td><span class="tag tag-purple">次新股</span></td>
+      </tr>
+      <tr>
+        <td><b>4</b></td>
+        <td><b style="color:#3fb950">三花智控</b></td>
+        <td class="up">+5.32%</td>
+        <td class="up">+16.12</td>
+        <td>~15亿</td>
+        <td>2,190.69</td>
+        <td>1.71%</td>
+        <td><span class="tag tag-green">机构+游资</span></td>
+      </tr>
+      <tr>
+        <td><b>5</b></td>
+        <td>巨轮智能</td>
+        <td class="up">+9.95%</td>
+        <td class="up">+10.16</td>
+        <td>~15亿</td>
+        <td>184.75</td>
+        <td>低</td>
+        <td><span class="tag tag-yellow">游资</span></td>
+      </tr>
+      <tr>
+        <td><b>6</b></td>
+        <td><b style="color:#f85149">天孚通信</b></td>
+        <td class="up">+2.04%</td>
+        <td class="up">+8.46</td>
+        <td class="up">~20亿+</td>
+        <td>3,116.57</td>
+        <td>8.19%</td>
+        <td><span class="tag tag-blue">机构+外资</span></td>
+      </tr>
+      <tr>
+        <td><b>7</b></td>
+        <td>领益智造</td>
+        <td class="up">消费电子</td>
+        <td class="up">~16.64亿</td>
+        <td>~20.85亿</td>
+        <td>--</td>
+        <td>--</td>
+        <td><span class="tag tag-blue">消费电子反弹</span></td>
+      </tr>
+      <tr>
+        <td><b>8</b></td>
+        <td>协鑫集成</td>
+        <td class="up">光伏涨停</td>
+        <td class="up">~13.84亿</td>
+        <td>--</td>
+        <td>--</td>
+        <td>低</td>
+        <td><span class="tag tag-yellow">游资</span></td>
+      </tr>
+      <tr>
+        <td><b>9</b></td>
+        <td>露笑科技</td>
+        <td>SiC概念</td>
+        <td class="up">~8.43亿</td>
+        <td>--</td>
+        <td>--</td>
+        <td>低</td>
+        <td><span class="tag tag-orange">题材</span></td>
+      </tr>
+      <tr>
+        <td><b>10</b></td>
+        <td>赛微电子</td>
+        <td>MEMS</td>
+        <td class="up">~8.24亿</td>
+        <td>--</td>
+        <td>--</td>
+        <td>低</td>
+        <td><span class="tag tag-orange">题材</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 五、今日主力出逃个股 -->
+  <div class="section-title red">五、今日（5月15日）主力资金出逃个股 TOP10 ⚠️</div>
+  <table>
+    <thead>
+      <tr>
+        <th>股票名称</th>
+        <th>今日涨跌幅</th>
+        <th>主力净流出(亿)</th>
+        <th>原因分析</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:rgba(248,81,73,0.08)">
+        <td>东山精密</td>
+        <td class="down">--</td>
+        <td class="down">-31.39亿</td>
+        <td>PCB龙头，高位机构减仓，龙虎榜机构净卖出</td>
+      </tr>
+      <tr>
+        <td>胜宏科技</td>
+        <td class="down">--</td>
+        <td class="down">-21.40亿</td>
+        <td>AI PCB，连续回调，机构获利了结</td>
+      </tr>
+      <tr>
+        <td>德明利</td>
+        <td class="down">--</td>
+        <td class="down">-15.92亿</td>
+        <td>存储芯片，跟随电子板块回调</td>
+      </tr>
+      <tr>
+        <td>中际旭创</td>
+        <td class="down">-2.61%</td>
+        <td class="down">-14.24亿</td>
+        <td>光模块龙头高位震荡，机构部分减仓</td>
+      </tr>
+      <tr>
+        <td>立讯精密</td>
+        <td class="down">--</td>
+        <td class="down">-13.86亿</td>
+        <td>消费电子龙头，遭机构连续减仓</td>
+      </tr>
+      <tr>
+        <td>云南锗业</td>
+        <td class="down">--</td>
+        <td class="down">-13.78亿</td>
+        <td>稀有金属，获利了结压力显著</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 六、机构视角深度分析 -->
+  <div class="section-title">六、机构视角深度分析</div>
+  <div class="chart-container">
+    <div id="chart1" style="width:100%;height:320px;"></div>
+  </div>
+
+  <!-- Key insights -->
+  <div class="warning-box">
+    <div class="title">🔍 机构抱团逻辑深度解读</div>
+    <ul>
+      <li><b>光模块产业链（天孚通信 / 新易盛 / 中际旭创）：</b>120日RPS极高，全球AI算力基础设施建设驱动800G/1.6T光模块需求爆发。但需注意：5月14-15日连续遭主力资金净流出，机构筹码有所松动，短期存在高位调整压力。中际旭创5日主力合计净流出超50亿，需高度警惕。</li>
+      <li><b>光伏储能板块（阳光电源）：</b>电力设备板块近期分化，阳光电源持续获得大额主力净流入（22亿/日）。消息面上，美国储能关税38.4%但新签订单充裕，安全港条款窗口期提前锁定需求。光伏产业链价格底部夯实，机构开始左侧布局。</li>
+      <li><b>氟化工/固态电池（多氟多）：</b>基础化工板块获16亿主力净流入，氟化锂龙头多氟多涨停。固态电池产业化加速催化氟化锂需求，机构席位合计净买入8422万元，游资+机构共同参与。</li>
+      <li><b>热管理赛道（三花智控）：</b>新能源汽车热管理龙头，20日涨幅14.32%，家电零部件板块近5日表现稳健。特斯拉/人形机器人热管理需求是中期逻辑。</li>
+      <li><b>电子/半导体（⚠️ 抱团松动）：</b>连续3日主力资金净流出超200亿/日，云南锗业、东山精密、胜宏科技等龙头均遭大幅出逃。电子板块Q1ROE+0.81pct，景气度仍在，但短期机构减仓明显。</li>
+    </ul>
+  </div>
+
+  <!-- 风险提示 -->
+  <div class="warning-box" style="background:rgba(248,81,73,0.08);border-color:rgba(248,81,73,0.3);">
+    <div class="title" style="color:#f85149;">⚠️ 风险提示（资深基金经理视角）</div>
+    <ul style="color:#e68080;">
+      <li><b>拥挤度风险：</b>光模块板块（天孚通信/中际旭创）RPS极高、筹码高位松动，机构减仓信号出现。一旦趋势反转，高位接盘者将面临较大回撤（>20%）。</li>
+      <li><b>电子板块出逃信号：</b>电子行业连续3日主力净流出超200亿/日，是明显的机构减仓信号，而非洗盘。多氟多/阳光电源等新宠能否接力存疑。</li>
+      <li><b>市值门槛：</b>长盈通（139亿）、盛合晶微次新（锁定期问题）不符合200亿市值标准，存在流动性风险。</li>
+      <li><b>市净率风险：</b>天孚通信PB=51.84x、中际旭创PB=33.83x、新易盛PB=29.76x，光模块三龙头估值极度泡沫化。</li>
+      <li><b>操作建议：</b>对抱团松动标的（新易盛/中际旭创）应降低仓位，对阳光电源/三花智控可逢低布局，对多氟多等题材股快进快出。</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <p>报告生成时间：2026-05-17 | 数据截止：2026-05-15 | 数据来源：东方财富、同花顺iFinD</p>
+    <p>本报告由 WorkBuddy AI 自动生成 | 仅供机构投资者参考，请仔细甄别，谨慎投资</p>
+    <p>⚠️ 机构抱团存在松动风险，请注意控制仓位，做好止损预案</p>
+  </div>
+
+</div>
+
+<script>
+var chart1 = echarts.init(document.getElementById('chart1'));
+var option1 = {
+  title: { text: '近5日主力资金净流入 TOP10 个股（亿元）', textStyle: { color: '#e6edf3', fontSize: 14 }, left: 10, top: 5 },
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  grid: { left: '3%', right: '4%', bottom: '3%', top: '12%', containLabel: true },
+  xAxis: { type: 'value', splitLine: { lineStyle: { color: '#30363d' } }, axisLine: { lineStyle: { color: '#30363d' } }, axisLabel: { color: '#8b949e' } },
+  yAxis: { type: 'category', data: ['协鑫集成', '领益智造', '巨轮智能', '天孚通信', '三花智控', 'N维通利', '多氟多', '阳光电源', '天孚通信(累计)', '阳光电源(累计)'], axisLine: { lineStyle: { color: '#30363d' } }, axisLabel: { color: '#8b949e', fontSize: 11 } },
+  series: [
+    {
+      name: '主力净流入（亿）',
+      type: 'bar',
+      data: [
+        { value: 13.84, itemStyle: { color: '#3fb950' } },
+        { value: 16.64, itemStyle: { color: '#3fb950' } },
+        { value: 10.16, itemStyle: { color: '#3fb950' } },
+        { value: 8.46, itemStyle: { color: '#3fb950' } },
+        { value: 16.12, itemStyle: { color: '#3fb950' } },
+        { value: 19.27, itemStyle: { color: '#bc8cff' } },
+        { value: 21.69, itemStyle: { color: '#f85149' } },
+        { value: 22.23, itemStyle: { color: '#f85149' } },
+        { value: 20, itemStyle: { color: '#58a6ff' } },
+        { value: 30, itemStyle: { color: '#58a6ff' } }
+      ],
+      label: { show: true, position: 'right', formatter: '{c}亿', color: '#8b949e', fontSize: 11 }
+    }
+  ]
+};
+chart1.setOption(option1);
+window.addEventListener('resize', function() { chart1.resize(); });
+</script>
+
+</body>
+</html>
