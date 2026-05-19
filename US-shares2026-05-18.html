@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>美股映射复盘 2026-05-18</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 1100px; margin: 0 auto; padding: 20px; background: #f5f7fa; color: #333; }
+    .header { text-align: center; padding: 30px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; border-radius: 12px; margin-bottom: 24px; }
+    .header h1 { margin: 0; font-size: 28px; }
+    .header .date { opacity: 0.8; margin-top: 8px; font-size: 16px; }
+    .section { background: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .section h2 { font-size: 20px; color: #1a1a2e; border-left: 4px solid #4CAF50; padding-left: 12px; margin-top: 0; }
+    .section h3 { font-size: 16px; color: #333; margin: 16px 0 8px; }
+    .index-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .index-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 10px; padding: 20px; text-align: center; }
+    .index-card h3 { margin: 0 0 8px; font-size: 16px; opacity: 0.9; }
+    .index-card .change { font-size: 28px; font-weight: bold; }
+    .up { color: #4caf50; font-weight: bold; }
+    .down { color: #f44336; font-weight: bold; }
+    .flat { color: #9e9e9e; font-weight: bold; }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+    th { background: #f0f2f5; padding: 10px 12px; text-align: left; font-weight: 600; border-bottom: 2px solid #e0e0e0; }
+    td { padding: 10px 12px; border-bottom: 1px solid #eee; }
+    tr:hover { background: #f8f9fb; }
+    .stock-name { font-weight: 600; }
+    .reason-box { background: #f8f9fb; border-radius: 8px; padding: 12px; margin-top: 8px; line-height: 1.6; }
+    .highlight-box { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-radius: 8px; padding: 16px; margin: 12px 0; border-left: 4px solid #ff9800; }
+    .risk-box { background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); border-radius: 8px; padding: 16px; margin: 12px 0; border-left: 4px solid #f44336; }
+    .opportunity-box { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-radius: 8px; padding: 16px; margin: 12px 0; border-left: 4px solid #4caf50; }
+    .footer { text-align: center; padding: 20px; color: #999; font-size: 13px; }
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; margin-left: 4px; }
+    .tag.positive { background: #e8f5e9; color: #2e7d32; }
+    .tag.negative { background: #ffebee; color: #c62828; }
+    .commodity-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .commodity-item { background: #f8f9fb; border-radius: 8px; padding: 14px; display: flex; justify-content: space-between; align-items: center; }
+    .commodity-item .name { font-weight: 600; }
+    .commodity-item .value { text-align: right; }
+    .commodity-item .value .price { font-size: 18px; font-weight: 700; display: block; }
+    @media (max-width: 768px) {
+      .index-grid { grid-template-columns: 1fr; }
+      .commodity-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>📊 美股映射复盘</h1>
+    <div class="date">2026年5月19日（复盘前一日美股：5月18日 周一）</div>
+  </div>
+  
+  <!-- 一、美股整体表现 -->
+  <div class="section">
+    <h2>一、美股整体表现</h2>
+    <div class="index-grid">
+      <div class="index-card">
+        <h3>道琼斯指数</h3>
+        <div class="change up">+0.32%</div>
+        <div>收于 49,686.12</div>
+      </div>
+      <div class="index-card">
+        <h3>纳斯达克指数</h3>
+        <div class="change down">-0.51%</div>
+        <div>收于 26,090.73</div>
+      </div>
+      <div class="index-card">
+        <h3>标普500指数</h3>
+        <div class="change flat">-0.07%</div>
+        <div>收于 7,403.05</div>
+      </div>
+    </div>
+    <div class="reason-box">
+      <strong>市场情绪：</strong>VIX指数高位震荡，恐慌情绪有所回升<br>
+      <strong>关键影响因素：</strong><br>
+      • <strong>美债收益率飙升</strong> — 10年期收益率触及4.61%，30年期突破5.0%创2007年以来最高，全球债券同步抛售，科技成长股承压<br>
+      • <strong>中东局势持续紧张</strong> — 美伊谈判陷入僵局，特朗普向伊朗施压，WTI原油站稳$102上方，布伦特逼近$110<br>
+      • <strong>通胀担忧重燃</strong> — 油价飙升叠加二次通胀风险，市场重新定价美联储利率路径，降息预期大幅消退<br>
+      • <strong>伯克希尔大幅增持谷歌</strong> — 巴菲特旗下伯克希尔哈撒韦将Alphabet持仓增至三倍以上，推动谷歌创历史新高，市值突破4.9万亿美元<br>
+      • <strong>本周重磅事件在即</strong> — 英伟达财报、美联储会议纪要、谷歌I/O大会、塔吉特/沃尔玛财报密集来袭
+    </div>
+  </div>
+
+  <!-- 二、强势板块与核心逻辑 -->
+  <div class="section">
+    <h2>二、强势板块与核心逻辑</h2>
+    
+    <h3>📈 涨幅居前板块</h3>
+    <table>
+      <tr><th>板块/概念</th><th>涨跌幅</th><th>领涨龙头</th><th>核心逻辑</th></tr>
+      <tr>
+        <td class="stock-name">🚀 商业航天</td>
+        <td class="up">+11%~+13%</td>
+        <td>Rocket Lab (+11%), Intuitive Machines (+13%)</td>
+        <td>SpaceX重大消息推动板块大涨，商业航天概念受追捧，火箭实验室创历史新高</td>
+      </tr>
+      <tr>
+        <td class="stock-name">🤖 AI软件应用</td>
+        <td class="up">+5%~+8%</td>
+        <td>Zeta Global (+8%), Roblox (+8%), ServiceNow (+6%)</td>
+        <td>AI应用层持续受资金追捧，英伟达财报预期推动AI产业链扩散</td>
+      </tr>
+      <tr>
+        <td class="stock-name">🔵 大型互联网</td>
+        <td class="up">+0.04%~+3%</td>
+        <td>谷歌 (+3% 盘中高), 亚马逊 (+1.5%)</td>
+        <td>伯克希尔三倍增持谷歌催化，谷歌创历史新高；亚马逊受AI云需求支撑</td>
+      </tr>
+      <tr>
+        <td class="stock-name">⛽ 能源油气</td>
+        <td class="up">小幅上涨</td>
+        <td>油服、勘探类</td>
+        <td>伊朗局势推高油价，WTI稳守$102，能源板块获避险资金流入</td>
+      </tr>
+      <tr>
+        <td class="stock-name">📱 科技硬件</td>
+        <td class="flat">分化</td>
+        <td>微软 (+0.38%)</td>
+        <td>微软发布新款商用Surface设备，英特尔酷睿Ultra 3系列处理器先行</td>
+      </tr>
+    </table>
+
+    <h3>📉 跌幅居前板块</h3>
+    <table>
+      <tr><th>板块/概念</th><th>涨跌幅</th><th>领跌个股</th><th>下跌原因</th></tr>
+      <tr>
+        <td class="stock-name">💾 存储芯片</td>
+        <td class="down">-5%~-6%</td>
+        <td>闪迪 (-6%), 希捷科技 (-6%), 西部数据 (-5%)</td>
+        <td>供需失衡担忧加剧，前期涨幅过大获利回吐，花旗虽上调SanDisk目标价但市场仍选择兑现利润</td>
+      </tr>
+      <tr>
+        <td class="stock-name">🔦 光通信</td>
+        <td class="down">-5%~-10%</td>
+        <td>应用光电 (-10%), Lumentum (-8%), Coherent (-5%), 康宁 (-4%)</td>
+        <td>AI算力预期降温传导至光模块板块，前期累积涨幅过大，技术性回调</td>
+      </tr>
+      <tr>
+        <td class="stock-name">🪙 加密货币</td>
+        <td class="down">-3%~-7%</td>
+        <td>Strategy (-7%), Coinbase (-3%), Circle (-3%)</td>
+        <td>美债收益率飙升压制风险偏好，比特币等加密货币承压回落</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 三、重点个股异动 -->
+  <div class="section">
+    <h2>三、重点个股异动</h2>
+    <table>
+      <tr><th>个股</th><th>代码</th><th>涨跌幅</th><th>异动原因</th></tr>
+      <tr>
+        <td class="stock-name">谷歌 <span class="tag positive">强势</span></td>
+        <td>GOOGL</td>
+        <td class="up">+0.04%（盘中涨~3%）</td>
+        <td>伯克希尔哈撒韦将Alphabet持仓增至三倍以上，市值突破4.9万亿美元创历史新高。本周召开I/O大会，市场期待Gemini新进展</td>
+      </tr>
+      <tr>
+        <td class="stock-name">苹果 <span class="tag negative">承压</span></td>
+        <td>AAPL</td>
+        <td class="down">-0.80%</td>
+        <td>美债收益率飙升压制科技成长股估值，苹果发布Apple Intelligence无障碍新功能，但短期缺乏催化</td>
+      </tr>
+      <tr>
+        <td class="stock-name">微软 <span class="tag positive">微涨</span></td>
+        <td>MSFT</td>
+        <td class="up">+0.38%</td>
+        <td>发布新款商用Surface设备，搭载英特尔酷睿Ultra 3系列处理器；AI企业需求支撑</td>
+      </tr>
+      <tr>
+        <td class="stock-name">亚马逊 <span class="tag positive">微涨</span></td>
+        <td>AMZN</td>
+        <td class="up">+1.5%盘中</td>
+        <td>AI云服务需求增长支撑股价，市场关注即将发布的财报</td>
+      </tr>
+      <tr>
+        <td class="stock-name">英伟达 <span class="tag negative">承压</span></td>
+        <td>NVDA</td>
+        <td class="down">~-1%</td>
+        <td>本周将公布财报，市场在财报前获利了结。前OpenAI神童斥资84亿美元做空AI芯片股，引发市场关注</td>
+      </tr>
+      <tr>
+        <td class="stock-name">台积电 <span class="tag negative">承压</span></td>
+        <td>TSM</td>
+        <td class="down">-2.08%</td>
+        <td>跟随芯片板块整体回调，存储/光通信下跌拖累整体半导体情绪</td>
+      </tr>
+      <tr>
+        <td class="stock-name">特斯拉 <span class="tag negative">承压</span></td>
+        <td>TSLA</td>
+        <td class="down">~-1%~-2%</td>
+        <td>新能源汽车板块承压，中概电动车普跌拖累情绪。美国方面，电动车用户每年或将多花$130电费</td>
+      </tr>
+      <tr>
+        <td class="stock-name">英特尔 <span class="tag negative">转跌</span></td>
+        <td>INTC</td>
+        <td class="down">-0.55%（盘前曾涨~6%）</td>
+        <td>盘前受芯片补贴政策预期上涨，但开盘后随板块回落转跌</td>
+      </tr>
+      <tr>
+        <td class="stock-name">闪迪/希捷 <span class="tag negative">重挫</span></td>
+        <td>WDC/STX</td>
+        <td class="down">-6%</td>
+        <td>存储芯片板块全线重挫，前期涨幅过大引发获利回吐，花旗虽上调目标价但仍止不住抛压</td>
+      </tr>
+      <tr>
+        <td class="stock-name">默沙东 <span class="tag positive">利好</span></td>
+        <td>MRK</td>
+        <td class="flat">关注</td>
+        <td>默沙东ADC药物达III期主要终点，创新药管线进展顺利</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 四、中概股表现 -->
+  <div class="section">
+    <h2>四、中概股表现</h2>
+    <div class="reason-box">
+      <strong>纳斯达克中国金龙指数：</strong>下跌约0.50%，报6,790.04点<br>
+      <strong>整体情绪：</strong>中概板块普跌，汽车股跌幅居前
+    </div>
+    <table>
+      <tr><th>个股</th><th>代码</th><th>涨跌幅</th><th>异动原因</th></tr>
+      <tr>
+        <td class="stock-name">理想汽车 <span class="tag negative">重挫</span></td>
+        <td>LI</td>
+        <td class="down">-10.0%+</td>
+        <td>新能源车竞争加剧，市场担忧Q2交付量不及预期，板块整体承压</td>
+      </tr>
+      <tr>
+        <td class="stock-name">小牛电动 <span class="tag negative">重挫</span></td>
+        <td>NIU</td>
+        <td class="down">-13%</td>
+        <td>业绩不及预期叠加板块悲观情绪，领跌中概</td>
+      </tr>
+      <tr>
+        <td class="stock-name">小鹏汽车 <span class="tag negative">下跌</span></td>
+        <td>XPEV</td>
+        <td class="down">-4%+</td>
+        <td>新能源车板块整体下行，竞争格局恶化担忧</td>
+      </tr>
+      <tr>
+        <td class="stock-name">蔚来 <span class="tag negative">下跌</span></td>
+        <td>NIO</td>
+        <td class="down">-3%+</td>
+        <td>跟随新能源车板块下行，资金流出明显</td>
+      </tr>
+      <tr>
+        <td class="stock-name">腾讯音乐 <span class="tag positive">大涨</span></td>
+        <td>TME</td>
+        <td class="up">+6.79%</td>
+        <td>在线音乐付费用户增长强劲，AI赋能内容创作获市场认可</td>
+      </tr>
+      <tr>
+        <td class="stock-name">霸王茶姬</td>
+        <td>CHA</td>
+        <td class="up">+2.54%</td>
+        <td>消费复苏预期支撑，品牌扩张持续</td>
+      </tr>
+      <tr>
+        <td class="stock-name">再鼎医药 <span class="tag negative">大跌</span></td>
+        <td>ZLAB</td>
+        <td class="down">-8%</td>
+        <td>医药板块回调，生物科技估值承压</td>
+      </tr>
+      <tr>
+        <td class="stock-name">阿里巴巴 <span class="tag flat">持平</span></td>
+        <td>BABA</td>
+        <td class="flat">+0.61%</td>
+        <td>中美经贸五大成果落地带来积极预期，但大盘拖累涨幅</td>
+      </tr>
+      <tr>
+        <td class="stock-name">百度 <span class="tag positive">微涨</span></td>
+        <td>BIDU</td>
+        <td class="up">+1%+</td>
+        <td>AI大模型进展获关注，短期有所支撑</td>
+      </tr>
+    </table>
+    <div class="risk-box">
+      <strong>⚠️ 关注：</strong>中概汽车板块短期需回避。理想汽车单日暴跌超10%，板块性抛售压力明显。等待更好的入场时机。
+    </div>
+  </div>
+
+  <!-- 五、大宗商品与相关资产 -->
+  <div class="section">
+    <h2>五、大宗商品与相关资产</h2>
+    <div class="commodity-grid">
+      <div class="commodity-item">
+        <span class="name">🛢️ WTI原油</span>
+        <div class="value">
+          <span class="price">$102.49</span>
+          <span class="flat">/桶</span>
+        </div>
+      </div>
+      <div class="commodity-item">
+        <span class="name">🛢️ 布伦特原油</span>
+        <div class="value">
+          <span class="price">$109.69</span>
+          <span class="flat">/桶</span>
+        </div>
+      </div>
+      <div class="commodity-item">
+        <span class="name">🥇 黄金 (COMEX)</span>
+        <div class="value">
+          <span class="price">$4,570.80</span>
+          <span class="flat">/盎司</span>
+        </div>
+      </div>
+      <div class="commodity-item">
+        <span class="name">🟤 LME铜</span>
+        <div class="value">
+          <span class="price">$13,590</span>
+          <span class="flat">/吨</span>
+        </div>
+      </div>
+      <div class="commodity-item">
+        <span class="name">📈 美元指数</span>
+        <div class="value">
+          <span class="price">~99.34</span>
+          <span class="flat">震荡偏强</span>
+        </div>
+      </div>
+      <div class="commodity-item">
+        <span class="name">📉 美债10Y收益率</span>
+        <div class="value">
+          <span class="price down">4.61%</span>
+          <span class="flat">↑ 飙升</span>
+        </div>
+      </div>
+    </div>
+    <div class="reason-box" style="margin-top: 12px;">
+      <strong>📝 商品要点：</strong><br>
+      • <strong>原油：</strong>WTI $102.49，布伦特 $109.69。美伊紧张局势持续推高油价，特朗普给伊朗时间至下周初来达成协议。盘中美原油一度从$104跌至$99（振幅超5%），波动剧烈<br>
+      • <strong>黄金：</strong>$4,570.80/盎司。中东避险需求支撑金价，但强势美元和飙升的美债收益率压制上行空间。近期SPDR黄金ETF遭减持<br>
+      • <strong>铜：</strong>$13,590/吨。维持在历史高位附近，全球能源转型和AI算力基建需求支撑<br>
+      • <strong>美债：</strong>10年期收益率飙升至4.61%，30年期突破5.0%创2007年以来最高。全球债券市场同步暴跌，二次通胀预期升温<br>
+      • <strong>美元：</strong>指数维持99.34附近，均线粘合方向不明，短期偏多但缺乏趋势共振
+    </div>
+  </div>
+
+  <!-- 六、重要信息点评 -->
+  <div class="section">
+    <h2>六、重要信息点评</h2>
+    
+    <h3>📌 重大事件</h3>
+    <table>
+      <tr><th>事件</th><th>详情</th><th>市场影响</th></tr>
+      <tr>
+        <td class="stock-name">伯克希尔三倍增持谷歌</td>
+        <td>巴菲特旗下伯克希尔哈撒韦将Alphabet持仓增至三倍以上</td>
+        <td class="up">正面 — 谷歌创历史新高，市值突破4.9万亿美元</td>
+      </tr>
+      <tr>
+        <td class="stock-name">美债收益率飙升</td>
+        <td>30年期美债收益率突破5%，创2007年以来最高水平。10年期升至4.61%</td>
+        <td class="down">负面 — 科技成长股估值承压，风险偏好下降</td>
+      </tr>
+      <tr>
+        <td class="stock-name">中美经贸成果落地</td>
+        <td>五大核心领域取得积极共识：关税安排、贸易投资理事会、降税、沟通机制、知识产权</td>
+        <td class="up">正面 — 但短期被收益率飙升和地缘风险盖过</td>
+      </tr>
+      <tr>
+        <td class="stock-name">美银基金经理调查</td>
+        <td>40%基金经理视"二次通胀"为头号威胁，投资者有序逐险而非疯狂扫货</td>
+        <td class="down">中性偏负面 — 市场情绪谨慎</td>
+      </tr>
+      <tr>
+        <td class="stock-name">家得宝财报</td>
+        <td>Q1净销售额$417.7亿（+4.8%），超预期$415.9亿。调整后EPS $3.43，高于预期$3.41</td>
+        <td class="up">中性偏正 — 低开高走，最终涨0.3%。消费者缩减大额家装项目</td>
+      </tr>
+      <tr>
+        <td class="stock-name">AI芯片交易拥挤预警</td>
+        <td>资金蜂拥涌入AI芯片板块，从散户到大空头热议过热。前OpenAI神童斥84亿美元做空AI芯片</td>
+        <td class="down">需警惕 — AI板块短期回调风险加大</td>
+      </tr>
+    </table>
+
+    <h3>🏛️ 美联储与宏观经济</h3>
+    <div class="reason-box">
+      <strong>美联储动态：</strong><br>
+      • 特朗普表示将让新任美联储主席Kevin Warsh"按自己的意愿决定利率"，暗示央行独立性<br>
+      • 美国4月CPI环比+0.6%，核心CPI环比+0.4%，通胀仍然顽固<br>
+      • 30年期收益率破5%，市场重新定价利率路径，降息预期大幅消退<br>
+      • 本周四将公布最新FOMC会议纪要，市场关注其对通胀和利率路径的表述<br>
+      • 美国财长贝森特敦促七国集团协助打击伊朗财政
+    </div>
+
+    <h3>🌍 地缘政治</h3>
+    <div class="risk-box">
+      <strong>风险加剧：</strong><br>
+      • 美伊谈判陷入僵局，特朗普给伊朗"时间至下周初来达成协议"，否则"将什么都不剩"<br>
+      • 美国制裁伊朗影子银行系统及19艘船只<br>
+      • 美国财长贝森特敦促盟友执行伊朗制裁"没有任何借口"<br>
+      • 油价高位运行持续放大通胀压力，全球金融市场承压
+    </div>
+  </div>
+
+  <!-- 七、映射到A股的潜在方向 -->
+  <div class="section">
+    <h2>七、映射到A股的潜在方向</h2>
+    
+    <div class="opportunity-box">
+      <strong>🟢 A股映射机会：</strong>
+    </div>
+    
+    <table>
+      <tr><th>方向</th><th>美股映射</th><th>A股相关板块</th><th>逻辑</th></tr>
+      <tr>
+        <td class="stock-name">🚀 商业航天</td>
+        <td>Rocket Lab +11%, 直觉机器+13%</td>
+        <td>A股航天概念（航天电子、中国卫星、天箭科技等）</td>
+        <td>SpaceX赚钱效应扩散，国内商业航天产业加速，近期政策催化密集</td>
+      </tr>
+      <tr>
+        <td class="stock-name">🤖 AI应用软件</td>
+        <td>ServiceNow +6%, Zeta +8%</td>
+        <td>A股AI应用（金山办公、科大讯飞、用友网络、万兴科技）</td>
+        <td>AI从基础设施向应用层扩散的确定性趋势，英伟达财报前后市场情绪集中</td>
+      </tr>
+      <tr>
+        <td class="stock-name">⛽ 油气能源</td>
+        <td>能源板块获避险资金流入</td>
+        <td>A股石化（中国石油、中国海油、中海油服、杰瑞股份）</td>
+        <td>中东局势紧张持续支撑油价，能源板块具备防御属性</td>
+      </tr>
+      <tr>
+        <td class="stock-name">🟤 铜/有色金属</td>
+        <td>LME铜 $13,590/吨</td>
+        <td>A股铜业（紫金矿业、洛阳钼业、江西铜业）</td>
+        <td>铜价维持高位，全球能源转型+AI基建需求持续拉动</td>
+      </tr>
+      <tr>
+        <td class="stock-name">🔵 中概互联</td>
+        <td>腾讯音乐+6.79%，百度+1%</td>
+        <td>港股科技（腾讯、美团、快手、B站）</td>
+        <td>中美经贸成果落地带来估值修复预期，但短期需回避汽车板块</td>
+      </tr>
+      <tr>
+        <td class="stock-name">💊 创新药</td>
+        <td>默沙东ADC达III期终点</td>
+        <td>A股创新药（百济神州、信达生物、荣昌生物、科伦药业）</td>
+        <td>全球创新药管线进展良好，ADC领域国内外共振</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 八、投资机会 -->
+  <div class="section">
+    <h2>八、投资机会</h2>
+    
+    <div class="opportunity-box">
+      <strong>🎯 短期关注方向（1-2周）：</strong><br>
+      1. <strong>英伟达财报交易：</strong>本周英伟达财报是关键催化剂。AI产业链（光模块、服务器、PCB）在A股仍有机会。若财报超预期，国产算力（寒武纪、海光信息）可能跟涨<br>
+      2. <strong>油气板块避险：</strong>中东局势短期难解，油价维持高位利好油服板块。中国海油、杰瑞股份等具备配置价值<br>
+      3. <strong>商业航天主题：</strong>美股商业航天的大涨有望映射到A股航天板块，关注航天电子、中国卫星等标的<br>
+      4. <strong>铜/有色金属：</strong>铜价持续高位运行，紫金矿业、洛阳钼业等受益于大宗商品景气周期
+    </div>
+
+    <div class="highlight-box">
+      <strong>💡 中期布局思路（1-3个月）：</strong><br>
+      1. <strong>AI算力基础设施：</strong>美债收益率飙升压制美股科技股，但AI算力长期需求确定。英伟达财报若超预期将提振全球AI产业链信心。A股关注：中际旭创、工业富联、沪电股份<br>
+      2. <strong>中国优质互联网龙头：</strong>中美经贸关系缓和，估值修复空间大。港股科技ETF是不错的选择<br>
+      3. <strong>黄金避险：</strong>中东局势+二次通胀+去美元化趋势三重支撑，金价中期仍有上涨空间。山东黄金、紫金矿业等受益
+    </div>
+  </div>
+
+  <!-- 九、风险提示 -->
+  <div class="section">
+    <h2>九、风险提示</h2>
+    
+    <div class="risk-box">
+      <strong>🔴 主要风险：</strong><br>
+      1. <strong>美债收益率持续攀升：</strong>30年期收益率突破5%是重大信号，若10年期突破4.8%，将对全球风险资产形成系统性压力<br>
+      2. <strong>二次通胀风险：</strong>美银调查显示40%基金经理视其为头号威胁。油价延续高位可能倒逼美联储重新收紧货币，对成长股估值形成压制<br>
+      3. <strong>中东冲突升级：</strong>美伊对峙短期无解，若冲突升级断供霍尔木兹海峡，油价可能突破$120，引发全球滞胀恐慌<br>
+      4. <strong>AI板块过热：</strong>前OpenAI神童斥84亿美元做空AI芯片股，AI交易拥挤度创历史新高。英伟达财报若不及预期，可能引发板块性回调<br>
+      5. <strong>A股外部压制：</strong>美债收益率飙升+美元走强将对新兴市场的资金流向形成压制，北向资金可能阶段性流出
+    </div>
+
+    <div class="reason-box">
+      <strong>📋 本周待观察事件清单：</strong><br>
+      • 5月19日（周二）美股盘中：英伟达财报预期博弈<br>
+      • 5月20日（周三）：英伟达(NVDA)正式公布Q1财报——最关键事件<br>
+      • 5月20-22日：谷歌I/O开发者大会<br>
+      • 5月21日（周四）：最新FOMC会议纪要公布<br>
+      • 5月21日：塔吉特(TGT)财报<br>
+      • 5月22日：沃尔玛(WMT)财报<br>
+      • 中东局势：特朗普给伊朗的"下周初"期限临近
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>📊 观澜 · 美股映射复盘 | 报告生成时间：2026-05-19 00:01 CST</p>
+    <p>数据来源：CNBC、同花顺iFind、新浪财经、东方财富 | 本报告仅供参考，不构成投资建议</p>
+  </div>
+</body>
+</html>
