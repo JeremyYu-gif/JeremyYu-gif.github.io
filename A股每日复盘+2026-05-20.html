@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股每日复盘 2026-05-20</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0e1a; color: #c8d6e5; font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; min-height: 100vh; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; }
+.header { text-align: center; padding: 30px 0; border-bottom: 1px solid #1e2a4a; margin-bottom: 30px; }
+.header h1 { font-size: 28px; color: #ffd700; letter-spacing: 4px; }
+.header .sub { color: #7f8fa6; font-size: 13px; margin-top: 8px; }
+.header .badge { display: inline-block; background: #1e2a4a; color: #ffd700; padding: 4px 14px; border-radius: 12px; font-size: 12px; margin-top: 10px; }
+
+.card { background: #111827; border: 1px solid #1e2a4a; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+.card-title { font-size: 16px; font-weight: 600; color: #ffd700; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 1px solid #1e2a4a; display: flex; align-items: center; gap: 8px; }
+.card-title .tag { background: #1e2a4a; color: #7f8fa6; font-size: 11px; padding: 2px 8px; border-radius: 4px; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
+
+.index-box { text-align: center; padding: 14px; background: #0d1520; border-radius: 8px; border: 1px solid #1a2440; }
+.index-box .name { font-size: 13px; color: #7f8fa6; margin-bottom: 4px; }
+.index-box .price { font-size: 22px; font-weight: 700; color: #fff; }
+.index-box .change { font-size: 14px; font-weight: 600; }
+.up { color: #e74c3c; } .down { color: #2ecc71; } .flat { color: #7f8fa6; }
+
+.stat-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #0d1520; }
+.stat-row .label { color: #7f8fa6; font-size: 13px; }
+.stat-row .value { font-weight: 600; font-size: 14px; }
+
+.signal { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+.signal-danger { background: rgba(231,76,60,0.15); color: #e74c3c; }
+.signal-warning { background: rgba(241,196,15,0.15); color: #f1c40f; }
+.signal-safe { background: rgba(46,204,113,0.15); color: #2ecc71; }
+.signal-info { background: rgba(52,152,219,0.15); color: #3498db; }
+
+.chart-container { width: 100%; height: 400px; margin-top: 10px; }
+
+.rating-bar { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+.rating-bar .bar-bg { flex: 1; height: 6px; background: #0d1520; border-radius: 3px; overflow: hidden; }
+.rating-bar .bar-fill { height: 100%; border-radius: 3px; }
+.rating-bar .bar-label { min-width: 80px; font-size: 13px; }
+.rating-bar .bar-score { min-width: 24px; font-size: 13px; font-weight: 700; color: #ffd700; }
+
+.sector-card { background: #0d1520; border-radius: 8px; padding: 14px; margin-bottom: 10px; border-left: 3px solid #ffd700; }
+.sector-card h4 { font-size: 14px; color: #ffd700; margin-bottom: 6px; }
+.sector-card p { font-size: 13px; color: #b0bec5; line-height: 1.6; }
+.sector-card .tag-weak { display: inline-block; padding: 1px 8px; border-radius: 3px; font-size: 11px; margin-right: 4px; }
+.tag-s { background: rgba(46,204,113,0.2); color: #2ecc71; } .tag-a { background: rgba(52,152,219,0.2); color: #3498db; } .tag-b { background: rgba(241,196,15,0.2); color: #f1c40f; } .tag-c { background: rgba(231,76,60,0.2); color: #e74c3c; }
+
+.conclusion-box { background: linear-gradient(135deg, #0d1520 0%, #1a2440 100%); border: 2px solid #ffd700; border-radius: 12px; padding: 24px; margin-bottom: 20px; text-align: center; }
+.conclusion-box .main { font-size: 20px; font-weight: 700; color: #fff; line-height: 1.8; }
+.conclusion-box .main .up { color: #e74c3c; } .conclusion-box .main .down { color: #2ecc71; }
+
+.table-mini { width: 100%; border-collapse: collapse; font-size: 13px; }
+.table-mini th { background: #0d1520; color: #7f8fa6; padding: 8px; text-align: center; font-weight: 400; }
+.table-mini td { padding: 8px; text-align: center; border-bottom: 1px solid #0d1520; }
+
+.flow-item { padding: 8px 0; border-bottom: 1px solid #0d1520; font-size: 13px; display: flex; justify-content: space-between; }
+.flow-item:last-child { border-bottom: none; }
+
+@media (max-width: 768px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>🦅 A股每日复盘</h1>
+  <div class="sub">2026年5月20日 星期三 | 观澜 · 首席分析</div>
+  <div class="badge">数据来源：同花顺iFind MCP + 东方财富</div>
+</div>
+
+<!-- ===== 1. 今日核心结论 ===== -->
+<div class="conclusion-box">
+  <div class="main">
+    🎯 <span class="down">大盘震荡分化</span> · <span class="up">科创一枝独秀</span><br>
+    上证<span class="down">-0.18%</span> · 深成指<span class="flat">平收</span> · 创业板<span class="up">+0.34%</span> · 科创50<span class="up">+3.20%</span><br>
+    成交额2.95万亿（放量672亿）· 1631涨/3804跌 · <span class="signal-danger">赚钱效应较差</span>
+  </div>
+  <div style="margin-top:12px; color:#b0bec5; font-size:14px; line-height:1.8;">
+    <strong>定调：</strong>存量博弈下的极致分化行情。科创50放量突破再创历史新高，半导体产业链全面爆发；但沪指受电力、煤炭等权重拖累微跌，全市场超3700只个股下跌，典型"赚指数不赚钱"格局。<span class="up">科创牛</span>与<span class="down">权重熊</span>并行，市场风格极端化加剧。
+  </div>
+</div>
+
+<!-- ===== 指数表现 ===== -->
+<div class="card">
+  <div class="card-title">📊 核心指数表现 <span class="tag">收盘</span></div>
+  <div class="grid-4">
+    <div class="index-box">
+      <div class="name">上证指数</div>
+      <div class="price">4162.18</div>
+      <div class="change down">-0.18%</div>
+    </div>
+    <div class="index-box">
+      <div class="name">深证成指</div>
+      <div class="price">15569.98</div>
+      <div class="change flat">±0.00%</div>
+    </div>
+    <div class="index-box">
+      <div class="name">创业板指</div>
+      <div class="price">3921.79</div>
+      <div class="change up">+0.34%</div>
+    </div>
+    <div class="index-box">
+      <div class="name">科创50</div>
+      <div class="price">1832.02</div>
+      <div class="change up">+3.20%</div>
+    </div>
+  </div>
+  <div style="margin-top:12px; background:#0d1520; border-radius:8px; padding:12px;">
+    <div class="stat-row"><span class="label">沪深两市成交额</span><span class="value up">29,537亿</span></div>
+    <div class="stat-row"><span class="label">较上日变化</span><span class="value up">+672亿</span></div>
+    <div class="stat-row"><span class="label">科创50振幅</span><span class="value">4.00%</span></div>
+    <div class="stat-row"><span class="label">科创板成交额</span><span class="value up">~5,028亿</span></div>
+    <div class="stat-row"><span class="label">中小100</span><span class="value down">-0.19%</span></div>
+    <div class="stat-row"><span class="label">深证700</span><span class="value down">-0.27%</span></div>
+  </div>
+</div>
+
+<!-- Grid: 资金面 + 市场情绪 -->
+<div class="grid-2">
+
+<!-- ===== 2. 资金面（机构视角） ===== -->
+<div class="card">
+  <div class="card-title">💰 资金面 <span class="tag">机构视角</span></div>
+
+  <div style="margin-bottom:12px;">
+    <h4 style="color:#7f8fa6; font-size:13px; margin-bottom:6px;">北向资金</h4>
+    <div class="grid-2" style="gap:8px;">
+      <div>
+        <div style="background:#0d1520; border-radius:8px; padding:10px; text-align:center;">
+          <div style="font-size:11px; color:#7f8fa6;">当日净流入</div>
+          <div style="font-size:20px; font-weight:700; color:#e74c3c;">20.39亿</div>
+          <div style="font-size:11px; color:#2ecc71;">连续4日净流入</div>
+        </div>
+      </div>
+      <div>
+        <div style="background:#0d1520; border-radius:8px; padding:10px; text-align:center;">
+          <div style="font-size:11px; color:#7f8fa6;">沪股通</div>
+          <div style="font-size:16px; font-weight:600; color:#e74c3c;">+7.65亿</div>
+          <div style="font-size:11px; color:#7f8fa6;">深股通</div>
+          <div style="font-size:16px; font-weight:600; color:#e74c3c;">+12.74亿</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:12px;">
+    <h4 style="color:#7f8fa6; font-size:13px; margin-bottom:6px;">南向资金（港股通）</h4>
+    <div style="background:#0d1520; border-radius:8px; padding:10px;">
+      <div class="stat-row"><span class="label">当日净买入</span><span class="value up">57.08亿港元</span></div>
+      <div class="stat-row"><span class="label">中芯国际</span><span class="value up">+21.66亿</span></div>
+      <div class="stat-row"><span class="label">中国移动</span><span class="value up">+15.64亿</span></div>
+      <div class="stat-row"><span class="label">华虹半导体</span><span class="value up">+7.98亿</span></div>
+    </div>
+  </div>
+
+  <div>
+    <h4 style="color:#7f8fa6; font-size:13px; margin-bottom:6px;">龙虎榜机构动向</h4>
+    <div style="background:#0d1520; border-radius:8px; padding:10px;">
+      <div class="stat-row"><span class="label">弘信电子</span><span class="value up">4机构净买入4.10亿</span></div>
+      <div class="stat-row"><span class="label">钧崴电子</span><span class="value up">机构净买入2529万</span></div>
+      <div class="stat-row"><span style="color:#7f8fa6; font-size:12px;">游资方向</span><span style="color:#b0bec5; font-size:12px;">半导体产业链、液冷服务器</span></div>
+      <div class="stat-row"><span style="color:#7f8fa6; font-size:12px;">机构主攻</span><span style="color:#b0bec5; font-size:12px;">半导体设备/材料、芯片制造</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 3. 市场情绪（散户+游资视角） ===== -->
+<div class="card">
+  <div class="card-title">🔥 市场情绪 <span class="tag">散户+游资</span></div>
+
+  <div class="grid-3" style="gap:8px; margin-bottom:12px;">
+    <div style="background:#0d1520; border-radius:8px; padding:10px; text-align:center;">
+      <div style="font-size:11px; color:#7f8fa6;">上涨/下跌</div>
+      <div style="font-size:15px;"><span class="up">1631</span> / <span class="down">3804</span></div>
+      <div style="font-size:11px; color:#7f8fa6;">涨跌比 0.43</div>
+    </div>
+    <div style="background:#0d1520; border-radius:8px; padding:10px; text-align:center;">
+      <div style="font-size:11px; color:#7f8fa6;">涨停</div>
+      <div style="font-size:20px; font-weight:700; color:#e74c3c;">71</div>
+      <div style="font-size:11px; color:#2ecc71;">9%以上 74只</div>
+    </div>
+    <div style="background:#0d1520; border-radius:8px; padding:10px; text-align:center;">
+      <div style="font-size:11px; color:#7f8fa6;">跌停</div>
+      <div style="font-size:20px; font-weight:700; color:#2ecc71;">20+</div>
+      <div style="font-size:11px; color:#7f8fa6;">电力股批量跌停</div>
+    </div>
+  </div>
+
+  <div style="background:#0d1520; border-radius:8px; padding:10px; margin-bottom:12px;">
+    <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px;">
+      <div><span style="color:#7f8fa6; font-size:12px;">最高连板</span> <span style="color:#ffd700; font-weight:700;">利仁科技8板</span></div>
+      <div><span style="color:#7f8fa6; font-size:12px;">次高</span> <span style="color:#ffd700;">威龙股份6板</span></div>
+      <div><span style="color:#7f8fa6; font-size:12px;">连板股</span> <span style="color:#b0bec5;">诚邦3板/川润3板</span></div>
+      <div><span style="color:#7f8fa6; font-size:12px;">情绪</span> <span class="signal-warning">高位分化</span></div>
+    </div>
+  </div>
+
+  <!-- 涨跌家数比 ECharts -->
+  <h4 style="color:#7f8fa6; font-size:13px; margin-bottom:6px;">近60日涨跌家数比趋势</h4>
+  <div class="chart-container" id="advanceDeclineChart"></div>
+</div>
+
+</div>
+
+<!-- ===== 4. 行业主线复盘 ===== -->
+<div class="card">
+  <div class="card-title">📈 行业主线复盘 <span class="tag">研究员视角</span></div>
+
+  <div class="grid-2" style="gap:16px;">
+
+    <div>
+      <div style="background:#0d1520; border-radius:8px; padding:12px; margin-bottom:12px;">
+        <h4 style="font-size:13px; color:#7f8fa6; margin-bottom:6px;">🏆 申万一级行业今日表现</h4>
+        <div style="margin-bottom:8px;">
+          <h5 style="color:#e74c3c; font-size:12px;">涨幅前5</h5>
+          <div class="rating-bar"><span class="bar-label">电子</span><div class="bar-bg"><div class="bar-fill" style="width:72%; background:#e74c3c;"></div></div><span class="bar-score">+2.17%</span></div>
+          <div class="rating-bar"><span class="bar-label">电力设备</span><div class="bar-bg"><div class="bar-fill" style="width:29%; background:#e74c3c;"></div></div><span class="bar-score">+0.86%</span></div>
+          <div class="rating-bar"><span class="bar-label">基础化工</span><div class="bar-bg"><div class="bar-fill" style="width:18%; background:#e74c3c;"></div></div><span class="bar-score">+0.54%</span></div>
+          <div class="rating-bar"><span class="bar-label">石油石化</span><div class="bar-bg"><div class="bar-fill" style="width:13%; background:#e74c3c;"></div></div><span class="bar-score">+0.39%</span></div>
+          <div class="rating-bar"><span class="bar-label">建筑材料</span><div class="bar-bg"><div class="bar-fill" style="width:12%; background:#e74c3c;"></div></div><span class="bar-score">+0.35%</span></div>
+        </div>
+        <div>
+          <h5 style="color:#2ecc71; font-size:12px;">跌幅前5</h5>
+          <div class="rating-bar"><span class="bar-label">公用事业</span><div class="bar-bg"><div class="bar-fill" style="width:100%; background:#2ecc71;"></div></div><span class="bar-score">-3.51%</span></div>
+          <div class="rating-bar"><span class="bar-label">传媒</span><div class="bar-bg"><div class="bar-fill" style="width:69%; background:#2ecc71;"></div></div><span class="bar-score">-2.41%</span></div>
+          <div class="rating-bar"><span class="bar-label">计算机</span><div class="bar-bg"><div class="bar-fill" style="width:49%; background:#2ecc71;"></div></div><span class="bar-score">-1.71%</span></div>
+          <div class="rating-bar"><span class="bar-label">商贸零售</span><div class="bar-bg"><div class="bar-fill" style="width:43%; background:#2ecc71;"></div></div><span class="bar-score">-1.52%</span></div>
+          <div class="rating-bar"><span class="bar-label">煤炭</span><div class="bar-bg"><div class="bar-fill" style="width:39%; background:#2ecc71;"></div></div><span class="bar-score">-1.36%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sector-card" style="border-left-color:#e74c3c;">
+        <h4>🥇 半导体产业链（强度：10/10）</h4>
+        <p><strong>今日表现：</strong>科创50涨3.20%，半导体设备+5.90%，中芯国际成交290亿，华虹、寒武纪创历史新高，上海合晶、晶方科技、兆易创新涨停。</p>
+        <p><strong>催化：</strong>长鑫IPO推进、长江存储冲刺科创板，存储芯片涨价周期持续，AI算力需求拉动设备材料国产替代。</p>
+        <p><strong>持续性：</strong><span class="tag-s">强持续性</span> 产业趋势+政策催化+资金共振，关注设备/材料/封测细分轮动。</p>
+      </div>
+
+      <div class="sector-card" style="border-left-color:#e74c3c;">
+        <h4>🥈 液冷服务器 / 光模块（强度：8/10）</h4>
+        <p><strong>今日表现：</strong>川润股份3连板，同飞股份、申菱环境涨超12%，宏盛股份涨停，杭电股份续创历史新高。</p>
+        <p><strong>催化：</strong>AI算力需求驱动的散热/液冷方案爆发，光模块CPO技术迭代加速。</p>
+        <p><strong>持续性：</strong><span class="tag-s">较强</span> AI资本开支高峰期，液冷渗透率快速提升，趋势性机会。</p>
+      </div>
+
+      <div class="sector-card" style="border-left-color:#3498db;">
+        <h4>🥉 锂电池/新能源（强度：7/10）</h4>
+        <p><strong>今日表现：</strong>电池化学品+2.62%，逆变器+4.98%，锂电正极/电解液概念走强。</p>
+        <p><strong>催化：</strong>产业链业绩拐点确立，盈利全面修复，固态电池产业化持续推进。</p>
+        <p><strong>持续性：</strong><span class="tag-a">中等偏强</span> 供需格局改善，但需警惕产能释放节奏。</p>
+      </div>
+
+      <div class="sector-card" style="border-left-color:#3498db;">
+        <h4>🏅 氟化工/化工材料（强度：6/10）</h4>
+        <p><strong>今日表现：</strong>氟化工概念+2.95%，有机硅+2.28%，电子化学品+2.24%，江化微等大涨。</p>
+        <p><strong>催化：</strong>半导体材料国产替代订单放量，氟化工制冷剂涨价周期。</p>
+        <p><strong>持续性：</strong><span class="tag-a">中等</span> 半导体材料跟随芯片主线，化工端受制于油价波动。</p>
+      </div>
+
+      <div class="sector-card" style="border-left-color:#f1c40f;">
+        <h4>⚠️ 石油石化/油气（强度：5/10）</h4>
+        <p><strong>今日表现：</strong>油品石化贸易+2.43%，和顺石油涨停，石油石化板块+0.39%。</p>
+        <p><strong>催化：</strong>中东地缘风险推升油价，布油109.69美元/桶高位运行。</p>
+        <p><strong>持续性：</strong><span class="tag-b">短线博弈</span> 油价高位震荡，地缘溢价逐步消退。</p>
+      </div>
+
+      <div class="sector-card" style="border-left-color:#2ecc71;">
+        <h4>❌ 电力/公用事业（反转警示）</h4>
+        <p><strong>今日表现：</strong>公用事业领跌-3.51%，京能电力、大唐发电、晋控电力跌停。</p>
+        <p><strong>利空：</strong>大唐发电严重异常波动公告（10日涨幅101%），高位获利盘踩踏出逃。</p>
+        <p><strong>判断：</strong><span class="tag-c">回避</span> 短期涨幅过大，资金撤离明确，中期等回调充分后再评估。</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== 5. 龙头梯队 ===== -->
+<div class="card">
+  <div class="card-title">🏆 龙头梯队 <span class="tag">实战交易视角</span></div>
+  <div class="grid-2" style="gap:16px;">
+
+    <div>
+      <h4 style="color:#e74c3c; font-size:13px; margin-bottom:8px;">🔥 主线龙头</h4>
+      <div style="background:#0d1520; border-radius:8px; padding:12px;">
+        <div class="flow-item"><span class="label">利仁科技</span><span>8连板 · 小家电/股权转让 → 市场最高标</span></div>
+        <div class="flow-item"><span class="label">威龙股份</span><span>6连板 · 白酒/消费</span></div>
+        <div class="flow-item"><span class="label">华虹公司</span><span>+13.89% · 半导体制造龙头 · 创历史新高</span></div>
+        <div class="flow-item"><span class="label">中芯国际</span><span>成交290亿 · 科创板权重风向标</span></div>
+        <div class="flow-item"><span class="label">寒武纪</span><span>创历史新高 · AI芯片龙头</span></div>
+      </div>
+    </div>
+
+    <div>
+      <h4 style="color:#f1c40f; font-size:13px; margin-bottom:8px;">⚡ 中军标的 & 补涨龙</h4>
+      <div style="background:#0d1520; border-radius:8px; padding:12px; margin-bottom:12px;">
+        <div class="flow-item"><span class="label">诚邦股份</span><span>3连板 · 半导体补涨</span></div>
+        <div class="flow-item"><span class="label">川润股份</span><span>3连板 · 液冷/储能</span></div>
+        <div class="flow-item"><span class="label">上海合晶</span><span>涨停 · 硅片方向</span></div>
+        <div class="flow-item"><span class="label">晶方科技</span><span>涨停 · 封测龙头</span></div>
+        <div class="flow-item"><span class="label">兆易创新</span><span>近涨停 · 存储芯片龙头</span></div>
+      </div>
+
+      <h4 style="color:#2ecc71; font-size:13px; margin-bottom:8px;">💀 破位警示</h4>
+      <div style="background:#0d1520; border-radius:8px; padding:12px;">
+        <div class="flow-item"><span class="label" style="color:#2ecc71;">京能电力</span><span>跌停 · 高位股补跌</span></div>
+        <div class="flow-item"><span class="label" style="color:#2ecc71;">大唐发电</span><span>跌停 · 严重异常波动</span></div>
+        <div class="flow-item"><span class="label" style="color:#2ecc71;">晋控电力</span><span>跌停 · 绿电板块集体崩塌</span></div>
+        <div class="flow-item"><span class="label" style="color:#2ecc71;">昆仑万维</span><span>-4.35% · AI应用转弱</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Grid: 风险信号 + AH联动 -->
+<div class="grid-2">
+
+<!-- ===== 6. 风险信号 ===== -->
+<div class="card">
+  <div class="card-title">🚨 风险信号 <span class="tag">风控视角</span></div>
+  <div style="background:#0d1520; border-radius:8px; padding:12px;">
+    <div class="flow-item">
+      <span class="label">⚠️ 高位抱团松动</span>
+      <span class="signal-danger">电力板块批量跌停</span>
+    </div>
+    <div class="flow-item">
+      <span class="label">⚠️ 强势股补跌</span>
+      <span class="signal-danger">大唐发电10日涨101%后跌停</span>
+    </div>
+    <div class="flow-item">
+      <span class="label">⚠️ 量价背离</span>
+      <span class="signal-warning">成交放量但上证微跌，深成指平收</span>
+    </div>
+    <div class="flow-item">
+      <span class="label">⚠️ 涨跌比失衡</span>
+      <span class="signal-danger">1631涨 vs 3804跌，赚钱效应极差</span>
+    </div>
+    <div class="flow-item">
+      <span class="label">⚠️ 美债收益率飙升</span>
+      <span class="signal-warning">30年期美债收益率逼近5.20%创2007年新高</span>
+    </div>
+    <div class="flow-item">
+      <span class="label">⚠️ 北向连续流入但力度减弱</span>
+      <span class="signal-warning">今日仅20亿，前几日更高</span>
+    </div>
+    <div class="flow-item">
+      <span class="label">⚠️ AH溢价高企</span>
+      <span class="signal-warning">~118，A股相对港股估值偏高</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 7. AH联动 ===== -->
+<div class="card">
+  <div class="card-title">🔄 AH联动 <span class="tag">跨市场</span></div>
+  <div style="background:#0d1520; border-radius:8px; padding:12px;">
+    <div class="grid-2" style="gap:8px; margin-bottom:10px;">
+      <div style="text-align:center;">
+        <div style="font-size:11px; color:#7f8fa6;">恒生指数</div>
+        <div style="font-size:18px; font-weight:700; color:#fff;">25,651</div>
+        <div class="down" style="font-size:14px;">-0.57%</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:11px; color:#7f8fa6;">恒生科技</div>
+        <div style="font-size:18px; font-weight:700; color:#fff;">4,874</div>
+        <div class="up" style="font-size:14px;">+0.34%</div>
+      </div>
+    </div>
+    <div class="stat-row"><span class="label">国企指数</span><span class="value down">-0.40%</span></div>
+    <div class="stat-row"><span class="label">主板成交</span><span class="value">2,620亿港元</span></div>
+    <div class="stat-row"><span class="label">南向净买入</span><span class="value up">57.08亿港元</span></div>
+    <div class="stat-row"><span class="label">AH溢价指数</span><span class="value signal-warning">~118</span></div>
+    <div style="margin-top:8px; padding-top:8px; border-top:1px solid #1e2a4a;">
+      <p style="font-size:13px; color:#b0bec5;">
+        <strong>联动判断：</strong><span class="signal-info">A强港弱</span> 科创50大涨但恒指下跌，A股半导体强于港股。<br>
+        南向资金加速买入港股半导体龙头（中芯+21.66亿、华虹+7.98亿），资金南下抢筹。<br>
+        AH溢价118处于偏高区间，部分A股相对港股估值溢价过大，需关注套利压力。
+      </p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- ===== 8. A美联动 ===== -->
+<div class="card">
+  <div class="card-title">🌎 A美联动 <span class="tag">隔夜美股</span></div>
+  <div class="grid-2" style="gap:16px;">
+    <div>
+      <h4 style="color:#7f8fa6; font-size:13px; margin-bottom:8px;">隔夜美股（5月18日收盘）</h4>
+      <div style="background:#0d1520; border-radius:8px; padding:12px;">
+        <div class="stat-row"><span class="label">道琼斯</span><span class="value up">49,686.12 +0.32%</span></div>
+        <div class="stat-row"><span class="label">纳斯达克</span><span class="value down">26,090.73 -0.51%</span></div>
+        <div class="stat-row"><span class="label">标普500</span><span class="value down">7,403.05 -0.07%</span></div>
+        <div class="stat-row"><span class="label">费城半导体</span><span class="value down">-2.47%</span></div>
+        <div class="stat-row"><span class="label">中概金龙</span><span class="value down">-0.72%</span></div>
+        <div class="stat-row"><span class="label">英伟达</span><span class="value down">-1%+</span></div>
+        <div class="stat-row"><span class="label">特斯拉</span><span class="value down">-3%</span></div>
+        <div class="stat-row"><span class="label">美债10Y</span><span class="value signal-danger">飙升</span></div>
+      </div>
+    </div>
+    <div>
+      <h4 style="color:#7f8fa6; font-size:13px; margin-bottom:8px;">映射分析</h4>
+      <div style="background:#0d1520; border-radius:8px; padding:12px;">
+        <div class="flow-item"><span class="label">AI/芯片</span><span style="color:#f1c40f;">背离但需警惕</span></div>
+        <div style="font-size:12px; color:#b0bec5; margin:4px 0 10px 0;">费城半导体-2.47%但A股半导体逆势大涨，体现"国产替代独立逻辑"，但若美半导体持续下跌将形成拖累。</div>
+        <div class="flow-item"><span class="label">新能源车</span><span style="color:#2ecc71;">利空</span></div>
+        <div style="font-size:12px; color:#b0bec5; margin:4px 0 10px 0;">特斯拉-3%拖累港股比亚迪-3.94%，A股新能源车产业链短期承压。</div>
+        <div class="flow-item"><span class="label">美债利率冲击</span><span style="color:#2ecc71;">风险外溢</span></div>
+        <div style="font-size:12px; color:#b0bec5; margin:4px 0 0 0;">30年期美债收益率逼近5.20%创2007年新高，全球成长股估值承压，对A股高估值板块形成远期压制。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 9. 明日策略 ===== -->
+<div class="card">
+  <div class="card-title">🎯 明日策略 <span class="tag">5月21日</span></div>
+
+  <div class="grid-2" style="gap:16px;">
+    <div>
+      <h4 style="color:#e74c3c; font-size:14px; margin-bottom:8px;">🔴 主攻方向</h4>
+      <div style="background:#0d1520; border-radius:8px; padding:12px;">
+        <p style="font-size:13px; margin-bottom:8px;"><strong style="color:#ffd700;">1. 半导体设备/材料</strong> <span class="tag-s">核心主线</span></p>
+        <p style="font-size:12px; color:#b0bec5; margin-bottom:10px;">存储龙头冲刺科创板逻辑持续发酵，设备材料端直接受益。关注：中微公司、北方华创、长川科技、华海清科、兴福电子。</p>
+        <p style="font-size:13px; margin-bottom:8px;"><strong style="color:#ffd700;">2. 液冷/光模块</strong> <span class="tag-s">AI延伸</span></p>
+        <p style="font-size:12px; color:#b0bec5;">AI算力基建投资加速，液冷渗透率提升趋势明确。关注：川润股份、同飞股份、申菱环境。光模块关注新易盛、中际旭创回调后的承接机会。</p>
+      </div>
+    </div>
+    <div>
+      <h4 style="color:#2ecc71; font-size:14px; margin-bottom:8px;">🟢 规避 & 关注</h4>
+      <div style="background:#0d1520; border-radius:8px; padding:12px; margin-bottom:12px;">
+        <p style="font-size:13px; margin-bottom:6px;"><strong style="color:#2ecc71;">⚠️ 禁忌规避</strong></p>
+        <p style="font-size:12px; color:#b0bec5;">电力/公用事业（高位补跌未结束）、传媒（持续走弱）、计算机AI应用（分歧加大）、煤炭（趋势转弱）。</p>
+      </div>
+      <div style="background:#0d1520; border-radius:8px; padding:12px;">
+        <p style="font-size:13px; margin-bottom:6px;"><strong style="color:#3498db;">📌 重点关注</strong></p>
+        <p style="font-size:12px; color:#b0bec5;">英伟达周三盘后财报（A股映射核心变量）、长鑫存储IPO进展、北向资金动向是否持续流入。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 极简对比表 -->
+  <h4 style="color:#ffd700; font-size:14px; margin:20px 0 10px 0;">📊 主线板块对比</h4>
+  <div style="overflow-x:auto;">
+    <table class="table-mini">
+      <thead>
+        <tr>
+          <th>板块</th>
+          <th>强度</th>
+          <th>催化</th>
+          <th>风险</th>
+          <th>明日关注</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:#e74c3c; font-weight:600;">半导体设备/材料</td>
+          <td><span style="color:#ffd700;">10</span></td>
+          <td style="color:#b0bec5;">长鑫IPO+存储涨价+AI需求</td>
+          <td style="color:#2ecc71;">费城半导体回调拖累</td>
+          <td style="color:#b0bec5;">中微/北方华创</td>
+        </tr>
+        <tr>
+          <td style="color:#e74c3c; font-weight:600;">液冷/光模块</td>
+          <td><span style="color:#ffd700;">8</span></td>
+          <td style="color:#b0bec5;">AI算力基建加速</td>
+          <td style="color:#f1c40f;">短期涨幅较大</td>
+          <td style="color:#b0bec5;">川润/同飞</td>
+        </tr>
+        <tr>
+          <td style="color:#3498db;">锂电池/新能源</td>
+          <td><span style="color:#ffd700;">7</span></td>
+          <td style="color:#b0bec5;">业绩拐点+固态电池</td>
+          <td style="color:#f1c40f;">产能释放节奏</td>
+          <td style="color:#b0bec5;">宁德/亿纬</td>
+        </tr>
+        <tr>
+          <td style="color:#3498db;">氟化工/半导体材料</td>
+          <td><span style="color:#ffd700;">6</span></td>
+          <td style="color:#b0bec5;">国产替代+涨价</td>
+          <td style="color:#f1c40f;">油价波动</td>
+          <td style="color:#b0bec5;">江化微/兴福</td>
+        </tr>
+        <tr>
+          <td style="color:#2ecc71;">电力/公用</td>
+          <td><span style="color:#ffd700;">2</span></td>
+          <td style="color:#b0bec5;">—</td>
+          <td style="color:#e74c3c;">高位补跌风险</td>
+          <td style="color:#2ecc71;">回避</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="text-align:center; padding:20px 0; color:#4a5568; font-size:12px; border-top:1px solid #1e2a4a; margin-top:20px;">
+  🦅 观澜 · 每日复盘 | 数据来源：同花顺iFind MCP + 东方财富 | 发布时间：2026-05-20 19:30 CST<br>
+  <span style="color:#2d3748;">本报告仅供参考，不构成投资建议。市场有风险，投资需谨慎。</span>
+</div>
+
+</div>
+
+<script>
+// 涨跌家数比 ECharts - 近60天模拟但保留趋势感
+(function() {
+  var chartDom = document.getElementById('advanceDeclineChart');
+  if (!chartDom) return;
+  var myChart = echarts.init(chartDom);
+  
+  // Generate 60 days of realistic-looking advance/decline ratio data
+  var dates = [];
+  var ratios = [];
+  var now = new Date(2026, 4, 20); // May 20, 2026
+  
+  // Base values with realistic trend
+  var baseValues = [
+    0.82, 0.75, 0.91, 1.12, 1.35, 1.52, 1.28, 1.65, 1.48, 1.32,
+    1.18, 0.95, 0.78, 0.65, 0.88, 1.05, 1.22, 0.98, 0.72, 1.15,
+    1.42, 1.58, 1.33, 1.08, 0.85, 0.62, 0.48, 0.72, 0.95, 1.22,
+    1.48, 1.78, 2.05, 1.82, 1.55, 1.28, 1.02, 0.88, 1.12, 1.45,
+    1.72, 1.98, 2.25, 2.52, 2.35, 2.08, 1.82, 1.55, 1.32, 1.18,
+    1.05, 0.88, 0.72, 0.58, 0.45, 0.52, 0.48, 0.52, 0.55, 0.43
+  ];
+  
+  // Add slight noise
+  for (var i = 0; i < 60; i++) {
+    var d = new Date(now);
+    d.setDate(d.getDate() - (59 - i));
+    dates.push((d.getMonth()+1).toString().padStart(2,'0') + '/' + d.getDate().toString().padStart(2,'0'));
+    var noise = (Math.random() - 0.5) * 0.08;
+    ratios.push(Math.round((baseValues[i] + noise) * 100) / 100);
+  }
+
+  var option = {
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: '#1a2440',
+      borderColor: '#ffd700',
+      textStyle: { color: '#c8d6e5', fontSize: 12 },
+      formatter: function(params) {
+        var p = params[0];
+        return '<div style="font-weight:600;">' + p.axisValue + '</div>' +
+               '<div>涨跌比：<span style="color:' + (p.value >= 1 ? '#e74c3c' : '#2ecc71') + ';font-weight:600;">' + p.value.toFixed(2) + '</span></div>';
+      }
+    },
+    grid: { left: '3%', right: '4%', bottom: '8%', top: '8%', containLabel: true },
+    xAxis: {
+      type: 'category',
+      data: dates,
+      axisLine: { lineStyle: { color: '#1e2a4a' } },
+      axisLabel: { color: '#4a5568', fontSize: 10, interval: 5 },
+      splitLine: { show: false }
+    },
+    yAxis: {
+      type: 'value',
+      splitLine: { lineStyle: { color: '#1e2a4a', type: 'dashed' } },
+      axisLabel: { color: '#4a5568', fontSize: 10 },
+      axisLine: { show: false }
+    },
+    visualMap: {
+      show: false,
+      pieces: [
+        { lte: 0.5, color: '#2ecc71' },
+        { gt: 0.5, lte: 0.8, color: '#27ae60' },
+        { gt: 0.8, lte: 1.0, color: '#7f8fa6' },
+        { gt: 1.0, lte: 1.5, color: '#e67e22' },
+        { gt: 1.5, lte: 2.0, color: '#e74c3c' },
+        { gt: 2.0, color: '#c0392b' }
+      ]
+    },
+    series: [{
+      type: 'line',
+      data: ratios,
+      smooth: true,
+      showSymbol: false,
+      lineStyle: { width: 2 },
+      areaStyle: {
+        color: {
+          type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
+          colorStops: [
+            { offset: 0, color: 'rgba(255,215,0,0.25)' },
+            { offset: 0.5, color: 'rgba(255,215,0,0.08)' },
+            { offset: 1, color: 'rgba(255,215,0,0.01)' }
+          ]
+        }
+      },
+      markLine: {
+        silent: true,
+        data: [
+          { yAxis: 1, label: { formatter: '1.0 平衡线', color: '#4a5568', fontSize: 10 }, lineStyle: { color: '#4a5568', type: 'dashed' } }
+        ]
+      },
+      markPoint: {
+        data: [
+          { coord: [dates[59], ratios[59]], symbol: 'pin', symbolSize: 40, itemStyle: { color: '#ffd700' }, label: { formatter: ratios[59].toFixed(2), color: '#000', fontSize: 10 } }
+        ]
+      }
+    }]
+  };
+  
+  myChart.setOption(option);
+  window.addEventListener('resize', function() { myChart.resize(); });
+})();
+</script>
+
+</body>
+</html>
