@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>港股每日复盘 - 2026-05-22</title>
+<style>
+:root {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-card: #1c2128;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --border: #30363d;
+  --green: #7ee787;
+  --red: #f85149;
+  --blue: #58a6ff;
+  --yellow: #d29922;
+  --accent: #2f81f7;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', 'PingFang SC', sans-serif;
+  background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; padding: 20px;
+}
+.container { max-width: 1200px; margin: 0 auto; }
+.header {
+  background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #1c2128 100%);
+  border-bottom: 1px solid var(--border); padding: 30px 0; margin-bottom: 24px;
+  position: relative; overflow: hidden;
+}
+.header::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(47,129,247,0.08) 0%, transparent 60%);
+}
+.header-content { position: relative; z-index: 1; padding: 0 20px; }
+.header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+.header h1 span { color: var(--accent); }
+.header .subtitle { color: var(--text-secondary); font-size: 14px; }
+.header .date-badge {
+  display: inline-block; background: rgba(47,129,247,0.15); color: var(--blue);
+  padding: 4px 14px; border-radius: 20px; font-size: 13px; margin-top: 8px;
+  border: 1px solid rgba(47,129,247,0.25);
+}
+.tagline {
+  font-size: 15px; padding: 14px 20px; background: var(--bg-card);
+  border-left: 4px solid var(--accent); border-radius: 8px; margin-bottom: 24px;
+  color: var(--text-primary);
+}
+.section {
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  border-radius: 12px; padding: 20px; margin-bottom: 20px;
+}
+.section h2 { 
+  font-size: 18px; font-weight: 600; margin-bottom: 16px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px;
+}
+.section h2 .icon { font-size: 20px; }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px; }
+.card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px;
+}
+.card .label { font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.card .value { font-size: 24px; font-weight: 700; }
+.card .sub { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+.up { color: var(--green); }
+.down { color: var(--red); }
+.flat { color: var(--text-secondary); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; padding: 10px 12px; border-bottom: 2px solid var(--border); color: var(--text-secondary); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.3px; }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+tr:last-child td { border-bottom: none; }
+tr:hover { background: rgba(47,129,247,0.04); }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 500; }
+.tag-green { background: rgba(126,231,135,0.12); color: var(--green); }
+.tag-red { background: rgba(248,81,73,0.12); color: var(--red); }
+.tag-blue { background: rgba(88,166,255,0.12); color: var(--blue); }
+.tag-yellow { background: rgba(210,153,34,0.12); color: var(--yellow); }
+.warning-box {
+  background: rgba(210,153,34,0.08); border: 1px solid rgba(210,153,34,0.25);
+  border-radius: 8px; padding: 12px 16px; margin-top: 12px;
+  font-size: 13px; color: var(--yellow);
+}
+.alert-box {
+  background: rgba(248,81,73,0.08); border: 1px solid rgba(248,81,73,0.25);
+  border-radius: 8px; padding: 12px 16px; margin-top: 12px;
+  font-size: 13px; color: var(--red);
+}
+.info-box {
+  background: rgba(88,166,255,0.08); border: 1px solid rgba(88,166,255,0.25);
+  border-radius: 8px; padding: 12px 16px; margin-top: 12px;
+  font-size: 13px; color: var(--blue);
+}
+.highlight { background: rgba(126,231,135,0.06); }
+.footer { text-align: center; color: var(--text-secondary); font-size: 12px; padding: 20px 0; border-top: 1px solid var(--border); margin-top: 30px; }
+@media (max-width: 768px) {
+  body { padding: 12px; }
+  .header h1 { font-size: 22px; }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-2 { grid-template-columns: 1fr; }
+  .card .value { font-size: 20px; }
+  table { font-size: 12px; }
+  th, td { padding: 8px 8px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-content">
+    <h1>🇭🇰 港股每日复盘 <span>| 观澜 🦅</span></h1>
+    <div class="date-badge">2026-05-22 周五</div>
+    <div class="subtitle" style="margin-top: 10px;">冷峻犀利 · 数据说话 · 不留情面</div>
+  </div>
+</div>
+
+<!-- 今日核心结论 -->
+<div class="tagline">
+  <strong>📌 今日定调：</strong> 港股三大指数高开高走，AI产业链与财报驱动共振，科指大涨2.11%领跑。联想、网易绩后飙升带动科技股全线回暖，AI应用概念股集体狂欢。但南向资金本周净流出135亿创年内单周新高，"内资跑、外资撑"的格局暗藏隐忧。资金面背离需高度警惕。
+</div>
+
+<!-- 大盘全景 -->
+<div class="section">
+  <h2><span class="icon">📊</span> 大盘全景（基金经理视角）</h2>
+  <div class="grid-4">
+    <div class="card">
+      <div class="label">恒生指数 HSI</div>
+      <div class="value up">+0.86%</div>
+      <div class="sub">收报 25,606.03</div>
+    </div>
+    <div class="card">
+      <div class="label">恒生科技 HSTECH</div>
+      <div class="value up">+2.11%</div>
+      <div class="sub">收报 4,876.67</div>
+    </div>
+    <div class="card">
+      <div class="label">国企指数 HSCEI</div>
+      <div class="value up">+0.89%</div>
+      <div class="sub">数据同步</div>
+    </div>
+    <div class="card">
+      <div class="label">主板成交额</div>
+      <div class="value" style="color: var(--yellow);">↑ 显著放量</div>
+      <div class="sub">联想单只成交超64亿港元</div>
+    </div>
+  </div>
+  <div class="info-box" style="margin-top: 12px;">
+    <strong>市场特征：</strong> 三大指数高开后震荡走高，恒科指涨幅最大。大型科技股全线反弹，AI概念股集体暴涨，赚钱效应集中在科技+半导体方向。成份股涨多跌少，但分化严重——科技狂欢，券商、餐饮、内房普遍承压。赚钱效应结构性集中，非全面牛市。
+  </div>
+</div>
+
+<!-- 市场情绪 -->
+<div class="section">
+  <h2><span class="icon">🌡️</span> 市场情绪</h2>
+  <div class="grid-2">
+    <div class="card">
+      <div class="label">南向资金（港股通）</div>
+      <div class="value down">净卖出 64.94亿</div>
+      <div class="sub">本周累计净卖出 135.01亿港元 <span class="tag tag-red">年内单周新高</span></div>
+    </div>
+    <div class="card">
+      <div class="label">新股表现</div>
+      <div class="value up">丹诺医药-B +154%</div>
+      <div class="sub">公开发售9,000倍超额认购，今年第二高</div>
+    </div>
+    <div class="card">
+      <div class="label">热点情绪</div>
+      <div class="value" style="color: var(--blue);">偏乐观</div>
+      <div class="sub">AI/半导体/消费电子情绪高涨</div>
+    </div>
+    <div class="card">
+      <div class="label">弱势板块</div>
+      <div class="value" style="color: var(--red);">券商/餐饮/内房</div>
+      <div class="sub">资金从防御板块撤离转向科技</div>
+    </div>
+  </div>
+  <div class="warning-box">
+    <strong>⚠️ 情绪信号模糊：</strong> 技术面科技股强势，但南向资金大幅流出大盘龙头（阿里-20.6亿、腾讯-17.3亿），显示内资短线获利了结意愿强。情绪偏乐观但不建议追高。
+  </div>
+</div>
+
+<!-- 汇率与流动性 -->
+<div class="section">
+  <h2><span class="icon">💰</span> 汇率与流动性</h2>
+  <div class="grid-4">
+    <div class="card">
+      <div class="label">人民币/美元</div>
+      <div class="value" style="color: var(--green);">收复 6.80</div>
+      <div class="sub">中间价创2023年2月来新高</div>
+    </div>
+    <div class="card">
+      <div class="label">10Y 美债收益率</div>
+      <div class="value" style="color: var(--red);">4.5696%</div>
+      <div class="sub">-1.59bp，美伊协议传闻压低利率</div>
+    </div>
+    <div class="card">
+      <div class="label">美元指数 DXY</div>
+      <div class="value" style="color: var(--red);">99.16</div>
+      <div class="sub">短线下跌，美伊协议草案消息</div>
+    </div>
+    <div class="card">
+      <div class="label">HIBOR 隔夜</div>
+      <div class="value" style="color: var(--blue);">1.3394%</div>
+      <div class="sub">1年期HIBOR升至1.7036%（5月新高）</div>
+    </div>
+  </div>
+  <div class="info-box" style="margin-top: 12px;">
+    <strong>宏观环境：</strong> 人民币持续走强至6.80以下，多家投行（汇丰等）看多人民币至6.65-6.50区间，对港股中资股估值构成支撑。美伊协议草案传闻推动美元走弱、美债收益率下行，对新兴市场/港股资金面偏正面。HIBOR短端平稳、长端略升，港元流动性整体充裕。
+  </div>
+</div>
+
+<!-- 强势板块与核心逻辑 -->
+<div class="section">
+  <h2><span class="icon">🚀</span> 强势板块 TOP 5</h2>
+  <table>
+    <tr><th style="width:40px">#</th><th>板块</th><th>领涨龙头</th><th>涨幅参考</th><th>核心逻辑</th></tr>
+    <tr class="highlight">
+      <td>1</td>
+      <td><strong>AI应用 / 大模型</strong></td>
+      <td>智谱、五一视界、Minimax</td>
+      <td class="up">+21~27%</td>
+      <td>发改委谋划AI落地配套文件 + 恒指检讨预期纳入 + 智谱GLM-5.1高速版发布</td>
+    </tr>
+    <tr class="highlight">
+      <td>2</td>
+      <td><strong>半导体 / 存储芯片</strong></td>
+      <td>兆易创新、中芯国际、澜起科技</td>
+      <td class="up">+7~13%</td>
+      <td>美股存储股大涨带动 + 国产替代持续推进 + 南下资金连续6日加仓中芯国际</td>
+    </tr>
+    <tr class="highlight">
+      <td>3</td>
+      <td><strong>PCB / 电子元件</strong></td>
+      <td>建滔积层板、胜宏科技</td>
+      <td class="up">+15~16%</td>
+      <td>PCB行业景气上行 + AI服务器需求驱动 + 建滔积层板创历史新高</td>
+    </tr>
+    <tr class="highlight">
+      <td>4</td>
+      <td><strong>消费电子 / 硬件</strong></td>
+      <td>联想集团</td>
+      <td class="up">+20%</td>
+      <td>Q4财报炸裂（收入+27%创新高）+ AI收入翻倍 + 目标千亿美元营收</td>
+    </tr>
+    <tr class="highlight">
+      <td>5</td>
+      <td><strong>汽车 / 黄金</strong></td>
+      <td>紫金矿业、比亚迪</td>
+      <td class="up">+3~5%</td>
+      <td>出口高增、盈利预期上修 + 黄金连续下跌后技术性反弹</td>
+    </tr>
+  </table>
+
+  <h2 style="margin-top: 24px;"><span class="icon">📉</span> 最弱板块 TOP 3</h2>
+  <table>
+    <tr><th style="width:40px">#</th><th>板块</th><th>领跌龙头</th><th>跌幅参考</th><th>核心逻辑</th></tr>
+    <tr>
+      <td>1</td>
+      <td><strong>中资券商</strong></td>
+      <td>中信证券、广发证券、中信建投</td>
+      <td class="down">-2~3%</td>
+      <td>昨日拉升后获利回吐，成交量不能持续放大，短期分歧</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>餐饮 / 消费</strong></td>
+      <td>海底捞等</td>
+      <td class="down">-1~3%</td>
+      <td>消费复苏偏弱，市场风格切换至科技成长，防御性板块遭资金流出</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>内房</strong></td>
+      <td>金辉控股</td>
+      <td class="down">-16.89%</td>
+      <td>行业基本面持续低迷，个别房企持续暴跌，板块缺乏催化剂</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 重点个股异动 -->
+<div class="section">
+  <h2><span class="icon">🔥</span> 重点个股异动（涨跌幅超±6%）</h2>
+  
+  <h3 style="color: var(--green); margin: 12px 0 8px;">📈 上涨龙头</h3>
+  <table>
+    <tr><th>个股</th><th>涨跌幅</th><th>触发因素</th><th>点评</th></tr>
+    <tr class="highlight">
+      <td><strong>联想集团 (0992.HK)</strong></td>
+      <td class="up">+20%</td>
+      <td>财报 | 创历史新高</td>
+      <td><strong>财报深度点评：</strong> 2025/26财年Q4营收216亿美元（+27% YoY），创近五年最快增速；全年营收831亿美元（+20%），调整后净利20亿美元（+42%）；AI收入同比增长84%，占总收入38%。CEO杨元庆提出两年内冲击千亿美元营收目标。市场给予极高评价，股价年内累涨60%，AI转型故事获得认可。</td>
+    </tr>
+    <tr class="highlight">
+      <td><strong>智谱</strong></td>
+      <td class="up">+27%</td>
+      <td>AI政策 + 指数预期</td>
+      <td>发改委AI配套文件预期 + 恒指检讨有望纳入 + GLM-5.1高速版API发布（400 tokens/s全球最快），三重利好叠加。</td>
+    </tr>
+    <tr>
+      <td><strong>建滔积层板</strong></td>
+      <td class="up">+15%</td>
+      <td>行业景气 | 创历史新高</td>
+      <td>PCB行业景气上行，AI服务器PCB需求爆发，公司作为全球覆铜板龙头直接受益，南下资金净买入3.15亿港元。</td>
+    </tr>
+    <tr>
+      <td><strong>兆易创新</strong></td>
+      <td class="up">+13%</td>
+      <td>存储芯片强势</td>
+      <td>美股存储芯片大涨带动（闪迪+10%），加上国产替代逻辑持续演绎，创历史新高。</td>
+    </tr>
+    <tr>
+      <td><strong>中芯国际</strong></td>
+      <td class="up">+7%</td>
+      <td>半导体持续活跃</td>
+      <td>南下资金连续6日净买入，累计达75亿港元，筹码极度集中。</td>
+    </tr>
+    <tr>
+      <td><strong>网易-S (9999.HK)</strong></td>
+      <td class="up">+6%</td>
+      <td>财报 | Q1业绩超预期</td>
+      <td><strong>财报深度点评：</strong> Q1营收306亿元（+6.1%），超市场预期；Non-GAAP净利113亿元。游戏收入257亿元（+6.9%），《梦幻西游》系列、《燕云十六声》等表现强劲。研发投入45亿元。股息每股0.144美元。市场认可其稳健增长+高股息逻辑。</td>
+    </tr>
+    <tr>
+      <td><strong>五一视界</strong></td>
+      <td class="up">+13%</td>
+      <td>AI + 智能驾驶</td>
+      <td>AI概念全线大涨叠加特斯拉FSD在中国可用的利好消息。</td>
+    </tr>
+    <tr>
+      <td><strong>胜宏科技</strong></td>
+      <td class="up">+16%</td>
+      <td>PCB概念</td>
+      <td>跟随建滔积层板走强，PCB板块整体爆发。</td>
+    </tr>
+    <tr>
+      <td><strong>丹诺医药-B (6872.HK)</strong></td>
+      <td class="up">+154%</td>
+      <td>新股上市</td>
+      <td>公开发售获9,000倍超额认购（今年第二高），聚焦抗菌药研发，核心产品接近商业化。</td>
+    </tr>
+  </table>
+
+  <h3 style="color: var(--red); margin: 16px 0 8px;">📉 下跌异动</h3>
+  <table>
+    <tr><th>个股</th><th>涨跌幅</th><th>触发因素</th><th>点评</th></tr>
+    <tr>
+      <td><strong>金辉控股</strong></td>
+      <td class="down">-16.89%</td>
+      <td>内房持续低迷</td>
+      <td>内房板块缺乏催化剂，个别房企持续暴跌，行业流动性问题未解。</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 资金面 -->
+<div class="section">
+  <h2><span class="icon">💸</span> 资金面（港股最关键）</h2>
+
+  <h3 style="color: var(--blue); margin-bottom: 8px;">📊 南下资金（港股通）</h3>
+  <table>
+    <tr><th>指标</th><th>数据</th><th>备注</th></tr>
+    <tr>
+      <td>当日净流入</td>
+      <td class="down">-64.94亿港元</td>
+      <td>连续第X日净卖出</td>
+    </tr>
+    <tr>
+      <td>本周累计</td>
+      <td class="down"><strong>-135.01亿港元</strong></td>
+      <td><span class="tag tag-red">创年内单周流出新高</span></td>
+    </tr>
+  </table>
+
+  <table style="margin-top: 8px;">
+    <tr><th colspan="3">🏆 港股通十大成交（买入 vs 卖出）</th></tr>
+    <tr><th>净买入 TOP5</th><th>金额</th><th>净卖出 TOP5</th><th>金额</th></tr>
+    <tr>
+      <td>中芯国际</td>
+      <td class="up">+32.31亿</td>
+      <td>阿里巴巴-W</td>
+      <td class="down">-20.62亿</td>
+    </tr>
+    <tr>
+      <td>华虹半导体</td>
+      <td class="up">+7.74亿</td>
+      <td>腾讯控股</td>
+      <td class="down">-17.26亿</td>
+    </tr>
+    <tr>
+      <td>建滔积层板</td>
+      <td class="up">+3.15亿</td>
+      <td>盈富基金</td>
+      <td class="down">-13.36亿</td>
+    </tr>
+    <tr>
+      <td>联想集团</td>
+      <td class="up">+2.73亿</td>
+      <td>恒生中国企业</td>
+      <td class="down">-12.72亿</td>
+    </tr>
+    <tr>
+      <td>兆易创新</td>
+      <td class="up">+1.10亿</td>
+      <td>南方恒生科技</td>
+      <td class="down">-11.65亿</td>
+    </tr>
+  </table>
+
+  <div class="alert-box" style="margin-top: 12px;">
+    <strong>⚠️ 关键信号：</strong>
+    <br>1. 南下资金连续6日净买入中芯国际（累计75亿港元）—— 但这是在卖阿里和腾讯换来的筹码转移
+    <br>2. 连续3日净卖出阿里巴巴（累计37.6亿）、连续2日净卖出腾讯（累计28.1亿）—— 内资在大盘科技龙头上的态度明显转空
+    <br>3. 盈富基金、恒生中国企业、南方恒生科技三只ETF合计被卖37.73亿 —— 资金在系统性减仓港股仓位
+    <br>4. 本周创年内单周净流出新高 —— 这不是好信号
+  </div>
+
+  <h3 style="color: var(--blue); margin: 16px 0 8px;">📊 外资与国际资金</h3>
+  <div class="info-box">
+    <strong>外资动向：</strong> 人民币持续走强至6.80以下，美伊协议草案推动美元指数回落至99附近，美债收益率下行，整体对新兴市场偏正面。但EPFR具体数据暂缺，观察后续外资回流趋势。港股创新药ETF景顺近5日获资金净流入5462万元，连续4天获杠杆资金净买入。
+  </div>
+
+  <h3 style="color: var(--blue); margin: 16px 0 8px;">📊 沽空数据</h3>
+  <div class="info-box">
+    <strong>沽空数据暂缺</strong>（港交所实时数据需盘中抓取），但南下资金大幅净流出背景下需密切关注后续沽空比率变化。若沽空比率升破15%，将是明确的做空信号。
+  </div>
+
+  <h3 style="color: var(--blue); margin: 16px 0 8px;">📊 回购与增持</h3>
+  <table>
+    <tr><th>公司</th><th>金额/股数</th><th>意义</th></tr>
+    <tr>
+      <td>中集集团</td>
+      <td>回购336万股H股，约3072.87万港元</td>
+      <td>价格区间9.03-9.21港元，库存股已达6549.87万股，持续回购传递信心</td>
+    </tr>
+  </table>
+  <div class="warning-box" style="margin-top: 8px;">
+    <strong>🔍 底部信号关注：</strong> 大额回购通常出现在股价低估区域。中集集团持续回购值得关注。当前港股整体回购力度较前期有所减弱，需等待更多公司跟进。
+  </div>
+
+  <h3 style="color: var(--blue); margin: 16px 0 8px;">📊 大宗交易</h3>
+  <div class="info-box">
+    <strong>大宗交易数据暂缺</strong>，今日未发现显著的大宗交易信号。后续需关注联想集团财报后有无机构大宗接盘。
+  </div>
+</div>
+
+<!-- 投资机会与风险提示 -->
+<div class="section">
+  <h2><span class="icon">🎯</span> 投资机会与风险提示</h2>
+  
+  <h3 style="color: var(--green); margin-bottom: 8px;">📌 短期（1-2周）操作方向</h3>
+  <ul style="padding-left: 20px; margin-bottom: 12px; line-height: 1.8;">
+    <li><strong>AI/半导体短期过热但动量强劲：</strong> 国家发改委AI配套文件预期+恒指检讨窗口，智谱、MiniMax可能纳入恒生科技/综合指数，相关标的仍有脉冲机会。但追高风险较大，建议逢调整介入。</li>
+    <li><strong>联想集团财报效应：</strong> 业绩超预期+千亿营收目标，短期动能仍在。但已涨20%，注意获利回吐压力，可等回调低吸。</li>
+    <li><strong>网易业绩支撑：</strong> Q1业绩扎实、高股息（每股0.144美元），防御+成长兼备，适合稳健配置。</li>
+  </ul>
+
+  <h3 style="color: var(--yellow); margin-bottom: 8px;">📌 中期（1-3月）布局方向</h3>
+  <ul style="padding-left: 20px; margin-bottom: 12px; line-height: 1.8;">
+    <li><strong>半导体国产替代：</strong> 中芯国际连续获南下资金加仓，长期逻辑不变。但需警惕产能过剩和估值过高风险。</li>
+    <li><strong>AI算力基础设施：</strong> 腾讯单季AI资本开支370亿创历史新高，阿里表示投入将远超3800亿，算力硬件（PCB、服务器、光模块）景气度确定性高。</li>
+    <li><strong>创新药出海：</strong> 百济神州、信达生物首次实现全年盈利，创新药License-out持续创纪录，板块估值有修复空间。</li>
+  </ul>
+
+  <h3 style="color: var(--red); margin-bottom: 8px;">⚠️ 风险提示</h3>
+  <div class="alert-box">
+    <strong>1. 资金面背离：</strong> 港股上涨但南下资金创年内单周最大流出，内资在卖阿里和腾讯换仓中芯国际，本质上是在做筹码腾挪而非增量入场。若外资不能接力，反弹难持续。
+    <br><br>
+    <strong>2. 美伊局势：</strong> 协议草案传闻推动风险偏好回升，但中东地缘政治仍有高度不确定性，原油价格波动将传导至全球市场。
+    <br><br>
+    <strong>3. 汇率风险：</strong> 人民币走强对港股中资股估值有利，但若人民币升值过快可能影响出口企业盈利预期。
+    <br><br>
+    <strong>4. 科技股估值：</strong> AI概念股短期涨幅过大（智谱单日+27%），部分标的已脱离基本面支撑，一旦政策利好兑现或指数检讨不及预期，回调幅度可能很大。
+    <br><br>
+    <strong>5. 内房/消费拖累：</strong> 金辉控股持续暴跌-16.89%，内房板块未见底信号。餐饮、消费数据偏弱，制约大盘上行空间。
+  </div>
+</div>
+
+<!-- 明日预判 -->
+<div class="section">
+  <h2><span class="icon">🔮</span> 明日预判（2026-05-25 周一）</h2>
+  <div class="grid-2">
+    <div class="card">
+      <div class="label">大盘预判</div>
+      <div class="value" style="color: var(--blue);">震荡偏强</div>
+      <div class="sub">科技股动量延续，但南向资金流出制约上行空间</div>
+    </div>
+    <div class="card">
+      <div class="label">关注焦点</div>
+      <div class="value" style="color: var(--yellow);">多项重要事件</div>
+      <div class="sub">见下方列表</div>
+    </div>
+  </div>
+  <div style="margin-top: 12px; padding-left: 20px; line-height: 1.8;">
+    <strong>需要重点关注的事件和数据：</strong>
+    <ol style="margin-top: 6px;">
+      <li><strong>恒生指数季度检讨结果</strong>（5月22日盘后公布）：智谱、MiniMax是否纳入恒生科技/综合指数，将直接影响相关标的后续资金流入。</li>
+      <li><strong>美联储主席沃什履职</strong>：新任美联储主席政策立场对全球资产定价影响重大，关注其首次公开表态。</li>
+      <li><strong>美伊协议进展</strong>：若正式协议签署，全球风险偏好有望进一步提升，利好港股风险资产。</li>
+      <li><strong>南下资金流向</strong>：周一开盘关注南向资金是否延续流出态势，连续大幅流出将打压市场信心。</li>
+      <li><strong>外围市场联动</strong>：美股科技股（尤其是存储芯片）走势将直接影响港股半导体板块情绪。</li>
+    </ol>
+  </div>
+  <div class="info-box" style="margin-top: 12px;">
+    <strong>综合判断：</strong> 周末恒指检讨结果若符合预期（智谱/MiniMax纳入），下周一AI概念有望继续冲高，但需警惕"利好落地"后的获利回吐。联想、网易财报余温仍在，科技股整体动量偏强。但南向资金大幅流出是明确警示信号——指数上行空间短期有限，建议控制仓位在6-7成，等待回调加仓。
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>报告生成时间：2026-05-22 20:34 CST | 由观澜 🦅 自动生成</p>
+  <p>数据来源：格隆汇、同花顺iFind、东方财富、财联社 | 仅供参考，不构成投资建议</p>
+  <p>© 2026 观澜研究</p>
+</div>
+
+</div>
+</body>
+</html>
