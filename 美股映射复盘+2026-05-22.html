@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美股映射复盘 2026-05-22</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans SC', -apple-system, sans-serif; background: #0a0e17; color: #e0e6f0; line-height: 1.7; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  /* Header */
+  .header { background: linear-gradient(135deg, #0f1923 0%, #1a2a3a 100%); padding: 40px 0 30px; border-bottom: 1px solid #1e3a5f; position: relative; overflow: hidden; }
+  .header::before { content: ''; position: absolute; top: -50%; right: -20%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%); border-radius: 50%; }
+  .header-inner { display: flex; justify-content: space-between; align-items: flex-start; }
+  .header-left h1 { font-size: 28px; font-weight: 900; background: linear-gradient(90deg, #3b82f6, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .header-left .subtitle { color: #94a3b8; font-size: 14px; margin-top: 8px; }
+  .header-right { text-align: right; }
+  .header-right .date { font-size: 14px; color: #64748b; }
+  .header-right .badge { display: inline-block; background: linear-gradient(135deg, #1e40af, #3b82f6); padding: 4px 14px; border-radius: 20px; font-size: 12px; color: #fff; margin-top: 6px; }
+  /* Score Cards */
+  .scores { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 24px 0; }
+  .score-card { background: linear-gradient(135deg, #111d2d, #0f1923); border: 1px solid #1e3a5f; border-radius: 12px; padding: 20px; text-align: center; }
+  .score-card .label { font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; }
+  .score-card .value { font-size: 26px; font-weight: 700; margin: 8px 0; }
+  .score-card .change { font-size: 13px; }
+  .up { color: #22c55e; }
+  .down { color: #ef4444; }
+  .flat { color: #94a3b8; }
+  /* Section */
+  .section { background: #0f1923; border: 1px solid #1e3a5f; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+  .section h2 { font-size: 18px; font-weight: 700; color: #60a5fa; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid #1e3a5f; display: flex; align-items: center; gap: 8px; }
+  .section h2 .icon { font-size: 20px; }
+  .section h3 { font-size: 15px; font-weight: 600; color: #94a3b8; margin: 16px 0 8px; }
+  /* Table */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; padding: 10px 12px; background: #1a2a3a; color: #94a3b8; font-weight: 500; border-bottom: 1px solid #1e3a5f; }
+  td { padding: 10px 12px; border-bottom: 1px solid #1a2a3a; }
+  tr:hover td { background: rgba(59,130,246,0.04); }
+  /* Stock row colors */
+  .stock-name { font-weight: 500; }
+  .stock-code { color: #64748b; font-size: 11px; }
+  /* Tags */
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; }
+  .tag-green { background: rgba(34,197,94,0.15); color: #4ade80; }
+  .tag-red { background: rgba(239,68,68,0.15); color: #f87171; }
+  .tag-blue { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .tag-yellow { background: rgba(234,179,8,0.15); color: #facc15; }
+  .tag-purple { background: rgba(168,85,247,0.15); color: #c084fc; }
+  /* Highlight box */
+  .highlight-box { background: linear-gradient(135deg, #1a2a3a, #0f1923); border-left: 3px solid #3b82f6; padding: 16px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+  .highlight-box p { color: #cbd5e1; font-size: 13px; line-height: 1.8; }
+  .highlight-box strong { color: #60a5fa; }
+  /* Risk box */
+  .risk-box { background: linear-gradient(135deg, #2d1b1b, #1a1212); border-left: 3px solid #ef4444; padding: 16px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+  .risk-box p { color: #fca5a5; font-size: 13px; line-height: 1.8; }
+  /* Opportunity box */
+  .opp-box { background: linear-gradient(135deg, #1b2d1b, #121a12); border-left: 3px solid #22c55e; padding: 16px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+  .opp-box p { color: #86efac; font-size: 13px; line-height: 1.8; }
+  /* 2-col layout */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } .scores { grid-template-columns: repeat(2, 1fr); } }
+  /* Mapper section */
+  .mapper-card { background: linear-gradient(135deg, #111d2d, #0f1923); border: 1px solid #1e3a5f; border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+  .mapper-card .mapper-title { font-size: 15px; font-weight: 700; color: #facc15; margin-bottom: 8px; }
+  .mapper-card .mapper-logic { font-size: 13px; color: #94a3b8; line-height: 1.7; }
+  .mapper-card .mapper-stocks { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .mapper-card .mapper-stocks span { background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.2); padding: 3px 10px; border-radius: 4px; font-size: 12px; color: #93c5fd; }
+  .footer { text-align: center; padding: 30px 0; color: #475569; font-size: 12px; border-top: 1px solid #1e3a5f; margin-top: 20px; }
+  .sticky-header { position: sticky; top: 0; z-index: 100; }
+  .progress-bar { width: 100%; height: 4px; background: #1a2a3a; border-radius: 2px; margin: 8px 0; overflow: hidden; }
+  .progress-fill-up { height: 100%; background: linear-gradient(90deg, #22c55e, #4ade80); border-radius: 2px; }
+  .progress-fill-down { height: 100%; background: linear-gradient(90deg, #ef4444, #f87171); border-radius: 2px; }
+  .mover-card { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: linear-gradient(135deg, #1a2a3a, #0f1923); border: 1px solid #1e3a5f; border-radius: 8px; margin-bottom: 8px; }
+  .mover-card .mover-info { flex: 1; }
+  .mover-card .mover-name { font-weight: 600; font-size: 14px; }
+  .mover-card .mover-detail { font-size: 12px; color: #94a3b8; margin-top: 2px; }
+  .mover-card .mover-pct { font-size: 20px; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="container header-inner">
+    <div class="header-left">
+      <h1>🇺🇸 美股映射复盘</h1>
+      <div class="subtitle">美国时间 2026-05-21 周四 · 北京时间 2026-05-22 · 自动生成</div>
+    </div>
+    <div class="header-right">
+      <div class="date">📅 2026-05-22 周五 08:00</div>
+      <div class="badge">🔴 实时数据</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- Score Cards -->
+<div class="scores">
+  <div class="score-card">
+    <div class="label">道琼斯</div>
+    <div class="value up">50,285.66</div>
+    <div class="change up">▲ +0.55%</div>
+    <div style="font-size:11px;color:#64748b;margin-top:4px">🏆 历史收盘新高</div>
+  </div>
+  <div class="score-card">
+    <div class="label">标普500</div>
+    <div class="value up">7,445.72</div>
+    <div class="change up">▲ +0.17%</div>
+  </div>
+  <div class="score-card">
+    <div class="label">纳斯达克</div>
+    <div class="value up">~26,294</div>
+    <div class="change up">▲ +0.09%</div>
+  </div>
+  <div class="score-card">
+    <div class="label">美元指数</div>
+    <div class="value flat">99.20</div>
+    <div class="change flat">▸ -0.08%</div>
+  </div>
+</div>
+
+<!-- Section 1: US Market Overview -->
+<div class="section">
+  <h2><span class="icon">📊</span> 一、美股整体表现</h2>
+  <div class="two-col">
+    <div>
+      <h3>📈 主要指数</h3>
+      <table>
+        <tr><th>指数</th><th>收盘价</th><th>涨跌</th><th>涨跌幅</th></tr>
+        <tr><td>道琼斯工业平均</td><td>50,285.66</td><td class="up">▲ +274.31</td><td class="up">+0.55%</td></tr>
+        <tr><td>标普500</td><td>7,445.72</td><td class="up">▲ +12.75</td><td class="up">+0.17%</td></tr>
+        <tr><td>纳斯达克综指*</td><td>~26,294</td><td class="up">▲ ~+24</td><td class="up">+0.09%</td></tr>
+        <tr><td>VIX恐慌指数</td><td>~16-18</td><td class="flat">▸ 低位</td><td class="flat">正常</td></tr>
+      </table>
+      <div style="font-size:11px;color:#64748b;margin-top:4px">*纳斯达克综指为估算值，基于涨幅反推</div>
+    </div>
+    <div>
+      <h3>🔍 关键影响因素</h3>
+      <div class="highlight-box">
+        <p>▸ <strong>英伟达财报</strong>：Q1营收$816亿(+85%)，净利$583亿(+211%)，盘后一度跌超3%——"卖事实"行情</p>
+        <p>▸ <strong>FOMC会议纪要</strong>：维持利率3.50%-3.75%不变，内部分歧8:4创1992年来最大，鲍威尔任满，沃什5月22日就任新主席</p>
+        <p>▸ <strong>油价回落</strong>：WTI $96.36/桶（-1.93%），伊朗战事"很快结束"信号缓解通胀担忧，提振市场人气</p>
+        <p>▸ <strong>美债收益率</strong>：10年期收益率4.57%，回落支撑科技股估值</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Section 2: Sectors -->
+<div class="section">
+  <h2><span class="icon">🏭</span> 二、板块表现</h2>
+  <div class="two-col">
+    <div>
+      <h3>🟢 强势板块 TOP5</h3>
+      <table>
+        <tr><th>板块</th><th>涨幅</th><th>领涨逻辑</th></tr>
+        <tr><td>存储/半导体设备</td><td class="up">+3~8%</td><td>存储涨价+AI需求拉动</td></tr>
+        <tr><td>光通信/Optical</td><td class="up">+5~11%</td><td>AI数据中心光互联需求</td></tr>
+        <tr><td>光伏/太阳能</td><td class="up">+4~17%</td><td>成本下降+政策催化</td></tr>
+        <tr><td>量子计算</td><td class="up">+12%</td><td>美国政府$20亿量子拨款</td></tr>
+        <tr><td>航空</td><td class="up">+3~7%</td><td>油价下跌利好成本</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>🔴 最弱板块 TOP3</h3>
+      <table>
+        <tr><th>板块</th><th>跌幅</th><th>领跌原因</th></tr>
+        <tr><td>能源</td><td class="down">-2~3%</td><td>油价暴跌拖累，埃克森美孚-4%</td></tr>
+        <tr><td>必需消费</td><td class="down">-0.97%</td><td>沃尔玛-7.27%拖累，燃料成本上升挤压利润</td></tr>
+        <tr><td>传统零售</td><td class="down">-1~3%</td><td>成本压力+消费趋弱</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Section 3: Key Stocks -->
+<div class="section">
+  <h2><span class="icon">🏦</span> 三、重点个股异动</h2>
+  <table>
+    <tr><th>代码</th><th>名称</th><th>收盘价</th><th>涨跌幅</th><th>总市值</th><th>点评</th></tr>
+    <tr>
+      <td><span class="stock-name">NVDA</span></td>
+      <td>英伟达 <span class="stock-code">NVIDIA</span></td>
+      <td>$219.51</td>
+      <td class="down">-1.77%</td>
+      <td>~$5.5万亿</td>
+      <td><span class="tag tag-yellow">财报点评</span> Q1营收$816亿(+85%)超预期，数据中心$752亿(+92%)，但盘后跌超3%——典型的"买预期卖事实"。Q2指引$891-928亿高于共识$873亿，新增$800亿回购</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">AAPL</span></td>
+      <td>苹果 <span class="stock-code">Apple</span></td>
+      <td>$304.99</td>
+      <td class="up">+0.91%</td>
+      <td>$4.48万亿</td>
+      <td><span class="tag tag-green">📈 历史新高</span> 连续创收盘历史新高，市值4.48万亿美元</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">TSLA</span></td>
+      <td>特斯拉 <span class="stock-code">Tesla</span></td>
+      <td>$417.85</td>
+      <td class="up">+0.14%</td>
+      <td>~$1.34万亿</td>
+      <td>窄幅震荡，盘中一度涨1.25%后回落</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">GOOGL</span></td>
+      <td>谷歌 <span class="stock-code">Alphabet</span></td>
+      <td>$387.66</td>
+      <td class="down">-0.32%</td>
+      <td>~$4.8万亿</td>
+      <td>小幅回调，自研AI芯片竞争中</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">MSFT</span></td>
+      <td>微软 <span class="stock-code">Microsoft</span></td>
+      <td>$419.09</td>
+      <td class="down">-0.25%</td>
+      <td>~$3.1万亿</td>
+      <td>Anthropic洽谈使用其AI芯片，消息面偏积极</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">AMZN</span></td>
+      <td>亚马逊 <span class="stock-code">Amazon</span></td>
+      <td>$268.46</td>
+      <td class="up">+1.30%</td>
+      <td>~$2.8万亿</td>
+      <td>连续两日上涨，AI云需求支撑</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">META</span></td>
+      <td>Meta <span class="stock-code">Facebook</span></td>
+      <td>$607.38</td>
+      <td class="up">+0.38%</td>
+      <td>~$1.5万亿</td>
+      <td>温和上涨，AI基础设施投入持续</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">AVGO</span></td>
+      <td>博通 <span class="stock-code">Broadcom</span></td>
+      <td>$414.57</td>
+      <td class="down">-0.76%</td>
+      <td>~$1万亿</td>
+      <td>小幅回调，AI网络芯片长期受益</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">TSM</span></td>
+      <td>台积电 <span class="stock-code">TSMC</span></td>
+      <td>$407.15</td>
+      <td class="up">+1.38%</td>
+      <td>~$2.1万亿</td>
+      <td>半导体板块强势带动，AI芯片代工需求旺盛</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">AMD</span></td>
+      <td>AMD <span class="stock-code">Advanced Micro</span></td>
+      <td>~$155*</td>
+      <td class="up">+8.10%*</td>
+      <td>~$2,500亿</td>
+      <td><span class="tag tag-blue">CPU概念</span> *5月20日数据。CPU服务器市场复苏受益</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">LLY</span></td>
+      <td>礼来 <span class="stock-code">Eli Lilly</span></td>
+      <td>$1,041.65</td>
+      <td class="up">+2.24%</td>
+      <td>~$9,900亿</td>
+      <td>减肥药概念持续强势，突破$1,040创近期新高</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">ARM</span></td>
+      <td>ARM <span class="stock-code">Arm Holdings</span></td>
+      <td>~$285</td>
+      <td class="up">+16%+</td>
+      <td>$3,009亿+</td>
+      <td><span class="tag tag-purple">🚀 龙头</span> AI芯片架构需求爆发，创3月以来最大单日涨幅</td>
+    </tr>
+  </table>
+  <div style="font-size:11px;color:#64748b;margin-top:8px">*AMD涨幅为5月20日数据，5月21日未获取到最新</div>
+</div>
+
+<!-- Section 4: Big Movers -->
+<div class="section">
+  <h2><span class="icon">⭐</span> 四、大市值异动股聚焦（涨幅>9% & 市值>50亿美元）</h2>
+  
+  <div class="mover-card">
+    <div class="mover-info">
+      <div class="mover-name">ARM Holdings (ARM) <span class="tag tag-purple">AI芯片架构</span></div>
+      <div class="mover-detail">市值：$3,009亿 · 上涨原因：AI芯片架构需求爆发，CPU架构在数据中心渗透加速，英伟达财报强化AI支出周期</div>
+    </div>
+    <div class="mover-pct up">+16%+</div>
+  </div>
+
+  <div class="mover-card">
+    <div class="mover-info">
+      <div class="mover-name">IBM (IBM) <span class="tag tag-blue">量子计算</span></div>
+      <div class="mover-detail">市值：~$2,000亿 · 上涨原因：美国将向IBM等9家量子计算公司划拨$20亿，创2025年1月来最大单日涨幅</div>
+    </div>
+    <div class="mover-pct up">+12%</div>
+  </div>
+
+  <div class="mover-card">
+    <div class="mover-info">
+      <div class="mover-name">SanDisk (SNDK) <span class="tag tag-green">存储</span></div>
+      <div class="mover-detail">市值：~$300亿 · 上涨原因：存储芯片涨价周期+AI数据中心存储需求拉动</div>
+    </div>
+    <div class="mover-pct up">+10.75%</div>
+  </div>
+
+  <div class="mover-card">
+    <div class="mover-info">
+      <div class="mover-name">Lumentum (LITE) <span class="tag tag-yellow">光通信</span></div>
+      <div class="mover-detail">市值：~$80亿 · 上涨原因：AI数据中心光互联需求激增，光模块/光器件持续受益</div>
+    </div>
+    <div class="mover-pct up">+11%+</div>
+  </div>
+
+  <div class="mover-card">
+    <div class="mover-info">
+      <div class="mover-name">Enphase Energy (ENPH) <span class="tag tag-green">光伏</span></div>
+      <div class="mover-detail">市值：~$120亿 · 上涨原因：光伏/储能概念集体大涨，成本下降+美国本土化政策催化</div>
+    </div>
+    <div class="mover-pct up">+17%</div>
+  </div>
+</div>
+
+<!-- Section 5: Chinese ADRs -->
+<div class="section">
+  <h2><span class="icon">🇨🇳</span> 五、中概股表现</h2>
+  <div class="two-col">
+    <div>
+      <h3>📊 纳斯达克金龙指数</h3>
+      <table>
+        <tr><td>收盘</td><td>6,659.19</td><td class="down">▼ -1.50%</td></tr>
+        <tr><td>上涨/下跌</td><td>25家涨 / 42家跌 / 4家平</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>📈 重点中概股</h3>
+      <table>
+        <tr><th>代码</th><th>涨跌幅</th><th>备注</th></tr>
+        <tr><td>NIO 蔚来</td><td class="up">▲ +5.19%</td><td>Q1营收同比增112.2%，绩后大涨</td></tr>
+        <tr><td>XPEV 小鹏</td><td class="up">▲ +2.77%</td><td>新能源汽车板块跟涨</td></tr>
+        <tr><td>BABA 阿里</td><td class="down">▼ -3.63%</td><td>科技股整体疲软</td></tr>
+        <tr><td>JD 京东</td><td class="down">▼ -3.05%</td><td>消费零售板块承压</td></tr>
+        <tr><td>PDD 拼多多</td><td class="down">▼ -2.07%</td><td>中概整体回调</td></tr>
+        <tr><td>BILI 哔哩哔哩</td><td class="down">▼ -4.54~8.50%</td><td>跌幅居前，无明显利空</td></tr>
+        <tr><td>NTES 网易</td><td class="down">▼ -4.14%</td><td>游戏板块调整</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="highlight-box">
+    <p>中概股整体承压，金龙指数连跌5日。蔚来绩后逆势大涨+5.19%是亮点，Q1营收超预期反映新能源车赛道竞争格局改善。其余权重股普跌，市场情绪偏弱。</p>
+  </div>
+</div>
+
+<!-- Section 6: Commodities & Macro -->
+<div class="section">
+  <h2><span class="icon">🛢️</span> 六、大宗商品 & 宏观指标</h2>
+  <div class="two-col">
+    <div>
+      <h3>大宗商品</h3>
+      <table>
+        <tr><th>品种</th><th>最新价</th><th>变动</th></tr>
+        <tr><td>WTI原油</td><td>$96.36/桶</td><td class="down">▼ -1.93%</td></tr>
+        <tr><td>布伦特原油</td><td>$102.63/桶</td><td class="down">▼ -2.28%</td></tr>
+        <tr><td>黄金 (伦敦金)</td><td>$4,657/盎司*</td><td class="flat">▸ 周度数据</td></tr>
+        <tr><td>LME铜</td><td>$13,610/吨</td><td class="down">▼ -0.29%</td></tr>
+      </table>
+      <div style="font-size:11px;color:#64748b;margin-top:4px">*黄金为截至5月8日周度数据</div>
+    </div>
+    <div>
+      <h3>宏观指标</h3>
+      <table>
+        <tr><th>指标</th><th>最新值</th><th>变动</th></tr>
+        <tr><td>美国10年期国债收益率</td><td>4.57%</td><td class="flat">▸ 持平</td></tr>
+        <tr><td>美元指数</td><td>99.20</td><td class="flat">▸ +0.07%</td></tr>
+        <tr><td>美联储基准利率</td><td>3.50%-3.75%</td><td class="flat">维持不变</td></tr>
+        <tr><td>WTI月均价(4月)</td><td>$98.63/桶</td><td class="up">▲ 较3月$91.16上涨</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="highlight-box">
+    <p>油价延续跌势，WTI跌破$100后继续下探至$96一线。伊朗战事接近结束的信号缓解地缘溢价，缓解通胀二次抬头的担忧，债市收益率回落至4.57%也提振了市场人气。美元指数在99附近低位徘徊，对新兴市场资产形成支撑。</p>
+  </div>
+</div>
+
+<!-- Section 7: Important News -->
+<div class="section">
+  <h2><span class="icon">📰</span> 七、重要信息点评</h2>
+
+  <h3>1️⃣ 英伟达Q1财报：全面超预期但"惊喜不够"</h3>
+  <div class="highlight-box">
+    <p>营收$816亿(+85%)，净利$583亿(+211%)，数据中心$752亿(+92%)创历史新高。Q2指引$891-928亿高于共识$873亿。新增$800亿回购授权。但股价盘后跌超3%，当日收跌1.77%。这是典型的"买预期卖事实"——市场已将预期推至极高水平。高盛认为AI算力支出周期远未结束，维持看多。</p>
+  </div>
+
+  <h3>2️⃣ FOMC会议纪要：内部分歧创1992年以来最大</h3>
+  <div class="highlight-box">
+    <p>美联储4月会议维持利率3.50%-3.75%不变，8票赞成4票反对。4人反对中1人主张降息（鸽派），3人反对声明中的宽松倾向（鹰派）。鲍威尔任满，沃什5月22日宣誓就任新主席。纪要显示多数官员认为地缘冲突对物价的负面影响具备滞后持续性，若通胀持续偏离2%目标，存在进一步收紧可能。下一轮FOMC会议6月16-17日。</p>
+  </div>
+
+  <h3>3️⃣ 油价与地缘局势</h3>
+  <div class="highlight-box">
+    <p>特朗普释放伊朗战事"很快结束"的信号，WTI原油从4月均价$98.63跌至$96.36。油价回落直接利好航空、化工等成本敏感行业，同时缓解通胀预期，支持科技股估值修复。</p>
+  </div>
+
+  <h3>4️⃣ 量子计算获美国政府$20亿拨款</h3>
+  <div class="highlight-box">
+    <p>美国将向IBM等9家量子计算公司划拨$20亿，IBM当日暴涨12%。量子计算从实验室走向产业化的政策信号明确，可能成为下一个科技投资主题。</p>
+  </div>
+
+  <h3>5️⃣ 沃尔玛大跌7.27%：燃料成本侵蚀利润</h3>
+  <div class="highlight-box">
+    <p>尽管国际油价近期回落，但沃尔玛警告前期偏高的燃料成本仍在挤压利润空间。传统零售板块整体承压，反映通胀对消费端的滞后影响。</p>
+  </div>
+</div>
+
+<!-- Section 8: A-share Mapping -->
+<div class="section">
+  <h2><span class="icon">🔄</span> 八、映射到A股的潜在方向 ⭐ 最重要</h2>
+
+  <div class="mapper-card">
+    <div class="mapper-title">1️⃣ AI芯片/算力产业链 → 国产GPU+算力租赁+光模块</div>
+    <div class="mapper-logic">
+      <strong>逻辑：</strong>英伟达Q1数据中心收入$752亿(+92%)，验证AI算力需求仍然井喷式增长。ARM+16%反映CPU架构在数据中心的渗透加速。存储板块全线大涨（闪迪+10.75%、希捷+8%、美光+4%）表明AI存储需求进入新一轮上行周期。这对A股AI算力链构成直接催化。
+    </div>
+    <div class="mapper-stocks">
+      <span>寒武纪 AI芯片</span>
+      <span>海光信息 CPU</span>
+      <span>中际旭创 光模块</span>
+      <span>新易盛 光模块</span>
+      <span>天孚通信 光器件</span>
+      <span>浪潮信息 AI服务器</span>
+      <span>中科曙光 算力</span>
+      <span>澜起科技 存储接口</span>
+      <span>兆易创新 存储芯片</span>
+      <span>江波龙 存储模组</span>
+    </div>
+  </div>
+
+  <div class="mapper-card">
+    <div class="mapper-title">2️⃣ 光伏/储能 → 逆变器+组件+储能龙头</div>
+    <div class="mapper-logic">
+      <strong>逻辑：</strong>Enphase Energy +17%、SolarEdge +12%、阿特斯太阳能+8%、第一太阳能+4%集体大涨。美国光伏成本持续下降+本土化政策催化，行业景气度回升。A股光伏板块经历深度调整后，估值具备安全边际，美股光伏大涨可能带动A股光伏反弹。
+    </div>
+    <div class="mapper-stocks">
+      <span>阳光电源 逆变器</span>
+      <span>固德威 逆变器</span>
+      <span>锦浪科技 逆变器</span>
+      <span>隆基绿能 组件</span>
+      <span>晶澳科技 组件</span>
+      <span>天合光能 组件</span>
+      <span>德业股份 储能</span>
+      <span>阿特斯 A股</span>
+      <span>大全能源 多晶硅</span>
+    </div>
+  </div>
+
+  <div class="mapper-card">
+    <div class="mapper-title">3️⃣ 量子计算/前沿科技 → 量子通信+量子计算概念</div>
+    <div class="mapper-logic">
+      <strong>逻辑：</strong>美国政府$20亿量子拨款推动IBM大涨12%，标志着量子计算进入政策密集催化期。中国在量子通信领域全球领先，量子计算产业化的政策预期升温，A股量子概念可能迎来主题性机会。
+    </div>
+    <div class="mapper-stocks">
+      <span>国盾量子 量子通信</span>
+      <span>科大讯飞 量子计算</span>
+      <span>中国长城 信创+量子</span>
+      <span>神州信息 量子通信</span>
+      <span>科大国创 量子计算</span>
+    </div>
+  </div>
+
+  <div class="mapper-card">
+    <div class="mapper-title">4️⃣ 存储芯片周期 → 存储模组+NAND/DRAM</div>
+    <div class="mapper-logic">
+      <strong>逻辑：</strong>闪迪+10.75%、希捷+8%、美光+4%引领存储板块大涨。AI数据中心对HBM和高端存储需求爆发+传统存储涨价周期共振。A股存储芯片产业链直接受益于全球存储上行周期。
+    </div>
+    <div class="mapper-stocks">
+      <span>兆易创新 NOR Flash</span>
+      <span>北京君正 DRAM</span>
+      <span>澜起科技 内存接口</span>
+      <span>江波龙 存储模组</span>
+      <span>佰维存储 存储模组</span>
+      <span>德明利 存储芯片</span>
+    </div>
+  </div>
+
+  <div class="mapper-card">
+    <div class="mapper-title">5️⃣ 航空/出行链 → 航空+机场+免税</div>
+    <div class="mapper-logic">
+      <strong>逻辑：</strong>油价持续回落至$96（-5%以上），航空燃油成本大幅下降。美国航空股集体大涨（达美+9%、美联航+10%）。油价回落+出行旺季预期，A股航空板块有望迎来成本端改善的催化。
+    </div>
+    <div class="mapper-stocks">
+      <span>中国国航</span>
+      <span>南方航空</span>
+      <span>中国东航</span>
+      <span>春秋航空</span>
+      <span>上海机场</span>
+      <span>中国中免 免税</span>
+    </div>
+  </div>
+</div>
+
+<!-- Section 9: Investment Opportunities -->
+<div class="section">
+  <h2><span class="icon">💡</span> 九、投资机会</h2>
+  
+  <div class="opp-box">
+    <p><strong>🟢 短期机会（1-2周）：</strong></p>
+    <p>1. <strong>AI算力链</strong>：英伟达财报验证AI资本开支上行周期远未结束，光模块、AI服务器、存储芯片等Q2业绩确定性高，回调是布局时机</p>
+    <p>2. <strong>光伏超跌反弹</strong>：美股光伏板块集体大涨，A股光伏板块前期超跌严重，短期存在估值修复机会，重点关注逆变器龙头</p>
+    <p>3. <strong>航空板块</strong>：油价持续回落+暑期出行旺季临近，航空股成本端改善+需求端催化，关注中国国航、春秋航空</p>
+  </div>
+
+  <div class="opp-box">
+    <p><strong>🟡 中期机会（1-3个月）：</strong></p>
+    <p>1. <strong>存储芯片周期</strong>：AI HBM需求+传统存储涨价双重驱动，全球存储进入上行周期，A股存储产业链相关公司业绩弹性大</p>
+    <p>2. <strong>量子计算主题</strong>：中美量子计算政策加码，产业从实验室走向商业化，主题性机会值得关注</p>
+    <p>3. <strong>减肥药产业链</strong>：礼来突破$1,040创近期新高，GLP-1赛道持续景气，关注A股多肽原料药/CDMO</p>
+  </div>
+</div>
+
+<!-- Section 10: Risk Warning -->
+<div class="section">
+  <h2><span class="icon">⚠️</span> 十、风险提示</h2>
+  <div class="risk-box">
+    <p><strong>🔴 主要风险：</strong></p>
+    <p>1. <strong>美联储鹰派转向风险</strong>：FOMC纪要显示8:4内部分歧创32年最大，若6月会议出现加息讨论，将压制全球风险偏好</p>
+    <p>2. <strong>AI预期过度透支</strong>：英伟达连续6次财报后股价下跌，市场对AI板块的预期已被推至极高位置，任何边际走弱都可能引发剧烈回调</p>
+    <p>3. <strong>中东地缘风险反复</strong>：当前油价下跌基于"战事很快结束"预期，若局势反复，油价可能快速反弹，重新推升通胀</p>
+    <p>4. <strong>中概股政策风险</strong>：中概金龙指数连跌5日，中美关系及监管政策不确定性仍需警惕</p>
+    <p>5. <strong>沃尔玛警示信号</strong>：燃料成本对消费端的滞后影响可能在更多财报中体现，消费板块面临盈利下修风险</p>
+    <p>6. <strong>新主席上任不确定性</strong>：沃什今日（5月22日）就任美联储主席，政策路径可能发生调整，市场需要时间消化</p>
+  </div>
+
+  <div style="margin-top:16px;padding:12px;background:rgba(234,179,8,0.08);border-radius:8px;border:1px solid rgba(234,179,8,0.2)">
+    <p style="color:#facc15;font-size:13px">
+      <strong>⚠️ 免责声明：</strong> 本报告基于东方财富妙想API数据和公开资讯自动生成，仅供参考，不构成投资建议。投资有风险，入市需谨慎。数据时间：2026-05-21美股收盘。
+    </p>
+  </div>
+</div>
+
+<div class="footer">
+  <p>🇺🇸 美股映射复盘报告 · 自动生成于 2026-05-22 08:00</p>
+  <p>数据来源：东方财富妙想 API · 历史数据归因于各自版权方</p>
+</div>
+
+</div>
+</body>
+</html>
