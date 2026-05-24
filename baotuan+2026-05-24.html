@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>机构抱团识别报告 2026-05-24</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: #0a0e1a;
+  color: #e0e6f0;
+  padding: 20px;
+  min-height: 100vh;
+}
+.container { max-width: 1400px; margin: 0 auto; }
+.header {
+  background: linear-gradient(135deg, #0f1923 0%, #1a2a3a 100%);
+  border: 1px solid #1e3a5f;
+  border-radius: 16px;
+  padding: 30px 40px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '🏦';
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 72px;
+  opacity: 0.15;
+}
+.header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #f0c040;
+  margin-bottom: 8px;
+}
+.header .subtitle {
+  font-size: 14px;
+  color: #8899aa;
+}
+.header .date-badge {
+  display: inline-block;
+  background: #f0c04020;
+  border: 1px solid #f0c04040;
+  color: #f0c040;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin-top: 10px;
+}
+.section {
+  background: #111927;
+  border: 1px solid #1e3a5f;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.section h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #f0c040;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #1e3a5f;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section h2 .badge {
+  background: #1a3a5f;
+  color: #7eb8ff;
+  font-size: 12px;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-weight: 400;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+th {
+  background: #0d1520;
+  color: #7eb8ff;
+  font-weight: 500;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 2px solid #1e3a5f;
+  white-space: nowrap;
+}
+td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #1a2a3a;
+  vertical-align: middle;
+}
+tr:hover td { background: #0d152050; }
+.up { color: #ef5350; }
+.down { color: #26a69a; }
+.num { font-feature-settings: "tnum"; text-align: right; }
+.rank-1 { color: #f0c040; font-weight: 700; }
+.rank-2 { color: #c0c0c0; font-weight: 600; }
+.rank-3 { color: #cd7f32; font-weight: 600; }
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+}
+.tag-green { background: #1b5e2040; color: #66bb6a; border: 1px solid #2e7d3240; }
+.tag-red { background: #b71c1c40; color: #ef5350; border: 1px solid #c6282840; }
+.tag-blue { background: #1565c040; color: #42a5f5; border: 1px solid #1976d240; }
+.tag-orange { background: #e6510040; color: #ffa726; border: 1px solid #ef6c0040; }
+.tag-purple { background: #4a148c40; color: #ab47bc; border: 1px solid #6a1b9a40; }
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.stat-card {
+  background: #0d1520;
+  border: 1px solid #1e3a5f;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.stat-card .value { font-size: 24px; font-weight: 700; margin: 6px 0; }
+.stat-card .label { font-size: 12px; color: #8899aa; }
+.summary-box {
+  background: linear-gradient(135deg, #0f1923, #0d1520);
+  border: 1px solid #f0c04040;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-top: 12px;
+}
+.summary-box h3 { color: #f0c040; font-size: 14px; margin-bottom: 8px; }
+.summary-box ul { padding-left: 20px; }
+.summary-box li { margin-bottom: 6px; line-height: 1.6; color: #c0d0e0; }
+.signal-card {
+  background: #0d1520;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border-left: 4px solid;
+  margin-bottom: 10px;
+}
+.signal-card .icon { font-size: 28px; }
+.signal-card .title { font-weight: 600; margin-bottom: 4px; }
+.signal-card .desc { font-size: 13px; color: #8899aa; line-height: 1.5; }
+.signal-strong { border-left-color: #ef5350; }
+.signal-potential { border-left-color: #ffa726; }
+.signal-loose { border-left-color: #42a5f5; }
+.progress-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: #1a2a3a;
+  margin-top: 4px;
+  overflow: hidden;
+}
+.progress-bar .fill { height: 100%; border-radius: 3px; }
+.flow-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 768px) { .flow-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>🏦 机构抱团识别报告</h1>
+  <div class="subtitle">A股机构资金行为深度分析 · 板块RPS强度 + 资金流向 + 个股筛选</div>
+  <div class="date-badge">📅 2026-05-24（周日）| 数据截止 2026-05-22（周五收盘）</div>
+</div>
+
+<!-- 概览 -->
+<div class="section">
+  <h2>📊 市场资金环境概览</h2>
+  <div class="card-grid">
+    <div class="stat-card">
+      <div class="label">大盘（中证全指）</div>
+      <div class="value up">+1.74%</div>
+      <div class="label">2026.05.22</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">全市场主力净流入</div>
+      <div class="value up">+385.44亿</div>
+      <div class="label">2026.05.22</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">电子板块主力净流入</div>
+      <div class="value up">+315.18亿</div>
+      <div class="label">AMAC电子指数</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">高端制造主力净流入</div>
+      <div class="value up">+318.40亿</div>
+      <div class="label">CS高端制指数</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">通信RPS(120日)</div>
+      <div class="value up">+72.67%</div>
+      <div class="label">近120日涨幅居首</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">公募通信持仓</div>
+      <div class="value up">9.8%</div>
+      <div class="label">历史新高</div>
+    </div>
+  </div>
+</div>
+
+<!-- 行业板块抱团分析 -->
+<div class="section">
+  <h2>🏭 行业板块抱团分析</h2>
+
+  <h3 style="color:#7eb8ff;font-size:14px;margin-bottom:10px;">📈 120日板块涨幅排名（申万一级行业）</h3>
+  <table>
+    <tr>
+      <th>排名</th><th>板块</th><th>120日涨幅</th><th>5.22涨幅</th><th>RPS等效</th><th>估值(PE)</th><th>总市值</th>
+    </tr>
+    <tr><td><span class="rank-1">🥇 1</span></td><td>通信</td><td class="up num">+72.67%</td><td class="up num">+4.16%</td><td><span class="tag tag-red">100</span></td><td class="num">64.45</td><td>7.78万亿</td></tr>
+    <tr><td><span class="rank-2">🥈 2</span></td><td>电子</td><td class="up num">+54.54%</td><td class="up num">+4.29%</td><td><span class="tag tag-red">99</span></td><td class="num">82.69</td><td>21.58万亿</td></tr>
+    <tr><td><span class="rank-3">🥉 3</span></td><td>机械设备</td><td class="up num">+31.79%</td><td class="up num">+2.95%</td><td><span class="tag tag-orange">96</span></td><td class="num">49.67</td><td>7.07万亿</td></tr>
+    <tr><td>4</td><td>建筑材料</td><td class="up num">+29.26%</td><td class="up num">+3.87%</td><td><span class="tag tag-orange">93</span></td><td class="num">40.25</td><td>1.22万亿</td></tr>
+    <tr><td>5</td><td>综合</td><td class="up num">+25.27%</td><td class="up num">+4.58%</td><td><span class="tag tag-orange">90</span></td><td class="num">146.93</td><td>2004亿</td></tr>
+    <tr><td>6</td><td>有色金属</td><td class="up num">+18.74%</td><td class="up num">+3.65%</td><td><span class="tag tag-blue">87</span></td><td class="num">23.12</td><td>6.22万亿</td></tr>
+    <tr><td>7</td><td>国防军工</td><td class="up num">+17.18%</td><td class="up num">+1.48%</td><td><span class="tag tag-blue">85</span></td><td class="num">71.85</td><td>3.51万亿</td></tr>
+    <tr><td>8</td><td>电力设备</td><td class="up num">+13.70%</td><td class="up num">+1.48%</td><td><span class="tag tag-blue">83</span></td><td class="num">40.55</td><td>9.72万亿</td></tr>
+    <tr><td>9</td><td>基础化工</td><td class="up num">+11.87%</td><td class="up num">+2.69%</td><td><span class="tag tag-green">82</span></td><td class="num">32.45</td><td>4.92万亿</td></tr>
+    <tr><td>10</td><td>环保</td><td class="up num">+9.19%</td><td class="up num">+1.55%</td><td><span class="tag tag-green">80</span></td><td class="num">29.33</td><td>1.02万亿</td></tr>
+    <tr><td colspan="7" style="color:#555;font-size:12px;text-align:center;padding:6px;">垫底：美容护理(-19.90%) | 食品饮料(-16.25%) | 商贸零售(-15.48%) | 农林牧渔(-14.98%) | 非银金融(-13.55%)</td></tr>
+  </table>
+
+  <h3 style="color:#7eb8ff;font-size:14px;margin:16px 0 10px;">💸 2026.05.22 主力资金净流入TOP指数</h3>
+  <table>
+    <tr><th>排名</th><th>指数</th><th>主力净流入</th><th>当日涨跌幅</th></tr>
+    <tr><td>1</td><td>沪港深通TMT</td><td class="up num">+528.57亿</td><td class="up num">+3.11%</td></tr>
+    <tr><td>2</td><td>中证全指</td><td class="up num">+385.44亿</td><td class="up num">+1.74%</td></tr>
+    <tr><td>3</td><td>中证流通</td><td class="up num">+380.97亿</td><td class="up num">+1.74%</td></tr>
+    <tr><td>4</td><td>CS高端制造</td><td class="up num">+318.40亿</td><td class="up num">+2.72%</td></tr>
+    <tr><td>5</td><td>AMAC电子</td><td class="up num">+315.18亿</td><td class="up num">+4.64%</td></tr>
+    <tr><td>6</td><td>制造指数</td><td class="up num">+302.69亿</td><td class="up num">+2.86%</td></tr>
+  </table>
+
+  <h3 style="color:#7eb8ff;font-size:14px;margin:16px 0 10px;">📰 近期机构研报热点主题</h3>
+  <table>
+    <tr><th>机构</th><th>核心观点</th><th>日期</th></tr>
+    <tr><td>中信建投</td><td>AI算力产业链持续看好，光模块/GPU表现好；公募通信持仓9.8%创新高</td><td>05-17</td></tr>
+    <tr><td>天风证券</td><td>通信设备、半导体、工程机械、电池已迈入扩张期；关注电子化学品、半导体材料</td><td>05-23</td></tr>
+    <tr><td>开源证券</td><td>机构关注度：电子 > 医药生物 > 机械设备；中际旭创维持"买入"评级</td><td>05-18</td></tr>
+    <tr><td>中泰证券</td><td>科技及高制板块交易最热，半导体行业精选ETF单周涨9.57%</td><td>05-24</td></tr>
+    <tr><td>华泰证券</td><td>锂电向上周期已至，板块Q1归母净利同比增速超40%</td><td>05-04</td></tr>
+    <tr><td>长江证券</td><td>通讯业务、信息技术与硬件板块周度领涨；专精特新年初收益超70%</td><td>05-19</td></tr>
+    <tr><td>兴业证券</td><td>汽车板块关注整车出口、机器人创新，看好比亚迪、长城等</td><td>05-08</td></tr>
+  </table>
+
+  <h3 style="color:#7eb8ff;font-size:14px;margin:16px 0 10px;">✅ 综合筛选结果：确认抱团板块</h3>
+  <table>
+    <tr><th>板块</th><th>RPS(120日)</th><th>资金流入</th><th>研报热度</th><th>基金持仓</th><th>抱团信号</th></tr>
+    <tr>
+      <td><strong>📡 通信</strong></td>
+      <td><span class="tag tag-red">100</span></td>
+      <td>TMT指数+528亿</td>
+      <td><span class="tag tag-red">极高</span></td>
+      <td>公募9.8%创新高</td>
+      <td><span class="tag tag-red">✅ 确认抱团</span></td>
+    </tr>
+    <tr>
+      <td><strong>💻 电子（半导体）</strong></td>
+      <td><span class="tag tag-red">99</span></td>
+      <td>AMAC+315亿</td>
+      <td><span class="tag tag-red">极高</span></td>
+      <td>多只>20%</td>
+      <td><span class="tag tag-red">✅ 确认抱团</span></td>
+    </tr>
+    <tr>
+      <td><strong>⚙️ 机械设备</strong></td>
+      <td><span class="tag tag-orange">96</span></td>
+      <td>制造指数+302亿</td>
+      <td><span class="tag tag-orange">高</span></td>
+      <td>鼎泰高科24.85%</td>
+      <td><span class="tag tag-orange">🔶 潜在抱团</span></td>
+    </tr>
+    <tr>
+      <td><strong>🔋 电力设备（锂电）</strong></td>
+      <td><span class="tag tag-blue">83</span></td>
+      <td>温和流入</td>
+      <td><span class="tag tag-orange">高</span></td>
+      <td>Q1业绩高增</td>
+      <td><span class="tag tag-blue">🔷 潜在抱团</span></td>
+    </tr>
+    <tr>
+      <td><strong>🧱 建筑材料（玻纤）</strong></td>
+      <td><span class="tag tag-orange">93</span></td>
+      <td>温和流入</td>
+      <td><span class="tag tag-blue">中等</span></td>
+      <td>玻纤盈利大幅提升</td>
+      <td><span class="tag tag-blue">🔷 关注</span></td>
+    </tr>
+  </table>
+</div>
+
+<!-- 个股筛选结果 -->
+<div class="section">
+  <h2>📋 个股筛选结果 <span class="badge">基金持股>10% · 市值>200亿 · 机构评级</span></h2>
+
+  <h3 style="color:#7eb8ff;font-size:14px;margin-bottom:10px;">📡 通信板块（120日涨幅 +72.67%）</h3>
+  <table>
+    <tr><th>代码</th><th>名称</th><th>基金持股%</th><th>总市值</th><th>5.22涨跌</th><th>概念标签</th></tr>
+    <tr><td>300502</td><td><strong>新易盛</strong></td><td class="up num">29.03%</td><td class="num">6042亿</td><td class="up num">+7.20%</td><td><span class="tag tag-red">CPO</span> <span class="tag tag-blue">算力</span></td></tr>
+    <tr><td>300308</td><td><strong>中际旭创</strong></td><td class="up num">20.78%</td><td class="num">1.16万亿</td><td class="up num">+4.49%</td><td><span class="tag tag-red">CPO</span> <span class="tag tag-blue">1.6T</span> <span class="tag tag-green">龙头</span></td></tr>
+    <tr><td>600487</td><td>亨通光电</td><td class="up num">16.12%</td><td class="num">1801亿</td><td class="up num">+4.51%</td><td><span class="tag tag-blue">光纤光缆</span></td></tr>
+    <tr><td>300548</td><td>长芯博创</td><td class="up num">15.24%</td><td class="num">700亿</td><td class="up num">+3.81%</td><td><span class="tag tag-purple">光芯片</span></td></tr>
+    <tr><td>600522</td><td>中天科技</td><td class="up num">13.08%</td><td class="num">1495亿</td><td class="up num">+4.58%</td><td><span class="tag tag-blue">海底电缆</span></td></tr>
+    <tr><td>300394</td><td><strong>天孚通信</strong></td><td class="up num">10.71%</td><td class="num">2902亿</td><td class="up num">+10.47%</td><td><span class="tag tag-red">CPO</span> <span class="tag tag-red">MPO</span></td></tr>
+  </table>
+
+  <h3 style="color:#7eb8ff;font-size:14px;margin:16px 0 10px;">💻 电子/半导体板块（120日涨幅 +54.54%）</h3>
+  <table>
+    <tr><th>代码</th><th>名称</th><th>基金持股%</th><th>总市值</th><th>5.22涨跌</th><th>概念标签</th></tr>
+    <tr><td>688008</td><td><strong>澜起科技</strong></td><td class="up num">21.58%</td><td class="num">3322亿</td><td class="up num">+3.68%</td><td><span class="tag tag-red">AI芯片</span> <span class="tag tag-blue">运力</span></td></tr>
+    <tr><td>688072</td><td>拓荆科技</td><td class="up num">21.40%</td><td class="num">1744亿</td><td class="up num">+1.78%</td><td><span class="tag tag-blue">半导体设备</span></td></tr>
+    <tr><td>002384</td><td><strong>东山精密</strong></td><td class="up num">20.54%</td><td class="num">4039亿</td><td class="up num">+6.56%</td><td><span class="tag tag-purple">PCB</span> <span class="tag tag-blue">苹果</span></td></tr>
+    <tr><td>603986</td><td><strong>兆易创新</strong></td><td class="up num">13.65%</td><td class="num">3286亿</td><td class="up num">+8.53%</td><td><span class="tag tag-red">存储芯片</span></td></tr>
+    <tr><td>002463</td><td><strong>沪电股份</strong></td><td class="up num">12.10%</td><td class="num">2195亿</td><td class="up num">+10.00%</td><td><span class="tag tag-purple">PCB</span> <span class="tag tag-red">涨停</span></td></tr>
+    <tr><td>688256</td><td><strong>寒武纪</strong></td><td class="up num">11.51%</td><td class="num">8079亿</td><td class="down num">-0.38%</td><td><span class="tag tag-red">AI芯片</span> <span class="tag tag-red">国产算力</span></td></tr>
+    <tr><td>688981</td><td><strong>中芯国际</strong></td><td class="up num">15.92%</td><td class="num">1.05万亿</td><td class="up num">+3.23%</td><td><span class="tag tag-blue">晶圆代工</span></td></tr>
+  </table>
+
+  <h3 style="color:#7eb8ff;font-size:14px;margin:16px 0 10px;">⚙️ 机械设备板块（120日涨幅 +31.79%）</h3>
+  <table>
+    <tr><th>代码</th><th>名称</th><th>基金持股%</th><th>总市值</th><th>5.22涨跌</th><th>概念标签</th></tr>
+    <tr><td>301377</td><td>鼎泰高科</td><td class="up num">24.85%</td><td class="num">1277亿</td><td class="up num">+20.00%</td><td><span class="tag tag-red">PCB设备</span> <span class="tag tag-red">涨停</span></td></tr>
+    <tr><td>688777</td><td>中控技术</td><td class="up num">16.32%</td><td class="num">681亿</td><td class="up num">+1.54%</td><td><span class="tag tag-blue">工控</span> <span class="tag tag-blue">AI应用</span></td></tr>
+    <tr><td>002353</td><td>杰瑞股份</td><td class="up num">14.40%</td><td class="num">1364亿</td><td class="up num">+0.20%</td><td><span class="tag tag-blue">能源装备</span></td></tr>
+    <tr><td>002008</td><td><strong>大族激光</strong></td><td class="up num">14.23%</td><td class="num">1506亿</td><td class="up num">+2.59%</td><td><span class="tag tag-purple">激光</span> <span class="tag tag-blue">半导体</span></td></tr>
+    <tr><td>688017</td><td>绿的谐波</td><td class="up num">10.36%</td><td class="num">626亿</td><td class="up num">+2.09%</td><td><span class="tag tag-red">人形机器人</span></td></tr>
+  </table>
+</div>
+
+<!-- 技术面强势股 -->
+<div class="section">
+  <h2>🔥 技术面强势股独立筛选 <span class="badge">RPS(60日)≥85 · 基金持股>10% · 市值>200亿</span></h2>
+  <table>
+    <tr><th>代码</th><th>名称</th><th>所属板块</th><th>5.22涨跌</th><th>RSI(6日)</th><th>基金持股%</th><th>总市值</th></tr>
+    <tr><td>688301</td><td>奕瑞科技</td><td>电子</td><td class="up num">+2.74%</td><td class="up num">96.97</td><td class="num">12.69%</td><td class="num">373亿</td></tr>
+    <tr><td>688017</td><td>绿的谐波</td><td>机械设备</td><td class="up num">+2.09%</td><td class="up num">87.63</td><td class="num">10.36%</td><td class="num">626亿</td></tr>
+    <tr><td>300776</td><td>帝尔激光</td><td>机械设备</td><td class="up num">+6.30%</td><td class="up num">86.56</td><td class="num">13.03%</td><td class="num">429亿</td></tr>
+    <tr><td>603179</td><td>新泉股份</td><td>汽车</td><td class="down num">-1.36%</td><td class="up num">84.32</td><td class="num">11.65%</td><td class="num">436亿</td></tr>
+    <tr><td>688008</td><td>澜起科技</td><td>电子</td><td class="up num">+3.68%</td><td class="up num">80.36</td><td class="num">21.58%</td><td class="num">3322亿</td></tr>
+    <tr><td>002008</td><td>大族激光</td><td>机械设备</td><td class="up num">+2.59%</td><td class="up num">72.18</td><td class="num">14.23%</td><td class="num">1506亿</td></tr>
+    <tr><td>688627</td><td>精智达</td><td>机械设备</td><td class="up num">+1.71%</td><td class="up num">72.20</td><td class="num">12.33%</td><td class="num">392亿</td></tr>
+    <tr><td>002384</td><td>东山精密</td><td>电子</td><td class="up num">+6.56%</td><td class="up num">60.53</td><td class="num">20.54%</td><td class="num">4039亿</td></tr>
+    <tr><td>688256</td><td>寒武纪</td><td>电子</td><td class="down num">-0.38%</td><td class="up num">58.29</td><td class="num">11.51%</td><td class="num">8079亿</td></tr>
+    <tr><td>300308</td><td>中际旭创</td><td>通信</td><td class="up num">+4.49%</td><td class="up num">62.99</td><td class="num">20.78%</td><td class="num">1.16万亿</td></tr>
+  </table>
+  <div class="summary-box" style="margin-top:12px;">
+    <h3>📌 技术面要点</h3>
+    <ul>
+      <li><strong>奕瑞科技</strong> RSI(6日)=96.97 超强，近6日几乎连续上涨，动量极强</li>
+      <li><strong>绿的谐波</strong> 人形机器人核心标的，RSI连续5日在83以上，趋势强劲</li>
+      <li><strong>帝尔激光</strong> 连续放量上涨，RSI从78.86回升至86.56，动能重新增强</li>
+      <li><strong>澜起科技</strong> RSI从68.39稳步上行至80.36，中期趋势良好</li>
+      <li><strong>中际旭创</strong> 光模块绝对龙头，4家机构给予买入/强烈推荐评级</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 抱团信号总结 -->
+<div class="section">
+  <h2>🚨 抱团信号总结</h2>
+
+  <div class="signal-card signal-strong">
+    <div class="icon">🔴</div>
+    <div>
+      <div class="title">确认抱团 — 通信+电子（AI算力产业链）</div>
+      <div class="desc">
+        <strong>力度：极高</strong> | 通信板块120日涨幅72.67%居全市场第一，电子54.54%第二。<br>
+        5.22当日TMT指数主力净流入528亿，电子板块315亿。<br>
+        公募通信持仓9.8%创历史新高，AI算力产业链为最核心主线。<br>
+        核心抱团股：中际旭创(基金20.78%)、新易盛(29.03%)、澜起科技(21.58%)、天孚通信(10.71%)。<br>
+        机构覆盖：中信建投、天风、开源、方正、国金等多家持续推荐买入。
+      </div>
+    </div>
+  </div>
+
+  <div class="signal-card signal-potential">
+    <div class="icon">🟠</div>
+    <div>
+      <div class="title">潜在抱团 — 机械设备（机器人/高端装备）</div>
+      <div class="desc">
+        <strong>力度：中高</strong> | 120日涨幅31.79%排名第三，CS高端制造指数当日净流入318亿。<br>
+        机构调研热度最高（机械设备连续多周第一），鼎泰高科基金持股24.85%。<br>
+        人形机器人产业链（绿的谐波、大族激光）持续获得关注。
+      </div>
+    </div>
+  </div>
+
+  <div class="signal-card signal-potential">
+    <div class="icon">🟡</div>
+    <div>
+      <div class="title">潜在抱团 — 电力设备（锂电周期向上）</div>
+      <div class="desc">
+        <strong>力度：中等</strong> | 华泰证券等多家看好锂电周期向上，Q1板块归母净利增速超40%。<br>
+        铁锂正极/铝箔/电解液涨价明确，但RPS(120日)仅13.70%暂未进入极强区间。<br>
+        需关注后续资金流入持续性。
+      </div>
+    </div>
+  </div>
+
+  <div class="signal-card signal-loose">
+    <div class="icon">🔵</div>
+    <div>
+      <div class="title">松动/瓦解信号 — 食品饮料、医药生物、非银金融、银行</div>
+      <div class="desc">
+        <strong>持续失血板块：</strong><br>
+        食品饮料(-16.25% 120日)、医药生物(-9.15%)、银行(-9.88%)、非银金融(-13.55%)。<br>
+        传统机构重仓板块资金持续流出，机构资金向AI算力方向转移明显。<br>
+        申万一级行业排名末5位中，4个是传统蓝筹板块，抱团瓦解特征显著。
+      </div>
+    </div>
+  </div>
+
+  <div class="summary-box">
+    <h3>📊 综合判断</h3>
+    <ul>
+      <li><strong>核心抱团主线：</strong> AI算力产业链（通信+电子）— 通信120日涨幅72.67%，RPS等效100，公募持仓创新高，机构密集推荐。这是当前A股最明确的机构抱团方向。</li>
+      <li><strong>次级关注：</strong> 机械设备（高端装备/机器人）已有抱团趋势但力度弱于AI链；电力设备（锂电）处于周期底部向上的拐点阶段。</li>
+      <li><strong>传统抱团瓦解：</strong> 食品饮料/医药/银行/非银金融120日均为负收益，机构资金持续撤出并向TMT倾斜。</li>
+      <li><strong>抱团集中度：</strong> 通信+电子两个一级行业成交额合计超1.1万亿（通信2056亿+电子8959亿），占全市场成交额约39%，资金高度集中。</li>
+      <li><strong>风险提示：</strong> 美股CSP资本开支指引不及预期、关税影响超预期、AI产业发展不及预期可能导致抱团松动。</li>
+    </ul>
+  </div>
+</div>
+
+<div style="text-align:center;color:#556;font-size:12px;padding:20px;">
+  数据来源：东方财富（EastMoney）妙想数据 · 报告生成时间 2026-05-24<br>
+  免责声明：本报告仅供参考，不构成投资建议。投资有风险，入市需谨慎。
+</div>
+
+</div>
+</body>
+</html>
