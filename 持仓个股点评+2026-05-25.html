@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>持仓个股点评 2026-05-25</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #0a0e27; color: #e0e0e0; font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; padding: 24px; }
+        .header { text-align: center; padding: 24px 0 16px; border-bottom: 1px solid #1a1f3a; margin-bottom: 24px; }
+        .header h1 { color: #ffd700; font-size: 28px; font-weight: 700; letter-spacing: 2px; }
+        .header .subtitle { color: #8892b0; font-size: 14px; margin-top: 6px; }
+        .summary { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+        .summary-card { background: linear-gradient(135deg, #111638, #1a1f3a); border-radius: 12px; padding: 16px 24px; flex: 1; min-width: 180px; border: 1px solid #1e2648; }
+        .summary-card .label { color: #8892b0; font-size: 12px; }
+        .summary-card .value { font-size: 24px; font-weight: 700; margin-top: 4px; }
+        .stock-card { background: linear-gradient(135deg, #111638, #1a1f3a); border-radius: 12px; padding: 20px; margin-bottom: 16px; border: 1px solid #1e2648; }
+        .stock-card:hover { border-color: #ffd700; }
+        .stock-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #1e2648; }
+        .stock-name { font-size: 18px; font-weight: 600; color: #ffd700; }
+        .stock-code { color: #8892b0; font-size: 13px; margin-left: 8px; }
+        .stock-info { font-size: 13px; color: #8892b0; }
+        .pnl { font-weight: 700; }
+        .content { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        @media (max-width: 768px) { .content { grid-template-columns: 1fr; } }
+        .section { background: #0d1135; border-radius: 8px; padding: 14px; border: 1px solid #1a1f3a; }
+        .section h3 { color: #8892b0; font-size: 13px; margin-bottom: 8px; letter-spacing: 1px; border-bottom: 1px solid #1a1f3a; padding-bottom: 6px; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        td, th { padding: 3px 6px; text-align: left; }
+        td:last-child { text-align: right; }
+        .signal-list { list-style: none; padding: 0; }
+        .signal-list li { padding: 2px 0; font-size: 13px; }
+        .green { color: #2ed573; }
+        .red { color: #ff4757; }
+        .yellow { color: #ffa502; }
+        .outlook-box { display: inline-block; padding: 4px 12px; border-radius: 6px; font-weight: 600; font-size: 14px; }
+        .action-box { display: inline-block; padding: 4px 12px; border-radius: 6px; font-weight: 600; font-size: 14px; }
+        .rating-stars { color: #ffd700; font-size: 14px; letter-spacing: 2px; }
+        .footer { text-align: center; padding: 20px; color: #4a5080; font-size: 12px; }
+        .profit { color: #ff4757; }
+        .loss { color: #2ed573; }
+        .banner { background: linear-gradient(90deg, #1a1f3a, #0d1135); padding: 8px 16px; border-radius: 8px; font-size: 12px; color: #8892b0; margin-bottom: 16px; border-left: 3px solid #ffd700; }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>📋 持仓个股点评</h1>
+    <div class="subtitle">生成时间：2026-05-25 19:39 | 数据来源：东方财富妙想 / 腾讯行情</div>
+</div>
+
+<div class="banner">
+    ⚠️ 本报告由 AI 自动生成，仅作为投研参考，不构成投资建议。持仓盈亏基于成本价与实时行情计算。
+</div>
+
+<div class="summary">
+    <div class="summary-card">
+        <div class="label">持仓数量</div>
+        <div class="value" style="color: #ffd700;">10 只</div>
+    </div>
+    <div class="summary-card">
+        <div class="label">总仓位</div>
+        <div class="value" style="color: #ffd700;">87.0%</div>
+    </div>
+    <div class="summary-card">
+        <div class="label">组合盈亏</div>
+        <div class="value" style="color: #ff4757;">-2.69%</div>
+    </div>
+    <div class="summary-card">
+        <div class="label">浮盈个股</div>
+        <div class="value" style="color: #2ed573;">3 / 10</div>
+    </div>
+    <div class="summary-card">
+        <div class="label">浮亏个股</div>
+        <div class="value" style="color: #ff4757;">7 / 10</div>
+    </div>
+</div>
+
+<div class="stock-card">
+    <div class="stock-header">
+        <div>
+            <span class="stock-name">【1】小鹏汽车</span>
+            <span class="stock-code">09868.HK</span>
+            <span class="stock-info">成本 83.53</span>
+            <span class="stock-info">仓位 15.73%</span>
+        </div>
+        <div>
+            <span class="pnl" style="color: #2ed573;">今日 +3.30%</span>
+            <span style="margin:0 8px;color:#4a5080;">|</span>
+            <span style="font-weight:600;">现价 62.6</span>
+            <span style="margin-left:12px;" class="pnl" style="color:#ff4757;">距成本 -25.06%</span>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="section">
+            <h3>🔍 基本面</h3>
+
+            <ul class="signal-list">
+                <li><span class="green">✅</span> 2025年报：营收767亿(+87.7%)，净亏损收窄80.3%至11.4亿</li>
+                <li><span class="green">✅</span> Q4首度实现单季盈利（净利3.8亿），毛利率21.3%</li>
+                <li><span class="green">✅</span> 2026年聚焦物理AI生态商业化（Robotaxi+人形机器人）</li>
+                <li><span class="yellow">⚠️</span> 智驾+VLA2.0+图灵芯片逻辑持续兑现，催化明确</li>
+                <li><span style="color:#8892b0;">➡️</span> 核心逻辑：智驾+机器人双轮驱动，技术领先优势保持</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h3>📈 纯技术面</h3>
+            <table>
+                <tr><td>均线系统</td><td style="color:#ffd700;">MA5=60.06 MA10=61.14 MA20=61.70 MA60=67.12</td></tr>
+                <tr><td>均线排列</td><td>均线缠绕 🟡</td></tr>
+                <tr><td>MACD</td><td>金叉 ✅ (DIF:-1.68 DEA:-1.87 柱:0.38)</td></tr>
+                <tr><td>RSI(14)</td><td>50.2 (中性)</td></tr>
+                <tr><td>布林带(20,2)</td><td>上轨64.87 中轨61.70 下轨58.52</td></tr>
+                <tr><td>量能</td><td>量比1.49 (平量)</td></tr>
+                <tr><td>关键支撑</td><td style="color:#2ed573;">57.55 / 57.70 / 59.20</td></tr>
+                <tr><td>关键阻力</td><td style="color:#ff4757;">81.40 / 79.70 / 79.00</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding-top:12px; border-top:1px solid #1e2648; flex-wrap:wrap; gap:8px;">
+        <div>
+            <span style="color:#8892b0;font-size:13px;">多头信号：</span>
+            <span style="color:#2ed573;font-size:13px;">✅ MACD金叉</span>
+            <span style="margin-left:16px;color:#8892b0;font-size:13px;">空头信号：</span>
+            <span style="color:#ff4757;font-size:13px;">暂无</span>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center;">
+            <span class="rating-stars">🌕🌕🌕🌕🌑</span>
+            <span class="outlook-box" style="background:rgba(46,213,115,0.15); color:#2ed573;">上涨 📈</span>
+            <span class="action-box" style="background:#2ed57344; color:#2ed573;">可逢低补仓 ✅</span>
+        </div>
+    </div>
+</div>
+
+<div class="stock-card">
+    <div class="stock-header">
+        <div>
+            <span class="stock-name">【2】阿里巴巴</span>
+            <span class="stock-code">09988.HK</span>
+            <span class="stock-info">成本 146.37</span>
+            <span class="stock-info">仓位 12.93%</span>
+        </div>
+        <div>
+            <span class="pnl" style="color: #2ed573;">今日 +0.79%</span>
+            <span style="margin:0 8px;color:#4a5080;">|</span>
+            <span style="font-weight:600;">现价 127.0</span>
+            <span style="margin-left:12px;" class="pnl" style="color:#ff4757;">距成本 -13.23%</span>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="section">
+            <h3>🔍 基本面</h3>
+
+            <ul class="signal-list">
+                <li><span class="green">✅</span> 东吴证券最新研报："买入"，目标价204元人民币</li>
+                <li><span class="green">✅</span> AI驱动云计算价值重估，阿里云中国AI云市场份额38%第一</li>
+                <li><span class="green">✅</span> 通义千问持续迭代，Agent能力提升带动存量和新增客户</li>
+                <li><span class="green">✅</span> 云业务收入增长+利润率提升共振，估值中枢有望上移</li>
+                <li><span style="color:#8892b0;">➡️</span> 核心逻辑：AI云+电商双轮驱动，无明显变化</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h3>📈 纯技术面</h3>
+            <table>
+                <tr><td>均线系统</td><td style="color:#ffd700;">MA5=129.98 MA10=132.01 MA20=132.11 MA60=131.01</td></tr>
+                <tr><td>均线排列</td><td>均线缠绕 🟡</td></tr>
+                <tr><td>MACD</td><td>死叉 ❌ (DIF:-0.28 DEA:0.6 柱:-1.77)</td></tr>
+                <tr><td>RSI(14)</td><td>44.1 (中性)</td></tr>
+                <tr><td>布林带(20,2)</td><td>上轨140.17 中轨132.11 下轨124.05</td></tr>
+                <tr><td>量能</td><td>量比0.81 (平量)</td></tr>
+                <tr><td>关键支撑</td><td style="color:#2ed573;">117.50 / 117.70 / 117.80</td></tr>
+                <tr><td>关键阻力</td><td style="color:#ff4757;">150.40 / 150.20 / 148.80</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding-top:12px; border-top:1px solid #1e2648; flex-wrap:wrap; gap:8px;">
+        <div>
+            <span style="color:#8892b0;font-size:13px;">多头信号：</span>
+            <span style="color:#2ed573;font-size:13px;">暂无</span>
+            <span style="margin-left:16px;color:#8892b0;font-size:13px;">空头信号：</span>
+            <span style="color:#ff4757;font-size:13px;">⚠️ MACD死叉</span>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center;">
+            <span class="rating-stars">🌕🌕🌑🌑🌑</span>
+            <span class="outlook-box" style="background:rgba(255,71,87,0.15); color:#ff4757;">回调 📉</span>
+            <span class="action-box" style="background:#ffa50244; color:#ffa502;">减仓控制风险</span>
+        </div>
+    </div>
+</div>
+
+<div class="stock-card">
+    <div class="stock-header">
+        <div>
+            <span class="stock-name">【3】福瑞医科</span>
+            <span class="stock-code">300049.SZ</span>
+            <span class="stock-info">成本 58.14</span>
+            <span class="stock-info">仓位 10.58%</span>
+        </div>
+        <div>
+            <span class="pnl" style="color: #ff4757;">今日 -5.02%</span>
+            <span style="margin:0 8px;color:#4a5080;">|</span>
+            <span style="font-weight:600;">现价 52.07</span>
+            <span style="margin-left:12px;" class="pnl" style="color:#ff4757;">距成本 -10.44%</span>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="section">
+            <h3>🔍 基本面</h3>
+
+            <ul class="signal-list">
+                <li><span class="green">✅</span> 2025年报：营收16亿(+18.3%)，归母净利1.5亿(+36%)</li>
+                <li><span class="green">✅</span> 器械业务高增(+23.5%)，FibroScan全球装机持续攀升</li>
+                <li><span class="green">✅</span> 战略布局Theraclion(HIFU治疗设备)，新增长点可期</li>
+                <li><span style="color:#8892b0;">➡️</span> MASH赛道市场教育深化，FibroScan渗透率提升逻辑不变</li>
+                <li><span style="color:#8892b0;">➡️</span> 核心逻辑：无创肝纤维化检测龙头，无明显变化</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h3>📈 纯技术面</h3>
+            <table>
+                <tr><td>均线系统</td><td style="color:#ffd700;">MA5=55.99 MA10=56.30 MA20=55.18 MA60=56.24</td></tr>
+                <tr><td>均线排列</td><td>均线缠绕 🟡</td></tr>
+                <tr><td>MACD</td><td>死叉 ❌ (DIF:-0.24 DEA:-0.13 柱:-0.21)</td></tr>
+                <tr><td>RSI(14)</td><td>53.9 (中性)</td></tr>
+                <tr><td>布林带(20,2)</td><td>上轨60.95 中轨55.18 下轨49.42</td></tr>
+                <tr><td>量能</td><td>量比1.12 (平量)</td></tr>
+                <tr><td>关键支撑</td><td style="color:#2ed573;">49.30 / 49.50 / 49.69</td></tr>
+                <tr><td>关键阻力</td><td style="color:#ff4757;">67.70 / 66.30 / 66.26</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding-top:12px; border-top:1px solid #1e2648; flex-wrap:wrap; gap:8px;">
+        <div>
+            <span style="color:#8892b0;font-size:13px;">多头信号：</span>
+            <span style="color:#2ed573;font-size:13px;">暂无</span>
+            <span style="margin-left:16px;color:#8892b0;font-size:13px;">空头信号：</span>
+            <span style="color:#ff4757;font-size:13px;">⚠️ MACD死叉</span>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center;">
+            <span class="rating-stars">🌕🌕🌑🌑🌑</span>
+            <span class="outlook-box" style="background:rgba(255,71,87,0.15); color:#ff4757;">回调 📉</span>
+            <span class="action-box" style="background:#ffa50244; color:#ffa502;">减仓控制风险</span>
+        </div>
+    </div>
+</div>
+
+<div class="stock-card">
+    <div class="stock-header">
+        <div>
+            <span class="stock-name">【4】腾讯控股</span>
+            <span class="stock-code">00700.HK</span>
+            <span class="stock-info">成本 459.84</span>
+            <span class="stock-info">仓位 10.30%</span>
+        </div>
+        <div>
+            <span class="pnl" style="color: #2ed573;">今日 +0.55%</span>
+            <span style="margin:0 8px;color:#4a5080;">|</span>
+            <span style="font-weight:600;">现价 441.4</span>
+            <span style="margin-left:12px;" class="pnl" style="color:#ff4757;">距成本 -4.01%</span>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="section">
+            <h3>🔍 基本面</h3>
+
+            <ul class="signal-list">
+                <li><span class="green">✅</span> 1Q26营收1965亿(+9%)，Non-IFRS净利679亿(+11%)</li>
+                <li><span class="green">✅</span> 广告收入增长20%，AI驱动精准投放效果持续提升</li>
+                <li><span class="green">✅</span> 1Q资本开支319亿(+63%QoQ)，AI基建加速推进</li>
+                <li><span class="yellow">⚠️</span> 游戏受春节时间错位影响，但实际流水有teens增长</li>
+                <li><span style="color:#8892b0;">➡️</span> 核心逻辑：广告+游戏+AI云，稳健增长，无明显变化</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h3>📈 纯技术面</h3>
+            <table>
+                <tr><td>均线系统</td><td style="color:#ffd700;">MA5=448.96 MA10=454.56 MA20=464.77 MA60=497.41</td></tr>
+                <tr><td>均线排列</td><td>空头排列 ❌</td></tr>
+                <tr><td>MACD</td><td>死叉 ❌ (DIF:-13.53 DEA:-12.18 柱:-2.69)</td></tr>
+                <tr><td>RSI(14)</td><td>33.8 (中性)</td></tr>
+                <tr><td>布林带(20,2)</td><td>上轨491.36 中轨464.77 下轨438.18</td></tr>
+                <tr><td>量能</td><td>量比0.81 (平量)</td></tr>
+                <tr><td>关键支撑</td><td style="color:#2ed573;">438.40 / 438.80</td></tr>
+                <tr><td>关键阻力</td><td style="color:#ff4757;">578.00 / 566.00 / 565.50</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding-top:12px; border-top:1px solid #1e2648; flex-wrap:wrap; gap:8px;">
+        <div>
+            <span style="color:#8892b0;font-size:13px;">多头信号：</span>
+            <span style="color:#2ed573;font-size:13px;">暂无</span>
+            <span style="margin-left:16px;color:#8892b0;font-size:13px;">空头信号：</span>
+            <span style="color:#ff4757;font-size:13px;">⚠️ 均线空头排列 ⚠️ MACD死叉</span>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center;">
+            <span class="rating-stars">🌕🌑🌑🌑🌑</span>
+            <span class="outlook-box" style="background:rgba(255,71,87,0.15); color:#ff4757;">回调 📉</span>
+            <span class="action-box" style="background:#ffa50244; color:#ffa502;">减仓观望</span>
+        </div>
+    </div>
+</div>
+
+<div class="stock-card">
+    <div class="stock-header">
+        <div>
+            <span class="stock-name">【5】科伦博泰</span>
+            <span class="stock-code">06990.HK</span>
+            <span class="stock-info">成本 429.41</span>
+            <span class="stock-info">仓位 9.89%</span>
+        </div>
+        <div>
+            <span class="pnl" style="color: #2ed573;">今日 +4.54%</span>
+            <span style="margin:0 8px;color:#4a5080;">|</span>
+            <span style="font-weight:600;">现价 474.2</span>
+            <span style="margin-left:12px;" class="pnl" style="color:#2ed573;">距成本 +10.43%</span>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="section">
+            <h3>🔍 基本面</h3>
+
+            <ul class="signal-list">
+                <li><span class="green">✅</span> <strong>重大利好：</strong>sac-TMT一线NSCLC III期数据超预期（PFS HR=0.35）</li>
+                <li><span class="green">✅</span> 5/22 ASCO大会读出全球首个ADC+IO一线NSCLC III期阳性结果</li>
+                <li><span class="green">✅</span> MSD已开设17项III期注册临床，里程碑款持续兑现</li>
+                <li><span class="green">✅</span> 近期股价大涨(+4.54%今日，5日从424→474，+11.8%)</li>
+                <li><span style="color:#8892b0;">➡️</span> 核心逻辑：ADC龙头，sac-TMT全球进度领先，持续增强</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h3>📈 纯技术面</h3>
+            <table>
+                <tr><td>均线系统</td><td style="color:#ffd700;">MA5=443.72 MA10=445.24 MA20=453.74 MA60=443.17</td></tr>
+                <tr><td>均线排列</td><td>均线缠绕 🟡</td></tr>
+                <tr><td>MACD</td><td>金叉 ✅ (DIF:-4.32 DEA:-4.6 柱:0.56)</td></tr>
+                <tr><td>RSI(14)</td><td>55.4 (中性)</td></tr>
+                <tr><td>布林带(20,2)</td><td>上轨483.77 中轨453.74 下轨423.71</td></tr>
+                <tr><td>量能</td><td>量比2.18 (放量)</td></tr>
+                <tr><td>关键支撑</td><td style="color:#2ed573;">339.60 / 345.20 / 355.80</td></tr>
+                <tr><td>关键阻力</td><td style="color:#ff4757;">529.50 / 527.50 / 527.00</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding-top:12px; border-top:1px solid #1e2648; flex-wrap:wrap; gap:8px;">
+        <div>
+            <span style="color:#8892b0;font-size:13px;">多头信号：</span>
+            <span style="color:#2ed573;font-size:13px;">✅ MACD金叉</span>
+            <span style="margin-left:16px;color:#8892b0;font-size:13px;">空头信号：</span>
+            <span style="color:#ff4757;font-size:13px;">暂无</span>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center;">
+            <span class="rating-stars">🌕🌕🌕🌕🌑</span>
+            <span class="outlook-box" style="background:rgba(46,213,115,0.15); color:#2ed573;">上涨 📈</span>
+            <span class="action-box" style="background:#2ed57344; color:#2ed573;">持有</span>
+        </div>
+    </div>
+</div>
+
+<div class="stock-card">
+    <div class="stock-header">
+        <div>
+            <span class="stock-name">【6】金山云</span>
+            <span class="stock-code">03896.HK</span>
+            <span class="stock-info">成本 4.45</span>
+            <span class="stock-info">仓位 8.82%</span>
+        </div>
+        <div>
+            <span class="pnl" style="color: #2ed573;">今日 +5.36%</span>
+            <span style="margin:0 8px;color:#4a5080;">|</span>
+            <span style="font-weight:600;">现价 7.27</span>
+            <span style="margin-left:12px;" class="pnl" style="color:#2ed573;">距成本 +63.37%</span>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="section">
+            <h3>🔍 基本面</h3>
+
+            <ul class="signal-list">
+                <li><span class="green">✅</span> AI云持续高增长，智算云收入同增95%，占公有云49%</li>
+                <li><span class="green">✅</span> 26年资本开支预计超100亿，小米+非小米需求均强劲</li>
+                <li><span class="green">✅</span> 广发证券+华创证券给予"买入"评级，目标价10.86港元</li>
+                <li><span class="yellow">⚠️</span> 毛利率短期承压（IDC折旧成本），但规模效应有望改善</li>
+                <li><span style="color:#8892b0;">➡️</span> 核心逻辑：小米生态AI云需求爆发，持续强化</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h3>📈 纯技术面</h3>
+            <table>
+                <tr><td>均线系统</td><td style="color:#ffd700;">MA5=7.40 MA10=7.81 MA20=7.97 MA60=7.70</td></tr>
+                <tr><td>均线排列</td><td>均线缠绕 🟡</td></tr>
+                <tr><td>MACD</td><td>死叉 ❌ (DIF:-0.19 DEA:-0.04 柱:-0.3)</td></tr>
+                <tr><td>RSI(14)</td><td>42.4 (中性)</td></tr>
+                <tr><td>布林带(20,2)</td><td>上轨8.88 中轨7.97 下轨7.06</td></tr>
+                <tr><td>量能</td><td>量比1.01 (平量)</td></tr>
+                <tr><td>关键支撑</td><td style="color:#2ed573;">5.97 / 6.13 / 6.22</td></tr>
+                <tr><td>关键阻力</td><td style="color:#ff4757;">9.75 / 9.60 / 9.43</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding-top:12px; border-top:1px solid #1e2648; flex-wrap:wrap; gap:8px;">
+        <div>
+            <span style="color:#8892b0;font-size:13px;">多头信号：</span>
+            <span style="color:#2ed573;font-size:13px;">暂无</span>
+            <span style="margin-left:16px;color:#8892b0;font-size:13px;">空头信号：</span>
+            <span style="color:#ff4757;font-size:13px;">⚠️ MACD死叉</span>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center;">
+            <span class="rating-stars">🌕🌕🌑🌑🌑</span>
+            <span class="outlook-box" style="background:rgba(255,71,87,0.15); color:#ff4757;">回调 📉</span>
+            <span class="action-box" style="background:#ffa50244; color:#ffa502;">部分止盈 ⚠️</span>
+        </div>
+    </div>
+</div>
+
+<div class="stock-card">
+    <div class="stock-header">
+        <div>
+            <span class="stock-name">【7】福昕软件</span>
+            <span class="stock-code">688095.SH</span>
+            <span class="stock-info">成本 81.61</span>
+            <span class="stock-info">仓位 7.24%</span>
+        </div>
+        <div>
+            <span class="pnl" style="color: #ff4757;">今日 -0.14%</span>
+            <span style="margin:0 8px;color:#4a5080;">|</span>
+            <span style="font-weight:600;">现价 77.29</span>
+            <span style="margin-left:12px;" class="pnl" style="color:#ff4757;">距成本 -5.29%</span>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="section">
+            <h3>🔍 基本面</h3>
+
+            <ul class="signal-list">
+                <li><span class="green">✅</span> 26Q1营收2.32亿(+14.92%)，订阅收入占比71.18%</li>
+                <li><span class="green">✅</span> 订阅ARR达6.32亿(+40%)，订阅+渠道双转型成效显著</li>
+                <li><span class="green">✅</span> 国泰海通首次覆盖："增持"，目标价101.93元</li>
+                <li><span class="green">✅</span> 文档智能(AI)+数智政务双轮驱动，成长逻辑清晰</li>
+                <li><span style="color:#8892b0;">➡️</span> 核心逻辑：文档AI转型+信创政务，无明显变化</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h3>📈 纯技术面</h3>
+            <table>
+                <tr><td>均线系统</td><td style="color:#ffd700;">MA5=78.87 MA10=78.89 MA20=78.47 MA60=76.62</td></tr>
+                <tr><td>均线排列</td><td>均线缠绕 🟡</td></tr>
+                <tr><td>MACD</td><td>死叉 ❌ (DIF:0.7 DEA:1.08 柱:-0.76)</td></tr>
+                <tr><td>RSI(14)</td><td>47.7 (中性)</td></tr>
+                <tr><td>布林带(20,2)</td><td>上轨85.11 中轨78.47 下轨71.82</td></tr>
+                <tr><td>量能</td><td>量比0.62 (缩量)</td></tr>
+                <tr><td>关键支撑</td><td style="color:#2ed573;">66.10 / 67.62 / 68.35</td></tr>
+                <tr><td>关键阻力</td><td style="color:#ff4757;">86.90 / 86.60 / 86.22</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding-top:12px; border-top:1px solid #1e2648; flex-wrap:wrap; gap:8px;">
+        <div>
+            <span style="color:#8892b0;font-size:13px;">多头信号：</span>
+            <span style="color:#2ed573;font-size:13px;">暂无</span>
+            <span style="margin-left:16px;color:#8892b0;font-size:13px;">空头信号：</span>
+            <span style="color:#ff4757;font-size:13px;">⚠️ MACD死叉</span>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center;">
+            <span class="rating-stars">🌕🌕🌑🌑🌑</span>
+            <span class="outlook-box" style="background:rgba(255,71,87,0.15); color:#ff4757;">回调 📉</span>
+            <span class="action-box" style="background:#ffa50244; color:#ffa502;">减仓控制风险</span>
+        </div>
+    </div>
+</div>
+
+<div class="stock-card">
+    <div class="stock-header">
+        <div>
+            <span class="stock-name">【8】哔哩哔哩</span>
+            <span class="stock-code">09626.HK</span>
+            <span class="stock-info">成本 167.74</span>
+            <span class="stock-info">仓位 5.16%</span>
+        </div>
+        <div>
+            <span class="pnl" style="color: #2ed573;">今日 +0.36%</span>
+            <span style="margin:0 8px;color:#4a5080;">|</span>
+            <span style="font-weight:600;">现价 138.1</span>
+            <span style="margin-left:12px;" class="pnl" style="color:#ff4757;">距成本 -17.67%</span>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="section">
+            <h3>🔍 基本面</h3>
+
+            <ul class="signal-list">
+                <li><span class="green">✅</span> 26Q1营收74.7亿(+7%)，广告收入25.9亿(+30%)为增长主引擎</li>
+                <li><span class="green">✅</span> DAU 1.152亿(+8%)，日均时长119分钟(+11分钟)</li>
+                <li><span class="green">✅</span> 毛利率37.1%，净利润2020万（持续盈利）</li>
+                <li><span class="yellow">⚠️</span> 5/15以来股价从153急跌至138，跌幅~10%，市场担忧增长放缓</li>
+                <li><span style="color:#8892b0;">➡️</span> 核心逻辑：社区价值+广告变现，无明显变化但短期承压</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h3>📈 纯技术面</h3>
+            <table>
+                <tr><td>均线系统</td><td style="color:#ffd700;">MA5=146.22 MA10=156.38 MA20=164.00 MA60=185.47</td></tr>
+                <tr><td>均线排列</td><td>空头排列 ❌</td></tr>
+                <tr><td>MACD</td><td>死叉 ❌ (DIF:-10.84 DEA:-8.23 柱:-5.23)</td></tr>
+                <tr><td>RSI(14)</td><td>23.6 (超卖 🟢)</td></tr>
+                <tr><td>布林带(20,2)</td><td>上轨188.31 中轨164.00 下轨139.70</td></tr>
+                <tr><td>量能</td><td>量比1.22 (平量)</td></tr>
+                <tr><td>关键支撑</td><td style="color:#2ed573;">136.10 / 136.20</td></tr>
+                <tr><td>关键阻力</td><td style="color:#ff4757;">233.00 / 232.60 / 227.00</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding-top:12px; border-top:1px solid #1e2648; flex-wrap:wrap; gap:8px;">
+        <div>
+            <span style="color:#8892b0;font-size:13px;">多头信号：</span>
+            <span style="color:#2ed573;font-size:13px;">✅ RSI23.6超卖区 ✅ 跌破布林下轨(超卖)</span>
+            <span style="margin-left:16px;color:#8892b0;font-size:13px;">空头信号：</span>
+            <span style="color:#ff4757;font-size:13px;">⚠️ 均线空头排列 ⚠️ MACD死叉</span>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center;">
+            <span class="rating-stars">🌕🌕🌕🌑🌑</span>
+            <span class="outlook-box" style="background:rgba(255,165,2,0.15); color:#ffa502;">震荡 ➡️</span>
+            <span class="action-box" style="background:#8892b044; color:#8892b0;">持有观望</span>
+        </div>
+    </div>
+</div>
+
+<div class="stock-card">
+    <div class="stock-header">
+        <div>
+            <span class="stock-name">【9】金丹科技</span>
+            <span class="stock-code">300829.SZ</span>
+            <span class="stock-info">成本 19.51</span>
+            <span class="stock-info">仓位 3.39%</span>
+        </div>
+        <div>
+            <span class="pnl" style="color: #ff4757;">今日 -2.31%</span>
+            <span style="margin:0 8px;color:#4a5080;">|</span>
+            <span style="font-weight:600;">现价 18.99</span>
+            <span style="margin-left:12px;" class="pnl" style="color:#ff4757;">距成本 -2.67%</span>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="section">
+            <h3>🔍 基本面</h3>
+
+            <ul class="signal-list">
+                <li><span style="color:#8892b0;">➡️</span> 26年续聘会计师事务所，常规公司治理事项</li>
+                <li><span class="yellow">⚠️</span> 乳酸行业龙头，但聚乳酸(PLA)产能或过剩</li>
+                <li><span class="yellow">⚠️</span> 股价从5/12日内高点19.98回落至18.99，短期高位震荡</li>
+                <li><span style="color:#8892b0;">➡️</span> 无明显催化剂，需关注Q1业绩和PLA项目进展</li>
+                <li><span style="color:#8892b0;">➡️</span> 核心逻辑：乳酸全产业链龙头，无明显变化</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h3>📈 纯技术面</h3>
+            <table>
+                <tr><td>均线系统</td><td style="color:#ffd700;">MA5=19.14 MA10=19.10 MA20=18.44 MA60=19.25</td></tr>
+                <tr><td>均线排列</td><td>均线缠绕 🟡</td></tr>
+                <tr><td>MACD</td><td>金叉 ✅ (DIF:0.13 DEA:-0.02 柱:0.29)</td></tr>
+                <tr><td>RSI(14)</td><td>62.7 (中性)</td></tr>
+                <tr><td>布林带(20,2)</td><td>上轨19.95 中轨18.44 下轨16.93</td></tr>
+                <tr><td>量能</td><td>量比0.97 (平量)</td></tr>
+                <tr><td>关键支撑</td><td style="color:#2ed573;">17.01 / 17.25 / 17.30</td></tr>
+                <tr><td>关键阻力</td><td style="color:#ff4757;">22.00 / 21.95 / 21.94</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding-top:12px; border-top:1px solid #1e2648; flex-wrap:wrap; gap:8px;">
+        <div>
+            <span style="color:#8892b0;font-size:13px;">多头信号：</span>
+            <span style="color:#2ed573;font-size:13px;">✅ MACD金叉</span>
+            <span style="margin-left:16px;color:#8892b0;font-size:13px;">空头信号：</span>
+            <span style="color:#ff4757;font-size:13px;">暂无</span>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center;">
+            <span class="rating-stars">🌕🌕🌕🌕🌑</span>
+            <span class="outlook-box" style="background:rgba(46,213,115,0.15); color:#2ed573;">上涨 📈</span>
+            <span class="action-box" style="background:#2ed57344; color:#2ed573;">持有 ✅</span>
+        </div>
+    </div>
+</div>
+
+<div class="stock-card">
+    <div class="stock-header">
+        <div>
+            <span class="stock-name">【10】金蝶国际</span>
+            <span class="stock-code">00268.HK</span>
+            <span class="stock-info">成本 10.44</span>
+            <span class="stock-info">仓位 2.99%</span>
+        </div>
+        <div>
+            <span class="pnl" style="color: #2ed573;">今日 +2.50%</span>
+            <span style="margin:0 8px;color:#4a5080;">|</span>
+            <span style="font-weight:600;">现价 7.79</span>
+            <span style="margin-left:12px;" class="pnl" style="color:#ff4757;">距成本 -25.38%</span>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="section">
+            <h3>🔍 基本面</h3>
+
+            <ul class="signal-list">
+                <li><span class="green">✅</span> 公司持续回购股票（5/21再回购149.2万股，均价7.58）</li>
+                <li><span style="color:#8892b0;">➡️</span> 回购均价7.58-11.06区间，当前价7.79低于多数回购价</li>
+                <li><span class="yellow">⚠️</span> SaaS行业竞争加剧，利润承压，股价持续下行趋势</li>
+                <li><span style="color:#8892b0;">➡️</span> 无明显催化剂，等待云转型成效进一步显现</li>
+                <li><span style="color:#8892b0;">➡️</span> 核心逻辑：云ERP国产替代，短期无明显变化</li>
+            </ul>
+        </div>
+        <div class="section">
+            <h3>📈 纯技术面</h3>
+            <table>
+                <tr><td>均线系统</td><td style="color:#ffd700;">MA5=7.90 MA10=8.28 MA20=8.45 MA60=8.94</td></tr>
+                <tr><td>均线排列</td><td>空头排列 ❌</td></tr>
+                <tr><td>MACD</td><td>死叉 ❌ (DIF:-0.27 DEA:-0.17 柱:-0.19)</td></tr>
+                <tr><td>RSI(14)</td><td>37.8 (中性)</td></tr>
+                <tr><td>布林带(20,2)</td><td>上轨9.30 中轨8.45 下轨7.59</td></tr>
+                <tr><td>量能</td><td>量比1.13 (平量)</td></tr>
+                <tr><td>关键支撑</td><td style="color:#2ed573;">7.50 / 7.51</td></tr>
+                <tr><td>关键阻力</td><td style="color:#ff4757;">10.62 / 10.40 / 10.20</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding-top:12px; border-top:1px solid #1e2648; flex-wrap:wrap; gap:8px;">
+        <div>
+            <span style="color:#8892b0;font-size:13px;">多头信号：</span>
+            <span style="color:#2ed573;font-size:13px;">暂无</span>
+            <span style="margin-left:16px;color:#8892b0;font-size:13px;">空头信号：</span>
+            <span style="color:#ff4757;font-size:13px;">⚠️ 均线空头排列 ⚠️ MACD死叉</span>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center;">
+            <span class="rating-stars">🌕🌑🌑🌑🌑</span>
+            <span class="outlook-box" style="background:rgba(255,71,87,0.15); color:#ff4757;">回调 📉</span>
+            <span class="action-box" style="background:#ff475744; color:#ff4757;">止损或观察</span>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <p>📊 持仓个股点评 · 2026-05-25</p>
+    <p>数据来源：东方财富妙想 AI · 腾讯行情 · 新浪财经K线</p>
+    <p>⚠️ 本报告由 AI 自动生成，仅供参考，不构成投资建议</p>
+</div>
+</body>
+</html>
