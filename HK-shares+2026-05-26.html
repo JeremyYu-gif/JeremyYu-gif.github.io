@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>港股每日复盘 2026-05-26</title>
+<style>
+  :root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-card: #1c2128;
+    --bg-card-hover: #21262d;
+    --border: #30363d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --green: #7ee787;
+    --red: #f85149;
+    --blue: #58a6ff;
+    --orange: #d29922;
+    --purple: #bc8cff;
+    --header-start: #1f2937;
+    --header-end: #0d1117;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--header-start), var(--header-end));
+    padding: 32px 24px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(88,166,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+  }
+  .header .date {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    position: relative;
+    z-index: 1;
+  }
+  .header .subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    position: relative;
+    z-index: 1;
+  }
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 16px;
+  }
+  /* Cards */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    border-color: #484f58;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.3);
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .card-header h2 {
+    font-size: 16px;
+    font-weight: 600;
+    flex: 1;
+  }
+  .card-header .icon {
+    font-size: 20px;
+  }
+  /* Grid */
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  /* Index Card */
+  .index-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .index-card .name {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .index-card .value {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .index-card .change {
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .index-card .volume {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+  }
+  .up { color: var(--green); }
+  .down { color: var(--red); }
+  .flat { color: var(--text-secondary); }
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    background: var(--bg-secondary);
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-primary);
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(88,166,255,0.04); }
+  /* Tags */
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .tag-green { background: rgba(126,231,135,0.15); color: var(--green); }
+  .tag-red { background: rgba(248,81,73,0.15); color: var(--red); }
+  .tag-blue { background: rgba(88,166,255,0.15); color: var(--blue); }
+  .tag-orange { background: rgba(210,153,34,0.15); color: var(--orange); }
+  .tag-purple { background: rgba(188,140,255,0.15); color: var(--purple); }
+  /* Conclusion Box */
+  .conclusion-box {
+    background: linear-gradient(135deg, #1a2332, #16212d);
+    border: 1px solid var(--blue);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .conclusion-box::before {
+    content: '📌';
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    font-size: 20px;
+  }
+  .conclusion-box p {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-top: 4px;
+  }
+  .conclusion-box .verdict {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  /* Stock Highlight */
+  .stock-highlight {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .stock-highlight:last-child { border-bottom: none; }
+  .stock-highlight .name-code {
+    font-weight: 500;
+  }
+  .stock-highlight .name-code span {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .stock-highlight .reason {
+    font-size: 12px;
+    color: var(--text-secondary);
+    flex: 1;
+    margin: 0 12px;
+    text-align: right;
+  }
+  /* Risk/Warning */
+  .risk-item {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .risk-item:last-child { border-bottom: none; }
+  .risk-item .risk-icon { font-size: 16px; margin-top: 2px; flex-shrink: 0; }
+  .risk-item .risk-text { font-size: 13px; }
+  .risk-item .risk-label {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+  .label-danger { background: rgba(248,81,73,0.2); color: var(--red); }
+  .label-warning { background: rgba(210,153,34,0.2); color: var(--orange); }
+  .label-info { background: rgba(88,166,255,0.2); color: var(--blue); }
+  /* Alert banner */
+  .alert-banner {
+    background: rgba(248,81,73,0.08);
+    border: 1px solid rgba(248,81,73,0.3);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 8px 0;
+    font-size: 12px;
+    color: var(--red);
+  }
+  /* Responsive */
+  @media (max-width: 768px) {
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    .grid-2 { grid-template-columns: 1fr; }
+    .header h1 { font-size: 22px; }
+    .container { padding: 12px; }
+    table { font-size: 12px; }
+    th, td { padding: 8px 6px; }
+    .stock-highlight { flex-wrap: wrap; }
+    .stock-highlight .reason { text-align: left; margin: 4px 0 0 0; width: 100%; }
+  }
+  @media (max-width: 480px) {
+    .grid-4 { grid-template-columns: 1fr; }
+    .grid-3 { grid-template-columns: 1fr; }
+  }
+  /* Divider */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 8px 0 16px; }
+  /* H-scroll for tables */
+  .table-wrap { overflow-x: auto; }
+  /* small text */
+  .text-muted { color: var(--text-muted); font-size: 12px; }
+  .text-secondary { color: var(--text-secondary); }
+  /* special marker */
+  .reversal-marker {
+    display: inline-block;
+    background: rgba(126,231,135,0.12);
+    color: var(--green);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🇭🇰 港股每日复盘</h1>
+  <div class="date">2026年5月26日（周二） | 观澜 🦅</div>
+  <div class="subtitle">数据来源：同花顺iFind · 格隆汇 · 财联社 · 第一财经 · 智通财经</div>
+</div>
+<div class="container">
+
+<!-- 1. 今日核心结论 -->
+<div class="conclusion-box">
+  <div class="verdict up">结构分化 · 科强恒弱 · 半导体一骑绝尘</div>
+  <p>
+    恒指微跌0.03%收报25,599点，恒生科技大涨1.59%领跑，赚钱效应集中在半导体和有色铝两大主线。华为"韬定律"引爆芯片板块情绪，华虹/兆易创历史新高；几内亚拟限制铝土矿出口催化铝业股暴涨。但权重科技股多数下跌（美团-3.13%、京东-2.55%），医药/地产/锂电依然承压。全日成交3,594亿港元明显放量，南下资金净卖出9.68亿港元，外资仍在观望。
+  </p>
+</div>
+
+<!-- 2. 大盘全景 -->
+<div class="card">
+  <div class="card-header">
+    <span class="icon">📊</span>
+    <h2>大盘全景</h2>
+  </div>
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="index-card">
+      <div class="name">恒生指数 HSI</div>
+      <div class="value">25,599.45</div>
+      <div class="change down">-0.03%</div>
+      <div class="volume">全日成交 3,595亿港元</div>
+    </div>
+    <div class="index-card">
+      <div class="name">恒生科技 HSTECH</div>
+      <div class="value">4,946.88</div>
+      <div class="change up">+1.59%</div>
+      <div class="volume">半导体/IT板块领涨</div>
+    </div>
+    <div class="index-card">
+      <div class="name">恒生国企 HSCEI</div>
+      <div class="value">8,576.89</div>
+      <div class="change up">+0.30%</div>
+      <div class="volume">国企指数小幅收涨</div>
+    </div>
+    <div class="index-card">
+      <div class="name">恒生医药</div>
+      <div class="value">—</div>
+      <div class="change down">约-1.99%</div>
+      <div class="volume">创新药继续回调</div>
+    </div>
+  </div>
+  <div class="grid-3" style="margin-top:12px;">
+    <div>
+      <div class="text-muted">早盘涨幅</div>
+      <div><strong>HSI +0.54%</strong> / <strong class="up">HSTECH +2.29%</strong></div>
+      <div class="text-secondary" style="font-size:12px;">高开后冲高回落</div>
+    </div>
+    <div>
+      <div class="text-muted">全日成交额</div>
+      <div><strong>3,594.76亿港元</strong></div>
+      <div class="text-secondary" style="font-size:12px;">较前日明显放量（早盘2,004亿）</div>
+    </div>
+    <div>
+      <div class="text-muted">市场宽度</div>
+      <div><span class="up">上涨</span> / <span class="down">下跌</span> 约四六开</div>
+      <div class="text-secondary" style="font-size:12px;">权重科技股走弱拖累恒指</div>
+    </div>
+  </div>
+  <hr class="divider">
+  <div style="font-size:13px; color:var(--text-secondary);">
+    <strong>走势回顾：</strong>早盘恒指受隔夜外盘提振高开，联想集团业绩大超预期带动科技股冲高，恒生科技一度涨2.29%；午后权重科技股普遍回落，美团/京东/腾讯走弱拖累恒指翻绿，但半导体和铝业股维持强势，最终科指独领风骚。
+  </div>
+</div>
+
+<!-- 3. 市场情绪 -->
+<div class="card">
+  <div class="card-header">
+    <span class="icon">📈</span>
+    <h2>市场情绪</h2>
+  </div>
+  <div class="grid-3">
+    <div>
+      <div class="text-muted">港股通额度</div>
+      <div><span class="down" style="font-weight:600;">南向净卖出 9.68亿</span></div>
+      <div class="text-secondary" style="font-size:12px;">南下资金今日净卖出，连续流入势头中断</div>
+    </div>
+    <div>
+      <div class="text-muted">新股表现</div>
+      <div><span class="tag tag-green">精锋医疗 +13%</span> <span class="tag tag-green">壁仞科技 +7%</span></div>
+      <div class="text-secondary" style="font-size:12px;">恒生综指季检纳入催化</div>
+    </div>
+    <div>
+      <div class="text-muted">ETF 资金</div>
+      <div><span class="tag tag-blue">恒生科技ETF近20日流入超51亿</span></div>
+      <div class="text-secondary" style="font-size:12px;">黄金ETF华夏连续14日吸金</div>
+    </div>
+  </div>
+  <hr class="divider">
+  <div class="text-muted" style="font-size:12px;">
+    ⚠️ 港股通信息技术ETF出现明显溢价（华宝159131溢价约9.6%，易方达159196亦溢价），需警惕追高风险。
+  </div>
+</div>
+
+<!-- 4. 汇率与流动性 -->
+<div class="card">
+  <div class="card-header">
+    <span class="icon">💱</span>
+    <h2>汇率与流动性</h2>
+  </div>
+  <div class="grid-3">
+    <div>
+      <div class="text-muted">USD/HKD</div>
+      <div><strong>7.76-7.77</strong> <span class="text-secondary">(窄幅波动)</span></div>
+      <div class="text-secondary" style="font-size:12px;">联系汇率制度下稳定运行</div>
+    </div>
+    <div>
+      <div class="text-muted">CNH/HKD</div>
+      <div><strong>1.06-1.07</strong> <span class="text-secondary">(离岸人民币)</span></div>
+      <div class="text-secondary" style="font-size:12px;">人民币汇率稳定</div>
+    </div>
+    <div>
+      <div class="text-muted">美债10Y / HIBOR</div>
+      <div><strong>数据暂缺</strong></div>
+      <div class="text-secondary" style="font-size:12px;">全球流动性环境无重大变化</div>
+    </div>
+  </div>
+  <hr class="divider">
+  <div style="font-size:13px; color:var(--text-secondary);">
+    <strong>宏观环境：</strong>美伊谈判取得进展，国际油价大幅回落，地缘风险溢价消退。黄金在$4,500/盎司附近震荡。全球风险偏好整体回暖，亚太股市多数上扬（韩国KOSPI突破8,100点续创历史新高）。
+  </div>
+</div>
+
+<!-- 5. 强势板块 -->
+<div class="card">
+  <div class="card-header">
+    <span class="icon">🔥</span>
+    <h2>强势板块 TOP5</h2>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <tr>
+      <th style="width:16%">排名</th>
+      <th style="width:18%">板块</th>
+      <th style="width:22%">领涨龙头</th>
+      <th style="width:44%">上涨核心逻辑</th>
+    </tr>
+    <tr>
+      <td><span class="tag tag-green">TOP1</span></td>
+      <td><strong>半导体/芯片</strong></td>
+      <td>联想集团 +15%+<br>华虹半导体 +10%+<br>中芯国际 +5~+8%</td>
+      <td>华为"韬定律"技术里程碑，芯片晶体管密度大幅提升，国产算力替代逻辑强化。里昂证券指中国算力短缺持续至2027年。长鑫科技预告2026H1归母净利润500-570亿元引爆板块情绪。</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-green">TOP2</span></td>
+      <td><strong>有色金属/铝</strong></td>
+      <td>南山铝业国际 +19%<br>中国铝业 +9%+<br>中国宏桥 +2%</td>
+      <td>几内亚（全球最大铝土矿出口国）计划6月出台出口管控措施，控制出口量以提振矿价。氧化铝期货大涨5%，中国作为最大进口国，成本端和情绪端形成双重支撑。</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-green">TOP3</span></td>
+      <td><strong>黄金/贵金属</strong></td>
+      <td>招金矿业 +5%<br>紫金矿业 +5%<br>中国黄金国际 +3%</td>
+      <td>金价在$4,500/盎司附近企稳反弹，前期调整释放估值压力。高盛/瑞银预测年底目标$4,900-$5,600。中东地缘风险持续提供避险支撑。</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-green">TOP4</span></td>
+      <td><strong>航空</strong></td>
+      <td>东方航空 +6%<br>中国国航 +4%<br>南方航空 +4%</td>
+      <td>美伊谈判乐观致油价大幅回落，航司成本压力减轻。叠加端午+暑期旺季预期，票价低基数效应，申万宏源看好友运旺季盈利弹性。</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-green">TOP5</span></td>
+      <td><strong>中资券商</strong></td>
+      <td>中信建投 +4%<br>中金公司 +3.7%</td>
+      <td>跨境证券业务监管进一步规范，市场关注券商科创属性提升。</td>
+    </tr>
+  </table>
+  </div>
+</div>
+
+<!-- 最弱板块 -->
+<div class="card">
+  <div class="card-header">
+    <span class="icon">❄️</span>
+    <h2>最弱板块 TOP3</h2>
+  </div>
+  <div class="table-wrap">
+  <table>
+    <tr>
+      <th style="width:16%">排名</th>
+      <th style="width:18%">板块</th>
+      <th style="width:22%">领跌龙头</th>
+      <th style="width:44%">下跌核心逻辑</th>
+    </tr>
+    <tr>
+      <td><span class="tag tag-red">TOP1</span></td>
+      <td><strong>创新药/医药</strong></td>
+      <td>三生制药 -5%<br>康方生物 -3%<br>信达生物 -1%<br>科伦博泰 -2%</td>
+      <td>创新药ETF下跌1.99%刷新阶段新低。ASCO摘要发布后市场兑现预期，板块估值仍处高位。整体资金向科技股转移，医药板块遭分流。但机构认为创新药产业已进入经营兑现期，2026年收入利润增速有望达25%-30%。</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-red">TOP2</span></td>
+      <td><strong>石油/能源</strong></td>
+      <td>中海油 -2.7%<br>中石油 -2%<br>延长石油 -4%</td>
+      <td>美伊谈判取得重要进展，霍尔木兹海峡有望重开，地缘风险溢价快速消退。此前三个月因中东冲突和封锁推高油价，资金获利了结。</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-red">TOP3</span></td>
+      <td><strong>锂电池/新能源</strong></td>
+      <td>宁德时代 -4%<br>赣锋锂业 承压</td>
+      <td>碳酸锂期货大跌4%，供应增加预期施压。远期货源供应增加叠加下游需求疲软，碳酸锂自20,988元/吨持续回落。锂电板块全年持续承压。</td>
+    </tr>
+  </table>
+  </div>
+  <div style="margin-top:12px; font-size:12px; color:var(--text-muted);">
+    <em>此外：房地产板块持续走弱（过去一周H股开发商-7.6%），家电/餐饮/内银/燃气/猪肉概念股普遍承压。</em>
+  </div>
+</div>
+
+<!-- 6. 重点个股异动 -->
+<div class="card">
+  <div class="card-header">
+    <span class="icon">🔍</span>
+    <h2>重点个股异动</h2>
+  </div>
+  <div style="font-size:13px; color:var(--text-secondary); margin-bottom:12px;">
+    逐一核查所有目标个股涨跌幅，以下为涨跌幅超过±6%的个股详细分析：
+  </div>
+
+  <h3 style="font-size:14px; font-weight:600; margin-bottom:8px; color:var(--green);">📈 涨幅超+6%个股</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th style="width:14%">个股</th><th style="width:8%">涨幅</th><th style="width:8%">代码</th><th style="width:36%">上涨原因</th><th style="width:34%">核心点评</th></tr>
+    <tr>
+      <td><strong>联想集团</strong></td>
+      <td class="up">+15%+</td>
+      <td>00992.HK</td>
+      <td>
+        FY2026财报大超预期：全年收入$830.75B(+20%)，归母净利润$19.12B(+42%)；Q4收入$215.88B(+27%)，净利润$5.21B(<strong>同比+479%</strong>)，Non-HKFRS净利润$5.59B(+101%)<br>
+        AI相关收入同比+84%，占比38%；ISG业务运营利润$2.02B创新高订单储备$210B
+      </td>
+      <td>
+        <span class="tag tag-green">财报超预期</span><br>
+        中金上调目标价35%至20港元，华泰/财通/光大纷纷上调。AI服务器订单储备充沛，ISG盈利拐点确立。当前对应FY27 10.1x P/E，成长价值兼备。
+      </td>
+    </tr>
+    <tr>
+      <td><strong>华虹半导体</strong></td>
+      <td class="up">+10%+</td>
+      <td>01347.HK</td>
+      <td>华为"韬定律"催化芯片板块，成熟制程龙头与华为深度合作。盘中创历史新高。</td>
+      <td><span class="tag tag-blue">华为概念</span> 估值跟随情绪修复，短期涨幅已大需注意追高风险</td>
+    </tr>
+    <tr>
+      <td><strong>中国铝业</strong></td>
+      <td class="up">+9%+</td>
+      <td>601600.SH</td>
+      <td>几内亚6月出台铝土矿出口管制，全球铝土矿供给趋紧</td>
+      <td><span class="tag tag-orange">供给冲击</span> A股涨停，港股跟涨。全球铝土矿供给格局面临重构。</td>
+    </tr>
+    <tr>
+      <td><strong>中芯国际</strong></td>
+      <td class="up">+5~8%</td>
+      <td>00981.HK</td>
+      <td>华为韬定律、长鑫科技业绩预告催化，盘中一度大涨16.5%</td>
+      <td><span class="tag tag-blue">高端制造</span> 国产芯片代工龙头，算力+自主可控双重受益</td>
+    </tr>
+  </table>
+  </div>
+
+  <h3 style="font-size:14px; font-weight:600; margin:16px 0 8px; color:var(--red);">📉 跌幅超-6%个股</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th style="width:14%">个股</th><th style="width:8%">跌幅</th><th style="width:8%">代码</th><th style="width:36%">下跌原因</th><th style="width:34%">核心点评</th></tr>
+    <tr>
+      <td><strong>金蝶国际</strong></td>
+      <td class="down">-6%</td>
+      <td>00268.HK</td>
+      <td>恒生指数公司季检结果：金蝶被剔除出恒生科技指数成分股（6月5日收市后生效）。年内股价已跌四成，创2024年9月以来新低。</td>
+      <td>
+        <span class="tag tag-red">指数除名</span><br>
+        被动资金流出压力，短线回避。跟踪指数型基金将进行调仓操作。公司基本面仍需观察。
+      </td>
+    </tr>
+  </table>
+  </div>
+
+  <hr class="divider">
+
+  <h3 style="font-size:14px; font-weight:600; margin:8px 0 8px; color:var(--text-primary);">其他重点个股表现（涨跌幅<±6%）</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>个股</th><th>涨跌幅</th><th>简评</th></tr>
+    <tr><td>腾讯控股</td><td class="down">-0.54%</td><td>权重科技股走弱，微跌</td></tr>
+    <tr><td>阿里巴巴</td><td class="flat">平盘/微涨</td><td>早盘飘红，整体平淡</td></tr>
+    <tr><td>美团-W</td><td class="down">-3.13%</td><td>跌幅居权重股之首，成交额78.8元档位</td></tr>
+    <tr><td>拼多多-W</td><td class="flat">数据暂缺</td><td>整体科技股回调</td></tr>
+    <tr><td>京东集团</td><td class="down">-2.55%</td><td>权重科技股普遍走低</td></tr>
+    <tr><td>快手</td><td class="up">飘红</td><td>早盘小幅上涨</td></tr>
+    <tr><td>小米集团</td><td class="down">飘绿</td><td>权重科技股整体弱势</td></tr>
+    <tr><td>科伦博泰</td><td class="down">-2%</td><td>创新药板块整体调整</td></tr>
+    <tr><td>信达生物</td><td class="down">-1%</td><td>创新药板块承压</td></tr>
+    <tr><td>百济神州</td><td class="up">+~1%</td><td>创新药中逆势抗跌</td></tr>
+    <tr><td>康方生物</td><td class="down">-3%</td><td>创新药板块调整</td></tr>
+    <tr><td>中国生物制药</td><td class="down">-2%</td><td>医药板块整体走弱</td></tr>
+    <tr><td>药明生物</td><td class="up">+~7%</td><td>回购4亿美元利好，早盘涨近7%</td></tr>
+    <tr><td>紫金矿业</td><td class="up">+~5%</td><td>黄金板块反弹，金价企稳</td></tr>
+    <tr><td>比亚迪股份</td><td class="up">反弹</td><td>汽车股继续反弹行情</td></tr>
+    <tr><td>赣锋锂业</td><td class="down">承压</td><td>碳酸锂大跌4%，锂电全产业链承压</td></tr>
+    <tr><td>海底捞</td><td class="down">下跌</td><td>餐饮股普遍走低</td></tr>
+    <tr><td>华润置地</td><td class="down">下跌</td><td>地产板块持续走弱，过去一周H股开发商-7.6%</td></tr>
+    <tr><td>龙湖集团</td><td class="down">下跌</td><td>地产板块承压</td></tr>
+  </table>
+  </div>
+</div>
+
+<!-- 7. 资金面 -->
+<div class="card">
+  <div class="card-header">
+    <span class="icon">💰</span>
+    <h2>资金面分析</h2>
+  </div>
+
+  <h3 style="font-size:14px; font-weight:600; margin-bottom:8px;">南下资金（港股通）</h3>
+  <div class="grid-3" style="margin-bottom:12px;">
+    <div>
+      <div class="text-muted">当日净流向</div>
+      <div><span class="down" style="font-weight:600;">净卖出 9.68亿港元</span></div>
+      <div class="text-secondary" style="font-size:12px;">连续净流入势头中断</div>
+    </div>
+    <div>
+      <div class="text-muted">港股通持股变动</div>
+      <div><span class="up">龙蟠科技 +3.92%</span> / <span class="up">天岳先进 +2.78%</span></div>
+      <div class="text-secondary" style="font-size:12px;">南向重点加仓半导体/科技</div>
+    </div>
+    <div>
+      <div class="text-muted">ETF南向资金</div>
+      <div><span class="tag tag-blue">恒生科技ETF近20日累计流入超51亿</span></div>
+      <div class="text-secondary" style="font-size:12px;">资金持续通过ETF抄底港股科技</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:14px; font-weight:600; margin:12px 0 8px;">外资与国际资金</h3>
+  <div class="grid-2">
+    <div>
+      <div class="text-muted">EPFR资金流向</div>
+      <div><span class="text-secondary">数据暂缺</span></div>
+      <div class="text-secondary" style="font-size:12px;">需关注后续数据</div>
+    </div>
+    <div>
+      <div class="text-muted">港股通ETF溢价</div>
+      <div><span class="tag tag-orange">华宝ETF溢价~9.6%</span> <span class="tag tag-orange">易方达ETF溢价风险</span></div>
+      <div class="text-secondary" style="font-size:12px;">溢价率过高，需警惕</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:14px; font-weight:600; margin:12px 0 8px;">公司回购</h3>
+  <div class="table-wrap">
+  <table>
+    <tr><th>公司</th><th>回购计划/金额</th><th>信号</th></tr>
+    <tr>
+      <td><strong>药明生物</strong></td>
+      <td>拟回购不超过<strong>4亿美元</strong>股票</td>
+      <td><span class="reversal-marker">🔄 底部信号明显</span><br>公告指出当前股价未反映内在价值，公司业务前景有信心</td>
+    </tr>
+    <tr>
+      <td>金蝶国际</td>
+      <td>5月21日耗资1,130万港元回购149.2万股</td>
+      <td>回购力度偏小，未能抵御指数除名利空</td>
+    </tr>
+  </table>
+  </div>
+
+  <div class="alert-banner">
+    ⚠️ 沽空数据：本日总沽空金额/比率暂缺。近期港股沽空比率需持续关注，若>15%需特别警示。
+  </div>
+
+  <div style="margin-top:12px; font-size:12px; color:var(--text-secondary);">
+    <strong>资金面总结：</strong>南下资金今日净卖出9.68亿，连续流入势头中断，显示短线情绪有所谨慎。但ETF层面资金仍在持续流入（恒生科技ETF近20日流入超51亿），结构性分歧明显。药明生物4亿美元大额回购为底部重要信号，值得重点关注。
+  </div>
+</div>
+
+<!-- 8. 投资机会与风险提示 -->
+<div class="card">
+  <div class="card-header">
+    <span class="icon">🎯</span>
+    <h2>投资机会与风险提示</h2>
+  </div>
+
+  <h3 style="font-size:14px; font-weight:600; color:var(--green); margin-bottom:8px;">📌 短期机会（1-2周）</h3>
+  <div class="stock-highlight">
+    <div class="name-code"><strong>半导体/芯片</strong> <span>中芯/华虹/联想</span></div>
+    <div class="reason">华为"韬定律"强催化，短期情绪面仍有惯性。但需注意A股半导体已现调整（科创50半日跌近3%），港股半导体经历盘中大涨16%后冲高回落，警惕追高风险。建议回调低吸。</div>
+  </div>
+  <div class="stock-highlight">
+    <div class="name-code"><strong>铝业/有色金属</strong> <span>中国铝业/中国宏桥</span></div>
+    <div class="reason">几内亚出口管制6月正式落地前，铝土矿供给收缩逻辑将持续发酵。氧化铝期货已大涨5%，产业链利润再分配预期，关注全产业链龙头。</div>
+  </div>
+  <div class="stock-highlight">
+    <div class="name-code"><strong>航空</strong> <span>东航/南航/国航</span></div>
+    <div class="reason">油价回落+端午暑期旺季，申万宏源看好盈利弹性。油价下行释放利润空间。</div>
+  </div>
+
+  <h3 style="font-size:14px; font-weight:600; color:var(--purple); margin:16px 0 8px;">📌 中期布局（1-3月）</h3>
+  <div class="stock-highlight">
+    <div class="name-code"><strong>联想集团</strong> <span>00992.HK</span></div>
+    <div class="reason">ISG盈利拐点确立，AI服务器订单$210B，2026 AI相关收入翻倍增长。多家机构上调目标价，估值仍有吸引力（FY27 10x P/E）。</div>
+  </div>
+  <div class="stock-highlight">
+    <div class="name-code"><strong>创新药</strong> <span>百济/信达/药明</span></div>
+    <div class="reason">板块已回调至阶段新低，但基本面改善趋势明确。2026年创新药产业收入利润增速有望达25%-30%。ASCO催化兑现后回调，恰是中长期布局窗口。药明生物4亿美元回购释放强烈底部信号。</div>
+  </div>
+  <div class="stock-highlight">
+    <div class="name-code"><strong>恒生科技指数ETF</strong></div>
+    <div class="reason">近20日累计流入超51亿，资金持续抄底。指数成分股AI化趋势明确，估值处历史中低位，适合定投。</div>
+  </div>
+
+  <h3 style="font-size:14px; font-weight:600; color:var(--red); margin:16px 0 8px;">⚠️ 风险提示</h3>
+  <div class="risk-item">
+    <span class="risk-icon">🔴</span>
+    <div class="risk-text">
+      <span class="risk-label label-danger">高</span>
+      <strong>外部政策风险：</strong>美国大选年对华科技限制政策可能加码。华为"韬定律"若被外部制裁针对，半导体板块将面临情绪反转。
+    </div>
+  </div>
+  <div class="risk-item">
+    <span class="risk-icon">🟡</span>
+    <div class="risk-text">
+      <span class="risk-label label-warning">中</span>
+      <strong>港股科技龙头分化：</strong>今日美团-3.13%、京东-2.55%说明权重科技上行乏力，科指反弹主要由半导体单板块拉动，结构脆弱。若半导体熄火，科指将无承接。
+    </div>
+  </div>
+  <div class="risk-item">
+    <span class="risk-icon">🟡</span>
+    <div class="risk-text">
+      <span class="risk-label label-warning">中</span>
+      <strong>南下资金转向：</strong>今日净卖出9.68亿，连续流入中断。若南下持续流出，将动摇港股底部支撑。
+    </div>
+  </div>
+  <div class="risk-item">
+    <span class="risk-icon">🟢</span>
+    <div class="risk-text">
+      <span class="risk-label label-info">中</span>
+      <strong>港元流动性：</strong>关注HIBOR走势，若港元拆息持续高企将压制市场流动性。
+    </div>
+  </div>
+  <div class="risk-item">
+    <span class="risk-icon">🟢</span>
+    <div class="risk-text">
+      <span class="risk-label label-info">低</span>
+      <strong>油价反弹风险：</strong>美伊谈判存不确定性，若谈判反复则油价可能反弹，压制航空股和利好石油股的条件反转。
+    </div>
+  </div>
+</div>
+
+<!-- 9. 明日预判 -->
+<div class="card">
+  <div class="card-header">
+    <span class="icon">🔮</span>
+    <h2>明日预判</h2>
+  </div>
+  <div style="font-size:13px; line-height:1.8;">
+    <p><strong>大盘判断：</strong>恒指今日高开低走收平，25,600点附近多空胶着。资金面偏弱（南下净卖出9.68亿），短期方向取决于：①今晚美股半导体板块表现；②A股是否企稳（今日科创50跌近3%）；③隔夜外盘走势。</p>
+    <p style="margin-top:8px;"><strong>关键变量：</strong></p>
+    <ul style="margin:8px 0 0 16px; color:var(--text-secondary);">
+      <li>美伊谈判进展 — 影响油价/石油股/航空股方向</li>
+      <li>几内亚铝土矿出口管制细节 — 铝业股短期催化延续性</li>
+      <li>恒生指数季检生效（6月5日）前资金调仓行为</li>
+      <li>ASCO会议后续创新药个股信息</li>
+      <li>美国PCE等关键经济数据</li>
+    </ul>
+    <p style="margin-top:8px;"><strong>短期策略：</strong>市场结构分化明显，半导体和铝业两条主线赚钱效应集中，但短期涨幅已大不宜追高。建议逢回调低吸AI/半导体产业链，中线布局创新药超跌机会。港股整体仍处底部区域，大跌空间有限但上行需增量资金配合。</p>
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="text-align:center; padding:24px 0; color:var(--text-muted); font-size:11px; border-top:1px solid var(--border); margin-top:20px;">
+  报告生成时间：2026-05-26 19:41 CST | 观澜 🦅<br>
+  数据来源：同花顺iFind · 格隆汇 · 财联社 · 第一财经 · 智通财经<br>
+  <span style="color:var(--orange);">⚠️ 免责声明：本报告仅供参考，不构成投资建议。投资有风险，入市需谨慎。</span>
+</div>
+
+</div>
+</body>
+</html>
