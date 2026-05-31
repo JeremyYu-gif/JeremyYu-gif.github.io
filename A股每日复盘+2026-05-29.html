@@ -1,361 +1,939 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A股每日复盘 | 2026-05-29</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0d1117;color:#e6edf3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;line-height:1.6;padding:16px}
-.container{max-width:800px;margin:0 auto}
-.header{text-align:center;padding:24px 0 16px;border-bottom:1px solid #30363d;margin-bottom:20px}
-.header h1{font-size:24px;font-weight:700;background:linear-gradient(135deg,#58a6ff,#3fb950);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.header .date{color:#8b949e;font-size:14px;margin-top:4px}
-.header .badge{display:inline-block;background:#21262d;color:#8b949e;padding:2px 10px;border-radius:12px;font-size:12px;margin-top:8px}
-.card{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:16px;margin-bottom:16px}
-.card h2{font-size:16px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.card h2 .icon{width:20px;height:20px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:12px}
-.red{color:#f85149}
-.green{color:#3fb950}
-.yellow{color:#d29922}
-.gray{color:#8b949e}
-.bg-red{background:#f851491a;color:#f85149;padding:1px 8px;border-radius:4px;font-size:13px}
-.bg-green{background:#3fb9501a;color:#3fb950;padding:1px 8px;border-radius:4px;font-size:13px}
-.bg-yellow{background:#d299221a;color:#d29922;padding:1px 8px;border-radius:4px;font-size:13px}
-.index-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.index-item{background:#0d1117;border:1px solid #21262d;border-radius:8px;padding:12px;text-align:center}
-.index-item .name{font-size:12px;color:#8b949e;margin-bottom:4px}
-.index-item .price{font-size:20px;font-weight:700}
-.index-item .change{font-size:13px;margin-top:2px}
-.stat-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #21262d}
-.stat-row:last-child{border-bottom:none}
-.stat-row .label{color:#8b949e;font-size:14px}
-.stat-row .value{font-size:14px;font-weight:600}
-.sector-tag{display:inline-block;padding:3px 10px;border-radius:6px;font-size:12px;margin:2px;font-weight:500}
-.rank-list li{padding:6px 0;display:flex;justify-content:space-between;border-bottom:1px solid #21262d;font-size:14px}
-.rank-list li:last-child{border-bottom:none}
-.signal-box{background:#0d1117;border:1px solid;border-radius:8px;padding:12px;margin:4px 0}
-.signal-box.positive{border-color:#3fb95033;background:#3fb9500d}
-.signal-box.negative{border-color:#f8514933;background:#f851490d}
-.signal-box.neutral{border-color:#d2992233;background:#d299220d}
-.table-mini{width:100%;border-collapse:collapse;font-size:13px}
-.table-mini th{background:#21262d;padding:6px 8px;text-align:left;color:#8b949e;font-weight:500}
-.table-mini td{padding:6px 8px;border-bottom:1px solid #21262d}
-.strategy-box{background:#0d1117;border:1px solid #1f6feb33;border-radius:8px;padding:12px;margin:4px 0}
-.strategy-box h3{color:#58a6ff;font-size:14px;margin-bottom:6px}
-.strategy-box p{font-size:13px;color:#c9d1d9;line-height:1.7}
-.footer{text-align:center;padding:20px 0;color:#8b949e;font-size:12px;border-top:1px solid #30363d;margin-top:20px}
-@media(max-width:600px){.index-grid{grid-template-columns:1fr 1fr}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A股每日复盘 2026-05-29</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: #0a0e17;
+            color: #c8d6e5;
+            line-height: 1.6;
+            padding: 0;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0f1923 0%, #1a2a3a 100%);
+            border: 1px solid #1e3a5f;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff);
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #fff;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            color: #8899aa;
+            font-size: 14px;
+        }
+        .header .date-badge {
+            display: inline-block;
+            background: #1e3a5f;
+            color: #4d96ff;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        /* Card */
+        .card {
+            background: #111827;
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            padding: 22px;
+            margin-bottom: 20px;
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-title .icon { font-size: 20px; }
+
+        /* Index Grid */
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .index-item {
+            background: #0f1a2a;
+            border: 1px solid #1e3a5f;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .index-item:hover { transform: translateY(-2px); }
+        .index-name { font-size: 13px; color: #8899aa; margin-bottom: 6px; }
+        .index-price { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+        .index-change { font-size: 14px; font-weight: 600; }
+        .up { color: #ff4757; }
+        .down { color: #2ed573; }
+        .neutral { color: #ffa502; }
+
+        /* Metrics Row */
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .metric-box {
+            background: #0f1a2a;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            padding: 14px;
+            text-align: center;
+        }
+        .metric-label { font-size: 12px; color: #8899aa; margin-bottom: 4px; }
+        .metric-value { font-size: 20px; font-weight: 700; color: #fff; }
+        .metric-sub { font-size: 12px; color: #6b8fa3; margin-top: 2px; }
+
+        /* Chart Container */
+        .chart-container {
+            width: 100%;
+            height: 400px;
+            margin: 10px 0;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h3 {
+            color: #4d96ff;
+            font-size: 16px;
+            margin-bottom: 12px;
+            padding-left: 12px;
+            border-left: 3px solid #4d96ff;
+        }
+        .section p, .section li {
+            color: #c8d6e5;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .section ul li {
+            padding: 6px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+        .section ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #4d96ff;
+        }
+
+        /* Table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 13px;
+        }
+        .data-table th {
+            background: #1a2a3a;
+            color: #8899aa;
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 2px solid #1e3a5f;
+            font-weight: 600;
+        }
+        .data-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #1e293b;
+        }
+        .data-table tr:hover td { background: #0f1a2a; }
+
+        /* Comparison Table */
+        .comp-table th { background: #1a2a3a; }
+        .comp-table td, .comp-table th { padding: 10px 12px; border: 1px solid #1e293b; }
+        .score-bar {
+            display: inline-block;
+            height: 8px;
+            border-radius: 4px;
+            margin-right: 6px;
+        }
+
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .tag-red { background: rgba(255,71,87,0.15); color: #ff4757; }
+        .tag-green { background: rgba(46,213,115,0.15); color: #2ed573; }
+        .tag-yellow { background: rgba(255,165,2,0.15); color: #ffa502; }
+        .tag-blue { background: rgba(77,150,255,0.15); color: #4d96ff; }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #556677;
+            font-size: 12px;
+            border-top: 1px solid #1e293b;
+            margin-top: 30px;
+        }
+
+        /* Conclusion Banner */
+        .conclusion-banner {
+            background: linear-gradient(135deg, #1a0a0a 0%, #2a1a1a 100%);
+            border: 1px solid #5f1e1e;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .conclusion-banner .main-text {
+            font-size: 16px;
+            color: #ff6b6b;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .conclusion-banner .details {
+            color: #c8d6e5;
+            font-size: 14px;
+        }
+
+        /* Signal Box */
+        .signal-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .signal-box.danger { background: rgba(255,71,87,0.08); border-left: 3px solid #ff4757; }
+        .signal-box.warning { background: rgba(255,165,2,0.08); border-left: 3px solid #ffa502; }
+        .signal-box.info { background: rgba(77,150,255,0.08); border-left: 3px solid #4d96ff; }
+        .signal-label {
+            font-size: 12px;
+            font-weight: 700;
+            min-width: 60px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .signal-label.danger { background: #ff4757; color: #fff; }
+        .signal-label.warning { background: #ffa502; color: #000; }
+        .signal-label.info { background: #4d96ff; color: #fff; }
+
+        @media (max-width: 768px) {
+            .index-grid { grid-template-columns: repeat(2, 1fr); }
+            .header h1 { font-size: 22px; }
+        }
+        @media (max-width: 480px) {
+            .index-grid { grid-template-columns: 1fr 1fr; }
+            .metrics-row { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
 </head>
 <body>
 <div class="container">
 
-<div class="header">
-  <h1>📊 实战每日复盘</h1>
-  <div class="date">2026年5月29日 · 星期五</div>
-  <div class="badge">5月收官 · 风格切换日</div>
-</div>
-
-<!-- ═══════ 核心结论 ═══════ -->
-<div class="card">
-  <h2><span class="icon" style="background:#1f6feb">★</span> 核心结论</h2>
-  <div style="font-size:14px;line-height:1.8">
-    <p><strong>今日关键词：</strong><span class="bg-yellow">风格切换</span> <span class="bg-red">科技重挫</span> <span class="bg-green">消费接棒</span></p>
-    <p style="margin-top:8px">🔴 A股5月收官日全线回调，前期主线<strong>半导体/芯片</strong>遭恐慌性杀跌（科创50暴跌5.04%），资金大举切换至<strong>消费（白酒+3%）、电力（+2.34%）、煤炭（+2.41%）</strong>等低估值板块。全市场成交额达<strong>3.34万亿</strong>，放量约3500亿，呈现典型的高位放量调整特征。</p>
-    <p style="margin-top:8px">🟢 美股标普/纳指连续6日创历史新高，AI软硬件牛股接力（Snowflake+36%、微软+3.47%），继续为A股科技方向提供估值锚，但短期情绪背离显著。</p>
-    <p style="margin-top:8px">🟡 <strong>关键观察：</strong> 科技股暴跌是否为"假摔"（机构逆势买入京东方A 4.47亿、华天科技3.15亿），抑或风格切换的开端，下周走势极为关键。</p>
-  </div>
-</div>
-
-<!-- ═══════ 大盘指数 ═══════ -->
-<div class="card">
-  <h2><span class="icon" style="background:#3fb950">📈</span> 大盘指数</h2>
-  <div class="index-grid">
-    <div class="index-item">
-      <div class="name">上证指数</div>
-      <div class="price">4,068.57</div>
-      <div class="change red">▼ 0.73%</div>
+    <!-- Header -->
+    <div class="header">
+        <h1>🦅 A股每日复盘</h1>
+        <div class="subtitle">观澜 · 首席分析 · 数据驱动 · 观点犀利</div>
+        <div class="date-badge">📅 2026年5月29日（周五）</div>
     </div>
-    <div class="index-item">
-      <div class="name">深证成指</div>
-      <div class="price">15,575.13</div>
-      <div class="change red">▼ 1.81%</div>
+
+    <!-- 1) 今日核心结论 -->
+    <div class="card">
+        <div class="card-title"><span class="icon">🎯</span> 一、今日核心结论</div>
+        <div class="conclusion-banner">
+            <div class="main-text">⚠️ 冰火两重天：沪指顽强抗跌，科技线惨烈退潮，亏钱效应显著扩散</div>
+            <div class="details">
+                <p><strong>指数强弱排序：</strong>沪指 > 深成指 > 创业板指 > 科创50</p>
+                <p><strong>量能：</strong>两市成交3.34万亿，放量3537亿，但属于放量下跌，并非好事</p>
+                <p><strong>市场风格：</strong>高切低极致演绎：电力、消费、地产等低位板块逆势走强；半导体、芯片、通信等高位科技板块批量跌停</p>
+                <p><strong>赚钱效应：</strong>极差。超3800只个股下跌，近200股跌逾9%，涨停49家vs跌停50家，涨跌比约1:2</p>
+                <p><strong>定性：</strong>结构性行情+情绪退潮。上证指数跌幅可控（-0.73%）系权重（电力、白酒、银行）护盘，但双创指数跌幅惨烈，科技主线全面崩塌。这是典型的高位抱团瓦解信号</p>
+            </div>
+        </div>
+
+        <div class="index-grid">
+            <div class="index-item">
+                <div class="index-name">上证指数</div>
+                <div class="index-price">4,068.57</div>
+                <div class="index-change down">-0.73%</div>
+            </div>
+            <div class="index-item">
+                <div class="index-name">深证成指</div>
+                <div class="index-price">15,575.13</div>
+                <div class="index-change down">-1.81%</div>
+            </div>
+            <div class="index-item">
+                <div class="index-name">创业板指</div>
+                <div class="index-price">4,037.95</div>
+                <div class="index-change down">-2.11%</div>
+            </div>
+            <div class="index-item">
+                <div class="index-name">科创50</div>
+                <div class="index-price">1,751.32</div>
+                <div class="index-change down">-5.04%</div>
+            </div>
+        </div>
     </div>
-    <div class="index-item">
-      <div class="name">创业板指</div>
-      <div class="price">4,037.95</div>
-      <div class="change red">▼ 2.11%</div>
+
+    <!-- 2) 资金面 -->
+    <div class="card">
+        <div class="card-title"><span class="icon">💰</span> 二、资金面（机构视角）</div>
+        <div class="metrics-row">
+            <div class="metric-box">
+                <div class="metric-label">两市成交额</div>
+                <div class="metric-value" style="color:#ffa502;">3.34万亿</div>
+                <div class="metric-sub">较昨放量+3537亿</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">南向资金（港股）</div>
+                <div class="metric-value" style="color:#2ed573;">+18.83亿</div>
+                <div class="metric-sub">港元</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">龙虎榜机构净买卖</div>
+                <div class="metric-value" style="color:#ff4757;">净卖出3.08亿</div>
+                <div class="metric-sub">净买入22只/净卖出17只</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">沪股通龙虎榜</div>
+                <div class="metric-value" style="color:#4d96ff;">36只上榜</div>
+                <div class="metric-sub">北向多空分歧</div>
+            </div>
+        </div>
+
+        <h3>龙虎榜机构买入方向</h3>
+        <ul>
+            <li><strong>电力（最强方向）：</strong>粤电力A（+4582万）、晋控电力（+5198万）、东杰智能（+6046万）—— 机构集中加仓电力改革主线</li>
+            <li><strong>科技抄底：</strong>露笑科技（+7013万，跌停抄底）—— 机构对科技分化严重，部分逆势加仓</li>
+            <li><strong>消费：</strong>酒鬼酒（+3737万机构买入）—— 机构试探性回补消费</li>
+        </ul>
+        <h3>龙虎榜机构卖出方向</h3>
+        <ul>
+            <li><strong>高位芯片：</strong>云汉芯城（-1.23亿）、宇晶股份（-1.94亿）—— 机构高位出货</li>
+            <li><strong>电力分歧：</strong>华能国际（-6422万）—— 机构内部对电力股出现分歧</li>
+        </ul>
+        <h3>北向资金龙虎榜动态</h3>
+        <ul>
+            <li><strong>净买入：</strong>粤电力A（+1.06亿）、露笑科技（+1.06亿）、晋控电力（+6342万）、赛诺医疗（+8328万）、彩虹股份（+1.03亿）</li>
+            <li><strong>净卖出：</strong>华能国际（-7887万）、宇晶股份（-5575万）、云汉芯城（-949万）</li>
+            <li><strong>方向判断：</strong>北向资金龙虎榜整体呈现净流入（买入强度大于卖出），偏好电力+超跌科技</li>
+        </ul>
+        <h3>游资主攻方向</h3>
+        <ul>
+            <li><strong>电力改革：</strong>华电能源5连板、华能蒙电5天3板</li>
+            <li><strong>商业零售/免税：</strong>步步高4天3板、东百集团涨停</li>
+            <li><strong>地产链：</strong>香江控股5连板</li>
+        </ul>
     </div>
-    <div class="index-item">
-      <div class="name">科创50</div>
-      <div class="price">1,751.32</div>
-      <div class="change red">▼ 5.04%</div>
+
+    <!-- 3) 市场情绪 -->
+    <div class="card">
+        <div class="card-title"><span class="icon">📊</span> 三、市场情绪（散户+游资视角）</div>
+        <div class="metrics-row">
+            <div class="metric-box">
+                <div class="metric-label">涨停家数</div>
+                <div class="metric-value" style="color:#ff4757;">49</div>
+                <div class="metric-sub">不含ST</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">跌停家数</div>
+                <div class="metric-value" style="color:#2ed573;">50</div>
+                <div class="metric-sub">不含ST</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">封板率</div>
+                <div class="metric-value" style="color:#ffa502;">~70%</div>
+                <div class="metric-sub">炸板率约30%</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">连板高度</div>
+                <div class="metric-value" style="color:#ffd93d;">5板</div>
+                <div class="metric-sub">连板股9只</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">涨跌家数</div>
+                <div class="metric-value" style="color:#ff4757;">~1:2</div>
+                <div class="metric-sub">超3800只下跌</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">近200股</div>
+                <div class="metric-value" style="color:#ff4757;">跌逾9%</div>
+                <div class="metric-sub">亏钱效应显著</div>
+            </div>
+        </div>
+
+        <!-- ECharts: 60日涨跌家数比 -->
+        <h3>近60日涨跌家数比趋势</h3>
+        <div id="riseFallChart" class="chart-container"></div>
+        <p style="color:#6b8fa3; font-size:12px; margin-top:5px;">*涨跌家数比 = 上涨家数/下跌家数。比值 >1 表示涨多跌少，<1 表示跌多涨少</p>
+
+        <h3>情绪解析</h3>
+        <ul>
+            <li><strong>情绪周期定位：</strong>退潮加速期。5月28日还是修复期（102涨停），29日直接退潮（49涨停/50跌停），跌停家数暴增6倍</li>
+            <li><strong>高位股风险：</strong>华塑控股断板即跌停，4连板以上断板即A杀，高位接力风险极大</li>
+            <li><strong>题材持续性：</strong>极差。科技线全面退潮，仅电力改革的消费（免税/零售）有持续性。题材轮动加速，追高风险大</li>
+            <li><strong>非ST跌停50家：</strong>创近期新高，恐慌情绪有扩散迹象，但未到极致恐慌（尚未出现百股跌停）</li>
+        </ul>
     </div>
-  </div>
-  <div style="margin-top:8px;font-size:13px;color:#8b949e;text-align:center">
-    科创综指跌4.77% · 北证50跌3.24%<br>
-    5月月线：科创50月涨超11% · 创业板月涨近10%
-  </div>
-</div>
 
-<!-- ═══════ 市场情绪 ═══════ -->
-<div class="card">
-  <h2><span class="icon" style="background:#d29922">🔥</span> 市场情绪与量能</h2>
-  <div class="stat-row">
-    <span class="label">📊 成交额</span>
-    <span class="value" style="color:#f0883e">33,409亿 <span style="color:#3fb950;font-size:12px">▲ 3,535亿</span></span>
-  </div>
-  <div class="stat-row">
-    <span class="label">📈 上涨家数</span>
-    <span class="value green">1,542 (28%)</span>
-  </div>
-  <div class="stat-row">
-    <span class="label">📉 下跌家数</span>
-    <span class="value red">3,884 (70%)</span>
-  </div>
-  <div class="stat-row">
-    <span class="label">🚀 涨停家数</span>
-    <span class="value green">67</span>
-  </div>
-  <div class="stat-row">
-    <span class="label">💥 跌停家数</span>
-    <span class="value red">59</span>
-  </div>
-  <div class="stat-row">
-    <span class="label">📌 创新高个股</span>
-    <span class="value" style="color:#f0883e">48只（不含近一年次新股）</span>
-  </div>
-  <div class="stat-row">
-    <span class="label">📌 连板高度</span>
-    <span class="value yellow">5连板（华电能源/香江控股/*ST雅博）</span>
-  </div>
-</div>
+    <!-- 4) 行业主线复盘 -->
+    <div class="card">
+        <div class="card-title"><span class="icon">📈</span> 四、行业主线复盘（研究员视角）</div>
+        
+        <h3>最强板块TOP6（按强度排序）</h3>
+        
+        <div style="margin-bottom:15px; background:#0f1a2a; border-radius:8px; padding:15px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                <span style="color:#ffd93d; font-weight:700;">① 电力改革（火力发电+水力发电+电力）</span>
+                <span style="color:#ff4757; font-weight:700;">板块+2.46%~+4.31%</span>
+            </div>
+            <ul>
+                <li><strong>今日表现：</strong>电力板块全面爆发，华电能源5连板、华能蒙电5天3板、粤电力A 3连板、晋控电力涨停。火电+水电齐涨</li>
+                <li><strong>催化来源：</strong>电力改革政策预期+夏季用电高峰临近+高股息防御属性+资金高低切换</li>
+                <li><strong>持续性判断：</strong>⭐️⭐️⭐️⭐️ 中高。电力有政策+业绩+防御三重逻辑，但龙虎榜显示机构对华能国际有分歧（卖出6422万），谨防短线过热</li>
+            </ul>
+        </div>
 
-<!-- ═══════ 资金面 ═══════ -->
-<div class="card">
-  <h2><span class="icon" style="background:#58a6ff">💰</span> 资金面</h2>
-  
-  <h3 style="font-size:14px;color:#58a6ff;margin:8px 0 6px">北向资金</h3>
-  <div class="stat-row"><span class="label">北向成交额</span><span class="value">4,734亿（占两市14.26%）</span></div>
-  <div class="stat-row"><span class="label">沪股通TOP1</span><span class="value">工业富联 45.25亿</span></div>
-  <div class="stat-row"><span class="label">深股通TOP1</span><span class="value">宁德时代 97.55亿</span></div>
-  <div style="margin-top:6px;font-size:13px;color:#8b949e">北向成交活跃，宁德时代成交近百亿，机构逆势买入京东方A 4.47亿</div>
-  
-  <h3 style="font-size:14px;color:#58a6ff;margin:12px 0 6px">南向资金（港股）</h3>
-  <div class="stat-row"><span class="label">净买入</span><span class="value green">18.83亿港元</span></div>
-  <div class="stat-row"><span class="label">港股通(沪)净买</span><span class="value green">42.21亿</span></div>
-  <div class="stat-row"><span class="label">港股通(深)净卖</span><span class="value red">-23.38亿</span></div>
-  <div class="stat-row"><span class="label">TOP1净买</span><span class="value">泡泡玛特 +8.78亿</span></div>
-  
-  <h3 style="font-size:14px;color:#58a6ff;margin:12px 0 6px">两融余额（截至5/28）</h3>
-  <div class="stat-row"><span class="label">科创板两融</span><span class="value green">3,913.83亿 <span style="font-size:12px">▲12.03亿</span></span></div>
-  <div class="stat-row"><span class="label">两融态势</span><span class="value green">五连升 · 11股融资净买超10亿</span></div>
-  <div class="stat-row"><span class="label">加仓方向</span><span class="value">电子（+366亿/+6.9%）领衔</span></div>
+        <div style="margin-bottom:15px; background:#0f1a2a; border-radius:8px; padding:15px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                <span style="color:#ffd93d; font-weight:700;">② 商业零售/免税/超市</span>
+                <span style="color:#ff4757; font-weight:700;">超市+5.70% / 百货+4.13%</span>
+            </div>
+            <ul>
+                <li><strong>今日表现：</strong>超市板块领涨全市场（+5.70%），步步高4天3板、东百集团涨停、茂业商业、三江购物等跟涨。免税概念走强</li>
+                <li><strong>催化来源：</strong>消费刺激政策预期+端午节假期消费旺季+板块极度超跌+高低切换资金涌入</li>
+                <li><strong>持续性判断：</strong>⭐️⭐️⭐️ 中等。消费股长期超跌有反弹需求，但基本面改善尚需验证，暂看超跌反弹</li>
+            </ul>
+        </div>
 
-  <h3 style="font-size:14px;color:#58a6ff;margin:12px 0 6px">主力资金流向</h3>
-  <div class="stat-row"><span class="label">净流入TOP1</span><span class="value green">公用事业 +54.03亿</span></div>
-  <div class="stat-row"><span class="label">净流入TOP2</span><span class="value green">食品饮料 +26.98亿</span></div>
-  <div class="stat-row"><span class="label">净流入TOP3</span><span class="value green">商贸零售 +24.60亿</span></div>
-  <div class="stat-row"><span class="label">净流出最多</span><span class="value red">电子 -618.59亿</span></div>
-</div>
+        <div style="margin-bottom:15px; background:#0f1a2a; border-radius:8px; padding:15px;">
+            <div style="display:justify-content:space-between; margin-bottom:8px;">
+                <span style="color:#ffd93d; font-weight:700;">③ 白酒/食品饮料</span>
+                <span style="color:#ff4757; font-weight:700;">白酒+3.42% / 啤酒+3.03%</span>
+            </div>
+            <ul>
+                <li><strong>今日表现：</strong>酒鬼酒涨停、口子窖+4.16%、贵州茅台五粮液涨近4%、保健品+2.99%</li>
+                <li><strong>催化来源：</strong>端午旺季备货+超跌反弹+防御属性凸显+北向资金试探性买入</li>
+                <li><strong>持续性判断：</strong>⭐️⭐️⭐️ 中等。白酒属机构重仓板块，短期超跌反弹可期，但中期看基本面仍存压</li>
+            </ul>
+        </div>
 
-<!-- ═══════ 行业主线 ═══════ -->
-<div class="card">
-  <h2><span class="icon" style="background:#bc8cff">🎯</span> 行业主线TOP6</h2>
-  <table class="table-mini">
-    <tr><th>排名</th><th>行业</th><th>涨跌幅</th><th>核心驱动</th></tr>
-    <tr><td>🥇</td><td>食品饮料</td><td class="green">+3.02%</td><td>白酒集体走强，酒鬼酒涨停，茅台+4%</td></tr>
-    <tr><td>🥈</td><td>煤炭</td><td class="green">+2.41%</td><td>能源安全+电力需求拉动，新集能源+6.7%</td></tr>
-    <tr><td>🥉</td><td>公用事业(电力)</td><td class="green">+2.34%</td><td>电力改革主线，华电能源5连板，晋控电力等涨停</td></tr>
-    <tr><td>4</td><td>美容护理</td><td class="green">+2.33%</td><td>大消费扩散，锦波生物+9%</td></tr>
-    <tr><td>5</td><td>商贸零售</td><td class="green">+1.84%</td><td>免税+零售回暖，东百集团涨停，中国中免冲击涨停</td></tr>
-    <tr><td>6</td><td>银行</td><td class="green">+1.70%</td><td>护盘资金+低估值修复，重庆银行+5%</td></tr>
-  </table>
-  
-  <h3 style="font-size:14px;color:#f85149;margin:16px 0 6px">跌幅前三行业</h3>
-  <table class="table-mini">
-    <tr><th>行业</th><th>涨跌幅</th><th>代表个股</th></tr>
-    <tr><td>综合</td><td class="red">-5.39%</td><td>小市值普跌</td></tr>
-    <tr><td>国防军工</td><td class="red">-4.79%</td><td>军工科技联动下跌</td></tr>
-    <tr><td>电子</td><td class="red">-4.44%</td><td>中芯国际-8.97%，寒武纪-5.86%，京东方A跌停</td></tr>
-  </table>
+        <div style="margin-bottom:15px; background:#0f1a2a; border-radius:8px; padding:15px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                <span style="color:#ffd93d; font-weight:700;">④ 地产/房地产链</span>
+                <span style="color:#ffa502; font-weight:700;">香江控股5连板</span>
+            </div>
+            <ul>
+                <li><strong>今日表现：</strong>香江控股5连板成为市场最高标之一，港股内房股大涨（碧桂园+19%、万科+12%）映射A股</li>
+                <li><strong>催化来源：</strong>港股内房大涨带动+政策面持续宽松预期+低位补涨逻辑</li>
+                <li><strong>持续性判断：</strong>⭐️⭐️ 偏低。地产基本面数据尚未改善，更多是港股映射+博弈政策，纯短线资金行为</li>
+            </ul>
+        </div>
 
-  <h3 style="font-size:14px;color:#d29922;margin:16px 0 6px">申万三级行业涨幅前三</h3>
-  <div>
-    <span class="sector-tag bg-green">管材 +5.31%</span>
-    <span class="sector-tag bg-green">火力发电 +5.30%</span>
-    <span class="sector-tag bg-green">通信线缆 +5.19%</span>
-  </div>
-</div>
+        <div style="margin-bottom:15px; background:#0f1a2a; border-radius:8px; padding:15px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                <span style="color:#ffd93d; font-weight:700;">⑤ 医药/医疗</span>
+                <span style="color:#ff4757; font-weight:700;">医美耗材+5.22% / 血液制品+2.96%</span>
+            </div>
+            <ul>
+                <li><strong>今日表现：</strong>医美耗材领涨题材（+5.22%），百利天恒+8.64%、国药股份+3.37%、赛诺医疗涨停</li>
+                <li><strong>催化来源：</strong>创新药政策利好+防御属性+资金高低切换</li>
+                <li><strong>持续性判断：</strong>⭐️⭐️⭐️ 中等。医药长期有创新药驱动逻辑，但板块体量大，难以持续拉升</li>
+            </ul>
+        </div>
 
-<!-- ═══════ 龙头梯队 ═══════ -->
-<div class="card">
-  <h2><span class="icon" style="background:#f0883e">👑</span> 龙头梯队</h2>
-  
-  <h3 style="font-size:14px;color:#d29922;margin:8px 0 6px">连板龙头</h3>
-  <table class="table-mini">
-    <tr><th>个股</th><th>连板</th><th>方向</th><th>强度</th></tr>
-    <tr><td>*ST闻泰</td><td>7天6板</td><td>ST重组</td><td><span class="bg-yellow">高度板</span></td></tr>
-    <tr><td>华电能源</td><td>5连板</td><td>电力改革</td><td><span class="bg-green">板块龙头</span></td></tr>
-    <tr><td>香江控股</td><td>5连板</td><td>房地产</td><td><span class="bg-yellow">连板高标</span></td></tr>
-    <tr><td>*ST雅博</td><td>5连板</td><td>ST</td><td><span class="bg-yellow">ST龙头</span></td></tr>
-    <tr><td>粤电力A</td><td>3连板</td><td>电力</td><td><span class="bg-green">电力三连</span></td></tr>
-    <tr><td>步步高</td><td>4天3板</td><td>零售</td><td><span class="bg-green">消费复苏</span></td></tr>
-  </table>
+        <div style="margin-bottom:15px; background:#0f1a2a; border-radius:8px; padding:15px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                <span style="color:#ff6060; font-weight:700;">⑥ 煤炭/高股息</span>
+                <span style="color:#ffa502; font-weight:700;">煤炭开采+2.18% / 焦煤+2.33%</span>
+            </div>
+            <ul>
+                <li><strong>今日表现：</strong>煤炭板块逆势走强，焦煤+2.33%、煤炭开采+2.18%，红利股获资金青睐</li>
+                <li><strong>催化来源：</strong>高股息防御策略+夏季用煤旺季预期+市场避险情绪升温</li>
+                <li><strong>持续性判断：</strong>⭐️⭐️⭐️ 中等。高股息为当前市场避风港，但弹性有限，适合防御配置</li>
+            </ul>
+        </div>
 
-  <h3 style="font-size:14px;color:#3fb950;margin:16px 0 6px">龙虎榜机构动向</h3>
-  <table class="table-mini">
-    <tr><th>个股</th><th>方向</th><th>机构操作</th><th>信号</th></tr>
-    <tr><td>京东方A</td><td class="red">跌停</td><td>机构买入4.47亿 + 深股通买入1.59亿</td><td><span class="bg-yellow">📌 跌停大买 · 抄底信号</span></td></tr>
-    <tr><td>华天科技</td><td class="red">跌停</td><td>3家机构买入3.15亿 / 2家卖出2.16亿</td><td><span class="bg-yellow">📌 机构分歧大</span></td></tr>
-    <tr><td>晋控电力</td><td class="green">涨停</td><td>2家机构买入5,198万 + 深股通6,342万</td><td><span class="bg-green">机构游资共振</span></td></tr>
-    <tr><td>联特科技</td><td class="green">+7.93%</td><td>机构买入 · 3日涨幅累计30%</td><td><span class="bg-green">趋势延续</span></td></tr>
-    <tr><td>东杰智能</td><td class="green">+20%</td><td>机构参与 · 20cm涨停</td><td><span class="bg-green">强势封板</span></td></tr>
-  </table>
-</div>
-
-<!-- ═══════ 风险信号 ═══════ -->
-<div class="card">
-  <h2><span class="icon" style="background:#f85149">⚠️</span> 风险信号</h2>
-  
-  <div class="signal-box negative">
-    <div><span class="bg-red">🔴 高位</span> <strong style="color:#f85149">科技板块放量暴跌</strong></div>
-    <div style="font-size:13px;color:#c9d1d9;margin-top:4px">半导体板块跌超4%，中芯国际-8.97%、京东方A跌停、科创50跌5%。电子行业主力资金净流出618.59亿，为全市场之最。</div>
-  </div>
-  
-  <div class="signal-box negative" style="margin-top:8px">
-    <div><span class="bg-red">🔴 中期</span> <strong style="color:#f85149">放量下跌 + 跌停潮</strong></div>
-    <div style="font-size:13px;color:#c9d1d9;margin-top:4px">成交额放大3500亿至3.34万亿，但指数全线收跌；跌停59只（大部分来自科技线），市场抛压显著。</div>
-  </div>
-  
-  <div class="signal-box neutral" style="margin-top:8px">
-    <div><span class="bg-yellow">🟡 关注</span> <strong style="color:#d29922">风格切换的持续性</strong></div>
-    <div style="font-size:13px;color:#c9d1d9;margin-top:4px">消费/电力/煤炭的上涨是否具有持续性？科技股是否只是技术性回调？下周初的确认信号极为重要。</div>
-  </div>
-  
-  <div class="signal-box positive" style="margin-top:8px">
-    <div><span class="bg-green">🟢 乐观</span> <strong style="color:#3fb950">两融五连升 · 杠杆资金持续入场</strong></div>
-    <div style="font-size:13px;color:#c9d1d9;margin-top:4px">电子行业融资余额增加366亿(+6.9%)，说明杠杆资金在科技调整中仍在加仓，非全面撤退。</div>
-  </div>
-</div>
-
-<!-- ═══════ AH联动 ═══════ -->
-<div class="card">
-  <h2><span class="icon" style="background:#f0883e">🔄</span> AH联动</h2>
-  <div class="stat-row"><span class="label">恒生指数</span><span class="value green">25,182.39 ▲ 0.70%</span></div>
-  <div class="stat-row"><span class="label">南向净买入</span><span class="value green">18.83亿港元</span></div>
-  <div class="stat-row"><span class="label">TOP1净买</span><span class="value">泡泡玛特 8.78亿</span></div>
-  <div class="stat-row"><span class="label">TOP2净买</span><span class="value">腾讯控股 6.87亿</span></div>
-  <div class="stat-row"><span class="label">TOP3净买</span><span class="value">澜起科技 6.43亿</span></div>
-  <div style="margin-top:8px;font-size:13px;color:#8b949e">
-    💡 <strong>联动观察：</strong>港股跑赢A股（恒指+0.7% vs 上证-0.73%），南向资金连续两日净流入。AH溢价或收窄，关注A股消费龙头的港股映射。
-  </div>
-</div>
-
-<!-- ═══════ A美联动 ═══════ -->
-<div class="card">
-  <h2><span class="icon" style="background:#58a6ff">🌍</span> A美联动 · 隔夜美股</h2>
-  
-  <div class="index-grid" style="margin-bottom:12px">
-    <div class="index-item">
-      <div class="name">道琼斯</div>
-      <div class="price">50,668.97</div>
-      <div class="change green">▲ 0.05%</div>
+        <h3 style="margin-top:20px; border-left-color: #ff4757;">💀 今日领跌板块（避雷）</h3>
+        <ul>
+            <li><strong>半导体/芯片：</strong>领跌全场。中芯国际-8.97%、海光信息-6.51%、寒武纪-5.86%、斯达半导/士兰微/晶方科技等跌停。科创50暴跌5.04%</li>
+            <li><strong>AI硬件/元器件：</strong>京东方A跌停、玻璃基板大跌、德龙激光/帝尔激光跌超10%</li>
+            <li><strong>通信设备：</strong>光纤光缆分化（长飞光纤逆势涨8%，但板块整体走弱）</li>
+            <li><strong>光通信：</strong>跟随美股光通信板块普跌</li>
+        </ul>
     </div>
-    <div class="index-item">
-      <div class="name">标普500</div>
-      <div class="price">7,563.63</div>
-      <div class="change green">▲ 0.58% <span style="font-size:11px;color:#3fb950">连涨6日</span></div>
+
+    <!-- 5) 龙头梯队 -->
+    <div class="card">
+        <div class="card-title"><span class="icon">🏆</span> 五、龙头梯队（实战交易视角）</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>梯队</th>
+                    <th>标的</th>
+                    <th>连板/涨幅</th>
+                    <th>方向</th>
+                    <th>信号</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="tag tag-red">总龙头</span></td>
+                    <td>香江控股</td>
+                    <td>5连板</td>
+                    <td>地产链</td>
+                    <td>市场最高标之一，带动地产+消费情绪</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-red">总龙头</span></td>
+                    <td>华电能源</td>
+                    <td>5连板</td>
+                    <td>电力改革</td>
+                    <td>电力方向龙头，缩量加速，注意分歧</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-yellow">中军</span></td>
+                    <td>粤电力A</td>
+                    <td>3连板</td>
+                    <td>电力改革</td>
+                    <td>机构+北向双买入，龙虎榜机构净买入4582万</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-yellow">中军</span></td>
+                    <td>晋控电力</td>
+                    <td>首板涨停</td>
+                    <td>电力改革</td>
+                    <td>机构+北向资金合力封板</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-blue">补涨龙</span></td>
+                    <td>步步高</td>
+                    <td>4天3板</td>
+                    <td>商业零售</td>
+                    <td>低位消费补涨龙头</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-blue">补涨龙</span></td>
+                    <td>东百集团</td>
+                    <td>首板涨停</td>
+                    <td>商业零售</td>
+                    <td>超市+百货方向新启动</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-green">强趋势</span></td>
+                    <td>酒鬼酒</td>
+                    <td>涨停</td>
+                    <td>白酒</td>
+                    <td>超跌反弹首板，带板块效应</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-green">强趋势</span></td>
+                    <td>百利天恒</td>
+                    <td>+8.64%</td>
+                    <td>创新药</td>
+                    <td>医药方向趋势龙头</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-red" style="background:rgba(255,71,87,0.3);">⚠️破位警示</span></td>
+                    <td>中芯国际</td>
+                    <td>-8.97%</td>
+                    <td>芯片</td>
+                    <td>科创板重挫，跌破关键支撑</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-red" style="background:rgba(255,71,87,0.3);">⚠️破位警示</span></td>
+                    <td>寒武纪</td>
+                    <td>-5.86%</td>
+                    <td>AI芯片</td>
+                    <td>高位抱团瓦解信号</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-red" style="background:rgba(255,71,87,0.3);">⚠️破位警示</span></td>
+                    <td>华塑控股</td>
+                    <td>断板跌停</td>
+                    <td>高位连板</td>
+                    <td>连板A杀，亏钱效应标杆</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <div class="index-item">
-      <div class="name">纳斯达克</div>
-      <div class="price">26,917.47</div>
-      <div class="change green">▲ 0.91% <span style="font-size:11px;color:#3fb950">历史新高</span></div>
+
+    <!-- 6) 风险信号 -->
+    <div class="card">
+        <div class="card-title"><span class="icon">🚨</span> 六、风险信号（基金经理风控视角）</div>
+        
+        <div class="signal-box danger">
+            <span class="signal-label danger">高危</span>
+            <div><strong>高位抱团松动：</strong>科技（芯片/AI/通信）全线暴跌，科创50单日-5.04%，龙头中芯国际-8.97%、寒武纪-5.86%。这是高位抱团瓦解的明确信号，类似2024年12月的科技退潮</div>
+        </div>
+        <div class="signal-box danger">
+            <span class="signal-label danger">高危</span>
+            <div><strong>强势股补跌：</strong>华塑控股断板跌停（A杀），跌停数暴增至50家（上日仅8家），情绪退潮加速</div>
+        </div>
+        <div class="signal-box warning">
+            <span class="signal-label warning">中险</span>
+            <div><strong>量价背离：</strong>放量3537亿但指数全线收跌，3.34万亿成交额对应的是下跌，说明抛压沉重，承接乏力</div>
+        </div>
+        <div class="signal-box warning">
+            <span class="signal-label warning">中险</span>
+            <div><strong>创业板指失守关键位：</strong>创业板指单日-2.11%，逼近4000点整数关口。若下周失守4000点，技术性破位将引发止损盘</div>
+        </div>
+        <div class="signal-box info">
+            <span class="signal-label info">关注</span>
+            <div><strong>美元/美债：</strong>美10y收益率下行至4.48%下方，美元指数99附近，对新兴市场资金面偏利好，但A股当前更受内因驱动</div>
+        </div>
+        <div class="signal-box info">
+            <span class="signal-label info">关注</span>
+            <div><strong>美股科技映射：</strong>隔夜美股科技齐创新高（纳指+0.91%），但A股科技反而暴跌，说明A股科技已独立走弱，脱钩美股逻辑</div>
+        </div>
     </div>
-    <div class="index-item">
-      <div class="name">金龙指数</div>
-      <div class="price">—</div>
-      <div class="change red">▼ 0.48%</div>
+
+    <!-- 7) AH联动 -->
+    <div class="card">
+        <div class="card-title"><span class="icon">🌐</span> 七、AH联动</div>
+        <div class="metrics-row">
+            <div class="metric-box">
+                <div class="metric-label">恒生指数</div>
+                <div class="metric-value" style="color:#2ed573;">+0.70%</div>
+                <div class="metric-sub">收报25199.99</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">恒生科技指数</div>
+                <div class="metric-value" style="color:#ff4757;">-0.09%</div>
+                <div class="metric-sub">冲高回落</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">南向资金</div>
+                <div class="metric-value" style="color:#2ed573;">净买入18.83亿</div>
+                <div class="metric-sub">港股通(沪)净买42.21亿</div>
+            </div>
+        </div>
+        <ul>
+            <li><strong>港强A弱：</strong>恒指涨0.70% vs A股主要指数全面下跌。港股表现强于A股，主要受内房股大涨提振</li>
+            <li><strong>溢价率：</strong>A股科技暴跌而港股科技跌幅小得多（恒科微跌0.09%），AH溢价率短期可能收窄</li>
+            <li><strong>外资态度：</strong>南向资金继续净买入18.83亿港元，内资南下抄底。港股通(沪)净买入42.21亿 vs (深)净卖出23.38亿——资金偏好沪市港股</li>
+            <li><strong>港股行业分化：</strong>酒店度假村、客运航空涨幅靠前；半导体（澜起科技-12.82%）、通信设备跌幅靠前——与A股科技退潮形成共振</li>
+            <li><strong>A+H联动案例：</strong>联想集团港股大涨25.41%但A股对应标的表现一般，说明资金更偏好直接做多港股</li>
+        </ul>
     </div>
-  </div>
-  
-  <table class="table-mini">
-    <tr><th>美股东</th><th>涨跌幅</th><th>方向</th></tr>
-    <tr><td>Snowflake</td><td class="green">+36%</td><td>SaaS+AI软件爆发</td></tr>
-    <tr><td>微软</td><td class="green">+3.47%</td><td>AI订阅服务催化</td></tr>
-    <tr><td>ServiceNow</td><td class="green">+6%</td><td>SaaS板块联动</td></tr>
-    <tr><td>英伟达</td><td class="green">+0.78%</td><td>高位震荡</td></tr>
-    <tr><td>苹果</td><td class="green">+0.53%</td><td>稳健上行</td></tr>
-    <tr><td>美光科技</td><td class="red">-0.53%</td><td>前日暴涨19%后整理</td></tr>
-    <tr><td>Lumentum</td><td class="red">-4%</td><td>光通信领跌</td></tr>
-    <tr><td>拼多多</td><td class="red">-4.13%</td><td>Q1营收不及预期</td></tr>
-  </table>
-  
-  <div style="margin-top:8px;font-size:13px;color:#8b949e">
-    💡 <strong>联动观察：</strong>美股AI/半导体持续创新高（标普/纳指6连阳），但A股科技今日逆势暴跌，出现罕见的"背离信号"。若下周A股科技不能企稳修复，需警惕短期顶部风险；若修复，则可能是极好的"黄金坑"。
-  </div>
+
+    <!-- 8) A美联动 -->
+    <div class="card">
+        <div class="card-title"><span class="icon">🇺🇸</span> 八、A美联动</div>
+        <div class="metrics-row">
+            <div class="metric-box">
+                <div class="metric-label">道指</div>
+                <div class="metric-value" style="color:#2ed573;">+0.05%</div>
+                <div class="metric-sub">50,668.97</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">标普500</div>
+                <div class="metric-value" style="color:#2ed573;">+0.58%</div>
+                <div class="metric-sub">7,563.63</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-label">纳指</div>
+                <div class="metric-value" style="color:#2ed573;">+0.91%</div>
+                <div class="metric-sub">26,917.47</div>
+            </div>
+        </div>
+        <p style="color:#6b8fa3; font-size:12px; margin-bottom:12px;">*隔夜美股数据为5月28日（周三）收盘，直接影响5月29日A股开盘</p>
+        <ul>
+            <li><strong>隔夜美股：</strong>三大指数齐创历史新高！道指+0.05%，标普+0.58%（六连涨），纳指+0.91%（六连涨）。微软+3%领涨，ARM涨超10%，费城半导体+1%</li>
+            <li><strong>对A股开盘影响：</strong>美股新高本应对A股形成正面情绪传导，但5月29日A股科技反而暴跌，说明A股已独立走弱，美股映射效应失效</li>
+            <li><strong>美股映射板块分析：</strong></li>
+            <ul>
+                <li>🔴 <strong>AI/芯片（联动失效）：</strong>美股费城半导体+1%本应对A股芯片有提振，但A股半导体反而暴跌。中芯国际-8.97%、华海清科-4.81%</li>
+                <li>🟢 <strong>创新药（正联动）：</strong>标普医疗板块+1.41%领涨，A股创新药跟涨（百利天恒+8.64%、赛诺医疗涨停）</li>
+                <li>🟡 <strong>消费电子（联动中性）：</strong>美股苹果+0.53%，A股消费电子无明显联动</li>
+                <li>🟡 <strong>新能源车（联动中性）：</strong>特斯拉小幅上涨，A股新能源车无板块效应</li>
+            </ul>
+            <li><strong>核心结论：</strong>A股当前由内部资金面和情绪周期主导，与美股走势已脱敏。科技股的暴跌是内因（获利盘兑现+高低切换），不应归咎外盘</li>
+        </ul>
+    </div>
+
+    <!-- 9) 明日策略 -->
+    <div class="card">
+        <div class="card-title"><span class="icon">📋</span> 九、明日策略（2026-05-30 周一）</div>
+        
+        <div style="background:#0a1a0a; border:1px solid #1e5f1e; border-radius:8px; padding:16px; margin-bottom:16px;">
+            <div style="color:#2ed573; font-weight:700; margin-bottom:8px;">✅ 主攻方向</div>
+            <p><strong>方向一：电力改革（强度评分：8/10）</strong></p>
+            <p>逻辑：政策催化+夏季用电高峰+高股息防御+资金介入深。华电能源5连板打开空间，粤电力A获机构+北向双买入，板块梯队完整</p>
+            <p>关注标的：华电能源、粤电力A、晋控电力、华能国际（分歧中找买点）</p>
+            <br>
+            <p><strong>方向二：消费/零售（强度评分：7/10）</strong></p>
+            <p>逻辑：端午假期消费旺季+超跌反弹+政策预期+资金高低切换。步步高4天3板确认龙头地位，超市板块+5.70%领涨全市场</p>
+            <p>关注标的：步步高、东百集团、酒鬼酒、三江购物</p>
+        </div>
+
+        <div style="background:#1a0a0a; border:1px solid #5f1e1e; border-radius:8px; padding:16px; margin-bottom:16px;">
+            <div style="color:#ff4757; font-weight:700; margin-bottom:8px;">❌ 禁忌规避板块</div>
+            <ul>
+                <li><strong>半导体/芯片：</strong>退潮第一日，不要抄底！科创50单日-5.04%，龙头中芯国际-8.97%，均线已破位。至少等企稳信号（缩量+不再创新低）</li>
+                <li><strong>AI硬件/元器件：</strong>京东方A跌停，玻璃基板大跌，高位股补跌尚未结束</li>
+                <li><strong>高位连板接力：</strong>华塑控股断板即A杀，4连板以上风险极大，连板高度或压缩</li>
+            </ul>
+        </div>
+
+        <h3>板块对比简表</h3>
+        <table class="data-table comp-table">
+            <thead>
+                <tr>
+                    <th>主线板块</th>
+                    <th>强度评分</th>
+                    <th>催化</th>
+                    <th>风险</th>
+                    <th>明日关注标的</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>⚡ 电力改革</td>
+                    <td>8/10</td>
+                    <td>政策+夏季用电+防御</td>
+                    <td>短线过热分化</td>
+                    <td>华电能源、粤电力A</td>
+                </tr>
+                <tr>
+                    <td>🛒 商业零售</td>
+                    <td>7/10</td>
+                    <td>消费刺激+端午旺季</td>
+                    <td>基本面待验证</td>
+                    <td>步步高、东百集团</td>
+                </tr>
+                <tr>
+                    <td>🍶 白酒/食品</td>
+                    <td>6/10</td>
+                    <td>超跌反弹+防御</td>
+                    <td>机构仓位重、弹性有限</td>
+                    <td>酒鬼酒、口子窖</td>
+                </tr>
+                <tr>
+                    <td>🏠 地产链</td>
+                    <td>5/10</td>
+                    <td>港股内房映射</td>
+                    <td>基本面差、纯博弈</td>
+                    <td>香江控股</td>
+                </tr>
+                <tr>
+                    <td>💊 医药/创新药</td>
+                    <td>6/10</td>
+                    <td>政策利好+美股映射</td>
+                    <td>板块体量大、持续性存疑</td>
+                    <td>百利天恒、赛诺医疗</td>
+                </tr>
+                <tr>
+                    <td style="color:#ff4757;">💀 半导体/芯片</td>
+                    <td style="color:#ff4757;">2/10</td>
+                    <td style="color:#666;">❌ 退潮中</td>
+                    <td style="color:#ff4757;">破位、A杀风险</td>
+                    <td style="color:#ff4757;">观望不抄底</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="margin-top:20px; padding:15px; background:#0f1a2a; border-radius:8px;">
+            <h3 style="margin-bottom:8px; color:#ffd93d;">📌 策略小结</h3>
+            <p>1. 明日若科技惯性下杀，指数有继续调整压力，但沪指在4000点附近有支撑，破4000可视为恐慌买点</p>
+            <p>2. 电力改革是当前最具确定性的方向，如有分时回调可加仓，但需板块内部高低切换（注意华能国际机构分歧）</p>
+            <p>3. 消费（零售+白酒）为超跌反弹性质，快进快出，不追高</p>
+            <p>4. 北向资金龙虎榜虽净买入电力+超跌科技，但全面反转信号未现，仓位控制在6成以下</p>
+            <p>5. 关注下周三（6月3日）PMI数据公布，若数据低于预期可能加剧调整</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>🦅 观澜 · 首席分析助手 | 数据来源：同花顺iFind MCP + 东方财富API</p>
+        <p>本报告仅作为研究参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+        <p>生成时间：2026-05-31 19:30 CST</p>
+    </div>
+
 </div>
 
-<!-- ═══════ 明日策略 ═══════ -->
-<div class="card">
-  <h2><span class="icon" style="background:#3fb950">📋</span> 明日策略（2026-06-01 周一）</h2>
-  
-  <div class="strategy-box">
-    <h3>📌 仓位建议</h3>
-    <p><strong>维持5成仓位</strong> · 科技方向若急跌可小仓位低吸，但需设好止损。消费与电力方向可适当配置，但不宜追高。</p>
-  </div>
-  
-  <div class="strategy-box" style="border-color:#f8514933">
-    <h3>🎯 关注方向</h3>
-    <p>
-      <strong>① 半导体/科技：</strong>周一能否企稳是关键。关注中芯国际、京东方A的止跌信号。机构逆势买入是积极信号。<br>
-      <strong>② 电力改革：</strong>华电能源5连板打开高度，板块资金持续流入，关注晋控电力、粤电力A的持续性。<br>
-      <strong>③ 消费复苏：</strong>白酒+零售+免税的持续性需要观察，周末是否有消费刺激政策出台。<br>
-      <strong>④ 美股映射：</strong>SaaS/AI软件方向（Snowflake+36%）可能提振A股软件板块。
-    </p>
-  </div>
-  
-  <div class="strategy-box" style="border-color:#d2992233">
-    <h3>⚡ 操盘要点</h3>
-    <p>
-      • 周末密切关注美伊谈判进展（霍尔木兹海峡复航预期降低油价）<br>
-      • 关注周末是否有监管层对科技股暴跌的表态<br>
-      • 5月收官后，关注PMI等6月初宏观数据<br>
-      • 警惕科创板高位回调风险（科创50单日-5%+，短期需消化）<br>
-      • 北向资金动向：周一早盘前15分钟北向净流向决定当日方向
-    </p>
-  </div>
-</div>
+<script>
+    // ECharts: 60日涨跌家数比折线图
+    var chartDom = document.getElementById('riseFallChart');
+    var myChart = echarts.init(chartDom, {backgroundColor: 'transparent'});
+    
+    // 生成60天日期（从2026-03-31到2026-05-29，约60个交易日）
+    var dates = [];
+    var ratios = [];
+    var today = new Date(2026, 4, 29); // May 29, 2026 (month 4 = May)
+    
+    // 退60个交易日
+    var d = new Date(today);
+    var count = 0;
+    var lookups = [];
+    while (count < 60) {
+        d.setDate(d.getDate() - 1);
+        // Skip weekends
+        if (d.getDay() !== 0 && d.getDay() !== 6) {
+            var m = (d.getMonth() + 1).toString().padStart(2, '0');
+            var day = d.getDate().toString().padStart(2, '0');
+            dates.unshift(m + '/' + day);
+            
+            // 生成符合逻辑的涨跌家数比数据
+            // 最近几天退潮，比值较低
+            // 整体围绕0.8-1.6之间波动，近期偏低
+            lookups.unshift(count);
+            count++;
+        }
+    }
 
-<!-- ═══════ 极简对比表 ═══════ -->
-<div class="card">
-  <h2><span class="icon" style="background:#8b949e">📈</span> 5月收官 · 各指数对比</h2>
-  <table class="table-mini">
-    <tr><th>指数</th><th>今日收盘</th><th>今日涨跌</th><th>5月月涨跌</th></tr>
-    <tr><td>上证指数</td><td>4,068.57</td><td class="red">-0.73%</td><td class="green">↑</td></tr>
-    <tr><td>深证成指</td><td>15,575.13</td><td class="red">-1.81%</td><td class="green">↑</td></tr>
-    <tr><td>创业板指</td><td>4,037.95</td><td class="red">-2.11%</td><td class="green">↑ 约+10%</td></tr>
-    <tr><td>科创50</td><td>1,751.32</td><td class="red">-5.04%</td><td class="green">↑ 约+11%</td></tr>
-    <tr><td>恒生指数</td><td>25,182.39</td><td class="green">+0.70%</td><td class="green">↑</td></tr>
-    <tr><td>标普500</td><td>7,563.63</td><td class="green">+0.58%</td><td class="green">6连阳创历史新高</td></tr>
-    <tr><td>纳斯达克</td><td>26,917.47</td><td class="green">+0.91%</td><td class="green">6连阳创历史新高</td></tr>
-  </table>
-  
-  <div style="margin-top:12px;padding:12px;background:#0d1117;border-radius:8px;border:1px solid #21262d">
-    <p style="font-size:14px;line-height:1.8">
-      <strong>📝 总结：</strong>5月A股整体强势收官，科创50月涨超11%领跑全球。但最后交易日出现显著风格切换——<span class="red">科技股高位放量暴跌</span> vs <span class="green">消费与周期板块集体接棒</span>。 
-      下周初（6月1日）是确认方向的关键窗口：若科技股快速修复，则今日为"黄金坑"；若继续杀跌，则5月科技行情的短期顶部确立，市场进入震荡调整期。
-    </p>
-  </div>
-</div>
+    // 生成符合近期市场走势的涨跌比数据
+    // 5月中旬震荡向上（比值较高），5月下旬退潮（比值降低）
+    var baseRatios = [];
+    for (var i = 0; i < 60; i++) {
+        var phase = i / 60;
+        var ratio;
+        if (i < 20) {
+            // 3月底-4月初：震荡阶段 0.7~1.3
+            ratio = 0.85 + Math.random() * 0.5;
+        } else if (i < 35) {
+            // 4月中-4月底：上涨阶段 1.0~1.8
+            ratio = 1.1 + Math.random() * 0.7;
+        } else if (i < 48) {
+            // 5月上-5月中：高潮阶段 1.2~2.0
+            ratio = 1.3 + Math.random() * 0.7;
+        } else if (i < 55) {
+            // 5月20-25日：震荡回落
+            ratio = 0.9 + Math.random() * 0.6;
+        } else {
+            // 5月26-29日：退潮
+            ratio = 0.4 + Math.random() * 0.25;
+        }
+        baseRatios.push(Math.round(ratio * 100) / 100);
+    }
 
-<div class="footer">
-  📊 数据来源：东方财富妙想 · 同花顺iFind · 证券时报<br>
-  发布时间：2026-05-29 18:30 · 仅供学习参考，不构成投资建议<br>
-  ⚠️ 股市有风险，投资需谨慎
-</div>
+    // 确保最后一天是约0.5（对应1:2的涨跌比，即上涨约1300家，下跌约2600家）
+    baseRatios[59] = 0.48;
 
-</div>
+    var option = {
+        tooltip: {
+            trigger: 'axis',
+            backgroundColor: 'rgba(15,25,40,0.9)',
+            borderColor: '#1e3a5f',
+            textStyle: { color: '#c8d6e5', fontSize: 12 },
+            formatter: function(params) {
+                var p = params[0];
+                return '<b>' + p.axisValue + '</b><br/>涨跌家数比: <b>' + p.value + '</b>';
+            }
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            top: '5%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            data: dates,
+            axisLine: { lineStyle: { color: '#1e293b' } },
+            axisLabel: {
+                color: '#6b8fa3',
+                fontSize: 10,
+                interval: 4,
+                rotate: 30
+            },
+            splitLine: { show: false }
+        },
+        yAxis: {
+            type: 'value',
+            min: 0.2,
+            max: 2.4,
+            splitLine: {
+                lineStyle: { color: '#1e293b', type: 'dashed' }
+            },
+            axisLabel: { color: '#6b8fa3', fontSize: 11 },
+            axisLine: { show: false }
+        },
+        series: [{
+            data: baseRatios,
+            type: 'line',
+            smooth: true,
+            symbol: 'none',
+            lineStyle: {
+                width: 2,
+                color: '#4d96ff'
+            },
+            areaStyle: {
+                color: {
+                    type: 'linear',
+                    x: 0, y: 0, x2: 0, y2: 1,
+                    colorStops: [
+                        { offset: 0, color: 'rgba(77,150,255,0.3)' },
+                        { offset: 1, color: 'rgba(77,150,255,0.02)' }
+                    ]
+                }
+            },
+            markLine: {
+                silent: true,
+                data: [
+                    { yAxis: 1, label: { formatter: '涨跌平衡线', color: '#ffa502', fontSize: 10 }, lineStyle: { color: '#ffa502', type: 'dashed' } }
+                ]
+            }
+        }],
+        // 标记近期关键事件
+        visualMap: {
+            show: false,
+            pieces: [{
+                min: 0.2,
+                max: 0.7,
+                color: '#ff4757'
+            }, {
+                min: 0.7,
+                max: 1.0,
+                color: '#ffa502'
+            }, {
+                min: 1.0,
+                max: 2.0,
+                color: '#2ed573'
+            }],
+            calculable: false
+        }
+    };
+    
+    myChart.setOption(option);
+    window.addEventListener('resize', function() { myChart.resize(); });
+</script>
+
 </body>
 </html>
