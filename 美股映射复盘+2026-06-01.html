@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美股映射复盘 2026-06-01</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #0a0e1a;
+    color: #e0e6f0;
+    line-height: 1.7;
+    padding: 20px;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .header {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 50%, #0d1b2a 100%);
+    border-bottom: 3px solid #ffd700;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,215,0,0.03) 0%, transparent 70%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 1; }
+  }
+  .header h1 {
+    font-size: 2.2em;
+    color: #ffd700;
+    text-shadow: 0 0 20px rgba(255,215,0,0.3);
+    position: relative;
+    z-index: 1;
+  }
+  .header .subtitle {
+    color: #8899aa;
+    margin-top: 10px;
+    font-size: 1em;
+    position: relative;
+    z-index: 1;
+  }
+  .header .date-badge {
+    display: inline-block;
+    background: #ffd700;
+    color: #0a0e1a;
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+    position: relative;
+    z-index: 1;
+  }
+  .section {
+    background: #111827;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    border: 1px solid #1e293b;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .section h2 {
+    color: #ffd700;
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section h2 .icon {
+    font-size: 1.2em;
+  }
+  .section h3 {
+    color: #60a5fa;
+    font-size: 1.1em;
+    margin: 18px 0 12px;
+  }
+  .highlight-box {
+    background: linear-gradient(135deg, #1a2332, #0f1a2e);
+    border-left: 4px solid #ffd700;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+  }
+  .highlight-box.green {
+    border-left-color: #34d399;
+  }
+  .highlight-box.red {
+    border-left-color: #ef4444;
+  }
+  .highlight-box.blue {
+    border-left-color: #60a5fa;
+  }
+  .highlight-box.purple {
+    border-left-color: #a78bfa;
+  }
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 12px;
+    margin: 15px 0;
+  }
+  .data-card {
+    background: #0f1729;
+    border-radius: 8px;
+    padding: 15px;
+    border: 1px solid #1e293b;
+    text-align: center;
+  }
+  .data-card .label {
+    color: #8899aa;
+    font-size: 0.85em;
+  }
+  .data-card .value {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 5px 0;
+  }
+  .data-card .change.up { color: #34d399; }
+  .data-card .change.down { color: #ef4444; }
+  .data-card .change { font-size: 0.95em; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9em;
+  }
+  th {
+    background: #1e293b;
+    color: #ffd700;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #1e293b;
+  }
+  tr:hover td { background: rgba(255,215,0,0.03); }
+  .up { color: #34d399; }
+  .down { color: #ef4444; }
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 600;
+    margin: 2px;
+  }
+  .tag.up { background: rgba(52,211,153,0.15); color: #34d399; }
+  .tag.down { background: rgba(239,68,68,0.15); color: #ef4444; }
+  .tag.neutral { background: rgba(96,165,250,0.15); color: #60a5fa; }
+  .tag.gold { background: rgba(255,215,0,0.15); color: #ffd700; }
+  .reason-list {
+    list-style: none;
+    padding: 0;
+  }
+  .reason-list li {
+    padding: 8px 0 8px 24px;
+    position: relative;
+    border-bottom: 1px solid rgba(30,41,59,0.5);
+  }
+  .reason-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #ffd700;
+  }
+  .risk-item {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 8px 0;
+    color: #fca5a5;
+  }
+  .opportunity-item {
+    background: rgba(52,211,153,0.08);
+    border: 1px solid rgba(52,211,153,0.2);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 8px 0;
+    color: #6ee7b7;
+  }
+  .mapping-card {
+    background: linear-gradient(135deg, #0f1729, #1a1f35);
+    border: 1px solid rgba(255,215,0,0.15);
+    border-radius: 10px;
+    padding: 18px;
+    margin: 15px 0;
+  }
+  .mapping-card h4 {
+    color: #ffd700;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+  }
+  .mapping-card .logic {
+    color: #94a3b8;
+    font-size: 0.9em;
+    margin: 8px 0;
+  }
+  .mapping-card .stocks {
+    color: #60a5fa;
+    font-weight: 500;
+  }
+  .star-section {
+    border: 2px solid rgba(255,215,0,0.3);
+    background: linear-gradient(135deg, #1a1520, #1a1f35);
+  }
+  .star-section h2::after {
+    content: ' ⭐';
+  }
+  .footer {
+    text-align: center;
+    color: #4a5568;
+    padding: 30px;
+    font-size: 0.85em;
+    border-top: 1px solid #1e293b;
+    margin-top: 30px;
+  }
+  @media (max-width: 768px) {
+    .data-grid { grid-template-columns: repeat(2, 1fr); }
+    .header h1 { font-size: 1.5em; }
+    .section { padding: 15px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>🇺🇸 美股映射复盘报告</h1>
+  <div class="subtitle">A股潜在受益方向深度分析</div>
+  <div class="date-badge">📅 2026年6月1日（周一）| 基于5月29日美股收盘</div>
+</div>
+
+<!-- 1. 美股整体表现 -->
+<div class="section">
+  <h2><span class="icon">📊</span> 一、美股整体表现</h2>
+  <div class="highlight-box green">
+    <strong>🔥 三大指数续创新高！</strong> 标普500录得9周连涨（2023年12月以来最长），道指首次站上51,000点大关
+  </div>
+
+  <div class="data-grid">
+    <div class="data-card">
+      <div class="label">道琼斯工业指数</div>
+      <div class="value">51,032.46</div>
+      <div class="change up">+0.72% 🆕 历史新高</div>
+    </div>
+    <div class="data-card">
+      <div class="label">标普500指数</div>
+      <div class="value">7,580.06</div>
+      <div class="change up">+0.22% 🆕 历史新高</div>
+    </div>
+    <div class="data-card">
+      <div class="label">纳斯达克指数</div>
+      <div class="value">26,972.62</div>
+      <div class="change up">+0.20% 🆕 历史新高</div>
+    </div>
+    <div class="data-card">
+      <div class="label">费城半导体指数</div>
+      <div class="value">—</div>
+      <div class="change up">+2.0% 🆕 历史新高</div>
+    </div>
+    <div class="data-card">
+      <div class="label">美元指数</div>
+      <div class="value">99.04</div>
+      <div class="change neutral">+0.03%</div>
+    </div>
+    <div class="data-card">
+      <div class="label">VIX恐慌指数</div>
+      <div class="value">—</div>
+      <div class="change neutral">低位运行</div>
+    </div>
+  </div>
+
+  <h3>📌 本周行情归因</h3>
+  <ul class="reason-list">
+    <li><strong>Dell财报炸裂</strong> — AI服务器收入同比+757%，全年营收指引大幅上调至$1670亿，点燃AI硬件全线暴涨</li>
+    <li><strong>AI行情从GPU向服务器/集成/应用扩散</strong> — 戴尔+33%、超微电脑+16%、IBM+12%、Salesforce+8%、微软+5.4%</li>
+    <li><strong>美伊停火协议框架</strong> — 60天谅解备忘录谈判推进，油价承压回落</li>
+    <li><strong>美债收益率回落</strong> — 10年期跌1.18bp至4.4355%，经济数据走弱支撑债市</li>
+    <li><strong>PCE创三年新高（3.8%）</strong>但市场消化通胀粘性，聚焦6月FOMC（6/18）</li>
+  </ul>
+</div>
+
+<!-- 2. 强势板块 -->
+<div class="section">
+  <h2><span class="icon">🚀</span> 二、板块涨跌排行</h2>
+
+  <h3>🏆 强势板块 TOP 5</h3>
+  <table>
+    <tr><th>排名</th><th>板块</th><th>涨幅</th><th>领涨龙头</th><th>上涨原因</th></tr>
+    <tr>
+      <td><span class="tag gold">1</span></td>
+      <td>AI服务器/算力硬件</td>
+      <td class="up">+10~35%</td>
+      <td>DELL +33%, SMCI +16%, HPE +13%</td>
+      <td>Dell Q1 AI服务器收入$161亿(+757%)，全年AI指引上调至$600亿</td>
+    </tr>
+    <tr>
+      <td><span class="tag gold">2</span></td>
+      <td>半导体</td>
+      <td class="up">+3~5%</td>
+      <td>QCOM +5.3%, ARM +5%, INTC +4%, MU +3.5%, AVGO +3.2%</td>
+      <td>AI算力需求持续爆发，费城半导体指数再创历史新高</td>
+    </tr>
+    <tr>
+      <td><span class="tag gold">3</span></td>
+      <td>应用软件/SaaS</td>
+      <td class="up">+5~8%</td>
+      <td>CRM +8%, MSFT +5.4%, ORCL +5%</td>
+      <td>AI Agent向企业应用渗透，微软+Copilot生态加速</td>
+    </tr>
+    <tr>
+      <td><span class="tag gold">4</span></td>
+      <td>信息技术/IBM</td>
+      <td class="up">+12%</td>
+      <td>IBM +12%</td>
+      <td>AI咨询+混合云需求强劲</td>
+    </tr>
+    <tr>
+      <td><span class="tag gold">5</span></td>
+      <td>存储芯片</td>
+      <td class="up">+3~4%</td>
+      <td>MU +3.5%(历史新高)</td>
+      <td>AI服务器拉动HBM/SSD需求，存储周期上行</td>
+    </tr>
+  </table>
+
+  <h3>⚠️ 最弱板块 TOP 3</h3>
+  <table>
+    <tr><th>排名</th><th>板块</th><th>跌幅</th><th>领跌</th><th>下跌原因</th></tr>
+    <tr>
+      <td><span class="tag down">1</span></td>
+      <td>商业航天</td>
+      <td class="down">-3~15%</td>
+      <td>ASTS -15%, RKLB -3%</td>
+      <td>蓝色起源火箭测试爆炸，板块集体回调</td>
+    </tr>
+    <tr>
+      <td><span class="tag down">2</span></td>
+      <td>中概新能源车</td>
+      <td class="down">-0~3.4%</td>
+      <td>理想汽车 -3.41%</td>
+      <td>行业竞争加剧，部分个股获利回吐</td>
+    </tr>
+    <tr>
+      <td><span class="tag down">3</span></td>
+      <td>太空概念</td>
+      <td class="down">-3~15%</td>
+      <td>ASTS -15%</td>
+      <td>SpaceX IPO定价预期下修叠加火箭爆炸冲击</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 3. 重点个股异动 -->
+<div class="section">
+  <h2><span class="icon">🎯</span> 三、重点个股异动分析</h2>
+
+  <table>
+    <tr><th>个股</th><th>代码</th><th>日涨跌幅</th><th>5月累计</th><th>异动分析</th></tr>
+    <tr>
+      <td><strong>戴尔科技</strong></td><td>DELL</td>
+      <td class="up">+33%</td><td class="up">+235%</td>
+      <td>Q1营收$438亿(+88%)，AI服务器收入$161亿(+757%)，AI订单积压$513亿创纪录，全年营收指引上调至$1650-1690亿</td>
+    </tr>
+    <tr>
+      <td><strong>超微电脑</strong></td><td>SMCI</td>
+      <td class="up">+13~16%</td><td class="up">—</td>
+      <td>AI服务器需求外溢，Dell业绩带动整个服务器板块估值重估</td>
+    </tr>
+    <tr>
+      <td><strong>IBM</strong></td><td>IBM</td>
+      <td class="up">+12%</td><td>—</td>
+      <td>AI咨询业务增长强劲，混合云+AI双轮驱动</td>
+    </tr>
+    <tr>
+      <td><strong>Salesforce</strong></td><td>CRM</td>
+      <td class="up">+8%</td><td>—</td>
+      <td>SaaS板块强势反弹，AI Agent商业化加速</td>
+    </tr>
+    <tr>
+      <td><strong>微软</strong></td><td>MSFT</td>
+      <td class="up">+5.4%</td><td class="down">-6.49%</td>
+      <td>Computex预热"PC新时代"，NVIDIA+微软+ARM联合造势；Copilot生态扩展</td>
+    </tr>
+    <tr>
+      <td><strong>甲骨文</strong></td><td>ORCL</td>
+      <td class="up">+5%</td><td>—</td>
+      <td>云基础设施受益于AI算力需求</td>
+    </tr>
+    <tr>
+      <td><strong>高通</strong></td><td>QCOM</td>
+      <td class="up">+5.3%</td><td>—</td>
+      <td>AI PC和边缘计算芯片需求看涨</td>
+    </tr>
+    <tr>
+      <td><strong>ARM</strong></td><td>ARM</td>
+      <td class="up">+5%</td><td class="up">历史新高</td>
+      <td>AI PC架构核心受益，与NVIDIA+微软联合推广</td>
+    </tr>
+    <tr>
+      <td><strong>英特尔</strong></td><td>INTC</td>
+      <td class="up">+4%</td><td>—</td>
+      <td>AI PC概念，代工业务预期改善</td>
+    </tr>
+    <tr>
+      <td><strong>博通</strong></td><td>AVGO</td>
+      <td class="up">+3.2%</td><td>逼近历史新高</td>
+      <td>AI网络芯片/定制芯片（ASIC）需求持续增长</td>
+    </tr>
+    <tr>
+      <td><strong>美光科技</strong></td><td>MU</td>
+      <td class="up">+3.5%</td><td class="up">历史新高</td>
+      <td>HBM高带宽存储供不应求，AI服务器拉动存储需求</td>
+    </tr>
+    <tr>
+      <td><strong>英伟达</strong></td><td>NVDA</td>
+      <td class="up">+0.75%</td><td class="up">+13.22%</td>
+      <td>Q1财报营收$816亿(+85%)，净利润$583亿(+211%)，Rubin平台量产；今日Computex演讲</td>
+    </tr>
+    <tr>
+      <td><strong>苹果</strong></td><td>AAPL</td>
+      <td class="up">+0.51%</td><td class="up">+15%</td>
+      <td>美银上调目标价至$380（目前$312），AI Agent平台收租逻辑获认可</td>
+    </tr>
+    <tr>
+      <td><strong>谷歌A</strong></td><td>GOOGL</td>
+      <td>—</td><td class="up">+21.60%</td>
+      <td>AI搜索+Gemini模型进展，5月涨幅领跑七巨头</td>
+    </tr>
+    <tr>
+      <td><strong>亚马逊</strong></td><td>AMZN</td>
+      <td class="up">+0.23%</td><td class="up">+17.25%</td>
+      <td>AWS AI云服务持续高增长，资本开支加码</td>
+    </tr>
+    <tr>
+      <td><strong>Meta</strong></td><td>META</td>
+      <td>—</td><td class="down">-4.10%</td>
+      <td>资本开支压力，AI投入回报尚需验证</td>
+    </tr>
+    <tr>
+      <td><strong>特斯拉</strong></td><td>TSLA</td>
+      <td>—</td><td class="down">-3.10%</td>
+      <td>Optimus机器人工厂动工（年产能最高1000万台），但车市竞争加剧</td>
+    </tr>
+    <tr>
+      <td><strong>AMD</strong></td><td>AMD</td>
+      <td>—</td><td class="up">+140.99%</td>
+      <td>⚠️ 5月暴涨近141%！MI300系列AI芯片抢占市场份额</td>
+    </tr>
+    <tr>
+      <td><strong>台积电</strong></td><td>TSM</td>
+      <td>—</td><td class="up">+38%</td>
+      <td>AI芯片代工唯一主力，3nm/2nm产能满载</td>
+    </tr>
+    <tr>
+      <td><strong>礼来</strong></td><td>LLY</td>
+      <td>—</td><td class="up">+3.17%</td>
+      <td>减肥药Zepbound需求强劲</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 4. 大市值异动股聚焦 ⭐ -->
+<div class="section star-section">
+  <h2><span class="icon">⭐</span> 四、大市值异动股聚焦</h2>
+  <div class="highlight-box gold">
+    <strong>筛选条件：</strong>涨幅 &gt;9% 且 市值 &gt; $50亿（约350亿人民币）
+  </div>
+
+  <table>
+    <tr><th>个股</th><th>代码</th><th>涨幅</th><th>市值</th><th>上涨原因</th></tr>
+    <tr>
+      <td><strong>戴尔科技</strong></td><td>DELL</td>
+      <td class="up">+33%</td>
+      <td>~$2,800亿</td>
+      <td>
+        <strong>🏆 核心催化</strong><br>
+        • Q1营收$438亿(+88%)，大超预期<br>
+        • AI服务器收入$161亿，同比+757%<br>
+        • 全年营收指引上调至$1650-1690亿（原$1380-1420亿）<br>
+        • AI订单积压$513亿创纪录<br>
+        • 多家投行翻倍上调目标价
+      </td>
+    </tr>
+    <tr>
+      <td><strong>IBM</strong></td><td>IBM</td>
+      <td class="up">+12%</td>
+      <td>~$2,000亿</td>
+      <td>
+        • AI咨询与混合云业务增长强劲<br>
+        • Dell业绩带动整个IT基础设施板块重估
+      </td>
+    </tr>
+    <tr>
+      <td><strong>超微电脑</strong></td><td>SMCI</td>
+      <td class="up">+13~16%</td>
+      <td>~$700亿</td>
+      <td>
+        • AI服务器需求外溢效应<br>
+        • Dell的强劲指引利好整个服务器产业链
+      </td>
+    </tr>
+  </table>
+
+  <div class="highlight-box" style="margin-top:15px;">
+    <strong>💡 解读：</strong> 当晚最核心的异动逻辑是 <strong>AI服务器/算力基建全面爆发</strong>。Dell财报证明了AI资本开支正从芯片层（GPU）加速向系统层（服务器、存储、网络）传导，这是一个重要的产业信号！
+  </div>
+</div>
+
+<!-- 5. 中概股 -->
+<div class="section">
+  <h2><span class="icon">🇨🇳</span> 五、中概股表现</h2>
+
+  <div class="highlight-box blue">
+    <strong>纳斯达克金龙中国指数：</strong> 平收，个股涨跌不一
+  </div>
+
+  <table>
+    <tr><th>个股</th><th>代码</th><th>涨跌幅</th><th>点评</th></tr>
+    <tr><td>老虎证券</td><td>TIGR</td><td class="up">+2.59%</td><td>中概券商受益于港股/A股交易活跃</td></tr>
+    <tr><td>百度</td><td>BIDU</td><td class="up">+2.47%</td><td>AI+自动驾驶概念升温，港股涨3.98%</td></tr>
+    <tr><td>拼多多</td><td>PDD</td><td class="up">+1.70%</td><td>Q1利润低于预期，但市场已消化，关注618</td></tr>
+    <tr><td>知乎</td><td>ZH</td><td class="up">+1.03%</td><td>AI内容生态建设</td></tr>
+    <tr><td>蔚来</td><td>NIO</td><td class="up">+0.90%</td><td>销量环比改善</td></tr>
+    <tr><td>哔哩哔哩</td><td>BILI</td><td class="up">+0.58%</td><td>游戏+广告双轮驱动</td></tr>
+    <tr><td>小鹏汽车</td><td>XPEV</td><td class="up">+0.06%</td><td>MONA品牌交付爬坡</td></tr>
+    <tr><td>微博</td><td>WB</td><td class="up">+0.26%</td><td>—</td></tr>
+    <tr><td>爱奇艺</td><td>IQ</td><td class="up">+0.88%</td><td>内容IP价值重估</td></tr>
+    <tr><td>阿里巴巴</td><td>BABA</td><td class="down">-1.53%</td><td>AI+云业务重组成待催化</td></tr>
+    <tr><td>京东</td><td>JD</td><td class="down">-1.06%</td><td>618大促开启，AI全面融入；REITs成功设立</td></tr>
+    <tr><td>理想汽车</td><td>LI</td><td class="down">-3.41%</td><td>竞争加剧，销量增速放缓</td></tr>
+    <tr><td>网易</td><td>NTES</td><td class="down">-0.97%</td><td>游戏板块平稳</td></tr>
+    <tr><td>新东方</td><td>EDU</td><td class="down">-1.02%</td><td>教育板块回调</td></tr>
+    <tr><td>富途控股</td><td>FUTU</td><td class="down">-0.80%</td><td>—</td></tr>
+  </table>
+
+  <h3>📌 港股关联</h3>
+  <div class="highlight-box blue">
+    <strong>联想集团</strong> 受Dell业绩带动，盘中飙升超30%创历史新高，市值一度突破3100亿港元<br>
+    <strong>恒生指数</strong> +0.70%，恒生科技指数 -0.09%，结构性分化
+  </div>
+</div>
+
+<!-- 6. 商品+债券+美元 -->
+<div class="section">
+  <h2><span class="icon">🌍</span> 六、大宗商品 &amp; 宏观市场</h2>
+
+  <div class="data-grid">
+    <div class="data-card">
+      <div class="label">黄金 (COMEX)</div>
+      <div class="value">$4,569.9</div>
+      <div class="change up">+0.83%</div>
+    </div>
+    <div class="data-card">
+      <div class="label">WTI原油</div>
+      <div class="value">—</div>
+      <div class="change down">-1.0%</div>
+    </div>
+    <div class="data-card">
+      <div class="label">布伦特原油</div>
+      <div class="value">—</div>
+      <div class="change down">-0.62%</div>
+    </div>
+    <div class="data-card">
+      <div class="label">沪铜</div>
+      <div class="value">~105,000元/吨</div>
+      <div class="change neutral">月内冲高回落</div>
+    </div>
+    <div class="data-card">
+      <div class="label">10Y美债收益率</div>
+      <div class="value">4.4355%</div>
+      <div class="change down">-1.18bp</div>
+    </div>
+    <div class="data-card">
+      <div class="label">2Y美债收益率</div>
+      <div class="value">4.0041%</div>
+      <div class="change down">-1.64bp</div>
+    </div>
+    <div class="data-card">
+      <div class="label">30Y美债收益率</div>
+      <div class="value">4.9726%</div>
+      <div class="change down">-0.1bp</div>
+    </div>
+    <div class="data-card">
+      <div class="label">美元指数</div>
+      <div class="value">99.04</div>
+      <div class="change neutral">+0.03%</div>
+    </div>
+  </div>
+
+  <h3>📌 宏观要点</h3>
+  <ul class="reason-list">
+    <li><strong>美债收益率整体下行</strong> — GDP下修+消费就业数据走弱，推动长端利率回落</li>
+    <li><strong>美元震荡偏强</strong> — 99关口附近，通胀高企支撑加息预期，但经济放缓限制上行空间</li>
+    <li><strong>黄金深V反转</strong> — 日内一度跌超2%触及200日均线后反弹（美伊局势避险+美元走软）</li>
+    <li><strong>原油承压</strong> — 美伊和谈推进+OPEC+增产预期，布伦特跌破支撑</li>
+    <li><strong>铜价高位震荡</strong> — 供应端扰动与需求预期博弈，全月波动率显著抬升</li>
+  </ul>
+</div>
+
+<!-- 7. 重要信息点评 -->
+<div class="section">
+  <h2><span class="icon">📰</span> 七、重要信息全面点评</h2>
+
+  <div class="mapping-card">
+    <h4>🔴 通胀 — 4月PCE创三年新高 3.8%</h4>
+    <div class="logic">
+      美国4月PCE物价指数同比3.8%（近三年最高），核心PCE同样高于预期。能源价格推升表观通胀，服务业通胀粘性较强。<br>
+      <strong>影响：</strong>美联储降息预期进一步推迟，野村预计2026年全年不降息。6月FOMC（6月18日）成为关键节点，沃什上任后的首次会议鹰派风险上升。
+    </div>
+  </div>
+
+  <div class="mapping-card">
+    <h4>🔴 就业 — 4月非农超预期，5月数据待公布</h4>
+    <div class="logic">
+      4月非农超预期，企业投资维持高增。市场预期5月新增非农放缓至11.5-13万人（6月5日公布）。若数据继续强劲，将加剧加息担忧。<br>
+      <strong>影响：</strong>本周为"超级数据周"——ISM PMI（周一/三）、ADP就业、JOLTS、褐皮书（周四）、非农（周五），市场波动率可能显著上升。
+    </div>
+  </div>
+
+  <div class="mapping-card">
+    <h4>🟡 美联储 — 沃什时代鹰派基调</h4>
+    <div class="logic">
+      美联储主席沃什即将上任，市场预期其政策立场偏鹰。当前联邦基金利率3.50-3.75%，市场定价年内加息/不加息概率各半（48%/52%）。<br>
+      <strong>影响：</strong>美银基金经理调查显示5月净超配股票比例从13%飙升至50%（2022年以来新高），现金配置降至3.9%。高仓位下若加息预期升温，可能引发短期流动性冲击。
+    </div>
+  </div>
+
+  <div class="mapping-card">
+    <h4>🟢 AI — Dell业绩验证AI资本开支超级周期</h4>
+    <div class="logic">
+      Dell Q1 AI服务器收入$161亿(+757%)，积压订单$513亿，全年AI指引上调至$600亿。同时NVIDIA+微软Computex预热"PC新时代"（北京时间今天上午11点NVIDIA主题演讲）。<br>
+      <strong>影响：</strong>AI行情从GPU向服务器→存储→网络→应用软件全链条扩散，产业趋势确认加速。
+    </div>
+  </div>
+
+  <div class="mapping-card">
+    <h4>🟢 固态电池 — 辉能科技赴美SPAC上市</h4>
+    <div class="logic">
+      中国台湾固态电池企业辉能科技（ProLogium）与SPAC公司TDAC达成合并协议，估值$38亿（~¥257亿），预计2026下半年在纳斯达克上市。资金用于第四代固态电池产能扩张和法国超级工厂建设。<br>
+      <strong>影响：</strong>固态电池产业化加速，A股相关标的迎估值映射。
+    </div>
+  </div>
+
+  <div class="mapping-card">
+    <h4>🟢 MiniMax / 智谱 — 头部AI公司回归A股IPO</h4>
+    <div class="logic">
+      MiniMax（港股上市后）启动科创板上市辅导，智谱AI同步推进A股辅导。两大通用大模型齐聚科创板，为A股AI板块提供全新估值参照。<br>
+      <strong>影响：</strong>科创板和AI板块关注度提升。
+    </div>
+  </div>
+
+  <div class="mapping-card">
+    <h4>🔴 商业航天 — 蓝色起源火箭爆炸</h4>
+    <div class="logic">
+      蓝色起源火箭地面测试发生爆炸，引发美股商业航天板块集体大跌（AST SpaceMobile -15%，Rocket Lab -3%）。同时SpaceX IPO预期定价下调，板块承压。<br>
+      <strong>影响：</strong>短期板块回调，但中国商业航天标准体系正式建立（深圳共保体+广州规划），国内产业加速，注意A股的独立行情机会。
+    </div>
+  </div>
+</div>
+
+<!-- 8. A股映射方向 ⭐最重要 -->
+<div class="section">
+  <h2><span class="icon">🔗</span> 八、映射到A股的潜在方向 ⭐</h2>
+
+  <div class="highlight-box gold">
+    <strong>核心逻辑：</strong> 美股AI行情从GPU向服务器/存储/网络/应用全链条扩散，Dell业绩验证AI资本开支超级周期，对应A股产业链映射机会明确
+  </div>
+
+  <div class="mapping-card">
+    <h4>📌 方向一：AI服务器与算力基建（最直接映射）</h4>
+    <div class="logic">
+      <strong>美股映射：</strong> DELL +33% / SMCI +16% / HPE +13% — AI服务器需求从GPU向整机扩散，Dell AI积压订单$513亿<br>
+      <strong>A股逻辑：</strong> 工业富联（Dell/HP服务器代工核心供应商）、浪潮信息（国产AI服务器龙头）、中科曙光（算力基建）、紫光股份（交换机/服务器）<br>
+      <strong>催化剂：</strong> 工业富联已涨4%（5月29日A股），Dell效应将持续发酵；NVIDIA今天Computex演讲可能带来新催化
+    </div>
+    <div class="stocks">🎯 核心标的：工业富联（601138）、浪潮信息（000977）、中科曙光（603019）、紫光股份（000938）</div>
+  </div>
+
+  <div class="mapping-card">
+    <h4>📌 方向二：AI PC产业链（全新催化）</h4>
+    <div class="logic">
+      <strong>美股映射：</strong> 微软+5.4% / ARM+5% / QCOM+5.3% / INTC+4% — NVIDIA+微软+ARM联合预热"PC新时代"，今日Computex发表主题演讲<br>
+      <strong>A股逻辑：</strong> AI PC换机周期将拉动产业链——结构件（春秋电子）、散热（飞荣达）、芯片封装（通富微电/长电科技）、存储（江波龙/佰维存储）<br>
+      <strong>催化剂：</strong> 北京时间今天（6/1）上午11点NVIDIA Computex主题演讲，可能发布下一代AI PC平台
+    </div>
+    <div class="stocks">🎯 核心标的：春秋电子（603890）、飞荣达（300602）、通富微电（002156）、江波龙（301308）</div>
+  </div>
+
+  <div class="mapping-card">
+    <h4>📌 方向三：HBM存储与先进封装</h4>
+    <div class="logic">
+      <strong>美股映射：</strong> MU +3.5%历史新高 — AI服务器拉动HBM/SSD需求爆发，存储周期上行确认<br>
+      <strong>A股逻辑：</strong> HBM产业链是AI芯片瓶颈环节，先进封装需求激增。A股存储产业链：兆易创新（NOR Flash）、东芯股份（NAND）、深科技（封测）<br>
+      <strong>催化剂：</strong> Dell AI服务器$600亿指引驱动存储配套需求；美光HBM产能持续满载
+    </div>
+    <div class="stocks">🎯 核心标的：兆易创新（603986）、深科技（000021）、长电科技（600584）、通富微电（002156）</div>
+  </div>
+
+  <div class="mapping-card">
+    <h4>📌 方向四：固态电池产业链</h4>
+    <div class="logic">
+      <strong>美股映射：</strong> 辉能科技拟SPAC上市估值$38亿（合¥257亿）— 固态电池产业化里程碑<br>
+      <strong>A股逻辑：</strong> 辉能科技为全球固态电池先行者，其美股上市将提升整个板块估值。A股固态电池标的：宁德时代（凝聚态电池）、国轩高科（金石全固态>400Wh/kg）、当升科技（正极材料）、上海洗霸（电解质）<br>
+      <strong>催化剂：</strong> 国轩高科发布金石全固态电池（能量密度>400Wh/kg）；辉能科技法国超级工厂获€14亿补贴
+    </div>
+    <div class="stocks">🎯 核心标的：国轩高科（002074）、宁德时代（300750）、当升科技（300073）、上海洗霸（603200）</div>
+  </div>
+
+  <div class="mapping-card">
+    <h4>📌 方向五：AI应用/软件/Agent商业化</h4>
+    <div class="logic">
+      <strong>美股映射：</strong> CRM +8% / MSFT +5.4% / ORCL +5% — AI Agent从概念走向商业化落地<br>
+      <strong>A股逻辑：</strong> MiniMax和智谱AI启动A股IPO辅导，为科创板AI板块提供估值锚。A股AI应用标的：科大讯飞（星火大模型）、金山办公（WPS AI）、同花顺（AI金融）、万兴科技（AI创意）<br>
+      <strong>催化剂：</strong> MiniMax/智谱AI科创板上市进程；苹果AI Agent平台收租逻辑（美银目标价$380）映射A股软件估值
+    </div>
+    <div class="stocks">🎯 核心标的：科大讯飞（002230）、金山办公（688111）、同花顺（300033）、万兴科技（300624）</div>
+  </div>
+
+  <div class="highlight-box purple">
+    <strong>📊 综合判断：</strong> 本周（6/1-6/5）为"超级数据周"（非农/PMI/褐皮书/6/18 FOMC），美债利率波动可能加大。但AI产业趋势确认加速（Dell财报），AI服务器→PC→存储→应用全链条机会明确。建议重点关注<strong>AI算力基建</strong>和<strong>AI PC</strong>两大主线。
+  </div>
+</div>
+
+<!-- 9. 投资机会 -->
+<div class="section">
+  <h2><span class="icon">💎</span> 九、投资机会</h2>
+
+  <div class="opportunity-item">
+    <strong>🥇 主线一：AI算力基建（高确定性）</strong><br>
+    Dell验证AI资本开支超级周期 → 工业富联（AI服务器代工）直接受益，浪潮信息（国产替代）估值有空间
+  </div>
+  <div class="opportunity-item">
+    <strong>🥇 主线二：AI PC（新催化）</strong><br>
+    NVIDIA今天Computex演讲可能发布AI PC平台 → 关注PC结构件（春秋电子）、散热（飞荣达）、芯片封装（通富微电）
+  </div>
+  <div class="opportunity-item">
+    <strong>🥈 主线三：HBM存储</strong><br>
+    AI服务器拉动HBM需求爆发 → 兆易创新/深科技/长电科技处于存储+封测高景气赛道
+  </div>
+  <div class="opportunity-item">
+    <strong>🥉 主线四：固态电池（主题催化）</strong><br>
+    辉能科技SPAC上市→国轩高科（全固态电池发布）+当升科技（正极材料）有主题催化
+  </div>
+  <div class="opportunity-item">
+    <strong>📌 事件催化：</strong> 本周关注6/5非农数据、6/10 CPI、6/18 FOMC利率决议，数据偏弱则利好成长股（AI/科技）估值
+  </div>
+</div>
+
+<!-- 10. 风险提示 -->
+<div class="section">
+  <h2><span class="icon">⚠️</span> 十、风险提示</h2>
+
+  <div class="risk-item">
+    <strong>🔴 美联储加息风险</strong> — PCE创三年新高（3.8%），野村预计2026年不降息。6月18日FOMC若释放鹰派信号（沃什上任首秀），可能引发全球风险资产调整
+  </div>
+  <div class="risk-item">
+    <strong>🔴 "超级数据周"波动风险</strong> — 本周五非农、ISM PMI、ADP等多重数据密集发布，市场预期分歧大。美银调查显示基金股票仓位（净超配50%）创2022年以来新高，数据超预期可能引发"获利了结"式调整
+  </div>
+  <div class="risk-item">
+    <strong>🔴 美伊冲突不确定性</strong> — 60天停火协议框架虽推进但尚未最终敲定。若谈判破裂或伊朗核问题升级，油价可能大幅反弹，推升通胀压力，压制权益资产估值
+  </div>
+  <div class="risk-item">
+    <strong>🔴 AI板块"预期差"风险</strong> — AMD 5月暴涨141%、Dell年涨幅235%，部分个股已严重透支。风华高科/宝鼎科技澄清"英伟达认证"系市场传言，需警惕A股跟风炒作后的回调风险
+  </div>
+  <div class="risk-item">
+    <strong>🔴 中概股监管/地缘风险</strong> — 中概股表现分化，纳斯达克金龙指数平收。中美关系、港股流动性等因素仍需关注
+  </div>
+  <div class="risk-item">
+    <strong>🔴 商业航天短期回调</strong> — 蓝色起源火箭爆炸+SpaceX IPO定价下修，A股航天板块可能短期承压，但中长期产业逻辑不变
+  </div>
+</div>
+
+<div class="footer">
+  <p>📊 本报告由 Hermes Agent 基于东方财富妙想数据自动生成 | 数据日期：2026年5月29日（美股收盘）</p>
+  <p>⚠️ 免责声明：本报告仅供参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+  <p>Generated at 2026-06-01 08:03 Beijing Time</p>
+</div>
+
+</div>
+</body>
+</html>
