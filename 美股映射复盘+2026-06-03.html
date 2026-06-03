@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美股映射复盘 2026-06-03</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: #0a0e17;
+            color: #e0e6f0;
+            line-height: 1.7;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header {
+            background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 50%, #0d1b2a 100%);
+            border: 1px solid #1e3a5f;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 180, 255, 0.03) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .header h1 {
+            font-size: 2.2em;
+            background: linear-gradient(90deg, #4fc3f7, #00e5ff, #4fc3f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+        .header .date { color: #7ec8e3; font-size: 1em; margin-bottom: 4px; }
+        .header .subtitle { color: #8899aa; font-size: 0.9em; }
+        .header .badge {
+            display: inline-block;
+            background: rgba(0, 180, 255, 0.15);
+            border: 1px solid rgba(0, 180, 255, 0.3);
+            color: #4fc3f7;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-top: 12px;
+        }
+        .section {
+            background: linear-gradient(180deg, #111d2e 0%, #0d1b2a 100%);
+            border: 1px solid #1a2d45;
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+        .section h2 {
+            font-size: 1.3em;
+            color: #4fc3f7;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #1a2d45;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.2em; }
+        .section h3 {
+            font-size: 1.05em;
+            color: #81d4fa;
+            margin: 18px 0 10px 0;
+        }
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .index-card {
+            background: rgba(15, 30, 50, 0.6);
+            border: 1px solid #1e3a5f;
+            border-radius: 10px;
+            padding: 18px;
+            text-align: center;
+        }
+        .index-card .name { color: #8899aa; font-size: 0.85em; margin-bottom: 4px; }
+        .index-card .price { font-size: 1.5em; font-weight: 700; }
+        .index-card .change { font-size: 0.95em; margin-top: 4px; }
+        .up { color: #ff4444; }  /* Chinese red for up */
+        .down { color: #44b544; }  /* Chinese green for down */
+        .flat { color: #888; }
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.78em;
+            margin-right: 4px;
+        }
+        .tag-up { background: rgba(255, 68, 68, 0.15); color: #ff6666; }
+        .tag-down { background: rgba(68, 181, 68, 0.15); color: #66cc66; }
+        .tag-neutral { background: rgba(136, 136, 136, 0.15); color: #aaa; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 0.9em;
+        }
+        th {
+            background: rgba(0, 100, 180, 0.15);
+            color: #7ec8e3;
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #1e3a5f;
+            font-weight: 500;
+        }
+        td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #152238;
+        }
+        tr:hover td { background: rgba(255,255,255,0.02); }
+        .highlight-box {
+            background: rgba(255, 193, 7, 0.05);
+            border: 1px solid rgba(255, 193, 7, 0.2);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 12px 0;
+        }
+        .highlight-box.star {
+            background: rgba(0, 200, 255, 0.06);
+            border: 1px solid rgba(0, 200, 255, 0.25);
+        }
+        .highlight-box h4 { color: #ffd54f; margin-bottom: 8px; }
+        .highlight-box.star h4 { color: #4fc3f7; }
+        .stock-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .stock-item {
+            background: rgba(15, 30, 50, 0.4);
+            border: 1px solid #1a2d45;
+            border-radius: 8px;
+            padding: 10px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .stock-item .info { flex: 1; }
+        .stock-item .ticker { color: #81d4fa; font-weight: 600; font-size: 0.9em; }
+        .stock-item .name { color: #ccc; font-size: 0.82em; }
+        .stock-item .chg { font-weight: 700; font-size: 0.95em; }
+        .reason-text {
+            color: #b0bec5;
+            font-size: 0.88em;
+            line-height: 1.6;
+            margin: 8px 0;
+        }
+        .divider { border: none; border-top: 1px solid #152238; margin: 20px 0; }
+        .risk-box {
+            background: rgba(255, 87, 34, 0.06);
+            border: 1px solid rgba(255, 87, 34, 0.2);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 12px 0;
+        }
+        .risk-box h4 { color: #ff8a65; margin-bottom: 8px; }
+        .footer {
+            text-align: center;
+            color: #556677;
+            font-size: 0.8em;
+            padding: 30px 0;
+            border-top: 1px solid #152238;
+            margin-top: 20px;
+        }
+        .star-indicator { color: #ffd54f; font-size: 1.1em; }
+        .strong-up { color: #ff4444; }
+        .strong-down { color: #44b544; }
+        @media (max-width: 768px) {
+            .index-grid { grid-template-columns: 1fr 1fr; }
+            .stock-list { grid-template-columns: 1fr; }
+            .header h1 { font-size: 1.6em; }
+            .section { padding: 18px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <h1>🇺🇸 美股映射复盘</h1>
+        <div class="date">2026年6月3日（北京时间） | 美东时间 2026年6月2日（周二）收盘</div>
+        <div class="subtitle">资深美股研究员 + A股映射策略分析师 · 每日实战复盘</div>
+        <span class="badge">📊 三大股指再创历史新高 · 费半暴涨5.87% · 光通信全线爆发</span>
+    </div>
+
+    <!-- 1. 美股整体表现 -->
+    <div class="section">
+        <h2><span class="icon">📈</span> 一、美股整体表现</h2>
+        <div class="index-grid">
+            <div class="index-card">
+                <div class="name">道琼斯工业指数</div>
+                <div class="price">51,307.79</div>
+                <div class="change up">+228.91 (+0.45%) <span class="tag tag-up">新高</span></div>
+            </div>
+            <div class="index-card">
+                <div class="name">标普500指数</div>
+                <div class="price">7,609.78</div>
+                <div class="change up">+9.82 (+0.13%) <span class="tag tag-up">首破7600</span></div>
+            </div>
+            <div class="index-card">
+                <div class="name">纳斯达克综合指数</div>
+                <div class="price">27,093.90</div>
+                <div class="change up">+7.09 (+0.03%) <span class="tag tag-up">新高</span></div>
+            </div>
+            <div class="index-card">
+                <div class="name">费城半导体指数</div>
+                <div class="price">—</div>
+                <div class="change up">+5.87% <span class="tag tag-up">🔥 暴涨</span></div>
+            </div>
+        </div>
+        <div class="reason-text">
+            <strong>盘面特征：</strong>三大股指连续第9个交易日上涨，标普500首次收于7,600点上方。但市场广度持续恶化——过去6个交易日每日上涨个股均少于下跌个股，显示资金高度集中在AI/半导体方向。道指表现最优（+0.45%），纳指几乎平收（+0.03%），科技七巨头指数跌1.05%，大型科技股涨跌分化严重。
+        </div>
+        <div class="reason-text" style="margin-top:8px;">
+            <strong>关键影响因素：</strong>
+            <br>🔹 <strong>AI基建狂热：</strong>英伟达CEO黄仁勋在台北Computex大会力挺迈威尔科技，称其将成为"下一个万亿公司"，引爆光通信/数据中心互联板块
+            <br>🔹 <strong>Google $800亿融资：</strong>Alphabet宣布通过股权发行筹集800亿美元用于AI基建，伯克希尔认购100亿美元，谷歌股价大跌近4%
+            <br>🔹 <strong>微软新品发布：</strong>推出Mai-Thinking-1 AI推理模型 + Majorana 2量子芯片，股价反跌超4%（SaaS板块集体回调）
+            <br>🔹 <strong>美伊局势反复：</strong>伊朗暂停与美谈判，特朗普称一周内有望达成协议，油价上涨+1.74%
+            <br>🔹 <strong>宏观日历：</strong>本周五（6月5日）非农数据、6月10日CPI、6月18日FOMC（沃什首秀），市场定价年内加息18bp
+        </div>
+    </div>
+
+    <!-- 2. 强势板块TOP5 + 最弱板块TOP3 -->
+    <div class="section">
+        <h2><span class="icon">🔥</span> 二、板块涨跌排名</h2>
+
+        <h3>🏆 强势板块 TOP 5</h3>
+        <table>
+            <tr><th>排名</th><th>板块</th><th>涨幅</th><th>领涨龙头</th><th>上涨逻辑</th></tr>
+            <tr><td>1</td><td>光通信 / CPO</td><td class="up">+6~7%</td><td>MRVL +32%, LITE +13.7%, COHR +17%</td><td>黄仁勋力挺Marvell成万亿公司；AI数据中心"连接"成新瓶颈</td></tr>
+            <tr><td>2</td><td>通信设备 / 线缆</td><td class="up">+6.5%</td><td>康宁 +13%, 诺基亚 +4%</td><td>AI数据中心光互连需求爆发；英伟达Spectrum-X硅光量产</td></tr>
+            <tr><td>3</td><td>半导体（费半）</td><td class="up">+5.87%</td><td>AMAT +7%, SMCI +7%, QCOM +5.2%</td><td>AI芯片需求持续；存储涨价周期；Raymond James上调MU目标价至1100</td></tr>
+            <tr><td>4</td><td>银行股</td><td class="up">+2~3%</td><td>WFC +3%, MS +2%, BAC +2%</td><td>美债收益率上行利好净息差；制造业PMI重回扩张</td></tr>
+            <tr><td>5</td><td>有色金属 / 铜</td><td class="up">+1.8%</td><td>FCX, SCCO</td><td>LME铜触及14,000美元；供给端持续紧张</td></tr>
+        </table>
+
+        <h3>📉 最弱板块 TOP 3</h3>
+        <table>
+            <tr><th>排名</th><th>板块</th><th>跌幅</th><th>领跌龙头</th><th>下跌逻辑</th></tr>
+            <tr><td>1</td><td>SaaS / 软件</td><td class="down">-4~6%</td><td>NOW -6%, CRM -4%, ADBE -4.4%</td><td>AI Agent化冲击传统软件商业模式；微软AI模型替代担忧</td></tr>
+            <tr><td>2</td><td>大型科技股（七巨头）</td><td class="down">-1.05%</td><td>MSFT -4.2%, GOOGL -3.9%, AMZN -1.8%</td><td>Google天量融资稀释、微软新品"利好兑现"、SaaS拖累</td></tr>
+            <tr><td>3</td><td>航空股</td><td class="down">-2~3%</td><td>AAL -3%, UAL -2.6%</td><td>油价上涨推高燃油成本；中东局势不确定性</td></tr>
+        </table>
+    </div>
+
+    <!-- 3. 重点个股异动 -->
+    <div class="section">
+        <h2><span class="icon">🎯</span> 三、重点个股异动</h2>
+
+        <div class="stock-list">
+            <div class="stock-item">
+                <div class="info"><div class="ticker">NVDA 英伟达</div></div>
+                <div class="chg down">$222.82 (-0.69%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">AAPL 苹果</div></div>
+                <div class="chg up">$315.20 (+2.90%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">TSLA 特斯拉</div></div>
+                <div class="chg up">$423.74 (+1.89%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">GOOGL 谷歌</div></div>
+                <div class="chg down">$361.85 (-3.86%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">MSFT 微软</div></div>
+                <div class="chg down">$441.31 (-4.17%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">AMZN 亚马逊</div></div>
+                <div class="chg down">$256.52 (-1.81%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">META Meta</div></div>
+                <div class="chg down">$597.63 (-0.47%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">AMD 超威半导体</div></div>
+                <div class="chg up">$521.54 (+2.24%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">AVGO 博通</div></div>
+                <div class="chg up">$481.57 (+4.70%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">TSM 台积电</div></div>
+                <div class="chg up">+2.54%</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">MU 美光科技</div></div>
+                <div class="chg up">$1,064.10 (+2.76%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">QCOM 高通</div></div>
+                <div class="chg up">$240.84 (+5.17%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">SMCI 超微电脑</div></div>
+                <div class="chg up">$50.17 (+7.02%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">NFLX 奈飞</div></div>
+                <div class="chg down">$83.33 (-2.94%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">PLTR Palantir</div></div>
+                <div class="chg down">$152.17 (-5.28%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">INTU 财捷</div></div>
+                <div class="chg down">$322.14 (-8.94%)</div>
+            </div>
+        </div>
+
+        <h3>📌 涨幅>5% 异动分析</h3>
+        <table>
+            <tr><th>个股</th><th>涨跌幅</th><th>异动原因</th></tr>
+            <tr><td>QCOM 高通</td><td class="up">+5.17%</td><td>AI手机芯片需求+汽车业务增长，受益于端侧AI落地</td></tr>
+            <tr><td>AVGO 博通</td><td class="up">+4.70%</td><td>光通信/SiPh龙头，AI数据中心网络芯片需求激增</td></tr>
+            <tr><td>AMAT 应用材料</td><td class="up">+6.96%</td><td>半导体设备需求旺盛，AI+HBM扩产驱动</td></tr>
+            <tr><td>SMCI 超微电脑</td><td class="up">+7.02%</td><td>AI服务器需求持续；HPE财报超预期带动服务器板块</td></tr>
+            <tr><td>AMD 超威半导体</td><td class="up">+2.24%</td><td>MI350/MI400 AI芯片路线图获市场认可</td></tr>
+            <tr><td>MSFT 微软</td><td class="down">-4.17%</td><td>SaaS板块整体回调；Mai-Thinking-1模型"利好兑现"出货</td></tr>
+            <tr><td>GOOGL 谷歌</td><td class="down">-3.86%</td><td>$800亿股权融资稀释；伯克希尔认购100亿但市场担忧摊薄</td></tr>
+            <tr><td>INTU 财捷</td><td class="down">-8.94%</td><td>SaaS板块重挫，AI Agent替代传统财务软件担忧</td></tr>
+            <tr><td>PLTR Palantir</td><td class="down">-5.28%</td><td>SaaS板块拖累，高估值回调</td></tr>
+        </table>
+    </div>
+
+    <!-- 4. ⭐ 大市值异动股聚焦 -->
+    <div class="section">
+        <h2><span class="icon">⭐</span> 四、大市值异动股聚焦（涨幅>9% 且 市值>50亿美元）</h2>
+
+        <div class="highlight-box star">
+            <h4>🔥 共 2 只标的符合条件</h4>
+        </div>
+
+        <table>
+            <tr><th>代码</th><th>名称</th><th>涨幅</th><th>总市值</th><th>上涨原因</th></tr>
+            <tr>
+                <td>MRVL</td><td>迈威尔科技</td>
+                <td class="up"><strong>+32%+</strong> <span class="tag tag-up">创2000年来最佳</span></td>
+                <td>~$3,500亿+</td>
+                <td>
+                    <strong>核心催化：</strong>黄仁勋在Computex 2026与Marvell CEO对谈时公开表示Marvell将成为"下一个万亿美元公司"，英伟达已战略投资20亿美元。<br>
+                    <strong>逻辑：</strong>AI算力瓶颈正从"芯片→内存→连接"演进。Marvell是数据中心互联（DCI）与光互连DSP的绝对龙头，AI集群从万卡向十万卡扩展，连接需求指数级增长。<br>
+                    <strong>财报支撑：</strong>最新季报数据中心收入同比+28%至$24.18亿，经营现金流同比+35%，毛利率58.9%。
+                </td>
+            </tr>
+            <tr>
+                <td>LITE</td><td>Lumentum Holdings</td>
+                <td class="up"><strong>+13.72%</strong></td>
+                <td>~$800亿</td>
+                <td>
+                    <strong>核心催化：</strong>光通信板块集体爆发，Lumentum是光通信光学组件核心供应商。CEO此前表示"2028年产能都要卖完了"，云厂商资本开支无放缓迹象。<br>
+                    <strong>逻辑：</strong>英伟达向Lumentum战略投资20亿美元，深度绑定硅光技术路线。AI数据中心对高速光模块需求进入爆发期。
+                </td>
+            </tr>
+        </table>
+
+        <div class="reason-text" style="margin-top:12px;">
+            <strong>💡 产业意义：</strong>黄仁勋亲自站台+英伟达战略投资，标志着AI基础设施的"下一个主战场"正式从算力芯片（英伟达）、存储（美光/三星）切换到<strong>光互联/数据中心连接</strong>。光通信板块（CPO、硅光、DSP）是当前AI产业链确定性最高的增量方向。
+        </div>
+    </div>
+
+    <!-- 5. 中概股表现 -->
+    <div class="section">
+        <h2><span class="icon">🇨🇳</span> 五、中概股表现</h2>
+
+        <div class="index-card" style="margin-bottom:16px;">
+            <div class="name">纳斯达克中国金龙指数</div>
+            <div class="change up">+1.83%</div>
+        </div>
+
+        <div class="stock-list">
+            <div class="stock-item">
+                <div class="info"><div class="ticker">BABA 阿里巴巴</div></div>
+                <div class="chg up">$130.82 (+4.32%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">JD 京东</div></div>
+                <div class="chg up">$30.15 (+3.64%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">BIDU 百度</div></div>
+                <div class="chg up">$136.72 (+3.26%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">PDD 拼多多</div></div>
+                <div class="chg up">$88.18 (+1.08%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">TCEHY 腾讯(ADR)</div></div>
+                <div class="chg up"><strong>+9.10%</strong> <span class="tag tag-up">领涨</span></div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">LI 理想汽车</div></div>
+                <div class="chg up">$15.43 (+6.12%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">BILI 哔哩哔哩</div></div>
+                <div class="chg up">$18.65 (+1.58%)</div>
+            </div>
+            <div class="stock-item">
+                <div class="info"><div class="ticker">NIO 蔚来</div></div>
+                <div class="chg up">$6.01 (+0.50%)</div>
+            </div>
+        </div>
+
+        <div class="reason-text" style="margin-top:12px;">
+            <strong>点评：</strong>中概股全线走强，腾讯ADR大涨超9%领跑，受益于全球AI叙事+中国科技股估值修复。电商三巨头（阿里/京东/拼多多）均有3%以上涨幅，显示外资对中国互联网板块信心回暖。造车新势力中理想汽车涨超6%，受益于港股6月2日恒生科技指数大涨4%的联动效应。
+        </div>
+    </div>
+
+    <!-- 6. 大宗商品 + 美债 + 美元 -->
+    <div class="section">
+        <h2><span class="icon">🛢️</span> 六、大宗商品 · 美债 · 美元</h2>
+
+        <table>
+            <tr><th>品种</th><th>最新价格</th><th>涨跌幅</th><th>备注</th></tr>
+            <tr><td>WTI原油</td><td>$93.76/桶</td><td class="up">+1.74%</td><td>伊朗局势反复；特朗普称一周内或达成协议</td></tr>
+            <tr><td>布伦特原油</td><td>$96.00/桶</td><td class="up">+1.07%</td><td>中东供应风险溢价持续</td></tr>
+            <tr><td>COMEX黄金</td><td>$4,514.80/盎司</td><td class="down">-1.70%</td><td>美债收益率上行+加息预期压制；ECB报告称黄金超美债成全球第一大储备资产</td></tr>
+            <tr><td>LME铜</td><td>$13,879.5/吨</td><td class="up">+1.79%</td><td>盘中触及$14,000；供给紧缺+AI基建铜需求逻辑</td></tr>
+            <tr><td>LME铝</td><td>$3,732.5/吨</td><td class="up">+1.80%</td><td>供给收缩+新能源需求支撑</td></tr>
+            <tr><td>LME锡</td><td>$56,805/吨</td><td class="up">+2.50%</td><td>半导体+AI焊接需求拉动</td></tr>
+            <tr><td>2年期美债</td><td>4.031%</td><td class="up">+3.09bp</td><td>美联储加息定价升温</td></tr>
+            <tr><td>10年期美债</td><td>4.453%</td><td class="up">+1.77bp</td><td>通胀担忧+财政赤字双重压制</td></tr>
+            <tr><td>30年期美债</td><td>4.970%</td><td class="down">-0.20bp</td><td>长端小幅回落</td></tr>
+            <tr><td>美元指数</td><td>99.19</td><td class="up">+0.27%</td><td>避险+加息预期支撑；人民币6.7652</td></tr>
+        </table>
+
+        <div class="reason-text" style="margin-top:12px;">
+            <strong>黄金关键逻辑：</strong>ECB报告显示截至2025年底，黄金已超越美国国债成为全球官方储备第一大资产。中国央行4月继续增持黄金。短期受加息预期打压，但中长期"去美元化+央行购金"逻辑不变。
+        </div>
+    </div>
+
+    <!-- 7. 重要信息点评 -->
+    <div class="section">
+        <h2><span class="icon">📰</span> 七、重要信息点评</h2>
+
+        <div class="highlight-box">
+            <h4>🏛️ 美联储与宏观经济</h4>
+            <div class="reason-text">
+                • <strong>4月PCE：</strong>同比+3.8%（核心+3.3%），创2023年5月以来最大涨幅，通胀韧性超预期<br>
+                • <strong>Q1 GDP：</strong>年化增速从初值2.0%下修至1.6%，滞胀信号显现<br>
+                • <strong>加息预期：</strong>市场定价年内加息18bp（从"不降息"→"可能加息"），CME利率期货显示6月按兵不动概率超99%<br>
+                • <strong>沃什首秀：</strong>新任美联储主席沃什6月3-4日首次国会证词+6月18日FOMC利率决议，是6月最大宏观事件<br>
+                • <strong>本周数据：</strong>6月5日非农（预期+9万人）、6月10日CPI，将决定加息路径
+            </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top:12px;">
+            <h4>🌍 地缘与产业大事</h4>
+            <div class="reason-text">
+                • <strong>美伊谈判：</strong>伊朗暂停与美间接谈判→特朗普称"一周内达成协议"，霍尔木兹海峡通航预期左右油价<br>
+                • <strong>英伟达Computex：</strong>发布RTX Spark超级芯片进军PC市场；宣布Spectrum-X硅光技术全面量产；与微软推Agentic AI统一技术栈<br>
+                • <strong>Google $800亿融资：</strong>史上最大股权融资之一，400亿ATM+300亿承销+100亿伯克希尔私募，全部用于AI基建<br>
+                • <strong>微软新品：</strong>推出Mai-Thinking-1 AI推理模型（350亿参数）+ Majorana 2量子芯片<br>
+                • <strong>OpenAI进军机器人：</strong>宣布短期内专注协助型机器人<br>
+                • <strong>Anthropic递交IPO：</strong>秘密递交IPO申请，AI公司上市潮来临<br>
+                • <strong>HPE财报：</strong>Q2业绩超预期，盘后大涨25%，服务器需求指引强劲<br>
+                • <strong>ECB重磅报告：</strong>黄金超越美债成为全球官方储备第一大资产
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. ⭐ 映射到A股的潜在方向 -->
+    <div class="section">
+        <h2><span class="icon">🔗</span> 八、⭐ 映射到A股的潜在方向（最重要）</h2>
+
+        <div class="highlight-box star">
+            <h4>🎯 重点关注以下5大方向</h4>
+        </div>
+
+        <h3>方向一：光通信 / CPO / 硅光 🔥 最强烈推荐</h3>
+        <div class="reason-text">
+            <strong>逻辑：</strong>黄仁勋亲自站台并投资Marvell，AI基础设施下一主线从算力→连接。英伟达Spectrum-X硅光技术全面量产，光互连需求爆发。<br>
+            <strong>A股标的：</strong>中际旭创（300308）、新易盛（300502）、天孚通信（300394）、光迅科技（002281）、太辰光（300570）、长飞光纤（601869）、永鼎股份（600105）<br>
+            <strong>催化：</strong>全球首条三波段超低损耗多芯光缆线路国内开通，光通信产业链100%自主可控
+        </div>
+
+        <h3>方向二：算力产业链 / AI服务器 / PCB</h3>
+        <div class="reason-text">
+            <strong>逻辑：</strong>HPE财报超预期盘后+25%，服务器需求指引强劲。SMCI +7%、AMAT +7%。AI训练/推理需求持续扩张。<br>
+            <strong>A股标的：</strong>工业富联（601138）、沪电股份（002463）、深南电路（002916）、胜宏科技（300476）、奥士康（002913）、中兴通讯（000063）<br>
+            <strong>催化：</strong>英伟达RTX Spark超级芯片进军PC市场，端侧AI算力需求增加
+        </div>
+
+        <h3>方向三：存储芯片 / HBM</h3>
+        <div class="reason-text">
+            <strong>逻辑：</strong>Raymond James将MU目标价从530大幅上调至1100美元，AI驱动内存需求+供给紧张。美光市值突破1万亿，HBM供需缺口持续扩大。<br>
+            <strong>A股标的：</strong>兆易创新（603986）、北京君正（300223）、澜起科技（688008）、江波龙（301308）、佰维存储（300475）<br>
+            <strong>催化：</strong>瑞银给出MU华尔街最高目标价1625美元；存储板块迎来结构性估值重估（从周期股→成长股）
+        </div>
+
+        <h3>方向四：铜 / 有色金属</h3>
+        <div class="reason-text">
+            <strong>逻辑：</strong>LME铜触及14,000美元/吨，供给端紧缺（印尼Grasberg延期至2028年复产）+ AI基建铜需求（数据中心电力铜缆）。美铜关税调查窗口临近。<br>
+            <strong>A股标的：</strong>紫金矿业（601899）、江西铜业（600362）、铜陵有色（000630）、西部矿业（601168）、洛阳钼业（603993）<br>
+            <strong>催化：</strong>高盛上调铜目标价；AI数据中心铜缆高速连接概念（铜缆高速连接板块+4.93%）
+        </div>
+
+        <h3>方向五：中概互联 / 港股科技</h3>
+        <div class="reason-text">
+            <strong>逻辑：</strong>腾讯ADR+9%领涨，恒生科技指数+4%。中国科技股估值仍处于历史低位区间，全球AI叙事+内地政策支撑共振。<br>
+            <strong>A股/港股标的：</strong>腾讯控股（00700）、阿里巴巴（09988）、美团（03690）、小米（01810）、中芯国际（688981/00981）<br>
+            <strong>催化：</strong>6月2日A股创业板指+2.66%、恒生科技+4%，资金从泛题材炒作转向产业落地明确的科技硬件
+        </div>
+    </div>
+
+    <!-- 9. 投资机会 -->
+    <div class="section">
+        <h2><span class="icon">💡</span> 九、投资机会</h2>
+
+        <div class="highlight-box star">
+            <h4>📌 短期交易机会（未来1-2周）</h4>
+        </div>
+        <div class="reason-text">
+            <strong>1. 光通信板块主升浪：</strong>美股MRVL/LITE/COHR的映射效应将强烈传导至A股光模块/光器件标的，重点关注中际旭创、新易盛、天孚通信。CPO/硅光概念有望成为6月最强主线。<br>
+            <strong>2. AI服务器/PCB：</strong>HPE业绩超预期验证AI服务器需求依然强劲，A股工业富联、沪电股份充分受益。<br>
+            <strong>3. 有色金属（铜）：</strong>供给紧缺+AI需求+关税窗口三重共振，铜价向上弹性大，紫金矿业、江西铜业为龙头。<br>
+            <strong>4. 存储芯片：</strong>HBM供需缺口+估值重估逻辑，存储板块有戴维斯双击潜力。
+        </div>
+
+        <div class="highlight-box star" style="margin-top:16px;">
+            <h4>📌 中长期配置方向</h4>
+        </div>
+        <div class="reason-text">
+            <strong>1. 黄金：</strong>ECB确认黄金为全球第一大储备资产，央行购金趋势延续。短期受加息预期压制，但中长期"去美元化"逻辑不变，逢回调布局。<br>
+            <strong>2. AI算力基础设施：</strong>从"算力芯片→存储→连接"的产业演进路径清晰，6月持续看好光通信、PCB、服务器三大细分。<br>
+            <strong>3. 中概互联网：</strong>估值修复+AI赋能+回购支撑，腾讯、阿里、美团核心标的具备配置价值。
+        </div>
+    </div>
+
+    <!-- 10. 风险提示 -->
+    <div class="section">
+        <h2><span class="icon">⚠️</span> 十、风险提示</h2>
+
+        <div class="risk-box">
+            <h4>🔴 核心风险</h4>
+            <div class="reason-text">
+                1. <strong>美联储意外加息：</strong>沃什首秀若释放鹰派信号（6月3-4日国会证词），可能引发全球资产重估，美股科技股估值承压。<br>
+                2. <strong>美伊谈判破裂：</strong>若伊朗重新封锁霍尔木兹海峡，油价可能飙升至100美元+，推高通胀，迫使美联储更鹰派。<br>
+                3. <strong>市场广度恶化：</strong>标普500连续6日上涨股<下跌股，若AI龙头（英伟达）出现回调，市场可能缺乏新的领涨主线。<br>
+                4. <strong>Google融资负面影响：</strong>$800亿股权融资压低股价，可能引发其他科技巨头跟风融资，稀释效应需警惕。<br>
+                5. <strong>SaaS板块系统性风险：</strong>AI Agent化对传统软件商业模式的冲击可能持续发酵，微软/谷歌/CRM等短期仍有下行压力。<br>
+                6. <strong>非农数据：</strong>6月5日非农若超预期（>15万人），加息预期将进一步升温，利空成长股和黄金。<br>
+                7. <strong>A股映射节奏：</strong>美股光通信/半导体已累计涨幅较大，A股映射板块可能存在追高风险，注意节奏把握。
+            </div>
+        </div>
+
+        <div class="reason-text" style="margin-top:12px; color:#8899aa;">
+            <strong>免责声明：</strong>本报告仅为信息整理和市场分析，不构成任何投资建议。投资有风险，入市需谨慎。数据来源为东方财富妙想API及公开市场信息。
+        </div>
+    </div>
+
+    <div class="footer">
+        报告生成时间：2026-06-03 08:05（北京时间） | 数据截止：美东时间 2026-06-02 16:00<br>
+        数据来源：东方财富妙想 · 同花顺iFind · 公开新闻<br>
+        © 美股映射复盘 · 每日自动生成
+    </div>
+
+</div>
+</body>
+</html>
