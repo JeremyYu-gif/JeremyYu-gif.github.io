@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOP-stock-daily- - 2026-06-10</title>
+<style>
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:#f3f5f9;margin:0;padding:24px;color:#1f2937}
+.page{max-width:1180px;margin:0 auto}
+.report-header{background:linear-gradient(135deg,#111827,#1f3a8a);color:#fff;padding:28px 32px;border-radius:18px;box-shadow:0 10px 30px rgba(15,23,42,.18);margin-bottom:22px}
+.report-header h1{margin:0;font-size:30px;font-weight:800}
+.subtitle{margin-top:10px;font-size:14px;opacity:.88}
+.meta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px;font-size:13px;opacity:.85}
+.meta-pill{background:rgba(255,255,255,.12);padding:6px 10px;border-radius:999px}
+.public-url-box{margin-top:18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);padding:12px 14px;border-radius:12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.public-url-label{font-weight:700}
+.public-url-box a{color:#fff;text-decoration:none;word-break:break-all}
+.stock-card{background:#fff;border-radius:18px;padding:24px;margin-bottom:18px;box-shadow:0 10px 28px rgba(15,23,42,.08)}
+.stock-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:1px solid #e5e7eb;padding-bottom:14px}
+.stock-title-wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.stock-title-wrap h2{margin:0;font-size:22px}
+.market-tag{font-size:12px;background:#eef2ff;color:#4338ca;border-radius:999px;padding:4px 10px;font-weight:700}
+.price-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.price{font-size:22px;font-weight:800;color:#111827}
+.change{padding:6px 12px;border-radius:999px;font-size:14px;font-weight:800}
+.change-up{background:#fee2e2;color:#b91c1c}
+.change-down{background:#dcfce7;color:#15803d}
+.change-flat{background:#e5e7eb;color:#4b5563}
+.section{margin-top:18px}
+.section h3{margin:0 0 12px;font-size:16px;color:#334155;border-left:4px solid #2563eb;padding-left:10px}
+.news-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.news-summary{font-size:14px;line-height:1.7;color:#0f172a;margin-bottom:8px}
+.news-impact{font-size:13px;line-height:1.6;margin-bottom:6px}
+.impact-up{color:#b91c1c}
+.impact-down{color:#15803d}
+.impact-flat{color:#475569}
+.news-source{font-size:13px;color:#64748b}
+.news-source a{color:#2563eb;text-decoration:none}
+.news-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.news-badge,.news-time{font-size:12px;padding:4px 8px;border-radius:999px;background:#e2e8f0;color:#334155}
+.no-news{color:#64748b;font-style:italic;padding:14px;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:12px}
+.tech-table{width:100%;border-collapse:collapse;background:#fff}
+.tech-table td{padding:10px 12px;border-bottom:1px solid #e5e7eb;font-size:14px;vertical-align:top}
+.tech-table td:first-child{width:132px;color:#475569;font-weight:700;background:#f8fafc}
+.levels{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 12px;font-size:14px}
+.resistance{color:#dc2626;font-weight:700}
+.support{color:#059669;font-weight:700}
+.recommendation{padding:14px 16px;border-radius:14px;font-size:14px;font-weight:800}
+.recommend-add{background:#dcfce7;color:#166534}
+.recommend-reduce{background:#fee2e2;color:#991b1b}
+.recommend-hold{background:#e5e7eb;color:#374151}
+/* SeekingAlpha 鍒嗘瀽甯堝垎鏋愭牱寮?*/
+.analyst-section{margin-top:18px}
+.analyst-section h3{margin:0 0 12px;font-size:16px;color:#334155;border-left:4px solid #f59e0b;padding-left:10px}
+.analyst-item{background:#fffbeb;border:1px solid #fde68a;border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.analyst-header{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;align-items:center}
+.analyst-name{font-weight:700;color:#92400e;font-size:14px}
+.analyst-rating{font-size:12px;padding:3px 8px;border-radius:999px;background:#d97706;color:#fff;font-weight:700}
+.analyst-target{font-size:12px;padding:3px 8px;border-radius:999px;background:#059669;color:#fff;font-weight:700}
+.analyst-summary{font-size:13px;line-height:1.6;color:#78350f}
+.analyst-source{font-size:12px;color:#92400e;margin-top:8px}
+.analyst-source a{color:#2563eb;text-decoration:none}
+.no-analyst{color:#92400e;font-style:italic;padding:14px;background:#fffbeb;border:1px dashed #fde68a;border-radius:12px}
+.footer{text-align:center;color:#94a3b8;font-size:12px;margin-top:26px;padding-top:18px;border-top:1px solid #e5e7eb}
+@media (max-width:768px){body{padding:14px}.report-header,.stock-card{padding:18px}.stock-header{flex-direction:column}.price-wrap{align-items:flex-start}.levels{flex-direction:column;gap:8px}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="report-header">
+    <h1>馃搱 TOP-stock-daily-</h1>
+    <div class="subtitle">鍒嗘瀽韬唤锛氳祫娣卞熀閲戠粡鐞?+ 琛屼笟鐮旂┒鍛?+ 璧勬繁鏁ｆ埛</div>
+    <div class="meta-row">
+      <span class="meta-pill">鎶ュ憡鏃ユ湡锛?026-06-10</span>
+      <span class="meta-pill">鐢熸垚鏃堕棿锛?026-06-10 07:41:15</span>
+      <span class="meta-pill">杈撳嚭鏍煎紡锛欻TML</span>
+    </div>
+    
+  </header>
+  
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>馃搳 Vor Biopharma锛圴OR锛?/h2>
+                <span class="market-tag">NASDAQ</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">褰撳墠浠凤細楼$13.28</span>
+                <span class="change change-down">-0.08%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>涓€銆佷粖鏃ヨ祫璁?/h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>馃搶</strong> 6鏈?鏃ユ敹$13.28(-0.08%)锛屾湰鍛ㄧ疮璁?7.26%锛岃嚜6鏈?鏃?8.10%鏆磋穼鍚庣户缁（搴曘€傚叕鍙歌繎鏈熸棤閲嶅ぇ鍏憡锛屽浜庣绾挎帹杩涢樁娈碉紙VOR33鑷綋鍏嶇柅鐥咃級</div>
+            <div class="news-impact impact-down">馃敾 <strong>鑲′环褰卞搷锛?/strong>璐熷悜鈻?鈥?鏃犳柊鍌寲+鎶€鏈潰鍏ㄩ潰鎭跺寲锛岀煭鏈熻祫閲戞寔缁祦鍑?/div>
+            <div class="news-source">馃敆 澶氬缁煎悎 <a href="https://stockanalysis.com/stocks/vor/" target="_blank" rel="noopener noreferrer">鏌ョ湅鍘熸枃</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>浜屻€佹妧鏈潰鍒嗘瀽</h3>
+            <table class="tech-table">
+                <tr><td>鍧囩嚎绯荤粺</td><td>绌哄ご鎺掑垪锛歁A5($13.50)&lt;MA10($14.12)&lt;MA20($14.53)&lt;MA60($14.85)锛屼环鏍艰繙浣庝簬鎵€鏈夊潎绾?/td></tr>
+                <tr><td>MACD</td><td>MACD姝诲弶鎵╁紶锛欴IF=-0.465锛孌EA=-0.293锛屾煴绾?-0.344锛岀┖澶村姩鑳藉姞閫?/td></tr>
+                <tr><td>KDJ</td><td>KDJ浣庝綅瓒呭崠锛欿=23.37锛孌=27.09锛孞=15.92锛孞鍊兼瀬浣庯紝鐭湡鍙嶅脊鍔ㄨ兘绉疮浣嗗皻鏈Е鍙?/td></tr>
+                <tr><td>閲忎环鍏崇郴</td><td>6鏈?鏃ユ垚浜ら噺87涓囪偂锛?鏃ュ潎閲忕害91涓囪偂锛岀缉閲忔暣鐞嗭紝鎭愭厡鎶涘敭鏈夋墍鍑忓急</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">馃敶 鍘嬪姏浣嶏細楼$14.50锛堝墠浣?MA20鍘嬪埗锛?/span>
+                <span class="support">馃煝 鏀拺浣嶏細楼$12.50锛堣繎鏈熶綆鐐瑰尯鍩燂級</span>
+            </div>
+            <div class="recommendation recommend-reduce">
+                缁煎悎鎿嶄綔寤鸿锛氿煙?鍑忎粨 鈥?绌哄ご鎺掑垪+MACD姝诲弶鎵╁紶+鏃犲偓鍖栦簨浠讹紝灏忓競鍊肩敓绉戦闄╂敹鐩婃瘮宸紝寤鸿鍑忎粨瑙傛湜绛塚OR33鏁版嵁
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>馃搳 Biogen锛圔IIB锛?/h2>
+                <span class="market-tag">NASDAQ</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">褰撳墠浠凤細楼$199.10</span>
+                <span class="change change-up">+3.36%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>涓€銆佷粖鏃ヨ祫璁?/h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>馃搶</strong> 6鏈?鏃ュぇ娑?199.10(+3.36%)锛屾斁閲忕獊鐮碝A20鍜孧A60锛屽垱杩?鍛ㄦ柊楂樸€侳DA宸叉帴鍙桳eqembi鐨笅娉ㄥ皠鍓傚瀷BLA骞朵紭鍏堝璇勶紝PDUFA鏃ョ害2026骞?鏈?/div>
+            <div class="news-impact impact-up">馃敽 <strong>鑲′环褰卞搷锛?/strong>姝ｅ悜鈻?鈥?鐨笅鍓傚瀷鑾锋壒灏嗗ぇ骞呮彁鍗囦緷浠庢€?甯傚満娓楅€忥紝鑻ヨ幏鎵?026H2鏀鹃噺鍙湡</div>
+            <div class="news-source">馃敆 澶氬/Biogen IR <a href="https://investors.biogen.com/news/news-releases" target="_blank" rel="noopener noreferrer">鏌ョ湅鍘熸枃</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>浜屻€佹妧鏈潰鍒嗘瀽</h3>
+            <table class="tech-table">
+                <tr><td>鍧囩嚎绯荤粺</td><td>澶氬ご鎺掑垪纭珛锛歁A5($195.89)&gt;MA10($194.99)&gt;MA20($194.23)&gt;MA60($187.46)锛屼环鏍肩珯涓婃墍鏈夊潎绾?/td></tr>
+                <tr><td>MACD</td><td>MACD鍒氶噾鍙夛細DIF=1.806锛孌EA=1.804锛屾煴绾?0.005锛孌IF寰秴DEA鍒濈幇閲戝弶淇″彿</td></tr>
+                <tr><td>KDJ</td><td>KDJ鍋忓锛欿=69.16锛孌=61.54锛孞=84.40锛孞鍊奸€艰繎瓒呬拱鍖轰絾K/D閰嶅悎鑹ソ</td></tr>
+                <tr><td>閲忎环鍏崇郴</td><td>6鏈?鏃?3.3涓囪偂(+14%)锛屾斁閲忎笂娑紝閲忎环閰嶅悎鑹ソ</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">馃敶 鍘嬪姏浣嶏細楼$200.66锛?鏈?鏃ョ洏涓珮鐐?鏁存暟鍏冲彛锛?/span>
+                <span class="support">馃煝 鏀拺浣嶏細楼$194.00锛圡A20鏀拺浣嶏級</span>
+            </div>
+            <div class="recommendation recommend-add">
+                缁煎悎鎿嶄綔寤鸿锛氿煙?澧炰粨 鈥?澶氬ご鎺掑垪+MACD鍒氶噾鍙?鐨笅鍓傚瀷鍌寲鍦ㄥ嵆锛屾妧鏈潰涓庡熀鏈潰鍏辨尟锛屽缓璁浠?
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>馃搳 Summit Therapeutics锛圫MMT锛?/h2>
+                <span class="market-tag">NASDAQ</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">褰撳墠浠凤細楼$14.29</span>
+                <span class="change change-up">+1.28%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>涓€銆佷粖鏃ヨ祫璁?/h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>馃搶</strong> 6鏈?鏃?14.29(+1.28%)灏忓箙鍙嶅脊锛屾湰鍛ㄧ疮璁?3.71%锛岃嚜ASCO 2026 HARMONi-6 OS闃虫€ф暟鎹埄濂藉嚭灏藉悗鎸佺画鍥炶皟銆?鏈?鏃ユ浘璺岃嚦$13.81鍒涢樁娈垫柊浣?/div>
+            <div class="news-impact impact-down">馃敾 <strong>鑲′环褰卞搷锛?/strong>璐熷悜鈻?鈥?鍒╁ソ鍏戠幇+楂樹綅鍥炶惤+鎶€鏈潰鍏ㄩ潰鎭跺寲锛岃幏鍒╃洏鎸佺画鍑洪€?/div>
+            <div class="news-source">馃敆 澶氬缁煎悎 <a href="https://www.marketbeat.com/stocks/NASDAQ/SMMT/news/" target="_blank" rel="noopener noreferrer">鏌ョ湅鍘熸枃</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>浜屻€佹妧鏈潰鍒嗘瀽</h3>
+            <table class="tech-table">
+                <tr><td>鍧囩嚎绯荤粺</td><td>绌哄ご鎺掑垪鍔犲墽锛歁A5($14.62)&lt;MA10($15.60)&lt;MA20($16.48)&lt;MA60($18.36)锛屼环鏍间綆浜庢墍鏈夊潎绾夸笖宸€煎ぇ</td></tr>
+                <tr><td>MACD</td><td>MACD姝诲弶鎵╁紶锛欴IF=-1.167锛孌EA=-0.964锛屾煴绾?-0.407锛岀┖澶村姩鑳芥寔缁?/td></tr>
+                <tr><td>KDJ</td><td>KDJ鏋佺瓒呭崠锛欿=14.40锛孌=21.93锛孞=-0.67锛孞涓鸿礋鍊兼瀬搴﹁秴鍗栵紝鎶€鏈€у弽寮归殢鏃跺彲鑳借Е鍙?/td></tr>
+                <tr><td>閲忎环鍏崇郴</td><td>6鏈?鏃?02涓囪偂锛?鏃ュ潎閲忕害570涓囪偂锛岀缉閲忔璺屼絾涔版柟鏃犲姏</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">馃敶 鍘嬪姏浣嶏細楼$14.80锛圡A5/6鏈?鏃ユ敹鐩橈級</span>
+                <span class="support">馃煝 鏀拺浣嶏細楼$13.80锛?鏈?鏃ヤ綆鐐?甯冩灄涓嬭建锛?/span>
+            </div>
+            <div class="recommendation recommend-reduce">
+                缁煎悎鎿嶄綔寤鸿锛氿煙?鍑忎粨 鈥?ASCO鍒╁ソ鍑哄敖+鎶€鏈潰鍏ㄩ潰鎭跺寲+60鏃ヨ穼骞呮繁锛屽弽寮瑰嵆鍑忎粨鏈轰細锛岀瓑浼佺ǔ淇″彿
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>馃搳 Vertex Pharmaceuticals锛圴RTX锛?/h2>
+                <span class="market-tag">NASDAQ</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">褰撳墠浠凤細楼$445.77</span>
+                <span class="change change-up">+0.63%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>涓€銆佷粖鏃ヨ祫璁?/h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>馃搶</strong> 6鏈?鏃?445.77(+0.63%)寰定锛岃繛缁?鏃ュ湪MA60($439.7)涓婃柟浼佺ǔ銆俈anzacaftor涓夎仈鐤楁硶鎺ㄨ繘涓紝Q2绠＄嚎鏇存柊浼氬緟寮€</div>
+            <div class="news-impact impact-up">馃敽 <strong>鑲′环褰卞搷锛?/strong>姝ｅ悜鈻?鈥?鎶€鏈潰杞己+鏍稿績浜у搧绠＄嚎绋冲畾+MA60鏀拺纭</div>
+            <div class="news-source">馃敆 澶氬缁煎悎 <a href="https://news.vrtx.com/press-releases" target="_blank" rel="noopener noreferrer">鏌ョ湅鍘熸枃</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>浜屻€佹妧鏈潰鍒嗘瀽</h3>
+            <table class="tech-table">
+                <tr><td>鍧囩嚎绯荤粺</td><td>澶氬ご鎺掑垪纭珛锛歁A5($441.13)&gt;MA10($440.19)&gt;MA20($439.79)&gt;MA60($439.71)锛屽潎绾跨矘鍚堝悗鍚戜笂鍙戞暎</td></tr>
+                <tr><td>MACD</td><td>MACD閲戝弶鎵╁紶锛欴IF=1.272锛孌EA=0.213锛屾煴绾?2.119锛屽澶村姩鑳芥寔缁寮?/td></tr>
+                <tr><td>KDJ</td><td>KDJ鍋忓锛欿=67.50锛孌=58.60锛孞=85.31锛孞鍊煎亸楂樹絾鏈弗閲嶈秴涔?/td></tr>
+                <tr><td>閲忎环鍏崇郴</td><td>6鏈?鏃?7涓囪偂锛岀缉閲忓皬娑ㄤ絾浠锋牸绋冲仴锛?鏃ュ潎閲忕害120涓?/td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">馃敶 鍘嬪姏浣嶏細楼$453.00锛?鏈?鏃ラ珮鐐癸級</span>
+                <span class="support">馃煝 鏀拺浣嶏細楼$440.00锛圡A20闄勮繎+鏁存暟鍏冲彛锛?/span>
+            </div>
+            <div class="recommendation recommend-add">
+                缁煎悎鎿嶄綔寤鸿锛氿煙?澧炰粨 鈥?MACD閲戝弶鎵╁紶+澶氬ご鎺掑垪+MA60鏀拺纭锛岃摑绛圭敓绉戠ǔ鍋ユ爣鐨勶紝寤鸿澧炰粨
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>馃搳 Acumen Pharmaceuticals锛圓BOS锛?/h2>
+                <span class="market-tag">NASDAQ</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">褰撳墠浠凤細楼$2.19</span>
+                <span class="change change-up">+0.92%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>涓€銆佷粖鏃ヨ祫璁?/h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>馃搶</strong> 6鏈?鏃?2.19(+0.92%)寰定锛屾湰鍛ㄧ疮璁?4.37%銆傚皬甯傚€糀D鐢熺鏃犻噸澶у偓鍖栵紝璧勯噾鍏虫敞搴︽瀬浣?/div>
+            <div class="news-impact impact-flat">鈴?<strong>鑲′环褰卞搷锛?/strong>涓€р啋 鈥?鏃犳柊娑堟伅+灏忓競鍊兼祦鍔ㄦ€у樊锛岀煭鏈熸棤鍌寲鍓?/div>
+            <div class="news-source">馃敆 澶氬缁煎悎 <a href="https://investors.acumenpharm.com/news-events/news-releases" target="_blank" rel="noopener noreferrer">鏌ョ湅鍘熸枃</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>浜屻€佹妧鏈潰鍒嗘瀽</h3>
+            <table class="tech-table">
+                <tr><td>鍧囩嚎绯荤粺</td><td>绌哄ご鎺掑垪锛歁A5($2.22)&lt;MA10($2.37)&lt;MA20($2.37)&lt;MA60($2.54)锛屼环鏍艰繙浣庝簬鎵€鏈夊潎绾?/td></tr>
+                <tr><td>MACD</td><td>MACD姝诲弶鎵╁紶锛欴IF=-0.078锛孌EA=-0.054锛屾煴绾?-0.049锛岀┖澶存寔缁?/td></tr>
+                <tr><td>KDJ</td><td>KDJ鏋佺瓒呭崠锛欿=16.35锛孌=27.75锛孞=-6.46锛孞鍊兼繁搴﹁礋鍊艰秴鍗栦弗閲?/td></tr>
+                <tr><td>閲忎环鍏崇郴</td><td>6鏈?鏃?1.6涓囪偂锛屽湴閲忔按骞筹紝鎴愪氦浣庤糠</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">馃敶 鍘嬪姏浣嶏細楼$2.30锛圡A5闄勮繎锛?/span>
+                <span class="support">馃煝 鏀拺浣嶏細楼$2.12锛?鏈?鏃ヤ綆鐐癸級</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                缁煎悎鎿嶄綔寤鸿锛氣瑴 鎸佹湁 鈥?灏忓競鍊?鏃犲偓鍖?鎶€鏈潰鍏ㄩ潰鎭跺寲锛屼絾鏋佸害瓒呭崠鏈夋妧鏈弽寮瑰彲鑳斤紝鎸佹湁瑙傛湜
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>馃搳 Ionis Pharmaceuticals锛圛ONS锛?/h2>
+                <span class="market-tag">NASDAQ</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">褰撳墠浠凤細楼$74.58</span>
+                <span class="change change-up">+1.41%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>涓€銆佷粖鏃ヨ祫璁?/h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>馃搶</strong> 6鏈?鏃?74.58(+1.41%)鍙嶅脊锛屾湰鍛?0.73%鍩烘湰鎸佸钩銆俁NA闈跺悜鑽墿绠＄嚎绋冲畾鎺ㄨ繘锛宲elacarsen(璇哄崕鍚堜綔)鎸佺画鎺ㄨ繘涓?/div>
+            <div class="news-impact impact-flat">鈴?<strong>鑲′环褰卞搷锛?/strong>涓€р啋 鈥?鏃犻噸澶ф秷鎭偓鍖栵紝鎶€鏈潰鍋忓急闇囪崱</div>
+            <div class="news-source">馃敆 澶氬缁煎悎 <a href="https://ir.ionis.com/investor-news/press-releases" target="_blank" rel="noopener noreferrer">鏌ョ湅鍘熸枃</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>浜屻€佹妧鏈潰鍒嗘瀽</h3>
+            <table class="tech-table">
+                <tr><td>鍧囩嚎绯荤粺</td><td>鍧囩嚎绮樺悎闇囪崱锛歁A5($74.31)&lt;MA10($75.02)鈮圡A20($75.12)&lt;MA60($74.46)锛屼环鏍煎湪MA60闄勮繎鎸ｆ墡</td></tr>
+                <tr><td>MACD</td><td>MACD姝诲弶鐘舵€侊細DIF=-0.211锛孌EA=-0.04锛屾煴绾?-0.343锛孌IF浠嶅湪DEA涓嬫柟浣嗘煴绾挎湁鎵€鏀剁缉</td></tr>
+                <tr><td>KDJ</td><td>KDJ涓€у亸寮憋細K=38.51锛孌=41.47锛孞=32.60锛孠/D鍦?0闄勮繎闇囪崱</td></tr>
+                <tr><td>閲忎环鍏崇郴</td><td>6鏈?鏃?57涓囪偂锛?鏃ュ潎閲忕害163涓囷紝閲忚兘骞崇ǔ</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">馃敶 鍘嬪姏浣嶏細楼$75.80锛?鏈?鏃ラ珮鐐?MA10锛?/span>
+                <span class="support">馃煝 鏀拺浣嶏細楼$73.50锛?鏈?鏃ヤ綆鐐?甯冩灄涓嬭建锛?/span>
+            </div>
+            <div class="recommendation recommend-hold">
+                缁煎悎鎿嶄綔寤鸿锛氣瑴 鎸佹湁 鈥?鎶€鏈潰涓€у亸寮?鏃犲偓鍖栵紝浣唒elacarsen闀挎湡閫昏緫瀛樺湪锛屾寔鏈夌瓑鍌寲鍓?
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>馃搳 Alnylam Pharmaceuticals锛圓LNY锛?/h2>
+                <span class="market-tag">NASDAQ</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">褰撳墠浠凤細楼$297.69</span>
+                <span class="change change-up">+1.89%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>涓€銆佷粖鏃ヨ祫璁?/h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>馃搶</strong> 6鏈?鏃?297.69(+1.89%)鍙嶅脊锛屾湰鍛?1.96%銆侶.C. Wainwright缁存寔涔板叆璇勭骇鐩爣$510銆俀1棣栫泩鍚庡競鍦哄叧娉ㄤ笅鍗婂勾Amvuttra(vutrisiran)閿€鍞闀?/div>
+            <div class="news-impact impact-up">馃敽 <strong>鑲′环褰卞搷锛?/strong>姝ｅ悜鈻?鈥?鍒嗘瀽甯堢淮鎸佷拱鍏?Q1棣栫泩鍚庡熀鏈潰鍚戝ソ+鎶€鏈潰鏌辩嚎杞</div>
+            <div class="news-source">馃敆 H.C. Wainwright/TipRanks <a href="https://investors.alnylam.com/press-releases" target="_blank" rel="noopener noreferrer">鏌ョ湅鍘熸枃</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>浜屻€佹妧鏈潰鍒嗘瀽</h3>
+            <table class="tech-table">
+                <tr><td>鍧囩嚎绯荤粺</td><td>MA5($297.8)鈮圡A10($297.4)&lt;MA20($295.5)&lt;MA60($307.9)锛屼环鏍煎湪鐭湡鍧囩嚎闄勮繎MA60鏈夊帇鍒?/td></tr>
+                <tr><td>MACD</td><td>MACD鏌辩嚎杞锛欴IF=-1.778锛孌EA=-2.716锛屾煴绾?1.875锛屾煴绾胯繛缁?鏃ヨ浆姝ｉ€艰繎閲戝弶</td></tr>
+                <tr><td>KDJ</td><td>KDJ涓€э細K=52.18锛孌=54.35锛孞=47.84锛孠/D鍦?0闄勮繎绮樺悎</td></tr>
+                <tr><td>閲忎环鍏崇郴</td><td>6鏈?鏃?26涓囪偂锛岀缉閲忓弽寮逛絾鏌辩嚎杞淇″彿绉瀬</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">馃敶 鍘嬪姏浣嶏細楼$308.00锛圡A60鍘嬪埗锛?/span>
+                <span class="support">馃煝 鏀拺浣嶏細楼$292.00锛?鏈?鏃ヤ綆鐐?MA20闄勮繎锛?/span>
+            </div>
+            <div class="recommendation recommend-add">
+                缁煎悎鎿嶄綔寤鸿锛氿煙?澧炰粨 鈥?鏌辩嚎杞閫艰繎閲戝弶+鏈烘瀯涔板叆璇勭骇+Q1棣栫泩鎷愮偣+MA60涓€鏃︾獊鐮寸┖闂村ぇ
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>馃搳 AC Immune锛圓CIU锛?/h2>
+                <span class="market-tag">NASDAQ</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">褰撳墠浠凤細楼$2.26</span>
+                <span class="change change-up">+3.20%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>涓€銆佷粖鏃ヨ祫璁?/h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>馃搶</strong> 6鏈?鏃?2.26(+3.20%)鍙嶅脊锛屾湰鍛?5.83%缁х画涓嬫帰銆侫D璇婃柇/鐤嫍骞冲彴鍏徃锛岃繎鏈熸棤閲嶅ぇ绠＄嚎杩涘睍鏇存柊</div>
+            <div class="news-impact impact-flat">鈴?<strong>鑲′环褰卞搷锛?/strong>涓€р啋 鈥?瓒呰穼鍙嶅脊浣嗘棤瀹炶川鍌寲锛岃祫閲戦潰鎸佺画鐤插急</div>
+            <div class="news-source">馃敆 澶氬缁煎悎 <a href="https://ir.acimmune.com/news" target="_blank" rel="noopener noreferrer">鏌ョ湅鍘熸枃</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>浜屻€佹妧鏈潰鍒嗘瀽</h3>
+            <table class="tech-table">
+                <tr><td>鍧囩嚎绯荤粺</td><td>绌哄ご鎺掑垪锛歁A5($2.30)&lt;MA10($2.47)&lt;MA20($2.65)&lt;MA60($2.87)锛屼环鏍间綆浜庢墍鏈夊潎绾?/td></tr>
+                <tr><td>MACD</td><td>MACD姝诲弶鐘舵€侊細DIF=-0.173锛孌EA=-0.120锛屾煴绾?-0.107锛岀┖澶存寔缁絾鏌辩嚎鏀剁缉</td></tr>
+                <tr><td>KDJ</td><td>KDJ鏋佸害瓒呭崠锛欿=11.28锛孌=13.05锛孞=7.74锛孠/D/J鍏ㄩ儴浣庝綅锛屾瀬搴﹁秴鍗?/td></tr>
+                <tr><td>閲忎环鍏崇郴</td><td>6鏈?鏃?7.6涓囪偂锛屽弽寮规斁閲忎絾鏁翠綋浠嶅亸寮?/td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">馃敶 鍘嬪姏浣嶏細楼$2.30锛圡A5鍘嬪埗锛?/span>
+                <span class="support">馃煝 鏀拺浣嶏細楼$2.10锛?鏈?鏃ヤ綆鐐癸級</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                缁煎悎鎿嶄綔寤鸿锛氣瑴 鎸佹湁 鈥?鏋佸害瓒呭崠+鎺㈠簳灏忓弽寮癸紝浣嗘棤鍌寲鍓傦紝灏忎粨鎸佹湁绛変紒绋充俊鍙?
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>馃搳 鑽槑鐢熺墿锛?2269锛?/h2>
+                <span class="market-tag">HKEX</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">褰撳墠浠凤細楼HK$29.94</span>
+                <span class="change change-down">-1.45%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>涓€銆佷粖鏃ヨ祫璁?/h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>馃搶</strong> 6鏈?鏃ユ枼璧?487.6涓囨腐鍏冨洖璐?52.2涓囪偂锛?鏈?鏃ユ枼璧?浜挎腐鍏冨洖璐?53.7涓囪偂锛岃繛缁洖璐淮鎶よ偂浠枫€?鏈?鏃ユ巿鍑?8.84涓囪偂鍙楅檺鍒惰偂浠姐€傛湰鍛ㄧ疮璁?7.65%</div>
+            <div class="news-impact impact-up">馃敽 <strong>鑲′环褰卞搷锛?/strong>姝ｅ悜鈻?鈥?杩炵画澶ч鍥炶喘褰版樉淇″績+鑲℃潈婵€鍔遍攣瀹氫汉鎵嶏紝璧勯噾闈㈢Н鏋佷俊鍙?/div>
+            <div class="news-source">馃敆 鏅洪€氳储缁?鏂版氮娓偂 <a href="https://c.m.163.com/news/a/KV1328F70519QIKK.html" target="_blank" rel="noopener noreferrer">鏌ョ湅鍘熸枃</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>浜屻€佹妧鏈潰鍒嗘瀽</h3>
+            <table class="tech-table">
+                <tr><td>鍧囩嚎绯荤粺</td><td>绌哄ご鎺掑垪锛歁A5(HK$31.63)&lt;MA10(32.73)&lt;MA20(33.01)&lt;MA60(33.89)锛屼环鏍艰繙浣庝簬鎵€鏈夊潎绾?/td></tr>
+                <tr><td>MACD</td><td>MACD姝诲弶鎵╁紶锛欴IF=-0.658锛孌EA=-0.365锛屾煴绾?-0.586锛岀┖澶村姞閫?/td></tr>
+                <tr><td>KDJ</td><td>KDJ鏋佺瓒呭崠锛欿=22.24锛孌=31.67锛孞=3.38锛孞鍊兼瀬搴﹀帇缂╋紝瓒呭崠涓ラ噸</td></tr>
+                <tr><td>閲忎环鍏崇郴</td><td>6鏈?鏃?318涓囪偂锛屾斁閲忎笅璺屼絾鍥炶喘瀵瑰啿锛?鏃ュ潎閲忕害4337涓?/td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">馃敶 鍘嬪姏浣嶏細楼HK$31.50锛圡A5闄勮繎锛?/span>
+                <span class="support">馃煝 鏀拺浣嶏細楼HK$28.50锛?鏈?鏃ヤ綆鐐癸級</span>
+            </div>
+            <div class="recommendation recommend-add">
+                缁煎悎鎿嶄綔寤鸿锛氿煙?澧炰粨 鈥?杩炵画鍥炶喘鐪熼噾鐧介摱+BD绠＄嚎鎺ㄨ繘+KDJ鏋佸害瓒呭崠鏈夋妧鏈弽寮瑰熀纭€锛屽缓璁浠?
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>馃搳 鑽ｆ槍鐢熺墿锛?88331锛?/h2>
+                <span class="market-tag">SHSE</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">褰撳墠浠凤細楼楼101.50(6/5)</span>
+                <span class="change change-down">-0.87%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>涓€銆佷粖鏃ヨ祫璁?/h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>馃搶</strong> 娉板畠瑗挎櫘(RC18)娌荤枟骞茬嚗缁煎悎寰佹柊閫傚簲鐥囪幏NMPA鎵瑰噯(6鏈?鏃ュ叕鍛?锛屼负鍥藉唴棣栦釜鑾锋壒璇ラ€傚簲鐥囩殑鐢熺墿鍒跺墏銆?鏈?鏃ヨ瀺璧勪拱鍏?292涓囧厓锛岃瀺璧勪綑棰?0.7浜?&gt;90%鍒嗕綅)銆傛湰鍛?鑷?鏈?鏃?绱璺?2.52%锛?鏈?鏃ユ敹101.5鍏?/div>
+            <div class="news-impact impact-up">馃敽 <strong>鑲′环褰卞搷锛?/strong>姝ｅ悜鈻?鈥?鏂伴€傚簲鐥囪幏鎵规墦寮€绾?00涓囨偅鑰呭競鍦?楂樿瀺璧勪綑棰濇樉绀烘満鏋勪俊蹇冿紝姝ｉ潰鍌寲鏄庢樉</div>
+            <div class="news-source">馃敆 鍏徃鍏憡/鍚岃姳椤?<a href="https://newstock.cfi.cn/p20260608002171.html" target="_blank" rel="noopener noreferrer">鏌ョ湅鍘熸枃</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>浜屻€佹妧鏈潰鍒嗘瀽</h3>
+            <table class="tech-table">
+                <tr><td>鍧囩嚎绯荤粺</td><td>绌哄ご鎺掑垪(鍙傝€冩腐鑲?9995)锛歁A5(HK$70.84)&lt;MA10(75.32)&lt;MA20(81.56)&lt;MA60(94.90)锛孉鑲′及鍊煎彈娓偂鎷栫疮</td></tr>
+                <tr><td>MACD</td><td>MACD姝诲弶鎵╁紶(娓偂鍙傝€?锛欴IF=-7.25锛孌EA=-6.21锛屾煴绾?-2.09锛屽揩閫熸帰搴曚腑</td></tr>
+                <tr><td>KDJ</td><td>KDJ瓒呭崠(娓偂鍙傝€?锛欿=10.72锛孌=10.98锛孞=10.20锛屼笁绾跨矘鍚堜綆浣嶈秴鍗?/td></tr>
+                <tr><td>閲忎环鍏崇郴</td><td>6鏈?鏃ユ敹101.5鍏冿紝AH婧环-41.57%(A鐩稿H澶у箙鎶樹环)锛岃瀺璧勪綑棰濈淮鎸侀珮浣?/td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">馃敶 鍘嬪姏浣嶏細楼楼115.00锛堝墠鏈熷钩鍙帮級</span>
+                <span class="support">馃煝 鏀拺浣嶏細楼楼95.00锛?鏈堝垵浣庣偣鍖哄煙锛?/span>
+            </div>
+            <div class="recommendation recommend-add">
+                缁煎悎鎿嶄綔寤鸿锛氿煙?澧炰粨 鈥?鏂伴€傚簲鐥囪幏鎵规槸澶у偓鍖?铻嶈祫浣欓楂樹綅+KDJ瓒呭崠锛屽埄濂藉湪鎯呯华浣庣偣鍏戠幇锛屽缓璁浠?
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>馃搳 鍗撹儨寰紙300782锛?/h2>
+                <span class="market-tag">SZSE</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">褰撳墠浠凤細楼楼99.00</span>
+                <span class="change change-up">+5.47%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>涓€銆佷粖鏃ヨ祫璁?/h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>馃搶</strong> 6鏈?鏃ユ姤鏀堵?9.00(+5.47%)寮哄姏鍙嶅脊锛屽墠鏃?鏈?鏃ユ浘鏆磋穼-10.40%銆?G璇曠偣鍔犻€熷埄濂藉皠棰戣姱鐗囦骇涓氶摼銆備富鍔涘噣娴佸嚭3813涓囦絾鏁ｆ埛鍑€娴佸叆3814涓囥€?鏈?鏃ユ姭闇茶偂涓滀汉鏁?1577鎴?/div>
+            <div class="news-impact impact-up">馃敽 <strong>鑲′环褰卞搷锛?/strong>姝ｅ悜鈻?鈥?瓒呰穼鍙嶅脊+6G鏀跨瓥鍌寲+璺屽仠鍚庢斁閲忓洖鍗囦俊鍙风Н鏋?/div>
+            <div class="news-source">馃敆 鍚岃姳椤?鍏徃鍏憡 <a href="https://stockpage.10jqka.com.cn/300782/news/" target="_blank" rel="noopener noreferrer">鏌ョ湅鍘熸枃</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>浜屻€佹妧鏈潰鍒嗘瀽</h3>
+            <table class="tech-table">
+                <tr><td>鍧囩嚎绯荤粺</td><td>绌哄ご鎺掑垪锛歁A5(楼101.41)&lt;MA10(105.09)&lt;MA20(116.51)&lt;MA60(102.31)锛屼环鏍?lt;MA5/10/20浣嗘帴杩慚A60</td></tr>
+                <tr><td>MACD</td><td>MACD姝诲弶鎵╁紶锛欴IF=-2.779锛孌EA=0.354锛屾煴绾?-6.267锛岀┖澶村姩鑳藉法澶?/td></tr>
+                <tr><td>KDJ</td><td>KDJ瓒呭崠锛欿=14.59锛孌=14.88锛孞=14.02锛屼笁绾夸綆浣嶇矘鍚堬紝鏋佸害瓒呭崠</td></tr>
+                <tr><td>閲忎环鍏崇郴</td><td>6鏈?鏃?403涓囪偂锛屾斁閲忓弽寮?5.47%锛岄噺浠烽厤鍚堢Н鏋侊紝璺屽仠鍚庨鏃ユ斁閲忓洖鍗?/td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">馃敶 鍘嬪姏浣嶏細楼楼108.00锛?鏈?鏃ラ珮鐐归檮杩戯級</span>
+                <span class="support">馃煝 鏀拺浣嶏細楼楼93.00锛?鏈?鏃ヤ綆鐐癸級</span>
+            </div>
+            <div class="recommendation recommend-add">
+                缁煎悎鎿嶄綔寤鸿锛氿煙?澧炰粨 鈥?瓒呰穼鍚庢斁閲忓弽寮?6G鏀跨瓥鍌寲+KDJ鏋佸害瓒呭崠+灏勯鑺墖榫欏ご鍦颁綅锛屽乏渚у浠撴満浼?
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>馃搳 鏈夌爺鏂版潗锛?00206锛?/h2>
+                <span class="market-tag">SHSE</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">褰撳墠浠凤細楼楼29.31</span>
+                <span class="change change-up">+6.00%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>涓€銆佷粖鏃ヨ祫璁?/h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>馃搶</strong> 6鏈?鏃ュ垎绾㈤櫎鏉?寮哄娍澶ф定楼29.31(+6.00%)銆傛瘡10鑲℃淳0.96鍏?闄ゆ潈鏃?鏈?鏃ワ紝鐧昏鏃?鏈?鏃?銆備富鍔涘噣娴佸叆1.21浜垮厓銆傝秴澶у崟鍑€娴佸叆7952涓囧厓鏄剧ず鏈烘瀯澧炰粨鏄庢樉</div>
+            <div class="news-impact impact-up">馃敽 <strong>鑲′环褰卞搷锛?/strong>姝ｅ悜鈻?鈥?闄ゆ潈鏃ユ斁閲忓ぇ娑?涓诲姏澶у箙鍑€娴佸叆+楂樻崲鎵嬬巼(6.88%)鏄剧ず璧勯噾杩芥崸</div>
+            <div class="news-source">馃敆 鍏徃鍏憡/涓滄柟璐㈠瘜 <a href="https://guba.sina.com.cn/?s=thread&amp;tid=235993&amp;bid=1128" target="_blank" rel="noopener noreferrer">鏌ョ湅鍘熸枃</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>浜屻€佹妧鏈潰鍒嗘瀽</h3>
+            <table class="tech-table">
+                <tr><td>鍧囩嚎绯荤粺</td><td>鐭湡鍋忓锛歁A5(楼28.90)鈮圡A10(28.67)&lt;MA20(29.49)&lt;MA60(25.46)锛屼环鏍?gt;MA5/10/20</td></tr>
+                <tr><td>MACD</td><td>MACD鏌辩嚎鏀剁缉锛欴IF=0.389锛孌EA=0.698锛屾煴绾?-0.618锛孌IF&lt;DEA浣嗘煴绾挎敹绐?/td></tr>
+                <tr><td>KDJ</td><td>KDJ涓€у亸澶氾細K=41.70锛孌=37.03锛孞=51.04锛孠涓婄┛D鍒濈幇閲戝弶闆忓舰</td></tr>
+                <tr><td>閲忎环鍏崇郴</td><td>6鏈?鏃?828涓囪偂锛岄櫎鏉冩棩鏀鹃噺澶ф定锛岄噺浠烽厤鍚堟瀬濂斤紝5鏃ュ潎閲忕害5900涓?/td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">馃敶 鍘嬪姏浣嶏細楼楼30.26锛?鏈?鏃ラ珮鐐癸級</span>
+                <span class="support">馃煝 鏀拺浣嶏細楼楼27.55锛?鏈?鏃ユ敹鐩?MA20闄勮繎锛?/span>
+            </div>
+            <div class="recommendation recommend-add">
+                缁煎悎鎿嶄綔寤鸿锛氿煙?澧炰粨 鈥?闄ゆ潈鏃ュ己鍔垮～鏉?涓诲姏澶ч鍑€娴佸叆+閿楅敪/鑺墖鏉愭枡鍙屾蹇?鎶€鏈潰杞锛屽己鐑堝缓璁浠?
+            </div>
+        </div>
+    </section>
+  <div class="footer">鏈姤鍛婄敱 AI 鐢熸垚锛屼粎渚涘弬鑰冿紝璇蜂粩缁嗙攧鍒紝璋ㄦ厧鎶曡祫銆?/div>
+</div>
+</body>
+</html>
