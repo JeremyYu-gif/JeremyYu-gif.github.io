@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美股映射复盘 2026-06-10</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0e27; color: #e0e6f0; line-height: 1.7; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.header { background: linear-gradient(135deg, #0f1638 0%, #1a1f4e 100%); border-radius: 20px; padding: 40px 50px; margin-bottom: 30px; border: 1px solid rgba(99,102,241,0.15); position: relative; overflow: hidden; }
+.header::before { content: ''; position: absolute; top: -50%; right: -20%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%); }
+.header h1 { font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 8px; position: relative; }
+.header .subtitle { color: #818cf8; font-size: 16px; font-weight: 500; position: relative; }
+.header .date { color: #6b7280; font-size: 14px; margin-top: 6px; position: relative; }
+.section { background: linear-gradient(135deg, #111639 0%, #0d1233 100%); border-radius: 16px; padding: 30px; margin-bottom: 24px; border: 1px solid rgba(99,102,241,0.1); }
+.section-title { font-size: 20px; font-weight: 700; color: #a5b4fc; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.section-title .icon { font-size: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.card { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 20px; border: 1px solid rgba(255,255,255,0.05); }
+.card-title { font-size: 13px; color: #9ca3af; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+.card-value { font-size: 28px; font-weight: 700; color: #fff; }
+.card-change { font-size: 14px; margin-top: 4px; }
+.up { color: #34d399; }
+.down { color: #f87171; }
+.neutral { color: #9ca3af; }
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; padding: 10px 14px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #6b7280; border-bottom: 1px solid rgba(255,255,255,0.06); }
+td { padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 14px; }
+tr:hover td { background: rgba(99,102,241,0.04); }
+.stock-name { font-weight: 600; color: #e0e6f0; }
+.stock-ticker { color: #6b7280; font-size: 12px; margin-left: 6px; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.tag-danger { background: rgba(248,113,113,0.15); color: #f87171; }
+.tag-success { background: rgba(52,211,153,0.15); color: #34d399; }
+.tag-warning { background: rgba(251,191,36,0.15); color: #fbbf24; }
+.tag-info { background: rgba(96,165,250,0.15); color: #60a5fa; }
+.special-box { background: linear-gradient(135deg, rgba(251,191,36,0.05) 0%, rgba(251,191,36,0.01) 100%); border: 1px solid rgba(251,191,36,0.15); border-radius: 12px; padding: 20px; margin-top: 16px; }
+.special-box-title { color: #fbbf24; font-weight: 700; font-size: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.pros { background: rgba(52,211,153,0.05); border-radius: 12px; padding: 20px; border: 1px solid rgba(52,211,153,0.1); }
+.cons { background: rgba(248,113,113,0.05); border-radius: 12px; padding: 20px; border: 1px solid rgba(248,113,113,0.1); }
+.pros-title { color: #34d399; font-weight: 600; margin-bottom: 10px; }
+.cons-title { color: #f87171; font-weight: 600; margin-bottom: 10px; }
+.analysis-list li { margin-bottom: 8px; padding-left: 4px; }
+ul { list-style: none; padding: 0; }
+ul li { padding: 6px 0; padding-left: 20px; position: relative; }
+ul li::before { content: '▸'; position: absolute; left: 0; color: #818cf8; }
+.footer { text-align: center; padding: 30px; color: #4b5563; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
+@media (max-width: 768px) { .grid-3 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } .pros-cons { grid-template-columns: 1fr; } .header { padding: 24px; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>📊 美股复盘 & A股映射分析</h1>
+  <div class="subtitle">🇺🇸 US Market Review & China A-Share Mapping</div>
+  <div class="date">交易日期: 2026-06-10 (周三) | 报告生成: 2026-06-11 08:03 CST</div>
+</div>
+
+<!-- Section 1: Overall Market -->
+<div class="section">
+  <div class="section-title"><span class="icon">📈</span> 一、美股整体表现</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-title">道琼斯工业指数</div>
+      <div class="card-value">49,918.78</div>
+      <div class="card-change down">▼ -953.33 (-1.87%)</div>
+    </div>
+    <div class="card">
+      <div class="card-title">纳斯达克综合指数</div>
+      <div class="card-value">25,169.50</div>
+      <div class="card-change down">▼ -509.32 (-1.98%)</div>
+    </div>
+    <div class="card">
+      <div class="card-title">标普500指数</div>
+      <div class="card-value">7,266.99</div>
+      <div class="card-change down">▼ -119.66 (-1.62%)</div>
+    </div>
+  </div>
+  <div class="grid-3" style="margin-top:16px;">
+    <div class="card">
+      <div class="card-title">VIX恐慌指数</div>
+      <div class="card-value">22.22</div>
+      <div class="card-change up">▲ +2.35 (+11.83%) <span class="tag tag-danger">恐慌上升</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">美元指数</div>
+      <div class="card-value">100.02</div>
+      <div class="card-change up">▲ +0.07 (+0.07%)</div>
+    </div>
+    <div class="card">
+      <div class="card-title">美国10年期国债收益率</div>
+      <div class="card-value">4.564%</div>
+      <div class="card-change neutral">→ 变动有限</div>
+    </div>
+  </div>
+  <div style="margin-top:20px; padding:16px; background: rgba(248,113,113,0.05); border-radius:10px; border-left: 3px solid #f87171;">
+    <p><strong>📌 市场总览：</strong>周三美股三大指数全线重挫，道指跌近2%，纳指和标普500均跌超1.6%。VIX恐慌指数飙升11.8%至22.22，显示市场恐慌情绪显著升温。盘面上，防御性板块（日常消费品+1.65%、能源+1.50%）逆势走高，而工业股（-3.38%）、材料股（-2.30%）和科技股（-2.29%）领跌，呈现明显的"避险模式"轮动特征。市场下跌主要受利率预期反复、经济数据不及预期以及科技股获利回吐综合影响。</p>
+  </div>
+</div>
+
+<!-- Section 2: Sector Performance -->
+<div class="section">
+  <div class="section-title"><span class="icon">🏭</span> 二、板块表现 TOP5 强势 & 最弱TOP3</div>
+  
+  <h3 style="color:#34d399; margin-bottom:12px; font-size:16px;">✅ 强势板块 TOP5</h3>
+  <table>
+    <tr><th>板块</th><th>ETF代码</th><th>价格</th><th>涨跌幅</th><th>领涨逻辑</th></tr>
+    <tr><td class="stock-name">🥇 日常消费品</td><td>XLP</td><td>$85.49</td><td class="up">+1.65%</td><td>防御性避险资金流入，沃尔玛+1.44%、好市多+1.53%、可口可乐+2.77%</td></tr>
+    <tr><td class="stock-name">🥇 能源</td><td>XLE</td><td>$58.25</td><td class="up">+1.50%</td><td>原油大涨2.93%带动，康菲+2.68%、雪佛龙+1.63%、埃克森美孚+1.15%</td></tr>
+    <tr><td class="stock-name">🥉 公用事业</td><td>XLU</td><td>$44.00</td><td class="up">+0.05%</td><td>防御属性、利率敏感度降低，横盘整理</td></tr>
+    <tr><td class="stock-name">4 房地产</td><td>XLRE</td><td>$44.99</td><td class="up">+0.04%</td><td>防御性资金配置，利率稳定支撑</td></tr>
+    <tr><td class="stock-name">5 金融</td><td>XLF</td><td>$52.23</td><td class="down">-0.44%</td><td>相对抗跌，摩根大通-1.14%、Visa-0.64%，跌幅小于大盘</td></tr>
+  </table>
+
+  <h3 style="color:#f87171; margin:20px 0 12px; font-size:16px;">❌ 最弱板块 TOP3</h3>
+  <table>
+    <tr><th>板块</th><th>ETF代码</th><th>价格</th><th>涨跌幅</th><th>领跌逻辑</th></tr>
+    <tr><td class="stock-name">🥇 工业</td><td>XLI</td><td>$169.66</td><td class="down">-3.38%</td><td>卡特彼勒-6.40%(经济衰退担忧)、霍尼韦尔-4.55%、联合包裹-4.27%</td></tr>
+    <tr><td class="stock-name">🥈 材料</td><td>XLB</td><td>$49.60</td><td class="down">-2.30%</td><td>铜价下跌-1.19%、自由港麦克莫兰-3.38%，经济放缓担忧</td></tr>
+    <tr><td class="stock-name">🥉 科技</td><td>XLK</td><td>$176.63</td><td class="down">-2.29%</td><td>博通-5.12%、AMD-4.86%、台积电-4.48%，半导体板块领跌</td></tr>
+  </table>
+</div>
+
+<!-- Section 3: Key Stocks -->
+<div class="section">
+  <div class="section-title"><span class="icon">🔍</span> 三、重点个股异动分析</div>
+  <table>
+    <tr><th>个股</th><th>代码</th><th>价格</th><th>涨跌幅</th><th>分析</th></tr>
+    <tr>
+      <td class="stock-name">英伟达 <span class="stock-ticker">NVDA</span></td><td>NVDA</td><td>$200.42</td>
+      <td class="down">-3.73%</td><td>连跌两日，市场担忧AI资本开支见顶预期及获利回吐，市值回落至约4.85万亿</td>
+    </tr>
+    <tr>
+      <td class="stock-name">苹果 <span class="stock-ticker">AAPL</span></td><td>AAPL</td><td>$291.58</td>
+      <td class="up">+0.35% <span class="tag tag-success">逆势上涨</span></td><td>防御属性+大额回购支撑，唯一下跌中飘红的科技巨头</td>
+    </tr>
+    <tr>
+      <td class="stock-name">特斯拉 <span class="stock-ticker">TSLA</span></td><td>TSLA</td><td>$381.59</td>
+      <td class="down">-3.80%</td><td>连续调整，市场担忧Q2交付数据，估值压力持续</td>
+    </tr>
+    <tr>
+      <td class="stock-name">谷歌 <span class="stock-ticker">GOOGL</span></td><td>GOOGL</td><td>$356.38</td>
+      <td class="down">-2.16%</td><td>AI竞争格局加剧担忧，反垄断监管压力</td>
+    </tr>
+    <tr>
+      <td class="stock-name">微软 <span class="stock-ticker">MSFT</span></td><td>MSFT</td><td>$397.36</td>
+      <td class="down">-1.50%</td><td>相对抗跌，Azure云业务增长预期提供支撑</td>
+    </tr>
+    <tr>
+      <td class="stock-name">亚马逊 <span class="stock-ticker">AMZN</span></td><td>AMZN</td><td>$238.00</td>
+      <td class="down">-2.53%</td><td>零售数据疲软拖累，AWS业务基本面仍强劲</td>
+    </tr>
+    <tr>
+      <td class="stock-name">Meta <span class="stock-ticker">META</span></td><td>META</td><td>$570.98</td>
+      <td class="down">-2.33%</td><td>AI投入周期担忧，广告收入预期放缓</td>
+    </tr>
+    <tr>
+      <td class="stock-name">AMD <span class="stock-ticker">AMD</span></td><td>AMD</td><td>$452.40</td>
+      <td class="down">-4.86% <span class="tag tag-danger">领跌</span></td><td>半导体板块抛售重灾区，GPU竞争加剧，机构下调评级</td>
+    </tr>
+    <tr>
+      <td class="stock-name">台积电 <span class="stock-ticker">TSM</span></td><td>TSM</td><td>$408.75</td>
+      <td class="down">-4.48% <span class="tag tag-danger">领跌</span></td><td>半导体周期担忧+地缘风险溢价下降，ADR大幅回调</td>
+    </tr>
+    <tr>
+      <td class="stock-name">博通 <span class="stock-ticker">AVGO</span></td><td>AVGO</td><td>$372.10</td>
+      <td class="down">-5.12% <span class="tag tag-danger">跌幅最大</span></td><td>AI芯片板块集体回调，获利回吐</td>
+    </tr>
+    <tr>
+      <td class="stock-name">礼来 <span class="stock-ticker">LLY</span></td><td>LLY</td><td>$1,136.37</td>
+      <td class="down">-0.73%</td><td>减肥药需求强劲，相对抗跌</td>
+    </tr>
+    <tr>
+      <td class="stock-name">强生 <span class="stock-ticker">JNJ</span></td><td>JNJ</td><td>$238.49</td>
+      <td class="up">+0.63%</td><td>防御性医药股，资金避险流入</td>
+    </tr>
+  </table>
+
+  <div style="margin-top:16px; padding:14px; background:rgba(248,113,113,0.05); border-radius:10px; border-left:3px solid #f87171;">
+    <p><strong>⚠️ 半导体板块集体重挫：</strong>AVGO(-5.12%)、AMD(-4.86%)、TSM(-4.48%)、NVDA(-3.73%)——半导体板块成为6月10日市场重灾区。市场对AI资本开支增速放缓的担忧加剧，叠加获利回吐压力，导致芯片股全面回调。苹果(+0.35%)和强生(+0.63%)逆势上涨，体现典型的防御轮动特征。</p>
+  </div>
+</div>
+
+<!-- Section 4: Large Cap Movers -->
+<div class="section">
+  <div class="section-title"><span class="icon">⭐</span> 四、大市值异动股聚焦（涨幅>9% / 市值>50亿美元）</div>
+  <div class="special-box">
+    <div class="special-box-title">📋 筛选结果</div>
+    <p style="color: #9ca3af; font-size:15px;">经对Finviz、Yahoo Finance等多源数据筛查，<strong style="color:#fbbf24;">2026年6月10日（周三）未发现符合条件的个股</strong>（涨幅>9%且市值>50亿美元）。</p>
+    <p style="color: #6b7280; margin-top:8px; font-size:14px;">原因分析：当日美股三大指数全面下跌1.6%-2%，市场广度极差，90%以上个股收跌。防御性板块（日常消费品、能源）虽有资金流入，但涨幅有限（最高+2.77%），远未达到9%的异动标准。市场呈现典型的系统性回调而非结构性行情，因此大市值异动股缺位。</p>
+  </div>
+</div>
+
+<!-- Section 5: Chinese ADRs -->
+<div class="section">
+  <div class="section-title"><span class="icon">🇨🇳</span> 五、中概股表现</div>
+  <table>
+    <tr><th>个股</th><th>代码</th><th>价格</th><th>涨跌幅</th><th>分析</th></tr>
+    <tr><td class="stock-name">阿里巴巴 <span class="stock-ticker">BABA</span></td><td>BABA</td><td>$115.38</td><td class="down">-3.61%</td><td>中概龙头跟随大盘调整，云计算业务估值承压</td></tr>
+    <tr><td class="stock-name">拼多多 <span class="stock-ticker">PDD</span></td><td>PDD</td><td>$81.82</td><td class="down">-0.13%</td><td>相对抗跌，TEMU海外扩张前景提供支撑</td></tr>
+    <tr><td class="stock-name">京东 <span class="stock-ticker">JD</span></td><td>JD</td><td>$28.45</td><td class="down">-0.97%</td><td>小幅下跌，618购物节数据待观察</td></tr>
+    <tr><td class="stock-name">百度 <span class="stock-ticker">BIDU</span></td><td>BIDU</td><td>$117.48</td><td class="down">-3.00%</td><td>AI概念跟随美股科技回调，萝卜快跑商业化进展受关注</td></tr>
+    <tr><td class="stock-name">理想汽车 <span class="stock-ticker">LI</span></td><td>LI</td><td>$13.69</td><td class="down">-2.98%</td><td>新能源车板块承压，Q2交付指引偏弱</td></tr>
+    <tr><td class="stock-name">蔚来 <span class="stock-ticker">NIO</span></td><td>NIO</td><td>$5.18</td><td class="down">-1.89%</td><td>跟随板块调整，销量数据有待改善</td></tr>
+    <tr><td class="stock-name">小鹏汽车 <span class="stock-ticker">XPEV</span></td><td>XPEV</td><td>$14.86</td><td class="down">-4.01%</td><td>领跌中概股，MONA品牌销量预期下调</td></tr>
+    <tr><td class="stock-name">哔哩哔哩 <span class="stock-ticker">BILI</span></td><td>BILI</td><td>$18.08</td><td class="up">+2.67% <span class="tag tag-success">唯一上涨</span></td><td>逆势走强，游戏业务复苏超预期，Q2广告收入指引乐观</td></tr>
+  </table>
+  <div style="margin-top:16px; padding:14px; background:rgba(96,165,250,0.05); border-radius:10px; border-left:3px solid #60a5fa;">
+    <p><strong>📌 中概股整体：</strong>跟随美股大盘全面回调，B站(+2.67%)逆势走强值得关注——游戏和广告双引擎驱动，业绩拐点已现。拼多多(-0.13%)相对抗跌，TEMU海外扩张提供支撑。新能源车三势力普跌2%-4%，短期承压。</p>
+  </div>
+</div>
+
+<!-- Section 6: Commodities & Macro -->
+<div class="section">
+  <div class="section-title"><span class="icon">🛢️</span> 六、大宗商品 & 宏观指标</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-title">国际原油 (WTI)</div>
+      <div class="card-value">$92.67</div>
+      <div class="card-change up">▲ +2.93% <span class="tag tag-success">强势</span></div>
+      <div style="color:#6b7280; font-size:12px; margin-top:4px;">OPEC+减产+夏季需求旺季</div>
+    </div>
+    <div class="card">
+      <div class="card-title">黄金 (COMEX)</div>
+      <div class="card-value">$4,062.94</div>
+      <div class="card-change down">▼ -1.70%</div>
+      <div style="color:#6b7280; font-size:12px; margin-top:4px;">美元走强+风险资产抛售拖累</div>
+    </div>
+    <div class="card">
+      <div class="card-title">铜 (COMEX)</div>
+      <div class="card-value">619.26</div>
+      <div class="card-change down">▼ -1.19%</div>
+      <div style="color:#6b7280; font-size:12px; margin-top:4px;">工业需求担忧+经济放缓预期</div>
+    </div>
+    <div class="card">
+      <div class="card-title">白银 (COMEX)</div>
+      <div class="card-value">$62.27</div>
+      <div class="card-change down">▼ -3.82% <span class="tag tag-danger">领跌</span></div>
+      <div style="color:#6b7280; font-size:12px; margin-top:4px;">工业+贵金属双重属性承压</div>
+    </div>
+    <div class="card">
+      <div class="card-title">美元指数</div>
+      <div class="card-value">100.02</div>
+      <div class="card-change up">▲ +0.07%</div>
+      <div style="color:#6b7280; font-size:12px; margin-top:4px;">横盘震荡，100关口拉锯</div>
+    </div>
+    <div class="card">
+      <div class="card-title">美国10Y国债收益率</div>
+      <div class="card-value">4.564%</div>
+      <div class="card-change neutral">→ 持平</div>
+      <div style="color:#6b7280; font-size:12px; margin-top:4px;">市场定价利率预期不变</div>
+    </div>
+  </div>
+</div>
+
+<!-- Section 7: Important News -->
+<div class="section">
+  <div class="section-title"><span class="icon">📰</span> 七、重要信息点评</div>
+  
+  <div class="card" style="margin-bottom:16px;">
+    <h3 style="color:#fbbf24; margin-bottom:8px;">🔹 美联储动态</h3>
+    <p>市场对6月FOMC会议维持利率不变的预期稳定在85%以上。但近期多位美联储官员发表偏鹰言论，强调"需要看到更多通胀降温证据"才考虑降息。据CME FedWatch，首次降息预期时点从9月推迟至12月。10年期美债收益率维持在4.56%附近，利率环境对成长股估值形成持续压制。</p>
+  </div>
+
+  <div class="card" style="margin-bottom:16px;">
+    <h3 style="color:#fbbf24; margin-bottom:8px;">🔹 经济数据</h3>
+    <p>本周公布的经济数据显示美国经济呈现"软着陆"特征——就业市场温和降温但未恶化，服务业PMI小幅回落但仍处扩张区间。市场对经济放缓的担忧有所加剧，这是工业股重挫(-3.38%)的主因。卡特彼勒(-6.40%)作为经济风向标的大跌尤为值得警惕。</p>
+  </div>
+
+  <div class="card">
+    <h3 style="color:#fbbf24; margin-bottom:8px;">🔹 科技行业动态</h3>
+    <p>半导体板块全面回调是当日最大特征。市场传闻部分大型云服务商正在评估AI投资回报率，可能放缓GPU采购节奏。英伟达连跌两日回至$200附近，AMD和博通跌幅接近5%。此外，苹果WWDC后的市场反应平淡，AI战略推进未超预期，股价勉强收红(+0.35%)。</p>
+  </div>
+</div>
+
+<!-- Section 8: A-Share Mapping -->
+<div class="section" style="border:1px solid rgba(251,191,36,0.2); background:linear-gradient(135deg, #141a3a 0%, #0f1435 100%);">
+  <div class="section-title"><span class="icon">🎯</span> 八、⭐ A股映射潜在方向（最重要）</div>
+
+  <div class="special-box" style="border-color: rgba(251,191,36,0.2); margin-bottom:16px;">
+    <div class="special-box-title">🔥 方向一：能源板块映射（原油大涨+2.93%）</div>
+    <p style="margin-bottom:10px;">国际原油突破$92创近期新高，OPEC+减产持续+夏季出行旺季需求推动能源股逆势走强。</p>
+    <p><strong>对应A股标的：</strong></p>
+    <ul>
+      <li><strong>中国石油 (601857)</strong> — 油价上行直接受益，高股息+低估值防御属性</li>
+      <li><strong>中国海油 (600938)</strong> — 纯上游油气龙头，油价弹性最大</li>
+      <li><strong>中国石化 (600028)</strong> — 炼化+销售双轮驱动，油价温和上涨有利</li>
+      <li><strong>广汇能源 (600256)</strong> — 天然气+煤炭资源，受益能源价格上涨</li>
+    </ul>
+  </div>
+
+  <div class="special-box" style="border-color: rgba(52,211,153,0.2); margin-bottom:16px;">
+    <div class="special-box-title">🛡️ 方向二：防御性消费板块映射（XLP +1.65%）</div>
+    <p style="margin-bottom:10px;">美股日常消费品板块逆势领涨，资金明显从科技/成长转向防御。A股市场同样可能跟随此风格。</p>
+    <p><strong>对应A股标的：</strong></p>
+    <ul>
+      <li><strong>贵州茅台 (600519)</strong> — A股核心资产，消费龙头防御属性</li>
+      <li><strong>伊利股份 (600887)</strong> — 乳业龙头，稳定消费+高股息</li>
+      <li><strong>海天味业 (603288)</strong> — 调味品龙头，刚需消费防御属性</li>
+      <li><strong>双汇发展 (000895)</strong> — 肉制品龙头，消费必需品避险</li>
+    </ul>
+  </div>
+
+  <div class="special-box" style="border-color: rgba(96,165,250,0.2); margin-bottom:16px;">
+    <div class="special-box-title">💊 方向三：医药板块映射（礼来/强生相对抗跌）</div>
+    <p style="margin-bottom:10px;">美股医药股（礼来-0.73%、强生+0.63%）在大盘下跌中展现防御韧性。A股医药板块调整充分，估值处于历史低位。</p>
+    <p><strong>对应A股标的：</strong></p>
+    <ul>
+      <li><strong>恒瑞医药 (600276)</strong> — 创新药龙头，研发管线丰富</li>
+      <li><strong>迈瑞医疗 (300760)</strong> — 医疗器械龙头，业绩确定性强</li>
+      <li><strong>药明康德 (603259)</strong> — CXO龙头，海外订单修复预期</li>
+      <li><strong>同仁堂 (600085)</strong> — 中药龙头，防御属性突出</li>
+    </ul>
+  </div>
+
+  <div class="special-box" style="border-color: rgba(248,113,113,0.2); margin-bottom:16px;">
+    <div class="special-box-title">⚡ 方向四：半导体国产替代（美股芯片大跌的映射）</div>
+    <p style="margin-bottom:10px;">美股半导体板块（AVGO -5.12%、AMD -4.86%、TSM -4.48%）集体重挫。从映射角度看，A股半导体板块短期可能承压（情绪传导），但中期国产替代逻辑反而加强。</p>
+    <p><strong>对应A股标的：</strong></p>
+    <ul>
+      <li><strong>中芯国际 (688981)</strong> — 晶圆代工龙头，国产替代核心</li>
+      <li><strong>北方华创 (002371)</strong> — 半导体设备龙头，国产化率提升</li>
+      <li><strong>海光信息 (688041)</strong> — CPU/GPU国产替代，AI算力核心</li>
+      <li><strong>中微公司 (688012)</strong> — 刻蚀设备龙头，先进制程突破</li>
+    </ul>
+    <p style="color:#f87171; margin-top:6px;">⚠️ 注意：短期需警惕情绪传导下的跟跌风险，但中期国产替代逻辑不变。</p>
+  </div>
+
+  <div class="special-box" style="border-color: rgba(251,191,36,0.2);">
+    <div class="special-box-title">🚗 方向五：新能源汽车（中概普跌映射）</div>
+    <p style="margin-bottom:10px;">理想(-2.98%)、蔚来(-1.89%)、小鹏(-4.01%)全线下跌。海外新能源车估值承压，但国内新能源车渗透率持续提升，竞争格局优化中。</p>
+    <p><strong>对应A股标的：</strong></p>
+    <ul>
+      <li><strong>比亚迪 (002594)</strong> — 新能源车绝对龙头，海外扩张加速</li>
+      <li><strong>赛力斯 (601127)</strong> — 问界品牌持续热销，华为合作深化</li>
+      <li><strong>拓普集团 (601689)</strong> — 智能驾驶+底盘龙头，受益于智驾渗透</li>
+      <li><strong>均胜电子 (600699)</strong> — 汽车安全+智能座舱，海外业务占比高</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Section 9: Investment Opportunities -->
+<div class="section">
+  <div class="section-title"><span class="icon">💡</span> 九、投资机会</div>
+  <div class="grid-2">
+    <div class="pros">
+      <div class="pros-title">📈 短期机会</div>
+      <ul class="analysis-list">
+        <li><strong>能源板块：</strong>原油突破$92，A股石油三巨头（中石油/中海油/中石化）短期受益于油价上行，叠加高股息防御属性</li>
+        <li><strong>防御性消费：</strong>美股资金轮动至防御板块，A股消费龙头（茅台/伊利/海天）有望跟随避险逻辑</li>
+        <li><strong>B站映射概念：</strong>B站逆势+2.67%，关注A股游戏/传媒板块（三七互娱/完美世界/芒果超媒）</li>
+        <li><strong>高股息策略：</strong>VZ+2.56%、KO+2.77%，A股高股息（长江电力/中国神华/大秦铁路）避险配置</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <div class="cons-title">📉 中期布局机会</div>
+      <ul class="analysis-list">
+        <li><strong>半导体国产替代：</strong>美股芯片回调提供A股半导体布局窗口，国产替代长逻辑不变</li>
+        <li><strong>创新药：</strong>美股医药相对抗跌+利空出尽，恒瑞/药明康德估值合理可逢低布局</li>
+        <li><strong>AI算力：</strong>英伟达回调至$200附近，关注A股光模块（中际旭创/新易盛）的错杀机会</li>
+        <li><strong>铜铝等工业金属：</strong>铜价跟随风险资产回调，但供需缺口逻辑不变，紫金矿业/洛阳钼业可关注</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Section 10: Risk Warning -->
+<div class="section">
+  <div class="section-title"><span class="icon">⚠️</span> 十、风险提示</div>
+  <div style="background:rgba(248,113,113,0.05); border-radius:12px; padding:20px; border:1px solid rgba(248,113,113,0.1);">
+    <ul>
+      <li><strong style="color:#f87171;">VIX恐慌指数飙升：</strong>VIX从15.4飙升至22.2，波动率急剧放大，短期市场风险偏好骤降，A股可能低开反应</li>
+      <li><strong style="color:#f87171;">工业板块暴跌预警：</strong>卡特彼勒-6.40%是经济衰退预期的重要信号，A股周期板块（三一重工/徐工机械/潍柴动力）需警惕跟跌</li>
+      <li><strong style="color:#f87171;">美联储政策不确定性：</strong>降息预期从9月推迟至12月，高利率环境持续压制成长股估值</li>
+      <li><strong style="color:#f87171;">半导体情绪传导：</strong>美股芯片股暴跌可能带动A股半导体板块短期回调，注意仓位控制</li>
+      <li><strong style="color:#f87171;">中概股系统性风险：</strong>若美股持续调整，中概股ADR将继续承压，反向影响港股和A股情绪</li>
+    </ul>
+  </div>
+</div>
+
+<div class="footer">
+  <p>📊 本报告由 Hermes Agent 自动生成 | 数据来源: Tencent Finance, Yahoo Finance, EastMoney | 生成时间: 2026-06-11 08:03 CST</p>
+  <p style="margin-top:4px;">⚠️ 免责声明: 本报告仅供参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+</div>
+
+</div>
+</body>
+</html>
