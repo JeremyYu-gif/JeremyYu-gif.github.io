@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOP-stock-daily- - 2026-06-15</title>
+<style>
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:#f3f5f9;margin:0;padding:24px;color:#1f2937}
+.page{max-width:1180px;margin:0 auto}
+.report-header{background:linear-gradient(135deg,#111827,#1f3a8a);color:#fff;padding:28px 32px;border-radius:18px;box-shadow:0 10px 30px rgba(15,23,42,.18);margin-bottom:22px}
+.report-header h1{margin:0;font-size:30px;font-weight:800}
+.subtitle{margin-top:10px;font-size:14px;opacity:.88}
+.meta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px;font-size:13px;opacity:.85}
+.meta-pill{background:rgba(255,255,255,.12);padding:6px 10px;border-radius:999px}
+.public-url-box{margin-top:18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);padding:12px 14px;border-radius:12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.public-url-label{font-weight:700}
+.public-url-box a{color:#fff;text-decoration:none;word-break:break-all}
+.stock-card{background:#fff;border-radius:18px;padding:24px;margin-bottom:18px;box-shadow:0 10px 28px rgba(15,23,42,.08)}
+.stock-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;border-bottom:1px solid #e5e7eb;padding-bottom:14px}
+.stock-title-wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.stock-title-wrap h2{margin:0;font-size:22px}
+.market-tag{font-size:12px;background:#eef2ff;color:#4338ca;border-radius:999px;padding:4px 10px;font-weight:700}
+.price-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.price{font-size:22px;font-weight:800;color:#111827}
+.change{padding:6px 12px;border-radius:999px;font-size:14px;font-weight:800}
+.change-up{background:#fee2e2;color:#b91c1c}
+.change-down{background:#dcfce7;color:#15803d}
+.change-flat{background:#e5e7eb;color:#4b5563}
+.section{margin-top:18px}
+.section h3{margin:0 0 12px;font-size:16px;color:#334155;border-left:4px solid #2563eb;padding-left:10px}
+.news-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.news-summary{font-size:14px;line-height:1.7;color:#0f172a;margin-bottom:8px}
+.news-impact{font-size:13px;line-height:1.6;margin-bottom:6px}
+.impact-up{color:#b91c1c}
+.impact-down{color:#15803d}
+.impact-flat{color:#475569}
+.news-source{font-size:13px;color:#64748b}
+.news-source a{color:#2563eb;text-decoration:none}
+.news-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.news-badge,.news-time{font-size:12px;padding:4px 8px;border-radius:999px;background:#e2e8f0;color:#334155}
+.no-news{color:#64748b;font-style:italic;padding:14px;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:12px}
+.tech-table{width:100%;border-collapse:collapse;background:#fff}
+.tech-table td{padding:10px 12px;border-bottom:1px solid #e5e7eb;font-size:14px;vertical-align:top}
+.tech-table td:first-child{width:132px;color:#475569;font-weight:700;background:#f8fafc}
+.levels{display:flex;flex-wrap:wrap;gap:16px;margin:14px 0 12px;font-size:14px}
+.resistance{color:#dc2626;font-weight:700}
+.support{color:#059669;font-weight:700}
+.recommendation{padding:14px 16px;border-radius:14px;font-size:14px;font-weight:800}
+.recommend-add{background:#dcfce7;color:#166534}
+.recommend-reduce{background:#fee2e2;color:#991b1b}
+.recommend-hold{background:#e5e7eb;color:#374151}
+/* SeekingAlpha 分析师分析样式 */
+.analyst-section{margin-top:18px}
+.analyst-section h3{margin:0 0 12px;font-size:16px;color:#334155;border-left:4px solid #f59e0b;padding-left:10px}
+.analyst-item{background:#fffbeb;border:1px solid #fde68a;border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.analyst-header{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;align-items:center}
+.analyst-name{font-weight:700;color:#92400e;font-size:14px}
+.analyst-rating{font-size:12px;padding:3px 8px;border-radius:999px;background:#d97706;color:#fff;font-weight:700}
+.analyst-target{font-size:12px;padding:3px 8px;border-radius:999px;background:#059669;color:#fff;font-weight:700}
+.analyst-summary{font-size:13px;line-height:1.6;color:#78350f}
+.analyst-source{font-size:12px;color:#92400e;margin-top:8px}
+.analyst-source a{color:#2563eb;text-decoration:none}
+.no-analyst{color:#92400e;font-style:italic;padding:14px;background:#fffbeb;border:1px dashed #fde68a;border-radius:12px}
+.footer{text-align:center;color:#94a3b8;font-size:12px;margin-top:26px;padding-top:18px;border-top:1px solid #e5e7eb}
+@media (max-width:768px){body{padding:14px}.report-header,.stock-card{padding:18px}.stock-header{flex-direction:column}.price-wrap{align-items:flex-start}.levels{flex-direction:column;gap:8px}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="report-header">
+    <h1>📈 TOP-stock-daily-</h1>
+    <div class="subtitle">分析身份：资深基金经理 + 行业研究员 + 资深散户</div>
+    <div class="meta-row">
+      <span class="meta-pill">报告日期：2026-06-15</span>
+      <span class="meta-pill">生成时间：2026-06-15 07:57:05</span>
+      <span class="meta-pill">输出格式：HTML</span>
+    </div>
+    
+  </header>
+  
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Vor Biopharma（VOR）</h2>
+                <span class="market-tag">NASDAQ</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥$14.36</span>
+                <span class="change change-up">+1.92%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 6/12收$14.36(+1.92%)，5日+9.12%超跌反弹，20日-4.71%/年初至今+9.79%。NeoData：MA5(13.60)&gt;MA10(13.72)&gt;价格&gt;MA20(14.23)&gt;MA60(14.86)，空头排列开始修复，MACD柱线-0.037，KDJ J=78.8短期偏强</div>
+            <div class="news-impact impact-flat">⏺ <strong>股价影响：</strong>中性→ — 超跌反弹+空头排列开始修复+KDJ J进入超买区，反弹持续性存疑</div>
+            <div class="news-source">🔗 StockAnalysis.com/NeoData <a href="https://stockanalysis.com/stocks/vor/" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>空头修复中：MA5(13.60)&gt;MA10(13.72)&lt;价格(14.36)&gt;MA20(14.23)&gt;MA60(14.86)，价格站上MA5/10但仍受MA20压制</td></tr>
+                <tr><td>MACD</td><td>MACD死叉收敛：DIF=-0.383，DEA=-0.365，柱线=-0.037，柱线负值收窄接近转正，空头动能减弱</td></tr>
+                <tr><td>KDJ</td><td>KDJ J=78.8：K=50.18，D=35.86，J=78.83，J线进入超买区，短线反弹动能积累但已现疲态</td></tr>
+                <tr><td>量价关系</td><td>6/12成交54.5万股(-25%)，5日均量约68万股，缩量反弹，参与度不够</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥$14.86（MA60+前低压力区）</span>
+                <span class="support">🟢 支撑位：¥$13.72（MA10短期支撑）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — 空头修复中但反弹缩量+KDJ J=78.8接近超买，MA60($14.86)是关键分水岭，未有效突破前保持观望，等VOR33管线数据催化
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Biogen（BIIB）</h2>
+                <span class="market-tag">NASDAQ</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥$200.05</span>
+                <span class="change change-up">+0.05%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 6/12收$200.05(+0.05%)，5日+2.41%/YTD+13.67%，创近2周新高。Leqembi皮下注射剂型BLA已获FDA接受并优先审评，PDUFA约2026H2。MACD柱线0.596持续扩张，KDJ多头排列</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — 皮下剂型获批后依从性+市场渗透率将显著提升，多头趋势已确立</div>
+            <div class="news-source">🔗 Biogen IR/StockAnalysis <a href="https://investors.biogen.com/news/news-releases" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>多头排列确立：MA5(197.19)&gt;MA10(195.48)&gt;MA20(194.18)&gt;MA60(188.18)，价格站上所有均线</td></tr>
+                <tr><td>MACD</td><td>MACD金叉扩张：DIF=2.18，DEA=1.882，柱线=0.596，连续3日柱线扩张，多头动能持续</td></tr>
+                <tr><td>KDJ</td><td>KDJ多头：K=79.13，D=68.79，J=99.79（推算），J值接近超买但K/D配合良好</td></tr>
+                <tr><td>量价关系</td><td>6/12成交83.7万股，5日均量约82万股，量价配合良好</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥$201.06（布林带上轨+前期高点）</span>
+                <span class="support">🟢 支撑位：¥$195.48（MA10支撑）</span>
+            </div>
+            <div class="recommendation recommend-add">
+                综合操作建议：🟩 增仓 — 多头排列+MACD金叉连续3日扩张+皮下剂型BLA优先审评，技术面与基本面共振，站稳$195加仓
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Summit Therapeutics（SMMT）</h2>
+                <span class="market-tag">NASDAQ</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥$14.01</span>
+                <span class="change change-up">+7.11%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 6/12大幅反弹$14.01(+7.11%)，但周内仍-5.15%，20日累计-22.77%。ASCO 2026 HARMONi-6 OS阳性数据后利好兑现+撤回5亿美元增发计划，持续承压。MACD死叉延续，KDJ J=35.1低位</div>
+            <div class="news-impact impact-down">🔻 <strong>股价影响：</strong>负向▼ — ASCO利好出尽+空头排列+大额增发撤回反映融资能力受损，估值锚定失效</div>
+            <div class="news-source">🔗 MarketBeat/ASCO/SEC <a href="https://www.marketbeat.com/stocks/NASDAQ/SMMT/news/" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>空头排列：MA5(13.71)&lt;MA10(14.38)&lt;MA20(15.69)&lt;MA60(18.23)，价格仅短暂突破MA5，远低于MA60</td></tr>
+                <tr><td>MACD</td><td>MACD死叉延续：DIF=-1.316，DEA=-1.136，柱线=-0.359，空头动能虽收敛但未转正</td></tr>
+                <tr><td>KDJ</td><td>KDJ超卖修复：K=24.53，D=19.26，J=35.07，J线从负值回升，反弹修复中</td></tr>
+                <tr><td>量价关系</td><td>6/12成交987万股(+6%)，放量反弹但买方主要为空头回补</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥$15.69（MA20强压力）</span>
+                <span class="support">🟢 支撑位：¥$13.00（6/10阶段低点）</span>
+            </div>
+            <div class="recommendation recommend-reduce">
+                综合操作建议：🟥 减仓 — 空头排列+ASCO利好兑现+增发撤回事件冲击，7.11%反弹属于空头回补+抄底盘，超跌反弹即减仓机会
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Vertex Pharmaceuticals（VRTX）</h2>
+                <span class="market-tag">NASDAQ</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥$444.93</span>
+                <span class="change change-down">-0.03%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 6/12收$444.93(-0.03%)，5日-0.43%/YTD-1.86%。Vanzacaftor三联疗法推进中，Q2管线更新会待开。MACD柱线1.609（连续3日扩张）显示多头动能强劲，但KDJ J=78.7接近超买</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — MACD金叉+柱线扩张+MA60(438.81)已确认支撑，技术面偏多</div>
+            <div class="news-source">🔗 Vertex IR/StockAnalysis <a href="https://news.vrtx.com/press-releases" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>多头排列：MA5(442.88)&gt;MA10(439.48)&gt;MA20(438.49)&gt;MA60(438.81)，价格站上所有均线</td></tr>
+                <tr><td>MACD</td><td>MACD金叉扩张：DIF=1.523，DEA=0.719，柱线=1.609，柱线持续扩张多头动能强</td></tr>
+                <tr><td>KDJ</td><td>KDJ多头但近超买：K=68.85，D=63.92，J=78.73，J值高位需警惕短期回踩</td></tr>
+                <tr><td>量价关系</td><td>6/12成交92.4万股，5日均量约88万股，量价配合健康</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥$451.42（布林带上轨+前高压力）</span>
+                <span class="support">🟢 支撑位：¥$439.48（MA10支撑）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — 多头排列+MACD金叉扩张确立，但KDJ J=78.7接近超买+股价在布林上轨附近，技术性回踩风险加大，建议持有但暂不加仓
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Acumen Pharmaceuticals（ABOS）</h2>
+                <span class="market-tag">NASDAQ</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥$2.37</span>
+                <span class="change change-flat">0.00%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 6/12收$2.37(0.00%)，5日+10.23%/YTD+12.32%，MACD柱线转正+0.004（连续2日），KDJ J=58.7温和反弹。近期无重大催化，小市值1.71亿美元</div>
+            <div class="news-impact impact-flat">⏺ <strong>股价影响：</strong>中性→ — 无明确催化+小市值+技术指标温和修复，建议观望</div>
+            <div class="news-source">🔗 StockAnalysis.com <a href="https://stockanalysis.com/stocks/abos/" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>震荡修复：MA5(2.27)&gt;价格(2.37)&gt;MA10(2.30)&gt;MA20(2.35)&gt;MA60(2.50)，价格在MA5/10/20之间缠绕</td></tr>
+                <tr><td>MACD</td><td>MACD柱线转正：DIF=-0.058，DEA=-0.060，柱线=+0.004，金叉初现但动能弱</td></tr>
+                <tr><td>KDJ</td><td>KDJ温和：K=39.79，D=30.34，J=58.70，J值中性偏多</td></tr>
+                <tr><td>量价关系</td><td>6/12成交41.5万股，5日均量约35万股，温和放量</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥$2.50（MA60+布林中轨）</span>
+                <span class="support">🟢 支撑位：¥$2.30（MA10支撑）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — MACD金叉初现+KDJ温和反弹，但小市值无催化+1.71亿美元市值流动性差，60日MA($2.50)是关键技术位，未突破前持有观望
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Ionis Pharmaceuticals（IONS）</h2>
+                <span class="market-tag">NASDAQ</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥$73.28</span>
+                <span class="change change-down">-0.74%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 6/12收$73.28(-0.74%)，5日-1.62%/YTD-7.38%。Spinraza/Waylivra商业化进展中，Q2财报待发。MACD柱线-0.426空头延续，KDJ三线低位缠绕（K=34.8/D=36.8/J=30.9）</div>
+            <div class="news-impact impact-flat">⏺ <strong>股价影响：</strong>中性→ — 技术面中性偏弱，等待Q2财报和管线更新</div>
+            <div class="news-source">🔗 Ionis IR/StockAnalysis <a href="https://ir.ionis.com/investor-news/press-releases" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>空头松动：MA5(73.71)&gt;MA10(74.03)&gt;MA20(74.69)&gt;MA60(74.53)，价格略低于所有均线</td></tr>
+                <tr><td>MACD</td><td>MACD死叉：DIF=-0.41，DEA=-0.197，柱线=-0.426，空头动能持续</td></tr>
+                <tr><td>KDJ</td><td>KDJ低位粘合：K=34.83，D=36.82，J=30.86，三线低位缠绕等待方向</td></tr>
+                <tr><td>量价关系</td><td>6/12成交196万股，5日均量约191万股，量能温和</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥$74.69（MA20压力）</span>
+                <span class="support">🟢 支撑位：¥$72.10（布林下轨）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — KDJ三线低位粘合+MACD死叉+均线空头排列，等待Q2财报（7月底）和管线催化破局，持有观望
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 Alnylam Pharmaceuticals（ALNY）</h2>
+                <span class="market-tag">NASDAQ</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥$282.85</span>
+                <span class="change change-down">-2.26%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 6/12收$282.85(-2.26%)，5日-6.67%/YTD-28.87%。Q1首盈后估值消化中，Onpattro/Amvuttra商业化稳健。MACD柱线-1.108空头深化，KDJ J=-0.95极度超卖</div>
+            <div class="news-impact impact-flat">⏺ <strong>股价影响：</strong>中性→ — 估值消化+技术面恶化+KDJ J负值超卖，但Q1首盈基本面扎实</div>
+            <div class="news-source">🔗 Alnylam IR/StockAnalysis <a href="https://investors.alnylam.com/press-releases" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>空头排列：MA5(290.66)&gt;MA10(293.43)&gt;MA20(294.83)&gt;MA60(306.35)，价格低于所有均线</td></tr>
+                <tr><td>MACD</td><td>MACD死叉扩张：DIF=-3.261，DEA=-2.707，柱线=-1.108，空头动能加速</td></tr>
+                <tr><td>KDJ</td><td>KDJ J极度超卖：K=26.19，D=39.77，J=-0.95，J为负值极度超卖</td></tr>
+                <tr><td>量价关系</td><td>6/12成交142万股，5日均量约122万股，温和放量下跌</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥$294.83（MA20压力）</span>
+                <span class="support">🟢 支撑位：¥$282.39（布林下轨+6/12最低价281.77）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — KDJ J=-0.95极度超卖+MACD死叉扩张，短期技术性反弹可能随时触发，但空头趋势未改，建议持有等待反弹再决策（已持有者不杀跌）
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 AC Immune SA（ACIU）</h2>
+                <span class="market-tag">NASDAQ</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥$2.31</span>
+                <span class="change change-up">+2.21%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 6/12收$2.31(+2.21%)，5日+2.67%/YTD-26.43%。AD管线（ACI-35.080/JNJ-63733657）临床推进中。MACD柱线-0.057空头延续但收敛，KDJ J=48.9从超卖区反弹</div>
+            <div class="news-impact impact-flat">⏺ <strong>股价影响：</strong>中性→ — 小市值+空头趋势未改+超卖反弹，但基本面无重大催化</div>
+            <div class="news-source">🔗 AC Immune IR/StockAnalysis <a href="https://ir.acimmune.com/news" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>空头排列：MA5(2.23)&gt;MA10(2.31)=价格&gt;MA20(2.56)&gt;MA60(2.82)，价格仅站上MA5/10，远低于MA20/60</td></tr>
+                <tr><td>MACD</td><td>MACD死叉收敛：DIF=-0.18，DEA=-0.151，柱线=-0.057，柱线负值收窄但未转正</td></tr>
+                <tr><td>KDJ</td><td>KDJ超卖反弹：K=27.93，D=17.44，J=48.90，J线从负值反弹</td></tr>
+                <tr><td>量价关系</td><td>6/12成交26.7万股，5日均量约30万股，缩量整理</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥$2.56（MA20压力）</span>
+                <span class="support">🟢 支撑位：¥$2.23（MA5短期支撑）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — KDJ超卖反弹+MACD柱线收敛，但空头趋势未改+MA20($2.56)未突破前不构成买入信号，持有等待管线催化
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 药明生物（02269）</h2>
+                <span class="market-tag">HKEX</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥HK$31.08</span>
+                <span class="change change-up">+3.81%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 6/12大涨+3.81%至HK$31.08，5日-5.07%但已企稳。生物技术板块当日+3.48%共振。公司宣布拟斥资不超4亿美元回购股份，盘前公告盘中涨超6%。MACD柱线-0.566空头收敛</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — 4亿美元回购计划+板块共振+港股反弹行情，估值修复催化明确</div>
+            <div class="news-source">🔗 药明生物公告/财联社 <a href="https://www.wuxibiologics.com.cn/press-release/" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>空头松动：MA5(30.21)&gt;价格(31.08)&gt;MA10(31.86)&gt;MA20(32.54)&gt;MA60(33.64)，价格站上MA5但仍在MA10下方</td></tr>
+                <tr><td>MACD</td><td>MACD死叉收敛：DIF=-0.905，DEA=-0.622，柱线=-0.566，空头动能减弱但未转正</td></tr>
+                <tr><td>KDJ</td><td>KDJ低位：K=26.25，D=25.80，J=27.13，J线低位反弹</td></tr>
+                <tr><td>量价关系</td><td>6/12成交4421万股，5日均量约3850万股，放量反弹</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥HK$32.54（MA20压力+中金目标价48港元）</span>
+                <span class="support">🟢 支撑位：¥HK$30.21（MA5短期支撑）</span>
+            </div>
+            <div class="recommendation recommend-add">
+                综合操作建议：🟩 增仓 — 4亿美元回购+放量反弹+生物技术板块共振，回购价上限隐含估值修复空间，回调至MA5附近可分批加仓
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 荣昌生物（688331）</h2>
+                <span class="market-tag">SHSE</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥¥113.90</span>
+                <span class="change change-up">+8.28%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 6/12放量大涨+8.28%至¥113.90，5日+12.22%/YTD+46.42%。泰它西普治疗干燥综合征+IgA肾病双适应症获NMPA批准上市，盘后/盘中催化（之前6/11已公布）。换手率9.67%活跃</div>
+            <div class="news-impact impact-up">🔺 <strong>股价影响：</strong>正向▲ — 双适应症获批+百亿市场空间+AH溢价-43.53%但港股09995同向走势</div>
+            <div class="news-source">🔗 公司公告/荣昌生物官网 <a href="https://www.remegen.cn/" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>强势上行（港股09995.HK参照）：MA5(70.43)&gt;MA10(72.35)&lt;价格(74.55)&lt;MA20(78.41)&lt;MA60(94.05)，港股已突破MA5/10</td></tr>
+                <tr><td>MACD</td><td>MACD死叉收敛（港股）：DIF=-6.577，DEA=-6.554，柱线=-0.045，柱线接近转正</td></tr>
+                <tr><td>KDJ</td><td>KDJ多头（港股）：K=34.87，D=20.32，J=63.97，J线快速反弹</td></tr>
+                <tr><td>量价关系</td><td>A股6/12成交1577万股，放量+换手9.67%创近期新高</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥¥126.23（A股涨停价/前高）</span>
+                <span class="support">🟢 支撑位：¥¥104.10（6/12最低价）</span>
+            </div>
+            <div class="recommendation recommend-reduce">
+                综合操作建议：🟥 减仓 — 8.28%放量涨停+换手9.67%创近期新高，短期获利盘集中兑现压力极大，建议涨停打开后减仓1/3兑现（双适应症利好已计入价格）
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 卓胜微（300782）</h2>
+                <span class="market-tag">SZSE</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥¥89.76</span>
+                <span class="change change-down">-2.28%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 6/12收¥89.76(-2.28%)，5日-14.33%/20日-32.83%，YTD+10.16%。半导体板块调整+电子板块-1.10%。MACD死叉扩张，KDJ J=5.99极度超卖+布林下轨83.7支撑接近</div>
+            <div class="news-impact impact-down">🔻 <strong>股价影响：</strong>负向▼ — 20日-32.83%深跌+MACD死叉+空头趋势确立，但KDJ极度超卖+布林下轨支撑临近</div>
+            <div class="news-source">🔗 StockAnalysis.com/NeoData <a href="https://stockanalysis.com/stocks/300782.SZ/" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>空头排列：MA5(93.80)&lt;MA10(98.48)&lt;MA20(110.24)&gt;价格(89.76)&lt;MA60(102.88)，价格远低于所有均线</td></tr>
+                <tr><td>MACD</td><td>MACD死叉加速：DIF=-4.956，DEA=-1.94，柱线=-6.032，空头动能持续放大</td></tr>
+                <tr><td>KDJ</td><td>KDJ极度超卖：K=9.70，D=11.56，J=5.99，J值极低，技术性反弹随时可能触发</td></tr>
+                <tr><td>量价关系</td><td>6/12成交31.5万手，5日均量约28万手，温和放量下跌</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥¥93.80（MA5压力）</span>
+                <span class="support">🟢 支撑位：¥¥83.70（布林下轨+NeoData 20日支撑位）</span>
+            </div>
+            <div class="recommendation recommend-hold">
+                综合操作建议：⬜ 持有 — KDJ J=5.99极度超卖+接近布林下轨83.7，技术性反弹可能触发，但空头趋势未改+MACD死叉加速，建议持有观望反弹力度（不杀跌但不加仓）
+            </div>
+        </div>
+    </section>
+
+    <section class="stock-card">
+        <div class="stock-header">
+            <div class="stock-title-wrap">
+                <h2>📊 有研新材（600206）</h2>
+                <span class="market-tag">SHSE</span>
+            </div>
+            <div class="price-wrap">
+                <span class="price">当前价：¥¥32.99</span>
+                <span class="change change-down">-3.65%</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>一、今日资讯</h3>
+            
+        <article class="news-item">
+            <div class="news-summary"><strong>📌</strong> 6/12收¥32.99(-3.65%)，但5日+13.27%/YTD+63.04%仍强势。锗锭/镓/半导体材料涨价题材+存储扩产催化（存储龙头大举扩产利好材料）。换手率20.79%创历史新高，MACD柱线+0.612仍多头</div>
+            <div class="news-impact impact-flat">⏺ <strong>股价影响：</strong>中性→ — 20.79%超高换手+KDJ J=90.8超买+回踩-3.65%但中长期趋势未坏</div>
+            <div class="news-source">🔗 研报/财联社 <a href="http://www.griam.cn/" target="_blank" rel="noopener noreferrer">查看原文</a></div>
+            <div class="news-meta"></div>
+        </article>
+        </div>
+
+        <div class="section">
+            <h3>二、技术面分析</h3>
+            <table class="tech-table">
+                <tr><td>均线系统</td><td>多头排列：MA5(31.29)&gt;MA10(29.89)&gt;MA20(29.78)&gt;MA60(26.01)，价格仍站上所有均线，回踩MA5</td></tr>
+                <tr><td>MACD</td><td>MACD金叉延续：DIF=1.123，DEA=0.817，柱线=+0.612，柱线虽收敛但仍为正</td></tr>
+                <tr><td>KDJ</td><td>KDJ超买：K=69.55，D=58.92，J=90.81，J值超买，短线回踩压力</td></tr>
+                <tr><td>量价关系</td><td>6/12成交1.76亿股创历史新高，换手率20.79%</td></tr>
+            </table>
+            <div class="levels">
+                <span class="resistance">🔴 压力位：¥¥36.07（6/12最高价+前高）</span>
+                <span class="support">🟢 支撑位：¥¥31.29（MA5支撑）</span>
+            </div>
+            <div class="recommendation recommend-reduce">
+                综合操作建议：🟥 减仓 — 20.79%超高换手+KDJ J=90.8超买+单日-3.65%回踩，主力资金高位派发迹象明显，建议减仓1/3锁定利润，待回踩至MA10(¥29.89)附近企稳再回补
+            </div>
+        </div>
+    </section>
+  <div class="footer">本报告由 AI 生成，仅供参考，请仔细甄别，谨慎投资。</div>
+</div>
+</body>
+</html>
