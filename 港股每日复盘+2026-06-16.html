@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>港股每日复盘 2026-06-16</title>
+<style>
+:root {
+  --bg-primary: #0a0e1a;
+  --bg-secondary: #111827;
+  --bg-card: #1a1f2e;
+  --bg-card-hover: #222838;
+  --text-primary: #e5e7eb;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --accent-red: #ef4444;
+  --accent-green: #22c55e;
+  --accent-blue: #3b82f6;
+  --accent-yellow: #eab308;
+  --accent-purple: #8b5cf6;
+  --border-color: #1f2937;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  padding: 0;
+}
+.container { max-width: 1000px; margin: 0 auto; padding: 20px 16px; }
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  border-bottom: 1px solid var(--border-color);
+  padding: 30px 0 20px;
+  margin-bottom: 24px;
+}
+.header h1 { font-size: 1.5rem; font-weight: 700; text-align: center; }
+.header .subtitle { text-align: center; color: var(--text-secondary); font-size: 0.85rem; margin-top: 4px; }
+.header .date-badge {
+  display: inline-block; background: var(--accent-blue); color: white;
+  padding: 2px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;
+}
+
+/* Summary Banner */
+.summary-banner {
+  background: linear-gradient(135deg, #1e293b 0%, #312e81 100%);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(59,130,246,0.2);
+}
+.summary-banner .conclusion { font-size: 1.15rem; font-weight: 600; }
+.summary-banner .tag {
+  display: inline-block; padding: 2px 10px; border-radius: 8px;
+  font-size: 0.75rem; font-weight: 600; margin-right: 4px;
+  background: rgba(239,68,68,0.15); color: var(--accent-red);
+}
+.summary-banner .tag.green { background: rgba(34,197,94,0.15); color: var(--accent-green); }
+.summary-banner .tag.blue { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
+
+/* Section */
+.section {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border-color);
+}
+.section h2 {
+  font-size: 1.1rem; font-weight: 700; margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex; align-items: center; gap: 8px;
+}
+.section h2 .icon { font-size: 1.2rem; }
+
+/* Grid */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; }
+@media(max-width:640px){
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+}
+
+/* Stat Cards */
+.stat-card {
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+}
+.stat-card .label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px; }
+.stat-card .value { font-size: 1.2rem; font-weight: 700; }
+.stat-card .change { font-size: 0.8rem; }
+.up { color: var(--accent-red); }
+.down { color: var(--accent-green); }
+.flat { color: var(--text-secondary); }
+
+/* Table */
+table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border-color); }
+th { color: var(--text-muted); font-weight: 600; font-size: 0.75rem; }
+td { color: var(--text-primary); }
+tr:hover { background: var(--bg-card-hover); }
+
+/* Lists */
+.info-list { list-style: none; }
+.info-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.85rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.info-list li:last-child { border-bottom: none; }
+.info-list .key { color: var(--text-secondary); }
+.info-list .val { font-weight: 600; }
+
+/* Insight Box */
+.insight-box {
+  background: rgba(59,130,246,0.08);
+  border-left: 3px solid var(--accent-blue);
+  padding: 12px 16px;
+  border-radius: 0 8px 8px 0;
+  margin: 12px 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.insight-box.warn { border-left-color: var(--accent-yellow); background: rgba(234,179,8,0.08); }
+.insight-box.danger { border-left-color: var(--accent-red); background: rgba(239,68,68,0.08); }
+
+/* Progress Bar */
+.progress-bar {
+  height: 6px; background: var(--bg-secondary); border-radius: 3px; margin: 4px 0; overflow: hidden;
+}
+.progress-bar .fill { height: 100%; border-radius: 3px; }
+.progress-bar .fill.green { background: var(--accent-green); }
+.progress-bar .fill.red { background: var(--accent-red); }
+
+/* Footer */
+.footer {
+  text-align: center; padding: 20px; color: var(--text-muted);
+  font-size: 0.75rem; border-top: 1px solid var(--border-color); margin-top: 24px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container" style="text-align:center;">
+    <span class="date-badge">2026-06-16 星期二</span>
+    <h1 style="margin-top:12px;">🇭🇰 港股每日实战复盘</h1>
+    <p class="subtitle">基金经理视角 · 首席研究员深度解读</p>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ════════════════════════════════════════════ -->
+<!-- 1. 今日核心结论 -->
+<!-- ════════════════════════════════════════════ -->
+<div class="summary-banner">
+  <div class="conclusion">
+    💡 <span class="tag red">偏弱</span> 
+    港股三大指数集体回调，恒生科技领跌2.24%。地缘缓和利好（美伊停战协议）被美联储沃什首秀前避险情绪及全球加息潮（欧央行/日央行）对冲。南向资金逆势净流入34.63亿港元，但内部分化（沪买深卖）明显。科网股普跌，AI算力/PCB/商业航天成少数亮点。市场静待6月18日FOMC决议，短期以高股息防御为主，中期关注科技板块"预期差"修复机会。
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- 2. 大盘全景 -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section">
+  <h2><span class="icon">📊</span> 大盘全景（基金经理视角）</h2>
+  
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="stat-card">
+      <div class="label">恒生指数 HSI</div>
+      <div class="value down">24,493.95</div>
+      <div class="change down">▼ -1.40%</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">恒生科技 HSTECH</div>
+      <div class="value down">4,658.65</div>
+      <div class="change down">▼ -2.24%</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">恒生国企 HSCEI</div>
+      <div class="value down">8,240.05</div>
+      <div class="change down">▼ -1.62%</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">恒生医药</div>
+      <div class="value down">—</div>
+      <div class="change down">▼ 偏弱</div>
+    </div>
+  </div>
+
+  <div class="grid-3">
+    <div class="stat-card">
+      <div class="label">恒指成交额</div>
+      <div class="value" style="color:var(--text-primary);">2,499亿</div>
+      <div class="change" style="color:var(--text-muted);">较上日缩量12%</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">恒指成交量</div>
+      <div class="value" style="color:var(--text-primary);">138亿股</div>
+      <div class="change" style="color:var(--text-muted);">较上日缩量6%</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">恒指换手率</div>
+      <div class="value" style="color:var(--text-primary);">1.31%</div>
+      <div class="change" style="color:var(--text-muted);">缩量回调</div>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <strong>📌 赚钱效应分析：</strong>今日赚钱效应极差。恒生科技跌超2%，科网龙头集体下挫。仅有AI算力（PCB、商业航天）等少数板块逆势走强。石油、有色金属板块受美伊协议油价大跌拖累普跌。整体跌多涨少，市场情绪偏谨慎。<br>
+    <strong>核心矛盾：</strong>地缘缓和（油价跌→通胀预期降温）vs 全球央行加息潮（欧央行加息25bp、日央行拟加息25bp、美联储沃什首秀不确定性）vs 南向资金逆势加仓。
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- 3. 市场情绪 -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section">
+  <h2><span class="icon">🎭</span> 市场情绪</h2>
+
+  <div class="grid-3">
+    <div class="stat-card">
+      <div class="label">港股通净买入</div>
+      <div class="value" style="color:var(--accent-green);">+34.63亿</div>
+      <div class="change" style="color:var(--text-muted);">逆势净流入</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">港股通总成交额</div>
+      <div class="value" style="color:var(--text-primary);">1,107亿</div>
+      <div class="change" style="color:var(--text-muted);">占恒指成交44.3%</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">沪/深分歧</div>
+      <div class="value" style="font-size:0.9rem;"><span style="color:var(--accent-green);">沪+48.9亿</span> / <span style="color:var(--accent-red);">深-14.3亿</span></div>
+      <div class="change" style="color:var(--accent-yellow);">内部分歧加大⚠️</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:0.9rem; color:var(--text-secondary); margin:16px 0 8px;">📋 南向资金十大成交</h3>
+  <table>
+    <tr><th>个股</th><th>方向</th><th>净额</th><th>解读</th></tr>
+    <tr>
+      <td>建滔积层板(01888)</td>
+      <td style="color:var(--accent-green);">净买入</td>
+      <td style="color:var(--accent-green);">+16.99亿</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">PCB概念热炒，涨7.11%</td>
+    </tr>
+    <tr>
+      <td>建滔集团(00148)</td>
+      <td style="color:var(--accent-green);">净买入</td>
+      <td style="color:var(--accent-green);">+14.01亿</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">前5日加仓5012万股</td>
+    </tr>
+    <tr>
+      <td>智谱(02513)</td>
+      <td style="color:var(--accent-green);">净买入</td>
+      <td style="color:var(--accent-green);">+8.24亿</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">AI概念次新股</td>
+    </tr>
+    <tr>
+      <td>中芯国际(00981)</td>
+      <td style="color:var(--accent-green);">净买入</td>
+      <td style="color:var(--accent-green);">+4.75亿</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">半导体自主可控</td>
+    </tr>
+    <tr>
+      <td>腾讯控股(00700)</td>
+      <td style="color:var(--accent-red);">净卖出</td>
+      <td style="color:var(--accent-red);">-16.39亿</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">连续遭抛售❗</td>
+    </tr>
+    <tr>
+      <td>阿里巴巴(09988)</td>
+      <td style="color:var(--accent-red);">净卖出</td>
+      <td style="color:var(--accent-red);">-16.33亿</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">5日跌7.82%</td>
+    </tr>
+    <tr>
+      <td>美团-W(03690)</td>
+      <td style="color:var(--accent-red);">净卖出</td>
+      <td style="color:var(--accent-red);">-5.86亿</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">今日跌3.77%</td>
+    </tr>
+    <tr>
+      <td>中海油(00883)</td>
+      <td style="color:var(--accent-red);">净卖出</td>
+      <td style="color:var(--accent-red);">-5.79亿</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">油价大跌拖累</td>
+    </tr>
+  </table>
+
+  <div class="insight-box warn">
+    <strong>⚠️ 情绪信号：</strong>
+    <br>① 南向资金虽连续净流入但内部分歧加大（沪买深卖），属异常信号；
+    <br>② 腾讯、阿里遭大额净卖出（合计近33亿），科网龙头被调仓；
+    <br>③ 建滔积层板(PCB概念)获爆买，资金在寻找新主线；
+    <br>④ 缩量回调显示抛压有限，但也说明抄底意愿不足。
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- 4. 汇率与流动性 -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section">
+  <h2><span class="icon">💱</span> 汇率与流动性</h2>
+
+  <div class="grid-2">
+    <div>
+      <h3 style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:8px;">港元汇率</h3>
+      <table>
+        <tr><td>USD/HKD</td><td style="font-weight:700;">~7.777</td><td style="color:var(--text-muted);font-size:0.75rem;">港汇偏弱方</td></tr>
+        <tr><td>美元指数</td><td style="font-weight:700;">高位震荡</td><td style="color:var(--text-muted);font-size:0.75rem;">油价跌拖累</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3 style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:8px;">美债收益率</h3>
+      <table>
+        <tr><td>2年期美债</td><td style="font-weight:700;">~4.09%</td><td style="color:var(--accent-green);font-size:0.75rem;">▼ 下行</td></tr>
+        <tr><td>10年期美债</td><td style="font-weight:700;">~4.48%</td><td style="color:var(--text-muted);font-size:0.75rem;">高位震荡</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h3 style="font-size:0.85rem;color:var(--text-secondary);margin:12px 0 8px;">港元流动性（截至6月12日）</h3>
+  <div class="grid-3">
+    <div class="stat-card">
+      <div class="label">隔夜 HIBOR</div>
+      <div class="value" style="font-size:1rem;">2.15%</div>
+      <div class="change" style="color:var(--text-muted);font-size:0.7rem;">短端平稳</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">1个月 HIBOR</div>
+      <div class="value" style="font-size:1rem;">2.70%</div>
+      <div class="change" style="color:var(--text-muted);font-size:0.7rem;">窄幅波动</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">3个月 HIBOR</div>
+      <div class="value" style="font-size:1rem;">2.83%</div>
+      <div class="change" style="color:var(--text-muted);font-size:0.7rem;">中性水平</div>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <strong>💧 流动性判断：</strong>港元流动性整体平稳，短端HIBOR未现明显收紧，对港股不构成额外压力。但10Y美债收益率仍处4.48%高位，对科技成长板块估值修复形成压制。美伊协议后油价大跌使通胀预期降温，若FOMC释放中性信号，美债收益率有望回落，届时将利好港股估值修复。
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- 5. 强势板块与核心逻辑 -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section">
+  <h2><span class="icon">🔥</span> 强势板块与核心逻辑</h2>
+
+  <h3 style="color:var(--accent-red);font-size:0.9rem;margin-bottom:8px;">TOP5 涨幅板块</h3>
+  <table>
+    <tr><th>排名</th><th>板块</th><th>涨幅</th><th>核心逻辑</th></tr>
+    <tr>
+      <td>1</td><td>PCB/电子电路</td>
+      <td style="color:var(--accent-red);font-weight:700;">领涨</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">AI算力驱动PCB需求爆发，建滔积层板暴涨</td>
+    </tr>
+    <tr>
+      <td>2</td><td>商业航天</td>
+      <td style="color:var(--accent-red);font-weight:700;">强势</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">钧达股份涨7.73%，蓝思科技涨5.62%</td>
+    </tr>
+    <tr>
+      <td>3</td><td>AI算力/光通信</td>
+      <td style="color:var(--accent-red);font-weight:700;">逆势</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">CPO/光通信/功率半导体受纳指大涨带动</td>
+    </tr>
+    <tr>
+      <td>4</td><td>稀土/小金属</td>
+      <td style="color:var(--accent-red);font-weight:700;">+5~8%</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">《矿产资源法实施条例》落地，战略矿产管制</td>
+    </tr>
+    <tr>
+      <td>5</td><td>玻璃/玻纤</td>
+      <td style="color:var(--accent-red);font-weight:700;">+8.6%</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">周期+电子产业链需求拉动</td>
+    </tr>
+  </table>
+
+  <h3 style="color:var(--accent-green);font-size:0.9rem;margin:16px 0 8px;">TOP3 最弱板块</h3>
+  <table>
+    <tr><th>排名</th><th>板块</th><th>跌幅</th><th>核心逻辑</th></tr>
+    <tr>
+      <td>1</td><td>石油/能源</td>
+      <td style="color:var(--accent-green);font-weight:700;">领跌</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">美伊停战协议→霍尔木兹海峡解封→WTI跌超4%</td>
+    </tr>
+    <tr>
+      <td>2</td><td>有色金属</td>
+      <td style="color:var(--accent-green);font-weight:700;">普跌</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">油价回落拖累大宗商品、美联储加息担忧</td>
+    </tr>
+    <tr>
+      <td>3</td><td>房地产</td>
+      <td style="color:var(--accent-green);font-weight:700;">走弱</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">南向流出地产股、行业基本面疲弱</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- 6. 重点个股异动 -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section">
+  <h2><span class="icon">📌</span> 重点个股异动</h2>
+
+  <h3 style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:8px;">🏢 科网巨头（集体回调）</h3>
+  <table>
+    <tr><th>个股</th><th>收盘价</th><th>涨跌幅</th><th>成交额</th><th>5日涨跌</th></tr>
+    <tr><td>腾讯(00700)</td><td>447.40</td><td class="down">▼ -2.65%</td><td>109.3亿</td><td class="down">-1.28%</td></tr>
+    <tr><td>阿里(09988)</td><td>107.00</td><td class="down">▼ -2.10%</td><td>74.19亿</td><td class="down">-7.82%</td></tr>
+    <tr><td>美团(03690)</td><td>75.30</td><td class="down">▼ -3.77%</td><td>30.23亿</td><td class="down">-2.46%</td></tr>
+    <tr><td>小米(01810)</td><td>25.66</td><td class="down">▼ -2.28%</td><td>29.32亿</td><td class="down">-5.66%</td></tr>
+    <tr><td>快手(01024)</td><td>44.44</td><td class="down">▼ -3.89%</td><td>15.92亿</td><td class="up">+0.23%</td></tr>
+    <tr><td>京东(09618)</td><td>—</td><td class="down">偏弱</td><td>—</td><td class="down">—</td></tr>
+  </table>
+  <div class="insight-box danger">
+    <strong>⚠️ 科网板块点评：</strong>阿里5日累跌7.82%为最弱，南向资金今日净卖出16.33亿；美团跌3.77%领跌科网；快手跌3.89%但PE(TTM)仅9.84倍，处于近3年4.46%分位，估值已极度压缩。整体看科网板块面临"估值低位+南向减持+外部利率压制"三重压力。
+  </div>
+
+  <h3 style="font-size:0.85rem;color:var(--text-secondary);margin:16px 0 8px;">💊 生物医药</h3>
+  <table>
+    <tr><th>个股</th><th>收盘价</th><th>涨跌幅</th><th>成交额</th><th>振幅</th></tr>
+    <tr><td>药明生物(02269)</td><td>30.02</td><td class="down">▼ -2.91%</td><td>5.45亿</td><td>4.20%</td></tr>
+    <tr><td>百济神州(06160)</td><td>159.20</td><td class="down">▼ -0.25%</td><td>4.19亿</td><td>2.26%</td></tr>
+    <tr><td>信达生物(01801)</td><td>76.40</td><td class="down">▼ -1.29%</td><td>5.12亿</td><td>3.49%</td></tr>
+    <tr><td>康方生物(09926)</td><td>84.65</td><td class="down">▼ <strong>-5.26%</strong></td><td>14.01亿</td><td>7.83%</td></tr>
+  </table>
+  <div class="insight-box warn">
+    <strong>💊 医药板块点评：</strong>康方生物跌5.26%为板块最弱，成交14亿、振幅7.83%，多空分歧极大。百济神州相对抗跌（-0.25%），信达生物近5日+4.44%为板块最强。整体医药板块受美联储高利率压制，但信达等个别品种有独立行情。
+  </div>
+
+  <h3 style="font-size:0.85rem;color:var(--text-secondary);margin:16px 0 8px;">📈 今日异动亮点</h3>
+  <table>
+    <tr><th>个股</th><th>涨幅</th><th>原因</th></tr>
+    <tr><td>钧达股份(02865)</td><td style="color:var(--accent-red);">+7.73%</td><td>商业航天概念</td></tr>
+    <tr><td>建滔积层板(01888)</td><td style="color:var(--accent-red);">+7.11%</td><td>PCB/AI算力概念，南向爆买16.99亿</td></tr>
+    <tr><td>蓝思科技(06613)</td><td style="color:var(--accent-red);">+5.62%</td><td>商业航天概念</td></tr>
+    <tr><td>京城机电(00187)</td><td style="color:var(--accent-red);">+17.03%</td><td>氢能政策利好（新能源重卡方案）</td></tr>
+  </table>
+
+  <div class="insight-box">
+    <strong>🔍 关注要点：</strong><br>
+    ① 建滔积层板获南向爆买16.99亿，PCB板块成为新主线苗头；<br>
+    ② 京城机电涨17%——氢能商业化进入加速期（英伟达+斗山合作），政策+产业共振；<br>
+    ③ 智谱(02513)作为AI次新股持续活跃，南向加仓8.24亿。
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- 7. 资金面（港股最关键） -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section">
+  <h2><span class="icon">💰</span> 资金面深度分析</h2>
+
+  <!-- 南下资金 -->
+  <h3 style="color:var(--accent-blue);font-size:0.9rem;margin-bottom:8px;">① 南下资金（港股通）</h3>
+  <div class="grid-3" style="margin-bottom:12px;">
+    <div class="stat-card">
+      <div class="label">当日净流入</div>
+      <div class="value" style="color:var(--accent-green);">+34.63亿</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">沪港通</div>
+      <div class="value" style="color:var(--accent-green);">+48.90亿</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">深港通</div>
+      <div class="value" style="color:var(--accent-red);">-14.27亿</div>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>个股</th><th>净买入/卖出</th><th>金额</th><th>趋势判断</th></tr>
+    <tr>
+      <td>建滔积层板</td><td style="color:var(--accent-green);">净买入</td><td style="color:var(--accent-green);">+16.99亿</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">🔥 已连买5日，加速流入</td>
+    </tr>
+    <tr>
+      <td>建滔集团</td><td style="color:var(--accent-green);">净买入</td><td style="color:var(--accent-green);">+14.01亿</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">🔥 已连买5日，加速流入</td>
+    </tr>
+    <tr>
+      <td>智谱</td><td style="color:var(--accent-green);">净买入</td><td style="color:var(--accent-green);">+8.24亿</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">AI概念关注度高</td>
+    </tr>
+    <tr>
+      <td>中芯国际</td><td style="color:var(--accent-green);">净买入</td><td style="color:var(--accent-green);">+4.75亿</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">半导体自主可控逻辑</td>
+    </tr>
+    <tr>
+      <td>腾讯控股</td><td style="color:var(--accent-red);">净卖出</td><td style="color:var(--accent-red);">-16.39亿</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">⚠️ 连续大额净卖出</td>
+    </tr>
+    <tr>
+      <td>阿里巴巴</td><td style="color:var(--accent-red);">净卖出</td><td style="color:var(--accent-red);">-16.33亿</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">⚠️ 5日跌7.82%加速卖出</td>
+    </tr>
+    <tr>
+      <td>美团</td><td style="color:var(--accent-red);">净卖出</td><td style="color:var(--accent-red);">-5.86亿</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">跟随板块走弱</td>
+    </tr>
+    <tr>
+      <td>中海油</td><td style="color:var(--accent-red);">净卖出</td><td style="color:var(--accent-red);">-5.79亿</td>
+      <td style="font-size:0.75rem;color:var(--text-muted);">油价大跌基本面转弱</td>
+    </tr>
+  </table>
+
+  <div class="insight-box">
+    <strong>📊 南下资金累计：</strong>2026年以来南向资金累计净流入约2,668亿元，显示中长期资金持续布局港股。今日虽大盘下跌，但南向仍逆势净买入34.63亿，呈现"越跌越买"特征。但深港通净流出14.27亿为警示信号，可能反映部分短线资金对FOMC前的避险情绪。
+  </div>
+
+  <!-- 外资 -->
+  <h3 style="color:var(--accent-purple);font-size:0.9rem;margin:16px 0 8px;">② 外资（国际资金）</h3>
+  <div class="insight-box">
+    <strong>🌍 外资动态：</strong>周一（6月15日）美股大涨（纳指+3.07%、标普+1.65%），受美伊停战协议提振。费城半导体指数盘初涨逾4.7%，利好今日港股AI算力板块。但外资对港股整体仍偏谨慎，等待FOMC决议。港股ERP（股权风险溢价）处于历史高位，若沃什释放中性信号，外资有望回流。
+  </div>
+
+  <!-- 沽空 -->
+  <h3 style="color:var(--accent-yellow);font-size:0.9rem;margin:16px 0 8px;">③ 沽空数据</h3>
+  <div class="grid-2">
+    <div class="stat-card">
+      <div class="label">港股通占比</div>
+      <div class="value">44.3%</div>
+      <div class="change" style="color:var(--text-muted);">占恒指成交比例回升</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">市场状态</div>
+      <div class="value" style="font-size:1rem;">缩量回调</div>
+      <div class="change" style="color:var(--accent-yellow);">沽空比率待核实</div>
+    </div>
+  </div>
+  <div class="insight-box warn">
+    <strong>📉 沽空提示：</strong>今日未获取到具体沽空金额和沽空比率数据。但以下信号值得关注：① 南向资金内部分歧（沪买深卖）可能预示短线调整；② 科网股（腾讯/阿里）遭大额净卖出，做空压力增加；③ 缩量回调表明抛压有限，但若FOMC超预期鹰派，沽空比率可能快速攀升。建议明日重点监控总沽空比率是否突破15%警戒线。
+  </div>
+
+  <!-- 回购与增持 -->
+  <h3 style="color:var(--accent-green);font-size:0.9rem;margin:16px 0 8px;">④ 回购与增持 ⭐（重点信号）</h3>
+  <div class="insight-box">
+    <strong>🔔 未获取到今日完整回购数据，但以下需关注：</strong><br>
+    • 腾讯(00700)：过往持续大额回购，今日跌2.65%，关注今晚是否进行回购操作<br>
+    • 小米(01810)：5日跌5.66%，估值回落后是否重启回购<br>
+    • 快手(01024)：PE仅9.84倍，处于历史4.46%分位，底部信号但尚未确认<br>
+    • <strong>温馨提示：</strong>如有大额回购公告，通常为公司认为股价被低估的信号，属于重要底部指标。
+  </div>
+
+  <!-- 大宗交易 -->
+  <h3 style="font-size:0.9rem;margin:16px 0 8px;">⑤ 大宗交易</h3>
+  <div class="insight-box">
+    <strong>📦 今日无特别大宗交易记录。关注明日盘前大宗交易数据。</strong>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- 宏观事件日历 -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section">
+  <h2><span class="icon">📅</span> 近期关键事件日历</h2>
+  <table>
+    <tr><th>日期</th><th>事件</th><th>影响判断</th></tr>
+    <tr>
+      <td>6月16日（今日）</td><td>日本央行议息（预计加息25bp至1.0%）</td>
+      <td style="font-size:0.75rem;color:var(--accent-red);">◀ 全球紧缩潮</td>
+    </tr>
+    <tr>
+      <td>6月17日（明日）</td><td>欧洲央行加息生效（+25bp）</td>
+      <td style="font-size:0.75rem;color:var(--accent-yellow);">◀ 全球紧缩潮</td>
+    </tr>
+    <tr>
+      <td>6月18日（周四凌晨）</td><td><strong>⭐ 美联储FOMC决议（沃什首秀）</strong></td>
+      <td style="font-size:0.75rem;color:var(--accent-red); font-weight:700;">▶ 最关键！维持利率概率98.5%</td>
+    </tr>
+    <tr>
+      <td>6月19日</td><td>美伊正式签署停战备忘录</td>
+      <td style="font-size:0.75rem;color:var(--accent-green);">▶ 利好风险偏好</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- 综合研判 -->
+<!-- ════════════════════════════════════════════ -->
+<div class="section">
+  <h2><span class="icon">🎯</span> 综合研判与操作策略</h2>
+
+  <div class="insight-box" style="border-left-color: var(--accent-blue);">
+    <strong style="color:var(--accent-blue);font-size:1rem;">📋 基金经理综合研判</strong>
+  </div>
+
+  <table>
+    <tr><th>维度</th><th>判断</th><th>评分</th></tr>
+    <tr><td>大盘方向</td><td style="color:var(--accent-yellow);">短期震荡偏弱，等待FOMC落地</td><td>🟡 中性</td></tr>
+    <tr><td>市场情绪</td><td style="color:var(--accent-yellow);">谨慎为主，南向内部分歧加大</td><td>🟡 中性偏弱</td></tr>
+    <tr><td>资金面</td><td style="color:var(--accent-green);">南向逆势净流入，但结构分化</td><td>🟢 偏正面</td></tr>
+    <tr><td>估值</td><td style="color:var(--accent-green);">恒生科技PE处于近10年17.5%分位，安全边际高</td><td>🟢 偏正面</td></tr>
+    <tr><td>宏观环境</td><td style="color:var(--accent-yellow);">地缘缓和利好但全球央行加息压制</td><td>🟡 中性</td></tr>
+    <tr><td>外部风险</td><td style="color:var(--accent-red);">FOMC决议前避险情绪，沃什不确定性</td><td>🔴 需警惕</td></tr>
+  </table>
+
+  <h3 style="font-size:0.9rem;margin:16px 0 8px;">📌 策略建议</h3>
+  <div class="grid-2">
+    <div class="stat-card" style="text-align:left;">
+      <div class="label" style="text-align:center;font-size:0.85rem;font-weight:700;color:var(--accent-blue);">📈 进攻方向</div>
+      <ul class="info-list" style="margin-top:8px;">
+        <li style="font-size:0.8rem;padding:6px 0;">✅ <strong>AI算力/PCB：</strong>建滔积层板获爆买，主线地位确立</li>
+        <li style="font-size:0.8rem;padding:6px 0;">✅ <strong>商业航天：</strong>产业催化密集，关注钧达股份</li>
+        <li style="font-size:0.8rem;padding:6px 0;">✅ <strong>氢能：</strong>政策+产业共振，京城机电涨停</li>
+        <li style="font-size:0.8rem;padding:6px 0;">✅ <strong>信达生物：</strong>医药板块中最强，5日+4.44%</li>
+      </ul>
+    </div>
+    <div class="stat-card" style="text-align:left;">
+      <div class="label" style="text-align:center;font-size:0.85rem;font-weight:700;color:var(--accent-green);">🛡️ 防御方向</div>
+      <ul class="info-list" style="margin-top:8px;">
+        <li style="font-size:0.8rem;padding:6px 0;">⚠️ <strong>腾讯/阿里：</strong>南向持续大额卖出，暂避</li>
+        <li style="font-size:0.8rem;padding:6px 0;">⚠️ <strong>石油/能源：</strong>油价大跌逻辑逆转</li>
+        <li style="font-size:0.8rem;padding:6px 0;">⚠️ <strong>有色金属：</strong>宏观逆风，等待企稳</li>
+        <li style="font-size:0.8rem;padding:6px 0;">⚠️ <strong>康方生物：</strong>振幅7.83%分歧极大，观望</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="insight-box warn" style="margin-top:12px;">
+    <strong>📅 明日关键盯盘要点：</strong><br>
+    • 09:00 日本央行利率决议结果 → 影响亚太市场<br>
+    • 恒指能否守住24,400支撑位，若跌破则下看24,000<br>
+    • 南向资金是否延续净流入，深港通能否转为净买入<br>
+    • 腾讯阿里是否继续遭南向抛售<br>
+    • 建滔积层板能否延续强势（PCB主线确认）<br>
+    • ⭐ 18日凌晨2:00 FOMC决议（最重要！）
+  </div>
+</div>
+
+<div class="footer">
+  <p>📊 港股每日实战复盘 | 数据来源：东方财富 + 财联社 + 证券时报 | 生成日期：2026-06-16</p>
+  <p style="margin-top:4px;">⚠️ 本报告基于公开数据整理，不构成投资建议。股市有风险，投资需谨慎。</p>
+  <p style="margin-top:4px;">报告自动生成于 Hermes Agent</p>
+</div>
+
+</div>
+</body>
+</html>
