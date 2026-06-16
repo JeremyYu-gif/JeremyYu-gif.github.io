@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美股映射复盘 - 2026-06-15</title>
+    <style>
+        :root {
+            --bg: #f5f7fa;
+            --card: #ffffff;
+            --primary: #1a1a2e;
+            --accent: #e94560;
+            --green: #00b894;
+            --red: #e17055;
+            --gold: #fdcb6e;
+            --text: #2d3436;
+            --muted: #636e72;
+            --border: #dfe6e9;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 20px;
+        }
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: rgba(233, 69, 96, 0.1);
+            border-radius: 50%;
+        }
+        .header h1 { font-size: 28px; margin-bottom: 8px; position: relative; z-index: 1; }
+        .header .subtitle { font-size: 15px; opacity: 0.8; position: relative; z-index: 1; }
+        .header .date-badge {
+            display: inline-block;
+            background: var(--accent);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-top: 10px;
+            position: relative; z-index: 1;
+        }
+
+        /* Section */
+        .section {
+            background: var(--card);
+            border-radius: 14px;
+            padding: 28px 25px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .section h2 {
+            font-size: 20px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid;
+            border-image: linear-gradient(90deg, var(--accent), var(--gold)) 1;
+            border-bottom-style: solid;
+            border-bottom-width: 3px;
+            border-image-slice: 1;
+            border-bottom: 3px solid var(--accent);
+        }
+        .section h3 {
+            font-size: 17px;
+            margin: 18px 0 10px;
+            color: #2d3436;
+        }
+
+        /* Cards grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .index-card {
+            background: #fafafa;
+            border-radius: 12px;
+            padding: 18px;
+            border-left: 4px solid #dfe6e9;
+            transition: transform 0.2s;
+        }
+        .index-card:hover { transform: translateY(-2px); }
+        .index-card .label { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+        .index-card .value { font-size: 22px; font-weight: 700; }
+        .index-card .change { font-size: 15px; margin-top: 4px; font-weight: 600; }
+        .up { color: var(--green); }
+        .down { color: var(--red); }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-up { background: #e8f8f5; color: var(--green); }
+        .badge-down { background: #fdf2f0; color: var(--red); }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 14px;
+        }
+        th {
+            background: #f0f2f5;
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border);
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        tr:hover td { background: #f8f9fa; }
+
+        /* Event items */
+        .event-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .event-item:last-child { border: none; }
+        .event-item .event-title { font-weight: 600; margin-bottom: 4px; }
+        .event-item .event-desc { font-size: 14px; color: var(--muted); }
+
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            background: #f0f2f5;
+            margin-right: 6px;
+            margin-bottom: 4px;
+        }
+        .tag-opportunity {
+            background: #e8f8f5;
+            color: #00b894;
+        }
+        .tag-risk {
+            background: #fdf2f0;
+            color: #e17055;
+        }
+
+        /* Divider */
+        .divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+        /* Quote */
+        .quote {
+            background: #f8f9fa;
+            border-left: 4px solid var(--gold);
+            padding: 14px 18px;
+            margin: 14px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 12px; }
+            .header { padding: 28px 20px; }
+            .header h1 { font-size: 22px; }
+            .section { padding: 20px 16px; }
+            .card-grid { grid-template-columns: 1fr; }
+            .index-card .value { font-size: 18px; }
+            table { font-size: 13px; }
+            th, td { padding: 8px 8px; }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: var(--muted);
+            font-size: 13px;
+            padding: 30px 0 10px;
+        }
+        
+        /* Collapsible */
+        details {
+            margin: 8px 0;
+        }
+        details summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: #2d3436;
+            padding: 8px 0;
+        }
+        details summary:hover { color: var(--accent); }
+
+        .pill {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .pill-green { background: #e8f8f5; color: #00b894; }
+        .pill-red { background: #fdf2f0; color: #e17055; }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #fef9e7, #fdebd0);
+            border: 1px solid #f9e79f;
+            border-radius: 10px;
+            padding: 16px 18px;
+            margin: 12px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>📊 美股映射复盘</h1>
+        <div class="subtitle">交易日期：2026年6月15日（周一）｜报告生成：2026年6月16日 08:05 CST</div>
+        <div class="date-badge">🔍 复盘报告</div>
+    </div>
+
+    <!-- 一、美股整体表现 -->
+    <div class="section">
+        <h2>一、美股整体表现</h2>
+        <p style="margin-bottom:14px; font-size:15px; color:#555;">
+            受<strong>美伊历史性和平协议</strong>达成、霍尔木兹海峡重新开放的地缘政治利好驱动，美股周一全线大幅高开高走，三大指数集体收涨，道指创历史新高，纳指飙升逾3%领涨。市场从地缘风险溢价中快速释放，资金大举回流科技股与半导体板块。
+        </p>
+
+        <div class="card-grid">
+            <div class="index-card" style="border-left-color: #00b894;">
+                <div class="label">📈 道琼斯工业指数</div>
+                <div class="value">51,671.03</div>
+                <div class="change up">+468.77 · <strong>+0.92%</strong></div>
+                <div style="font-size:12px; color:var(--muted); margin-top:6px;">创历史新高</div>
+            </div>
+            <div class="index-card" style="border-left-color: #0984e3;">
+                <div class="label">📊 标普500指数</div>
+                <div class="value">7,554.29</div>
+                <div class="change up">+122.83 · <strong>+1.65%</strong></div>
+                <div style="font-size:12px; color:var(--muted); margin-top:6px;">逼近历史高位</div>
+            </div>
+            <div class="index-card" style="border-left-color: #6c5ce7;">
+                <div class="label">🚀 纳斯达克综合指数</div>
+                <div class="value">26,683.94</div>
+                <div class="change up">+795.10 · <strong>+3.07%</strong></div>
+                <div style="font-size:12px; color:var(--muted); margin-top:6px;">科技股领涨</div>
+            </div>
+        </div>
+
+        <div class="card-grid" style="margin-top:8px;">
+            <div class="index-card" style="border-left-color: var(--gold);">
+                <div class="label">😰 VIX恐慌指数</div>
+                <div class="value" style="color:var(--muted);">数据暂缺</div>
+                <div style="font-size:13px; color:var(--muted);">预计大幅回落（风险偏好显著回升）</div>
+            </div>
+            <div class="index-card" style="border-left-color: #0984e3;">
+                <div class="label">💵 美元指数</div>
+                <div class="value">99.631</div>
+                <div class="change down">-0.12%</div>
+                <div style="font-size:12px; color:var(--muted); margin-top:6px;">地缘缓和后避险需求减弱</div>
+            </div>
+            <div class="index-card" style="border-left-color: #6c5ce7;">
+                <div class="label">📜 30年期美债收益率</div>
+                <div class="value">4.979%</div>
+                <div class="change down" style="color:#d63031;">+0.90 bps</div>
+                <div style="font-size:12px; color:var(--muted); margin-top:6px;">小幅上行，市场消化通胀预期</div>
+            </div>
+        </div>
+
+        <h3>📌 关键影响因素</h3>
+        <div class="event-item">
+            <div class="event-title">🕊️ 美伊达成历史性停战谅解备忘录</div>
+            <div class="event-desc">美国总统特朗普6月14日宣布美伊协议"已完成"，授权霍尔木兹海峡免费开放并解除美国海军对伊海上封锁。伊朗最高国家安全委员会6月15日凌晨确认伊美停战谅解备忘录达成，正式签字仪式将于6月19日在瑞士举行。该协议终结了持续数月的中东冲突，原油价格应声大跌超5%。</div>
+        </div>
+        <div class="event-item">
+            <div class="event-title">🚀 SpaceX IPO持续发酵</div>
+            <div class="event-desc">SpaceX上周五（6月12日）登陆纳斯达克，首日收涨19%报160.95美元，市值2.1万亿美元。周一盘中继续涨超7%至170.4美元，马斯克称2030年营收或将达到1万亿美元，市场对AI与商业航天的热情持续升温。</div>
+        </div>
+        <div class="event-item">
+            <div class="event-title">🏛️ G7峰会在法国开幕</div>
+            <div class="event-desc">七国集团峰会于6月15-17日在法国埃维昂莱班举行，重点讨论中东局势、乌克兰问题及全球经济失衡。美伊协议的达成成为峰会重要成果之一。</div>
+        </div>
+        <div class="event-item">
+            <div class="event-title">🏦 美联储6月FOMC会议明日开启</div>
+            <div class="event-desc">美联储将于6月16-17日召开议息会议，6月18日凌晨公布决议。市场普遍预期维持利率在3.5%-3.75%不变，但本次会议为凯文·沃什就任美联储主席后的"首秀"，点阵图或将由降息预期转为维持不变，声明中宽松倾向可能被删除——偏鹰预期已被市场逐步消化。</div>
+        </div>
+    </div>
+
+    <!-- 二、强势板块与核心逻辑 -->
+    <div class="section">
+        <h2>二、强势板块与核心逻辑</h2>
+
+        <h3>🔥 涨幅前5板块</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>板块/行业</th>
+                    <th>涨幅参考</th>
+                    <th>核心逻辑</th>
+                    <th>龙头个股</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>半导体/芯片</strong> <span class="badge badge-up">领涨</span></td>
+                    <td><span class="up">PHLX +4%</span></td>
+                    <td>美伊协议消除地缘不确定性，AI算力长期需求逻辑不变；长鑫科技科创板IPO获批催化存储赛道；SpaceX上市带动科技风险偏好</td>
+                    <td>西部数据+15%、AMD+8%↑、美光+7%↑、高通+6%、英特尔+5%↑</td>
+                </tr>
+                <tr>
+                    <td><strong>科技七巨头</strong></td>
+                    <td><span class="up">Meta+3%↑<br>AMZN+3%↑</span></td>
+                    <td>风险偏好好转后资金回流高Beta科技股；AI叙事持续驱动；SpaceX上市提振整体科技板块估值</td>
+                    <td>Meta+3%↑、GOOGL+2%↑、NVDA+2%↑、AAPL/MSFT/TSLA+1%↑</td>
+                </tr>
+                <tr>
+                    <td><strong>贵金属（黄金矿业）</strong></td>
+                    <td><span class="up">+9~11%</span></td>
+                    <td>美伊协议虽降低地缘溢价，但通胀预期降温推动实际利率下行，金银获得反弹动力；现货黄金一度涨至4360美元</td>
+                    <td>哈莫尼黄金+11%、科尔黛伦矿业+9%↑、盎格鲁黄金+9%↑</td>
+                </tr>
+                <tr>
+                    <td><strong>航空航天/太空概念</strong></td>
+                    <td><span class="up">+4~7%</span></td>
+                    <td>SpaceX上市燃爆太空经济热情；马斯克宣布星舰+星链商业化加速</td>
+                    <td>SpaceX+7%、Rocket Lab+4%、AST SpaceMobile+5%</td>
+                </tr>
+                <tr>
+                    <td><strong>航空运输</strong></td>
+                    <td><span class="up">+3~4%</span></td>
+                    <td>油价暴跌大幅降低航空燃油成本；美伊协议有利于中东航线恢复</td>
+                    <td>达美航空+4.2%、美国航空+3.8%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>❄️ 跌幅前3板块</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>板块/行业</th>
+                    <th>跌幅参考</th>
+                    <th>核心逻辑</th>
+                    <th>代表个股</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>油气/能源</strong></td>
+                    <td><span class="down">-4~6%</span></td>
+                    <td>美伊协议达成直接导致原油价格暴跌超5%，市场预期霍尔木兹海峡恢复通航将大幅增加全球原油供应，能源股全线重挫</td>
+                    <td>埃克森美孚-5.6%、雪佛龙-4.4%、西方石油-5.4%、康菲石油-4.9%</td>
+                </tr>
+                <tr>
+                    <td><strong>媒体/娱乐</strong></td>
+                    <td><span class="down">-16%</span></td>
+                    <td>福克斯（FOXA）拟以220亿美元收购流媒体平台Roku，溢价11.4%，市场担忧并购整合风险及债务压力</td>
+                    <td>福克斯A类股-16%↑（最大跌幅）</td>
+                </tr>
+                <tr>
+                    <td><strong>公用事业</strong></td>
+                    <td><span class="down">微跌~平</span></td>
+                    <td>资金从防御型板块流出转向风险偏好型资产（科技、半导体），公用事业股遭减持</td>
+                    <td>—</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 三、重点个股异动 -->
+    <div class="section">
+        <h2>三、重点个股异动</h2>
+        <p style="font-size:14px; color:var(--muted); margin-bottom:12px;">逐一检查了以下12只龙头科技股的涨跌幅及背后原因：</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>股票</th>
+                    <th>代码</th>
+                    <th>涨跌幅</th>
+                    <th>原因分析</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Meta</strong></td>
+                    <td>META</td>
+                    <td class="up">+3%↑</td>
+                    <td>美伊协议后市场风险偏好回升，AI业务布局持续获分析师看好</td>
+                </tr>
+                <tr>
+                    <td><strong>亚马逊</strong></td>
+                    <td>AMZN</td>
+                    <td class="up">+3%↑</td>
+                    <td>油价暴跌利好物流运输成本，AWS云服务AI化持续推进</td>
+                </tr>
+                <tr>
+                    <td><strong>谷歌</strong></td>
+                    <td>GOOGL</td>
+                    <td class="up">+2%↑</td>
+                    <td>AI搜索广告业务增长强劲，受益整体科技风险偏好提升</td>
+                </tr>
+                <tr>
+                    <td><strong>英伟达</strong></td>
+                    <td>NVDA</td>
+                    <td class="up">+2%↑</td>
+                    <td>AI算力核心标的，半导体板块整体走强带动；市场预期下一代Blackwell Ultra GPU需求旺盛</td>
+                </tr>
+                <tr>
+                    <td><strong>苹果</strong></td>
+                    <td>AAPL</td>
+                    <td class="up">+1%↑</td>
+                    <td>小幅跟涨，近期无重大催化事件；公司正加速AI功能嵌入iOS生态</td>
+                </tr>
+                <tr>
+                    <td><strong>微软</strong></td>
+                    <td>MSFT</td>
+                    <td class="up">+1%↑</td>
+                    <td>Azure AI企业级部署稳步推进，Copilot商业化持续渗透</td>
+                </tr>
+                <tr>
+                    <td><strong>特斯拉</strong></td>
+                    <td>TSLA</td>
+                    <td class="up">+1~2%↑</td>
+                    <td>中国智造Model Y成5月日本进口车单一车型注册量第一；SpaceX上市对马斯克旗下企业的正面外溢效应；油价暴跌利好电动车消费意愿</td>
+                </tr>
+                <tr>
+                    <td><strong>AMD</strong></td>
+                    <td>AMD</td>
+                    <td class="up"><strong>+8%↑</strong></td>
+                    <td>半导体板块集体爆发；长鑫科技科创板IPO获批提振全球存储芯片信心；AMD MI400 AI芯片前景看好</td>
+                </tr>
+                <tr>
+                    <td><strong>台积电</strong></td>
+                    <td>TSM</td>
+                    <td class="up">+4~5%↑</td>
+                    <td>AI芯片代工主力供应商，半导体景气度回升直接受益</td>
+                </tr>
+                <tr>
+                    <td><strong>英特尔</strong></td>
+                    <td>INTC</td>
+                    <td class="up"><strong>+5%↑</strong></td>
+                    <td>芯片板块集体大涨；18A制程工艺进展获市场关注；美伊协议后能源成本下降改善制造业预期</td>
+                </tr>
+                <tr>
+                    <td><strong>礼来</strong></td>
+                    <td>LLY</td>
+                    <td>+0~1%</td>
+                    <td>医药板块整体表现平淡，资金流向科技赛道</td>
+                </tr>
+                <tr>
+                    <td><strong>强生</strong></td>
+                    <td>JNJ</td>
+                    <td>+0~1%</td>
+                    <td>防御型板块遭减持，但基本面稳健</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="highlight-box" style="margin-top:16px;">
+            <strong>📌 异动最大个股一览：</strong>
+            <ul style="margin-top:6px; font-size:14px;">
+                <li><strong>西部数据 (WDC)</strong> <span class="up">+15%↑</span> — 存储芯片需求旺盛，AI大模型训练拉动HDD/SSD需求</li>
+                <li><strong>AMD</strong> <span class="up">+8%↑</span> — 芯片板块全面爆发，AI芯片竞争格局有利于AMD追赶</li>
+                <li><strong>美光科技 (MU)</strong> <span class="up">+7%↑</span> — 存储芯片景气周期+长鑫科技科创板IPO催化</li>
+                <li><strong>SpaceX (SPCX)</strong> <span class="up">+7%↑</span> — 上市次日持续走高，马斯克喊话万亿营收目标</li>
+                <li><strong>福克斯 (FOXA)</strong> <span class="down">-16%↓</span> — 220亿美元收购Roku遭市场质疑</li>
+                <li><strong>埃克森美孚 (XOM)</strong> <span class="down">-5.6%↓</span> — 美伊协议致油价暴跌，能源板块承压</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 四、中概股表现 -->
+    <div class="section">
+        <h2>四、中概股表现</h2>
+        <p style="margin-bottom:12px;">纳斯达克中国金龙指数 <span class="up">+1.27%</span>，中概股跟随大盘普涨，但涨幅相对克制。</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>股票</th>
+                    <th>代码</th>
+                    <th>涨跌幅</th>
+                    <th>备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>亿航智能</strong></td>
+                    <td>EH</td>
+                    <td class="up"><strong>+14%↑</strong></td>
+                    <td>低空经济概念升温；SpaceX上市带动的太空/飞行器估值重估效应</td>
+                </tr>
+                <tr>
+                    <td><strong>金山云</strong></td>
+                    <td>KC</td>
+                    <td class="up"><strong>+5%↑</strong></td>
+                    <td>AI云计算概念跟涨，受益于科技板块整体走强</td>
+                </tr>
+                <tr>
+                    <td><strong>百度</strong></td>
+                    <td>BIDU</td>
+                    <td class="up"><strong>+2%↑</strong></td>
+                    <td>自动驾驶与AI大模型双轮驱动；美伊协议下原油成本下降利好出行经济</td>
+                </tr>
+                <tr>
+                    <td><strong>京东</strong></td>
+                    <td>JD</td>
+                    <td class="up">+1%↑</td>
+                    <td>618大促进行中，消费复苏预期支撑</td>
+                </tr>
+                <tr>
+                    <td><strong>拼多多</strong></td>
+                    <td>PDD</td>
+                    <td class="up">+1%↑</td>
+                    <td>雄安新区新公司首批150人入职；5亿元注资布局大数据与云服务，中长期战略清晰</td>
+                </tr>
+                <tr>
+                    <td><strong>网易</strong></td>
+                    <td>NTES</td>
+                    <td class="up">+1%↑</td>
+                    <td>游戏业务稳健，受益风险偏好回升</td>
+                </tr>
+                <tr>
+                    <td><strong>携程</strong></td>
+                    <td>TCOM</td>
+                    <td class="up">+1%↑</td>
+                    <td>旅游出行链受益于油价下跌预期</td>
+                </tr>
+                <tr>
+                    <td><strong>阿里巴巴</strong></td>
+                    <td>BABA</td>
+                    <td>~+0~1%</td>
+                    <td>跟涨幅度有限，市场仍在评估AI云业务价值</td>
+                </tr>
+                <tr>
+                    <td><strong>小鹏/理想/蔚来</strong></td>
+                    <td>XPEV/LI/NIO</td>
+                    <td>~+0~1%</td>
+                    <td>电动车板块相对平淡；理想汽车宣布下半年马赫VLA对齐特斯拉FSD V14能力</td>
+                </tr>
+                <tr>
+                    <td><strong>B站</strong></td>
+                    <td>BILI</td>
+                    <td>+1%↑</td>
+                    <td>小幅跟涨</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="quote">
+            <strong>📋 中概股点评：</strong>中概股整体跟涨但弹性弱于美股科技股，反映在美中概仍面临中美关系不确定性制约。优等生——亿航智能（低空经济概念+SpaceX外溢效应）表现突出，其余品种涨幅集中在1-2%区间。
+        </div>
+    </div>
+
+    <!-- 五、大宗商品与相关资产 -->
+    <div class="section">
+        <h2>五、大宗商品与相关资产</h2>
+        
+        <div class="card-grid">
+            <div class="index-card" style="border-left-color: #e17055;">
+                <div class="label">🛢️ WTI原油</div>
+                <div class="value" style="color:var(--red);">$80.75/桶</div>
+                <div class="change down"><strong>-5%↓</strong>（日内暴跌）</div>
+                <div style="font-size:12px; color:var(--muted); margin-top:6px;">美伊协议后霍尔木兹海峡将重新开放，地缘风险溢价迅速消退</div>
+            </div>
+            <div class="index-card" style="border-left-color: #e17055;">
+                <div class="label">🛢️ 布伦特原油</div>
+                <div class="value" style="color:var(--red);">$84.62/桶</div>
+                <div class="change down"><strong>-4~5%↓</strong></div>
+                <div style="font-size:12px; color:var(--muted); margin-top:6px;">跟随WTI大跌</div>
+            </div>
+            <div class="index-card" style="border-left-color: #fdcb6e;">
+                <div class="label">🥇 现货黄金</div>
+                <div class="value" style="color:var(--gold);">$4,360</div>
+                <div class="change up"><strong>+3.55%↑</strong>（盘中高点）</div>
+                <div style="font-size:12px; color:var(--muted); margin-top:6px;">COMEX结算+2.18%至$4,331；地缘溢价消退后，实际利率下行推动黄金反弹</div>
+            </div>
+            <div class="index-card" style="border-left-color: #636e72;">
+                <div class="label">🥈 白银</div>
+                <div class="value" style="color:var(--green);">$70.06/盎司</div>
+                <div class="change up"><strong>+3.07%↑</strong></div>
+                <div style="font-size:12px; color:var(--muted); margin-top:6px;">COMEX结算价</div>
+            </div>
+        </div>
+        
+        <div class="card-grid">
+            <div class="index-card" style="border-left-color: #0984e3;">
+                <div class="label">📜 30年期美债收益率</div>
+                <div class="value">4.979%</div>
+                <div class="change down" style="color:#d63031;">+0.90 bps</div>
+                <div style="font-size:12px; color:var(--muted); margin-top:6px;">小幅上行</div>
+            </div>
+            <div class="index-card" style="border-left-color: #6c5ce7;">
+                <div class="label">💵 美元指数</div>
+                <div class="value">99.631</div>
+                <div class="change down">-0.12%</div>
+                <div style="font-size:12px; color:var(--muted); margin-top:6px;">地缘缓和后美元避险买盘减少</div>
+            </div>
+            <div class="index-card" style="border-left-color: #00b894;">
+                <div class="label">🔗 LME铜</div>
+                <div class="value" style="color:var(--muted);">数据暂缺</div>
+                <div style="font-size:12px; color:var(--muted); margin-top:6px;">预计跟随风险资产上涨</div>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <strong>📌 大宗商品核心逻辑：</strong>
+            <ul style="margin-top:6px; font-size:14px;">
+                <li><strong>原油暴跌的直接驱动：</strong>美伊协议解除伊朗海上封锁，霍尔木兹海峡恢复自由通航，全球每日约2000万桶原油通过该海峡，市场预期供应将大幅增加</li>
+                <li><strong>金银反弹逻辑：</strong>油价暴跌 → 通胀预期降温 → 实际利率走低 → 黄金吸引力上升。同时美伊协议降低战争风险，但金银前期已大幅回调，技术性反弹需求强烈</li>
+                <li><strong>美元走弱：</strong>风险偏好回升、地缘溢价消除使美元避险需求下降，美元指数跌破100关口</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 六、重要信息点评 -->
+    <div class="section">
+        <h2>六、重要信息点评</h2>
+
+        <div class="event-item">
+            <div class="event-title">⭐ 核心事件：美伊正式达成停战谅解备忘录</div>
+            <div class="event-desc">
+                <p><strong>时间线：</strong>6月14日特朗普宣布协议完成 → 6月15日伊朗正式确认 → 6月19日瑞士正式签署。</p>
+                <p><strong>要点：</strong>全线永久停火、解除伊朗海上封锁、恢复霍尔木兹海峡自由通航、暂停部分对伊石油制裁、启动地区重建规划。</p>
+                <p><strong>市场影响：</strong>这是当前市场最大的单一驱动因素。油价暴跌、全球股市大涨、美元走弱、金银反弹——所有资产类别的波动均与该事件深度关联。</p>
+            </div>
+        </div>
+
+        <div class="event-item">
+            <div class="event-title">🏦 美联储6月FOMC会议（6月16-17日）</div>
+            <div class="event-desc">
+                <p><strong>决议时间：</strong>北京时间6月18日（周四）凌晨02:00。</p>
+                <p><strong>利率预期：</strong>市场广泛预期维持联邦基金利率在3.5%-3.75%不变。</p>
+                <p><strong>关键看点：</strong>① 新任主席凯文·沃什"首秀"表态；② 点阵图是否由降息转为维持不变；③ 声明中"宽松倾向"是否删除；④ 是否上调通胀预期、下调增长预测。</p>
+                <p><strong>市场影响：</strong>华泰证券等机构预计美联储将偏鹰。但美伊协议带来的油价暴跌可能缓解通胀压力，为后续降息创造空间——这点值得重点关注。</p>
+            </div>
+        </div>
+
+        <div class="event-item">
+            <div class="event-title">🇨🇳 长鑫科技科创板IPO注册生效（6月12日）</div>
+            <div class="event-desc">
+                <p><strong>事件：</strong>证监会6月12日同意长鑫科技科创板IPO注册申请。拟募资295亿元，为科创板史上第二大IPO（仅次于中芯国际532亿元）。</p>
+                <p><strong>财务数据：</strong>2026H1营收预计1100-1200亿元（同比+613%~677%），归母净利润500-570亿元（同比+2244%~2544%），2026Q1净利润330亿元，增长极为强劲。</p>
+                <p><strong>A股映射：</strong>直接利好A股存储芯片/半导体设备/材料板块龙头。</p>
+            </div>
+        </div>
+
+        <div class="event-item">
+            <div class="event-title">🚀 SpaceX上市与太空经济热潮</div>
+            <div class="event-desc">
+                <p>SpaceX以2.1万亿美元市值登陆纳斯达克，首日涨19%，周一继续涨7%+。公司2025年营收186.7亿美元，2026Q1营收46.9亿美元，但Q1净亏损42.8亿美元。马斯克预计2030年营收达1万亿美元。市场对太空经济与AI基础设施的双重叙事热情高涨。</p>
+            </div>
+        </div>
+
+        <div class="event-item">
+            <div class="event-title">♻️ 日本央行预计加息（6月16日）</div>
+            <div class="event-desc">
+                据报道日本央行预计在6月16日加息，此前欧洲央行已于6月11日加息。全球主要央行仍处于紧缩周期，对全球流动性构成压力。</div>
+        </div>
+    </div>
+
+    <!-- 七、映射到A股 -->
+    <div class="section">
+        <h2>七、映射到A股的潜在方向</h2>
+        <div class="highlight-box" style="border-color: var(--accent); background: linear-gradient(135deg, #ffeaa7, #fab1a0);">
+            <strong>⚠️ 最核心部分：以下为具体的板块和个股方向</strong>
+        </div>
+
+        <h3>🔹 方向一：半导体/存储芯片（最直接映射）</h3>
+        <p>美股半导体板块+4%，长鑫科技IPO获批是催化剂。A股映射逻辑：</p>
+        <ul style="margin:8px 0 12px 20px; font-size:14px;">
+            <li><strong>存储芯片产业链：</strong>长鑫科技上市将带动A股存储板块估值重估。关注<strong>兆易创新、北京君正、澜起科技、佰维存储</strong>（当日+5.43%）</li>
+            <li><strong>半导体设备/材料：</strong>长鑫科技扩产需要大量设备采购。关注<strong>北方华创、中微公司、拓荆科技、华海清科</strong></li>
+            <li><strong>芯片设计/IP：</strong><strong>寒武纪</strong>（当日+8.06%）、<strong>海光信息</strong>（+6.07%）、<strong>中芯国际</strong>（+3.94%）</li>
+            <li><strong>ETF工具：</strong>科创芯片ETF（588290）+4.33%，港股通信息技术ETF（513240）+6.26%</li>
+        </ul>
+
+        <h3>🔹 方向二：黄金/贵金属</h3>
+        <p>黄金涨至4360美元，美股黄金股大涨9-11%。A股映射逻辑：</p>
+        <ul style="margin:8px 0 12px 20px; font-size:14px;">
+            <li>美伊协议后通胀预期降温+实际利率下行，黄金中期利好</li>
+            <li>上金所已上调保证金比例（6月17日起），说明市场波动加大</li>
+            <li>关注<strong>赤峰黄金</strong>（当日+7%↑）、<strong>晓程科技</strong>（+7%↑）、<strong>山东黄金、中金黄金、湖南黄金</strong></li>
+            <li>金价若站稳4300美元，黄金股仍有上行空间</li>
+        </ul>
+
+        <h3>🔹 方向三：航运/港口（短期利好）</h3>
+        <p>美伊协议+霍尔木兹海峡重开 → 全球航运成本下降。A股当日航运港口股批量涨停：</p>
+        <ul style="margin:8px 0 12px 20px; font-size:14px;">
+            <li><strong>招商南油、招商轮船、中远海能</strong>一字板涨停</li>
+            <li>油价暴跌的直接受益者——燃油成本占航运公司成本30%左右</li>
+            <li>短线情绪驱动，但需注意原油价格企稳后的追高风险</li>
+        </ul>
+
+        <h3>🔹 方向四：航空/出行链</h3>
+        <p>油价暴跌+美伊和平，利好航空业与旅游出行链：</p>
+        <ul style="margin:8px 0 12px 20px; font-size:14px;">
+            <li><strong>中国国航、南方航空、中国东航</strong> — 燃油成本大幅下降</li>
+            <li><strong>携程/同程</strong> — 出行需求预期提振</li>
+        </ul>
+
+        <h3>🔹 方向五：AI算力/AI应用（中期主线）</h3>
+        <p>卫星互联网/低空经济映射：</p>
+        <ul style="margin:8px 0 12px 20px; font-size:14px;">
+            <li>SpaceX带动太空经济热潮 → A股低空经济/卫星互联网板块受益</li>
+            <li>关注：<strong>中国卫星、中国卫通、航天电子、华力创通</strong></li>
+            <li>AI算力基建：<strong>中际旭创、新易盛、天孚通信</strong>（CPO光模块）</li>
+        </ul>
+
+        <h3>🔹 方向六：化工/原材料（油价下跌受益）</h3>
+        <ul style="margin:8px 0 12px 20px; font-size:14px;">
+            <li>油价暴跌利好以原油为原料的化工企业</li>
+            <li>关注<strong>万华化学、华鲁恒升、卫星化学</strong></li>
+            <li>化工板块在当日A股表现中<strong>建筑材料+5.22%领涨</strong></li>
+        </ul>
+
+        <div class="quote" style="margin-top:16px;">
+            <strong>📋 A股当日表现参考（6月15日）：</strong>上证指数+1.06%报4074点，深证成指+1.50%，创业板指+1.36%，两市成交超1.5万亿元。建筑材料+5.22%领涨，电子+4.64%、通信+3.37%紧随其后。煤炭-4.37%、银行-1.34%下跌。
+        </div>
+    </div>
+
+    <!-- 八、投资机会 -->
+    <div class="section">
+        <h2>八、投资机会</h2>
+
+        <h3 style="color:var(--green);">📅 短期（1-2周）</h3>
+        <ol style="margin:8px 0 16px 20px; font-size:14px;">
+            <li><strong>半导体ETF</strong> — 科创芯片ETF（588290）受长鑫科技IPO+存储周期双重催化，短期动能强劲</li>
+            <li><strong>黄金股短线博弈</strong> — 金价强势突破4300美元，黄金股仍有上冲惯性，关注赤峰黄金、山东黄金</li>
+            <li><strong>航运/航空</strong> — 油价暴跌的短期情绪反应，招商南油、中国国航等可短线参与但不宜追高</li>
+        </ol>
+
+        <h3 style="color:#0984e3;">📆 中期（1-3月）</h3>
+        <ol style="margin:8px 0 16px 20px; font-size:14px;">
+            <li><strong>AI算力基建</strong> — 光模块/CPO（中际旭创、新易盛）、AI服务器（工业富联、浪潮信息）。核心催化剂：长期AI资本开支不减，美股半导体走强的外溢效应</li>
+            <li><strong>存储芯片景气周期</strong> — 长鑫科技上市后产业链上下游受益，兆易创新、澜起科技、佰维存储有望迎来重估</li>
+            <li><strong>化工周期复苏</strong> — 原油价格回落+下游需求回暖，万华化学等细分龙头估值具备安全边际</li>
+            <li><strong>低空经济/卫星互联网</strong> — SpaceX上市将为全球商业航天估值体系树立新标杆，关注中国卫星、中国卫通</li>
+        </ol>
+
+        <div class="quote">
+            <strong>⚙️ 策略建议：</strong>美伊协议是短期的情绪脉冲，油价重回80美元关口后其对通胀的压制作用是中期逻辑。当前最大的不确定性是本周美联储FOMC决议（6月18日凌晨），若美联储表态偏鹰但油价下跌带来实际通胀降温，反而可能为年内降息打开空间。建议本周以半仓以下参与结构性行情为主，等FOMC落地后再加仓。
+        </div>
+    </div>
+
+    <!-- 九、风险提示 -->
+    <div class="section">
+        <h2>九、风险提示</h2>
+        
+        <div class="event-item">
+            <div class="event-title" style="color:var(--red);">⚠️ FOMC偏鹰超预期</div>
+            <div class="event-desc">若本周美联储会议意外释放加息信号（概率虽低但风险不可忽视），可能引发全球流动性收紧恐慌，导致股市剧烈回调。点阵图若大幅上调利率预期，将对高估值科技股造成冲击。</div>
+        </div>
+        <div class="event-item">
+            <div class="event-title" style="color:var(--red);">⚠️ 美伊协议执行风险</div>
+            <div class="event-desc">6月19日签约仪式后，协议实际执行仍面临变数。伊朗内部强硬派阻力、以色列态度、海湾国家利益博弈等均可能影响协议落地效果。若协议出现反复，油价可能快速反弹。</div>
+        </div>
+        <div class="event-item">
+            <div class="event-title" style="color:var(--red);">⚠️ 美股估值高企</div>
+            <div class="event-desc">标普500远期市盈率22.3倍，比历史均值高出一个标准差以上，为2021年科技泡沫高峰以来最高水平。若企业盈利增速放缓，估值回调压力巨大。SpaceX的2.1万亿美元IPO定价本身也引发泡沫质疑。</div>
+        </div>
+        <div class="event-item">
+            <div class="event-title" style="color:var(--red);">⚠️ 全球央行紧缩潮</div>
+            <div class="event-desc">欧洲央行6月11日已加息，日本央行预计6月16日加息，全球流动性仍在收紧。中国央行若维持宽松，中美利差将进一步扩大，人民币汇率承压。</div>
+        </div>
+        <div class="event-item">
+            <div class="event-title" style="color:var(--red);">⚠️ 油价反弹风险</div>
+            <div class="event-desc">美油80美元/桶已接近部分产油国财政盈亏线。OPEC+可能通过减产来对冲伊朗原油回归市场的影响。若油价快速反弹至85美元以上，通胀担忧将卷土重来。</div>
+        </div>
+        <div class="event-item">
+            <div class="event-title" style="color:var(--red);">⚠️ 中概股政策风险</div>
+            <div class="event-desc">中美关系在G7峰会期间存在变数。若美方在科技、贸易领域推出新的限制措施，中概股将面临额外压力。</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>📊 美股映射复盘 · 2026年6月15日</p>
+        <p>报告由观澜自动生成 · 数据来源：同花顺iFind/公开市场信息</p>
+        <p style="font-size:12px; margin-top:6px;">⚠️ 本报告仅供参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+    </div>
+
+</div>
+</body>
+</html>
