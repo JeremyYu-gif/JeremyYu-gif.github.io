@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>港股每日复盘 2026-06-30</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    line-height: 1.6;
+    padding: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    border: 1px solid #30363d;
+    text-align: center;
+  }
+  .header h1 { font-size: 1.6em; color: #58a6ff; margin-bottom: 4px; }
+  .header .subtitle { color: #8b949e; font-size: 0.9em; }
+  .header .date-badge {
+    display: inline-block;
+    background: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 0.85em;
+    color: #58a6ff;
+    margin-top: 8px;
+  }
+  .conclusion-box {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+    border-left: 4px solid #58a6ff;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #30363d;
+  }
+  .conclusion-box h2 { color: #58a6ff; font-size: 1em; margin-bottom: 8px; }
+  .conclusion-box p { font-size: 1.05em; color: #f0f6fc; font-weight: 500; }
+  .card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+  .card h2 {
+    font-size: 1.1em;
+    color: #58a6ff;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #21262d;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card h2 .icon { font-size: 1.2em; }
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 10px;
+  }
+  .data-item {
+    background: #0d1117;
+    border-radius: 8px;
+    padding: 10px 14px;
+    border: 1px solid #21262d;
+  }
+  .data-item .label { color: #8b949e; font-size: 0.82em; }
+  .data-item .value { font-size: 1.15em; font-weight: 600; margin-top: 2px; }
+  .up { color: #f78166; }
+  .down { color: #3fb950; }
+  .neutral { color: #e6edf3; }
+  .small-text { font-size: 0.82em; color: #8b949e; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88em;
+    margin-top: 8px;
+  }
+  th {
+    text-align: left;
+    padding: 8px 10px;
+    background: #0d1117;
+    color: #8b949e;
+    font-weight: 500;
+    border-bottom: 1px solid #21262d;
+  }
+  td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #21262d;
+  }
+  tr:last-child td { border-bottom: none; }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.78em;
+    font-weight: 500;
+  }
+  .tag-hot { background: #3a1a1a; color: #f78166; }
+  .tag-cold { background: #1a2a1a; color: #3fb950; }
+  .tag-warn { background: #3a2a00; color: #d29922; }
+  .tag-info { background: #0d2f5e; color: #58a6ff; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .alert-box {
+    background: #2d1b00;
+    border: 1px solid #bb8009;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 8px 0;
+    font-size: 0.9em;
+  }
+  .alert-box.warn { background: #2d1b00; border-color: #bb8009; }
+  .alert-box.good { background: #002d1b; border-color: #2ea043; }
+  .footnote { margin-top: 20px; font-size: 0.75em; color: #484f58; text-align: center; padding: 10px; border-top: 1px solid #21262d; }
+  @media (max-width: 600px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .data-grid { grid-template-columns: 1fr; }
+    body { padding: 10px; }
+    .header h1 { font-size: 1.3em; }
+  }
+  .progress-bar {
+    height: 6px;
+    border-radius: 3px;
+    background: #21262d;
+    margin-top: 4px;
+    overflow: hidden;
+  }
+  .progress-bar .fill { height: 100%; border-radius: 3px; }
+  .fill-buy { background: #f78166; }
+  .fill-sell { background: #3fb950; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🇭🇰 港股每日复盘</h1>
+  <div class="subtitle">资深基金经理视角 · 2026年6月30日（周二）</div>
+  <div class="date-badge">📅 2026上半年最后一个交易日</div>
+</div>
+
+<!-- 核心结论 -->
+<div class="conclusion-box">
+  <h2>📌 今日核心结论</h2>
+  <p>恒指失守23000点关口收跌0.63%，但恒生科技逆势大涨1.8%呈现极致分化——AI硬件（半导体/PCB）与科网股强势反弹，资源股与内银股遭重挫。南向资金净买入59亿港元大举加仓中芯国际（+19亿）、建滔积层板（+11亿）等AI硬件标的，但总沽空金额攀升至575亿创阶段新高，多空分歧极度加剧。上半年收官：恒指累跌超10%，恒科累跌超18%，智谱以1700%涨幅成为港股"股王"。</p>
+</div>
+
+<!-- 大盘全景 -->
+<div class="card">
+  <h2><span class="icon">📊</span> 大盘全景（基金经理视角）</h2>
+  <div class="data-grid">
+    <div class="data-item">
+      <div class="label">恒生指数 HSI</div>
+      <div class="value down">22,881.02 <span class="small-text">▼ -0.63%</span></div>
+      <div class="small-text">日内振幅 22,690 - 23,090</div>
+    </div>
+    <div class="data-item">
+      <div class="label">恒生科技 HSTECH</div>
+      <div class="value up">4,472.23 <span class="small-text">▲ +1.80%</span></div>
+      <div class="small-text">日内振幅 4,402 - 4,495</div>
+    </div>
+    <div class="data-item">
+      <div class="label">恒生国企 HSCEI</div>
+      <div class="value down">7,558.30 <span class="small-text">▼ -0.62%</span></div>
+      <div class="small-text">日内振幅 7,483 - 7,635</div>
+    </div>
+    <div class="data-item">
+      <div class="label">大市成交</div>
+      <div class="value neutral">3,080.50亿</div>
+      <div class="small-text">前日 3,154亿 | 缩量-2.3%</div>
+    </div>
+    <div class="data-item">
+      <div class="label">HSI 5日涨跌幅</div>
+      <div class="value down"><span class="small-text">▼ -1.95%</span></div>
+      <div class="small-text">近期走势持续走弱</div>
+    </div>
+    <div class="data-item">
+      <div class="label">赚钱效应</div>
+      <div class="value neutral">⚡ 极致分化</div>
+      <div class="small-text">科网股赚钱效应好，资源/金融股亏钱严重</div>
+    </div>
+  </div>
+  <div class="alert-box warn" style="margin-top:12px">
+    ⚠️ <strong>关键观察</strong>：恒指跌破23000点创阶段新低，但恒科连涨两日显示资金从传统板块向科技成长切换。恒指半年累跌超10%，权重股（阿里-22%、中海油-21%）拖累严重，结构性分化成为上半年主旋律。
+  </div>
+</div>
+
+<!-- 市场情绪 -->
+<div class="card">
+  <h2><span class="icon">🔥</span> 市场情绪</h2>
+  <div class="grid-3">
+    <div class="data-item">
+      <div class="label">港股通额度使用</div>
+      <div class="value up">+58.95亿</div>
+      <div class="small-text">沪+55.74亿 | 深+3.21亿</div>
+    </div>
+    <div class="data-item">
+      <div class="label">总沽空金额</div>
+      <div class="value neutral">575.39亿</div>
+      <div class="small-text">创阶段新高</div>
+    </div>
+    <div class="data-item">
+      <div class="label">沽空比率</div>
+      <div class="value neutral">18.68%</div>
+      <div class="small-text">较前日大幅上升</div>
+    </div>
+  </div>
+  <div class="alert-box warn" style="margin-top:10px">
+    ⚠️ <strong>沽空警示</strong>：沽空比率18.68%创阶段新高，多空分歧加剧。前五大沽空标的：南方恒生科技(03033) 沽空率47.17%、XL二南方海力士(07709) 41.02%、中芯国际(00981) 17.37%、腾讯(00700) 15.89%、盈富基金(02800) 16.34%。
+  </div>
+  <table style="margin-top:10px">
+    <tr><th>指标</th><th>数值</th><th>判断</th></tr>
+    <tr><td>总沽空股份</td><td>863只</td><td>范围较广</td></tr>
+    <tr><td>总沽空股数</td><td>41.25亿股</td><td>—</td></tr>
+    <tr><td>美团 沽空率</td><td>21.80%</td><td><span class="tag tag-warn">偏高</span></td></tr>
+    <tr><td>小米 沽空率</td><td>24.48%</td><td><span class="tag tag-warn">偏高</span></td></tr>
+    <tr><td>联想集团 沽空率</td><td>29.51%</td><td><span class="tag tag-warn">显著偏高</span></td></tr>
+    <tr><td>舜宇光学 沽空率</td><td>43.80%</td><td><span class="tag tag-warn">极高水平</span></td></tr>
+  </table>
+</div>
+
+<!-- 汇率与流动性 -->
+<div class="card">
+  <h2><span class="icon">💱</span> 汇率与流动性</h2>
+  <div class="grid-2">
+    <div>
+      <div class="data-item">
+        <div class="label">USD/HKD 美元兑港元</div>
+        <div class="value neutral">7.84 <span class="small-text">▲ +0.01%</span></div>
+        <div class="small-text">接近弱方兑换保证</div>
+      </div>
+      <div class="data-item" style="margin-top:8px">
+        <div class="label">USD/CNH 离岸人民币</div>
+        <div class="value neutral">6.8109 <span class="small-text">▼ -0.08%</span></div>
+        <div class="small-text">人民币小幅升值</div>
+      </div>
+    </div>
+    <div>
+      <div class="data-item">
+        <div class="label">10年期美债收益率</div>
+        <div class="value neutral">4.39% <span class="small-text">▲ +0.37%</span></div>
+        <div class="small-text">高位震荡</div>
+      </div>
+      <div class="data-item" style="margin-top:8px">
+        <div class="label">HIBOR 港元利率</div>
+        <div class="value neutral">3M: 2.99% | 1M: 2.96%</div>
+        <div class="small-text">短端利率小幅上行，流动性边际收紧</div>
+      </div>
+    </div>
+  </div>
+  <div class="small-text" style="margin-top:8px">来源：美债收益率上升对港股估值形成压制，港元逼近弱方保证7.85，金管局或需干预。HIBOR维持高位，香港流动性偏紧。</div>
+</div>
+
+<!-- 强势板块与核心逻辑 -->
+<div class="card">
+  <h2><span class="icon">🚀</span> 强势板块与核心逻辑</h2>
+  <h3 style="color:#f78166;font-size:0.95em;margin-bottom:6px;">TOP 5 涨幅板块</h3>
+  <table>
+    <tr><th>板块</th><th>领涨龙头</th><th>涨幅</th><th>上涨逻辑</th></tr>
+    <tr>
+      <td><span class="tag tag-hot">AI硬件/半导体</span></td>
+      <td>中芯国际、华虹宏力</td>
+      <td class="up">+5%~+6%</td>
+      <td>AI算力需求+国产替代加速，建滔集团月涨83%</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-hot">科网/互联网</span></td>
+      <td>百度、腾讯、快手</td>
+      <td class="up">+2%~+5%</td>
+      <td>超跌反弹+AI大模型概念持续催化</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-hot">PCB/光通讯</span></td>
+      <td>建滔积层板、长飞光纤</td>
+      <td class="up">+3%~+7%</td>
+      <td>AI服务器高频高速PCB需求爆发</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-hot">AI应用/大模型</span></td>
+      <td>智谱、联想集团</td>
+      <td class="up">+7%~+8%</td>
+      <td>智谱涨超7%, 联想AI PC概念强势</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-hot">游戏/软件服务</span></td>
+      <td>网易、相关软件</td>
+      <td class="up">+1%~+3%</td>
+      <td>行业政策环境回暖+AI赋能</td>
+    </tr>
+  </table>
+
+  <h3 style="color:#3fb950;font-size:0.95em;margin:12px 0 6px;">TOP 3 最弱板块</h3>
+  <table>
+    <tr><th>板块</th><th>领跌龙头</th><th>跌幅</th><th>下跌原因</th></tr>
+    <tr>
+      <td><span class="tag tag-cold">资源/贵金属</span></td>
+      <td>黄金股、紫金矿业</td>
+      <td class="down">-3%~-5%</td>
+      <td>现货金银短线下挫，资金撤离资源股</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-cold">内银/保险</span></td>
+      <td>工商银行-2.87%、中国银行-1.96%</td>
+      <td class="down">-2%~-3%</td>
+      <td>高息股遭南向资金减持，HIBOR上行压缩利差</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-cold">消费/食品饮料</span></td>
+      <td>沪上阿姨-11%、蜜雪集团-7%</td>
+      <td class="down">-7%~-11%</td>
+      <td>消费预期偏弱+部分公司负面消息</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 重点个股异动 -->
+<div class="card">
+  <h2><span class="icon">📈</span> 重点个股异动（涨跌幅>3%重点分析）</h2>
+  <table>
+    <tr><th>个股</th><th>代码</th><th>最新价</th><th>涨跌幅</th><th>成交额</th><th>异动分析</th></tr>
+    <tr>
+      <td>联想集团</td><td>00992</td><td>—</td><td class="up">▲ +8%+</td><td>—</td>
+      <td>AI PC新品催化，恒科权重股带动指数上扬</td>
+    </tr>
+    <tr>
+      <td>智谱</td><td>02513</td><td>2,104</td><td class="up">▲ +7%+</td><td>15.44亿</td>
+      <td>港股"大模型第一股"，月涨31.9%，但7月8日限售解禁在即需警惕</td>
+    </tr>
+    <tr>
+      <td>百度</td><td>09888</td><td>—</td><td class="up">▲ +5%+</td><td>—</td>
+      <td>AI主题催化+超跌反弹，南向资金回流</td>
+    </tr>
+    <tr>
+      <td>中芯国际</td><td>00981</td><td>—</td><td class="up">▲ +5%+</td><td>152亿+</td>
+      <td><strong>成交额超上日全天</strong>，南向净买入19.33亿居首，AI硬件龙头溢价</td>
+    </tr>
+    <tr>
+      <td>华虹宏力</td><td>01347</td><td>—</td><td class="up">▲ +5%+</td><td>—</td>
+      <td>创历史新高！晶圆代工+AI芯片制造需求爆发</td>
+    </tr>
+    <tr>
+      <td>长飞光纤光缆</td><td>06869</td><td>—</td><td class="up">▲ +6%+</td><td>30.17亿</td>
+      <td>光通讯概念走强，但南向净卖出3.32亿</td>
+    </tr>
+    <tr>
+      <td>胜宏科技</td><td>—</td><td>—</td><td class="up">▲ +7%+</td><td>—</td>
+      <td>PCB概念龙头，受益AI服务器需求</td>
+    </tr>
+    <tr>
+      <td>腾讯控股</td><td>00700</td><td>429.8</td><td class="up">▲ +2.28%</td><td>166.9亿</td>
+      <td>科网反弹龙头，回购5.01亿支撑股价，南向净买入7.65亿</td>
+    </tr>
+    <tr>
+      <td>美团</td><td>03690</td><td>68.5</td><td class="up">▲ +1.26%</td><td>44.58亿</td>
+      <td>超跌反弹，但南向净卖出2.54亿，沽空率21.8%偏高</td>
+    </tr>
+    <tr>
+      <td>阿里巴巴</td><td>09988</td><td>92.85</td><td class="down">▼ -0.16%</td><td>83.43亿</td>
+      <td>6月重灾区累跌22.54%，南向月净卖出226.9亿</td>
+    </tr>
+    <tr>
+      <td>康方生物</td><td>09926</td><td>88.05</td><td class="down">▼ -3.93%</td><td>11.97亿</td>
+      <td>创新药回调，振幅6.49%短线多空博弈激烈</td>
+    </tr>
+    <tr>
+      <td>药明生物</td><td>02269</td><td>34.6</td><td class="down">▼ -1.93%</td><td>11.33亿</td>
+      <td>连续上攻后小幅回调，5日仍涨11.11%</td>
+    </tr>
+    <tr>
+      <td>龙湖集团</td><td>00960</td><td>5.98</td><td class="down">▼ -2.13%</td><td>1.26亿</td>
+      <td>内房持续走弱，但大股东增持200万股示信心</td>
+    </tr>
+    <tr>
+      <td>华润置地</td><td>01109</td><td>30.0</td><td class="down">▼ -1.77%</td><td>5.35亿</td>
+      <td>内房承压，但主力资金净流入3052万</td>
+    </tr>
+    <tr>
+      <td>赣锋锂业</td><td>01772</td><td>50.5</td><td class="up">▲ +2.37%</td><td>—</td>
+      <td>子公司赣锋锂电完成20亿增资扩股</td>
+    </tr>
+    <tr>
+      <td>海底捞</td><td>06862</td><td>10.58</td><td class="down">▼ -4%+</td><td>—</td>
+      <td>消费板块整体走弱，食品饮料承压</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 资金面 -->
+<div class="card">
+  <h2><span class="icon">💰</span> 资金面（港股最核心逻辑）</h2>
+
+  <h3 style="color:#58a6ff;font-size:0.95em;margin-bottom:8px;">🔹 南下资金（港股通）</h3>
+  <div class="data-grid">
+    <div class="data-item">
+      <div class="label">当日净流入</div>
+      <div class="value up">+58.95亿</div>
+      <div class="small-text">沪+55.74亿 | 深+3.21亿</div>
+    </div>
+    <div class="data-item">
+      <div class="label">6月累计净流入</div>
+      <div class="value up">+271亿</div>
+      <div class="small-text">较5月净流出-35.5亿明显改善</div>
+    </div>
+    <div class="data-item">
+      <div class="label">1-5月累计</div>
+      <div class="value neutral">2,433亿</div>
+      <div class="small-text">处于历史较高水平</div>
+    </div>
+  </div>
+
+  <h4 style="color:#8b949e;font-size:0.85em;margin:10px 0 6px;">📌 港股通（南向）前十大活跃成交</h4>
+  <table>
+    <tr><th>代码</th><th>个股</th><th>成交额</th><th>净买入</th><th>方向</th></tr>
+    <tr><td>00981</td><td>中芯国际</td><td>77.94亿（沪）+54.42亿（深）</td><td class="up">+6.45亿(沪)+12.88亿(深)</td><td><span class="tag tag-hot">大幅买入</span></td></tr>
+    <tr><td>00700</td><td>腾讯控股</td><td>41.00亿（沪）+32.07亿（深）</td><td class="up">+6.37亿(沪)+1.28亿(深)</td><td><span class="tag tag-hot">大幅买入</span></td></tr>
+    <tr><td>01888</td><td>建滔积层板</td><td>30.49亿（沪）</td><td class="up">+6.81亿(沪)</td><td><span class="tag tag-hot">大幅买入</span></td></tr>
+    <tr><td>00148</td><td>建滔集团</td><td>28.68亿（沪）+19.75亿（深）</td><td class="up">+1.51亿(沪)+2.46亿(深)</td><td><span class="tag tag-hot">买入</span></td></tr>
+    <tr><td>06869</td><td>长飞光纤光缆</td><td>30.17亿（沪）+21.21亿（深）</td><td class="down">-1.35亿(沪)-1.97亿(深)</td><td><span class="tag tag-cold">净卖出</span></td></tr>
+    <tr><td>09988</td><td>阿里巴巴-W</td><td>21.01亿（沪）</td><td class="up">+1.36亿(沪)</td><td><span class="tag tag-info">小幅买入</span></td></tr>
+    <tr><td>09880</td><td>优必选</td><td>18.97亿（沪）</td><td class="down">-2.24亿(沪)</td><td><span class="tag tag-cold">净卖出</span></td></tr>
+    <tr><td>03986</td><td>兆易创新</td><td>16.97亿（沪）</td><td class="up">+1.61亿(沪)</td><td><span class="tag tag-hot">买入</span></td></tr>
+    <tr><td>02513</td><td>智谱</td><td>15.44亿（沪）</td><td class="up">+8515万(沪)</td><td><span class="tag tag-hot">买入</span></td></tr>
+  </table>
+
+  <div class="alert-box good" style="margin-top:10px">
+    ✅ <strong>南向结构性加仓AI硬件</strong>：6月南向资金AI硬件主线清晰，工业+资讯科技业获净流入413.98亿+328.42亿港元。建滔集团月涨83.53%，建滔积层板月涨83.37%，中芯国际月涨9.56%。与之对应，非必需性消费（阿里/美团）遭净流出275.88亿，电讯/医疗/公用事业等高息股同步流出。
+  </div>
+
+  <h3 style="color:#58a6ff;font-size:0.95em;margin:16px 0 8px;">🔹 外资（国际资金）</h3>
+  <div class="data-item">
+    <div class="label">近期外资流向</div>
+    <div class="value neutral">净流出</div>
+    <div class="small-text">据EPFR数据，外资持续净流出港股，美元强势+美债高位制约外资流入。年初至今外资累计净流出约64.9亿美元。</div>
+  </div>
+
+  <h3 style="color:#58a6ff;font-size:0.95em;margin:16px 0 8px;">🔹 沽空数据（需高度关注）</h3>
+  <div class="grid-3">
+    <div class="data-item">
+      <div class="label">总沽空金额</div>
+      <div class="value neutral">575.39亿</div>
+      <div class="small-text">占主板成交18.68%</div>
+    </div>
+    <div class="data-item">
+      <div class="label">中芯国际沽空</div>
+      <div class="value neutral">27.38亿</div>
+      <div class="small-text">沽空率17.37%</div>
+    </div>
+    <div class="data-item">
+      <div class="label">腾讯沽空</div>
+      <div class="value neutral">26.51亿</div>
+      <div class="small-text">沽空率15.89%</div>
+    </div>
+  </div>
+  <div class="alert-box warn" style="margin-top:8px">
+    ⚠️ <strong>沽空警示</strong>：舜宇光学沽空率43.80%（偏离+17.77%）、网易沽空率31.61%（偏离+6.39%）、美团沽空率24.48%、联想集团沽空率29.51%——均显著高于正常水平，短期波动风险加大。
+  </div>
+
+  <h3 style="color:#58a6ff;font-size:0.95em;margin:16px 0 8px;">🔹 回购与增持（底部信号）</h3>
+  <table>
+    <tr><th>公司</th><th>回购/增持金额</th><th>价格区间</th><th>信号</th></tr>
+    <tr>
+      <td>腾讯控股(00700)</td>
+      <td><strong>5.01亿</strong> 回购117.4万股</td>
+      <td>418.4-435.2</td>
+      <td><span class="tag tag-hot">🔥 大额回购，底部信号</span></td>
+    </tr>
+    <tr>
+      <td>理想汽车-W(02015)</td>
+      <td><strong>1.99亿</strong> 回购431.51万股</td>
+      <td>均价46.14</td>
+      <td><span class="tag tag-hot">🔥 大额回购</span></td>
+    </tr>
+    <tr>
+      <td>昆仑能源(00135)</td>
+      <td>961.64万 回购149.6万股</td>
+      <td>6.38-6.53</td>
+      <td><span class="tag tag-info">连续2日回购</span></td>
+    </tr>
+    <tr>
+      <td>富智康(02038)</td>
+      <td>318.85万 回购17万股</td>
+      <td>18.44-19.00</td>
+      <td><span class="tag tag-info">连续6日回购</span></td>
+    </tr>
+    <tr>
+      <td>龙湖集团(00960)</td>
+      <td>大股东Charm Talent增持200万股</td>
+      <td>6.12</td>
+      <td><span class="tag tag-info">大股东增持示信心</span></td>
+    </tr>
+  </table>
+  <div class="alert-box good" style="margin-top:8px">
+    ✅ <strong>腾讯5亿回购</strong>是今日最明确的底部信号之一，回购价418-435元区间显示管理层对公司当前估值的认可。
+  </div>
+
+  <h3 style="color:#58a6ff;font-size:0.95em;margin:16px 0 8px;">🔹 6月南向资金行业结构</h3>
+  <div class="data-item">
+    <div class="label">大幅净买入行业</div>
+    <div class="value up">工业 +413.98亿 | 资讯科技业 +328.42亿</div>
+    <div class="small-text">AI软硬件为核心主线</div>
+  </div>
+  <div class="data-item" style="margin-top:6px">
+    <div class="label">大幅净卖出行业</div>
+    <div class="value down">非必需性消费 -275.88亿 | 电讯 -55.61亿 | 医疗 -35.36亿</div>
+    <div class="small-text">减持消费互联网+高息股，资金向AI集中</div>
+  </div>
+</div>
+
+<!-- 上半年总结 -->
+<div class="card">
+  <h2><span class="icon">📅</span> 2026上半年港股总结</h2>
+  <div class="data-grid">
+    <div class="data-item">
+      <div class="label">恒指 H1 表现</div>
+      <div class="value down">▼ -10%+</div>
+      <div class="small-text">权重股盈利下修+外资流出</div>
+    </div>
+    <div class="data-item">
+      <div class="label">恒科 H1 表现</div>
+      <div class="value down">▼ -18%+</div>
+      <div class="small-text">AI硬件>互联网，结构性分化</div>
+    </div>
+    <div class="data-item">
+      <div class="label">上半年"股王"</div>
+      <div class="value up">智谱 02513</div>
+      <div class="small-text">上市涨幅1700%+，市值一度破万亿</div>
+    </div>
+  </div>
+  <div class="small-text" style="margin-top:8px">
+    中信建投观点：2026年以来港股明显跑输其他亚洲股市，面对分子端盈利下修、分母端美元约束、微观端IPO解禁的三重压力。从跑输转为强势需要三个条件配合：①全球流动性环境改善；②盈利预期停止下修；③微观供给扰动弱化。当前仅满足条件①的迹象，港股更多体现为结构性反弹而非趋势反转。
+  </div>
+</div>
+
+<!-- 各指数成交量详情 -->
+<div class="card">
+  <h2><span class="icon">📋</span> 各指数成交量与价格详情</h2>
+  <div class="grid-2">
+    <div>
+      <h4 style="color:#8b949e;margin-bottom:6px;">恒生指数 HSI</h4>
+      <table>
+        <tr><td>开盘</td><td>23,007.87</td></tr>
+        <tr><td>最高</td><td>23,090</td></tr>
+        <tr><td>最低</td><td>22,690</td></tr>
+        <tr><td>收盘</td><td>22,881.02</td></tr>
+        <tr><td>成交额</td><td>3,080亿</td></tr>
+        <tr><td>成交量</td><td>181.6亿股</td></tr>
+        <tr><td>振幅</td><td>1.74%</td></tr>
+      </table>
+    </div>
+    <div>
+      <h4 style="color:#8b949e;margin-bottom:6px;">恒生科技 HSTECH</h4>
+      <table>
+        <tr><td>开盘</td><td>4,416.68</td></tr>
+        <tr><td>最高</td><td>4,495</td></tr>
+        <tr><td>最低</td><td>4,402</td></tr>
+        <tr><td>收盘</td><td>4,472.23</td></tr>
+        <tr><td>成交额</td><td>849.7亿</td></tr>
+        <tr><td>成交量</td><td>20.61亿股</td></tr>
+        <tr><td>振幅</td><td>2.13%</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="small-text" style="margin-top:8px">数据来源：东方财富 · 更新时间 2026-06-30 22:11 HKT</div>
+</div>
+
+<div class="footnote">
+  📊 本报告由 Hermes Agent 自动生成 | 数据来源：东方财富、新华社、财联社、智通财经、证券时报<br>
+  ⚠️ 免责声明：本报告仅供参考，不构成投资建议。投资有风险，入市需谨慎。<br>
+  生成时间：2026-06-30 22:11 HKT
+</div>
+
+</body>
+</html>
