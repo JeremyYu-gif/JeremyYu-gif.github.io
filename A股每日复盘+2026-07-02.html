@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>A股每日复盘 — 2026-07-02</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #0a0b0e; color: #c8d0d8; line-height: 1.6; }
+.container { max-width: 800px; margin: 0 auto; padding: 16px; }
+.header { background: linear-gradient(135deg, #1a1d2e 0%, #0f1219 100%); border-radius: 16px; padding: 24px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.05); }
+.header h1 { font-size: 22px; font-weight: 700; color: #e8edf2; margin-bottom: 4px; }
+.header .date { font-size: 13px; color: #6b7a8a; }
+.header .verdict { margin-top: 12px; font-size: 15px; font-weight: 600; padding: 8px 14px; border-radius: 8px; display: inline-block; }
+.verdict-bear { background: rgba(255,60,60,0.15); color: #ff6b6b; border: 1px solid rgba(255,60,60,0.25); }
+.verdict-bull { background: rgba(0,200,100,0.15); color: #4ade80; border: 1px solid rgba(0,200,100,0.25); }
+.verdict-neutral { background: rgba(255,180,0,0.15); color: #fbbf24; border: 1px solid rgba(255,180,0,0.25); }
+.section { background: #12141c; border-radius: 12px; padding: 18px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.04); }
+.section h2 { font-size: 15px; font-weight: 600; color: #e8edf2; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.section h2 .badge { font-size: 11px; background: #1e2335; color: #8a9bb5; padding: 2px 8px; border-radius: 4px; font-weight: 400; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { padding: 8px 6px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
+th { color: #6b7a8a; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+td { color: #c8d0d8; }
+tr:last-child td { border-bottom: none; }
+.up { color: #ff6b6b; }
+.down { color: #4ade80; }
+.neutral { color: #fbbf24; }
+.big-down { color: #ff4444; font-weight: 600; }
+.money { color: #fbbf24; }
+.flow-in { color: #4ade80; }
+.flow-out { color: #ff6b6b; }
+.tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; margin: 1px; }
+.tag-red { background: rgba(255,60,60,0.12); color: #ff6b6b; }
+.tag-green { background: rgba(0,200,100,0.12); color: #4ade80; }
+.tag-yellow { background: rgba(255,180,0,0.12); color: #fbbf24; }
+.tag-blue { background: rgba(60,120,255,0.12); color: #6b9bff; }
+.key-list { list-style: none; padding: 0; }
+.key-list li { padding: 6px 0; font-size: 13px; border-bottom: 1px solid rgba(255,255,255,0.03); display: flex; align-items: flex-start; gap: 8px; }
+.key-list li:last-child { border-bottom: none; }
+.key-list .dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
+.dot-red { background: #ff6b6b; }
+.dot-green { background: #4ade80; }
+.dot-yellow { background: #fbbf24; }
+.dot-blue { background: #6b9bff; }
+.risk-bar { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.risk-track { flex: 1; height: 6px; background: #1e2335; border-radius: 3px; overflow: hidden; }
+.risk-fill { height: 100%; border-radius: 3px; }
+.risk-high { background: linear-gradient(90deg, #ff6b6b, #ff4444); width: 75%; }
+.risk-mid { background: linear-gradient(90deg, #fbbf24, #ff6b6b); width: 50%; }
+.risk-low { background: linear-gradient(90deg, #4ade80, #fbbf24); width: 25%; }
+.strategy-box { background: rgba(0,200,100,0.06); border: 1px solid rgba(0,200,100,0.12); border-radius: 10px; padding: 14px; margin-top: 8px; }
+.strategy-box h3 { font-size: 13px; color: #4ade80; margin-bottom: 6px; }
+.strategy-box p, .strategy-box li { font-size: 13px; color: #8aad9a; }
+.compare-table td:first-child { color: #6b7a8a; width: 35%; }
+.compare-table td:last-child { color: #c8d0d8; }
+.footer { text-align: center; font-size: 11px; color: #3d4a5c; padding: 20px 0 30px; }
+.warning { background: rgba(255,180,0,0.08); border: 1px solid rgba(255,180,0,0.15); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #d4a030; margin-top: 8px; }
+@media (max-width: 600px) {
+  .container { padding: 10px; }
+  .header { padding: 16px; }
+  .section { padding: 14px; }
+  table { font-size: 12px; }
+  th, td { padding: 6px 4px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>📊 A股每日复盘</h1>
+  <div class="date">2026年7月2日 (周四) · 交易日</div>
+  <div class="verdict verdict-bear">⚠️ 警惕 — 全线重挫，科创50暴跌7.70%，高低切换信号明确</div>
+  <div style="margin-top:10px;font-size:13px;color:#6b7a8a;">
+    两市成交额 <span class="money">34,506亿</span> · 较昨缩量约2,100亿 · 涨跌比约 <span class="down">1:6</span>
+  </div>
+</div>
+
+<!-- Core Conclusions -->
+<div class="section">
+  <h2>🔑 核心结论</h2>
+  <ul class="key-list">
+    <li><span class="dot dot-red"></span><strong class="down">大盘：</strong>A股三大指数全线重挫。上证指数-2.03%失守4100点，深成指-3.85%，创业板指-5.71%。科创50暴跌7.70%领跌全场。</li>
+    <li><span class="dot dot-yellow"></span><strong>结构：</strong>昨创3.66万亿天量成交（历史级），今日缩量至3.45万亿。高位科技/半导体/算力大幅回调，低位金融/化工/养殖/黄金获资金承接。</li>
+    <li><span class="dot dot-green"></span><strong>港股逆势：</strong>恒生科技高开+1.25%，腾讯重回4万亿港元，创新药/生物科技板块大涨超4%，中概股隔夜逆市走强。</li>
+    <li><span class="dot dot-red"></span><strong>全球联动：</strong>隔夜美股费城半导体指数暴跌超6%，拖累A股半导体/AI算力板块深度回调，但中概股逆势上涨。</li>
+    <li><span class="dot dot-yellow"></span><strong>资金：</strong>两融余额突破3.03万亿创历史新高（+100.78亿），北向资金今日净流出约38.71亿。主力资金整体仍处于调仓阶段。</li>
+  </ul>
+  <div class="warning">⚠️ 天量成交+指数大跌 = 放量大跌，短期注意风险控制。但热点高低切换过程中，低位板块（黄金/创新药/化工）机会显现。</div>
+</div>
+
+<!-- Index Snapshot -->
+<div class="section">
+  <h2>📈 指数全景 <span class="badge">2026/07/02 收盘</span></h2>
+  <table>
+    <tr><th>指数</th><th>收盘价</th><th>涨跌</th><th>涨跌幅</th><th>成交额(亿)</th></tr>
+    <tr><td>上证指数</td><td>4,028.90</td><td class="down">-83.55</td><td class="down">-2.03%</td><td class="money">15,772</td></tr>
+    <tr><td>深证成指</td><td>15,498.81</td><td class="down">-620.36</td><td class="down">-3.85%</td><td class="money">18,734</td></tr>
+    <tr><td>创业板指</td><td>4,017.27</td><td class="down">-243.45</td><td class="big-down">-5.71%</td><td class="money">8,968</td></tr>
+    <tr><td>科创50</td><td>1,987.29</td><td class="down">-165.75</td><td class="big-down">-7.70%</td><td class="money">590</td></tr>
+    <tr><td>上证50</td><td>2,912.28</td><td class="down">-72.96</td><td class="down">-2.44%</td><td class="money">2,171</td></tr>
+    <tr><td>沪深300</td><td>4,812.30</td><td class="down">-146.68</td><td class="down">-2.96%</td><td class="money">5,238</td></tr>
+    <tr><td>中证500</td><td>8,694.18</td><td class="down">-334.75</td><td class="down">-3.71%</td><td class="money">1,722</td></tr>
+    <tr><td>中证1000</td><td>8,625.33</td><td class="down">-251.30</td><td class="down">-2.83%</td><td class="money">1,458</td></tr>
+  </table>
+  <div style="margin-top:10px;padding:10px;background:rgba(255,60,60,0.05);border-radius:8px;font-size:13px;color:#8a9bb5;">
+    <strong>📌 结构特征：</strong>科创50(-7.70%) &gt; 创业板指(-5.71%) &gt; 中证500(-3.71%) &gt; 深成指(-3.85%) &gt; 沪深300(-2.96%) &gt; 中证1000(-2.83%) &gt; 上证50(-2.44%) &gt; 上证指数(-2.03%)。科创/创业板领跌，成长科技股遭重创；上证50相对抗跌，显示大盘蓝筹有一定承接。
+  </div>
+</div>
+
+<!-- Capital & Sentiment -->
+<div class="section">
+  <h2>💰 资金面 <span class="badge">数据截止7/2</span></h2>
+  <table>
+    <tr><th>指标</th><th>数值</th><th>变动</th><th>解读</th></tr>
+    <tr><td>两市成交额</td><td class="money">34,506亿</td><td class="down">↓ 约2,100亿</td><td>天量后缩量下跌</td></tr>
+    <tr><td>两融余额</td><td class="money">30,304.74亿</td><td class="up">↑ +100.78亿</td><td>创历史新高，杠杆资金仍在加仓</td></tr>
+    <tr><td>北向资金</td><td>约 -38.71亿</td><td class="down">↓ 净流出</td><td>外资流出，但幅度不大</td></tr>
+    <tr><td>主力资金(昨)</td><td>-595.78亿</td><td class="down">↓ 净流出</td><td>证券、软件开发净流入；高位科技净流出</td></tr>
+    <tr><td>融资买入前三</td><td colspan="3">兆易创新64.4亿 / 京东方A 53.18亿 / 澜起科技50.16亿</td></tr>
+    <tr><td>融资净买入前三</td><td colspan="3">亨通光电6.55亿 / 东方财富6.17亿 / 宁德时代5.96亿</td></tr>
+  </table>
+  <div style="margin-top:10px;font-size:13px;color:#8a9bb5;">
+    <strong>📌 资金解读：</strong>昨日(7/1)主力资金净流出595.78亿，但融资客仍在净买入。今日缩量至3.45万亿，说明下跌过程中部分资金选择了观望而非恐慌出逃。北向资金小幅净流出，未出现大规模踩踏。
+  </div>
+</div>
+
+<div class="section">
+  <h2>📊 市场情绪</h2>
+  <table>
+    <tr><th>指标</th><th>状态</th><th>信号</th></tr>
+    <tr><td>涨跌比</td><td><span class="down">普跌格局</span></td><td>约1:6，多数个股下跌</td></tr>
+    <tr><td>涨停家数</td><td>约30+ (含科创)</td><td>涨停股集中在黄金/化工/机械/医药</td></tr>
+    <tr><td>连板股</td><td>先导基电 <span class="tag tag-yellow">3连板</span></td><td>市场仍有连板龙头</td></tr>
+    <tr><td>两市成交额</td><td class="money">34,506亿</td><td>历史级别天量，交投活跃但方向不明</td></tr>
+    <tr><td>两融余额</td><td class="money">30,305亿</td><td>创历史新高，杠杆资金做多意愿强</td></tr>
+    <tr><td>市场风格</td><td><span class="tag tag-yellow">高低切换</span></td><td>科技→金融/化工/黄金/医药</td></tr>
+  </table>
+  <div class="risk-bar" style="margin-top:10px;">
+    <span style="font-size:12px;color:#6b7a8a;">风险水位</span>
+    <div class="risk-track"><div class="risk-fill risk-high"></div></div>
+    <span style="font-size:12px;color:#ff6b6b;font-weight:600;">偏高</span>
+  </div>
+</div>
+
+<!-- Industry Main Lines -->
+<div class="section">
+  <h2>🧭 行业主线 TOP 6</h2>
+  <table>
+    <tr><th>#</th><th>主线</th><th>核心逻辑</th><th>代表标的</th><th>状态</th></tr>
+    <tr>
+      <td>1</td><td><span class="tag tag-yellow">💰 贵金属/黄金</span></td>
+      <td style="font-size:12px;">现货黄金升至4070美元，避险情绪升温；板块+5.43%领涨</td>
+      <td style="font-size:12px;">赤峰黄金(+10%)</td>
+      <td><span class="up">🔥 强势</span></td>
+    </tr>
+    <tr>
+      <td>2</td><td><span class="tag tag-green">💊 创新药/CXO</span></td>
+      <td style="font-size:12px;">港股创新药指数+4.8%，全球投融资回暖叠加FDA审批优化</td>
+      <td style="font-size:12px;">康方生物/药明康德</td>
+      <td><span class="up">🔥 强势</span></td>
+    </tr>
+    <tr>
+      <td>3</td><td><span class="tag tag-blue">🧪 化工/氟化工</span></td>
+      <td style="font-size:12px;">六氟磷酸锂价格上行；半导体湿电子化学品量价齐升</td>
+      <td style="font-size:12px;">多氟多/滨化股份</td>
+      <td><span class="up">↑ 资金流入</span></td>
+    </tr>
+    <tr>
+      <td>4</td><td><span class="tag tag-yellow">🏦 大金融(证券)</span></td>
+      <td style="font-size:12px;">两融破3万亿，成交持续万亿+，证券板块受益确定性高</td>
+      <td style="font-size:12px;">东方财富</td>
+      <td><span class="neutral">→ 震荡</span></td>
+    </tr>
+    <tr>
+      <td>5</td><td><span class="tag tag-green">🐷 养殖</span></td>
+      <td style="font-size:12px;">低位资金抱团，猪周期反转预期</td>
+      <td style="font-size:12px;">温氏/牧原</td>
+      <td><span class="neutral">→ 企稳</span></td>
+    </tr>
+    <tr>
+      <td>6</td><td><span class="tag tag-red">📡 半导体/AI算力</span></td>
+      <td style="font-size:12px;">隔夜费城半导体指数暴跌6%，高位获利了结压力巨大</td>
+      <td style="font-size:12px;">兆易创新/中际</td>
+      <td><span class="down">⬇ 回调</span></td>
+    </tr>
+  </table>
+  <div style="margin-top:10px;font-size:13px;color:#8a9bb5;">
+    <strong>📌 主线切换：</strong>昨日天量成交中，低位金融/化工/养殖获资金抱团，高位半导体/AI算力、电力设备、通信、军工遭遇资金出逃。今日延续这一趋势，加上隔夜美股半导体暴跌助攻，科技板块深度回调。
+  </div>
+</div>
+
+<!-- Dragon Head Stocks -->
+<div class="section">
+  <h2>🐉 龙头梯队</h2>
+  <table>
+    <tr><th>梯队</th><th>个股</th><th>涨幅</th><th>特征</th></tr>
+    <tr><td><span class="tag tag-yellow">连板龙头</span></td><td>先导基电</td><td class="up">+10.01% (3连板)</td><td>累计+33.11%，龙虎榜沪股通净卖出1.17亿</td></tr>
+    <tr><td><span class="tag tag-red">科创板领涨</span></td><td>气派科技</td><td class="up">+20.00%</td><td>半导体封装，逆市涨停</td></tr>
+    <tr><td><span class="tag tag-red">科创板</span></td><td>热景生物</td><td class="up">+18.46%</td><td>医疗检测</td></tr>
+    <tr><td><span class="tag tag-red">创业板</span></td><td>昆仑万维</td><td class="up">+12.19%</td><td>AI应用/传媒</td></tr>
+    <tr><td><span class="tag tag-yellow">黄金龙头</span></td><td>赤峰黄金</td><td class="up">+10.00%</td><td>黄金股大涨</td></tr>
+    <tr><td><span class="tag tag-green">化工龙头</span></td><td>永和股份</td><td class="up">+10.00%</td><td>氟化工，成交29.34亿</td></tr>
+    <tr><td><span class="tag tag-blue">重汽龙头</span></td><td>中国重汽</td><td class="up">+10.03%</td><td>中证500成分，成交4.30亿</td></tr>
+  </table>
+</div>
+
+<!-- Risk Signals -->
+<div class="section">
+  <h2>⚠️ 风险信号</h2>
+  <ul class="key-list">
+    <li><span class="dot dot-red"></span><strong>高位科技见顶信号：</strong>科创50单日暴跌7.70%，叠加隔夜费城半导体指数跌超6%，高位AI/算力/半导体可能进入中期调整。</li>
+    <li><span class="dot dot-red"></span><strong>放量大跌需警惕：</strong>3.45万亿天量成交+指数大跌，属于典型的"放量下跌"，短期惯性下探风险存在。</li>
+    <li><span class="dot dot-yellow"></span><strong>风格切换不确定性：</strong>千亿基金经理刘彦春转战科技赛道，但科技板块今日暴跌，说明机构调仓可能尚未完成，短期震荡加剧。</li>
+    <li><span class="dot dot-yellow"></span><strong>缩量隐患：</strong>相比昨日的3.66万亿，今日缩量约2100亿，若后续成交额持续萎缩至3万亿以下，行情活跃度将明显下降。</li>
+    <li><span class="dot dot-blue"></span><strong>外资态度：</strong>北向资金今日净流出约38.71亿，虽然规模不大，但若连续流出将对市场信
+心形成压制。</li>
+  </ul>
+</div>
+
+<!-- A-H Linkage -->
+<div class="section">
+  <h2>🔄 AH联动</h2>
+  <table>
+    <tr><th>港股表现</th><th>涨跌幅</th><th>核心看点</th></tr>
+    <tr><td>恒生指数</td><td>高开+0.83%</td><td>港股通恢复交易后高开</td></tr>
+    <tr><td>恒生科技</td><td>高开+1.25%</td><td>科网股集体反弹</td></tr>
+    <tr><td>腾讯控股</td><td>一度+4%</td><td>市值重回4万亿港元，微信Agent概念催化</td></tr>
+    <tr><td>创新药指数</td><td class="up">+4.84%</td><td>三生制药+10.42%、石药+9.04%、康方跟涨</td></tr>
+    <tr><td>中概互联ETF</td><td class="up">+4%+</td><td>隔夜中概股逆势大涨，外资回补</td></tr>
+    <tr><td>恒生互联网ETF</td><td class="up">+3%+</td><td>腾讯/美团/阿里巴巴全面反弹</td></tr>
+  </table>
+  <div style="margin-top:10px;font-size:13px;color:#8a9bb5;">
+    <strong>📌 A-H联动分析：</strong>今日A股惨跌但港股强势，体现了两地市场节奏差异。港股科技股（尤其是腾讯/创新药）受到AI Agent+创新药出海双重催化，表现独立于A股。A股科技板块的调整更多是对前期涨幅过大的消化，而非基本面恶化。
+  </div>
+</div>
+
+<!-- A-US Linkage -->
+<div class="section">
+  <h2>🌐 A美联动</h2>
+  <table>
+    <tr><th>隔夜美股</th><th>涨跌幅</th><th>对A股影响</th></tr>
+    <tr><td>纳斯达克100</td><td class="down">↓ 下跌</td><td>拖累A股科技板块</td></tr>
+    <tr><td>费城半导体指数</td><td class="down big-down">↓ -6%+</td><td>半导体存储周期担忧，直接冲击A股半导体/算力</td></tr>
+    <tr><td>中概股(金龙指数)</td><td class="up">↑ 逆势上涨</td><td>中概互联ETF今日+4%，外资回补信号</td></tr>
+    <tr><td>标普500</td><td class="down">↓ -16点</td><td>美股整体承压</td></tr>
+    <tr><td>现货黄金</td><td class="up">+1.04% (4070美元)</td><td>避险情绪推升黄金，A股黄金股涨停</td></tr>
+  </table>
+  <div style="margin-top:10px;font-size:13px;color:#8a9bb5;">
+    <strong>📌 联动分析：</strong>美股半导体的大跌是今日A股科技板块暴跌的直接导火索。但值得注意的是，中概股逆势上涨表明外资对中国互联网资产的信心并未受半导体下跌影响。A股贵金属板块与黄金价格联动上涨，避险逻辑明确。
+  </div>
+</div>
+
+<!-- Strategy -->
+<div class="section">
+  <h2>🎯 明日策略 <span class="badge">2026/07/03</span></h2>
+  <div class="strategy-box">
+    <h3>📌 仓位建议：低仓位防守 (3-5成)</h3>
+    <ul style="margin-top:6px;padding-left:18px;">
+      <li>科创50单日-7.70%后，短期存在技术性反弹需求，但中期趋势已走弱，不建议盲目抄底</li>
+      <li>关注明日开盘能否守住上证4000点整数关口，若跌破则需进一步降低仓位</li>
+      <li>科技(半导体/AI算力)暂避风头，等待费城半导体指数企稳信号</li>
+    </ul>
+  </div>
+  <div class="strategy-box" style="border-color:rgba(107,155,255,0.12);margin-top:8px;">
+    <h3 style="color:#6b9bff;">✅ 可以关注的方向</h3>
+    <ul style="margin-top:6px;padding-left:18px;">
+      <li><strong>黄金/贵金属：</strong>现货金价4070美元创新高趋势中，赤峰黄金等个股有业绩支撑</li>
+      <li><strong>创新药/CXO：</strong>港股创新药已走出独立行情，A股CXO板块可逢低布局，关注药明康德、康龙化成等</li>
+      <li><strong>化工(氟化工/电子化学品)：</strong>六氟磷酸锂价格上行+半导体湿电子化学品量价齐升，多氟多等标的业绩拐点明确</li>
+      <li><strong>大金融(证券)：</strong>日成交持续万亿+，两融破3万亿，证券板块直接受益，东方财富是核心标的</li>
+      <li><strong>中概互联：</strong>中概股逆势走强，腾讯微信Agent概念催化，可以关注中概互联ETF</li>
+    </ul>
+  </div>
+  <div class="strategy-box" style="border-color:rgba(255,60,60,0.12);margin-top:8px;">
+    <h3 style="color:#ff6b6b;">❌ 需要回避的方向</h3>
+    <ul style="margin-top:6px;padding-left:18px;">
+      <li><strong>半导体/AI算力：</strong>存储周期担忧+费城半导体暴跌+获利盘出逃，短期回避</li>
+      <li><strong>高位电力设备：</strong>7月1日主力资金大幅流出，可能进入调整期</li>
+      <li><strong>通信/军工：</strong>也属于主力资金流出方向，暂时观望</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Comparison Table -->
+<div class="section">
+  <h2>📋 极简对比 <span class="badge">7/1 vs 7/2</span></h2>
+  <table class="compare-table">
+    <tr><td>指标</td><td>7月1日 (昨日)</td><td>7月2日 (今日)</td></tr>
+    <tr><td>上证指数</td><td>4,112.45 (+0.44%)</td><td class="down">4,028.90 (-2.03%)</td></tr>
+    <tr><td>深证成指</td><td>16,119.17 (-0.53%)</td><td class="down">15,498.81 (-3.85%)</td></tr>
+    <tr><td>创业板指</td><td>4,260.72 (-0.31%)</td><td class="down">4,017.27 (-5.71%)</td></tr>
+    <tr><td>科创50</td><td>2,153.04 (-2.48%)</td><td class="big-down">1,987.29 (-7.70%)</td></tr>
+    <tr><td>成交额</td><td class="money">约36,600亿</td><td class="money">34,506亿</td></tr>
+    <tr><td>两融余额</td><td>30,203.96亿</td><td class="money">30,304.74亿 (+100.78亿)</td></tr>
+    <tr><td>市场风格</td><td>金融/化工/养殖吸金</td><td>贵金属/创新药/黄金走强</td></tr>
+    <tr><td>科技板块</td><td>资金出逃迹象</td><td class="down">全线暴跌</td></tr>
+  </table>
+</div>
+
+<!-- Key Events Timeline -->
+<div class="section">
+  <h2>📅 今日重要事件</h2>
+  <ul class="key-list">
+    <li><span class="dot dot-red"></span><strong>09:30</strong> 港股恢复交易，恒生科技高开+1.25%。腾讯一度涨4%重回4万亿港元。</li>
+    <li><span class="dot dot-red"></span><strong>09:31</strong> 创新药指数+5.48%，三生制药+10.42%，石药+9.04%，康方生物跟涨。</li>
+    <li><span class="dot dot-yellow"></span><strong>10:05</strong> 先导基电连收3个涨停板，累计+33.11%。</li>
+    <li><span class="dot dot-red"></span><strong>10:41</strong> 中概互联ETF招商(513220)涨超4%，隔夜中概股逆势走强。</li>
+    <li><span class="dot dot-blue"></span><strong>13:33</strong> 沪深两市成交额超2.5万亿，较上日缩量2546亿。</li>
+    <li><span class="dot dot-red"></span><strong>15:05</strong> 全天成交额34,506亿。科创50收跌7.70%创阶段最大单日跌幅。</li>
+    <li><span class="dot dot-yellow"></span><strong>全天</strong> 千亿基金经理刘彦春转战科技赛道引发广泛讨论，风格切换信号明确。</li>
+  </ul>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>Hermes Agent · 自动生成 · 数据截至 2026-07-02 收盘</p>
+  <p>数据来源：腾讯行情API / 东方财富新闻缓存 / 华尔街见闻 / 证券时报</p>
+  <p style="margin-top:4px;">⚠️ 本报告仅供参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+</div>
+
+</div>
+</body>
+</html>
