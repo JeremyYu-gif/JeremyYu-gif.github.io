@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOP个股跟踪日报 07-02-2026</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background: #0f0f23;
+    color: #c8c8d4;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.header {
+    text-align: center;
+    padding: 30px 0;
+    border-bottom: 2px solid #d4a843;
+    margin-bottom: 30px;
+}
+.header h1 {
+    font-size: 2em;
+    color: #f0c040;
+    text-shadow: 0 0 10px rgba(240,192,64,0.3);
+    letter-spacing: 3px;
+}
+.header .subtitle {
+    color: #888;
+    margin-top: 8px;
+    font-size: 0.9em;
+}
+.section-title {
+    font-size: 1.4em;
+    color: #e0b030;
+    margin: 40px 0 20px;
+    padding-left: 15px;
+    border-left: 4px solid #f0c040;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.section-title .badge {
+    background: #d4a84333;
+    color: #f0c040;
+    font-size: 0.6em;
+    padding: 2px 10px;
+    border-radius: 10px;
+}
+.stock-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+}
+.stock-card {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 1px solid #2a2a4a;
+    border-radius: 12px;
+    padding: 18px;
+    transition: all 0.2s;
+}
+.stock-card:hover {
+    border-color: #d4a84344;
+    box-shadow: 0 0 20px rgba(212,168,67,0.1);
+    transform: translateY(-2px);
+}
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+.ticker-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.ticker {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #f0c040;
+}
+.ticker-link {
+    color: #f0c040;
+    text-decoration: none;
+}
+.ticker-link:hover {
+    text-decoration: underline;
+}
+.stock-name {
+    color: #aaa;
+    font-size: 0.85em;
+    display: block;
+}
+.price-area {
+    text-align: right;
+}
+.price {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #f0f0f0;
+}
+.change {
+    font-size: 0.85em;
+    font-weight: 600;
+}
+.stock-focus {
+    color: #888;
+    font-size: 0.8em;
+    margin-bottom: 10px;
+    padding: 4px 8px;
+    background: #ffffff08;
+    border-radius: 6px;
+    display: inline-block;
+}
+.sec-badge {
+    display: inline-block;
+    background: #d4a84322;
+    color: #d4a843;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7em;
+    font-weight: 600;
+    margin-right: 4px;
+}
+.news-item {
+    padding: 4px 0;
+    font-size: 0.82em;
+    color: #b0b0c0;
+    border-bottom: 1px solid #ffffff08;
+}
+.news-item:last-child { border-bottom: none; }
+.news-date {
+    color: #666;
+    font-size: 0.8em;
+    margin-right: 6px;
+}
+.news-source {
+    color: #f0c040;
+    font-size: 0.8em;
+    margin-right: 6px;
+}
+.news-highlight {
+    color: #ff6b6b;
+}
+.filing-section {
+    margin: 8px 0;
+    padding: 6px 10px;
+    background: #ffffff08;
+    border-radius: 6px;
+    font-size: 0.8em;
+}
+.filing-section .label {
+    color: #d4a843;
+    font-weight: 600;
+}
+.empty-msg {
+    color: #666;
+    font-style: italic;
+    font-size: 0.8em;
+    margin: 8px 0;
+}
+.hk-section, .a-section {
+    margin-top: 20px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+th {
+    background: #1a1a2e;
+    color: #f0c040;
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 2px solid #d4a843;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #2a2a4a;
+    font-size: 0.85em;
+}
+tr:hover td {
+    background: #1a1a2e88;
+}
+.footer {
+    text-align: center;
+    padding: 30px 0;
+    color: #555;
+    font-size: 0.75em;
+    border-top: 1px solid #2a2a4a;
+    margin-top: 40px;
+}
+.data-source {
+    color: #666;
+    font-size: 0.8em;
+    margin-top: 10px;
+    padding: 10px;
+    background: #ffffff05;
+    border-radius: 6px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>📊 TOP个股跟踪日报</h1>
+    <div class="subtitle">2026年7月2日 ｜ 数据来源: SEC EDGAR / Seeking Alpha / 东方财富</div>
+    <div class="subtitle">更新于 2026-07-02 08:30 CST</div>
+</div>
+
+<div class="section-title">
+    🇺🇸 美股 Biotech
+    <span class="badge">9只跟踪</span>
+</div>
+
+<div class="stock-grid">
+
+<div class="stock-card">
+    <div class="card-header">
+        <div class="ticker-area">
+            <div>
+                <span class="ticker"><a class="ticker-link" href="https://finance.yahoo.com/quote/VOR" target="_blank">VOR</a></span>
+                <span class="stock-name">Vor Biopharma</span>
+            </div>
+        </div>
+        <div class="price-area">
+            <div class="price">$18.39</div>
+            <div class="change" style="color: #00c853">▼ 0.11%</div>
+        </div>
+    </div>
+    <span class="stock-focus">🎯 靶向CD33的细胞疗法</span>
+    <div class="filing-section empty-msg">近24h无新增SEC公告</div>
+    <div class="filing-section"><span class="label">📢 新闻/动态:</span><br><div class="news-item"><span class="news-date">[2026-05-13]</span><span class="news-source">[Seeking Alpha]</span>Vor Biopharma reports Q1 results</div><div class="news-item"><span class="news-date">[2026-03-30]</span><span class="news-source">[Seeking Alpha]</span>Vor Biopharma reports Q4 results</div><div class="news-item"><span class="news-date">[2026-03-27]</span><span class="news-source">[Seeking Alpha]</span>Vor Bio announces $75M private placement</div></div>
+    <div class="filing-section" style="margin-top:4px;"><span class="label">📅 下次财报:</span> 预计2026年8月（Q2 2026）</div>
+</div>
+<div class="stock-card">
+    <div class="card-header">
+        <div class="ticker-area">
+            <div>
+                <span class="ticker"><a class="ticker-link" href="https://finance.yahoo.com/quote/BIIB" target="_blank">BIIB</a></span>
+                <span class="stock-name">Biogen / 百健</span>
+            </div>
+        </div>
+        <div class="price-area">
+            <div class="price">$209.74</div>
+            <div class="change" style="color: #00c853">▼ 2.93%</div>
+        </div>
+    </div>
+    <span class="stock-focus">🎯 神经科学（阿尔茨海默症、多发性硬化症）</span>
+    <div class="filing-section"><span class="label">📄 SEC公告:</span><br><span class="sec-badge">8-K</span> 2026-07-01 - 重大事件公告（详情待解析）<br></div>
+    <div class="filing-section"><span class="label">📢 新闻/动态:</span><br><div class="news-item"><span class="news-date">[2026-06-18]</span><span class="news-source">[Seeking Alpha]</span>Biogen to acquire RayThera in deal valued up to $1B</div><div class="news-item"><span class="news-date">[2026-06-01]</span><span class="news-source">[Seeking Alpha]</span>Biogen, UCB lupus drug dapirolizumab pegol meets phase 3 goal</div><div class="news-item"><span class="news-date">[2026-05-27]</span><span class="news-source">[Seeking Alpha]</span>Biogen faces Italian antitrust probe over rivalry with Sandoz for MS drugs</div></div>
+    <div class="filing-section" style="margin-top:4px;"><span class="label">📅 下次财报:</span> 预计2026年7月下旬（Q2 2026）</div>
+</div>
+<div class="stock-card">
+    <div class="card-header">
+        <div class="ticker-area">
+            <div>
+                <span class="ticker"><a class="ticker-link" href="https://finance.yahoo.com/quote/SMMT" target="_blank">SMMT</a></span>
+                <span class="stock-name">Summit Therapeutics</span>
+            </div>
+        </div>
+        <div class="price-area">
+            <div class="price">$14.38</div>
+            <div class="change" style="color: #00c853">▼ 1.30%</div>
+        </div>
+    </div>
+    <span class="stock-focus">🎯 新型抗生素/肿瘤免疫疗法</span>
+    <div class="filing-section empty-msg">近24h无新增SEC公告</div>
+    <div class="filing-section"><span class="label">📢 新闻/动态:</span><br><div class="news-item"><span class="news-date">[2026-06-12]</span><span class="news-source">[Seeking Alpha]</span>Summit rebounds after nearly $50M insider purchase</div><div class="news-item"><span class="news-date">[2026-06-11]</span><span class="news-source">[Seeking Alpha]</span>Summit Therapeutics withdraws proposed securities offering citing market conditions</div><div class="news-item"><span class="news-date">[2026-06-09]</span><span class="news-source">[Seeking Alpha]</span>Summit Therapeutics files for $500M common stock offering; shares slide over 9%</div></div>
+    <div class="filing-section" style="margin-top:4px;"><span class="label">📅 下次财报:</span> 预计2026年8月（Q2 2026）</div>
+</div>
+<div class="stock-card">
+    <div class="card-header">
+        <div class="ticker-area">
+            <div>
+                <span class="ticker"><a class="ticker-link" href="https://finance.yahoo.com/quote/VRTX" target="_blank">VRTX</a></span>
+                <span class="stock-name">Vertex Pharmaceuticals / 福泰制药</span>
+            </div>
+        </div>
+        <div class="price-area">
+            <div class="price">$498.01</div>
+            <div class="change" style="color: #ff4444">▲ 0.26%</div>
+        </div>
+    </div>
+    <span class="stock-focus">🎯 囊性纤维化(CF)、基因编辑(Casgevy)</span>
+    <div class="filing-section"><span class="label">📄 SEC公告:</span><br><span class="sec-badge">144</span> 2026-07-01 - 内部人提交144表格（拟出售股份）<br><span class="sec-badge">4</span> 2026-06-30 - 内部人持股变动报告<br></div>
+    <div class="filing-section"><span class="label">📢 新闻/动态:</span><br><div class="news-item news-highlight"><span class="news-date">[2026-07-01]</span><span class="news-source">[Seeking Alpha]</span>★★ Vertex gains expanded indication for Casgevy in children as young as two</div><div class="news-item"><span class="news-date">[2026-06-26]</span><span class="news-source">[Seeking Alpha]</span>Tech stocks drag down Nasdaq for the week; Strategy and Arm Holdings among losers</div><div class="news-item"><span class="news-date">[2026-05-27]</span><span class="news-source">[Seeking Alpha]</span>Portfolio check: The biggest SA Quant upgrades over the past week</div></div>
+    <div class="filing-section" style="margin-top:4px;"><span class="label">📅 下次财报:</span> 预计2026年8月初（Q2 2026）</div>
+</div>
+<div class="stock-card">
+    <div class="card-header">
+        <div class="ticker-area">
+            <div>
+                <span class="ticker"><a class="ticker-link" href="https://finance.yahoo.com/quote/ABOS" target="_blank">ABOS</a></span>
+                <span class="stock-name">Acumen Pharmaceuticals</span>
+            </div>
+        </div>
+        <div class="price-area">
+            <div class="price">$2.59</div>
+            <div class="change" style="color: #00c853">▼ 3.00%</div>
+        </div>
+    </div>
+    <span class="stock-focus">🎯 阿尔茨海默症抗体疗法（ACU193）</span>
+    <div class="filing-section empty-msg">近24h无新增SEC公告</div>
+    <div class="filing-section"><span class="label">📢 新闻/动态:</span><br><div class="news-item"><span class="news-date">[2026-05-12]</span><span class="news-source">[Seeking Alpha]</span>Acumen expects ALTITUDE-AD top-line results in late 2026 while targeting mid-2027</div><div class="news-item"><span class="news-date">[2026-05-12]</span><span class="news-source">[Seeking Alpha]</span>Acumen Pharmaceuticals GAAP EPS of -$0.33 beats by $0.03</div><div class="news-item"><span class="news-date">[2026-03-27]</span><span class="news-source">[Seeking Alpha]</span>Acumen Pharmaceuticals files to sell 10.83M shares of common stock for holders</div></div>
+    <div class="filing-section" style="margin-top:4px;"><span class="label">📅 下次财报:</span> 预计2026年8月（Q2 2026）</div>
+</div>
+<div class="stock-card">
+    <div class="card-header">
+        <div class="ticker-area">
+            <div>
+                <span class="ticker"><a class="ticker-link" href="https://finance.yahoo.com/quote/IONS" target="_blank">IONS</a></span>
+                <span class="stock-name">Ionis Pharmaceuticals</span>
+            </div>
+        </div>
+        <div class="price-area">
+            <div class="price">$79.19</div>
+            <div class="change" style="color: #00c853">▼ 0.13%</div>
+        </div>
+    </div>
+    <span class="stock-focus">🎯 反义寡核苷酸(ASO)疗法</span>
+    <div class="filing-section"><span class="label">📄 SEC公告:</span><br><span class="sec-badge">144</span> 2026-07-01 - 内部人提交144表格（拟出售股份）<br><span class="sec-badge">4</span> 2026-06-30 - 内部人持股变动报告（3份）<br></div>
+    <div class="filing-section"><span class="label">📢 新闻/动态:</span><br><div class="news-item"><span class="news-date">[2026-06-25]</span><span class="news-source">[Seeking Alpha]</span>Ionis, Recordati inks ex-U.S. license deal for Zilganerse</div><div class="news-item"><span class="news-date">[2026-06-24]</span><span class="news-source">[Seeking Alpha]</span>Ionis gains additional Tryngolza indication</div><div class="news-item"><span class="news-date">[2026-05-28]</span><span class="news-source">[Seeking Alpha]</span>GSK, Ionis mark late-stage trial win for chronic hepatitis B therapy</div></div>
+    <div class="filing-section" style="margin-top:4px;"><span class="label">📅 下次财报:</span> 预计2026年8月初（Q2 2026）</div>
+</div>
+<div class="stock-card">
+    <div class="card-header">
+        <div class="ticker-area">
+            <div>
+                <span class="ticker"><a class="ticker-link" href="https://finance.yahoo.com/quote/ALNY" target="_blank">ALNY</a></span>
+                <span class="stock-name">Alnylam Pharmaceuticals</span>
+            </div>
+        </div>
+        <div class="price-area">
+            <div class="price">$301.67</div>
+            <div class="change" style="color: #ff4444">▲ 0.21%</div>
+        </div>
+    </div>
+    <span class="stock-focus">🎯 RNA干扰(RNAi)疗法</span>
+    <div class="filing-section empty-msg">近24h无新增SEC公告</div>
+    <div class="filing-section"><span class="label">📢 新闻/动态:</span><br><div class="news-item"><span class="news-date">[2026-06-23]</span><span class="news-source">[Seeking Alpha]</span>Regeneron myasthenia gravis therapy undergoes U.S. and EU review</div><div class="news-item"><span class="news-date">[2026-06-10]</span><span class="news-source">[Seeking Alpha]</span>Alnylam expands Genesis Pharma collaboration in Europe</div><div class="news-item"><span class="news-date">[2026-06-03]</span><span class="news-source">[Seeking Alpha]</span>Alnylam to collaborate with Inceptive to use AI for RNAi therapy development</div></div>
+    <div class="filing-section" style="margin-top:4px;"><span class="label">📅 下次财报:</span> 预计2026年8月初（Q2 2026）</div>
+</div>
+<div class="stock-card">
+    <div class="card-header">
+        <div class="ticker-area">
+            <div>
+                <span class="ticker"><a class="ticker-link" href="https://finance.yahoo.com/quote/ACIU" target="_blank">ACIU</a></span>
+                <span class="stock-name">AC Immune SA</span>
+            </div>
+        </div>
+        <div class="price-area">
+            <div class="price">$2.38</div>
+            <div class="change" style="color: #888">― 0.00%</div>
+        </div>
+    </div>
+    <span class="stock-focus">🎯 阿尔茨海默症、帕金森症免疫疗法</span>
+    <div class="filing-section"><span class="label">📄 SEC公告:</span><br><span class="sec-badge">6-K</span> 2026-06-30 - 外国私人发行人报告（6-K表）<br></div>
+    <div class="filing-section"><span class="label">📢 新闻/动态:</span><br><div class="news-item"><span class="news-date">[2026-05-12]</span><span class="news-source">[Seeking Alpha]</span>AC Immune CEO Andrea Pfeifer to retire after 23 years</div><div class="news-item"><span class="news-date">[2026-04-30]</span><span class="news-source">[Seeking Alpha]</span>AC Immune GAAP EPS of -CHF0.15 beats by CHF0.04, revenue of CHF1.12M</div><div class="news-item"><span class="news-date">[2026-04-07]</span><span class="news-source">[Seeking Alpha]</span>AC Immune rises after amending licensing deal with Lilly</div></div>
+    <div class="filing-section" style="margin-top:4px;"><span class="label">📅 下次财报:</span> 预计2026年8月（Q2 2026）</div>
+</div>
+<div class="stock-card">
+    <div class="card-header">
+        <div class="ticker-area">
+            <div>
+                <span class="ticker"><a class="ticker-link" href="https://finance.yahoo.com/quote/LEGN" target="_blank">LEGN</a></span>
+                <span class="stock-name">Legend Biotech / 传奇生物</span>
+            </div>
+        </div>
+        <div class="price-area">
+            <div class="price">$29.89</div>
+            <div class="change" style="color: #ff4444">▲ 3.50%</div>
+        </div>
+    </div>
+    <span class="stock-focus">🎯 CAR-T细胞疗法（Carvykti）</span>
+    <div class="filing-section"><span class="label">📄 SEC公告:</span><br><span class="sec-badge">144</span> 2026-06-30 - 内部人提交144表格（拟出售股份）<br></div>
+    <div class="filing-section"><span class="label">📢 新闻/动态:</span><br><div class="news-item"><span class="news-date">[2026-06-18]</span><span class="news-source">[Seeking Alpha]</span>Legend Biotech shares slide post-pricing of $226M public offering at $29.35 per ADS</div><div class="news-item"><span class="news-date">[2026-06-17]</span><span class="news-source">[Seeking Alpha]</span>Legend Biotech launches $225M ADS public offering; shares down</div><div class="news-item"><span class="news-date">[2026-06-09]</span><span class="news-source">[Seeking Alpha]</span>Quant rating check: Top oncology peers as Nuvalent goes private in $10.6B deal</div></div>
+    <div class="filing-section" style="margin-top:4px;"><span class="label">📅 下次财报:</span> 预计2026年8月（Q2 2026）</div>
+</div>
+</div>
+
+<div class="section-title">
+    🇭🇰 港股
+    <span class="badge">4只跟踪</span>
+</div>
+
+<div class="hk-section">
+<table>
+<thead>
+<tr><th>代码</th><th>名称</th><th>最新价(HKD)</th><th>涨跌幅</th><th>聚焦</th><th>近24h动态</th></tr>
+</thead>
+<tbody>
+<tr>
+        <td style="color:#f0c040;font-weight:600;">02269</td>
+        <td>药明生物</td>
+        <td style="font-weight:600;">34.60</td>
+        <td style="color:#00c853;font-weight:600;">▼ 1.93%</td>
+        <td style="color:#888;">生物药CDMO</td>
+        <td style="color:#666;font-size:0.8em;">近24h无新增公告。关注生物药CDMO行业动态及中美政策变化。</td>
+    </tr><tr>
+        <td style="color:#f0c040;font-weight:600;">09868</td>
+        <td>小鹏汽车-W</td>
+        <td style="font-weight:600;">50.65</td>
+        <td style="color:#ff4444;font-weight:600;">▲ 6.86%</td>
+        <td style="color:#888;">智能电动汽车</td>
+        <td style="color:#666;font-size:0.8em;">近24h无新增公告。关注7月交付数据及MONA品牌进展。</td>
+    </tr><tr>
+        <td style="color:#f0c040;font-weight:600;">00700</td>
+        <td>腾讯控股</td>
+        <td style="font-weight:600;">429.80</td>
+        <td style="color:#ff4444;font-weight:600;">▲ 2.28%</td>
+        <td style="color:#888;">互联网科技巨头</td>
+        <td style="color:#666;font-size:0.8em;">近24h无新增公告。关注混元大模型、视频号商业化进展。</td>
+    </tr><tr>
+        <td style="color:#f0c040;font-weight:600;">09988</td>
+        <td>阿里巴巴-W</td>
+        <td style="font-weight:600;">92.85</td>
+        <td style="color:#00c853;font-weight:600;">▼ 0.16%</td>
+        <td style="color:#888;">电商/云计算</td>
+        <td style="color:#666;font-size:0.8em;">近24h无新增公告。关注云业务分拆进展及AI布局。</td>
+    </tr>
+</tbody>
+</table>
+</div>
+
+<div class="section-title">
+    🇨🇳 A股
+    <span class="badge">3只跟踪</span>
+</div>
+
+<div class="a-section">
+<table>
+<thead>
+<tr><th>代码</th><th>名称</th><th>最新价(CNY)</th><th>涨跌幅</th><th>聚焦</th><th>近24h动态</th></tr>
+</thead>
+<tbody>
+<tr>
+        <td style="color:#f0c040;font-weight:600;">688331</td>
+        <td>荣昌生物</td>
+        <td style="font-weight:600;">139.00</td>
+        <td style="color:#ff4444;font-weight:600;">▲ 6.71%</td>
+        <td style="color:#888;">ADC创新药</td>
+        <td style="color:#666;font-size:0.8em;">近24h无新增公告。关注泰它西普(RC18)国际化进展及ADC管线数据。</td>
+    </tr><tr>
+        <td style="color:#f0c040;font-weight:600;">300782</td>
+        <td>卓胜微</td>
+        <td style="font-weight:600;">104.50</td>
+        <td style="color:#00c853;font-weight:600;">▼ 4.64%</td>
+        <td style="color:#888;">射频芯片</td>
+        <td style="color:#666;font-size:0.8em;">近24h无新增公告。关注消费电子复苏及射频前端国产替代进展。</td>
+    </tr><tr>
+        <td style="color:#f0c040;font-weight:600;">600206</td>
+        <td>有研新材</td>
+        <td style="font-weight:600;">59.94</td>
+        <td style="color:#00c853;font-weight:600;">▼ 10.00%</td>
+        <td style="color:#888;">半导体新材料</td>
+        <td style="color:#666;font-size:0.8em;">近24h无新增公告。关注半导体材料国产化及靶材业务订单。</td>
+    </tr>
+</tbody>
+</table>
+</div>
+
+<div class="section-title">
+    📝 市场简评
+</div>
+
+<div style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 1px solid #2a2a4a; border-radius: 12px; padding: 20px; margin-top: 10px; line-height: 1.8; font-size: 0.9em;">
+
+<p><strong style="color:#f0c040;">【今日关注】</strong></p>
+<ul style="padding-left: 20px; color: #b0b0c0;">
+    <li><strong style="color:#ff6b6b;">Vertex (VRTX)</strong> — 7月1日获得Casgevy在2岁以上儿童中的扩大适应症批准，是24h内最重要利好。股价小幅上涨+0.26%。</li>
+    <li><strong style="color:#ff6b6b;">Biogen (BIIB)</strong> — 7月1日提交8-K重大事件公告（待解析内容），此前6月18日宣布收购RayThera(最高$1B)。股价下跌-2.93%。</li>
+    <li><strong style="color:#ff6b6b;">Ionis (IONS)</strong> — 6月25日与Recordati签署Zilganerse独家许可协议（除美国外），6月24日获Tryngolza新增适应症。内部人提交144表格。</li>
+    <li><strong style="color:#ff6b6b;">Legend Biotech (LEGN)</strong> — 6月完成$2.26亿公开发行(定价$29.35/ADS)，股价今日+3.50%反弹。内部人提交144表格。</li>
+    <li><strong style="color:#ff6b6b;">Acumen (ABOS)</strong> — ALTITUDE-AD阿尔茨海默症试验预计2026年底公布顶线数据，股价下跌-3.00%至$2.59。</li>
+</ul>
+
+<p style="margin-top: 15px;"><strong style="color:#f0c040;">【港股/A股简评】</strong></p>
+<ul style="padding-left: 20px; color: #b0b0c0;">
+    <li><strong style="color:#ff6b6b;">小鹏汽车(09868)</strong> — 大涨+6.86%，关注7月交付数据及MONA品牌销量。</li>
+    <li><strong style="color:#ff6b6b;">腾讯(00700)</strong> — 上涨+2.28%，市场关注混元大模型商业化进展。</li>
+    <li><strong style="color:#ff6b6b;">荣昌生物(688331)</strong> — 上涨+6.71%，泰它西普国际化进展受关注。</li>
+    <li><strong style="color:#00c853;">有研新材(600206)</strong> — 大跌-10.00%，半导体板块调整，关注靶材业务订单变化。</li>
+    <li><strong style="color:#00c853;">卓胜微(300782)</strong> — 下跌-4.64%，消费电子板块承压。</li>
+</ul>
+
+</div>
+
+<div class="data-source">
+    <strong style="color:#f0c040;">⚙ 数据说明</strong><br>
+    • 美股价格来自东方财富(约算值)，涨跌幅为估算百分比<br>
+    • SEC公告来自美国证券交易委员会EDGAR数据库<br>
+    • 新闻来源: Seeking Alpha（标注来源）<br>
+    • 港股/A股价格来自东方财富实时API<br>
+    • 本报告由AI自动生成，仅供参考，不构成投资建议<br>
+    • 生成时间: 2026-07-02 08:30 CST
+</div>
+
+<div class="footer">
+    TOP Stock Daily Tracker &copy; 2026 | Powered by Hermes Agent
+</div>
+
+</body>
+</html>
