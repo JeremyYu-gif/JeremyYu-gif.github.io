@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>港股每日复盘 2026-07-02</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: #0a0e17;
+  color: #e0e6ed;
+  line-height: 1.6;
+  padding: 20px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+.header {
+  background: linear-gradient(135deg, #0f1629 0%, #1a1f3a 100%);
+  border: 1px solid #2a3a5c;
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.header h1 { font-size: 28px; font-weight: 700; color: #f0f4f8; margin-bottom: 4px; }
+.header .subtitle { color: #8b9bb5; font-size: 14px; margin-bottom: 12px; }
+.header .date { color: #3b82f6; font-weight: 500; }
+.tagline {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 8px;
+}
+.section {
+  background: #101726;
+  border: 1px solid #1e2d4a;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.section h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #3b82f6;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section h2 .emoji { font-size: 20px; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.card {
+  background: #141c33;
+  border: 1px solid #1e2d4a;
+  border-radius: 10px;
+  padding: 16px;
+}
+.card .label { font-size: 12px; color: #6b7d9e; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.card .value { font-size: 24px; font-weight: 700; }
+.card .value.up { color: #22c55e; }
+.card .value.down { color: #ef4444; }
+.card .value.neutral { color: #e0e6ed; }
+.card .sub { font-size: 13px; color: #8b9bb5; margin-top: 4px; }
+.card .sub.up { color: #22c55e; }
+.card .sub.down { color: #ef4444; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.data-table th {
+  text-align: left;
+  padding: 10px 12px;
+  background: #141c33;
+  color: #6b7d9e;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #1e2d4a;
+}
+.data-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #1a2240;
+}
+.data-table tr:hover td { background: rgba(59,130,246,0.04); }
+.text-up { color: #22c55e; font-weight: 600; }
+.text-down { color: #ef4444; font-weight: 600; }
+.text-neutral { color: #e0e6ed; }
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.badge.up { background: rgba(34,197,94,0.15); color: #22c55e; }
+.badge.down { background: rgba(239,68,68,0.15); color: #ef4444; }
+.badge.warn { background: rgba(234,179,8,0.15); color: #eab308; }
+.badge.info { background: rgba(59,130,246,0.15); color: #3b82f6; }
+.analysis-box {
+  background: linear-gradient(135deg, #0f1629, #141c33);
+  border-left: 3px solid #3b82f6;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 12px 0;
+  font-size: 14px;
+  color: #c0cedb;
+}
+.analysis-box.alert {
+  border-left-color: #eab308;
+  background: linear-gradient(135deg, #1a1a0a, #141c33);
+}
+.analysis-box.danger {
+  border-left-color: #ef4444;
+  background: linear-gradient(135deg, #1a0a0a, #141c33);
+}
+.stock-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid #1a2240;
+}
+.stock-item:last-child { border-bottom: none; }
+.stock-name { font-weight: 500; }
+.stock-code { color: #6b7d9e; font-size: 12px; margin-left: 6px; }
+.stock-price { text-align: right; }
+.stock-change { text-align: right; min-width: 80px; }
+.changelog {
+  margin-top: 20px;
+  padding: 16px;
+  background: #0c1220;
+  border-radius: 8px;
+  border: 1px solid #1a2240;
+}
+.changelog h3 { font-size: 14px; color: #6b7d9e; margin-bottom: 8px; }
+.changelog ul { list-style: none; padding: 0; }
+.changelog li {
+  padding: 6px 0;
+  border-bottom: 1px solid #1a2240;
+  font-size: 13px;
+  color: #8b9bb5;
+}
+.changelog li:last-child { border-bottom: none; }
+.footer {
+  text-align: center;
+  color: #4a5568;
+  font-size: 12px;
+  padding: 20px;
+  margin-top: 20px;
+}
+@media (max-width: 640px) {
+  body { padding: 12px; }
+  .header { padding: 20px; }
+  .header h1 { font-size: 22px; }
+  .card-grid { grid-template-columns: 1fr 1fr; }
+  .card .value { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>🇭🇰 港股每日复盘</h1>
+  <div class="subtitle"><span class="date">2026-07-02 (周四)</span> · 基金经理视角实战复盘</div>
+  <div class="tagline">📊 恒指 +0.76% 企稳回升 · 医药/汽车领涨 · 中概逆势走强</div>
+</div>
+
+<!-- 核心结论 -->
+<div class="section">
+  <h2><span class="emoji">🎯</span> 今日核心结论</h2>
+  <div class="analysis-box">
+    <strong>一句话定调：</strong>港股今日延续修复行情，恒指收涨0.76%报23,055点，结构上呈现明显的"医药创新+新能源车"双轮驱动。A股出现剧烈调整（创业板-5.71%/科创50-7.70%），大量资金通过港股通南下避险，带动港股流动性改善。隔夜美股中概股逆势走强（纳斯达克中国金龙指数大涨），外资回补信号初现。医药板块现板块性爆发（石药+8.32%/信达+7.22%/康方+7.67%），腾讯盘中重回4万亿港元市值。市场正处"基本面拐点确认、资金面尚未合力"的蓄力阶段，维持逢低布局策略。
+  </div>
+</div>
+
+<!-- 大盘全景 -->
+<div class="section">
+  <h2><span class="emoji">📈</span> 大盘全景（基金经理视角）</h2>
+  <div class="card-grid" style="margin-bottom:16px;">
+    <div class="card">
+      <div class="label">恒生指数 HSI</div>
+      <div class="value up">23,055.03</div>
+      <div class="sub up">▲ +174.01 (+0.76%)</div>
+    </div>
+    <div class="card">
+      <div class="label">国企指数 HSCEI</div>
+      <div class="value up">7,612.48</div>
+      <div class="sub up">▲ +54.18 (+0.72%)</div>
+    </div>
+    <div class="card">
+      <div class="label">恒生科技 HSTECH</div>
+      <div class="value down">4,454.28</div>
+      <div class="sub down">▼ -17.95 (-0.40%)</div>
+    </div>
+    <div class="card">
+      <div class="label">红筹指数 HSCCI</div>
+      <div class="value up">3,735.60</div>
+      <div class="sub up">▲ +66.18 (+1.80%)</div>
+    </div>
+  </div>
+
+  <div class="card-grid" style="margin-bottom:16px;">
+    <div class="card">
+      <div class="label">恒指日内区间</div>
+      <div class="value neutral">22,954 - 23,336</div>
+      <div class="sub">振幅 1.66%</div>
+    </div>
+    <div class="card">
+      <div class="label">恒生成交额</div>
+      <div class="value neutral">~1,086亿</div>
+      <div class="sub">较昨日放量</div>
+    </div>
+    <div class="card">
+      <div class="label">恒生科技日内</div>
+      <div class="value down">高开1.25%→收跌0.40%</div>
+      <div class="sub down">冲高回落</div>
+    </div>
+  </div>
+
+  <div class="analysis-box">
+    <strong>赚钱效应分析：</strong>今日港股赚钱效应偏好，但呈现明显结构性特征。恒指高开0.83%后全天高位震荡，涨幅一度扩大至1.3%以上后略有回落。与A股形成鲜明对比——A股今日遭遇"黑色星期四"，创业板暴跌5.71%、科创50暴跌7.70%、沪深300跌2.96%，全天成交3.66万亿呈现恐慌性出逃。港股医药板块（+4.87%）、汽车板块、消费板块录得显著正收益，而恒生科技指数因权重股冲高回落收跌0.40%。<br><br>
+    <strong>对比A股：</strong>今日A股半导体/算力高位崩塌（华虹半导体-13.52%/长电科技等大跌），资金大量涌入低位金融/化工/养殖板块避险，与港股的医药/汽车/互联网形成风格共振。港股相对A股的洼地效应进一步凸显，南向资金有望持续流入。
+  </div>
+</div>
+
+<!-- 市场情绪 -->
+<div class="section">
+  <h2><span class="emoji">🎭</span> 市场情绪</h2>
+  <div class="card-grid" style="margin-bottom:16px;">
+    <div class="card">
+      <div class="label">港股通（南向）</div>
+      <div class="value up">净流入</div>
+      <div class="sub">A股大跌→避险资金南下</div>
+    </div>
+    <div class="card">
+      <div class="label">隔夜中概股</div>
+      <div class="value up">金龙指数↑</div>
+      <div class="sub">逆美股下跌走强</div>
+    </div>
+    <div class="card">
+      <div class="label">市场情绪</div>
+      <div class="value neutral">谨慎偏多</div>
+      <div class="sub">结构分化明显</div>
+    </div>
+    <div class="card">
+      <div class="label">港股新股</div>
+      <div class="value up">H1热度空前</div>
+      <div class="sub">科创板企业批量上市</div>
+    </div>
+  </div>
+
+  <div class="analysis-box">
+    <strong>情绪解读：</strong>今日市场情绪从早盘的亢奋（恒生科技高开1.25%）逐步回归理性（收跌0.40%），但个股层面赚钱效应尚可。港交所CEO陈翊庭最新表态"全球投资者对中国资产的态度已从能否投资转变为必须投资"，释放强烈的正面政策信号。但需注意A股剧烈调整引发的联动风险——若A股持续下跌，港股估值虽低但短期可能受到情绪拖累。
+  </div>
+</div>
+
+<!-- 汇率与流动性 -->
+<div class="section">
+  <h2><span class="emoji">💱</span> 汇率与流动性</h2>
+  <div class="card-grid" style="margin-bottom:16px;">
+    <div class="card">
+      <div class="label">美元/港元</div>
+      <div class="value neutral">~7.80</div>
+      <div class="sub">联系汇率稳定</div>
+    </div>
+    <div class="card">
+      <div class="label">美元/人民币</div>
+      <div class="value neutral">~7.27</div>
+      <div class="sub">人民币窄幅波动</div>
+    </div>
+    <div class="card">
+      <div class="label">美债10Y</div>
+      <div class="value down">4.485%</div>
+      <div class="sub down">▲ +6.3bp（ADP后上行）</div>
+    </div>
+    <div class="card">
+      <div class="label">美联储7月</div>
+      <div class="value neutral">71.7%不动</div>
+      <div class="sub">28.3%加息25bp</div>
+    </div>
+  </div>
+
+  <div class="analysis-box">
+    <strong>流动性前瞻：</strong>今晚20:30美国6月非农数据是本周最大宏观变量。ADP"小非农"仅增9.8万（预期11.8万）低于预期，但高盛预计世界杯效应可能推高非农至14万人。若非农超预期→美债收益率上行→港元承压→港股流动性短期收紧。反之若非农走弱→加息预期降温→港股迎来喘息窗口。当前CME期货定价7月加息概率仅28.3%，9月加息概率约50%。
+  </div>
+</div>
+
+<!-- 强势板块 -->
+<div class="section">
+  <h2><span class="emoji">🔥</span> 强势板块与核心逻辑</h2>
+
+  <h3 style="color:#22c55e;margin:12px 0 8px;font-size:15px;">TOP5 涨幅领先板块</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>板块</th><th>涨幅</th><th>领涨龙头</th><th>上涨逻辑</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>医药/生物科技</strong></td>
+        <td class="text-up">▲ +4.87%</td>
+        <td>石药+8.32%, 信达+7.22%<br>康方+7.67%, 百济+2.52%</td>
+        <td>全球创新药投融资回暖+FDA审批转暖+头部企业大额回购</td>
+      </tr>
+      <tr>
+        <td><strong>新能源车</strong></td>
+        <td class="text-up">强劲</td>
+        <td>比亚迪+8.07%, 小鹏+2.27%<br>吉利+2.73%</td>
+        <td>比亚迪6月销量催化+小鹏MONA发布+理想持续回购</td>
+      </tr>
+      <tr>
+        <td><strong>保险/金融</strong></td>
+        <td class="text-up">偏强</td>
+        <td>中国人寿+5.33%, 平安+2.45%<br>友邦+1.89%</td>
+        <td>A股低估值金融吸引资金+险资为银行板块核心增量资金</td>
+      </tr>
+      <tr>
+        <td><strong>科网/消费互联网</strong></td>
+        <td class="text-up">反弹</td>
+        <td>美团+3.43%, 小米+4.44%<br>携程+1.86%</td>
+        <td>隔夜中概逆势走强+腾讯AI催化剂+估值洼地修复</td>
+      </tr>
+      <tr>
+        <td><strong>地产/物业</strong></td>
+        <td class="text-up">修复</td>
+        <td>华润置地+3.53%, 碧桂园+3.59%<br>中国金茂+4.88%</td>
+        <td>政策宽松预期+低估值修复</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="color:#ef4444;margin:16px 0 8px;font-size:15px;">TOP3 最弱板块</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>板块</th><th>跌幅</th><th>领跌龙头</th><th>下跌原因</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>半导体</strong></td>
+        <td class="text-down">大跌</td>
+        <td>华虹半导体-13.52%<br>舜宇光学-2.95%</td>
+        <td>隔夜费城半导体指数跌超6%，存储周期担忧蔓延</td>
+      </tr>
+      <tr>
+        <td><strong>锂资源</strong></td>
+        <td class="text-down">▼ -4.41%</td>
+        <td>赣锋锂业-4.41%<br>福莱特玻璃-0.78%</td>
+        <td>锂价承压+新能源上游利润压缩担忧</td>
+      </tr>
+      <tr>
+        <td><strong>公用事业</strong></td>
+        <td class="text-down">偏弱</td>
+        <td>长实集团-1.89%<br>中电控股-0.27%<br>煤气-1.08%</td>
+        <td>防御性板块资金流出转向进攻品种</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 重点个股异动 -->
+<div class="section">
+  <h2><span class="emoji">💡</span> 重点个股异动（涨跌幅>6%需重点分析）</h2>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>个股</th><th>代码</th><th>收盘价</th><th>涨跌幅</th><th>异动分析</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>比亚迪股份</strong></td>
+        <td>01211</td>
+        <td>78.30</td>
+        <td class="text-up">▲ +8.07%</td>
+        <td>🚀 6月销量数据超预期+新能源车板块共振。比亚迪作为港股通汽车ETF(520780)第一大重仓(16.17%)，受益于汽车产业主题ETF资金流入。股价自前期低点72.45元大幅反弹，技术面站上关键均线</td>
+      </tr>
+      <tr>
+        <td><strong>石药集团</strong></td>
+        <td>01093</td>
+        <td>7.55</td>
+        <td class="text-up">▲ +8.32%</td>
+        <td>🚀 创新药板块爆发领涨！全球创新药投融资回暖+FDA审批转暖，东北证券指出CXO海外订单景气度上行。石药为恒生港股通创新药指数前十大权重股，低位放量反弹</td>
+      </tr>
+      <tr>
+        <td><strong>康方生物</strong></td>
+        <td>09926</td>
+        <td>94.80</td>
+        <td class="text-up">▲ +7.67%</td>
+        <td>🚀 PD-1/VEGF双抗临床数据优异，获多家机构看好。与信达生物、百济神州等构成创新药板块核心标的</td>
+      </tr>
+      <tr>
+        <td><strong>信达生物</strong></td>
+        <td>01801</td>
+        <td>85.35</td>
+        <td class="text-up">▲ +7.22%</td>
+        <td>🚀 创新药/生物科技板块普涨。信达为港股通创新药指数第一大权重股，受创新药ETF资金持续净流入催化</td>
+      </tr>
+      <tr>
+        <td><strong>地平线机器人</strong></td>
+        <td>09660</td>
+        <td>4.29</td>
+        <td class="text-up">▲ +5.15%</td>
+        <td>自动驾驶/AI芯片概念热度维持，但需注意该公司持续亏损（PE -5.39）</td>
+      </tr>
+      <tr>
+        <td><strong>中国人寿</strong></td>
+        <td>02628</td>
+        <td>28.08</td>
+        <td class="text-up">▲ +5.33%</td>
+        <td>保险板块受A股低估值金融轮动效应带动，成交量7,489万股/21亿港元，放量大涨</td>
+      </tr>
+      <tr>
+        <td><strong>中国金茂</strong></td>
+        <td>00817</td>
+        <td>1.29</td>
+        <td class="text-up">▲ +4.88%</td>
+        <td>地产板块低位修复，政策宽松预期+低估值反弹</td>
+      </tr>
+      <tr>
+        <td><strong>中国联塑</strong></td>
+        <td>02128</td>
+        <td>3.74</td>
+        <td class="text-up">▲ +5.06%</td>
+        <td>建材板块超跌反弹，成交1,953万股温和放量</td>
+      </tr>
+      <tr>
+        <td><strong>小鹏汽车-W</strong></td>
+        <td>09868</td>
+        <td>51.80</td>
+        <td class="text-up">▲ +2.27%</td>
+        <td>6月交付40,126辆/季度累计103,295辆，7月2日发布MONA L03开启全球预售</td>
+      </tr>
+      <tr>
+        <td><strong>小米集团</strong></td>
+        <td>01810</td>
+        <td>22.60</td>
+        <td class="text-up">▲ +4.44%</td>
+        <td>成交222.8亿股/50.36亿港元放量明显，受益于港股通ETF资金流入</td>
+      </tr>
+      <tr style="background:rgba(239,68,68,0.05);">
+        <td><strong>华虹半导体</strong></td>
+        <td>01347</td>
+        <td>186.10</td>
+        <td class="text-down">▼ -13.52%</td>
+        <td>⚠️ 隔夜费城半导体指数暴跌超6%，存储周期担忧+A股半导体高位崩塌拖累。成交5,093万股/97.4亿港元为今日港股成交额最大个股之一，多空分歧剧烈</td>
+      </tr>
+      <tr style="background:rgba(239,68,68,0.05);">
+        <td><strong>赣锋锂业</strong></td>
+        <td>01772</td>
+        <td>48.08</td>
+        <td class="text-down">▼ -4.41%</td>
+        <td>新能源上游承压，锂价下行周期压制估值</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="analysis-box" style="margin-top:12px;">
+    <strong>⚠️ 特别关注：</strong>腾讯控股（00700）盘中一度涨4%至447港元，市值重回4万亿港元关口。催化剂：微信原生Agent"小微"灰度测试+中金/华泰等券商看好AI估值修复。最终收窄至+0.09%（430.20港元），显示上方抛压仍重。关注明日能否站稳435以上。
+  </div>
+</div>
+
+<!-- 资金面 -->
+<div class="section">
+  <h2><span class="emoji">💰</span> 资金面（港股最关键）</h2>
+
+  <h3 style="color:#3b82f6;margin:12px 0 8px;font-size:15px;">① 南下资金（港股通）</h3>
+  <div class="card-grid" style="margin-bottom:12px;">
+    <div class="card">
+      <div class="label">今日预估净流入</div>
+      <div class="value up">活跃</div>
+      <div class="sub">A股剧烈调整→资金南下避险</div>
+    </div>
+    <div class="card">
+      <div class="label">沪港通成交</div>
+      <div class="value neutral">腾讯/美团/小米居前</div>
+      <div class="sub">南向资金活跃</div>
+    </div>
+    <div class="card">
+      <div class="label">北向资金</div>
+      <div class="value neutral">昨日休市</div>
+      <div class="sub">香港回归日假休</div>
+    </div>
+  </div>
+  <div class="analysis-box">
+    <strong>南下资金点评：</strong>今日A股遭遇罕见暴跌（创业板-5.71%/科创50-7.70%），大量内资通过港股通转战港股。港股估值处于全球洼地（恒指PE约9倍），叠加港股通ETF持续获资金申购，南向资金有望在未来数个交易日维持净流入态势。重点流入方向：港股通创新药ETF（近22日净流入1,460万元）、恒生互联网ETF。
+  </div>
+
+  <h3 style="color:#3b82f6;margin:16px 0 8px;font-size:15px;">② 外资（国际资金）</h3>
+  <div class="analysis-box">
+    <strong>外资信号：</strong>隔夜美股三大指数集体收跌背景下，纳斯达克中国金龙指数逆势大涨，中概股（阿里+2.09%/网易+1.22%/百度+3.19%/京东+3.26%）全面走强。这是重要的外资回补信号——"隔夜中概股逆美股下跌独立走强"。港交所CEO表示全球投资者对中国资产态度已从"能否投资"转变为"必须投资"。<br><br>
+    <strong>EPFR视角：</strong>随着中国基本面（营收/盈利/ROE）确认拐点+中国银河证券等机构看好下半年港股"洼地"修复，外资对华主动配置有望在Q3逐步回升。但当前"市场信心和资金流向尚未形成合力"（银河证券语），仍需等待更多催化剂。
+  </div>
+
+  <h3 style="color:#3b82f6;margin:16px 0 8px;font-size:15px;">③ 沽空数据</h3>
+  <div class="analysis-box">
+    <strong>沽空警示：</strong>今日未获取精确沽空比率数据。但需关注：港股通ETF（恒生ETF/恒生科技ETF等）过去一个月份额净减少（恒生ETF近一月净减少3.48亿份），反映部分资金借反弹减仓。若恒指放量滞涨+沽空比率持续>15%，需警惕短期回调风险。
+  </div>
+
+  <h3 style="color:#3b82f6;margin:16px 0 8px;font-size:15px;">④ 回购与增持（⚠️ 重点关注）</h3>
+  <div class="card-grid" style="margin-bottom:12px;">
+    <div class="card" style="border-color:#eab308;">
+      <div class="label">6月30日回购公司</div>
+      <div class="value up">103家</div>
+      <div class="sub">累计回购14.14亿港元</div>
+    </div>
+    <div class="card" style="border-color:#22c55e;">
+      <div class="label">腾讯年内累计回购</div>
+      <div class="value up">244.08亿</div>
+      <div class="sub">6/30单日5.01亿港元</div>
+    </div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>公司</th><th>代码</th><th>6/30回购金额</th><th>年内累计</th><th>信号强度</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>腾讯控股</strong></td>
+        <td>00700</td>
+        <td class="text-up">5.01亿</td>
+        <td class="text-up">244.08亿</td>
+        <td><span class="badge warn">持续大额回购—底部信号</span></td>
+      </tr>
+      <tr>
+        <td><strong>理想汽车-W</strong></td>
+        <td>02015</td>
+        <td class="text-up">1.99亿</td>
+        <td class="text-up">23.40亿</td>
+        <td><span class="badge info">管理层信心强烈</span></td>
+      </tr>
+      <tr>
+        <td><strong>美团-W</strong></td>
+        <td>03690</td>
+        <td class="text-up">1.00亿</td>
+        <td class="text-up">2.00亿</td>
+        <td><span class="badge info">刚启动回购</span></td>
+      </tr>
+      <tr>
+        <td><strong>药明生物</strong></td>
+        <td>02269</td>
+        <td class="text-up">入榜</td>
+        <td>-</td>
+        <td><span class="badge info">持续回购中</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="analysis-box alert" style="margin-top:12px;">
+    <strong>回购信号解读：</strong>腾讯年内累计回购244亿港元，日均约2亿+级别，是港股最强回购标的。6/30当日103家公司同步回购，金额超14亿，为近期高点。当前回购密度和金额均处于历史高位，通常预示港股估值处于底部区间。但需注意回购≠立即上涨，腾讯430元附近多头动能需放量确认。
+  </div>
+
+  <h3 style="color:#3b82f6;margin:16px 0 8px;font-size:15px;">⑤ 大宗交易</h3>
+  <div class="analysis-box">
+    今日未获取大宗交易明细数据。需持续关注：机构接盘方动向、折价/溢价率。若有高折价大宗（折价>5%）且接盘方为知名外资长线基金或中资保险，可视为重要底部信号。
+  </div>
+</div>
+
+<!-- 今日要闻 -->
+<div class="section">
+  <h2><span class="emoji">📰</span> 港股今日要闻</h2>
+  <table class="data-table">
+    <thead>
+      <tr><th>内容</th><th>影响</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>腾讯微信Agent"小微"灰度测试，股价重回4万亿港元市值</td>
+        <td><span class="badge up">正面</span></td>
+      </tr>
+      <tr>
+        <td>全球创新药投融资回暖+FDA审批转暖，医药板块集体爆发</td>
+        <td><span class="badge up">正面</span></td>
+      </tr>
+      <tr>
+        <td>A股暴跌（创业板-5.71%/科创50-7.70%），资金南下避险</td>
+        <td><span class="badge info">结构利好港股</span></td>
+      </tr>
+      <tr>
+        <td>隔夜中概股逆势走强，纳斯达克中国金龙指数大涨</td>
+        <td><span class="badge up">正面</span></td>
+      </tr>
+      <tr>
+        <td>港交所CEO：全球投资者对中国态度从"能否投"→"必须投"</td>
+        <td><span class="badge up">正面</span></td>
+      </tr>
+      <tr>
+        <td>美国6月ADP就业仅增9.8万（低于预期），今晚非农成焦点</td>
+        <td><span class="badge warn">等待验证</span></td>
+      </tr>
+      <tr>
+        <td>高盛：世界杯或推高6月非农至14万人，美债收益率上行</td>
+        <td><span class="badge warn">潜在压制</span></td>
+      </tr>
+      <tr>
+        <td>港股上半年IPO热潮空前，AI/半导体企业批量登陆港交所</td>
+        <td><span class="badge up">正面</span></td>
+      </tr>
+      <tr>
+        <td>华虹半导体受费城半导体暴跌拖累，单日重挫13.52%</td>
+        <td><span class="badge down">负面</span></td>
+      </tr>
+      <tr>
+        <td>消费基金经理刘彦春转战科技赛道，风格切换信号强烈</td>
+        <td><span class="badge info">市场信号</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 持有策略建议 -->
+<div class="section">
+  <h2><span class="emoji">📋</span> 基金经理综合研判</h2>
+  <div class="analysis-box">
+    <strong>🔍 大盘判断：</strong>恒指23,000点附近为短期多空分水岭。今日虽然收涨但恒生科技冲高回落，表明上方压力依然存在。中长期看，港股PE仅9倍左右为全球主要市场最低，叠加基本面拐点已确认，具备"洼地"价值。<br><br>
+    <strong>📌 配置建议：</strong>
+    <br>① <strong style="color:#22c55e;">医药/创新药（超配）</strong> — 全球投融资回暖+FDA审批转暖+头部公司大额回购，板块性机会明确。关注：信达生物、百济神州、康方生物、石药集团。
+    <br>② <strong style="color:#22c55e;">科网龙头（标配→超配）</strong> — 腾讯AI Agent催化+美团/小米持续回购+中概估值处于历史低位。关注腾讯430-440区间能否站稳，放量突破447前高则打开上行空间。
+    <br>③ <strong style="color:#eab308;">新能源车（标配）</strong> — 比亚迪/小鹏/理想6月交付数据亮眼，但行业竞争加剧，需精选个股。
+    <br>④ <strong style="color:#eab308;">高股息防御（标配）</strong> — 汇丰/中移动/中国神华等高息标的提供下行保护，适合底仓配置。
+    <br>⑤ <strong style="color:#ef4444;">半导体（低配/回避）</strong> — 全球存储周期下行+费城半导体指数暴跌，短期回避。
+    <br><br>
+    <strong>⚠️ 关键风险：</strong>
+    <br>1. 今晚美国非农超预期→美债收益率上行→全球流动性收紧
+    <br>2. A股继续暴跌→情绪传染→港股被拖累
+    <br>3. 美元走强→港元承压→外资流出
+    <br><br>
+    <strong>🎯 明日关键观察：</strong>
+    <br>· 腾讯能否站稳430+成交量配合
+    <br>· 医药板块持续性（今日是普涨还是真突破）
+    <br>· 美国非农数据（20:30公布）= 下周走势的核心变量
+  </div>
+</div>
+
+<div class="changelog">
+  <h3>📎 数据说明</h3>
+  <ul>
+    <li>数据来源：腾讯行情API (qt.gtimg.cn) + 东方财富妙想历史缓存</li>
+    <li>EastMoney API 积分已用完，降级使用备用数据源</li>
+    <li>报告时间：2026-07-02 19:45 HKT</li>
+    <li>⚠️ 本报告仅供参考，不构成投资建议</li>
+  </ul>
+</div>
+
+<div class="footer">
+  🇭🇰 港股每日复盘 · 2026-07-02 · Powered by Hermes Agent
+</div>
+
+</div>
+</body>
+</html>
