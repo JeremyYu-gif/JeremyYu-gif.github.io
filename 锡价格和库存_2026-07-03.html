@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>锡价格和库存日报 - 2026-07-03</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", sans-serif; background: #0f1923; color: #e0e6ed; padding: 20px; }
+.container { max-width: 1400px; margin: 0 auto; }
+.header { text-align: center; padding: 30px 20px; background: linear-gradient(135deg, #1a2a3a 0%, #0d1b2a 100%); border-radius: 12px; margin-bottom: 24px; border: 1px solid #2a3a4a; }
+.header h1 { font-size: 28px; color: #ffd700; margin-bottom: 8px; }
+.header .subtitle { color: #8899aa; font-size: 14px; }
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+.kpi-card { background: linear-gradient(135deg, #182838 0%, #0e1a28 100%); border-radius: 12px; padding: 20px; border: 1px solid #2a3a4a; text-align: center; }
+.kpi-card .label { font-size: 13px; color: #8899aa; margin-bottom: 8px; }
+.kpi-card .value { font-size: 28px; font-weight: 700; color: #ffd700; }
+.kpi-card .change { font-size: 13px; margin-top: 6px; line-height: 1.6; }
+.kpi-card .date-tag { font-size: 11px; color: #556677; margin-top: 4px; }
+.up { color: #ff4444; }
+.down { color: #00cc66; }
+.section { background: linear-gradient(135deg, #182838 0%, #0e1a28 100%); border-radius: 12px; padding: 24px; margin-bottom: 20px; border: 1px solid #2a3a4a; }
+.section h2 { font-size: 18px; color: #ffd700; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #2a3a4a; }
+.chart { width: 100%; height: 420px; }
+.data-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13px; }
+.data-table th { background: #1a2a3a; color: #ffd700; padding: 10px 14px; text-align: left; border-bottom: 2px solid #2a3a4a; }
+.data-table td { padding: 8px 14px; border-bottom: 1px solid #1a2a3a; }
+.data-table tr:hover { background: rgba(255, 215, 0, 0.05); }
+.alert { padding: 16px; border-radius: 8px; margin-bottom: 16px; font-size: 14px; line-height: 1.6; }
+.alert-warning { background: rgba(255, 100, 0, 0.15); border: 1px solid rgba(255, 100, 0, 0.3); color: #ffaa44; }
+.alert-info { background: rgba(0, 150, 255, 0.1); border: 1px solid rgba(0, 150, 255, 0.2); color: #66aaff; }
+.alert-danger { background: rgba(255, 50, 50, 0.15); border: 1px solid rgba(255, 50, 50, 0.3); color: #ff6666; }
+.alert-success { background: rgba(0, 200, 100, 0.1); border: 1px solid rgba(0, 200, 100, 0.2); color: #44dd88; }
+.footer { text-align: center; padding: 20px; color: #556677; font-size: 12px; }
+.note { font-size: 12px; color: #778899; margin-top: 8px; font-style: italic; }
+.spec-table { width: 100%; margin-top: 16px; }
+.spec-table td { padding: 8px 12px; font-size: 13px; }
+.spec-table tr { border-bottom: 1px solid #1a2a3a; }
+.spec-table .spec-label { color: #8899aa; width: 160px; }
+.spec-table .spec-value { color: #e0e6ed; font-weight: 600; }
+.summary-box { padding: 20px; background: rgba(255,215,0,0.05); border: 1px solid rgba(255,215,0,0.15); border-radius: 10px; margin-bottom: 20px; }
+.summary-box h3 { color: #ffd700; margin-bottom: 12px; font-size: 16px; }
+.summary-box p { line-height: 1.8; font-size: 14px; color: #c0c8d0; }
+@media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+    <h1>锡价格和库存日报</h1>
+    <div class="subtitle">报告日期：2026年7月3日（周五） | 数据截止：2026年7月2日</div>
+</div>
+
+<!-- KPI 卡片 -->
+<div class="kpi-grid">
+    <div class="kpi-card">
+        <div class="label">现货价格（生意社）</div>
+        <div class="value">39.52<span style="font-size:16px;color:#8899aa;"> 万元/吨</span></div>
+        <div class="change"><span class="up">+0.98%</span> 日环比<br><span class="up">+2.21%</span> 周环比<br><span class="up">+47.18%</span> 同比</div>
+        <div class="date-tag">最新：2026-07-02</div>
+    </div>
+    <div class="kpi-card">
+        <div class="label">SHFE仓单日报</div>
+        <div class="value">5220<span style="font-size:16px;color:#8899aa;"> 吨</span></div>
+        <div class="change"><span class="down">-7.08%</span> 日环比<br><span class="down">-29.79%</span> 周环比</div>
+        <div class="date-tag">最新：2026-07-02</div>
+    </div>
+    <div class="kpi-card">
+        <div class="label">SHFE库存（周频）</div>
+        <div class="value">6849<span style="font-size:16px;color:#8899aa;"> 吨</span></div>
+        <div class="change"><span class="down">-22.98%</span> 周环比<br><span class="up">+4.55%</span> 同比</div>
+        <div class="date-tag">最新：2026-06-26</div>
+    </div>
+    <div class="kpi-card">
+        <div class="label">LME库存（日频）</div>
+        <div class="value">8525<span style="font-size:16px;color:#8899aa;"> 吨</span></div>
+        <div class="change"><span class="down">-0.58%</span> 日环比<br><span class="up">+284.88%</span> 同比</div>
+        <div class="date-tag">最新：2026-07-02</div>
+    </div>
+</div>
+
+<!-- 核心摘要 -->
+<div class="summary-box">
+    <h3>核心摘要</h3>
+    <p>
+        <strong>锡价温和反弹：</strong>现货价报39.52万元/吨，日环比<span class="up">+0.98%</span>，周环比<span class="up">+2.21%</span>，同比<span class="up">+47.18%</span>。价格自6月26日低点38.04万/吨已反弹<span class="up">+3.89%</span>。<br>
+        <strong>仓单大幅去化：</strong>SHFE锡仓单降至5,220吨，日环比<span class="down">-7.08%</span>，自6月5日高点11,905吨累计<span class="down">-56.15%</span>，已降至2025年12月以来的最低水平。<br>
+        <strong>SHFE库存骤降：</strong>SHFE锡库存6,849吨，周环比<span class="down">-22.98%</span>，从6月5日高点11,905吨持续回落，仓单+库存双降显示国内去库加速。<br>
+        <strong>LME库存高企：</strong>LME库存8,525吨，同比<span class="up">+284.87%</span>，处于历史高位区间，海外供需宽松格局延续。
+    </p>
+</div>
+
+<!-- 仓单异动预警 -->
+<div class="alert alert-warning">
+    <strong>仓单异动预警：</strong>SHFE锡仓单连续6个交易日大幅下降（7,435→5,220吨，累计-29.80%），已降至5,000吨附近。仓单快速去化叠加SHFE库存同步下降，国内现货市场供应偏紧信号明显。需关注后续仓单是否继续下降至5,000吨以下。
+</div>
+
+<!-- 1. 现货价格分析 -->
+<div class="section">
+    <h2>1. 锡现货价格分析（生意社）</h2>
+    <div class="chart" id="chart-spot"></div>
+    <table class="spec-table">
+        <tr><td class="spec-label">最新价格</td><td class="spec-value">39.52 万元/吨（395225 元/吨）</td></tr>
+        <tr><td class="spec-label">日环比</td><td class="spec-value"><span class="up">+0.98%</span> （前一日 39.14万/吨）</td></tr>
+        <tr><td class="spec-label">周环比（6/25）</td><td class="spec-value"><span class="up">+2.21%</span> （上周 38.67万/吨）</td></tr>
+        <tr><td class="spec-label">同比（2025-07-02）</td><td class="spec-value"><span class="up">+47.18%</span> （去年同期 26.85万/吨）</td></tr>
+        <tr><td class="spec-label">近一月波动区间</td><td class="spec-value">38.04万 ~ 44.70万/吨（6/3高点后持续回落）</td></tr>
+        <tr><td class="spec-label">数据来源</td><td class="spec-value">生意社，经iFinD EDB获取</td></tr>
+    </table>
+</div>
+
+<!-- 2. 仓单日报分析 -->
+<div class="section">
+    <h2>2. SHFE锡仓单日报分析</h2>
+    <div class="chart" id="chart-warehouse"></div>
+    <table class="spec-table">
+        <tr><td class="spec-label">最新仓单</td><td class="spec-value">5220 吨（2026-07-02）</td></tr>
+        <tr><td class="spec-label">日环比</td><td class="spec-value"><span class="down">-7.08%</span> （前一日 5,618吨）</td></tr>
+        <tr><td class="spec-label">周环比（6/25）</td><td class="spec-value"><span class="down">-29.79%</span> （上周 7,435吨）</td></tr>
+        <tr><td class="spec-label">6/5高点以来</td><td class="spec-value"><span class="down">-56.15%</span>（11,905 → 5,220吨）</td></tr>
+        <tr><td class="spec-label">数据来源</td><td class="spec-value">上海期货交易所，经iFinD EDB获取</td></tr>
+    </table>
+</div>
+
+<!-- 3. SHFE库存分析 -->
+<div class="section">
+    <h2>3. 上期所锡库存分析</h2>
+    <div class="chart" id="chart-shfe"></div>
+    <table class="spec-table">
+        <tr><td class="spec-label">最新库存</td><td class="spec-value">6849 吨（2026-06-26，周频）</td></tr>
+        <tr><td class="spec-label">周环比</td><td class="spec-value"><span class="down">-22.98%</span> （前一周 8,893吨）</td></tr>
+        <tr><td class="spec-label">同比（2025-06-27）</td><td class="spec-value"><span class="up">+4.55%</span> （去年同期 6,551吨）</td></tr>
+        <tr><td class="spec-label">6/5高点以来</td><td class="spec-value"><span class="down">-42.47%</span>（11,905 → 6,849吨）</td></tr>
+        <tr><td class="spec-label">数据来源</td><td class="spec-value">上海期货交易所，经iFinD EDB获取</td></tr>
+    </table>
+</div>
+
+<!-- 4. LME库存分析 -->
+<div class="section">
+    <h2>4. LME锡库存分析</h2>
+    <div class="chart" id="chart-lme"></div>
+    <table class="spec-table">
+        <tr><td class="spec-label">最新库存</td><td class="spec-value">8525 吨（2026-07-02，日频）</td></tr>
+        <tr><td class="spec-label">日环比</td><td class="spec-value"><span class="down">-0.58%</span> （前一日 8,575吨）</td></tr>
+        <tr><td class="spec-label">同比（2025-07-02）</td><td class="spec-value"><span class="up">+284.88%</span> （去年同期 2,215吨）</td></tr>
+        <tr><td class="spec-label">近一月趋势</td><td class="spec-value">8,525~9,025吨区间窄幅波动</td></tr>
+        <tr><td class="spec-label">数据来源</td><td class="spec-value">LME，经iFinD EDB获取</td></tr>
+    </table>
+</div>
+
+<!-- 5. 市场分析 -->
+<div class="section">
+    <h2>5. 市场综合分析</h2>
+    
+    <div class="alert alert-success">
+        <strong>国内去库信号：</strong>SHFE仓单从6月5日高点11,905吨骤降至5,220吨（-56.15%），SHFE库存也从11,905吨降至6,849吨（-42.47%）。仓单+库存双降表明国内锡现货市场供应端正在快速收紧，这是偏积极的基本面信号。
+    </div>
+
+    <div class="alert alert-info">
+        <strong>价格走势研判：</strong>现货价自6月3日高点44.70万/吨回落至6月26日低点38.04万/吨（-14.91%），随后企稳反弹至39.52万/吨。本轮价格回调伴随仓单和库存的同步下降，而非被动累库，说明价格下跌更多是前期过度上涨的技术性修正，而非基本面恶化。
+    </div>
+
+    <div class="alert alert-warning">
+        <strong>海外库存压力：</strong>LME库存8,525吨，同比暴增284.87%，处于近三年高位。海外锡市场供应宽松与国内去库形成鲜明对比，内外价差可能扩大。需关注LME库存能否跟随国内出现拐点。
+    </div>
+
+    <table class="data-table">
+        <thead>
+            <tr><th>指标</th><th>最新值</th><th>日/周环比</th><th>同比</th><th>趋势判断</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>现货价格</td><td>39.52万/吨</td><td><span class="up">+0.98%</span></td><td><span class="up">+47.18%</span></td><td>企稳反弹</td></tr>
+            <tr><td>SHFE仓单</td><td>5,220吨</td><td><span class="down">-7.08%</span></td><td>—</td><td>加速去化</td></tr>
+            <tr><td>SHFE库存</td><td>6,849吨</td><td><span class="down">-22.98%</span></td><td><span class="up">+4.55%</span></td><td>快速回落</td></tr>
+            <tr><td>LME库存</td><td>8,525吨</td><td><span class="down">-0.58%</span></td><td><span class="up">+284.87%</span></td><td>高位震荡</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p>本报告由WorkBuddy自动化生成 | 报告日期：2026-07-03 | 数据截止：2026-07-02</p>
+    <p>数据来源：生意社（现货价格）、上海期货交易所（仓单、库存）、LME（伦敦金属交易所库存）</p>
+    <p>以上数据经iFinD EDB接口获取，仅供研究参考，不构成投资建议</p>
+</div>
+
+</div>
+
+<script>
+// ECharts 通用主题
+var darkTheme = {
+    textStyle: { color: '#8899aa' },
+    backgroundColor: 'transparent'
+};
+
+// ============ 1. 现货价格5年走势图 ============
+(function() {
+    var chart = echarts.init(document.getElementById('chart-spot'));
+    var rawData = [["2021-07-05", 215750], ["2021-08-02", 236750], ["2021-09-01", 250500], ["2021-10-08", 282000], ["2021-11-01", 289000], ["2021-12-01", 296500], ["2022-01-04", 299633], ["2022-02-07", 333850], ["2022-03-01", 341288], ["2022-04-01", 349538], ["2022-05-05", 335350], ["2022-06-01", 271263], ["2022-07-01", 203575], ["2022-08-01", 201013], ["2022-09-01", 186263], ["2022-10-10", 182138], ["2022-11-01", 165075], ["2022-12-01", 186888], ["2023-01-03", 208013], ["2023-02-01", 236450], ["2023-03-01", 207075], ["2023-04-03", 204888], ["2023-05-04", 212088], ["2023-06-01", 207888], ["2023-07-03", 226638], ["2023-08-01", 227200], ["2023-09-01", 217075], ["2023-10-09", 213950], ["2023-11-01", 205450], ["2023-12-01", 196575], ["2024-01-02", 208700], ["2024-02-01", 217075], ["2024-03-01", 218325], ["2024-04-01", 225013], ["2024-05-06", 258763], ["2024-06-03", 271388], ["2024-07-01", 274425], ["2024-08-01", 250638], ["2024-09-02", 261950], ["2024-10-08", 267888], ["2024-11-01", 254263], ["2024-12-02", 242113], ["2025-01-02", 244825], ["2025-02-05", 253625], ["2025-03-03", 255888], ["2025-04-01", 286650], ["2025-05-06", 260363], ["2025-06-03", 250338], ["2025-07-01", 266638], ["2025-08-01", 264625], ["2025-09-01", 272675], ["2025-10-09", 283988], ["2025-11-03", 285588], ["2025-12-01", 309050], ["2026-01-05", 332750], ["2026-02-03", 380088], ["2026-03-02", 434575], ["2026-04-01", 375900], ["2026-05-06", 395575], ["2026-06-01", 429963], ["2026-07-01", 391375], ["2026-07-02", 395225]];
+    var dates = rawData.map(function(d) { return d[0]; });
+    var values = rawData.map(function(d) { return (d[1] / 10000).toFixed(2); });
+    
+    var option = {
+        tooltip: {
+            trigger: 'axis',
+            formatter: function(p) { return p[0].axisValue + '<br/>锡现货价：<b>' + p[0].value + ' 万元/吨</b>'; }
+        },
+        grid: { left: '8%', right: '5%', top: '10%', bottom: '10%' },
+        xAxis: {
+            type: 'category',
+            data: dates,
+            axisLabel: { color: '#8899aa', fontSize: 10, rotate: 45 },
+            axisLine: { lineStyle: { color: '#2a3a4a' } }
+        },
+        yAxis: {
+            type: 'value',
+            name: '万元/吨',
+            nameTextStyle: { color: '#8899aa' },
+            axisLabel: { color: '#8899aa' },
+            splitLine: { lineStyle: { color: '#1a2a3a' } },
+            min: function(value) { return Math.floor(value.min * 0.9); }
+        },
+        series: [{
+            type: 'line',
+            data: values,
+            smooth: true,
+            symbol: 'none',
+            lineStyle: { color: '#ffd700', width: 2 },
+            areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                    { offset: 0, color: 'rgba(255, 215, 0, 0.3)' },
+                    { offset: 1, color: 'rgba(255, 215, 0, 0.02)' }
+                ])
+            }
+        }]
+    };
+    chart.setOption(option);
+    window.addEventListener('resize', function() { chart.resize(); });
+})();
+
+// ============ 2. 仓单30日走势图 ============
+(function() {
+    var chart = echarts.init(document.getElementById('chart-warehouse'));
+    var rawData = [["2026-07-02", 5220.0], ["2026-07-01", 5618.0], ["2026-06-30", 6036.0], ["2026-06-29", 6287.0], ["2026-06-26", 6849.0], ["2026-06-25", 7435.0], ["2026-06-24", 8051.0], ["2026-06-23", 8560.0], ["2026-06-22", 8768.0], ["2026-06-18", 8893.0], ["2026-06-17", 9120.0], ["2026-06-16", 9438.0], ["2026-06-15", 9621.0], ["2026-06-12", 9659.0], ["2026-06-11", 10128.0], ["2026-06-10", 10664.0], ["2026-06-09", 11047.0], ["2026-06-08", 11736.0], ["2026-06-05", 11905.0], ["2026-06-04", 11790.0], ["2026-06-03", 11681.0], ["2026-06-02", 7647.0], ["2026-06-01", 7717.0], ["2026-05-29", 7786.0], ["2026-05-28", 7993.0], ["2026-05-27", 8151.0], ["2026-05-26", 8145.0]];
+    rawData.reverse();
+    var dates = rawData.map(function(d) { return d[0]; });
+    var values = rawData.map(function(d) { return d[1]; });
+    
+    var option = {
+        tooltip: {
+            trigger: 'axis',
+            formatter: function(p) { return p[0].axisValue + '<br/>仓单：<b>' + p[0].value + ' 吨</b>'; }
+        },
+        grid: { left: '8%', right: '5%', top: '10%', bottom: '10%' },
+        xAxis: {
+            type: 'category',
+            data: dates,
+            axisLabel: { color: '#8899aa', fontSize: 10, rotate: 45 },
+            axisLine: { lineStyle: { color: '#2a3a4a' } }
+        },
+        yAxis: {
+            type: 'value',
+            name: '吨',
+            nameTextStyle: { color: '#8899aa' },
+            axisLabel: { color: '#8899aa' },
+            splitLine: { lineStyle: { color: '#1a2a3a' } }
+        },
+        series: [{
+            type: 'line',
+            data: values,
+            smooth: true,
+            symbol: 'circle',
+            symbolSize: 4,
+            lineStyle: { color: '#ff6b6b', width: 2 },
+            areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                    { offset: 0, color: 'rgba(255, 107, 107, 0.3)' },
+                    { offset: 1, color: 'rgba(255, 107, 107, 0.02)' }
+                ])
+            },
+            markLine: {
+                silent: true,
+                data: [
+                    { yAxis: 11905, label: { formatter: '高点 11,905', color: '#ff6b6b' }, lineStyle: { color: '#ff6b6b', type: 'dashed' } },
+                    { yAxis: 5220, label: { formatter: '当前 5,220', color: '#ff6b6b' }, lineStyle: { color: '#ff6b6b', type: 'dashed' } }
+                ]
+            }
+        }]
+    };
+    chart.setOption(option);
+    window.addEventListener('resize', function() { chart.resize(); });
+})();
+
+// ============ 3. SHFE库存5年走势图 ============
+(function() {
+    var chart = echarts.init(document.getElementById('chart-shfe'));
+    var rawData = [["2021-07-02", 3211], ["2021-10-01", 1221], ["2022-01-07", 1605], ["2022-04-01", 2030], ["2022-07-01", 3805], ["2022-10-14", 2337], ["2023-01-06", 5219], ["2023-04-07", 8818], ["2023-07-07", 8603], ["2023-10-13", 6042], ["2024-01-05", 6098], ["2024-04-05", 12540], ["2024-07-05", 14762], ["2024-10-04", 7400], ["2025-01-03", 4943], ["2025-04-04", 9508], ["2025-07-04", 6807], ["2025-10-03", 5841], ["2026-01-02", 7442], ["2026-04-03", 6357], ["2026-06-26", 6849]];
+    var dates = rawData.map(function(d) { return d[0]; });
+    var values = rawData.map(function(d) { return d[1]; });
+    
+    var option = {
+        tooltip: {
+            trigger: 'axis',
+            formatter: function(p) { return p[0].axisValue + '<br/>SHFE库存：<b>' + p[0].value + ' 吨</b>'; }
+        },
+        grid: { left: '8%', right: '5%', top: '10%', bottom: '10%' },
+        xAxis: {
+            type: 'category',
+            data: dates,
+            axisLabel: { color: '#8899aa', fontSize: 10, rotate: 45 },
+            axisLine: { lineStyle: { color: '#2a3a4a' } }
+        },
+        yAxis: {
+            type: 'value',
+            name: '吨',
+            nameTextStyle: { color: '#8899aa' },
+            axisLabel: { color: '#8899aa' },
+            splitLine: { lineStyle: { color: '#1a2a3a' } }
+        },
+        series: [{
+            type: 'bar',
+            data: values,
+            itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                    { offset: 0, color: '#ffd700' },
+                    { offset: 1, color: '#b8860b' }
+                ])
+            },
+            barMaxWidth: 30
+        }]
+    };
+    chart.setOption(option);
+    window.addEventListener('resize', function() { chart.resize(); });
+})();
+
+// ============ 4. LME库存5年走势图 ============
+(function() {
+    var chart = echarts.init(document.getElementById('chart-lme'));
+    var rawData = [["2021-07-05", 1895], ["2021-10-01", 1235], ["2022-01-04", 2045], ["2022-04-01", 2000], ["2022-07-01", 3560], ["2022-10-07", 4690], ["2023-01-03", 2995], ["2023-04-03", 1990], ["2023-07-03", 3605], ["2023-10-02", 7350], ["2024-01-02", 7700], ["2024-04-02", 4585], ["2024-07-01", 4750], ["2024-10-01", 4595], ["2025-01-02", 4760], ["2025-04-01", 3050], ["2025-07-01", 2220], ["2025-10-01", 2650], ["2026-01-02", 5415], ["2026-04-01", 8675], ["2026-06-26", 8600], ["2026-07-02", 8525]];
+    var dates = rawData.map(function(d) { return d[0]; });
+    var values = rawData.map(function(d) { return d[1]; });
+    
+    var option = {
+        tooltip: {
+            trigger: 'axis',
+            formatter: function(p) { return p[0].axisValue + '<br/>LME库存：<b>' + p[0].value + ' 吨</b>'; }
+        },
+        grid: { left: '8%', right: '5%', top: '10%', bottom: '10%' },
+        xAxis: {
+            type: 'category',
+            data: dates,
+            axisLabel: { color: '#8899aa', fontSize: 10, rotate: 45 },
+            axisLine: { lineStyle: { color: '#2a3a4a' } }
+        },
+        yAxis: {
+            type: 'value',
+            name: '吨',
+            nameTextStyle: { color: '#8899aa' },
+            axisLabel: { color: '#8899aa' },
+            splitLine: { lineStyle: { color: '#1a2a3a' } }
+        },
+        series: [{
+            type: 'line',
+            data: values,
+            smooth: true,
+            symbol: 'circle',
+            symbolSize: 4,
+            lineStyle: { color: '#00bcd4', width: 2 },
+            areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                    { offset: 0, color: 'rgba(0, 188, 212, 0.3)' },
+                    { offset: 1, color: 'rgba(0, 188, 212, 0.02)' }
+                ])
+            }
+        }]
+    };
+    chart.setOption(option);
+    window.addEventListener('resize', function() { chart.resize(); });
+})();
+</script>
+
+</body>
+</html>
