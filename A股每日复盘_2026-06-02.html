@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股每日复盘 — 2026-06-02</title>
+<style>
+  :root { --bg: #0d1117; --card: #161b22; --border: #30363d; --text: #e6edf3; --dim: #8b949e; --accent: #58a6ff; --green: #3fb950; --red: #f85149; --gold: #d29922; --purple: #bc8cff; --cyan: #39d2c0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 20px; }
+  .container { max-width: 780px; margin: 0 auto; }
+  .header { text-align: center; padding: 32px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+  .header h1 { font-size: 26px; font-weight: 700; letter-spacing: 1px; }
+  .header .sub { color: var(--dim); font-size: 14px; margin-top: 6px; }
+  .header .badge { display: inline-block; background: var(--accent); color: #fff; font-size: 12px; padding: 2px 12px; border-radius: 12px; margin-top: 8px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .card h2 { font-size: 16px; font-weight: 600; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .card h2 .emoji { font-size: 20px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; }
+  .stat { text-align: center; padding: 12px 8px; border-radius: 8px; background: rgba(255,255,255,0.03); }
+  .stat .val { font-size: 22px; font-weight: 700; }
+  .stat .label { font-size: 12px; color: var(--dim); margin-top: 4px; }
+  .up { color: var(--red); }  /* A股红涨绿跌 */
+  .down { color: var(--green); }
+  .flat { color: var(--dim); }
+  .green { color: var(--green); }
+  .red { color: var(--red); }
+  .gold { color: var(--gold); }
+  .pill { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 10px; margin-left: 4px; }
+  .pill-up { background: rgba(248,81,73,0.15); color: var(--red); }
+  .pill-down { background: rgba(63,185,80,0.15); color: var(--green); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+  .sector-item { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(48,54,61,0.4); }
+  .sector-item:last-child { border-bottom: none; }
+  .sector-rank { color: var(--dim); font-size: 13px; min-width: 24px; }
+  .sector-name { flex: 1; font-size: 14px; }
+  .sector-pct { font-weight: 600; font-size: 14px; min-width: 60px; text-align: right; }
+  .lh-item { padding: 10px 0; border-bottom: 1px solid rgba(48,54,61,0.3); }
+  .lh-item:last-child { border-bottom: none; }
+  .lh-item .name { font-size: 15px; font-weight: 600; }
+  .lh-item .detail { font-size: 13px; color: var(--dim); margin-top: 2px; }
+  .tag { display: inline-block; font-size: 11px; padding: 1px 8px; border-radius: 8px; margin: 2px 2px 0 0; }
+  .tag-ai { background: rgba(188,140,255,0.15); color: var(--purple); }
+  .tag-mlcc { background: rgba(57,210,192,0.15); color: var(--cyan); }
+  .tag-cable { background: rgba(88,166,255,0.15); color: var(--accent); }
+  .tag-metal { background: rgba(210,153,34,0.15); color: var(--gold); }
+  .tag-robot { background: rgba(57,210,192,0.15); color: var(--cyan); }
+  .conclusion-box { background: linear-gradient(135deg, rgba(88,166,255,0.08), rgba(188,140,255,0.08)); border: 1px solid var(--accent); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+  .conclusion-box h3 { font-size: 15px; margin-bottom: 8px; color: var(--accent); }
+  .conclusion-box ul { list-style: none; padding: 0; }
+  .conclusion-box li { font-size: 14px; padding: 4px 0; padding-left: 16px; position: relative; }
+  .conclusion-box li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+  .warn-box { background: linear-gradient(135deg, rgba(210,153,34,0.08), rgba(248,81,73,0.08)); border: 1px solid var(--gold); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+  .warn-box h3 { font-size: 15px; margin-bottom: 8px; color: var(--gold); }
+  .warn-box li { font-size: 14px; padding: 4px 0; padding-left: 16px; position: relative; }
+  .warn-box li::before { content: '⚠'; position: absolute; left: -2px; color: var(--gold); }
+  .strategy-box { background: linear-gradient(135deg, rgba(63,185,80,0.08), rgba(57,210,192,0.08)); border: 1px solid var(--green); border-radius: 10px; padding: 16px; }
+  .strategy-box h3 { font-size: 15px; margin-bottom: 8px; color: var(--green); }
+  .strategy-box li { font-size: 14px; padding: 4px 0; padding-left: 16px; position: relative; }
+  .strategy-box li::before { content: '→'; position: absolute; left: 0; color: var(--green); }
+  table.comp { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.comp th { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--border); color: var(--dim); font-weight: 500; }
+  table.comp td { padding: 8px 6px; border-bottom: 1px solid rgba(48,54,61,0.3); }
+  .flow-bar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; margin: 2px 0; }
+  .flow-bar .up-bar { background: var(--red); }
+  .flow-bar .down-bar { background: var(--green); }
+  .footer { text-align: center; color: var(--dim); font-size: 12px; padding: 24px 0 12px; border-top: 1px solid var(--border); margin-top: 24px; }
+  .fw-700 { font-weight: 700; }
+  .mt-8 { margin-top: 8px; }
+  .mb-8 { margin-bottom: 8px; }
+  @media (max-width: 600px) { .grid-4 { grid-template-columns: 1fr 1fr; } .grid-2 { grid-template-columns: 1fr; } body { padding: 12px; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>📊 A股每日复盘</h1>
+  <div class="sub">2026年6月2日 · 星期二</div>
+  <div class="badge">📅 交易日 · 第103个交易日</div>
+</div>
+
+<!-- ===== 核心结论 ===== -->
+<div class="conclusion-box">
+  <h3>🔥 核心结论</h3>
+  <ul>
+    <li><strong>结构性反弹，冰火两重天</strong> — 沪指0.43%微涨，创业板指大涨2.66%，但全市场近3900只个股下跌，仅1543只上涨，赚指数不赚钱</li>
+    <li><strong>AI硬件全线爆发</strong> — CPO、光纤、PCB、MLCC等AI硬件方向涨停潮，创业板领涨，科技成长风格显著占优</li>
+    <li><strong>成交缩量但结构活跃</strong> — 两市成交2.77万亿缩量845亿，但涨停98只，68股创历史新高，结构性行情特征突出</li>
+    <li><strong>机构+北向合力做多AI算力</strong> — 龙虎榜机构净买入10.62亿，东山精密获机构5.07亿+北向7.12亿加仓，AI产业链获大资金认可</li>
+    <li><strong>分化加剧，警惕小微盘风险</strong> — 权重股走强而中小盘普跌，上证上涨662家vs下跌1654家，深市上涨758家vs下跌2110家</li>
+  </ul>
+</div>
+
+<!-- ===== 四大指数 ===== -->
+<div class="card">
+  <h2><span class="emoji">📈</span> 核心指数</h2>
+  <div class="grid-4">
+    <div class="stat">
+      <div class="val up">4075.10</div>
+      <div class="label">上证指数 <span class="pill pill-up">+0.43%</span></div>
+    </div>
+    <div class="stat">
+      <div class="val up">15,591</div>
+      <div class="label">深证成指 <span class="pill pill-up">+1.63%</span></div>
+    </div>
+    <div class="stat">
+      <div class="val up">4055.87</div>
+      <div class="label">创业板指 <span class="pill pill-up">+2.66%</span></div>
+    </div>
+    <div class="stat">
+      <div class="val up">1690.56</div>
+      <div class="label">科创50 <span class="pill pill-up">+1.62%</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 资金面 ===== -->
+<div class="card">
+  <h2><span class="emoji">💰</span> 资金面</h2>
+  <div class="grid-2">
+    <div class="stat">
+      <div class="val">2.77万亿</div>
+      <div class="label">两市成交额 <span style="color:var(--green);">缩量845亿</span></div>
+    </div>
+    <div class="stat">
+      <div class="val">3,762亿</div>
+      <div class="label">北向资金成交额 <span style="color:var(--dim);">占比13.47%</span></div>
+    </div>
+    <div class="stat">
+      <div class="val gold">+7.29亿</div>
+      <div class="label">龙虎榜北向净买入</div>
+    </div>
+    <div class="stat">
+      <div class="val gold">+10.62亿</div>
+      <div class="label">龙虎榜机构净买入</div>
+    </div>
+  </div>
+  <hr>
+  <div style="font-size:13px;color:var(--dim);">
+    <strong>北向资金十大成交股：</strong><br>
+    沪股通：工业富联(47.34亿) · 澜起科技(28.29亿) · 生益科技(28.02亿)<br>
+    深股通：中际旭创(58.14亿) · 宁德时代(55.50亿) · 新易盛(47.43亿)
+  </div>
+</div>
+
+<!-- ===== 市场情绪 ===== -->
+<div class="card">
+  <h2><span class="emoji">📊</span> 市场情绪</h2>
+  <div class="grid-4">
+    <div class="stat">
+      <div class="val up">98</div>
+      <div class="label">涨停 <span style="font-size:11px;color:var(--dim);">封板率69%</span></div>
+    </div>
+    <div class="stat">
+      <div class="val down">18</div>
+      <div class="label">跌停</div>
+    </div>
+    <div class="stat">
+      <div class="val up">1,543</div>
+      <div class="label">上涨</div>
+    </div>
+    <div class="stat">
+      <div class="val down">3,876</div>
+      <div class="label">下跌</div>
+    </div>
+  </div>
+  <div style="margin-top:8px;">
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--dim);margin-bottom:4px;">
+      <span>上涨 28.0%</span>
+      <span>平盘 1.6%</span>
+      <span>下跌 70.4%</span>
+    </div>
+    <div class="flow-bar">
+      <div class="up-bar" style="width:28%"></div>
+      <div style="background:var(--dim);width:1.6%"></div>
+      <div class="down-bar" style="width:70.4%"></div>
+    </div>
+  </div>
+  <hr>
+  <div style="font-size:13px;color:var(--dim);">
+    <span class="gold">★</span> 68只个股创历史新高（电子25只/机械设备13只/通信9只）<br>
+    <span class="gold">★</span> 主力资金净流入超1亿：107只 | 净流出超1亿：136只<br>
+    <span class="gold">★</span> ETF两融余额1,109亿，科创板50ETF获融资净买入2.1亿居首
+  </div>
+</div>
+
+<!-- ===== 行业主线TOP6 ===== -->
+<div class="card">
+  <h2><span class="emoji">🎯</span> 行业主线 TOP 6</h2>
+  <div class="sector-item">
+    <span class="sector-rank">#1</span>
+    <span class="sector-name">通信线缆及配套 <span class="tag tag-cable">AI算力</span></span>
+    <span class="sector-pct up">+9.38%</span>
+  </div>
+  <div class="sector-item">
+    <span class="sector-rank">#2</span>
+    <span class="sector-name">被动元件(MLCC) <span class="tag tag-mlcc">MLCC</span></span>
+    <span class="sector-pct up">+6.80%</span>
+  </div>
+  <div class="sector-item">
+    <span class="sector-rank">#3</span>
+    <span class="sector-name">通信网络设备及器件 <span class="tag tag-ai">CPO/光纤</span></span>
+    <span class="sector-pct up">+6.69%</span>
+  </div>
+  <div class="sector-item">
+    <span class="sector-rank">#4</span>
+    <span class="sector-name">通信设备 <span class="tag tag-ai">AI硬件</span></span>
+    <span class="sector-pct up">+6.48%</span>
+  </div>
+  <div class="sector-item">
+    <span class="sector-rank">#5</span>
+    <span class="sector-name">其他自动化设备 <span class="tag tag-robot">机器人</span></span>
+    <span class="sector-pct up">+6.29%</span>
+  </div>
+  <div class="sector-item">
+    <span class="sector-rank">#6</span>
+    <span class="sector-name">通信(申万一级) <span class="tag tag-ai">总龙头</span></span>
+    <span class="sector-pct up">+5.71%</span>
+  </div>
+</div>
+
+<!-- ===== 龙虎榜机构买入 ===== -->
+<div class="card">
+  <h2><span class="emoji">🏆</span> 龙虎榜 · 机构净买入 TOP</h2>
+  <div class="lh-item">
+    <div class="name">东山精密 (002384) <span class="tag tag-ai">CPO/PCB</span></div>
+    <div class="detail">机构净买入 <strong class="up">5.07亿</strong> · 北向净买入 7.12亿 · 昨日跌停→今日修复大涨</div>
+    <div class="detail" style="color:var(--dim);font-size:12px;">一季度营收+52.72%，净利润+143.47%，AI PCB龙头</div>
+  </div>
+  <div class="lh-item">
+    <div class="name">宏和科技 (603256) <span class="tag tag-cable">PCB/电子布</span></div>
+    <div class="detail">机构净买入 <strong class="up">4.64亿</strong> · 振幅22.22% · 盘中"地天板"</div>
+  </div>
+  <div class="lh-item">
+    <div class="name">火炬电子 (603678) <span class="tag tag-mlcc">MLCC</span></div>
+    <div class="detail">机构净买入 <strong class="up">2.55亿</strong>(3日) · 4天3板 · MLCC概念龙头</div>
+  </div>
+  <div class="lh-item">
+    <div class="name">颀中科技 (688352) <span class="tag tag-ai">芯片封测</span></div>
+    <div class="detail">机构净买入 <strong class="up">2.06亿</strong> · 涨9.25% · 连续3日涨幅超30%</div>
+  </div>
+  <div class="lh-item">
+    <div class="name">云汉芯城 <span class="tag tag-ai">电子元器件</span></div>
+    <div class="detail">机构净买入 <strong class="up">1.27亿</strong> · 4家机构席位现身</div>
+  </div>
+  <div style="font-size:12px;color:var(--dim);margin-top:8px;text-align:right;">机构合计净买入约 10.62亿（净买入17只 / 净卖出16只）</div>
+</div>
+
+<!-- ===== 龙头梯队 ===== -->
+<div class="card">
+  <h2><span class="emoji">👑</span> 龙头梯队</h2>
+  <div style="overflow-x:auto;">
+    <table style="width:100%;font-size:13px;border-collapse:collapse;">
+      <tr style="border-bottom:1px solid var(--border);color:var(--dim);">
+        <th style="text-align:left;padding:6px;">高度</th>
+        <th style="text-align:left;padding:6px;">个股</th>
+        <th style="text-align:center;padding:6px;">连板</th>
+        <th style="text-align:left;padding:6px;">方向</th>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(48,54,61,0.3);">
+        <td style="padding:6px;"><span class="gold">★★★★★</span></td>
+        <td style="padding:6px;font-weight:600;">*ST闻泰</td>
+        <td style="padding:6px;text-align:center;color:var(--red);font-weight:700;">7连板</td>
+        <td style="padding:6px;color:var(--dim);">ST重组</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(48,54,61,0.3);">
+        <td style="padding:6px;"><span class="gold">★★★★</span></td>
+        <td style="padding:6px;font-weight:600;">火炬电子</td>
+        <td style="padding:6px;text-align:center;color:var(--red);font-weight:700;">4天3板</td>
+        <td style="padding:6px;color:var(--dim);">MLCC/被动元件</td>
+      </tr>
+      <tr style="border-bottom:1px solid rgba(48,54,61,0.3);">
+        <td style="padding:6px;"><span class="gold">★★★</span></td>
+        <td style="padding:6px;font-weight:600;">红星发展</td>
+        <td style="padding:6px;text-align:center;color:var(--red);font-weight:700;">2连板</td>
+        <td style="padding:6px;color:var(--dim);">无机盐</td>
+      </tr>
+      <tr>
+        <td style="padding:6px;"><span class="gold">★★★</span></td>
+        <td style="padding:6px;font-weight:600;">福达合金</td>
+        <td style="padding:6px;text-align:center;color:var(--red);font-weight:700;">2连板</td>
+        <td style="padding:6px;color:var(--dim);">金属新材料</td>
+      </tr>
+    </table>
+  </div>
+  <hr>
+  <div style="font-size:13px;color:var(--dim);">
+    <strong>封单资金TOP3：</strong>亨通光电 7.05亿(光纤/历史新高) · 春秋电子 6.18亿 · 麦格米特 4.83亿<br>
+    <strong>热点涨停概念：</strong>CPO(源杰科技+12%, 新易盛+9%) · 光纤(亨通光电涨停) · PCB(鹏鼎控股涨停) · 机器人(中大力德涨停) · 有色(锡业股份/江西铜业涨停)
+  </div>
+</div>
+
+<!-- ===== 风险信号 ===== -->
+<div class="warn-box">
+  <h3>⚠️ 风险信号</h3>
+  <ul>
+    <li><strong>涨跌比极度失衡</strong> — 上涨1543:下跌3876≈1:2.5，仅28%个股上涨，赚钱效应极差</li>
+    <li><strong>缩量反弹持续性存疑</strong> — 两市缩量845亿至2.77万亿，量价背离需警惕</li>
+    <li><strong>科创50近5日跌9.48%</strong> — 虽然今日反弹1.62%，但5日跌幅仍大，说明高位筹码松动</li>
+    <li><strong>DDX/DDY全线负值</strong> — 上证DDX -0.022，深证DDX -0.063，创业板DDX -0.087，大单资金整体流出</li>
+    <li><strong>体育/传媒/游戏板块大跌</strong> — 中体产业、舒华体育、粤传媒跌停，非AI方向资金持续流出</li>
+    <li><strong>ST股炒作风险</strong> — 29只ST股涨停，*ST闻泰7连板，低价股投机情绪偏热</li>
+  </ul>
+</div>
+
+<!-- ===== AH/A美联动 ===== -->
+<div class="card">
+  <h2><span class="emoji">🌐</span> AH联动 &amp; A美联动</h2>
+  <div style="font-size:14px;">
+    <strong>🇺🇸 美股（5月26日收盘）：</strong><br>
+    <div class="grid-4" style="margin:6px 0;">
+      <div class="stat" style="padding:8px;">
+        <div class="val up">26,656</div>
+        <div class="label">纳斯达克 <span class="pill pill-up">+1.19%</span></div>
+      </div>
+      <div class="stat" style="padding:8px;">
+        <div class="val up">7,519</div>
+        <div class="label">标普500 <span class="pill pill-up">+0.61%</span></div>
+      </div>
+      <div class="stat" style="padding:8px;">
+        <div class="val down">50,462</div>
+        <div class="label">道指 <span class="pill pill-down">-0.23%</span></div>
+      </div>
+      <div class="stat" style="padding:8px;">
+        <div class="val up">+1.93%</div>
+        <div class="label">台积电(TSM)</div>
+      </div>
+    </div>
+    <div style="font-size:13px;color:var(--dim);">
+      ▸ 纳指再创收盘历史新高，半导体/AI主线全球共振<br>
+      ▸ 美光科技大涨19.29%，存储芯片景气度持续<br>
+      ▸ 英伟达-0.22%，台积电+1.93%，博通+1.9%，特斯拉+1.78%<br>
+      ▸ SpaceX将于6月12日登陆纳斯达克，商业航天热度升温
+    </div>
+  </div>
+  <hr>
+  <div style="font-size:14px;">
+    <strong>🇭🇰 港股联动：</strong><br>
+    <div style="font-size:13px;color:var(--dim);margin-top:4px;">
+      ▸ MiniMax启动A股上市辅导（先港股→再科创板），智谱AI同步推进<br>
+      ▸ 两大通用大模型齐聚科创板，为A股AI板块提供新估值锚
+    </div>
+    <div style="font-size:13px;color:var(--dim);margin-top:6px;">
+      <strong>外资动态</strong> — 瑞银：全球投资者加仓中国趋势刚开始，境外持有A股已超4万亿<br>
+      QFII一季末持股市值2,212亿(+19.79%)，北向一季净买入3,274亿创同期新高
+    </div>
+  </div>
+</div>
+
+<!-- ===== 明日策略 ===== -->
+<div class="strategy-box">
+  <h3>📌 明日策略 (2026-06-03)</h3>
+  <ul>
+    <li><strong>主线持仓不动</strong> — CPO/光纤/PCB/MLCC等AI硬件方向机构+北向合力做多，趋势完好，持股待涨</li>
+    <li><strong>关注量能变化</strong> — 若明日成交重回3万亿以上，反弹可延续；若继续缩量，需防冲高回落</li>
+    <li><strong>警惕科创50超跌反弹后的分化</strong> — 5日跌9.48%后今日仅反弹1.62%，若不能有效修复1700点关口，不宜追高</li>
+    <li><strong>关注有色/资源股的补涨机会</strong> — 铜板块涨5.05%、锡业股份涨停，全球通胀+AI用电需求推升资源品</li>
+    <li><strong>防御仓位建议</strong> — 若沪指跌破4030支撑位可适当减仓，压力位4258附近注意获利了结</li>
+    <li><strong>回避方向</strong> — 体育、传媒、游戏板块资金持续流出，不建议抄底</li>
+  </ul>
+</div>
+
+<!-- ===== 极简对比表 ===== -->
+<div class="card">
+  <h2><span class="emoji">📋</span> 近5日对比</h2>
+  <table class="comp">
+    <tr>
+      <th>指标</th>
+      <th>6/02(二)</th>
+      <th>6/01(一)</th>
+      <th>5/29(四)</th>
+      <th>5/28(三)</th>
+      <th>5/27(二)</th>
+    </tr>
+    <tr>
+      <td>上证指数</td>
+      <td class="up">4075 (+0.43%)</td>
+      <td class="down">4058 (-0.27%)</td>
+      <td class="down">4069 (-0.73%)</td>
+      <td class="up">4099 (+0.12%)</td>
+      <td class="down">4094 (-1.25%)</td>
+    </tr>
+    <tr>
+      <td>深证成指</td>
+      <td class="up">15591 (+1.64%)</td>
+      <td class="down">15340 (-1.51%)</td>
+      <td class="down">15575 (-1.81%)</td>
+      <td class="up">15862 (+0.80%)</td>
+      <td class="down">15736 (-0.88%)</td>
+    </tr>
+    <tr>
+      <td>创业板指</td>
+      <td class="up">4056 (+2.66%)</td>
+      <td class="down">3951 (-2.16%)</td>
+      <td class="down">4038 (-2.11%)</td>
+      <td class="up">4125 (+1.96%)</td>
+      <td class="up">4046 (+0.07%)</td>
+    </tr>
+    <tr>
+      <td>科创50</td>
+      <td class="up">1691 (+1.62%)</td>
+      <td class="down">1664 (-5.00%)</td>
+      <td class="down">1751 (-5.04%)</td>
+      <td class="up">1844 (+1.59%)</td>
+      <td class="down">1815 (-2.80%)</td>
+    </tr>
+    <tr>
+      <td>成交额</td>
+      <td>2.77万亿</td>
+      <td>2.88万亿</td>
+      <td>3.32万亿</td>
+      <td>2.97万亿</td>
+      <td>3.24万亿</td>
+    </tr>
+  </table>
+  <div style="font-size:12px;color:var(--dim);margin-top:6px;">
+    ▸ 本周成交持续缩量，从5/29高点3.32万亿降至2.77万亿，降幅16.6%<br>
+    ▸ 科创50近5日累计跌幅达9.48%，波动最大；创业板指近5日+0.32%相对抗跌
+  </div>
+</div>
+
+<!-- ===== 行业板块完整排名 ===== -->
+<div class="card">
+  <h2><span class="emoji">📊</span> 申万行业涨幅 TOP 10</h2>
+  <div class="sector-item">
+    <span class="sector-rank">1</span>
+    <span class="sector-name">通信线缆及配套</span>
+    <span class="sector-pct up">+9.38%</span>
+  </div>
+  <div class="sector-item">
+    <span class="sector-rank">2</span>
+    <span class="sector-name">被动元件</span>
+    <span class="sector-pct up">+6.80%</span>
+  </div>
+  <div class="sector-item">
+    <span class="sector-rank">3</span>
+    <span class="sector-name">通信网络设备及器件</span>
+    <span class="sector-pct up">+6.69%</span>
+  </div>
+  <div class="sector-item">
+    <span class="sector-rank">4</span>
+    <span class="sector-name">通信设备</span>
+    <span class="sector-pct up">+6.48%</span>
+  </div>
+  <div class="sector-item">
+    <span class="sector-rank">5</span>
+    <span class="sector-name">其他自动化设备</span>
+    <span class="sector-pct up">+6.29%</span>
+  </div>
+  <div class="sector-item">
+    <span class="sector-rank">6</span>
+    <span class="sector-name">通信(一级)</span>
+    <span class="sector-pct up">+5.71%</span>
+  </div>
+  <div class="sector-item">
+    <span class="sector-rank">7</span>
+    <span class="sector-name">元件</span>
+    <span class="sector-pct up">+5.63%</span>
+  </div>
+  <div class="sector-item">
+    <span class="sector-rank">8</span>
+    <span class="sector-name">印制电路板(PCB)</span>
+    <span class="sector-pct up">+5.32%</span>
+  </div>
+  <div class="sector-item">
+    <span class="sector-rank">9</span>
+    <span class="sector-name">铜</span>
+    <span class="sector-pct up">+5.05%</span>
+  </div>
+  <div class="sector-item">
+    <span class="sector-rank">10</span>
+    <span class="sector-name">分立器件</span>
+    <span class="sector-pct up">+4.90%</span>
+  </div>
+</div>
+
+<div class="footer">
+  📊 A股每日复盘 · 2026-06-02<br>
+  数据来源：东方财富妙想API · 证券时报 · 财联社<br>
+  免责声明：本报告仅供参考，不构成投资建议
+</div>
+
+</div>
+</body>
+</html>

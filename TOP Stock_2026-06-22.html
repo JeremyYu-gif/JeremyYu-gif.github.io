@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOP Stock Daily Report 2026-06-22</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--card2:#1c2333;--border:#30363d;--text:#e6edf3;--text2:#8b949e;--green:#3fb950;--red:#f85149;--yellow:#d29922;--blue:#58a6ff;--accent:#1f6feb;--greenbg:rgba(63,185,80,.12);--redbg:rgba(248,81,73,.12);--yellowbg:rgba(210,153,34,.12);--graybg:rgba(139,148,158,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+.container{max-width:1280px;margin:0 auto;padding:20px}
+header{background:linear-gradient(135deg,#0d1117 0%,#161b22 50%,#1a2332 100%);border-bottom:1px solid var(--border);padding:32px 0;margin-bottom:24px}
+header .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+header h1{font-size:28px;font-weight:700;background:linear-gradient(90deg,var(--blue),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.meta{text-align:right;color:var(--text2);font-size:14px}
+.meta span{display:block}
+.nav-section{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:24px}
+.nav-section h2{font-size:16px;color:var(--blue);margin-bottom:12px;font-weight:600}
+.nav-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.nav-item{display:block;padding:8px 12px;background:var(--card2);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none;font-size:13px;transition:all .2s}
+.nav-item:hover{border-color:var(--blue);background:rgba(31,111,235,.1)}
+.nav-item .ticker{font-weight:700;color:var(--blue);font-size:14px}
+.nav-item .name{color:var(--text2);font-size:11px;display:block;margin-top:2px}
+.section-title{font-size:22px;font-weight:700;padding:16px 0 12px;border-bottom:2px solid var(--accent);margin:32px 0 20px;color:var(--blue)}
+.stock-card{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:24px;overflow:hidden}
+.stock-header{background:var(--card2);padding:16px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.stock-header h3{font-size:20px;font-weight:700}
+.stock-header .price{text-align:right}
+.stock-header .price .val{font-size:22px;font-weight:700}
+.stock-header .price .chg{font-size:14px;margin-left:8px}
+.chg-up{color:var(--green)}.chg-down{color:var(--red)}.chg-flat{color:var(--text2)}
+.stock-body{padding:20px 24px}
+.sub-title{font-size:15px;font-weight:600;color:var(--blue);margin:16px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.sub-title:first-child{margin-top:0}
+.news-item{padding:10px 14px;margin-bottom:8px;border-radius:8px;border-left:3px solid;font-size:13px}
+.news-bullish{background:var(--greenbg);border-color:var(--green)}
+.news-bearish{background:var(--redbg);border-color:var(--red)}
+.news-neutral{background:var(--graybg);border-color:var(--text2)}
+.news-item .tag{display:inline-block;padding:1px 6px;border-radius:4px;font-size:11px;font-weight:600;margin-right:6px}
+.tag-announce{background:rgba(31,111,235,.25);color:var(--blue)}
+.tag-company{background:rgba(63,185,80,.25);color:var(--green)}
+.tag-media{background:rgba(210,153,34,.25);color:var(--yellow)}
+.news-item .title{font-weight:600;color:var(--text)}
+.news-item .detail{color:var(--text2);margin-top:4px;font-size:12px}
+.news-item .sentiment{display:inline-block;padding:1px 8px;border-radius:4px;font-size:11px;font-weight:700;margin-left:6px}
+.s-bull{background:var(--greenbg);color:var(--green)}
+.s-bear{background:var(--redbg);color:var(--red)}
+.s-neut{background:var(--graybg);color:var(--text2)}
+.analysis-box{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-bottom:12px;font-size:13px}
+.analysis-box p{margin-bottom:8px}
+.analysis-box p:last-child{margin-bottom:0}
+.advice-box{display:flex;align-items:center;gap:12px;padding:12px 18px;border-radius:8px;font-weight:600;font-size:14px;margin-top:12px}
+.advice-hold{background:rgba(88,166,255,.12);border:1px solid var(--blue);color:var(--blue)}
+.advice-buy{background:var(--greenbg);border:1px solid var(--green);color:var(--green)}
+.advice-watch{background:var(--yellowbg);border:1px solid var(--yellow);color:var(--yellow)}
+.advice-sell{background:var(--redbg);border:1px solid var(--red);color:var(--red)}
+.risk-note{color:var(--text2);font-size:12px;margin-top:6px;font-style:italic}
+.no-update{text-align:center;padding:16px;color:var(--text2);font-size:13px;background:var(--card2);border-radius:8px;margin-bottom:12px}
+.summary-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px}
+.summary-table th{background:var(--card2);padding:10px 12px;text-align:left;font-weight:600;color:var(--blue);border-bottom:2px solid var(--border)}
+.summary-table td{padding:10px 12px;border-bottom:1px solid var(--border)}
+.summary-table tr:hover{background:rgba(31,111,235,.05)}
+footer{margin-top:40px;padding:24px 0;border-top:1px solid var(--border);color:var(--text2);font-size:12px;text-align:center}
+footer .disclaimer{max-width:800px;margin:12px auto;line-height:1.8}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;margin-right:4px}
+.badge-us{background:rgba(88,166,255,.2);color:var(--blue)}
+.badge-cn{background:rgba(248,81,73,.2);color:var(--red)}
+.badge-hk{background:rgba(210,153,34,.2);color:var(--yellow)}
+@media(max-width:768px){header .container{flex-direction:column;text-align:center}header h1{font-size:22px}.nav-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}.stock-header{flex-direction:column;text-align:center}.stock-header .price{text-align:center}.container{padding:12px}}
+.chart-container{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:16px;margin:12px 0;position:relative;height:120px;overflow:hidden}
+.sparkline{width:100%;height:80px}
+.sparkline polyline{fill:none;stroke:var(--blue);stroke-width:2}
+.sparkline .area{fill:rgba(88,166,255,.08);stroke:none}
+.indicator-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px}
+.indicator{font-size:11px;color:var(--text2)}
+.indicator span{font-weight:600;color:var(--text)}
+.scroll-top{position:fixed;bottom:24px;right:24px;width:40px;height:40px;background:var(--accent);color:#fff;border:none;border-radius:50%;cursor:pointer;font-size:18px;display:none;align-items:center;justify-content:center;z-index:999;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.scroll-top:hover{background:var(--blue)}
+</style>
+</head>
+<body>
+
+<header>
+<div class="container">
+<div>
+<h1>TOP Stock Tracking Report</h1>
+<p style="color:var(--text2);font-size:14px;margin-top:4px">16 Stocks | US / A-Share / HK Markets</p>
+</div>
+<div class="meta">
+<span><strong>Report Date:</strong> 2026-06-22 (Sunday)</span>
+<span><strong>Coverage:</strong> Last 24-48h</span>
+<span><strong>Latest Trading Day:</strong> 2026-06-18/20 (US/HK)</span>
+<span style="color:var(--yellow);font-size:12px;margin-top:4px">* Weekend - markets closed</span>
+</div>
+</div>
+</header>
+
+<div class="container">
+
+<!-- NAVIGATION -->
+<div class="nav-section">
+<h2>Table of Contents</h2>
+<div style="margin-bottom:8px"><span class="badge badge-us">US Stocks (9)</span><span class="badge badge-cn">A-Shares (3)</span><span class="badge badge-hk">HK Stocks (4)</span></div>
+<div class="nav-grid">
+<a href="#VOR" class="nav-item"><span class="ticker">VOR</span><span class="name">Vor Biopharma</span></a>
+<a href="#BIIB" class="nav-item"><span class="ticker">BIIB</span><span class="name">Biogen</span></a>
+<a href="#SMMT" class="nav-item"><span class="ticker">SMMT</span><span class="name">Summit Therapeutics</span></a>
+<a href="#VRTX" class="nav-item"><span class="ticker">VRTX</span><span class="name">Vertex Pharmaceuticals</span></a>
+<a href="#ABOS" class="nav-item"><span class="ticker">ABOS</span><span class="name">Acumen Pharma</span></a>
+<a href="#IONS" class="nav-item"><span class="ticker">IONS</span><span class="name">Ionis Pharmaceuticals</span></a>
+<a href="#ALNY" class="nav-item"><span class="ticker">ALNY</span><span class="name">Alnylam Pharma</span></a>
+<a href="#ACIU" class="nav-item"><span class="ticker">ACIU</span><span class="name">AC Immune</span></a>
+<a href="#LEGN" class="nav-item"><span class="ticker">LEGN</span><span class="name">Legend Biotech</span></a>
+<a href="#688331" class="nav-item"><span class="ticker">688331.SH</span><span class="name">Rongchang Bio</span></a>
+<a href="#300782" class="nav-item"><span class="ticker">300782.SZ</span><span class="name">Maxscend Micro</span></a>
+<a href="#600206" class="nav-item"><span class="ticker">600206.SH</span><span class="name">GRIMAT New Mat</span></a>
+<a href="#02269" class="nav-item"><span class="ticker">02269.HK</span><span class="name">WuXi Biologics</span></a>
+<a href="#09868" class="nav-item"><span class="ticker">09868.HK</span><span class="name">XPeng</span></a>
+<a href="#00700" class="nav-item"><span class="ticker">00700.HK</span><span class="name">Tencent</span></a>
+<a href="#09988" class="nav-item"><span class="ticker">09988.HK</span><span class="name">Alibaba</span></a>
+</div>
+</div>
+
+<!-- ==================== US STOCKS ==================== -->
+<div class="section-title"><span class="badge badge-us">US</span> US Stocks - Biotech / Pharma</div>
+
+<!-- VOR -->
+<div class="stock-card" id="VOR">
+<div class="stock-header">
+<h3><span class="badge badge-us">US</span> VOR - Vor Biopharma Inc</h3>
+<div class="price"><span class="val">$14.49</span><span class="chg chg-down">-$0.52 (-3.46%)</span></div>
+</div>
+<div class="stock-body">
+<h4 class="sub-title">News & Announcements</h4>
+<div class="news-item news-bullish">
+<span class="tag tag-announce">Announcement</span>
+<span class="title">Telitacicept receives NMPA approval for Sjogren's Disease</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: Vor Bio IR | 2026-06-08 | China NMPA approved telitacicept for adult Sjogren's Disease, a major regulatory milestone in this disease area.</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-announce">Announcement</span>
+<span class="title">Telitacicept receives NMPA conditional approval for IgA Nephropathy</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: Vor Bio IR | 2026-06-08 | First BAFF/APRIL-targeting therapy approved in China for IgA nephropathy. Based on TELIGAN Phase 2/3 data: UPCR decreased 59% from baseline, 55% placebo-adjusted.</div>
+</div>
+<div class="news-item news-bearish">
+<span class="tag tag-media">Media</span>
+<span class="title">RA Capital reduces VOR stake to 19.9% (~$11.8M sold)</span>
+<span class="sentiment s-bear">Bearish</span>
+<div class="detail">Source: Stock Titan / SEC Filing | Recent | Major institutional shareholder RA Capital reduced holdings, potentially creating selling pressure.</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-company">Company News</span>
+<span class="title">Global Phase 3 UPSTREAM trial for Sjogren's Disease - first patient enrolled</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: Vor Bio IR | 2026-03-30 | Global pivotal Phase 3 trial initiated, laying foundation for overseas regulatory submissions.</div>
+</div>
+
+<h4 class="sub-title">Price Impact Analysis</h4>
+<div class="analysis-box">
+<p><strong>Short-term (1-3 days):</strong> Dual NMPA approvals are significant bullish catalysts, but RA Capital stake reduction creates selling pressure. Stock oscillating in $14-15 range with mixed signals.</p>
+<p><strong>Medium-term (1-2 weeks):</strong> Telitacicept dual-indication approval in China drives commercial revenue. Global Phase 3 UPSTREAM progress paves path for overseas launch. $4.23B Remegen partnership provides financial backing.</p>
+</div>
+
+<h4 class="sub-title">Technical Overview</h4>
+<div class="analysis-box">
+<p>Price oscillating in $14-15 range. June 17 spike to $15.01 followed by pullback to $14.49. Short-term support at $14, resistance at $15.5.</p>
+<div class="indicator-row">
+<div class="indicator">Support: <span>$14.00</span></div>
+<div class="indicator">Resistance: <span>$15.50</span></div>
+<div class="indicator">Trend: <span>Consolidating</span></div>
+</div>
+</div>
+
+<div class="advice-box advice-hold">HOLD - Wait for global Phase 3 data</div>
+<div class="risk-note">Risk: Clinical failure, overseas market uncertainty, continued losses, equity dilution risk.</div>
+</div>
+</div>
+
+<!-- BIIB -->
+<div class="stock-card" id="BIIB">
+<div class="stock-header">
+<h3><span class="badge badge-us">US</span> BIIB - Biogen Inc</h3>
+<div class="price"><span class="val">$196.58</span><span class="chg chg-down">-$2.09 (-1.05%)</span></div>
+</div>
+<div class="stock-body">
+<h4 class="sub-title">News & Announcements</h4>
+<div class="news-item news-bullish">
+<span class="tag tag-company">Company News</span>
+<span class="title">Biogen acquires RayThera for up to $1 billion</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: <a href="https://www.reuters.com/legal/transactional/biogen-acquire-raythera-1-billion-2026-06-17/" target="_blank">Reuters</a> / Biogen IR | 2026-06-17 | Expands immunology pipeline. Upfront + milestone payments up to $1B. Lead candidate expected to enter Phase 1 in Q3 2026. Deal expected to close H2 2026.</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-announce">Announcement</span>
+<span class="title">Salanersen receives FDA Breakthrough Therapy Designation for SMA</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: Biogen IR / GlobeNewswire | 2026-06-04 | Experimental ASO drug for spinal muscular atrophy. Once-yearly dosing; early trials show clinically meaningful improvement in motor function.</div>
+</div>
+<div class="news-item news-bearish">
+<span class="tag tag-media">Media</span>
+<span class="title">SKYCLARYS fails pCPA negotiation in Canada for public reimbursement</span>
+<span class="sentiment s-bear">Bearish</span>
+<div class="detail">Source: Yahoo Finance Canada | 2026-06-08 | Friedreich's ataxia drug failed pan-Canadian reimbursement negotiation despite positive Health Canada and INESSS reviews.</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-media">Media</span>
+<span class="title">Analyst: BIIB stock potentially undervalued by ~10.3%</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: Yahoo Finance | ~2026-06-17 | Pipeline narrative analysis suggests current price reflects ~10.3% undervaluation.</div>
+</div>
+
+<h4 class="sub-title">Price Impact Analysis</h4>
+<div class="analysis-box">
+<p><strong>Short-term:</strong> $1B RayThera acquisition expands immunology pipeline positively. Large acquisitions typically create mild short-term pressure due to integration uncertainty. Salanersen FDA BTD is a substantive catalyst.</p>
+<p><strong>Medium-term:</strong> Biogen actively transforming from neuroscience-focused to diversified immunology. SMA and Friedreich's ataxia areas showing continued progress. SKYCLARYS Canada negotiation failure is a localized setback.</p>
+</div>
+
+<h4 class="sub-title">Technical Overview</h4>
+<div class="analysis-box">
+<p>Stock trading around $195-200 range. Analysts see ~10% undervaluation.</p>
+<div class="indicator-row">
+<div class="indicator">Support: <span>$193</span></div>
+<div class="indicator">Resistance: <span>$205</span></div>
+<div class="indicator">FY26 EPS Guidance: <span>$15.25-$16.25</span></div>
+</div>
+</div>
+
+<div class="advice-box advice-buy">ACCUMULATE - RayThera + Salanersen BTD strengthen pipeline depth</div>
+<div class="risk-note">Risk: Acquisition integration, SKYCLARYS global sales below expectations, competitive pressure, regulatory uncertainty.</div>
+</div>
+</div>
+
+<!-- SMMT -->
+<div class="stock-card" id="SMMT">
+<div class="stock-header">
+<h3><span class="badge badge-us">US</span> SMMT - Summit Therapeutics Inc</h3>
+<div class="price"><span class="val">$13.75</span><span class="chg chg-down">-$0.32 (-2.27%)</span></div>
+</div>
+<div class="stock-body">
+<h4 class="sub-title">News & Announcements</h4>
+<div class="news-item news-bullish">
+<span class="tag tag-company">Company News</span>
+<span class="title">HARMONi-6 Phase 3 OS data at ASCO 2026 Plenary - head-to-head beats active PD-1 control</span>
+<span class="sentiment s-bull">Major Bullish</span>
+<div class="detail">Source: <a href="https://www.cnbc.com/2026/05/31/asco-summit-akeso-ivonescimab-improves-survival-in-harmoni-6-trial.html" target="_blank">CNBC</a> / ASCO | 2026-05-31 | 1L squamous NSCLC, 532 pts: Ivonescimab+chemo mOS=27.9mo vs tislelizumab+chemo mOS=23.7mo, HR=0.66. First therapy to beat active PD-1 head-to-head. Both PD-L1 negative/positive subgroups benefited (HR 0.64/0.68).</div>
+</div>
+<div class="news-item news-bearish">
+<span class="tag tag-media">Media</span>
+<span class="title">$500M equity offering announced then cancelled due to "adverse market conditions"</span>
+<span class="sentiment s-bear">Bearish (dilution concern)</span>
+<div class="detail">Source: Yahoo Finance | ~2026-06-11 | Despite positive clinical data, $500M public offering cancelled. Market concerned about pre-revenue biotech large-scale dilution. Stock dropped ~9% in single session.</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-announce">Announcement</span>
+<span class="title">FDA accepts Ivonescimab BLA for 2L+ EGFR-mutant NSCLC</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: Cancer Network / Onclive | Recent | PDUFA date expected November 2026. If approved, would be first PD-1/VEGF bispecific antibody in the US.</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-company">Company News</span>
+<span class="title">COO/CFO and directors increase company stake</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: Yahoo Finance | ~2026-06-04 | Executives increased holdings by 1.6%, signaling internal confidence.</div>
+</div>
+
+<h4 class="sub-title">Price Impact Analysis</h4>
+<div class="analysis-box">
+<p><strong>Short-term:</strong> HARMONi-6 OS data is milestone-level bullish, but $500M offering event and -9% single-day crash severely damaged short-term confidence. Cancelled offering protected shareholders but financing needs remain.</p>
+<p><strong>Medium-term:</strong> FDA BLA acceptance (PDUFA Nov 2026) is the core catalyst. Company remains pre-revenue with $598.7M cash (Q1). High cash burn rate.</p>
+</div>
+
+<h4 class="sub-title">Technical Overview</h4>
+<div class="analysis-box">
+<p>Stock dropped significantly from prior highs (offering-related selling pressure). $13-14 range may form support. Technical picture weak after single-day -9% crash.</p>
+<div class="indicator-row">
+<div class="indicator">Support: <span>$13.00</span></div>
+<div class="indicator">Resistance: <span>$15.50</span></div>
+<div class="indicator">Cash (Q1): <span>$598.7M</span></div>
+</div>
+</div>
+
+<div class="advice-box advice-watch">WATCH - Outstanding clinical data but financing risk remains</div>
+<div class="risk-note">Risk: Dilution from future financing, FDA approval uncertainty, pre-revenue high cash burn, NSCLC competition, single-product dependency.</div>
+</div>
+</div>
+
+<!-- VRTX -->
+<div class="stock-card" id="VRTX">
+<div class="stock-header">
+<h3><span class="badge badge-us">US</span> VRTX - Vertex Pharmaceuticals Inc</h3>
+<div class="price"><span class="val">$451.63</span><span class="chg chg-down">-$7.36 (-1.60%)</span></div>
+</div>
+<div class="stock-body">
+<h4 class="sub-title">News & Announcements</h4>
+<div class="news-item news-bullish">
+<span class="tag tag-company">Company News</span>
+<span class="title">JOURNAVX prescriptions surging - 500K+ scripts, expected to triple this year</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: Vertex IR | Q1 2026 | Suzetrigine (JOURNAVX) FDA-approved for acute pain. Pharmacy coverage reaches 2/3 of insured US population. Management expects prescription volume to triple in 2026.</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-announce">Announcement</span>
+<span class="title">FDA approves ALYFTREK and TRIKAFTA label expansion - covers 95% of CF patients</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: Vertex IR / Medscape | 2026-04 | CF drug label expansion now covers 95% of US CF patient population. CF drug combination on track to become a "multi-billion dollar molecule".</div>
+</div>
+<div class="news-item news-neutral">
+<span class="tag tag-media">Media</span>
+<span class="title">Eli Lilly enters non-opioid pain space with $1B SiteOne acquisition</span>
+<span class="sentiment s-neut">Neutral</span>
+<div class="detail">Source: Motley Fool / MedCityNews | ~2026-06-19 | Lilly acquiring SiteOne ($1B) to compete in non-opioid pain. Vertex maintains significant first-mover advantage with JOURNAVX.</div>
+</div>
+<div class="news-item news-bearish">
+<span class="tag tag-company">Company News</span>
+<span class="title">Zimislecel (Type 1 Diabetes) dosing paused due to manufacturing analysis</span>
+<span class="sentiment s-bear">Bearish</span>
+<div class="detail">Source: Vertex IR | Q1 2026 | T1D candidate zimislecel dosing paused for "internal manufacturing analysis" despite completed trial enrollment.</div>
+</div>
+
+<h4 class="sub-title">Price Impact Analysis</h4>
+<div class="analysis-box">
+<p><strong>Short-term:</strong> Minor pullback (-1.6%), digesting CF label expansion. JOURNAVX prescription triple-growth expectation is a key driver. Lilly entering pain赛道 creates mid-term competition but limited short-term impact.</p>
+<p><strong>Medium-term:</strong> Diversified pipeline (CF drugs + non-opioid pain + kidney + CRISPR CASGEVY) makes Vertex a rare "certainty + growth" biotech. Povetacicept BLA progress and DPN Phase 3 enrollment (expected end-2026) are mid-term catalysts.</p>
+</div>
+
+<h4 class="sub-title">Technical Overview</h4>
+<div class="analysis-box">
+<p>Stock around $450. "Death cross" signal appeared but institutions still accumulating. After-hours: $452.99.</p>
+<div class="indicator-row">
+<div class="indicator">Support: <span>$440-445</span></div>
+<div class="indicator">Resistance: <span>$465-470</span></div>
+<div class="indicator">Signal: <span>Death cross (ignored by institutions)</span></div>
+</div>
+</div>
+
+<div class="advice-box advice-buy">ACCUMULATE - Diversified pipeline reduces risk, JOURNAVX momentum strong</div>
+<div class="risk-note">Risk: JOURNAVX uptake below expectations, Lilly competitive threat, zimislecel manufacturing issues persist, CF drug patent cliff (long-term), valuation reflects fundamentals.</div>
+</div>
+</div>
+
+<!-- ABOS -->
+<div class="stock-card" id="ABOS">
+<div class="stock-header">
+<h3><span class="badge badge-us">US</span> ABOS - Acumen Pharmaceuticals, Inc</h3>
+<div class="price"><span class="val">~$2.28</span><span class="chg chg-flat">Low volume</span></div>
+</div>
+<div class="stock-body">
+<h4 class="sub-title">News & Announcements</h4>
+<div class="no-update">Last 24h: No major updates (weekend June 21-22)</div>
+<div class="news-item news-bullish">
+<span class="tag tag-company">Company News</span>
+<span class="title">Sabirnetug Phase 2 OLE first patient dosed for early Alzheimer's</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: NeurologyLive | Ongoing | Phase 2 open-label extension study for early AD initiated. Key catalyst: data readout expected late-2026.</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-announce">Announcement</span>
+<span class="title">ACU193 granted FDA Fast Track Designation</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: Acumen IR | Previously announced | Anti-Abeta oligomer antibody ACU193 receives FDA Fast Track for Alzheimer's treatment.</div>
+</div>
+<div class="news-item news-neutral">
+<span class="tag tag-company">Company News</span>
+<span class="title">Q1 2026: Cash reserve ~$128M, sufficient to fund through key catalysts</span>
+<span class="sentiment s-neut">Neutral</span>
+<div class="detail">Source: GlobeNewswire | 2026-05-12 | Q1 financial results show adequate runway to key data readouts.</div>
+</div>
+
+<h4 class="sub-title">Price Impact Analysis</h4>
+<div class="analysis-box">
+<p><strong>Short-term:</strong> Stock in $2 range with limited liquidity. Core catalyst sabirnetug Phase 2 data readout expected late-2026 could be a major price mover. $128M cash temporarily supports operations but market may worry about future dilutive financing.</p>
+<p><strong>Medium-term:</strong> Small-cap clinical-stage biotech. Late-2026 sabirnetug data is the make-or-break event. Low stock price may face reverse split risk.</p>
+</div>
+
+<h4 class="sub-title">Technical Overview</h4>
+<div class="analysis-box">
+<p>Stock at historical low range. Very low trading volume. Limited technical signal reliability.</p>
+<div class="indicator-row">
+<div class="indicator">Support: <span>$2.00</span></div>
+<div class="indicator">Resistance: <span>$3.50</span></div>
+<div class="indicator">Cash: <span>$128M</span></div>
+</div>
+</div>
+
+<div class="advice-box advice-watch">WATCH - High risk small-cap; wait for late-2026 sabirnetug data</div>
+<div class="risk-note">Risk: Low liquidity, potential reverse split, clinical failure, continued losses, dilution risk.</div>
+</div>
+</div>
+
+<!-- IONS -->
+<div class="stock-card" id="IONS">
+<div class="stock-header">
+<h3><span class="badge badge-us">US</span> IONS - Ionis Pharmaceuticals, Inc</h3>
+<div class="price"><span class="val">$74.12</span><span class="chg chg-down">-$0.19 (-0.26%)</span></div>
+</div>
+<div class="stock-body">
+<h4 class="sub-title">News & Announcements</h4>
+<div class="no-update">Last 24h: No major updates (weekend)</div>
+<div class="news-item news-bullish">
+<span class="tag tag-announce">Announcement</span>
+<span class="title">Olezarsen sNDA granted FDA Priority Review (severe hypertriglyceridemia)</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: Ionis IR | Previously announced | sNDA accepted for priority review. PDUFA date pending. Multiple conference presentations at ADA/NLA/ENDO showcasing efficacy.</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-announce">Announcement</span>
+<span class="title">Zilganersen NDA granted FDA Priority Review (Alexander Disease)</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: NeurologyLive | Previously announced | NDA for rare disease Alexander disease accepted for priority review.</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-media">Media</span>
+<span class="title">Partner GSK: Bepirovirsen achieves unprecedented functional cure rates in chronic Hep B</span>
+<span class="sentiment s-bull">Major Bullish</span>
+<div class="detail">Source: Ionis IR / GSK | 2026-05-28 | Breakthrough functional cure data for chronic hepatitis B. FDA Breakthrough Therapy Designation and Priority Review granted.</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-company">Company News</span>
+<span class="title">Dr. Ludwig Hantson (former Alexion CEO) appointed to Board</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: Ionis IR | 2026-06-08 | Strengthens board with experienced pharmaceutical executive.</div>
+</div>
+
+<h4 class="sub-title">Price Impact Analysis</h4>
+<div class="analysis-box">
+<p><strong>Short-term:</strong> Strong fundamentals. Multiple products nearing commercialization with FDA priority reviews. $74 in reasonable valuation range. Conference presentations in June (ADA/NLA/ENDO) support olezarsen commercialization.</p>
+<p><strong>Medium-term:</strong> ASO technology leader with rich pipeline. Bepirovirsen Hep B data is a major positive. Dual FDA priority reviews (olezarsen + zilganersen) provide near-term catalysts. Bullish medium-term outlook.</p>
+</div>
+
+<h4 class="sub-title">Technical Overview</h4>
+<div class="analysis-box">
+<p>Stock stable in $70-80 range with low volatility.</p>
+<div class="indicator-row">
+<div class="indicator">Support: <span>$70</span></div>
+<div class="indicator">Resistance: <span>$80</span></div>
+<div class="indicator">Trend: <span>Stable</span></div>
+</div>
+</div>
+
+<div class="advice-box advice-buy">ACCUMULATE/HOLD - ASO leader nearing multiple commercialization milestones</div>
+<div class="risk-note">Risk: FDA review delays, commercialization below expectations, executive insider selling (routine option exercise).</div>
+</div>
+</div>
+
+<!-- ALNY -->
+<div class="stock-card" id="ALNY">
+<div class="stock-header">
+<h3><span class="badge badge-us">US</span> ALNY - Alnylam Pharmaceuticals, Inc</h3>
+<div class="price"><span class="val">$278.09</span><span class="chg chg-down">-$4.64 (-1.64%)</span></div>
+</div>
+<div class="stock-body">
+<h4 class="sub-title">News & Announcements</h4>
+<div class="no-update">Last 24h: No major updates (weekend)</div>
+<div class="news-item news-bullish">
+<span class="tag tag-company">Company News</span>
+<span class="title">$2B AI strategic partnership with Inceptive for RNAi drug discovery</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: <a href="https://www.statnews.com/2026/06/03/alnylam-partner-with-inceptive-nucleics-ai-foundation-models/" target="_blank">STAT News</a> / Alnylam IR | 2026-06-03 | Collaboration with Inceptive Nucleics to leverage AI foundation models for accelerated RNAi drug discovery. Total deal value up to $2 billion.</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-company">Company News</span>
+<span class="title">Vutrisiran shows robust benefit across ATTR-CM populations at HF 2026</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: BusinessWire | 2026-05-12 | AMVUTTRA (vutrisiran) demonstrates consistent clinical benefit across ATTR-CM patient populations including high disease burden patients. Solidifies first-line treatment positioning.</div>
+</div>
+<div class="news-item news-neutral">
+<span class="tag tag-company">Company News</span>
+<span class="title">10th Annual RNAi Roundtable webinar series</span>
+<span class="sentiment s-neut">Neutral</span>
+<div class="detail">Source: Alnylam IR | 2026-06-12 | Regular scientific exchange event.</div>
+</div>
+
+<h4 class="sub-title">Price Impact Analysis</h4>
+<div class="analysis-box">
+<p><strong>Short-term:</strong> $278 area, slightly pulled back from highs. $2B AI partnership is significant for RNAi drug discovery long-term. Short-term may be affected by broader biotech sector correction.</p>
+<p><strong>Medium-term:</strong> RNAi therapy absolute leader. AMVUTTRA commercialization continues to ramp. AI partnership injects new momentum into long-term pipeline. Fundamentals solid.</p>
+</div>
+
+<h4 class="sub-title">Technical Overview</h4>
+<div class="analysis-box">
+<p>$278 near-term support. If breaks $270 may test lower levels.</p>
+<div class="indicator-row">
+<div class="indicator">Support: <span>$270-278</span></div>
+<div class="indicator">Resistance: <span>$295-300</span></div>
+<div class="indicator">After-hours: <span>$277.68</span></div>
+</div>
+</div>
+
+<div class="advice-box advice-hold">HOLD - RNAi leader with solid fundamentals; accumulate on dips to $250-260</div>
+<div class="risk-note">Risk: Competitors entering market, vutrisiran safety signals, AI partnership execution timeline.</div>
+</div>
+</div>
+
+<!-- ACIU -->
+<div class="stock-card" id="ACIU">
+<div class="stock-header">
+<h3><span class="badge badge-us">US</span> ACIU - AC Immune SA</h3>
+<div class="price"><span class="val">$2.34</span><span class="chg chg-up">+$0.03 (+1.30%)</span></div>
+</div>
+<div class="stock-body">
+<h4 class="sub-title">News & Announcements</h4>
+<div class="no-update">Last 24h: No major updates (weekend)</div>
+<div class="news-item news-bullish">
+<span class="tag tag-company">Company News</span>
+<span class="title">$4M research grant from Goradia Family for ACI-7104 Parkinson's development</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: <a href="https://www.globenewswire.com/news-release/2026/06/11/3310336/0/en/ac-immune-to-receive-research-grant-from-goradia-family-for-development-of-aci-7104-in-parkinson-s-disease.html" target="_blank">GlobeNewswire</a> | 2026-06-11 | Funds VacSYn Phase 2 Part 1 extension evaluating ACI-7104 (anti-alpha-synuclein active immunotherapy) in early Parkinson's. Results expected late-2026.</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-company">Company News</span>
+<span class="title">Phase 1 TDP-43 PET tracer ACI-19626 shows higher uptake in ALS patients</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: AC Immune IR | 2026-05-22 | ACI-19626 PET tracer effectively differentiates ALS patients from healthy controls. Adds value to diagnostics platform.</div>
+</div>
+<div class="news-item news-neutral">
+<span class="tag tag-company">Company News</span>
+<span class="title">CEO Dr. Andrea Pfeifer announces retirement at AGM</span>
+<span class="sentiment s-neut">Neutral/Bearish</span>
+<div class="detail">Source: AC Immune IR | 2026-05-12 | Management transition period. CEO retirement creates near-term uncertainty.</div>
+</div>
+
+<h4 class="sub-title">Price Impact Analysis</h4>
+<div class="analysis-box">
+<p><strong>Short-term:</strong> Ultra-small cap ($2.34) neurodegenerative biotech with low liquidity. $4M Parkinson's grant is positive signal of external validation. CEO retirement creates transition uncertainty.</p>
+<p><strong>Medium-term:</strong> Pipeline focused on Alzheimer's and Parkinson's with long catalyst cycles. ACI-7104 Phase 2 data (late-2026) is the next major event. Limited downside at current levels but upside requires catalyst realization.</p>
+</div>
+
+<h4 class="sub-title">Technical Overview</h4>
+<div class="analysis-box">
+<p>Narrow $2-3 range, low volume. After-hours: $2.38 (+1.71%).</p>
+<div class="indicator-row">
+<div class="indicator">Support: <span>$2.00</span></div>
+<div class="indicator">Resistance: <span>$3.00</span></div>
+<div class="indicator">Volume: <span>Low</span></div>
+</div>
+</div>
+
+<div class="advice-box advice-watch">WATCH - Ultra-small cap with long catalyst cycle; wait for Phase 2 data</div>
+<div class="risk-note">Risk: Low liquidity, CEO transition, clinical failure, extended pre-revenue period.</div>
+</div>
+</div>
+
+<!-- LEGN -->
+<div class="stock-card" id="LEGN">
+<div class="stock-header">
+<h3><span class="badge badge-us">US</span> LEGN - Legend Biotech (传奇生物)</h3>
+<div class="price"><span class="val">$27.93</span><span class="chg chg-down" style="color:var(--red);font-weight:700">-$5.59 (-16.68%)</span></div>
+</div>
+<div class="stock-body">
+<h4 class="sub-title">News & Announcements</h4>
+<div class="news-item news-bearish">
+<span class="tag tag-announce">Announcement</span>
+<span class="title">$226M ADS public offering priced at $29.35/ADS (12.4% discount)</span>
+<span class="sentiment s-bear">Major Bearish</span>
+<div class="detail">Source: <a href="https://www.globenewswire.com/news-release/2026/06/18/3313891/0/en/legend-biotech-corporation-announces-pricing-of-public-offering.html" target="_blank">GlobeNewswire</a> / 经济观察网 | 2026-06-17/18 | 7.7M ADS priced at $29.35 (12.4% discount). Includes 1.155M over-allotment. Settlement expected June 23. <strong>Triggered -16.68% single-day crash, >$1B market cap wiped overnight.</strong></div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-company">Company News</span>
+<span class="title">LB2501 in vivo CAR-T Phase 1 first clinical data at EHA 2026 (NHL)</span>
+<span class="sentiment s-bull">Major Bullish</span>
+<div class="detail">Source: Legend Biotech IR / BioSpace | 2026-06-14 | EHA Late-Breaking oral: 12 B-NHL patients, single IV infusion (no lymphodepletion). High-dose: ORR 100%, CR 83.3%. Overall: ORR 50%. No DLT, no severe AEs, no ICANS, no deaths. CRS mild-moderate.</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-company">Company News</span>
+<span class="title">LB2102 first-in-human data (solid tumors/DLL3-CAR-T) at ASCO 2026</span>
+<span class="sentiment s-bull">Bullish</span>
+<div class="detail">Source: Legend Biotech IR | 2026-06-01 | ASCO: DLL3-targeting CAR-T for advanced SCLC/NEC. Overall ORR 20%, DCR 70%. High-dose: ORR 28.6%, DCR 78.6%, median disease control 6.1 months. No DLT or treatment-related deaths.</div>
+</div>
+<div class="news-item news-bearish">
+<span class="tag tag-media">Media</span>
+<span class="title">Market questions financing necessity despite ample cash reserves</span>
+<span class="sentiment s-bear">Bearish</span>
+<div class="detail">Source: 医药魔方 / 新浪财经 | 2026-06-19 | Market concerns about dilutive financing motivation when company appears to have sufficient cash. Stock dropped 16% on offering news.</div>
+</div>
+
+<h4 class="sub-title">Price Impact Analysis</h4>
+<div class="analysis-box">
+<p><strong>Short-term:</strong> Massive -16.68% crash from ADS offering creates severe short-term pressure. Offering settlement on June 23 (Monday) may extend selling pressure. LB2501 in vivo CAR-T data (100% ORR in high-dose) is industry-level breakthrough but overshadowed by dilution.</p>
+<p><strong>Medium-term:</strong> Carvykti commercialization growth is highest-certainty catalyst. LB2501 in vivo CAR-T eliminates dependency on traditional CAR-T manufacturing. LB2102 solid tumor data shows pipeline breadth. If $27-28 holds as support, attractive mid-term entry point.</p>
+</div>
+
+<h4 class="sub-title">Technical Overview</h4>
+<div class="analysis-box">
+<p>Crashed from $33.52 to $27.93, breaking through multiple moving average supports. $27-28 may form near-term support. If stabilizes post-settlement, $28 area likely to hold.</p>
+<div class="indicator-row">
+<div class="indicator">Support: <span>$27-28</span></div>
+<div class="indicator">Resistance: <span>$31-33</span></div>
+<div class="indicator">After-hours: <span>$28.20 (+0.97%)</span></div>
+</div>
+</div>
+
+<div class="advice-box advice-watch">WATCH / ACCUMULATE ON DIPS - Wait for June 23 settlement; consider $25-27 zone</div>
+<div class="risk-note">Risk: Offering dilution, Carvykti competition, post-settlement selling pressure, broader biotech sentiment.</div>
+</div>
+</div>
+
+<!-- ==================== A-SHARES ==================== -->
+<div class="section-title"><span class="badge badge-cn">A-Share</span> A-Shares - China Market</div>
+
+<!-- 688331 -->
+<div class="stock-card" id="688331">
+<div class="stock-header">
+<h3><span class="badge badge-cn">A</span> 688331.SH - 荣昌生物 (Remegen)</h3>
+<div class="price"><span class="val">~109.19 CNY</span><span class="chg chg-flat">Consolidating 101-114</span></div>
+</div>
+<div class="stock-body">
+<h4 class="sub-title">新闻/公告摘要</h4>
+<div class="news-item news-neutral">
+<span class="tag tag-announce">公告</span>
+<span class="title">2025年年度股东大会决议公告</span>
+<span class="sentiment s-neut">中性</span>
+<div class="detail">来源：<a href="https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?stockid=688331&id=12397400" target="_blank">新浪财经</a> | 2026-06-17 | 审议通过2025年度董事会工作报告、财务决算报告、续聘2026年度会计师事务所等议案。</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-company">公司新闻</span>
+<span class="title">维迪西妥单抗海外合作积极推进中，欧洲已获监管批准</span>
+<span class="sentiment s-bull">利好</span>
+<div class="detail">来源：<a href="https://stock.stockstar.com/RB2026061200032112.shtml" target="_blank">证券之星</a> | 2026-06-12 | RC48海外BD积极推进，与合作方里程碑按协议管理。已在欧洲获批上市，BLA提交及商业化进展中。</div>
+</div>
+<div class="news-item news-bearish">
+<span class="tag tag-media">媒体新闻</span>
+<span class="title">6月17日主力资金净流出3091万元</span>
+<span class="sentiment s-bear">利空</span>
+<div class="detail">来源：搜狐财经 | 2026-06-17 | 短期机构获利了结压力。</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-media">媒体新闻</span>
+<span class="title">医药板块回购潮夯实估值底部</span>
+<span class="sentiment s-bull">利好（行业）</span>
+<div class="detail">来源：<a href="https://www.21jingji.com/article/20260617/herald/43a079bca76427205f1d459e1923ede8.html" target="_blank">21世纪经济报道</a> | 2026-06-17 | 二季度医药行业回购潮，机构认为夯实创新药估值底部。</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-company">公司新闻</span>
+<span class="title">与艾伯维达成RC148 BD交易，总额56亿美元，首付6.5亿美元</span>
+<span class="sentiment s-bull">重大利好（持续影响）</span>
+<div class="detail">来源：<a href="https://www.cls.cn/detail/2255407" target="_blank">财联社</a> | 2026-01-12 | 荣昌生物今年最大利好，奠定国际化战略基础。PD-1/VEGF双抗RC148全球授权。</div>
+</div>
+
+<h4 class="sub-title">股价影响点评</h4>
+<div class="analysis-box">
+<p><strong>短期（1-3天）：</strong>股东大会决议为常规事项。主力资金小幅流出反映获利回吐压力，股价或在100-115元区间震荡整理。维迪西妥单抗欧洲获批及海外BD推进提供中期支撑。</p>
+<p><strong>中期（1-2周）：</strong>管线价值持续兑现——维迪西妥单抗欧洲商业化、RC148与艾伯维合作（56亿美元级别）为首付款和里程碑收入提供确定性。2025年营收同比增长近50%，盈亏平衡在望。中期偏多。</p>
+</div>
+
+<h4 class="sub-title">技术面分析</h4>
+<div class="analysis-box">
+<p>近期股价在100-115元区间运行，6月17日收于109.19元。区间震荡整理格局。</p>
+<div class="indicator-row">
+<div class="indicator">支撑位: <span>100元</span></div>
+<div class="indicator">阻力位: <span>115元</span></div>
+<div class="indicator">趋势: <span>区间震荡</span></div>
+</div>
+</div>
+
+<div class="advice-box advice-hold">持有 — 管线价值持续兑现，中期偏多</div>
+<div class="risk-note">风险提示：海外BD执行节奏不确定；创新药研发投入大，盈利时点待跟踪；科创板波动性高。</div>
+</div>
+</div>
+
+<!-- 300782 -->
+<div class="stock-card" id="300782">
+<div class="stock-header">
+<h3><span class="badge badge-cn">A</span> 300782.SZ - 卓胜微 (Maxscend Micro)</h3>
+<div class="price"><span class="val">~89-93 CNY</span><span class="chg chg-down">Under pressure</span></div>
+</div>
+<div class="stock-body">
+<h4 class="sub-title">新闻/公告摘要</h4>
+<div class="news-item news-bearish">
+<span class="tag tag-media">媒体新闻</span>
+<span class="title">6月15日大宗交易成交2410万元，折价7.14%</span>
+<span class="sentiment s-bear">利空</span>
+<div class="detail">来源：新浪财经 | 2026-06-15 | 大额减持或机构出货迹象，折价幅度显著。</div>
+</div>
+<div class="news-item news-neutral">
+<span class="tag tag-announce">公告</span>
+<span class="title">2026年限制性股票激励计划授予完成（394人，161万股@51.64元）</span>
+<span class="sentiment s-neut">中性偏利好</span>
+<div class="detail">来源：东方财富 | 2026-06-03 | 绑定核心团队，授予价远低于市价。</div>
+</div>
+<div class="news-item news-neutral">
+<span class="tag tag-announce">公告</span>
+<span class="title">推进34.75亿元定增，射频芯片制造扩产</span>
+<span class="sentiment s-neut">中性（短期摊薄 vs 长期布局）</span>
+<div class="detail">来源：证券市场周刊 | 2026-06 | 向IDM模式转型，扩充射频芯片产能。</div>
+</div>
+<div class="news-item news-bearish">
+<span class="tag tag-media">媒体新闻</span>
+<span class="title">2025年上市以来首亏2.68亿元，2026Q1继续下滑</span>
+<span class="sentiment s-bear">利空（持续影响）</span>
+<div class="detail">来源：东方财富 | 2026-03 | 重资产转型产能利用率仅~30%，存货超30亿元，中低端射频价格战激烈。6月4日曾单日暴跌20.23%。</div>
+</div>
+
+<h4 class="sub-title">股价影响点评</h4>
+<div class="analysis-box">
+<p><strong>短期（1-3天）：</strong>大宗交易大幅折价出货是明确利空信号，叠加2025年首亏阴影、2026Q1继续下滑(-209.53%)。6月4日曾单日暴跌20.23%，波动风险极高。</p>
+<p><strong>中期（1-2周）：</strong>IDM转型阵痛期，产能利用率提升和高端L-PAMiD模组放量是扭亏关键。34.75亿定增推进中。射频国产替代方向不变但同质化竞争激烈。中期偏谨慎。</p>
+</div>
+
+<h4 class="sub-title">技术面分析</h4>
+<div class="analysis-box">
+<p>股价从高点快速回落，6月4日暴跌20%后在89-93元震荡。6月15日大宗折价7.14%进一步压制。短期均线偏空。</p>
+<div class="indicator-row">
+<div class="indicator">支撑位: <span>89元</span></div>
+<div class="indicator">阻力位: <span>96元</span></div>
+<div class="indicator">趋势: <span>偏空</span></div>
+</div>
+</div>
+
+<div class="advice-box advice-sell">观望/减仓 — 转型阵痛期，短期无盈利支撑</div>
+<div class="risk-note">风险提示：转型阵痛持续，大宗折价出货信号不佳，定增摊薄风险，实控人治理风波。</div>
+</div>
+</div>
+
+<!-- 600206 -->
+<div class="stock-card" id="600206">
+<div class="stock-header">
+<h3><span class="badge badge-cn">A</span> 600206.SH - 有研新材 (GRIMAT New Material)</h3>
+<div class="price"><span class="val">~42.51 CNY</span><span class="chg chg-up" style="color:var(--green)">+6.84% (recent)</span></div>
+</div>
+<div class="stock-body">
+<h4 class="sub-title">新闻/公告摘要</h4>
+<div class="news-item news-bullish">
+<span class="tag tag-media">媒体新闻</span>
+<span class="title">6月16日10cm涨停再创股价新高 — 日本六氟化钨断供危机驱动</span>
+<span class="sentiment s-bull">重大利好</span>
+<div class="detail">来源：<a href="https://m.sfccn.com/2026/6-16/3MMDE1MjBfMjE2MDg3Mg.html" target="_blank">南方财经</a> | 2026-06-16 | 日本厂商（关东电化、中央玻璃）通知客户2026年7月起全面断供六氟化钨，涨价60-70%。有研新材作为靶材/电子特气龙头直接受益。</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-announce">公告</span>
+<span class="title">定增募集说明书修订稿发布（不超过45,375,887股）</span>
+<span class="sentiment s-bull">中性偏利好</span>
+<div class="detail">来源：中国财经信息网 | 2026-06-16 | 用于主业扩产及新材料项目，发行不超过总股本30%。</div>
+</div>
+<div class="news-item news-neutral">
+<span class="tag tag-announce">公告</span>
+<span class="title">股票交易异常波动公告（3日涨幅超20%）</span>
+<span class="sentiment s-neut">中性</span>
+<div class="detail">来源：上海证券报 | 2026-06-12 | 经营正常，无未披露重大事项。</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-media">媒体新闻</span>
+<span class="title">2025年净利润增长73%-90%，2026Q1净利润8827万元</span>
+<span class="sentiment s-bull">利好</span>
+<div class="detail">来源：同花顺 | 2026-04-25 | 业绩高增长验证拐点。EPS 2025: 0.31元; Q1: 0.10元。</div>
+</div>
+
+<h4 class="sub-title">股价影响点评</h4>
+<div class="analysis-box">
+<p><strong>短期（1-3天）：</strong>六氟化钨断供危机是当前最强催化剂，7月正式断供节点临近将持续催化。但短期涨幅已较大（6月9-16日连续大涨触发异常波动公告），需警惕获利回吐。</p>
+<p><strong>中期（1-2周）：</strong>日本断供将加速半导体材料国产替代。有研集团央企背景+全产业链布局（靶材、电子特气、稀土功能材料）。2025年净利润增长73%-90%验证业绩拐点。中期看好。</p>
+</div>
+
+<h4 class="sub-title">技术面分析</h4>
+<div class="analysis-box">
+<p>6月16日涨停创历史新高，短期加速上涨。已触发异常波动预警。量价齐升但累计涨幅大，需警惕高位震荡。</p>
+<div class="indicator-row">
+<div class="indicator">支撑位: <span>38元</span></div>
+<div class="indicator">阻力位: <span>新高区间，无前高参考</span></div>
+<div class="indicator">趋势: <span>强势上涨</span></div>
+</div>
+</div>
+
+<div class="advice-box advice-buy">持有/逢低增持 — 国产替代逻辑坚实，业绩拐点已验证</div>
+<div class="risk-note">风险提示：短期涨幅过大存在回调风险；断供预期若缓和行情可能反转；定增摊薄风险。已持仓者持有，未入场者等回调。</div>
+</div>
+</div>
+
+<!-- ==================== HK STOCKS ==================== -->
+<div class="section-title"><span class="badge badge-hk">HK</span> Hong Kong Stocks</div>
+
+<!-- 02269 -->
+<div class="stock-card" id="02269">
+<div class="stock-header">
+<h3><span class="badge badge-hk">HK</span> 02269.HK - 药明生物 (WuXi Biologics)</h3>
+<div class="price"><span class="val">Recent range</span><span class="chg chg-flat">See below</span></div>
+</div>
+<div class="stock-body">
+<h4 class="sub-title">新闻/公告摘要</h4>
+<div class="news-item news-bullish">
+<span class="tag tag-company">公司新闻</span>
+<span class="title">6月持续高频回购：累计约5.5亿港元以上</span>
+<span class="sentiment s-bull">利好</span>
+<div class="detail">来源：<a href="https://news.futunn.com/post/74801593/wuxi-bio-02269-repurchased-3-26-million-shares-on-june" target="_blank">富途牛牛</a> | 6月 | 6月18日回购326万股(9973.5万港元)。6月以来几乎每日回购，力度显著加大。4亿美元回购计划提供中期支撑。</div>
+</div>
+<div class="news-item news-bearish">
+<span class="tag tag-media">媒体新闻</span>
+<span class="title">关联方药明康德被美国国防部列入1260H名单，BIOSECURE法案持续发酵</span>
+<span class="sentiment s-bear">利空（间接）</span>
+<div class="detail">来源：财联社 / <a href="https://www.ropesgray.com/en/insights/alerts/2026/06/department-of-defense-releases-updated-1260h-list-that-includes-wuxi-apptec" target="_blank">Ropes & Gray</a> | 6月 | 药明康德(02359)被列入1260H名单并已起诉美国国防部。药明生物本身未被直接列入，但市场情绪受关联影响。BIOSECURE法案已于2026年1月立法。</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-company">公司新闻</span>
+<span class="title">爱尔兰基地获2026生命科学行业大奖最高荣誉</span>
+<span class="sentiment s-bull">利好</span>
+<div class="detail">来源：PRNewswire | 6月 | 彰显海外运营实力和品牌认可度。美国马萨诸塞州扩产计划同步推进。</div>
+</div>
+
+<h4 class="sub-title">股价影响点评</h4>
+<div class="analysis-box">
+<p><strong>短期：</strong>关联方药明康德1260H名单事件形成情绪压制，但公司高频回购（6月累计>5.5亿港元）和4亿美元回购计划提供买盘支撑。短期或呈震荡格局。</p>
+<p><strong>中期：</strong>爱尔兰获奖、美国扩产体现全球化布局持续推进。CDMO行业需求回暖。BIOSECURE法案虽已立法但执行细节仍有不确定性，需关注对药明生物的连带影响。</p>
+</div>
+
+<h4 class="sub-title">技术面分析</h4>
+<div class="analysis-box">
+<p>回购力度大提供下方支撑。BIOSECURE/1260H政策风险形成上方压力。</p>
+<div class="indicator-row">
+<div class="indicator">关键催化: <span>BIOSECURE执行细则</span></div>
+<div class="indicator">支撑因素: <span>4亿美元回购</span></div>
+<div class="indicator">风险: <span>政策不确定性</span></div>
+</div>
+</div>
+
+<div class="advice-box advice-watch">观望 — 回购体现信心，但BIOSECURE政策风险待消化</div>
+<div class="risk-note">风险提示：BIOSECURE法案执行细则不确定，1260H名单关联影响，中美地缘政治风险。</div>
+</div>
+</div>
+
+<!-- 09868 -->
+<div class="stock-card" id="09868">
+<div class="stock-header">
+<h3><span class="badge badge-hk">HK</span> 09868.HK - 小鹏汽车 (XPeng)</h3>
+<div class="price"><span class="val">Month +20%</span><span class="chg chg-up">Strong momentum</span></div>
+</div>
+<div class="stock-body">
+<h4 class="sub-title">新闻/公告摘要</h4>
+<div class="news-item news-neutral">
+<span class="tag tag-company">公司新闻</span>
+<span class="title">5月交付32,158辆，同比下降约4%</span>
+<span class="sentiment s-neut">中性偏利空</span>
+<div class="detail">来源：<a href="https://cnevpost.com/2026/06/01/xpeng-deliveries-may-2026/" target="_blank">CnEVPost</a> | 2026-06-01 | 全年目标最高60万辆，当前交付节奏存在一定差距。</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-announce">公告</span>
+<span class="title">Q1 2026毛利率20.6%，首次实现季度盈利</span>
+<span class="sentiment s-bull">重大利好</span>
+<div class="detail">来源：PRNewswire | 5月底 | 毛利率达20.6%高位，首次季度盈利标志财务健康度重大改善。</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-media">媒体新闻</span>
+<span class="title">机器人主题持续升温，月内涨超20%；摩根士丹利列为2026中国汽车行业首选</span>
+<span class="sentiment s-bull">利好</span>
+<div class="detail">来源：财联社 / <a href="https://uk.investing.com/news/analyst-ratings/morgan-stanley-names-xpeng-stock-among-top-china-auto-picks-for-2026-93CH-4431563" target="_blank">Investing.com</a> | 6月 | 人形机器人+飞行汽车量产催化。2026年计划推出4款新车，海外销量翻倍。已获7000台飞行汽车订单。</div>
+</div>
+<div class="news-item news-bearish">
+<span class="tag tag-media">媒体新闻</span>
+<span class="title">某对冲基金完全清仓小鹏持仓</span>
+<span class="sentiment s-bear">利空（局部）</span>
+<div class="detail">Source: Motley Fool | 2026-05-26 | 单一机构行为不代表市场共识。</div>
+</div>
+
+<h4 class="sub-title">股价影响点评</h4>
+<div class="analysis-box">
+<p><strong>短期：</strong>月内涨幅已超20%，短期获利盘压力较大。机器人/飞行汽车主题热度是主要驱动力，情绪退潮可能面临回调。5月交付量同比小幅下滑需警惕。</p>
+<p><strong>中期：</strong>Q1首次盈利是里程碑，毛利率20.6%显示产品竞争力提升。大摩看好+4款新车+海外扩张+机器人量产。关键看Q2交付能否跟上全年60万辆目标节奏。</p>
+</div>
+
+<h4 class="sub-title">技术面分析</h4>
+<div class="analysis-box">
+<p>月内涨幅超20%，有技术性回调需求。</p>
+<div class="indicator-row">
+<div class="indicator">催化剂: <span>机器人量产 + 4款新车</span></div>
+<div class="indicator">风险: <span>短期涨幅过大</span></div>
+<div class="indicator">关注: <span>6月交付数据</span></div>
+</div>
+</div>
+
+<div class="advice-box advice-hold">持有 — 中期成长逻辑丰富，但追高需谨慎</div>
+<div class="risk-note">风险提示：短期涨幅大回调风险高，5月交付量同比下滑，EV竞争激烈，机器人量产进度不确定。</div>
+</div>
+</div>
+
+<!-- 00700 -->
+<div class="stock-card" id="00700">
+<div class="stock-header">
+<h3><span class="badge badge-hk">HK</span> 00700.HK - 腾讯控股 (Tencent)</h3>
+<div class="price"><span class="val">Strong</span><span class="chg chg-up">Multiple catalysts</span></div>
+</div>
+<div class="stock-body">
+<h4 class="sub-title">新闻/公告摘要</h4>
+<div class="news-item news-bullish">
+<span class="tag tag-company">公司新闻</span>
+<span class="title">6月持续每日约5亿港元高强度回购</span>
+<span class="sentiment s-bull">利好</span>
+<div class="detail">来源：<a href="https://www.stcn.com/article/detail/3959341.html" target="_blank">证券时报</a> | 6月全月 | 几乎每日稳定回购约5亿港元。6月18日5.01亿港元回购114.4万股，形成强力托底。</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-media">媒体新闻</span>
+<span class="title">微信AI Agent即将推出，美银预计Q4全面公测 — 面向14亿用户</span>
+<span class="sentiment s-bull">重大利好</span>
+<div class="detail">来源：<a href="https://www.bloomberg.com/news/articles/2026-06-02/tencent-gains-after-report-it-s-set-to-launch-wechat-ai-agent" target="_blank">Bloomberg</a> / FT | 6月 | 腾讯正推进微信AI智能体开发，最高优先级项目。美银预计Q4公测，认为是估值重估三大催化剂之一。消息公布当日股价大涨，市值增约3600亿元。</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-announce">公告</span>
+<span class="title">Q1 2026营收同比增长13%，游戏和AI需求驱动</span>
+<span class="sentiment s-bull">利好</span>
+<div class="detail">来源：<a href="https://www.reuters.com/world/asia-pacific/tencent-books-13-rise-quarterly-revenue-gaming-ai-demand-2026-03-18/" target="_blank">Reuters</a> | 此前发布 | 受益于游戏和AI需求增长。承诺2026年进一步加大AI投资。</div>
+</div>
+
+<h4 class="sub-title">股价影响点评</h4>
+<div class="analysis-box">
+<p><strong>短期：</strong>每日5亿港元稳定回购形成强力托底。微信AI Agent消息持续发酵，是最重要的股价催化剂。短期偏多。</p>
+<p><strong>中期：</strong>微信AI Agent若Q4公测落地，打开巨大想象空间（14亿用户基础+AI变现潜力）。游戏稳健+AI投资加码+持续回购三重利好叠加。中期看多。Prosus持续减持是主要卖压来源。</p>
+</div>
+
+<h4 class="sub-title">技术面分析</h4>
+<div class="analysis-box">
+<p>恒生科技指数相对强势（6月17日涨0.22% vs 恒生指数跌0.74%）。每日回购提供技术面下方支撑。</p>
+<div class="indicator-row">
+<div class="indicator">催化剂: <span>微信AI Agent Q4公测</span></div>
+<div class="indicator">支撑: <span>每日5亿回购</span></div>
+<div class="indicator">风险: <span>Prosus减持</span></div>
+</div>
+</div>
+
+<div class="advice-box advice-buy">增持 — AI Agent催化+高频回购+业绩稳健，港股蓝筹中确定性高</div>
+<div class="risk-note">风险提示：Prosus减持节奏，中美科技管控升级，AI投资回报周期不确定。</div>
+</div>
+</div>
+
+<!-- 09988 -->
+<div class="stock-card" id="09988">
+<div class="stock-header">
+<h3><span class="badge badge-hk">HK</span> 09988.HK - 阿里巴巴 (Alibaba)</h3>
+<div class="price"><span class="val">Recent volatile</span><span class="chg chg-flat">Sector pressure</span></div>
+</div>
+<div class="stock-body">
+<h4 class="sub-title">新闻/公告摘要</h4>
+<div class="news-item news-bullish">
+<span class="tag tag-announce">公告</span>
+<span class="title">FY2026年度股息约25亿美元，7月3日派付</span>
+<span class="sentiment s-bull">利好</span>
+<div class="detail">来源：经济观察网 | 5-6月 | 末期股息$0.13125/股+特别股息$0.11875/股。除净日6月10-11日已过，7月3日派付。</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-announce">公告</span>
+<span class="title">FY2026 Q4（2026年3月季度）业绩超预期</span>
+<span class="sentiment s-bull">利好</span>
+<div class="detail">来源：新浪财经 | 2026-06-03 | 第四季度财报超预期，盘中一度上涨6.10%。</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-company">公司新闻</span>
+<span class="title">"A计划"：云和AI商业化年收入目标破千亿美元</span>
+<span class="sentiment s-bull">利好（中长期）</span>
+<div class="detail">来源：上海证券报 / 量子位 | 持续 | 五年内云+AI商业化年收入超1000亿美元。Qwen Conference 2026、阿里云峰会等积极推进。</div>
+</div>
+<div class="news-item news-bearish">
+<span class="tag tag-media">媒体新闻</span>
+<span class="title">港股科技板块近期承压，阿里曾单日跌超5%</span>
+<span class="sentiment s-bear">利空</span>
+<div class="detail">来源：AASTOCKS | 近期 | 市场对中美贸易摩擦和AI商业化节奏存在担忧。</div>
+</div>
+<div class="news-item news-bullish">
+<span class="tag tag-media">媒体新闻</span>
+<span class="title">花旗维持"买入"目标价199港元；标普确认财务实力支持巨额AI投资</span>
+<span class="sentiment s-bull">利好</span>
+<div class="detail">来源：新浪财经 / 财联社 | 近期 | 多家大行维持买入评级。</div>
+</div>
+
+<h4 class="sub-title">股价影响点评</h4>
+<div class="analysis-box">
+<p><strong>短期：</strong>除净日已过，股息因素已price in。近期港股科技板块承压，单日曾跌超5%，短期情绪偏弱。6月30日股东大会前后可能有治理相关消息。</p>
+<p><strong>中期：</strong>AI战略"A计划"宏大，云+AI商业化加速是核心看点。财报超预期+大行维持买入+标普确认财务实力，基本面扎实。主要风险为中美关系和AI投资回报周期。</p>
+</div>
+
+<h4 class="sub-title">技术面分析</h4>
+<div class="analysis-box">
+<p>近期科技板块波动加大，恒生科技指数6月初曾跌1.23%。阿里单日跌超5%显示短期抛压较重。</p>
+<div class="indicator-row">
+<div class="indicator">催化剂: <span>AI商业化 + 高分红</span></div>
+<div class="indicator">支撑: <span>多家大行买入评级</span></div>
+<div class="indicator">风险: <span>板块情绪 + 中美关系</span></div>
+</div>
+</div>
+
+<div class="advice-box advice-hold">持有 — 基本面稳健，等待AI商业化兑现；新资金等板块情绪企稳</div>
+<div class="risk-note">风险提示：中美贸易摩擦升级，AI投资回报不及预期，电商竞争加剧，板块情绪波动。</div>
+</div>
+</div>
+
+<!-- ==================== SUMMARY TABLE ==================== -->
+<div class="section-title">Summary & Recommendations</div>
+
+<div class="stock-card">
+<div class="stock-body">
+<table class="summary-table">
+<thead>
+<tr>
+<th>Ticker</th>
+<th>Company</th>
+<th>Price (Latest)</th>
+<th>Change</th>
+<th>Key Catalyst</th>
+<th>Advice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong style="color:var(--blue)">VOR</strong></td>
+<td>Vor Biopharma</td>
+<td>$14.49</td>
+<td style="color:var(--red)">-3.46%</td>
+<td>NMPA dual approval + RA Capital selling</td>
+<td><span class="s-neut" style="padding:2px 8px;border-radius:4px">Hold</span></td>
+</tr>
+<tr>
+<td><strong style="color:var(--blue)">BIIB</strong></td>
+<td>Biogen</td>
+<td>$196.58</td>
+<td style="color:var(--red)">-1.05%</td>
+<td>RayThera $1B acquisition + Salanersen BTD</td>
+<td><span class="s-bull" style="padding:2px 8px;border-radius:4px">Accumulate</span></td>
+</tr>
+<tr>
+<td><strong style="color:var(--blue)">SMMT</strong></td>
+<td>Summit Therapeutics</td>
+<td>$13.75</td>
+<td style="color:var(--red)">-2.27%</td>
+<td>HARMONi-6 OS data + $500M offering cancelled</td>
+<td><span class="s-neut" style="padding:2px 8px;border-radius:4px">Watch</span></td>
+</tr>
+<tr>
+<td><strong style="color:var(--blue)">VRTX</strong></td>
+<td>Vertex Pharma</td>
+<td>$451.63</td>
+<td style="color:var(--red)">-1.60%</td>
+<td>JOURNAVX surge + CF label expansion</td>
+<td><span class="s-bull" style="padding:2px 8px;border-radius:4px">Accumulate</span></td>
+</tr>
+<tr>
+<td><strong style="color:var(--blue)">ABOS</strong></td>
+<td>Acumen Pharma</td>
+<td>~$2.28</td>
+<td style="color:var(--text2)">Low vol</td>
+<td>Sabirnetug Phase 2 data (late-2026)</td>
+<td><span class="s-neut" style="padding:2px 8px;border-radius:4px">Watch</span></td>
+</tr>
+<tr>
+<td><strong style="color:var(--blue)">IONS</strong></td>
+<td>Ionis Pharma</td>
+<td>$74.12</td>
+<td style="color:var(--red)">-0.26%</td>
+<td>Olezarsen/Zilganersen FDA priority review</td>
+<td><span class="s-bull" style="padding:2px 8px;border-radius:4px">Accumulate</span></td>
+</tr>
+<tr>
+<td><strong style="color:var(--blue)">ALNY</strong></td>
+<td>Alnylam Pharma</td>
+<td>$278.09</td>
+<td style="color:var(--red)">-1.64%</td>
+<td>$2B AI partnership + Vutrisiran ATTR-CM</td>
+<td><span class="s-neut" style="padding:2px 8px;border-radius:4px">Hold</span></td>
+</tr>
+<tr>
+<td><strong style="color:var(--blue)">ACIU</strong></td>
+<td>AC Immune</td>
+<td>$2.34</td>
+<td style="color:var(--green)">+1.30%</td>
+<td>$4M Parkinson's grant + CEO retirement</td>
+<td><span class="s-neut" style="padding:2px 8px;border-radius:4px">Watch</span></td>
+</tr>
+<tr style="background:rgba(248,81,73,.05)">
+<td><strong style="color:var(--red)">LEGN</strong></td>
+<td>Legend Biotech</td>
+<td>$27.93</td>
+<td style="color:var(--red);font-weight:700">-16.68%</td>
+<td>$226M offering crash + LB2501 EHA data</td>
+<td><span class="s-bear" style="padding:2px 8px;border-radius:4px">Watch/Dip</span></td>
+</tr>
+<tr style="border-top:2px solid var(--border)">
+<td><strong style="color:var(--red)">688331</strong></td>
+<td>荣昌生物</td>
+<td>~109 CNY</td>
+<td style="color:var(--text2)">Consolidating</td>
+<td>维迪西妥单抗海外获批 + 艾伯维BD</td>
+<td><span class="s-neut" style="padding:2px 8px;border-radius:4px">Hold</span></td>
+</tr>
+<tr style="background:rgba(248,81,73,.05)">
+<td><strong style="color:var(--red)">300782</strong></td>
+<td>卓胜微</td>
+<td>~89-93 CNY</td>
+<td style="color:var(--red)">Under pressure</td>
+<td>转型阵痛 + 首亏 + 大宗折价出货</td>
+<td><span class="s-bear" style="padding:2px 8px;border-radius:4px">Watch/Reduce</span></td>
+</tr>
+<tr style="background:rgba(63,185,80,.05)">
+<td><strong style="color:var(--green)">600206</strong></td>
+<td>有研新材</td>
+<td>~42.51 CNY</td>
+<td style="color:var(--green)">+6.84%</td>
+<td>日本半导体材料断供 + 业绩高增</td>
+<td><span class="s-bull" style="padding:2px 8px;border-radius:4px">Hold/Add</span></td>
+</tr>
+<tr style="border-top:2px solid var(--border)">
+<td><strong style="color:var(--yellow)">02269</strong></td>
+<td>药明生物</td>
+<td>Recent</td>
+<td style="color:var(--text2)">Volatile</td>
+<td>高频回购 vs BIOSECURE法案</td>
+<td><span class="s-neut" style="padding:2px 8px;border-radius:4px">Watch</span></td>
+</tr>
+<tr>
+<td><strong style="color:var(--yellow)">09868</strong></td>
+<td>小鹏汽车</td>
+<td>Month +20%</td>
+<td style="color:var(--green)">Strong</td>
+<td>首次盈利 + 机器人/飞行汽车量产</td>
+<td><span class="s-neut" style="padding:2px 8px;border-radius:4px">Hold</span></td>
+</tr>
+<tr style="background:rgba(63,185,80,.05)">
+<td><strong style="color:var(--green)">00700</strong></td>
+<td>腾讯控股</td>
+<td>Strong</td>
+<td style="color:var(--green)">Catalysts</td>
+<td>微信AI Agent + 每日5亿回购</td>
+<td><span class="s-bull" style="padding:2px 8px;border-radius:4px">Accumulate</span></td>
+</tr>
+<tr>
+<td><strong style="color:var(--yellow)">09988</strong></td>
+<td>阿里巴巴</td>
+<td>Volatile</td>
+<td style="color:var(--text2)">Sector pressure</td>
+<td>AI "A计划" + 超预期财报 + 高分红</td>
+<td><span class="s-neut" style="padding:2px 8px;border-radius:4px">Hold</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- Key Events Next Week -->
+<div class="stock-card">
+<div class="stock-body">
+<h4 class="sub-title">Next Week Key Events (June 23-27)</h4>
+<div class="analysis-box">
+<p><strong>LEGN:</strong> June 23 ADS offering settlement - watch post-settlement price action. Major selling pressure may ease after settlement.</p>
+<p><strong>600206:</strong> Japan WF6 supply cutoff in July approaching - continued semiconductor materials catalyst.</p>
+<p><strong>00700:</strong> WeChat AI Agent development progress - potential Q4 public beta catalyst.</p>
+<p><strong>All US stocks:</strong> Monday June 23 reopening after weekend - watch for any weekend news flow impact.</p>
+</div>
+</div>
+</div>
+
+<!-- DISCLAIMER -->
+<footer>
+<div class="disclaimer">
+<strong>Disclaimer / 免责声明</strong><br>
+本报告仅供参考，不构成投资建议。投资有风险，入市需谨慎。报告中的分析和观点基于公开信息整理，不保证其准确性和完整性。所有投资决策应基于个人风险承受能力和独立判断。部分股价数据因非实时来源可能存在滞后，请以交易所实时行情为准。<br><br>
+This report is for informational purposes only and does not constitute investment advice. Investment involves risk. All analysis and opinions are based on publicly available information and are not guaranteed to be accurate or complete. Investment decisions should be based on individual risk tolerance and independent judgment. Some price data may be delayed; please refer to exchange real-time quotes for accuracy.
+<br><br>
+<span style="color:var(--text2)">Report generated: 2026-06-22 | Data sources: SEC EDGAR, Company IR, Reuters, Bloomberg, Yahoo Finance, 财联社, 东方财富, 雪球, 新浪财经, 巨潮资讯, and others as cited.</span>
+</div>
+</footer>
+
+</div><!-- container -->
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+<script>
+window.addEventListener('scroll',function(){document.getElementById('scrollTop').style.display=window.scrollY>300?'flex':'none'});
+document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+</script>
+</body>
+</html>

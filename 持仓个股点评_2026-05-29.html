@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>持仓个股点评 2026-05-29</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0e27; color: #c8d6e5; font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; }
+.header { background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%); padding: 30px; border-radius: 12px; margin-bottom: 24px; border: 1px solid #1e2d5a; }
+.header h1 { color: #ffd700; font-size: 28px; margin-bottom: 8px; }
+.header .sub { color: #8892b0; font-size: 14px; }
+.header .summary { color: #c8d6e5; font-size: 13px; margin-top: 12px; }
+.header .summary span { margin-right: 20px; }
+.stock-card { background: linear-gradient(135deg, #0f1535 0%, #141b3d 100%); border-radius: 12px; padding: 24px; margin-bottom: 20px; border: 1px solid #1e2d5a; }
+.stock-card:hover { border-color: #ffd700; }
+.stock-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #1e2d5a; }
+.stock-title .left h2 { color: #ffd700; font-size: 18px; }
+.stock-title .left .code { color: #5a6a8a; font-size: 13px; margin-left: 8px; }
+.stock-title .right { text-align: right; }
+.stock-title .right .price { font-size: 22px; font-weight: bold; color: #e8e8e8; }
+.stock-title .right .chg-up { color: #ef4444; font-size: 14px; }
+.stock-title .right .chg-down { color: #22c55e; font-size: 14px; }
+.stock-title .right .pnl { font-size: 13px; margin-top: 2px; }
+.profit { color: #ef4444; }
+.loss { color: #22c55e; }
+.section-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.section-full { grid-column: 1 / -1; }
+.info-box { background: #111738; border-radius: 8px; padding: 14px; border: 1px solid #1a2245; }
+.info-box h3 { color: #ffd700; font-size: 14px; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #1a2245; }
+.info-box p, .info-box li { font-size: 13px; line-height: 1.7; color: #a8b4d0; }
+.info-box ul { list-style: none; padding: 0; }
+.info-box li { padding: 2px 0; }
+.info-box .label { color: #5a6a8a; }
+.ma-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ma-table td { padding: 4px 8px; border-bottom: 1px solid #1a2245; }
+.ma-table .val { text-align: right; font-weight: bold; }
+.bull { color: #ef4444; }
+.bear { color: #22c55e; }
+.neutral { color: #facc15; }
+.conclusion { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.signals { display: flex; gap: 12px; flex-wrap: wrap; }
+.signal-item { padding: 4px 10px; border-radius: 4px; font-size: 12px; }
+.signal-bull { background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
+.signal-bear { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); }
+.rating { font-size: 18px; letter-spacing: 2px; }
+.action-box { margin-top: 12px; padding: 12px; border-radius: 8px; text-align: center; font-size: 15px; font-weight: bold; }
+.action-hold { background: rgba(250,204,21,0.12); border: 1px solid rgba(250,204,21,0.3); color: #facc15; }
+.action-add { background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); color: #ef4444; }
+.action-reduce { background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3); color: #22c55e; }
+.footer { text-align: center; color: #3a4a6a; font-size: 12px; margin-top: 30px; padding: 20px; border-top: 1px solid #1e2d5a; }
+@media (max-width: 768px) { .section-grid { grid-template-columns: 1fr; } .conclusion { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>📋 持仓个股点评 · 2026-05-29</h1>
+<div class="sub">资深公募基金经理 × 首席研究员 | 基本面 + 纯技术面双重维度</div>
+<div class="summary">
+<span>📌 持仓个股：10只</span>
+<span>📊 总仓位：约87%</span>
+<span>💰 最大单票：小鹏汽车 15.73%</span>
+<span>📈 数据来源：东方财富妙想 + 新浪/腾讯实时行情</span>
+</div>
+</div>
+
+<div class="stock-card">
+<div class="stock-title">
+<div class="left">
+<h2>1. 小鹏汽车 <span class="code">09868.HK</span></h2>
+<div style="color:#5a6a8a;font-size:12px;margin-top:4px;">成本 ¥83.53 · 仓位 15.73%</div>
+</div>
+<div class="right">
+<div class="price">¥63.85</div>
+<div class="chg-down">-3.77%</div>
+<div class="pnl loss">🟢 距成本 -23.56% · 浮亏</div>
+</div>
+</div>
+
+<div class="section-grid">
+
+<div class="info-box">
+<h3>📈 均线系统</h3>
+<table class="ma-table">
+<tr><td>MA5</td><td class="val">64.17</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-0.5%</td></tr>
+<tr><td>MA10</td><td class="val">61.98</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bull">+3.0%</td></tr>
+<tr><td>MA20</td><td class="val">61.98</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bull">+3.0%</td></tr>
+<tr><td>MA60</td><td class="val">66.8</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-4.4%</td></tr>
+</table>
+<p style="margin-top:8px;font-size:13px;">排列：均线缠绕 🟡</p>
+</div>
+
+<div class="info-box">
+<h3>📊 技术指标</h3>
+<ul>
+<li><span class="label">RSI(14):</span> 55.9 · 中性区 ⚪</li>
+<li><span class="label">MACD:</span> DIF -0.51 · DEA -1.36 · 柱 1.71</li>
+<li><span class="label">MACD信号:</span> 多头↑ 动能增强</li>
+<li><span class="label">布林带宽:</span> 12.64%</li>
+<li><span class="label">布林位置:</span> 价格处于布林带 74% 位置</li>
+<li><span class="label">量比:</span> 1.58x · 放量 🔴</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🔑 关键价位</h3>
+<ul>
+<li><span class="label">🛡️ 支撑①:</span> <span class="bull">¥57.55</span>（20日最低）</li>
+<li><span class="label">🛡️ 支撑②:</span> <span class="bull">¥54.67</span>（5%下延）</li>
+<li><span class="label">🔴 阻力①:</span> <span class="bear">¥68.0</span>（20日最高）</li>
+<li><span class="label">🔴 阻力②:</span> <span class="bear">¥71.4</span>（5%上延）</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🎯 综合判断</h3>
+<div class="signals">
+<span class="signal-item signal-bull">✅ 多头 3</span>
+<span class="signal-item signal-bear">⚠️ 空头 3</span>
+</div>
+<p style="margin-top:8px;font-size:13px;">
+总体评分：<span class="rating">🌕🌕🌑🌑🌑</span>
+</p>
+<p style="font-size:13px;">走势预判：<strong>震荡 ⬌</strong></p>
+</div>
+
+<div class="info-box section-full">
+<h3>🔍 基本面点评</h3>
+<p style="font-size:13px; line-height:1.8;">
+• <strong>Q1财报(5/28发布):</strong> 营收130.3亿元(-17.6% YoY)，净亏损17.8亿元(由盈转亏)，Q1交付62,682辆(-33.3%)。但毛利率20.6%同比提升5pct，超市场预期。<br>
+• <strong>GX车型(5/20上市):</strong> 售价27.98万起，上市12小时大定超2.4万辆，远超预期。Q2指引交付10-10.6万辆，营收196-208亿元(+7-14%)。<br>
+• <strong>Robotaxi+机器人:</strong> GX车队已开启小范围L4测试，Q3广州示范运营；新一代IRON机器人Q3亮相，年底量产。<br>
+• <strong>核心逻辑:</strong> 智驾图灵芯片+VLA2.0+机器人——逻辑未变，短期亏损是研发投入集中释放期，GX订单是下半年催化剂。
+</p>
+</div>
+
+</div>
+
+<div class="conclusion" style="margin-top:16px;">
+<div class="info-box">
+<h3>✅ 多头信号</h3>
+<ul>
+<li>✅ 股价站上MA20(生命线)</li><li>✅ MACD↑ 动能增强</li><li>✅ RSI偏强(55.9)</li>
+</ul>
+</div>
+<div class="info-box">
+<h3>⚠️ 空头信号</h3>
+<ul>
+<li>⚠️ 均线缠绕无方向</li><li>⚠️ 股价跌破MA5</li><li>⚠️ 放量下跌</li>
+</ul>
+</div>
+</div>
+
+<div class="action-box action-hold">
+📊 操作建议：<strong>持有</strong> · 走势预判：震荡 ⬌ · 评分：🌕🌕🌑🌑🌑
+</div>
+</div>
+
+<div class="stock-card">
+<div class="stock-title">
+<div class="left">
+<h2>2. 阿里巴巴 <span class="code">09988.HK</span></h2>
+<div style="color:#5a6a8a;font-size:12px;margin-top:4px;">成本 ¥146.37 · 仓位 12.93%</div>
+</div>
+<div class="right">
+<div class="price">¥120.9</div>
+<div class="chg-down">-0.74%</div>
+<div class="pnl loss">🟢 距成本 -17.40% · 浮亏</div>
+</div>
+</div>
+
+<div class="section-grid">
+
+<div class="info-box">
+<h3>📈 均线系统</h3>
+<table class="ma-table">
+<tr><td>MA5</td><td class="val">124.32</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-2.8%</td></tr>
+<tr><td>MA10</td><td class="val">127.68</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-5.3%</td></tr>
+<tr><td>MA20</td><td class="val">130.88</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-7.6%</td></tr>
+<tr><td>MA60</td><td class="val">129.55</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-6.7%</td></tr>
+</table>
+<p style="margin-top:8px;font-size:13px;">排列：均线缠绕 🟡</p>
+</div>
+
+<div class="info-box">
+<h3>📊 技术指标</h3>
+<ul>
+<li><span class="label">RSI(14):</span> 23.9 · 超卖区 🟢</li>
+<li><span class="label">MACD:</span> DIF -2.15 · DEA -0.02 · 柱 -4.25</li>
+<li><span class="label">MACD信号:</span> 空头↓ 动能增强</li>
+<li><span class="label">布林带宽:</span> 16.51%</li>
+<li><span class="label">布林位置:</span> 价格处于布林带 4% 位置</li>
+<li><span class="label">量比:</span> 1.2x · 平量 ⚪</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🔑 关键价位</h3>
+<ul>
+<li><span class="label">🛡️ 支撑①:</span> <span class="bull">¥120.0</span>（20日最低）</li>
+<li><span class="label">🛡️ 支撑②:</span> <span class="bull">¥114.0</span>（5%下延）</li>
+<li><span class="label">🔴 阻力①:</span> <span class="bear">¥144.0</span>（20日最高）</li>
+<li><span class="label">🔴 阻力②:</span> <span class="bear">¥151.2</span>（5%上延）</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🎯 综合判断</h3>
+<div class="signals">
+<span class="signal-item signal-bull">✅ 多头 1</span>
+<span class="signal-item signal-bear">⚠️ 空头 4</span>
+</div>
+<p style="margin-top:8px;font-size:13px;">
+总体评分：<span class="rating">🌕🌑🌑🌑🌑</span>
+</p>
+<p style="font-size:13px;">走势预判：<strong>回调 📉</strong></p>
+</div>
+
+<div class="info-box section-full">
+<h3>🔍 基本面点评</h3>
+<p style="font-size:13px; line-height:1.8;">
+• <strong>云业务价值重估:</strong> 东吴证券深度研报(AI开启云计算价值回归)，阿里云FY27收入增速35%+，给予8x PS目标价204元。<br>
+• <strong>股息派发:</strong> 5/13宣布FY26年度股息$1.05/ADS，6/11除权，7月支付。<br>
+• <strong>AI云领先地位:</strong> Omdia数据显示2025年阿里云中国AI云市场份额38%稳居第一，通义千问持续迭代。<br>
+• <strong>核心逻辑:</strong> 电商基本盘+AI云第二曲线——逻辑未变，云业务重估是中期催化剂。
+</p>
+</div>
+
+</div>
+
+<div class="conclusion" style="margin-top:16px;">
+<div class="info-box">
+<h3>✅ 多头信号</h3>
+<ul>
+<li>✅ RSI超卖(23.9)</li>
+</ul>
+</div>
+<div class="info-box">
+<h3>⚠️ 空头信号</h3>
+<ul>
+<li>⚠️ 均线缠绕无方向</li><li>⚠️ 股价跌破MA5</li><li>⚠️ 股价跌破MA20</li><li>⚠️ MACD↓ 动能增强</li>
+</ul>
+</div>
+</div>
+
+<div class="action-box action-reduce">
+📊 操作建议：<strong>减仓</strong> · 走势预判：回调 📉 · 评分：🌕🌑🌑🌑🌑
+</div>
+</div>
+
+<div class="stock-card">
+<div class="stock-title">
+<div class="left">
+<h2>3. 福瑞医科 <span class="code">300049.SZ</span></h2>
+<div style="color:#5a6a8a;font-size:12px;margin-top:4px;">成本 ¥58.14 · 仓位 10.58%</div>
+</div>
+<div class="right">
+<div class="price">¥44.66</div>
+<div class="chg-down">-3.25%</div>
+<div class="pnl loss">🟢 距成本 -23.19% · 浮亏</div>
+</div>
+</div>
+
+<div class="section-grid">
+
+<div class="info-box">
+<h3>📈 均线系统</h3>
+<table class="ma-table">
+<tr><td>MA5</td><td class="val">47.8</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-6.6%</td></tr>
+<tr><td>MA10</td><td class="val">52.36</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-14.7%</td></tr>
+<tr><td>MA20</td><td class="val">53.35</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-16.3%</td></tr>
+<tr><td>MA60</td><td class="val">55.11</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-19.0%</td></tr>
+</table>
+<p style="margin-top:8px;font-size:13px;">排列：空头排列 ❌</p>
+</div>
+
+<div class="info-box">
+<h3>📊 技术指标</h3>
+<ul>
+<li><span class="label">RSI(14):</span> 20.6 · 超卖区 🟢</li>
+<li><span class="label">MACD:</span> DIF -2.28 · DEA -0.39 · 柱 -3.77</li>
+<li><span class="label">MACD信号:</span> 空头↓ 动能增强</li>
+<li><span class="label">布林带宽:</span> 32.59%</li>
+<li><span class="label">布林位置:</span> 价格处于布林带 0% 位置</li>
+<li><span class="label">量比:</span> 1.26x · 平量 ⚪</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🔑 关键价位</h3>
+<ul>
+<li><span class="label">🛡️ 支撑①:</span> <span class="bull">¥44.4</span>（20日最低）</li>
+<li><span class="label">🛡️ 支撑②:</span> <span class="bull">¥42.18</span>（5%下延）</li>
+<li><span class="label">🔴 阻力①:</span> <span class="bear">¥60.55</span>（20日最高）</li>
+<li><span class="label">🔴 阻力②:</span> <span class="bear">¥63.58</span>（5%上延）</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🎯 综合判断</h3>
+<div class="signals">
+<span class="signal-item signal-bull">✅ 多头 1</span>
+<span class="signal-item signal-bear">⚠️ 空头 4</span>
+</div>
+<p style="margin-top:8px;font-size:13px;">
+总体评分：<span class="rating">🌕🌑🌑🌑🌑</span>
+</p>
+<p style="font-size:13px;">走势预判：<strong>回调 📉</strong></p>
+</div>
+
+<div class="info-box section-full">
+<h3>🔍 基本面点评</h3>
+<p style="font-size:13px; line-height:1.8;">
+• ⚠️ <strong>股价连续7日下跌(-20.96%)：</strong> 5/29跌3.25%报44.66元，年内从高点腰斩(-48%)。<br>
+• <strong>投资者质疑信息泄露：</strong> 公司在调研中否认，强调保密制度完善。<br>
+• <strong>H股上市无期：</strong> 公司表示筹备工作稳步推进，暂无明确时间表。<br>
+• <strong>竞争压力凸显：</strong> 投资者反馈医院FibroScan被友商FibroTouch替代。<br>
+• <strong>核心逻辑受损：</strong> 肝病诊断龙头地位受挑战，H股上市进度不及预期，情绪面极度悲观。
+</p>
+</div>
+
+</div>
+
+<div class="conclusion" style="margin-top:16px;">
+<div class="info-box">
+<h3>✅ 多头信号</h3>
+<ul>
+<li>✅ RSI超卖(20.6)</li>
+</ul>
+</div>
+<div class="info-box">
+<h3>⚠️ 空头信号</h3>
+<ul>
+<li>⚠️ 均线空头排列</li><li>⚠️ 股价跌破MA5</li><li>⚠️ 股价跌破MA20</li><li>⚠️ MACD↓ 动能增强</li>
+</ul>
+</div>
+</div>
+
+<div class="action-box action-reduce">
+📊 操作建议：<strong>减仓</strong> · 走势预判：回调 📉 · 评分：🌕🌑🌑🌑🌑
+</div>
+</div>
+
+<div class="stock-card">
+<div class="stock-title">
+<div class="left">
+<h2>4. 腾讯控股 <span class="code">00700.HK</span></h2>
+<div style="color:#5a6a8a;font-size:12px;margin-top:4px;">成本 ¥459.84 · 仓位 10.30%</div>
+</div>
+<div class="right">
+<div class="price">¥427.2</div>
+<div class="chg-up">+0.52%</div>
+<div class="pnl loss">🟢 距成本 -7.10% · 浮亏</div>
+</div>
+</div>
+
+<div class="section-grid">
+
+<div class="info-box">
+<h3>📈 均线系统</h3>
+<table class="ma-table">
+<tr><td>MA5</td><td class="val">433.4</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-1.4%</td></tr>
+<tr><td>MA10</td><td class="val">442.68</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-3.5%</td></tr>
+<tr><td>MA20</td><td class="val">454.8</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-6.1%</td></tr>
+<tr><td>MA60</td><td class="val">491.63</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-13.1%</td></tr>
+</table>
+<p style="margin-top:8px;font-size:13px;">排列：空头排列 ❌</p>
+</div>
+
+<div class="info-box">
+<h3>📊 技术指标</h3>
+<ul>
+<li><span class="label">RSI(14):</span> 24.2 · 超卖区 🟢</li>
+<li><span class="label">MACD:</span> DIF -16.23 · DEA -16.99 · 柱 1.52</li>
+<li><span class="label">MACD信号:</span> 多头↑ 动能增强</li>
+<li><span class="label">布林带宽:</span> 13.76%</li>
+<li><span class="label">布林位置:</span> 价格处于布林带 6% 位置</li>
+<li><span class="label">量比:</span> 1.52x · 放量 🔴</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🔑 关键价位</h3>
+<ul>
+<li><span class="label">🛡️ 支撑①:</span> <span class="bull">¥420.4</span>（20日最低）</li>
+<li><span class="label">🛡️ 支撑②:</span> <span class="bull">¥399.38</span>（5%下延）</li>
+<li><span class="label">🔴 阻力①:</span> <span class="bear">¥481.0</span>（20日最高）</li>
+<li><span class="label">🔴 阻力②:</span> <span class="bear">¥505.05</span>（5%上延）</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🎯 综合判断</h3>
+<div class="signals">
+<span class="signal-item signal-bull">✅ 多头 3</span>
+<span class="signal-item signal-bear">⚠️ 空头 3</span>
+</div>
+<p style="margin-top:8px;font-size:13px;">
+总体评分：<span class="rating">🌕🌕🌑🌑🌑</span>
+</p>
+<p style="font-size:13px;">走势预判：<strong>震荡 ⬌</strong></p>
+</div>
+
+<div class="info-box section-full">
+<h3>🔍 基本面点评</h3>
+<p style="font-size:13px; line-height:1.8;">
+• <strong>每日回购进行中：</strong> 5/29回购116.7万股耗资5.01亿港元(均价429港币)。年内累计回购超136亿港元。<br>
+• <strong>回购均价持续下移:</strong> 从5月初的460港币降至5/29的429港币，管理层认为当前估值具吸引力。<br>
+• <strong>核心逻辑:</strong> 微信生态(视频号+小程序)+AI大模型(混元)+游戏出海——逻辑未变，回购彰显信心。
+</p>
+</div>
+
+</div>
+
+<div class="conclusion" style="margin-top:16px;">
+<div class="info-box">
+<h3>✅ 多头信号</h3>
+<ul>
+<li>✅ MACD↑ 动能增强</li><li>✅ RSI超卖(24.2)</li><li>✅ 放量上涨</li>
+</ul>
+</div>
+<div class="info-box">
+<h3>⚠️ 空头信号</h3>
+<ul>
+<li>⚠️ 均线空头排列</li><li>⚠️ 股价跌破MA5</li><li>⚠️ 股价跌破MA20</li>
+</ul>
+</div>
+</div>
+
+<div class="action-box action-hold">
+📊 操作建议：<strong>持有</strong> · 走势预判：震荡 ⬌ · 评分：🌕🌕🌑🌑🌑
+</div>
+</div>
+
+<div class="stock-card">
+<div class="stock-title">
+<div class="left">
+<h2>5. 科伦博泰 <span class="code">06990.HK</span></h2>
+<div style="color:#5a6a8a;font-size:12px;margin-top:4px;">成本 ¥429.41 · 仓位 9.89%</div>
+</div>
+<div class="right">
+<div class="price">¥462.0</div>
+<div class="chg-up">+3.36%</div>
+<div class="pnl profit">🔴 距成本 +7.59% · 浮盈</div>
+</div>
+</div>
+
+<div class="section-grid">
+
+<div class="info-box">
+<h3>📈 均线系统</h3>
+<table class="ma-table">
+<tr><td>MA5</td><td class="val">464.0</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-0.4%</td></tr>
+<tr><td>MA10</td><td class="val">450.1</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bull">+2.6%</td></tr>
+<tr><td>MA20</td><td class="val">452.36</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bull">+2.1%</td></tr>
+<tr><td>MA60</td><td class="val">447.68</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bull">+3.2%</td></tr>
+</table>
+<p style="margin-top:8px;font-size:13px;">排列：均线缠绕 🟡</p>
+</div>
+
+<div class="info-box">
+<h3>📊 技术指标</h3>
+<ul>
+<li><span class="label">RSI(14):</span> 54.4 · 中性区 ⚪</li>
+<li><span class="label">MACD:</span> DIF -1.05 · DEA -13.56 · 柱 25.03</li>
+<li><span class="label">MACD信号:</span> 多头↑ 动能增强</li>
+<li><span class="label">布林带宽:</span> 12.56%</li>
+<li><span class="label">布林位置:</span> 价格处于布林带 67% 位置</li>
+<li><span class="label">量比:</span> 2.91x · 放量 🔴</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🔑 关键价位</h3>
+<ul>
+<li><span class="label">🛡️ 支撑①:</span> <span class="bull">¥415.2</span>（20日最低）</li>
+<li><span class="label">🛡️ 支撑②:</span> <span class="bull">¥394.44</span>（5%下延）</li>
+<li><span class="label">🔴 阻力①:</span> <span class="bear">¥499.6</span>（20日最高）</li>
+<li><span class="label">🔴 阻力②:</span> <span class="bear">¥524.58</span>（5%上延）</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🎯 综合判断</h3>
+<div class="signals">
+<span class="signal-item signal-bull">✅ 多头 4</span>
+<span class="signal-item signal-bear">⚠️ 空头 2</span>
+</div>
+<p style="margin-top:8px;font-size:13px;">
+总体评分：<span class="rating">🌕🌕🌕🌑🌑</span>
+</p>
+<p style="font-size:13px;">走势预判：<strong>上涨 📈</strong></p>
+</div>
+
+<div class="info-box section-full">
+<h3>🔍 基本面点评</h3>
+<p style="font-size:13px; line-height:1.8;">
+• <strong>ASCO重磅数据(5/22):</strong> sac-TMT( SKB264)一线NSCLC III期数据超预期，PFS HR=0.35，全球首个ADC+IO一线肺癌III期阳性结果。<br>
+• <strong>默沙东17项III期临床推进:</strong> 海外首个EC适应症III期达PFS+OS双终点。FDA授予优先审评券。<br>
+• <strong>国联民生研报:</strong> 维持"推荐"评级，预计sac-TMT海外销售峰值150亿美元。<br>
+• <strong>核心逻辑:</strong> sac-TMT出海+ADC平台价值——逻辑强化，ASCO数据是强催化剂。
+</p>
+</div>
+
+</div>
+
+<div class="conclusion" style="margin-top:16px;">
+<div class="info-box">
+<h3>✅ 多头信号</h3>
+<ul>
+<li>✅ 股价站上MA20(生命线)</li><li>✅ MACD↑ 动能增强</li><li>✅ RSI偏强(54.4)</li><li>✅ 放量上涨</li>
+</ul>
+</div>
+<div class="info-box">
+<h3>⚠️ 空头信号</h3>
+<ul>
+<li>⚠️ 均线缠绕无方向</li><li>⚠️ 股价跌破MA5</li>
+</ul>
+</div>
+</div>
+
+<div class="action-box action-add">
+📊 操作建议：<strong>加仓</strong> · 走势预判：上涨 📈 · 评分：🌕🌕🌕🌑🌑
+</div>
+</div>
+
+<div class="stock-card">
+<div class="stock-title">
+<div class="left">
+<h2>6. 金山云 <span class="code">03896.HK</span></h2>
+<div style="color:#5a6a8a;font-size:12px;margin-top:4px;">成本 ¥4.45 · 仓位 8.82%</div>
+</div>
+<div class="right">
+<div class="price">¥6.22</div>
+<div class="chg-down">-3.72%</div>
+<div class="pnl profit">🔴 距成本 +39.78% · 浮盈</div>
+</div>
+</div>
+
+<div class="section-grid">
+
+<div class="info-box">
+<h3>📈 均线系统</h3>
+<table class="ma-table">
+<tr><td>MA5</td><td class="val">6.72</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-7.4%</td></tr>
+<tr><td>MA10</td><td class="val">7.15</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-13.0%</td></tr>
+<tr><td>MA20</td><td class="val">7.62</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-18.4%</td></tr>
+<tr><td>MA60</td><td class="val">7.68</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-19.0%</td></tr>
+</table>
+<p style="margin-top:8px;font-size:13px;">排列：空头排列 ❌</p>
+</div>
+
+<div class="info-box">
+<h3>📊 技术指标</h3>
+<ul>
+<li><span class="label">RSI(14):</span> 25.2 · 超卖区 🟢</li>
+<li><span class="label">MACD:</span> DIF -0.41 · DEA -0.38 · 柱 -0.06</li>
+<li><span class="label">MACD信号:</span> 空头↓ 动能增强</li>
+<li><span class="label">布林带宽:</span> 35.13%</li>
+<li><span class="label">布林位置:</span> 价格处于布林带 -2% 位置（触及下轨）</li>
+<li><span class="label">量比:</span> 1.14x · 平量 ⚪</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🔑 关键价位</h3>
+<ul>
+<li><span class="label">🛡️ 支撑①:</span> <span class="bull">¥6.13</span>（20日最低）</li>
+<li><span class="label">🛡️ 支撑②:</span> <span class="bull">¥5.82</span>（5%下延）</li>
+<li><span class="label">🔴 阻力①:</span> <span class="bear">¥9.08</span>（20日最高）</li>
+<li><span class="label">🔴 阻力②:</span> <span class="bear">¥9.53</span>（5%上延）</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🎯 综合判断</h3>
+<div class="signals">
+<span class="signal-item signal-bull">✅ 多头 2</span>
+<span class="signal-item signal-bear">⚠️ 空头 4</span>
+</div>
+<p style="margin-top:8px;font-size:13px;">
+总体评分：<span class="rating">🌕🌕🌑🌑🌑</span>
+</p>
+<p style="font-size:13px;">走势预判：<strong>回调 📉</strong></p>
+</div>
+
+<div class="info-box section-full">
+<h3>🔍 基本面点评</h3>
+<p style="font-size:13px; line-height:1.8;">
+• <strong>股东大会通知:</strong> 5/29发布2026年股权激励计划及持续关连交易展示文件。<br>
+• <strong>小米生态关联:</strong> 持续关连交易框架协议(小米合作框架协议)。<br>
+• <strong>行业背景:</strong> 云计算行业涨价周期，AI云需求拉动景气修复。<br>
+• <strong>核心逻辑:</strong> 小米生态依赖+云服务——无明显变化，但行业景气度回升是利好。
+</p>
+</div>
+
+</div>
+
+<div class="conclusion" style="margin-top:16px;">
+<div class="info-box">
+<h3>✅ 多头信号</h3>
+<ul>
+<li>✅ RSI超卖(25.2)</li><li>✅ 触及布林下轨(超卖)</li>
+</ul>
+</div>
+<div class="info-box">
+<h3>⚠️ 空头信号</h3>
+<ul>
+<li>⚠️ 均线空头排列</li><li>⚠️ 股价跌破MA5</li><li>⚠️ 股价跌破MA20</li><li>⚠️ MACD↓ 动能增强</li>
+</ul>
+</div>
+</div>
+
+<div class="action-box action-reduce">
+📊 操作建议：<strong>减仓</strong> · 走势预判：回调 📉 · 评分：🌕🌕🌑🌑🌑
+</div>
+</div>
+
+<div class="stock-card">
+<div class="stock-title">
+<div class="left">
+<h2>7. 福昕软件 <span class="code">688095.SH</span></h2>
+<div style="color:#5a6a8a;font-size:12px;margin-top:4px;">成本 ¥81.61 · 仓位 7.24%</div>
+</div>
+<div class="right">
+<div class="price">¥70.49</div>
+<div class="chg-down">-2.23%</div>
+<div class="pnl loss">🟢 距成本 -13.63% · 浮亏</div>
+</div>
+</div>
+
+<div class="section-grid">
+
+<div class="info-box">
+<h3>📈 均线系统</h3>
+<table class="ma-table">
+<tr><td>MA5</td><td class="val">73.59</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-4.2%</td></tr>
+<tr><td>MA10</td><td class="val">76.5</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-7.9%</td></tr>
+<tr><td>MA20</td><td class="val">78.27</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-9.9%</td></tr>
+<tr><td>MA60</td><td class="val">75.8</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-7.0%</td></tr>
+</table>
+<p style="margin-top:8px;font-size:13px;">排列：均线缠绕 🟡</p>
+</div>
+
+<div class="info-box">
+<h3>📊 技术指标</h3>
+<ul>
+<li><span class="label">RSI(14):</span> 25.6 · 超卖区 🟢</li>
+<li><span class="label">MACD:</span> DIF -1.03 · DEA 0.93 · 柱 -3.92</li>
+<li><span class="label">MACD信号:</span> 空头↓ 动能增强</li>
+<li><span class="label">布林带宽:</span> 18.63%</li>
+<li><span class="label">布林位置:</span> 价格处于布林带 -3% 位置（触及下轨）</li>
+<li><span class="label">量比:</span> 0.87x · 平量 ⚪</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🔑 关键价位</h3>
+<ul>
+<li><span class="label">🛡️ 支撑①:</span> <span class="bull">¥70.02</span>（20日最低）</li>
+<li><span class="label">🛡️ 支撑②:</span> <span class="bull">¥66.52</span>（5%下延）</li>
+<li><span class="label">🔴 阻力①:</span> <span class="bear">¥86.6</span>（20日最高）</li>
+<li><span class="label">🔴 阻力②:</span> <span class="bear">¥90.93</span>（5%上延）</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🎯 综合判断</h3>
+<div class="signals">
+<span class="signal-item signal-bull">✅ 多头 2</span>
+<span class="signal-item signal-bear">⚠️ 空头 4</span>
+</div>
+<p style="margin-top:8px;font-size:13px;">
+总体评分：<span class="rating">🌕🌕🌑🌑🌑</span>
+</p>
+<p style="font-size:13px;">走势预判：<strong>回调 📉</strong></p>
+</div>
+
+<div class="info-box section-full">
+<h3>🔍 基本面点评</h3>
+<p style="font-size:13px; line-height:1.8;">
+• <strong>Q1季报(4/29):</strong> 营收2.32亿元(+14.92%)，归母净利润1127万元(同比扭亏)，订阅收入+40.31%超预期。<br>
+• <strong>业绩说明会6/2召开:</strong> 线上文字互动，投资者可关注AI战略进展。<br>
+• <strong>国泰海通首覆:</strong> 给予"增持"评级，目标价101.93元。申万宏源维持"买入"。<br>
+• <strong>核心逻辑:</strong> 订阅转型+数智政务+文档智能AI——逻辑未变，转型效果持续验证。
+</p>
+</div>
+
+</div>
+
+<div class="conclusion" style="margin-top:16px;">
+<div class="info-box">
+<h3>✅ 多头信号</h3>
+<ul>
+<li>✅ RSI超卖(25.6)</li><li>✅ 触及布林下轨(超卖)</li>
+</ul>
+</div>
+<div class="info-box">
+<h3>⚠️ 空头信号</h3>
+<ul>
+<li>⚠️ 均线缠绕无方向</li><li>⚠️ 股价跌破MA5</li><li>⚠️ 股价跌破MA20</li><li>⚠️ MACD↓ 动能增强</li>
+</ul>
+</div>
+</div>
+
+<div class="action-box action-reduce">
+📊 操作建议：<strong>减仓</strong> · 走势预判：回调 📉 · 评分：🌕🌕🌑🌑🌑
+</div>
+</div>
+
+<div class="stock-card">
+<div class="stock-title">
+<div class="left">
+<h2>8. 哔哩哔哩 <span class="code">09626.HK</span></h2>
+<div style="color:#5a6a8a;font-size:12px;margin-top:4px;">成本 ¥167.74 · 仓位 5.16%</div>
+</div>
+<div class="right">
+<div class="price">¥136.3</div>
+<div class="chg-up">+2.87%</div>
+<div class="pnl loss">🟢 距成本 -18.74% · 浮亏</div>
+</div>
+</div>
+
+<div class="section-grid">
+
+<div class="info-box">
+<h3>📈 均线系统</h3>
+<table class="ma-table">
+<tr><td>MA5</td><td class="val">135.8</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bull">+0.4%</td></tr>
+<tr><td>MA10</td><td class="val">142.55</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-4.4%</td></tr>
+<tr><td>MA20</td><td class="val">156.84</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-13.1%</td></tr>
+<tr><td>MA60</td><td class="val">179.5</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-24.1%</td></tr>
+</table>
+<p style="margin-top:8px;font-size:13px;">排列：均线缠绕 🟡</p>
+</div>
+
+<div class="info-box">
+<h3>📊 技术指标</h3>
+<ul>
+<li><span class="label">RSI(14):</span> 16.0 · 超卖区 🟢</li>
+<li><span class="label">MACD:</span> DIF -12.58 · DEA -11.01 · 柱 -3.14</li>
+<li><span class="label">MACD信号:</span> 空头↓ 动能增强</li>
+<li><span class="label">布林带宽:</span> 40.83%</li>
+<li><span class="label">布林位置:</span> 价格处于布林带 18% 位置</li>
+<li><span class="label">量比:</span> 1.61x · 放量 🔴</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🔑 关键价位</h3>
+<ul>
+<li><span class="label">🛡️ 支撑①:</span> <span class="bull">¥129.6</span>（20日最低）</li>
+<li><span class="label">🛡️ 支撑②:</span> <span class="bull">¥123.12</span>（5%下延）</li>
+<li><span class="label">🔴 阻力①:</span> <span class="bear">¥178.5</span>（20日最高）</li>
+<li><span class="label">🔴 阻力②:</span> <span class="bear">¥187.43</span>（5%上延）</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🎯 综合判断</h3>
+<div class="signals">
+<span class="signal-item signal-bull">✅ 多头 3</span>
+<span class="signal-item signal-bear">⚠️ 空头 3</span>
+</div>
+<p style="margin-top:8px;font-size:13px;">
+总体评分：<span class="rating">🌕🌕🌑🌑🌑</span>
+</p>
+<p style="font-size:13px;">走势预判：<strong>震荡 ⬌</strong></p>
+</div>
+
+<div class="info-box section-full">
+<h3>🔍 基本面点评</h3>
+<p style="font-size:13px; line-height:1.8;">
+• <strong>Q1财报(5/19):</strong> 营收74.7亿元(+7%)，连续盈利——净利润2.02亿元(同比扭亏)。广告收入+30%亮眼。<br>
+• <strong>用户数据强劲:</strong> DAU 1.152亿(+8%)，日均使用时长119分钟新高，总时长+19%。<br>
+• <strong>毛利率15连升:</strong> 从22Q1的16%持续提升至37.1%，经营杠杆显著。<br>
+• <strong>核心逻辑:</strong> 社区价值深化+广告变现+AI赋能——逻辑未变，盈利拐点已确认。
+</p>
+</div>
+
+</div>
+
+<div class="conclusion" style="margin-top:16px;">
+<div class="info-box">
+<h3>✅ 多头信号</h3>
+<ul>
+<li>✅ 股价站上MA5</li><li>✅ RSI超卖(16.0)</li><li>✅ 放量上涨</li>
+</ul>
+</div>
+<div class="info-box">
+<h3>⚠️ 空头信号</h3>
+<ul>
+<li>⚠️ 均线缠绕无方向</li><li>⚠️ 股价跌破MA20</li><li>⚠️ MACD↓ 动能增强</li>
+</ul>
+</div>
+</div>
+
+<div class="action-box action-hold">
+📊 操作建议：<strong>持有</strong> · 走势预判：震荡 ⬌ · 评分：🌕🌕🌑🌑🌑
+</div>
+</div>
+
+<div class="stock-card">
+<div class="stock-title">
+<div class="left">
+<h2>9. 金丹科技 <span class="code">300829.SZ</span></h2>
+<div style="color:#5a6a8a;font-size:12px;margin-top:4px;">成本 ¥19.51 · 仓位 3.39%</div>
+</div>
+<div class="right">
+<div class="price">¥18.85</div>
+<div class="chg-down">-5.09%</div>
+<div class="pnl loss">🟢 距成本 -3.38% · 浮亏</div>
+</div>
+</div>
+
+<div class="section-grid">
+
+<div class="info-box">
+<h3>📈 均线系统</h3>
+<table class="ma-table">
+<tr><td>MA5</td><td class="val">19.44</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-3.0%</td></tr>
+<tr><td>MA10</td><td class="val">19.27</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-2.2%</td></tr>
+<tr><td>MA20</td><td class="val">18.75</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bull">+0.5%</td></tr>
+<tr><td>MA60</td><td class="val">19.29</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-2.3%</td></tr>
+</table>
+<p style="margin-top:8px;font-size:13px;">排列：均线缠绕 🟡</p>
+</div>
+
+<div class="info-box">
+<h3>📊 技术指标</h3>
+<ul>
+<li><span class="label">RSI(14):</span> 56.4 · 中性区 ⚪</li>
+<li><span class="label">MACD:</span> DIF 0.23 · DEA 0.46 · 柱 -0.45</li>
+<li><span class="label">MACD信号:</span> 空头↓ 动能增强</li>
+<li><span class="label">布林带宽:</span> 17.97%</li>
+<li><span class="label">布林位置:</span> 价格处于布林带 53% 位置</li>
+<li><span class="label">量比:</span> 1.03x · 平量 ⚪</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🔑 关键价位</h3>
+<ul>
+<li><span class="label">🛡️ 支撑①:</span> <span class="bull">¥17.01</span>（20日最低）</li>
+<li><span class="label">🛡️ 支撑②:</span> <span class="bull">¥16.16</span>（5%下延）</li>
+<li><span class="label">🔴 阻力①:</span> <span class="bear">¥20.29</span>（20日最高）</li>
+<li><span class="label">🔴 阻力②:</span> <span class="bear">¥21.3</span>（5%上延）</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🎯 综合判断</h3>
+<div class="signals">
+<span class="signal-item signal-bull">✅ 多头 2</span>
+<span class="signal-item signal-bear">⚠️ 空头 3</span>
+</div>
+<p style="margin-top:8px;font-size:13px;">
+总体评分：<span class="rating">🌕🌕🌑🌑🌑</span>
+</p>
+<p style="font-size:13px;">走势预判：<strong>震荡偏弱 ⬊</strong></p>
+</div>
+
+<div class="info-box section-full">
+<h3>🔍 基本面点评</h3>
+<p style="font-size:13px; line-height:1.8;">
+• <strong>董事会换届(5/12):</strong> 完成第六届董事会选举，张鹏连任董事长，管理层保持稳定。<br>
+• <strong>2025年度股东会:</strong> 通过利润分配等全部议案。<br>
+• <strong>行业环境:</strong> 乳酸/聚乳酸行业受生物可降解材料政策驱动。<br>
+• <strong>核心逻辑:</strong> 生物基材料龙头——无明显变化，但小市值个股波动较大。
+</p>
+</div>
+
+</div>
+
+<div class="conclusion" style="margin-top:16px;">
+<div class="info-box">
+<h3>✅ 多头信号</h3>
+<ul>
+<li>✅ 股价站上MA20(生命线)</li><li>✅ RSI偏强(56.4)</li>
+</ul>
+</div>
+<div class="info-box">
+<h3>⚠️ 空头信号</h3>
+<ul>
+<li>⚠️ 均线缠绕无方向</li><li>⚠️ 股价跌破MA5</li><li>⚠️ MACD↓ 动能增强</li>
+</ul>
+</div>
+</div>
+
+<div class="action-box action-hold">
+📊 操作建议：<strong>持有观察</strong> · 走势预判：震荡偏弱 ⬊ · 评分：🌕🌕🌑🌑🌑
+</div>
+</div>
+
+<div class="stock-card">
+<div class="stock-title">
+<div class="left">
+<h2>10. 金蝶国际 <span class="code">00268.HK</span></h2>
+<div style="color:#5a6a8a;font-size:12px;margin-top:4px;">成本 ¥10.44 · 仓位 2.99%</div>
+</div>
+<div class="right">
+<div class="price">¥7.27</div>
+<div class="chg-up">+1.25%</div>
+<div class="pnl loss">🟢 距成本 -30.36% · 浮亏</div>
+</div>
+</div>
+
+<div class="section-grid">
+
+<div class="info-box">
+<h3>📈 均线系统</h3>
+<table class="ma-table">
+<tr><td>MA5</td><td class="val">7.46</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-2.5%</td></tr>
+<tr><td>MA10</td><td class="val">7.72</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-5.8%</td></tr>
+<tr><td>MA20</td><td class="val">8.24</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-11.8%</td></tr>
+<tr><td>MA60</td><td class="val">8.77</td><td style="padding-left:20px;"><span class="label">vs 现价</span></td><td class="val bear">-17.1%</td></tr>
+</table>
+<p style="margin-top:8px;font-size:13px;">排列：空头排列 ❌</p>
+</div>
+
+<div class="info-box">
+<h3>📊 技术指标</h3>
+<ul>
+<li><span class="label">RSI(14):</span> 14.2 · 超卖区 🟢</li>
+<li><span class="label">MACD:</span> DIF -0.41 · DEA -0.26 · 柱 -0.31</li>
+<li><span class="label">MACD信号:</span> 空头↓ 动能增强</li>
+<li><span class="label">布林带宽:</span> 30.03%</li>
+<li><span class="label">布林位置:</span> 价格处于布林带 11% 位置</li>
+<li><span class="label">量比:</span> 2.06x · 放量 🔴</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🔑 关键价位</h3>
+<ul>
+<li><span class="label">🛡️ 支撑①:</span> <span class="bull">¥6.94</span>（20日最低）</li>
+<li><span class="label">🛡️ 支撑②:</span> <span class="bull">¥6.59</span>（5%下延）</li>
+<li><span class="label">🔴 阻力①:</span> <span class="bear">¥9.62</span>（20日最高）</li>
+<li><span class="label">🔴 阻力②:</span> <span class="bear">¥10.1</span>（5%上延）</li>
+</ul>
+</div>
+
+<div class="info-box">
+<h3>🎯 综合判断</h3>
+<div class="signals">
+<span class="signal-item signal-bull">✅ 多头 2</span>
+<span class="signal-item signal-bear">⚠️ 空头 4</span>
+</div>
+<p style="margin-top:8px;font-size:13px;">
+总体评分：<span class="rating">🌕🌕🌑🌑🌑</span>
+</p>
+<p style="font-size:13px;">走势预判：<strong>回调 📉</strong></p>
+</div>
+
+<div class="info-box section-full">
+<h3>🔍 基本面点评</h3>
+<p style="font-size:13px; line-height:1.8;">
+• <strong>股东大会(5/28):</strong> 通过全部决议，采纳新章程细则。每股回购授权获通过。<br>
+• <strong>持续回购:</strong> 5/28回购200万股(均价6.97港币)，3月以来多次回购，显示管理层认为低估。<br>
+• <strong>行业背景:</strong> 企业SaaS赛道受AI+ERP融合趋势催化。<br>
+• <strong>核心逻辑:</strong> 云转型+AI+大企业客户突破——无明显变化，下行空间有限。
+</p>
+</div>
+
+</div>
+
+<div class="conclusion" style="margin-top:16px;">
+<div class="info-box">
+<h3>✅ 多头信号</h3>
+<ul>
+<li>✅ RSI超卖(14.2)</li><li>✅ 放量上涨</li>
+</ul>
+</div>
+<div class="info-box">
+<h3>⚠️ 空头信号</h3>
+<ul>
+<li>⚠️ 均线空头排列</li><li>⚠️ 股价跌破MA5</li><li>⚠️ 股价跌破MA20</li><li>⚠️ MACD↓ 动能增强</li>
+</ul>
+</div>
+</div>
+
+<div class="action-box action-reduce">
+📊 操作建议：<strong>减仓</strong> · 走势预判：回调 📉 · 评分：🌕🌕🌑🌑🌑
+</div>
+</div>
+
+<div class="footer">
+<p>⚠️ 本报告基于东方财富妙想数据、新浪/腾讯实时行情生成，仅供内部参考，不构成投资建议</p>
+<p>报告生成时间：2026-05-29 19:41:36 · Hermes Agent 自动生成</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美股映射复盘 2026-05-29</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif; background: #f0f2f5; color: #333; line-height: 1.6; }
+.header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; padding: 40px 20px; text-align: center; }
+.header h1 { font-size: 2em; margin-bottom: 8px; letter-spacing: 2px; }
+.header .subtitle { font-size: 1em; opacity: 0.85; }
+.header .date { font-size: 0.9em; opacity: 0.7; margin-top: 12px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 20px 16px; }
+.section { background: white; border-radius: 16px; padding: 24px 20px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.section h2 { font-size: 1.3em; color: #1a1a2e; margin-bottom: 16px; padding-left: 12px; border-left: 4px solid #0f3460; }
+.section h3 { font-size: 1.05em; color: #333; margin: 16px 0 8px; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 12px 0; }
+.card { background: #f8f9fc; border-radius: 12px; padding: 18px 16px; text-align: center; border: 1px solid #eef0f5; }
+.card .name { font-size: 0.85em; color: #666; margin-bottom: 6px; }
+.card .price { font-size: 1.5em; font-weight: 700; }
+.card .change { font-size: 0.95em; margin-top: 4px; font-weight: 600; }
+.up { color: #00a854; }
+.down { color: #e53935; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.92em; }
+th { background: #f0f2f5; padding: 10px 12px; text-align: left; font-weight: 600; color: #555; border-bottom: 2px solid #ddd; }
+td { padding: 10px 12px; border-bottom: 1px solid #eee; }
+tr:hover td { background: #f8f9fc; }
+.tag { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 0.8em; font-weight: 600; margin: 2px 4px 2px 0; }
+.tag-green { background: #e6f7ec; color: #00a854; }
+.tag-red { background: #ffebee; color: #e53935; }
+.tag-blue { background: #e3f2fd; color: #1565c0; }
+.tag-orange { background: #fff3e0; color: #e65100; }
+.tag-gray { background: #f5f5f5; color: #666; }
+.insight-box { background: #f0f7ff; border-radius: 12px; padding: 16px; margin: 12px 0; border-left: 4px solid #0f3460; }
+.insight-box p { margin: 6px 0; }
+.warning-box { background: #fff8e1; border-radius: 12px; padding: 16px; margin: 12px 0; border-left: 4px solid #ffa000; }
+.risk-box { background: #ffebee; border-radius: 12px; padding: 16px; margin: 12px 0; border-left: 4px solid #e53935; }
+.kv { display: flex; flex-wrap: wrap; gap: 16px; margin: 8px 0; }
+.kv-item { flex: 1; min-width: 140px; }
+.kv-item .label { font-size: 0.8em; color: #888; }
+.kv-item .value { font-size: 1.1em; font-weight: 600; }
+.weekly { margin-top: 12px; padding: 12px; background: #f5f7ff; border-radius: 10px; }
+.small { font-size: 0.85em; color: #888; }
+.icon { font-size: 1.2em; margin-right: 4px; }
+@media (max-width: 600px) {
+  .header h1 { font-size: 1.4em; }
+  .card-grid { grid-template-columns: 1fr 1fr; }
+  .section { padding: 16px 14px; }
+  table { font-size: 0.8em; }
+  th, td { padding: 6px 8px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 美股映射复盘</h1>
+  <div class="subtitle">2026年5月29日（周五）| 美国东部时间</div>
+  <div class="date">观澜 · 2026年5月31日发布</div>
+</div>
+
+<div class="container">
+
+<!-- 第一部分：美股整体表现 -->
+<div class="section">
+  <h2>一、美股整体表现</h2>
+  <div class="card-grid">
+    <div class="card">
+      <div class="name">道琼斯工业指数</div>
+      <div class="price">51,032.46</div>
+      <div class="change up">▲ +363.49 (+0.72%)</div>
+      <div class="small">首破51,000点</div>
+    </div>
+    <div class="card">
+      <div class="name">标普500指数</div>
+      <div class="price">7,580.06</div>
+      <div class="change up">▲ +16.43 (+0.22%)</div>
+      <div class="small">历史新高 · 9周连涨</div>
+    </div>
+    <div class="card">
+      <div class="name">纳斯达克综合指数</div>
+      <div class="price">26,972.62</div>
+      <div class="change up">▲ +55.15 (+0.20%)</div>
+      <div class="small">历史新高</div>
+    </div>
+    <div class="card">
+      <div class="name">美元指数</div>
+      <div class="price">99.02</div>
+      <div class="change down">▼ -0.19%</div>
+      <div class="small">弱势震荡</div>
+    </div>
+  </div>
+
+  <div class="weekly">
+    <strong>周度表现：</strong>
+    <span class="tag tag-green">道指 +0.90%</span>
+    <span class="tag tag-green">标普 +1.43%（9周连涨）</span>
+    <span class="tag tag-green">纳指 +2.39%</span>
+    <span style="margin-left:12px;"><strong>月度表现：</strong></span>
+    <span class="tag tag-green">道指 +2.78%</span>
+    <span class="tag tag-green">标普 +5.15%</span>
+    <span class="tag tag-green">纳指 +8.36%</span>
+  </div>
+
+  <div class="insight-box">
+    <p><strong>📌 市场情绪：</strong>周五美股三大指数集体刷新历史新高，道指首次收在51,000点上方。标普500实现罕见的9周连涨（自2023年以来的最长连涨纪录）。5月纳指以+8.36%领跑，AI交易热潮持续升温。然而，标普500已连续6个交易日单日涨跌幅未超过0.7%，市场波动性极低，部分分析师警告可能进入盘整阶段。</p>
+    <p><strong>⚡ 核心驱动：</strong></p>
+    <p>① 美伊接近达成60天停火谅解备忘录，油价下跌缓解通胀担忧</p>
+    <p>② 戴尔科技财报远超预期（AI服务器收入暴增757%），引爆AI硬件板块</p>
+    <p>③ 微软宣布下周推出多款自研AI模型，AI软件板块集体暴涨</p>
+    <p>④ 4月PCE符合预期（整体+3.8%、核心+3.3%），短期通胀压力但未超预期恶化</p>
+    <p>⑤ S&P 500看涨期权单日成交量创历史最高纪录，市场极度看多</p>
+  </div>
+</div>
+
+<!-- 第二部分：强势板块与核心逻辑 -->
+<div class="section">
+  <h2>二、强势板块与核心逻辑</h2>
+  <h3>🔥 涨幅前5板块</h3>
+  <table>
+    <tr><th>板块</th><th>涨幅</th><th>驱动逻辑</th><th>龙头标的</th></tr>
+    <tr>
+      <td>AI服务器/硬件</td>
+      <td class="up">▲ +10%~33%</td>
+      <td>戴尔Q1营收438亿美元（超预期21%），AI服务器收入161亿美元暴增757%，全年指引上调至600亿美元</td>
+      <td>戴尔科技+32.76%、超微电脑+13%</td>
+    </tr>
+    <tr>
+      <td>存储芯片</td>
+      <td class="up">▲ +4%~22%</td>
+      <td>"存储超级周期"持续，AI数据中心驱动HBM/企业级SSD需求爆发</td>
+      <td>NetApp+22.39%、美光+4%</td>
+    </tr>
+    <tr>
+      <td>AI软件/应用</td>
+      <td class="up">▲ +3%~9%</td>
+      <td>微软下周推出多款自研AI模型；Snowflake AI数据云平台暴涨36%余波</td>
+      <td>微软+5%、ServiceNow+8%、甲骨文+5%</td>
+    </tr>
+    <tr>
+      <td>半导体</td>
+      <td class="up">▲ +2%~5%</td>
+      <td>费城半导体指数上涨近1%，AI算力需求持续驱动芯片订单增长</td>
+      <td>高通+5.3%、博通+4%、英特尔+3%</td>
+    </tr>
+    <tr>
+      <td>贵金属</td>
+      <td class="up">▲ +1%~2%</td>
+      <td>美元走弱+美债收益率下行+中东地缘风险</td>
+      <td>黄金+1.22%、白银+1.86%</td>
+    </tr>
+  </table>
+
+  <h3>🧊 跌幅前3板块</h3>
+  <table>
+    <tr><th>板块</th><th>跌幅</th><th>下跌原因</th><th>代表标的</th></tr>
+    <tr>
+      <td>光通信</td>
+      <td class="down">▼ -4%~6%</td>
+      <td>资金从算力基建向AI应用/存储轮动，前期涨幅过大面临获利了结</td>
+      <td>Lumentum-5%、康宁(Corning)-4%</td>
+    </tr>
+    <tr>
+      <td>太空概念</td>
+      <td class="down">▼ -3%~15%</td>
+      <td>美伊停火预期降低国防/太空支出紧迫性，前期暴涨后回调</td>
+      <td>AST SpaceMobile-15%、Rocket Lab-3%</td>
+    </tr>
+    <tr>
+      <td>中概互联网</td>
+      <td class="down">▼ -0.5%~5%</td>
+      <td>中美关系不确定性+资金回流AI主线；5月金龙指数累计跌4.93%</td>
+      <td>美团-5%、拼多多-4.13%</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 第三部分：重点个股异动 -->
+<div class="section">
+  <h2>三、重点个股异动</h2>
+  <table>
+    <tr><th>个股</th><th>涨跌幅</th><th>收盘价</th><th>分析</th></tr>
+    <tr>
+      <td><strong>戴尔科技(DELL)</strong></td>
+      <td class="up">▲ +32.76%</td>
+      <td>~$450</td>
+      <td>Q1财报大超预期：营收438亿（+88% YoY），AI服务器收入161亿（+757% YoY），全年AI服务器指引上调至600亿美元。创历史最佳单日表现。</td>
+    </tr>
+    <tr>
+      <td><strong>微软(MSFT)</strong></td>
+      <td class="up">▲ +5%+</td>
+      <td>—</td>
+      <td>下周将推出多款自研AI模型（包括代码模型），以应对协议限制并抢占市场。AI时代核心受益者。</td>
+    </tr>
+    <tr>
+      <td><strong>博通(AVGO)</strong></td>
+      <td class="up">▲ +4%+</td>
+      <td>—</td>
+      <td>逼近历史新高。AI网络芯片需求旺盛，VMware整合进展顺利。</td>
+    </tr>
+    <tr>
+      <td><strong>英特尔(INTC)</strong></td>
+      <td class="up">▲ +3%~4%</td>
+      <td>—</td>
+      <td>AI服务器需求外溢至传统CPU，叠加欧盟重启芯片法案利好。代工业务有望获欧洲订单。</td>
+    </tr>
+    <tr>
+      <td><strong>谷歌(GOOGL)</strong></td>
+      <td class="down">▼ -2%+</td>
+      <td>—</td>
+      <td>前期AI搜索布局领先后的获利回吐；微软新模型竞争加剧。</td>
+    </tr>
+    <tr>
+      <td><strong>英伟达(NVDA)</strong></td>
+      <td class="down">▼ -1.45%</td>
+      <td>$211.14</td>
+      <td>成交额617亿美元，全市场第一。尽管AI趋势不变，但短期面临获利了结压力。黄仁勋下周访韩或探讨合作。</td>
+    </tr>
+    <tr>
+      <td><strong>亚马逊(AMZN)</strong></td>
+      <td class="down">▼ -1%+</td>
+      <td>—</td>
+      <td>科技巨头轮动中的小幅回调，云计算与AI业务长期向好趋势不变。</td>
+    </tr>
+    <tr>
+      <td><strong>特斯拉(TSLA)</strong></td>
+      <td class="down">▼ -1%+</td>
+      <td>—</td>
+      <td>电动车需求增速放缓担忧仍在，但FSD和Robotaxi长期催化剂。</td>
+    </tr>
+    <tr>
+      <td><strong>台积电(TSM)</strong></td>
+      <td class="down">▼ -1%+</td>
+      <td>—</td>
+      <td>AI芯片代工龙头，短线技术性回调，基本面强劲不变。</td>
+    </tr>
+    <tr>
+      <td><strong>NetApp(NTAP)</strong></td>
+      <td class="up">▲ +22.39%</td>
+      <td>—</td>
+      <td>存储超级周期受益者，业绩和指引全面超预期，AI数据存储需求爆发。</td>
+    </tr>
+  </table>
+  <div class="small" style="margin-top:8px;">注：AMD、礼来(LLY)、强生(JNJ)、默沙东(MRK)、阿斯利康(AZN)当日涨跌幅未超过±5%，归入正常波动范围。</div>
+</div>
+
+<!-- 第四部分：中概股 -->
+<div class="section">
+  <h2>四、中概股表现</h2>
+  <table>
+    <tr><th>个股</th><th>涨跌幅</th><th>分析</th></tr>
+    <tr>
+      <td><strong>美团(Meituan)</strong></td>
+      <td class="down">▼ -5%</td>
+      <td>外卖行业竞争加剧，京东入局外卖市场持续冲击美团份额；港股科技板块承压。</td>
+    </tr>
+    <tr>
+      <td><strong>拼多多(PDD)</strong></td>
+      <td class="down">▼ -4.13%</td>
+      <td>Temu海外扩张边际放缓担忧叠加中美贸易摩擦风险，短期情绪偏弱。</td>
+    </tr>
+    <tr>
+      <td><strong>京东(JD)</strong></td>
+      <td class="down">▼ -2.35%</td>
+      <td>消费复苏信号仍不明确，618大促前市场保持谨慎。</td>
+    </tr>
+    <tr>
+      <td><strong>B站(BILI)</strong></td>
+      <td class="down">▼ -1.99%</td>
+      <td>游戏业务增长预期有所降温，但广告业务改善趋势未改。</td>
+    </tr>
+    <tr>
+      <td><strong>理想汽车(LI)</strong></td>
+      <td class="down">▼ -1.52%</td>
+      <td>新能源汽车价格战仍在加剧，市场观望新一轮促销影响。</td>
+    </tr>
+    <tr>
+      <td><strong>阿里巴巴(BABA)</strong></td>
+      <td class="down">▼ -1.25%</td>
+      <td>云业务AI转型是亮点，但消费复苏预期偏弱拖累电商估值。</td>
+    </tr>
+    <tr>
+      <td><strong>百度(BIDU)</strong></td>
+      <td class="up">▲ +1.65%</td>
+      <td>AI大模型布局领先，自动驾驶商业化预期升温，逆势上涨。</td>
+    </tr>
+  </table>
+  <div class="insight-box">
+    <p><strong>整体判断：</strong>纳斯达克金龙指数周五跌0.48%，5月累计下跌4.93%，与美股大盘的强势形成鲜明对比。中概股持续受到中美关系不确定性、国内消费复苏偏弱以及资金回流AI主线的三重压制。百度凭借AI概念逆势上涨，显示出资金在"中国AI"方向的差异化配置逻辑。</p>
+  </div>
+</div>
+
+<!-- 第五部分：大宗商品与相关资产 -->
+<div class="section">
+  <h2>五、大宗商品与相关资产</h2>
+  <div class="card-grid">
+    <div class="card">
+      <div class="name">WTI原油</div>
+      <div class="price">$88.90</div>
+      <div class="change up">▲ +0.25%</div>
+      <div class="small">美伊停火协议传闻压制</div>
+    </div>
+    <div class="card">
+      <div class="name">布伦特原油</div>
+      <div class="price">$93.71</div>
+      <div class="change down">▼ -0.62%</div>
+      <div class="small">近月合约走弱</div>
+    </div>
+    <div class="card">
+      <div class="name">现货黄金</div>
+      <div class="price">~$4,510</div>
+      <div class="change up">▲ +1.22%</div>
+      <div class="small">美元走弱支撑</div>
+    </div>
+    <div class="card">
+      <div class="name">现货白银</div>
+      <div class="price">~$76.00</div>
+      <div class="change up">▲ +1.86%</div>
+      <div class="small">突破76美元关口</div>
+    </div>
+    <div class="card">
+      <div class="name">LME伦铜</div>
+      <div class="price">$13,746</div>
+      <div class="change up">▲ +1.71%</div>
+      <div class="small">矿端趋紧+需求回暖</div>
+    </div>
+    <div class="card">
+      <div class="name">伦锡</div>
+      <div class="price">$55,900</div>
+      <div class="change up">▲ +2.47%</div>
+      <div class="small">AI服务器耗锡量爆发</div>
+    </div>
+    <div class="card">
+      <div class="name">10Y美债收益率</div>
+      <div class="price">4.453%</div>
+      <div class="change down">▼ -2.95bp</div>
+      <div class="small">30Y回到5%以下</div>
+    </div>
+    <div class="card">
+      <div class="name">美元指数</div>
+      <div class="price">99.02</div>
+      <div class="change down">▼ -0.19%</div>
+      <div class="small">区间98.95-99.54</div>
+    </div>
+  </div>
+  <div class="insight-box">
+    <p><strong>资产联动逻辑：</strong>美伊停火预期主导了大宗商品市场的走势。油价在停火传闻与辟谣中剧烈波动，最终WTI微涨、布伦特小跌，总体偏弱。黄金受益于美元走弱和美债收益率下行，重回4,500美元上方。基本金属全面走强，铜、锡受AI基建需求驱动表现突出。</p>
+  </div>
+</div>
+
+<!-- 第六部分：重要信息点评 -->
+<div class="section">
+  <h2>六、重要信息点评</h2>
+
+  <h3>📋 4月PCE物价指数（5月28日发布）</h3>
+  <div class="kv">
+    <div class="kv-item"><span class="label">整体PCE同比</span><div class="value">3.8%</div><div class="small">预期3.8%，前值3.5%</div></div>
+    <div class="kv-item"><span class="label">核心PCE同比</span><div class="value">3.3%</div><div class="small">预期3.3%，前值2.8%</div></div>
+    <div class="kv-item"><span class="label">整体PCE环比</span><div class="value">0.4%</div><div class="small">符合预期</div></div>
+    <div class="kv-item"><span class="label">核心PCE环比</span><div class="value">0.2%</div><div class="small">符合预期</div></div>
+  </div>
+  <p>4月PCE整体符合预期，但创下2023年5月以来最高水平。数据表明通胀回落至2%目标的"最后一英里"仍然漫长。由于符合预期，市场并未恐慌，但12月加息25bp概率已接近50%。</p>
+
+  <h3>📋 Q1 GDP修正值</h3>
+  <p>一季度GDP年化增速由2.0%下修至1.6%，低于首次预估。经济增长动能走弱与通胀高企并存的"类滞胀"格局加剧了政策不确定性。</p>
+
+  <h3>🏛️ 美联储动态</h3>
+  <p>新任美联储主席凯文·沃什面临高通胀+经济放缓的双重挑战。监管副主席鲍曼（5月30日）表示能源价格飙升可能只是短期冲击，未来仍有可能降息。但多位鹰派官员已公开支持加息倾向。6月FOMC会议（6月11日）前，PCE数据将成为关键决策参考。市场定价6月维持利率不变概率99%。</p>
+
+  <h3>🌍 地缘政治：美伊停火</h3>
+  <p>多家媒体报道称美伊已就60天谅解备忘录达成一致，目前等待特朗普批准。白宫否认部分报道但市场基本定价了停火延长的预期。油价承压，对航运、航空、化工板块形成利好。</p>
+
+  <h3>🤖 科技产业</h3>
+  <p>戴尔AI服务器收入暴增757%，将全年指引上调至600亿美元，证明AI资本开支远未见顶。微软下周推出自研AI模型。欧盟计划重启芯片法案，投资1200亿欧元。Anthropic估值达9650亿美元超OpenAI。Robinhood推出AI交易功能。</p>
+</div>
+
+<!-- 第七部分：映射到A股的潜在方向 -->
+<div class="section">
+  <h2>七、映射到A股的潜在方向 ⭐</h2>
+
+  <div class="insight-box">
+    <p><strong>核心判断：</strong>美股AI产业链的业绩暴增直接利好A股对应环节。戴尔AI服务器收入+757%、NetApp存储+22%、微软新模型发布——这三条主线分别对应A股的AI服务器、存储芯片、AI应用三大方向。美伊停火则利好石油下游及贵金属。</p>
+  </div>
+
+  <h3>方向一：AI服务器 & 算力基建（最强映射）</h3>
+  <table>
+    <tr><th>逻辑</th><th>A股标的</th><th>关联度</th></tr>
+    <tr><td>戴尔AI服务器收入指引600亿美元，AI基建需求远超预期，直接利好服务器代工和零部件供应商</td>
+      <td><strong>工业富联</strong>（AI服务器代工龙头）<br><strong>浪潮信息</strong>（国产AI服务器）<br><strong>中科曙光</strong>（国产算力）<br><strong>沪电股份</strong>（AI PCB/服务器板）</td>
+      <td><span class="tag tag-green">高</span></td>
+    </tr>
+  </table>
+
+  <h3>方向二：存储芯片（存储超级周期）</h3>
+  <table>
+    <tr><th>逻辑</th><th>A股标的</th><th>关联度</th></tr>
+    <tr><td>NetApp业绩爆涨22%，"存储超级周期"确认；AI数据中心对HBM、企业级SSD需求爆发</td>
+      <td><strong>兆易创新</strong>（NOR Flash+DRAM）<br><strong>北京君正</strong>（DRAM/NAND）<br><strong>江波龙</strong>（SSD/企业级存储）<br><strong>澜起科技</strong>（内存接口芯片）</td>
+      <td><span class="tag tag-green">高</span></td>
+    </tr>
+  </table>
+
+  <h3>方向三：AI应用 & 大模型</h3>
+  <table>
+    <tr><th>逻辑</th><th>A股标的</th><th>关联度</th></tr>
+    <tr><td>微软自研AI模型发布驱动AI软件板块暴涨，A股AI应用有望共振</td>
+      <td><strong>科大讯飞</strong>（星火大模型+教育AI）<br><strong>金山办公</strong>（WPS AI办公）<br><strong>三六零</strong>（AI搜索+安全大模型）<br><strong>同花顺</strong>（AI金融）</td>
+      <td><span class="tag tag-blue">中高</span></td>
+    </tr>
+  </table>
+
+  <h3>方向四：半导体设备/材料</h3>
+  <table>
+    <tr><th>逻辑</th><th>A股标的</th><th>关联度</th></tr>
+    <tr><td>AI算力需求→芯片订单增长→设备/材料受益；欧盟芯片法案利好全球半导体产业链</td>
+      <td><strong>北方华创</strong>（刻蚀/薄膜设备）<br><strong>中微公司</strong>（刻蚀设备）<br><strong>华大九天</strong>（EDA）<br><strong>雅克科技</strong>（半导体材料）</td>
+      <td><span class="tag tag-blue">中高</span></td>
+    </tr>
+  </table>
+
+  <h3>方向五：黄金/贵金属</h3>
+  <table>
+    <tr><th>逻辑</th><th>A股标的</th><th>关联度</th></tr>
+    <tr><td>黄金重回4500美元上方，美元弱势+地缘风险+央行购金趋势不变</td>
+      <td><strong>紫金矿业</strong>（铜金龙头）<br><strong>山东黄金</strong>（纯黄金标的）<br><strong>中金黄金</strong></td>
+      <td><span class="tag tag-blue">中高</span></td>
+    </tr>
+  </table>
+
+  <h3>方向六：铜/有色金属</h3>
+  <table>
+    <tr><th>逻辑</th><th>A股标的</th><th>关联度</th></tr>
+    <tr><td>伦铜13746美元/吨，AI数据中心+新能源电网改造驱动铜需求长期增长</td>
+      <td><strong>紫金矿业</strong><br><strong>铜陵有色</strong><br><strong>江西铜业</strong><br><strong>锡业股份</strong>（AI服务器焊料用锡）</td>
+      <td><span class="tag tag-blue">中高</span></td>
+    </tr>
+  </table>
+
+  <h3>方向七：原油下跌受益（航空/化工）</h3>
+  <table>
+    <tr><th>逻辑</th><th>A股标的</th><th>关联度</th></tr>
+    <tr><td>美伊停火预期压制油价，WTI 88美元附近，油价下降利好下游成本端</td>
+      <td><strong>中国国航</strong>（燃油成本下降）<br><strong>南方航空</strong><br><strong>万华化学</strong>（化工成本下降）<br><strong>恒力石化</strong></td>
+      <td><span class="tag tag-gray">中</span></td>
+    </tr>
+  </table>
+</div>
+
+<!-- 第八部分：投资机会 -->
+<div class="section">
+  <h2>八、投资机会</h2>
+
+  <div class="warning-box">
+    <p><strong>短期（1-2周）：</strong></p>
+    <p>① <strong>AI服务器链</strong>：戴尔财报映射效应最强，工业富联、浪潮信息有望高开。关注沪电股份、深南电路（AI PCB）。</p>
+    <p>② <strong>存储芯片</strong>：NetApp飙涨+美光新高，兆易创新、江波龙短期情绪催化明显。</p>
+    <p>③ <strong>黄金股</strong>：金价站上4500美元，山东黄金、中金黄金短期避险配置价值上升。</p>
+    <p>④ <strong>铜</strong>：伦铜新高，紫金矿业有望受益于铜价上涨与黄金双重驱动。</p>
+  </div>
+
+  <div class="insight-box">
+    <p><strong>中期（1-3个月）：</strong></p>
+    <p>① <strong>AI应用落地</strong>：微软新模型发布标志AI从基建到应用的转折点，关注金山办公（AI办公）、科大讯飞（教育AI）。</p>
+    <p>② <strong>半导体国产替代</strong>：欧盟芯片法案+美国对华限制持续，北方华创、中微公司等设备龙头中期受益。</p>
+    <p>③ <strong>有色金属</strong>：AI数据中心电力需求+新能源转型，铜价中期看涨逻辑扎实。锡业股份（AI服务器焊料）。</p>
+    <p>④ <strong>航空股</strong>：若油价持续回落，中国国航、南方航空将迎来成本端改善。</p>
+  </div>
+</div>
+
+<!-- 第九部分：风险提示 -->
+<div class="section">
+  <h2>九、风险提示</h2>
+  <div class="risk-box">
+    <p>⚠️ <strong>加息风险：</strong>4月PCE同比3.8%创3年新高，12月加息概率接近50%。若6月FOMC会议释放鹰派信号，全球风险资产可能面临压力。</p>
+    <p>⚠️ <strong>美股回调风险：</strong>标普500已连续6个交易日涨幅<0.7%，表明上涨动能减弱。9周连涨后技术性调整风险增加。花旗财富首席指出"反弹动力更多来自盈利而非情绪扩张"。</p>
+    <p>⚠️ <strong>美伊停火反复：</strong>白宫否认部分停火报道，若谈判破裂油价可能大幅反弹，打压市场风险偏好。</p>
+    <p>⚠️ <strong>中概股持续承压：</strong>中美关系不确定性叠加国内消费复苏偏弱，中概股5月跑输大盘4.93%。短期不建议重仓中概。</p>
+    <p>⚠️ <strong>A股映射滞后：</strong>美股AI板块已充分定价，A股映射标的当天可能存在高开低走风险，追高需谨慎。</p>
+    <p>⚠️ <strong>国内科技轮动：</strong>A股科技板块内部轮动加快（光模块→半导体→机器人），追涨杀跌风险加大，建议分批低吸而非追高。</p>
+  </div>
+</div>
+
+<div style="text-align:center;padding:30px 0 10px;color:#999;font-size:0.85em;">
+  <p>本报告由观澜自动生成 | 数据来源：同花顺iFind、东方财富 | 仅供参考，不构成投资建议</p>
+  <p>生成时间：2026-05-31 14:47 CST</p>
+</div>
+
+</div>
+</body>
+</html>

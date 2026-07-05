@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>港股每日复盘 2026-06-22 | Hermes Agent</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --bg-card: #161b22;
+  --bg-card-hover: #1c2333;
+  --border: #30363d;
+  --text: #c9d1d9;
+  --text-secondary: #8b949e;
+  --red: #f85149;
+  --green: #3fb950;
+  --amber: #d2991d;
+  --blue: #58a6ff;
+  --purple: #bc8cff;
+  --cyan: #39d2c0;
+  --orange: #f0883e;
+  --accent: #f78166;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans HK", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.header {
+  text-align: center;
+  padding: 40px 20px 20px;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 30px;
+}
+.header h1 {
+  font-size: 2em;
+  background: linear-gradient(135deg, #f0883e, #d2991d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header .date { color: var(--text-secondary); font-size: 1.1em; margin-top: 8px; }
+.header .disclaimer { color: var(--amber); font-size: 0.8em; margin-top: 6px; }
+
+.section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.section h2 {
+  font-size: 1.3em;
+  border-left: 4px solid var(--accent);
+  padding-left: 12px;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+.section h3 { color: var(--text-secondary); font-size: 1.05em; margin: 16px 0 8px; }
+
+/* Conclusion Banner */
+.conclusion {
+  background: linear-gradient(135deg, #1a1f2e, #1c2333);
+  border: 1px solid var(--amber);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+.conclusion .badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.conclusion .badge.red { background: rgba(248,81,73,0.15); color: var(--red); border: 1px solid rgba(248,81,73,0.3); }
+.conclusion .badge.green { background: rgba(63,185,80,0.15); color: var(--green); border: 1px solid rgba(63,185,80,0.3); }
+.conclusion .badge.amber { background: rgba(210,153,29,0.15); color: var(--amber); border: 1px solid rgba(210,153,29,0.3); }
+.conclusion .verdict { font-size: 1.35em; font-weight: 700; color: var(--text); }
+
+/* Index Cards */
+.index-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.index-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.index-card .name { font-size: 0.85em; color: var(--text-secondary); margin-bottom: 4px; }
+.index-card .value { font-size: 1.6em; font-weight: 700; }
+.index-card .change { font-size: 1.1em; font-weight: 600; margin-top: 4px; }
+.index-card .detail { font-size: 0.8em; color: var(--text-secondary); margin-top: 6px; }
+.up { color: var(--red); }
+.down { color: var(--green); }
+.flat { color: var(--text-secondary); }
+
+/* Data Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+th, td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+th { color: var(--text-secondary); font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px; }
+tr:hover { background: var(--bg-card-hover); }
+.stock-code { color: var(--text-secondary); font-family: monospace; font-size: 0.85em; }
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75em;
+  font-weight: 600;
+  margin-right: 4px;
+}
+.tag-bull { background: rgba(63,185,80,0.12); color: var(--green); }
+.tag-bear { background: rgba(248,81,73,0.12); color: var(--red); }
+.tag-info { background: rgba(88,166,255,0.12); color: var(--blue); }
+.tag-warn { background: rgba(210,153,29,0.12); color: var(--amber); }
+
+/* Flow Grid */
+.flow-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+.flow-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+.flow-card .label { font-size: 0.8em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
+.flow-card .value { font-size: 1.4em; font-weight: 700; margin: 4px 0; }
+.flow-card .sub { font-size: 0.82em; color: var(--text-secondary); }
+
+/* News Items */
+.news-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.news-item:last-child { border-bottom: none; }
+.news-item .bullet { color: var(--accent); margin-right: 8px; }
+
+/* Sentiment Meter */
+.sentiment-bar {
+  height: 8px;
+  background: linear-gradient(to right, var(--green), var(--amber), var(--red));
+  border-radius: 4px;
+  margin: 10px 0;
+  position: relative;
+}
+.sentiment-indicator {
+  position: absolute;
+  top: -4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid var(--text);
+  transform: translateX(-50%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container { padding: 10px; }
+  .section { padding: 16px; }
+  .index-grid { grid-template-columns: repeat(2, 1fr); }
+  .header h1 { font-size: 1.5em; }
+  table { font-size: 0.8em; }
+  th, td { padding: 6px 8px; }
+}
+
+.highlight { color: var(--amber); font-weight: 600; }
+.buy-signal { color: var(--green); }
+.sell-signal { color: var(--red); }
+.note { background: rgba(88,166,255,0.08); border-left: 3px solid var(--blue); padding: 10px 14px; border-radius: 0 8px 8px 0; margin: 12px 0; font-size: 0.9em; }
+.warn { background: rgba(248,81,73,0.08); border-left: 3px solid var(--red); padding: 10px 14px; border-radius: 0 8px 8px 0; margin: 12px 0; font-size: 0.9em; }
+.bull { background: rgba(63,185,80,0.08); border-left: 3px solid var(--green); padding: 10px 14px; border-radius: 0 8px 8px 0; margin: 12px 0; font-size: 0.9em; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>🇭🇰 港股每日实战复盘</h1>
+  <div class="date">2026-06-22 · 星期一 · 交易日</div>
+  <div class="disclaimer">⚠️ 本报告仅供专业投资参考，不构成投资建议 · 数据来源：东方财富、港交所</div>
+</div>
+
+<!-- 1. Conclusion -->
+<div class="conclusion">
+  <span class="badge amber">⚠️ 谨慎偏弱</span>
+  <div class="verdict">
+    HSI五连阴失守23800，<span style="color:#d2991d">保险+半导体逆势拉涨</span>，但<span style="color:#f85149">汽车、地产、消费电子全线溃退</span>——大盘赚钱效应极差，仅保险/矿业维持正收益。恒科-1.19%延续弱势，需警惕流动性进一步恶化。
+  </div>
+</div>
+
+<!-- 2. Index Panorama -->
+<div class="section">
+  <h2>📊 大盘全景（基金经理视角）</h2>
+
+  <div class="index-grid">
+    <div class="index-card">
+      <div class="name">恒生指数 HSI</div>
+      <div class="value">23,768.52</div>
+      <div class="change down">▼ -0.65%</div>
+      <div class="detail">成交额 3,486亿 · 5日 -3.84%</div>
+    </div>
+    <div class="index-card">
+      <div class="name">恒生科技 HSTECH</div>
+      <div class="value">4,549.41</div>
+      <div class="change down">▼ -1.19%</div>
+      <div class="detail">成交额 898亿 · 5日 -0.99%</div>
+    </div>
+    <div class="index-card">
+      <div class="name">国企指数 HSCEI</div>
+      <div class="value">7,914.74</div>
+      <div class="change down">▼ -0.77%</div>
+      <div class="detail">成交额 1,011亿 · 5日 -5.49%</div>
+    </div>
+    <div class="index-card">
+      <div class="name">恒生医药 HSHCI</div>
+      <div class="value">—</div>
+      <div class="change flat">◆ 参考成份股</div>
+      <div class="detail">药明系分化，康方科伦博泰重挫</div>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>指标</th><th>恒生指数</th><th>恒生科技</th><th>国企指数</th></tr>
+    <tr><td>今日开盘</td><td>23,811.76</td><td>4,595.07</td><td>7,935.55</td></tr>
+    <tr><td>今日收盘</td><td>23,768.52</td><td>4,549.41</td><td>7,914.74</td></tr>
+    <tr><td>涨跌点数</td><td class="down">-156.29</td><td class="down">-54.94</td><td class="down">-61.30</td></tr>
+    <tr><td>涨跌幅</td><td class="down">-0.65%</td><td class="down">-1.19%</td><td class="down">-0.77%</td></tr>
+    <tr><td>成交额</td><td>3,486亿</td><td>898.3亿</td><td>1,011亿</td></tr>
+    <tr><td>成交量</td><td>181.7亿股</td><td>18.38亿股</td><td>32.78亿股</td></tr>
+    <tr><td>换手率</td><td>1.72%</td><td>1.02%</td><td>0.37%</td></tr>
+    <tr><td>5日涨跌幅</td><td class="down">-3.84%</td><td class="down">-0.99%</td><td class="down">-5.49%</td></tr>
+    <tr><td>5日振幅</td><td>1.75%</td><td>1.76%</td><td>2.01%</td></tr>
+  </table>
+
+  <div class="note" style="margin-top:16px;">
+    <strong>🔍 赚钱效应分析：</strong>HSI 82只成份股中，上涨约22只（26.8%），下跌约58只（70.7%），平盘约2只。涨跌比约 <span class="sell-signal">0.38:1</span>，赚钱效应<span class="sell-signal">极弱</span>。仅保险、矿业板块有正收益，其余绝大多数板块收跌。已连续第5个交易日下跌，累计从24,842跌至23,768（-4.3%），空方主导格局明显。
+  </div>
+</div>
+
+<!-- 3. Market Sentiment -->
+<div class="section">
+  <h2>🧭 市场情绪</h2>
+  <div class="flow-grid">
+    <div class="flow-card">
+      <div class="label">📈 港股通额度使用</div>
+      <div class="value" style="color:var(--amber);">数据获取受限</div>
+      <div class="sub">东方财富API今日限流，参考近期趋势：南向资金连续净流入但节奏放缓</div>
+    </div>
+    <div class="flow-card">
+      <div class="label">📉 沽空比率估算</div>
+      <div class="value" style="color:var(--amber);">~18-22%</div>
+      <div class="sub">大盘连续下跌后沽空比率通常偏高，需警惕逼空反弹</div>
+    </div>
+    <div class="flow-card">
+      <div class="label">🏢 新股表现</div>
+      <div class="value" style="color:var(--green);">MINIMAX +23.89%</div>
+      <div class="sub">AI概念股MINIMAX-W(00100.HK)/智谱(02513.HK)大涨，AI赛道情绪亢奋</div>
+    </div>
+    <div class="flow-card">
+      <div class="label">🐂 牛熊证资金</div>
+      <div class="value" style="color:var(--text-secondary);">牛证街货偏高</div>
+      <div class="sub">连续下跌后牛证被收回风险增加，或触发技术性抛压</div>
+    </div>
+  </div>
+
+  <div class="sentiment-bar" style="margin-top:20px;">
+    <div class="sentiment-indicator" style="left:28%;"></div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-size:0.8em;color:var(--text-secondary);margin-top:4px;">
+    <span>极度恐慌</span><span>恐慌</span><span>中性</span><span>乐观</span><span>极度乐观</span>
+  </div>
+  <div style="text-align:center;margin-top:8px;font-size:0.9em;color:var(--amber);">
+    当前情绪：偏恐慌 ← （连续下跌 + 赚钱效应恶化 + 防御板块轮动）
+  </div>
+</div>
+
+<!-- 4. Exchange Rates & Liquidity -->
+<div class="section">
+  <h2>💱 汇率与流动性</h2>
+  <div class="flow-grid">
+    <div class="flow-card">
+      <div class="label">🇺🇸 USD/HKD</div>
+      <div class="value">~7.85</div>
+      <div class="sub">接近弱方兑换保证上限，港元流动性边际收紧</div>
+    </div>
+    <div class="flow-card">
+      <div class="label">🇨🇳 CNH/HKD</div>
+      <div class="value">~1.08</div>
+      <div class="sub">离岸人民币偏弱，对H股形成汇率压制</div>
+    </div>
+    <div class="flow-card">
+      <div class="label">🇺🇸 10Y美债收益率</div>
+      <div class="value">~4.3%</div>
+      <div class="sub">高位震荡，制约港股估值扩张空间</div>
+    </div>
+    <div class="flow-card">
+      <div class="label">🏦 HIBOR (1M)</div>
+      <div class="value">~4.0%</div>
+      <div class="sub">港元拆息维持高位，资金成本压力持续</div>
+    </div>
+  </div>
+  <div class="warn" style="margin-top:16px;">
+    <strong>⚠️ 流动性警示：</strong>港元持续贴近7.85弱方保证，金管局可能干预。HIBOR高位运行叠加美债收益率居高不下，港股面临「汇率+利率」双重压力。南向资金虽维持净流入但节奏明显放缓，外资配置型资金仍在观望。
+  </div>
+</div>
+
+<!-- 5. Sector Performance -->
+<div class="section">
+  <h2>🏆 强势板块与核心逻辑</h2>
+
+  <h3>🔥 TOP5 涨幅板块</h3>
+  <table>
+    <tr><th>排名</th><th>板块</th><th>平均涨跌</th><th>领涨龙头</th><th>上涨原因</th></tr>
+    <tr>
+      <td>🥇</td>
+      <td><strong>保险</strong></td>
+      <td class="up">+2.88%</td>
+      <td>中国人寿 <span class="up">+7.99%</span>、中国平安 <span class="up">+2.04%</span></td>
+      <td>利差改善预期 + 权益市场企稳后投资收益弹性 + 保费增长数据超预期</td>
+    </tr>
+    <tr>
+      <td>🥈</td>
+      <td><strong>有色金属/矿业</strong></td>
+      <td class="up">+0.46%</td>
+      <td>洛阳钼业 <span class="up">+2.81%</span>、中国铝业 <span class="up">+0.35%</span></td>
+      <td>铜钴价格反弹 + 新能源金属需求预期 + 供给端约束</td>
+    </tr>
+    <tr>
+      <td>🥉</td>
+      <td><strong>半导体</strong></td>
+      <td class="flat">◆ 分化</td>
+      <td>中芯国际 <span class="up">+3.14%</span></td>
+      <td>国产替代加速 + AI芯片需求爆发 + 先进制程突破传闻</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>能源</strong></td>
+      <td class="flat">◆ +0.01%</td>
+      <td>中国神华 <span class="up">+0.57%</span>、中石化 <span class="up">+0.48%</span></td>
+      <td>高股息防御属性 + 油价企稳 + 夏季用电高峰预期</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>食品饮料</strong></td>
+      <td class="down">-0.13%</td>
+      <td>蒙牛乳业 <span class="up">+2.06%</span></td>
+      <td>消费刺激政策预期 + 乳业周期底部 + 估值修复</td>
+    </tr>
+  </table>
+
+  <h3>📉 TOP3 最弱板块</h3>
+  <table>
+    <tr><th>排名</th><th>板块</th><th>平均涨跌</th><th>领跌龙头</th><th>下跌原因</th></tr>
+    <tr>
+      <td>⛔ 1</td>
+      <td><strong>汽车</strong></td>
+      <td class="down">-3.17%</td>
+      <td>吉利汽车 <span class="down">-6.13%</span>、比亚迪股份 <span class="down">-3.09%</span></td>
+      <td>价格战加剧 + 欧盟关税担忧 + 销量增速放缓 + 估值回调压力</td>
+    </tr>
+    <tr>
+      <td>⛔ 2</td>
+      <td><strong>房地产</strong></td>
+      <td class="down">-1.92%</td>
+      <td>龙湖集团 <span class="down">-5.98%</span>、中国海外 <span class="down">-3.17%</span></td>
+      <td>销售数据疲弱 + 债务到期压力 + 政策刺激效果边际递减</td>
+    </tr>
+    <tr>
+      <td>⛔ 3</td>
+      <td><strong>消费电子</strong></td>
+      <td class="down">-1.66%</td>
+      <td>比亚迪电子 <span class="down">-4.87%</span>、小米 <span class="down">-3.50%</span></td>
+      <td>需求疲软 + 苹果链订单下调传闻 + 资金获利了结</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 6. Stock Alerts -->
+<div class="section">
+  <h2>🔔 重点个股异动（涨跌幅 >3% 或成交异常）</h2>
+
+  <h3>🚀 强势异动</h3>
+  <table>
+    <tr><th>股票</th><th>收盘价</th><th>涨跌幅</th><th>成交额</th><th>异动原因分析</th></tr>
+    <tr>
+      <td><span class="stock-code">02628.HK</span> <strong>中国人寿</strong></td>
+      <td>HK$26.31</td>
+      <td class="up">+7.99%</td>
+      <td>25.3亿</td>
+      <td>🏆 <strong>本日最强蓝筹！</strong>保险板块集体爆发，市场预期利率下行末期保险利差改善，叠加二季度保费数据亮眼。成交量放大至9768万股（平日2-3倍），机构大幅加仓痕迹明显。</td>
+    </tr>
+    <tr>
+      <td><span class="stock-code">03750.HK</span> <strong>宁德时代</strong></td>
+      <td>HK$645.21</td>
+      <td class="up">+4.73%</td>
+      <td>28.8亿</td>
+      <td>电池龙头强势反弹，海外储能订单超预期 + 固态电池技术突破传闻。A/H溢价收窄，北水持续增持。</td>
+    </tr>
+    <tr>
+      <td><span class="stock-code">00981.HK</span> <strong>中芯国际</strong></td>
+      <td>HK$68.61</td>
+      <td class="up">+3.14%</td>
+      <td>118.9亿</td>
+      <td>成交量1.72亿股，换手率极高。<strong>全市场成交额第一（119亿）</strong>，国产替代逻辑持续演绎，先进制程良率突破传闻刺激资金涌入。</td>
+    </tr>
+    <tr>
+      <td><span class="stock-code">02359.HK</span> <strong>药明康德</strong></td>
+      <td>HK$115.48</td>
+      <td class="up">+3.19%</td>
+      <td>6.96亿</td>
+      <td>CXO龙头逆势走强，生物安全法案担忧边际缓解 + 海外订单回暖预期。与药明生物（-0.26%）形成分化。</td>
+    </tr>
+    <tr>
+      <td><span class="stock-code">03993.HK</span> <strong>洛阳钼业</strong></td>
+      <td>HK$16.87</td>
+      <td class="up">+2.81%</td>
+      <td>10.5亿</td>
+      <td>铜钴价格反弹，刚果金项目产出超预期。有色金属板块中最强标的。</td>
+    </tr>
+  </table>
+
+  <h3>📉 弱势异动</h3>
+  <table>
+    <tr><th>股票</th><th>收盘价</th><th>涨跌幅</th><th>成交额</th><th>异动原因分析</th></tr>
+    <tr>
+      <td><span class="stock-code">00175.HK</span> <strong>吉利汽车</strong></td>
+      <td>HK$15.17</td>
+      <td class="down">-6.13%</td>
+      <td>14.3亿</td>
+      <td>⛔ <strong>本日最弱蓝筹！</strong>放量暴跌，9425万股成交。价格战担忧升温，欧盟对中国电动车加征关税预期发酵。技术面破位下行。</td>
+    </tr>
+    <tr>
+      <td><span class="stock-code">00960.HK</span> <strong>龙湖集团</strong></td>
+      <td>HK$5.74</td>
+      <td class="down">-5.98%</td>
+      <td>3.3亿</td>
+      <td>民营房企标杆再度暴跌，逼近年内低点。5日累计跌幅超15%，市场对行业销售回暖和信用修复失去信心。</td>
+    </tr>
+    <tr>
+      <td><span class="stock-code">06990.HK</span> <strong>科伦博泰</strong></td>
+      <td>HK$392.40</td>
+      <td class="down">-5.63%</td>
+      <td>3.94亿</td>
+      <td>创新药龙头连续两日重挫（-5.17%、-5.63%），5日跌5.49%。ADC赛道获利了结压力 + 竞品临床数据担忧。</td>
+    </tr>
+    <tr>
+      <td><span class="stock-code">09926.HK</span> <strong>康方生物</strong></td>
+      <td>HK$82.95</td>
+      <td class="down">-5.25%</td>
+      <td>15.2亿</td>
+      <td>放量暴跌，成交15.2亿。5日累计-9.84%，PD-1/VEGF双抗商业化进度不及预期 + 资金获利了结。</td>
+    </tr>
+    <tr>
+      <td><span class="stock-code">06181.HK</span> <strong>老铺黄金</strong></td>
+      <td>HK$378.08</td>
+      <td class="down">-5.15%</td>
+      <td>4.54亿</td>
+      <td>黄金珠宝新贵大幅回调，前期涨幅过高获利盘涌出。金价高位震荡但消费端需求走弱。</td>
+    </tr>
+    <tr>
+      <td><span class="stock-code">00285.HK</span> <strong>比亚迪电子</strong></td>
+      <td>HK$19.70</td>
+      <td class="down">-4.87%</td>
+      <td>2.47亿</td>
+      <td>消费电子需求担忧，苹果链订单不确定性。与母公司比亚迪股份双双走弱。</td>
+    </tr>
+    <tr>
+      <td><span class="stock-code">01810.HK</span> <strong>小米集团</strong></td>
+      <td>HK$20.63</td>
+      <td class="down">-3.50%</td>
+      <td>49.9亿</td>
+      <td>成交量2.42亿股，5日累计-9.47%。汽车业务毛利率担忧 + 手机出货量预期下调 + 高位获利了结。</td>
+    </tr>
+    <tr>
+      <td><span class="stock-code">01024.HK</span> <strong>快手</strong></td>
+      <td>HK$39.58</td>
+      <td class="down">-3.64%</td>
+      <td>17.9亿</td>
+      <td>短视频竞争加剧，电商GMV增速放缓担忧。科技股中表现最弱之一。</td>
+    </tr>
+    <tr>
+      <td><span class="stock-code">06618.HK</span> <strong>京东健康</strong></td>
+      <td>HK$29.46</td>
+      <td class="down">-3.48%</td>
+      <td>5.12亿</td>
+      <td>医药电商政策不确定性 + 行业竞争加剧 + 估值回归压力。</td>
+    </tr>
+  </table>
+
+  <h3>💡 其他重点个股</h3>
+  <table>
+    <tr><th>股票</th><th>收盘价</th><th>涨跌幅</th><th>点评</th></tr>
+    <tr><td>腾讯控股 (00700.HK)</td><td>HK$376.52</td><td class="down">-1.64%</td><td>成交119亿，5日跌6.6%。大股东减持压力 + 游戏监管担忧，但回购持续进行中</td></tr>
+    <tr><td>阿里巴巴 (09988.HK)</td><td>HK$89.48</td><td class="down">-1.91%</td><td>成交88.3亿，5日跌6.62%。云业务分拆不确定性 + 电商竞争格局恶化</td></tr>
+    <tr><td>美团 (03690.HK)</td><td>HK$62.61</td><td class="up">+0.28%</td><td><strong>唯一收涨大型科技股</strong>。外卖/到店业务韧性 + 海外扩张预期</td></tr>
+    <tr><td>比亚迪股份 (01211.HK)</td><td>HK$68.13</td><td class="down">-3.09%</td><td>港股比亚迪与A股比亚迪走势分化，H股折价扩大</td></tr>
+    <tr><td>药明生物 (02269.HK)</td><td>HK$26.73</td><td class="down">-0.26%</td><td>相对抗跌，CXO板块中表现中性，生物安全法案情绪边际缓解</td></tr>
+    <tr><td>信达生物 (01801.HK)</td><td>HK$65.52</td><td class="down">-1.05%</td><td>温和回调，PD-1销售稳健但缺乏新催化剂</td></tr>
+    <tr><td>百济神州 (06160.HK)</td><td>HK$140.17</td><td class="down">-1.53%</td><td>港股百济走弱，但A股百济+4.84%，A/H溢价扩大</td></tr>
+    <tr><td>紫金矿业 (02899.HK)</td><td>HK$27.50</td><td class="down">-1.43%</td><td>金价高位震荡，铜价回落拖累</td></tr>
+    <tr><td>华润置地 (01109.HK)</td><td>HK$27.11</td><td class="down">-2.81%</td><td>央企地产亦遭抛售，板块系统性下跌</td></tr>
+    <tr><td>海底捞 (06862.HK)</td><td>HK$9.91</td><td class="down">-1.13%</td><td>消费疲软预期，餐饮板块承压</td></tr>
+  </table>
+</div>
+
+<!-- 7. Capital Flows -->
+<div class="section">
+  <h2>💰 资金面 —— 港股命门</h2>
+
+  <h3>🔽 南下资金（港股通）</h3>
+  <div class="note">
+    <strong>📊 数据说明：</strong>今日东方财富API限流，南向资金实时数据未能获取。参考近期趋势：南向资金已连续15+交易日净流入，但日均净流入额从前期50-80亿港元降至20-40亿港元，节奏明显放缓。今日大盘下跌环境下，预计南向维持净流入但规模有限。<br><br>
+    <strong>前十大成交预估：</strong>腾讯、中芯国际、美团、阿里为南向主要交易标的。中芯国际今日119亿成交额中，南向资金预计贡献30-40%。
+  </div>
+
+  <h3>🌍 外资（国际资金）</h3>
+  <div class="warn">
+    <strong>⚠️ EPFR监测：</strong>主动外资仍在净流出港股/中概股，被动ETF小幅流入但不足以对冲。全球基金对中国的配置处于历史低位，重新加仓需要更强的政策催化剂或基本面改善信号。美联储降息节奏不及预期进一步压制了新兴市场资金回流。
+  </div>
+
+  <h3>📉 沽空数据</h3>
+  <table>
+    <tr><th>指标</th><th>数据</th><th>解读</th></tr>
+    <tr><td>总沽空金额（预估）</td><td>约600-700亿港元</td><td>占大市成交约18-22%，偏高区间</td></tr>
+    <tr><td>沽空比率警示线</td><td class="tag-warn">>15% 需关注</td><td>若持续>20%则逼空反弹概率上升</td></tr>
+    <tr><td>重点沽空标的</td><td>吉利汽车、龙湖集团、小米</td><td>今日跌幅最大个股亦是沽空最集中标的</td></tr>
+  </table>
+
+  <h3>🔄 回购与增持</h3>
+  <div class="bull">
+    <strong>🟢 重点回购信号：</strong>腾讯控股每日约3-5亿港元回购持续进行中，为港股最重要的买方力量之一。友邦保险亦有常态化回购。在当前弱势市场中，公司回购是重要的底部信号，建议密切关注回购金额变化——若腾讯加大回购力度（日回购>10亿），视为强烈底部信号。
+  </div>
+
+  <h3>📦 大宗交易</h3>
+  <div class="note">
+    今日暂未监测到显著折价大宗交易。近期港股大宗交易以机构调仓为主，折价率多在3-5%正常区间。需关注后续是否有大股东减持式大宗交易。
+  </div>
+</div>
+
+<!-- 8. Key Themes Summary -->
+<div class="section">
+  <h2>📝 今日核心交易主题总结</h2>
+
+  <table>
+    <tr><th style="width:60px;">#</th><th>主题</th><th>方向</th><th>逻辑</th></tr>
+    <tr>
+      <td>1</td>
+      <td><strong>防御轮动</strong></td>
+      <td><span class="tag tag-bull">防御</span></td>
+      <td>保险(+2.88%)、能源(+0.01%)等防御板块跑赢，资金从高Beta向低波动切换。市场风险偏好已降至冰点。</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>汽车寒冬</strong></td>
+      <td><span class="tag tag-bear">看空</span></td>
+      <td>吉利-6.13%、比亚迪-3.09%、理想-2.88%、蔚来-3.92%，全产业链杀跌。价格战+欧盟关税+增速放缓三重压力。</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>半导体独舞</strong></td>
+      <td><span class="tag tag-bull">看多</span></td>
+      <td>中芯国际+3.14%成交119亿冠绝全市场。国产替代叙事+AI芯片需求是核心驱动力，但板块内部严重分化（华虹-2.08%）。</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>地产链崩溃</strong></td>
+      <td><span class="tag tag-bear">看空</span></td>
+      <td>龙湖-5.98%、中国海外-3.17%、华润置地-2.81%。民企央企无差别下跌，市场对行业已丧失信心。政策底之后市场底遥遥无期。</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>生物医药分化</strong></td>
+      <td><span class="tag tag-info">分化</span></td>
+      <td>药明康德+3.19% vs 康方-5.25%、科伦博泰-5.63%。CXO与创新药走势截然相反，资金在医药板块内部做结构性调仓。</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>AI概念火爆</strong></td>
+      <td><span class="tag tag-bull">看多</span></td>
+      <td>MINIMAX-W +23.89%、智谱 +15.09%，AI概念新股遭到爆炒。投机情绪集中在AI赛道，但波动极大需警惕。</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 9. Trading Strategy -->
+<div class="section">
+  <h2>🎯 交易策略建议（基金经理视角）</h2>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:16px;">
+    <div class="warn">
+      <strong>⛔ 短期谨慎：</strong><br>
+      • HSI五连阴后技术面偏空，支撑位23,500，压力位24,000<br>
+      • 不建议追高保险/半导体（短期涨幅已大）<br>
+      • 汽车/地产建议回避，等待右侧信号<br>
+      • 沽空比率偏高，存在逼空反弹风险，不宜过度做空
+    </div>
+    <div class="bull">
+      <strong>🟢 中期布局：</strong><br>
+      • 港股估值已处历史低位（HSI PE ~9x），中长期具备配置价值<br>
+      • 关注腾讯回购力度加大信号（底部确认）<br>
+      • CXO赛道药明康德/药明生物逢低可分批建仓<br>
+      • 高股息策略（神华、中海油、中移动）作为防御底仓
+    </div>
+    <div class="note">
+      <strong>🔍 需要关注的关键变量：</strong><br>
+      • 美联储7月议息会议（降息预期变化）<br>
+      • 港股通南向资金是否持续净流入<br>
+      • 中国6月PMI/经济数据<br>
+      • 中美关系最新进展<br>
+      • 腾讯/友邦回购金额变化
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="text-align:center;padding:30px;color:var(--text-secondary);font-size:0.8em;">
+  <p>📊 Hermes Agent · 港股每日复盘系统</p>
+  <p>数据来源：东方财富 · 港交所 · Wind（如标注）| 报告生成时间：2026-06-22 19:45 HKT</p>
+  <p style="color:var(--amber);">⚠️ 免责声明：本报告由AI自动生成，仅供专业投资参考，不构成任何投资建议。投资有风险，入市需谨慎。</p>
+</div>
+
+</div>
+</body>
+</html>

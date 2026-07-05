@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>港股每日复盘 2026-06-23</title>
+<style>
+  :root {
+    --bg: #0a0e14;
+    --card: #131820;
+    --card2: #181f2a;
+    --border: #1e2a3a;
+    --text: #c8ccd4;
+    --text2: #8b95a5;
+    --green: #00c853;
+    --red: #ff3d3d;
+    --gold: #f0b90b;
+    --blue: #3b82f6;
+    --purple: #a855f7;
+    --cyan: #06b6d4;
+    --orange: #f97316;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.7; }
+  .container { max-width: 900px; margin: 0 auto; padding: 16px; }
+  .header { text-align: center; padding: 28px 16px 20px; border-bottom: 2px solid var(--border); margin-bottom: 24px; }
+  .header h1 { font-size: 1.6rem; color: #fff; margin-bottom: 6px; letter-spacing: 2px; }
+  .header .date { color: var(--text2); font-size: 0.9rem; }
+  .header .badge { display: inline-block; background: var(--red); color: #fff; font-size: 0.75rem; padding: 3px 10px; border-radius: 12px; margin-top: 8px; font-weight: 600; }
+
+  .conclusion-box { background: linear-gradient(135deg, #1a1030, #0f1420); border: 1px solid var(--purple); border-radius: 10px; padding: 18px 20px; margin-bottom: 24px; }
+  .conclusion-box .label { color: var(--purple); font-size: 0.8rem; font-weight: 700; letter-spacing: 3px; margin-bottom: 8px; }
+  .conclusion-box p { font-size: 1.05rem; color: #e0d8f0; line-height: 1.8; }
+
+  .section { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 18px; }
+  .section h2 { font-size: 1.15rem; color: #fff; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .section h2 .icon { font-size: 1.2rem; }
+  .section h3 { font-size: 1rem; color: var(--gold); margin: 14px 0 8px; }
+  .section h4 { font-size: 0.9rem; color: var(--cyan); margin: 10px 0 6px; }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .stat-card { background: var(--card2); border: 1px solid var(--border); border-radius: 8px; padding: 14px; text-align: center; }
+  .stat-card .name { font-size: 0.8rem; color: var(--text2); margin-bottom: 4px; }
+  .stat-card .value { font-size: 1.4rem; font-weight: 700; color: #fff; }
+  .stat-card .change { font-size: 1rem; font-weight: 600; margin-top: 2px; }
+  .stat-card .sub { font-size: 0.75rem; color: var(--text2); margin-top: 4px; }
+
+  .up { color: var(--green); }
+  .down { color: var(--red); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 10px 0; }
+  th { background: var(--card2); color: var(--text2); padding: 10px 8px; text-align: left; font-weight: 600; font-size: 0.78rem; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+  td { padding: 9px 8px; border-bottom: 1px solid var(--border); }
+  tr:hover { background: rgba(255,255,255,0.02); }
+  td.up, td.down { font-weight: 600; }
+
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; margin-right: 4px; }
+  .tag-green { background: rgba(0,200,83,0.15); color: var(--green); }
+  .tag-red { background: rgba(255,61,61,0.15); color: var(--red); }
+  .tag-orange { background: rgba(249,115,22,0.15); color: var(--orange); }
+  .tag-blue { background: rgba(59,130,246,0.15); color: var(--blue); }
+  .tag-purple { background: rgba(168,85,247,0.15); color: var(--purple); }
+
+  .highlight { background: rgba(240,185,11,0.08); border-left: 3px solid var(--gold); padding: 10px 14px; border-radius: 0 6px 6px 0; margin: 10px 0; font-size: 0.9rem; }
+  .warn { background: rgba(255,61,61,0.06); border-left: 3px solid var(--red); padding: 10px 14px; border-radius: 0 6px 6px 0; margin: 10px 0; font-size: 0.9rem; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+  .footer { text-align: center; padding: 20px; color: var(--text2); font-size: 0.75rem; border-top: 1px solid var(--border); margin-top: 24px; }
+
+  @media (max-width: 600px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .header h1 { font-size: 1.3rem; }
+    table { font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>🇭🇰 港股每日实战复盘</h1>
+  <div class="date">2026年6月23日 星期二 | 交易日</div>
+  <div class="badge">⚠️ 五连阴 · 加速赶底</div>
+</div>
+
+<!-- ====== 1. 核心结论 ====== -->
+<div class="conclusion-box">
+  <div class="label">📌 今日核心结论</div>
+  <p>
+    <strong>港股五连阴加速赶底，恒科单日重挫3.3%领跌大盘。</strong>
+    科技巨头全线溃败（腾讯-4.2%、小米-4.6%），地产链自由落体（龙湖5日暴跌25%），
+    紫金矿业A股单日崩跌8.8%引发资源股恐慌。唯一亮点是<strong>医药/生物科技板块逆势走强</strong>——康方生物+3.1%、信达生物+1.5%、药明生物+1.3%，
+    体现防御性资金轮动。市场短期情绪极度悲观，但在连续超卖后，<strong>关注港股通南下资金是否逆势加仓及绩优医药股的中线布局机会</strong>。
+  </p>
+</div>
+
+<!-- ====== 2. 大盘全景 ====== -->
+<div class="section">
+  <h2><span class="icon">📊</span> 大盘全景（基金经理视角）</h2>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="name">恒生指数 HSI</div>
+      <div class="value">23,336</div>
+      <div class="change down">-1.82%</div>
+      <div class="sub">成交额 3,344亿 | 5日 -6.06%</div>
+    </div>
+    <div class="stat-card">
+      <div class="name">恒生科技 HSTECH</div>
+      <div class="value">4,399</div>
+      <div class="change down">-3.30%</div>
+      <div class="sub">成交额 865亿 | 5日 -3.34%</div>
+    </div>
+    <div class="stat-card">
+      <div class="name">国企指数 HSCEI</div>
+      <div class="value">7,759</div>
+      <div class="change down">-1.96%</div>
+      <div class="sub">成交额 974亿 | 5日 -7.36%</div>
+    </div>
+    <div class="stat-card">
+      <div class="name">恒生医药</div>
+      <div class="value">—</div>
+      <div class="change up">逆势走强</div>
+      <div class="sub">医药板块今日唯一收红方向</div>
+    </div>
+  </div>
+
+  <h3>📈 赚钱效应分析</h3>
+  <table>
+    <tr><th>维度</th><th>今日表现</th><th>判断</th></tr>
+    <tr><td>三大指数方向</td><td class="down">全线下跌，恒科领跌</td><td><span class="tag tag-red">极弱</span></td></tr>
+    <tr><td>成交量</td><td>HSI成交3,344亿（较昨日-4.1%）</td><td><span class="tag tag-orange">缩量下跌</span></td></tr>
+    <tr><td>连跌天数</td><td>5连阴（6/16至今累计-4.7%）</td><td><span class="tag tag-red">趋势恶化</span></td></tr>
+    <tr><td>板块分化</td><td>医药↑ vs 科技/地产/资源↓</td><td><span class="tag tag-blue">极致分化</span></td></tr>
+    <tr><td>权重股表现</td><td>腾讯、阿里、美团、小米全线下挫</td><td><span class="tag tag-red">无护盘力量</span></td></tr>
+    <tr><td>5日累计跌幅</td><td>国企指数-7.36% 最惨烈</td><td><span class="tag tag-red">系统性风险释放</span></td></tr>
+  </table>
+
+  <div class="warn">
+    <strong>⚠️ 风险警示：</strong>恒生国企指数5日暴跌7.36%，已进入技术性超卖区间（RSI预估<30）。
+    龙湖集团5日累计崩跌24.79%，华润置地-15.69%，地产链系统性风险正在加速出清。
+    恒生科技指数虽5日跌幅"仅"3.34%，但头部权重（腾讯5日-9.75%、小米-13.86%）实际跌幅远超指数。
+  </div>
+</div>
+
+<!-- ====== 3. 市场情绪 ====== -->
+<div class="section">
+  <h2><span class="icon">🎭</span> 市场情绪</h2>
+  <table>
+    <tr><th>情绪指标</th><th>数据</th><th>信号</th></tr>
+    <tr><td>港股通额度使用</td><td>数据源受限，参考南下净买入趋势</td><td><span class="tag tag-orange">待确认</span></td></tr>
+    <tr><td>大盘成交额</td><td>HSI 3,344亿（缩量）</td><td><span class="tag tag-orange">恐慌性不高，阴跌为主</span></td></tr>
+    <tr><td>科技股换手率</td><td>小米1.14%、阿里0.51%、腾讯0.48%</td><td><span class="tag tag-red">抛压持续</span></td></tr>
+    <tr><td>医药股换手率</td><td>康方1.56%、信达0.66%、药明0.65%</td><td><span class="tag tag-green">温和放量上涨</span></td></tr>
+    <tr><td>极端涨跌</td><td>紫金矿业SH -8.84%（单日崩跌）</td><td><span class="tag tag-red">恐慌信号</span></td></tr>
+    <tr><td>龙湖5日跌幅</td><td>-24.79%</td><td><span class="tag tag-red">股灾级别</span></td></tr>
+    <tr><td>沽空比率（估）</td><td>预计18-22%（大盘下跌中沽空盘通常增加）</td><td><span class="tag tag-orange">偏高，需关注</span></td></tr>
+  </table>
+
+  <div class="highlight">
+    <strong>💡 情绪解读：</strong>缩量下跌说明市场并非恐慌性抛售，而是持续性的"钝刀割肉"式出逃。
+    科技巨头换手率较高（小米>1%），显示多空分歧加大。医药板块温和放量上涨，是当前唯一有主动买盘的方向。
+    紫金矿业单日放量暴跌8.8%（成交140.9亿），可能是机构砍仓或大宗商品预期转向的信号。
+  </div>
+</div>
+
+<!-- ====== 4. 汇率与流动性 ====== -->
+<div class="section">
+  <h2><span class="icon">💱</span> 汇率与流动性</h2>
+  <table>
+    <tr><th>指标</th><th>参考区间</th><th>对港股影响</th></tr>
+    <tr><td>USD/HKD</td><td>7.82-7.85（联系汇率制度）</td><td>港汇稳定，未现明显走资压力</td></tr>
+    <tr><td>CNH/HKD</td><td>人民币偏弱（A股同步下跌佐证）</td><td>人民币贬值拖累H股估值</td></tr>
+    <tr><td>美债10Y收益率</td><td>预估4.2-4.4%区间</td><td>高利率压制科技/地产估值</td></tr>
+    <tr><td>HIBOR（1M）</td><td>预估3.8-4.2%</td><td>港元流动性偏紧，不利风险资产</td></tr>
+  </table>
+  <div class="warn">
+    <strong>⚠️ 注意：</strong>汇率与HIBOR数据因API额度限制未能实时获取，上述为基于市场环境的合理预估区间。
+    建议在东方财富/彭博终端确认精确数值。人民币走弱 + 美债高企的双重压力是港股近期持续下跌的核心宏观驱动。
+  </div>
+</div>
+
+<!-- ====== 5. 强势板块与核心逻辑 ====== -->
+<div class="section">
+  <h2><span class="icon">🔥</span> 强势板块与核心逻辑</h2>
+
+  <h3>🏆 TOP 强势方向（逆势收红）</h3>
+  <table>
+    <tr><th>排名</th><th>板块/方向</th><th>领涨龙头</th><th>涨幅</th><th>上涨逻辑</th></tr>
+    <tr>
+      <td>🥇</td>
+      <td><strong>创新药/生物科技</strong></td>
+      <td>康方生物 (09926)</td>
+      <td class="up">+3.07%</td>
+      <td>管线数据催化 + ASCO余热 + 避险资金流入。康方PD-1/CTLA-4双抗海外授权预期持续发酵。DDX+0.134显示主力买入。</td>
+    </tr>
+    <tr>
+      <td>🥈</td>
+      <td><strong>CXO/药明系</strong></td>
+      <td>药明生物 (02269)</td>
+      <td class="up">+1.30%</td>
+      <td>美生物安全法案悲观预期充分定价后的修复。DDX+0.019温和净买入，5日累计+0.71%跑赢大盘8个百分点。</td>
+    </tr>
+    <tr>
+      <td>🥉</td>
+      <td><strong>生物类似药/抗体</strong></td>
+      <td>信达生物 (01801)</td>
+      <td class="up">+1.53%</td>
+      <td>PD-1销售稳定增长 + 减肥药管线推进。成交8.78亿温和放量，换手0.66%健康。</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>ADC/科伦博泰</td>
+      <td>科伦博泰 (06990)</td>
+      <td class="up">+1.43%</td>
+      <td>ADC出海标杆，默沙东合作持续兑现。低换手0.26%筹码锁定良好。</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>君实生物</td>
+      <td>君实生物 (688180)</td>
+      <td class="up">+0.93%</td>
+      <td>PD-1出海预期+新冠口服药储备概念。DDX+0.204显示资金净买入。</td>
+    </tr>
+  </table>
+
+  <h3>📉 BOTTOM 最弱方向（大幅杀跌）</h3>
+  <table>
+    <tr><th>排名</th><th>板块/方向</th><th>领跌龙头</th><th>跌幅</th><th>下跌原因</th></tr>
+    <tr>
+      <td>🔻1</td>
+      <td><strong>有色金属/矿业</strong></td>
+      <td>紫金矿业 (601899)</td>
+      <td class="down">-8.84%</td>
+      <td>单日崩跌！成交140.9亿天量，DDX-0.455大单净卖出。全球衰退预期升温压制铜/金价，机构集中砍仓。5日累计-11.37%。</td>
+    </tr>
+    <tr>
+      <td>🔻2</td>
+      <td><strong>锂电/新能源材料</strong></td>
+      <td>赣锋锂业 (002460)</td>
+      <td class="down">-5.62%</td>
+      <td>锂价持续低迷+产能过剩担忧。成交42亿放量杀跌，DDX-0.653主力大幅出逃。换手4.98%筹码松动。</td>
+    </tr>
+    <tr>
+      <td>🔻3</td>
+      <td><strong>消费电子/硬件</strong></td>
+      <td>小米集团 (01810)</td>
+      <td class="down">-4.64%</td>
+      <td>5日暴跌13.86%，汽车业务估值重塑+手机出货预期下调。成交55.8亿，换手1.14%持续抛压。</td>
+    </tr>
+    <tr>
+      <td>🔻4</td>
+      <td><strong>互联网平台</strong></td>
+      <td>腾讯/阿里/美团</td>
+      <td class="down">-3.3%~-4.2%</td>
+      <td>腾讯-4.2%成交182亿居全市场之首。宏观悲观+监管不确定性+外资减持中国科技。5日累计腾讯-9.75%、美团-11.05%。</td>
+    </tr>
+    <tr>
+      <td>🔻5</td>
+      <td><strong>地产/内房</strong></td>
+      <td>龙湖集团 (00960)</td>
+      <td class="down">-3.94%</td>
+      <td><strong>5日崩跌24.79%！</strong>华润置地5日-15.69%。地产销售数据持续恶化，债务担忧重燃。碧桂园跌至0.189港元，沦为仙股。</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ====== 6. 重点个股异动 ====== -->
+<div class="section">
+  <h2><span class="icon">🔬</span> 重点个股异动分析</h2>
+
+  <h3>🚨 跌幅>6% 个股（异常波动）</h3>
+  <table>
+    <tr><th>股票</th><th>代码</th><th>收盘价</th><th>今日跌幅</th><th>5日跌幅</th><th>成交额</th><th>异动原因分析</th></tr>
+    <tr>
+      <td><strong>紫金矿业</strong></td>
+      <td>601899.SH</td>
+      <td>27.75</td>
+      <td class="down">-8.84%</td>
+      <td class="down">-11.37%</td>
+      <td>140.9亿</td>
+      <td>⚠️ <strong>年度级暴跌！</strong>全球衰退交易升温，铜价预期转弱。DDX-0.455大单疯狂出逃，DDY-0.644散户也跟风卖出。机构集中减仓信号明确。换手2.4%+天量成交=恐慌性抛售。</td>
+    </tr>
+    <tr>
+      <td><strong>赣锋锂业</strong></td>
+      <td>002460.SZ</td>
+      <td>68.00</td>
+      <td class="down">-5.62%</td>
+      <td class="down">-4.66%</td>
+      <td>42.02亿</td>
+      <td>碳酸锂价格持续承压，全球锂供给过剩格局未改。DDX-0.653+DDY-0.887主力与散户同步净卖出。换手4.98%显示恐慌盘涌出。逼近支撑位61.18，若破则加速下行。</td>
+    </tr>
+  </table>
+
+  <h3>📋 重点个股全景扫描</h3>
+  <table>
+    <tr><th>股票</th><th>代码</th><th>收盘</th><th>日涨跌</th><th>5日</th><th>成交额</th><th>研判</th></tr>
+    <tr><td>腾讯</td><td>00700</td><td>414.80</td><td class="down">-4.20%</td><td class="down">-9.75%</td><td>182.2亿</td><td>全市场最大成交，机构减仓明显。410为关键支撑。</td></tr>
+    <tr><td>阿里巴巴</td><td>09988</td><td>98.95</td><td class="down">-3.84%</td><td class="down">-9.47%</td><td>98.16亿</td><td>跌破100心理关口，5连阴。关注港股通是否逆势接货。</td></tr>
+    <tr><td>美团</td><td>03690</td><td>69.60</td><td class="down">-3.33%</td><td class="down">-11.05%</td><td>23.27亿</td><td>缩量下跌，换手0.59%。跌破70关口，短线弱势。</td></tr>
+    <tr><td>小米</td><td>01810</td><td>22.62</td><td class="down">-4.64%</td><td class="down">-13.86%</td><td>55.82亿</td><td>5日跌近14%，汽车+手机双杀。DDX+0.103反而有主力接货迹象。</td></tr>
+    <tr><td>比亚迪</td><td>01211</td><td>75.85</td><td class="down">-3.19%</td><td class="down">-11.39%</td><td>29.20亿</td><td>新能源车出口数据或有隐忧。DDX+0.092有资金逢低吸纳。</td></tr>
+    <tr><td>药明生物</td><td>02269</td><td>31.14</td><td class="up">+1.30%</td><td class="up">+0.71%</td><td>8.41亿</td><td>5日唯一正收益！DDX+0.019温和净买。</td></tr>
+    <tr><td>康方生物</td><td>09926</td><td>85.50</td><td class="up">+3.07%</td><td class="down">-4.31%</td><td>12.30亿</td><td>今日涨幅之冠！DDX+0.134主力买入。双抗龙头。</td></tr>
+    <tr><td>信达生物</td><td>01801</td><td>76.50</td><td class="up">+1.53%</td><td class="down">-1.16%</td><td>8.78亿</td><td>连涨2日，底部放量。DDX+0.031净买入。</td></tr>
+    <tr><td>科伦博泰</td><td>06990</td><td>398.00</td><td class="up">+1.43%</td><td class="down">-5.06%</td><td>1.74亿</td><td>低换手0.26%，机构锁仓明显。</td></tr>
+    <tr><td>再鼎医药</td><td>09688</td><td>13.90</td><td class="down">-0.22%</td><td class="up">+1.39%</td><td>1.28亿</td><td>5日正收益！授权引进模式获认可。</td></tr>
+    <tr><td>华润置地</td><td>01109</td><td>30.42</td><td class="down">-2.44%</td><td class="down">-15.69%</td><td>6.99亿</td><td>地产龙头5日跌16%，系统性风险。DDX微正有试探买盘。</td></tr>
+    <tr><td>龙湖集团</td><td>00960</td><td>6.34</td><td class="down">-3.94%</td><td class="down">-24.79%</td><td>1.75亿</td><td>⚠️ 5日跌25%！民营房企标杆崩塌式下跌。</td></tr>
+    <tr><td>海底捞</td><td>06862</td><td>11.31</td><td class="down">-0.79%</td><td class="down">-9.88%</td><td>1.29亿</td><td>消费降级预期压制，但今日跌幅收窄。</td></tr>
+    <tr><td>中生制药</td><td>01177</td><td>4.42</td><td class="down">-0.67%</td><td class="down">-7.53%</td><td>3.98亿</td><td>传统药企跟跌大盘，与创新药走势分化。</td></tr>
+  </table>
+</div>
+
+<!-- ====== 7. 资金面 ====== -->
+<div class="section">
+  <h2><span class="icon">💰</span> 资金面（港股最核心维度）</h2>
+
+  <h3>🏦 南下资金（港股通）</h3>
+  <div class="warn">
+    <strong>⚠️ 数据说明：</strong>因东方财富API今日额度耗尽，港股通精确净流入数据未能实时获取。
+    以下为基于市场环境和个股成交特征的<strong>合理推断</strong>，建议盘后通过港交所官网确认：
+  </div>
+  <table>
+    <tr><th>维度</th><th>推断/参考</th><th>依据</th></tr>
+    <tr><td>今日净流入方向</td><td>预估净买入（逆势抄底）</td><td>腾讯成交182亿全市场第一，通常南下资金在大跌日会逆势加仓互联网龙头</td></tr>
+    <tr><td>港股通额度使用率</td><td>预估30-50%</td><td>大跌日南下通常温和净买，不会用满额度</td></tr>
+    <tr><td>前十大成交预估</td><td>腾讯、阿里、美团、小米居前</td><td>四只股票合计成交359亿，占大市>10%</td></tr>
+    <tr><td>近期累计趋势</td><td>6月南下资金整体净流入</td><td>港股估值处于历史低位，南下资金通常越跌越买</td></tr>
+  </table>
+
+  <h3>🌍 外资（国际资金）</h3>
+  <table>
+    <tr><th>维度</th><th>判断</th><th>信号</th></tr>
+    <tr><td>EPFR资金流向</td><td>预估净流出（数据待验证）</td><td>港股5连阴+人民币走弱，外资通常减仓中国资产</td></tr>
+    <tr><td>美股中概ETF</td><td>预估净赎回</td><td>中概股同步下跌，ETF套利机制触发赎回</td></tr>
+    <tr><td>外资态度</td><td>偏谨慎/减配</td><td>全球衰退交易 + 中国宏观不确定性 = 低配中国</td></tr>
+  </table>
+
+  <h3>🎯 沽空数据</h3>
+  <table>
+    <tr><th>维度</th><th>判断</th><th>说明</th></tr>
+    <tr><td>大盘沽空比率</td><td>预估18-22%（偏高）</td><td>连续下跌中沽空盘通常增加，>20%需警惕逼空反弹</td></tr>
+    <tr><td>重点沽空标的</td><td>腾讯、美团、龙湖</td><td>跌幅大+流动性好的股票是沽空首选</td></tr>
+    <tr><td>沽空警示</td><td>若沽空比率>25%+超卖</td><td>可能出现空头回补反弹，需密切关注</td></tr>
+  </table>
+
+  <h3>🏢 回购与增持</h3>
+  <div class="highlight">
+    <strong>💡 重点观察：</strong>在大盘5连阴环境下，<strong>腾讯、友邦、汇丰等现金流充沛的公司</strong>通常会在股价大跌后加大回购力度。
+    腾讯今日盘中最低413.6港元，如果盘后公告大额回购（>5亿港元），将是强烈的底部信号。
+    建议盘后重点查看港交所回购公告。目前数据源受限，无法获取当日精确回购数据。
+  </div>
+
+  <h3>📦 大宗交易</h3>
+  <table>
+    <tr><th>维度</th><th>判断</th></tr>
+    <tr><td>大宗交易活跃度</td><td>预估活跃（大跌日通常有大宗换手）</td></tr>
+    <tr><td>折价/溢价</td><td>大概率折价交易（弱势市场特征）</td></tr>
+    <tr><td>关注标的</td><td>紫金矿业（天量成交140亿，可能有大宗交易）</td></tr>
+  </table>
+</div>
+
+<!-- ====== 8. 综合研判与策略 ====== -->
+<div class="section">
+  <h2><span class="icon">🎯</span> 综合研判与策略建议</h2>
+
+  <h3>📊 市场阶段判断</h3>
+  <div class="warn">
+    <strong>当前阶段：恐慌性赶底 → 超卖反弹酝酿中</strong><br>
+    · HSI 5连阴累计跌4.7%，国企指数5日跌7.36%，技术面严重超卖<br>
+    · 地产股（龙湖-25%/5日）和资源股（紫金-8.8%/单日）出现极端跌幅，恐慌盘正在出清<br>
+    · 医药股逆势走强，说明并非所有资金都在出逃——聪明钱在调仓而非清仓<br>
+    · 成交量萎缩（HSI 3,344亿 vs 前日3,486亿），不是恐慌性踩踏，而是持续阴跌
+  </div>
+
+  <h3>📋 操作策略矩阵</h3>
+  <table>
+    <tr><th>策略</th><th>方向</th><th>标的类型</th><th>逻辑</th></tr>
+    <tr><td><span class="tag tag-green">短线博弈</span></td><td>超跌反弹</td><td>腾讯、阿里等超跌科技龙头</td><td>5日跌10%+，技术性反弹需求强。止损设3-5%。</td></tr>
+    <tr><td><span class="tag tag-green">中线布局</span></td><td>医药/创新药</td><td>康方、信达、药明生物</td><td>大盘下跌中逆势走强=资金认可。等大盘企稳后加仓。</td></tr>
+    <tr><td><span class="tag tag-red">回避</span></td><td>地产链</td><td>龙湖、华润置地、碧桂园</td><td>5日跌15-25%的趋势性下跌，不要接飞刀。</td></tr>
+    <tr><td><span class="tag tag-red">回避</span></td><td>资源/矿业</td><td>紫金、赣锋、洛阳钼业</td><td>全球衰退交易下资源股首当其冲。等铜价/锂价企稳信号。</td></tr>
+    <tr><td><span class="tag tag-orange">观望</span></td><td>消费</td><td>海底捞、比亚迪</td><td>跌幅相对温和但趋势向下。等消费数据拐点。</td></tr>
+  </table>
+
+  <h3>🔮 明日关注要点</h3>
+  <table>
+    <tr><th>关注点</th><th>为什么重要</th></tr>
+    <tr><td>盘后腾讯/友邦是否公告回购</td><td>大额回购=底部信号，可能触发日内反弹</td></tr>
+    <tr><td>港股通净流入数据</td><td>南下资金是否逆势加仓决定短期方向</td></tr>
+    <tr><td>美股期货/夜盘</td><td>全球risk-off是否缓解</td></tr>
+    <tr><td>人民币汇率</td><td>CNH若继续走弱，港股难言见底</td></tr>
+    <tr><td>紫金矿业是否有大宗交易</td><td>若有大机构接盘，可能是资源股短期底</td></tr>
+    <tr><td>医药股涨势能否持续</td><td>若医药也补跌，则全市场无避险方向=系统性风险升级</td></tr>
+  </table>
+
+  <div class="highlight">
+    <strong>⚡ 基金经理备忘录：</strong>历史经验表明，港股在连续超卖后的反弹往往又快又猛（3-5天可反弹5-8%）。
+    当前策略不是恐慌出逃，而是<strong>利用恐慌筛选强势股</strong>——能在5连阴中逆势收红的板块（医药），
+    将是大盘企稳后的领涨先锋。仓位管理上，建议维持4-5成底仓（医药+高股息），
+    保留现金等待右侧确认信号（单日放量阳线+南下资金大额净买入>50亿港元）。
+  </div>
+</div>
+
+<div class="footer">
+  <p>📊 数据来源：东方财富EM API（恒生指数/个股实时行情）</p>
+  <p>⚠️ 免责声明：本报告为AI自动化分析，不构成投资建议。投资有风险，入市需谨慎。</p>
+  <p>🤖 Generated by Hermes Agent | 2026-06-23 19:43 HKT</p>
+  <p>📌 部分数据（南向资金/沽空/HIBOR）因API额度限制为合理推断，建议人工核实</p>
+</div>
+
+</div>
+</body>
+</html>

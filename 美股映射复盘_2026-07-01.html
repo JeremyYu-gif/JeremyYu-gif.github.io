@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美股映射复盘 2026-07-01</title>
+<style>
+body { background: #0d1117; color: #e6edf3; font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; margin: 0; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; }
+.header { text-align: center; padding: 30px 0; border-bottom: 1px solid #30363d; margin-bottom: 30px; }
+.header h1 { font-size: 32px; margin: 0; background: linear-gradient(135deg, #58a6ff, #3fb950); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.header .date { color: #8b949e; font-size: 16px; margin-top: 8px; }
+.header .summary-tag { display: inline-block; padding: 4px 16px; border-radius: 20px; font-size: 14px; margin-top: 10px; }
+.tag-red { background: rgba(248,81,73,0.2); color: #f85149; border: 1px solid #f85149; }
+.tag-green { background: rgba(63,185,80,0.2); color: #3fb950; border: 1px solid #3fb950; }
+.section { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+.section h2 { font-size: 20px; margin: 0 0 16px 0; padding-bottom: 12px; border-bottom: 1px solid #30363d; color: #f0f6fc; }
+.section h2 .icon { margin-right: 8px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.card { background: #0d1117; border: 1px solid #21262d; border-radius: 8px; padding: 16px; }
+.card .value { font-size: 24px; font-weight: 700; margin: 8px 0 4px 0; }
+.card .label { color: #8b949e; font-size: 13px; }
+.card .sub { font-size: 14px; margin-top: 4px; }
+.red { color: #f85149; }
+.green { color: #3fb950; }
+.yellow { color: #d29922; }
+.orange { color: #f0883e; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+th { text-align: left; padding: 10px 12px; border-bottom: 2px solid #30363d; color: #8b949e; font-size: 13px; text-transform: uppercase; }
+td { padding: 10px 12px; border-bottom: 1px solid #21262d; font-size: 14px; }
+tr:hover { background: rgba(88,166,255,0.05); }
+.stock-name { font-weight: 600; }
+.stock-code { color: #8b949e; font-size: 12px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.chip { padding: 4px 12px; border-radius: 16px; font-size: 12px; background: #21262d; border: 1px solid #30363d; }
+.chip-red { background: rgba(248,81,73,0.15); border-color: rgba(248,81,73,0.3); color: #f85149; }
+.chip-green { background: rgba(63,185,80,0.15); border-color: rgba(63,185,80,0.3); color: #3fb950; }
+.impact-box { background: #0d1117; border-left: 4px solid #58a6ff; border-radius: 6px; padding: 16px; margin: 12px 0; }
+.impact-box.warning { border-left-color: #d29922; }
+.impact-box.danger { border-left-color: #f85149; }
+.impact-box.success { border-left-color: #3fb950; }
+.footer { text-align: center; color: #8b949e; padding: 30px 0; font-size: 13px; border-top: 1px solid #30363d; margin-top: 30px; }
+.progress-bar { height: 6px; border-radius: 3px; background: #21262d; margin-top: 4px; }
+.progress-fill { height: 100%; border-radius: 3px; }
+@media (max-width: 768px) { .grid-3 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>📊 美股映射复盘 & A股策略</h1>
+  <div class="date">2026年7月1日（周三）| 数据更新：北京时间 2026-07-02 06:00</div>
+  <div class="summary-tag tag-red">⚠️ 三大指数集体收跌，半导体重挫，中概股逆势大涨</div>
+</div>
+
+<!-- 第一部分：美股整体表现 -->
+<div class="section">
+  <h2><span class="icon">📈</span>一、美股整体表现</h2>
+  <div class="grid-3">
+    <div class="card">
+      <div class="label">道琼斯工业指数</div>
+      <div class="value" style="color:#f0883e;">52,305.24</div>
+      <div class="sub red">▼ -13.96 (-0.03%)</div>
+      <div class="sub">盘中创历史新高：52,742.66</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:48%;background:#f0883e;"></div></div>
+    </div>
+    <div class="card">
+      <div class="label">标普500指数</div>
+      <div class="value" style="color:#f85149;">7,483.23</div>
+      <div class="sub red">▼ -16.13 (-0.22%)</div>
+      <div class="sub">11大板块：6涨5跌</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:45%;background:#f85149;"></div></div>
+    </div>
+    <div class="card">
+      <div class="label">纳斯达克综合指数</div>
+      <div class="value" style="color:#f85149;">26,040.03</div>
+      <div class="sub red">▼ -173.69 (-0.66%)</div>
+      <div class="sub">费城半导体指数 ▼ -6.27%</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:30%;background:#f85149;"></div></div>
+    </div>
+  </div>
+
+  <div class="impact-box warning">
+    <strong>📌 盘面特征：</strong>美股第三季度开局不利，三大指数低开后V型反弹，道指盘中一度刷新历史新高后回落收跌。市场核心特征是<strong>「大轮动 (Great Rotation)」</strong>——资金从上半年大涨的半导体/存储板块获利了结，涌入金融、通信服务等蓝筹板块。Meta宣布进军云计算引爆市场，科技股内部严重分化。
+  </div>
+
+  <div class="grid-3" style="margin-top:16px;">
+    <div class="card">
+      <div class="label">VIX恐慌指数</div>
+      <div class="value yellow">—</div>
+      <div class="sub">数据获取中</div>
+    </div>
+    <div class="card">
+      <div class="label">10年期美债收益率</div>
+      <div class="value orange">4.481%</div>
+      <div class="sub red">▲ +5.91bp</div>
+    </div>
+    <div class="card">
+      <div class="label">美元指数 DXY</div>
+      <div class="value" style="color:#d29922;">101.16</div>
+      <div class="sub green">▲ +0.02%</div>
+    </div>
+  </div>
+</div>
+
+<!-- 第二部分：强势/弱势板块 -->
+<div class="section">
+  <h2><span class="icon">🏆</span>二、板块涨跌幅TOP</h2>
+  <div class="grid-2">
+    <div>
+      <h3 style="color:#3fb950;">✅ 最强板块 TOP5</h3>
+      <table>
+        <tr><th>板块</th><th>涨跌幅</th><th>领涨龙头</th></tr>
+        <tr><td>📱 通信服务</td><td class="green">+2.62%</td><td>Meta +8.81%</td></tr>
+        <tr><td>🏦 金融</td><td class="green">+2.13%</td><td>富国银行 +3.8%, 美银 +2.7%</td></tr>
+        <tr><td>💻 软件/互联网</td><td class="green">+3.02% (IGV)</td><td>微软 +3.02%, Reddit +10%</td></tr>
+        <tr><td>💰 银行</td><td class="green">+2.1%</td><td>摩根大通 +2.3%, 摩根士丹利 +1.8%</td></tr>
+        <tr><td>🪙 加密货币</td><td class="green">+3~8%</td><td>Strategy +8%, Coinbase +7%</td></tr>
+      </table>
+      <div class="impact-box success" style="margin-top:8px;">
+        <strong>上涨逻辑：</strong>Meta进军云计算带动通信/软件板块；银行股受益于利率上行预期和"大轮动"资金流入；比特币反弹突破6万美元带动加密概念。
+      </div>
+    </div>
+    <div>
+      <h3 style="color:#f85149;">❌ 最弱板块 TOP3</h3>
+      <table>
+        <tr><th>板块</th><th>涨跌幅</th><th>领跌龙头</th></tr>
+        <tr><td>🔬 半导体/芯片</td><td class="red">▼ -6.27% (SOX)</td><td>美光 -10.57%, 闪迪 -10.62%</td></tr>
+        <tr><td>💾 存储概念</td><td class="red">▼ -10.82% (DRAM)</td><td>闪迪 -10.62%, 美光 -10.57%</td></tr>
+        <tr><td>🔦 光通信</td><td class="red">▼ -8~13%</td><td>康宁 -13.62%, Astera -10.8%</td></tr>
+      </table>
+      <div class="impact-box danger" style="margin-top:8px;">
+        <strong>下跌逻辑：</strong>Meta进军云计算引发市场对AI算力过剩、资本开支见顶的担忧；存储/半导体上半年累计涨幅过大（闪迪+857%、美光+304%），获利了结盘涌出。费城半导体指数30只成分股仅2只上涨。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 第三部分：重点个股 -->
+<div class="section">
+  <h2><span class="icon">🎯</span>三、重点个股异动</h2>
+  <table>
+    <tr><th>个股</th><th>收盘价</th><th>涨跌幅</th><th>市值(万亿$)</th><th>异动原因</th></tr>
+    <tr>
+      <td><span class="stock-name">Meta</span> <span class="stock-code">META</span></td>
+      <td>$612.91</td>
+      <td class="green">▲ +8.81%</td>
+      <td>~1.56</td>
+      <td>⚡ 宣布进军云计算，对外出售闲置AI算力和模型权限，直接挑战AWS/Azure/谷歌云</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">微软</span> <span class="stock-code">MSFT</span></td>
+      <td>$384.28</td>
+      <td class="green">▲ +3.02%</td>
+      <td>~2.85</td>
+      <td>软件板块走强，Meta进军云间接验证云需求巨大</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">苹果</span> <span class="stock-code">AAPL</span></td>
+      <td>$294.38</td>
+      <td class="green">▲ +1.73%</td>
+      <td>~4.32</td>
+      <td>软硬件轮动受益，资金从半导体转向消费科技</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">特斯拉</span> <span class="stock-code">TSLA</span></td>
+      <td>$425.30</td>
+      <td class="green">▲ +1.12%</td>
+      <td>~1.60</td>
+      <td>首台量产Cybercab开启工程测试</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">谷歌</span> <span class="stock-code">GOOGL</span></td>
+      <td>$361.21</td>
+      <td class="green">▲ +1.07%</td>
+      <td>~4.41</td>
+      <td>软件板块走强</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">亚马逊</span> <span class="stock-code">AMZN</span></td>
+      <td>$241.70</td>
+      <td class="green">▲ +1.41%</td>
+      <td>~2.60</td>
+      <td>软件板块走强</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">英伟达</span> <span class="stock-code">NVDA</span></td>
+      <td>$197.58</td>
+      <td class="red">▼ -1.25%</td>
+      <td>~2.33</td>
+      <td>半导体板块抛售，Meta云计划引发算力需求担忧</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">AMD</span> <span class="stock-code">AMD</span></td>
+      <td>$540.88</td>
+      <td class="red">▼ -6.89%</td>
+      <td>~0.88</td>
+      <td>半导体获利回吐重灾区</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">台积电</span> <span class="stock-code">TSM</span></td>
+      <td>$444.23</td>
+      <td class="red">▼ -6.98%</td>
+      <td>~2.30</td>
+      <td>费城半导体指数大跌，获利了结</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">博通</span> <span class="stock-code">AVGO</span></td>
+      <td>$369.34</td>
+      <td class="red">▼ -2.23%</td>
+      <td>~1.76</td>
+      <td>半导体板块走弱</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">礼来</span> <span class="stock-code">LLY</span></td>
+      <td>$1,191.74</td>
+      <td class="red">▼ -0.64%</td>
+      <td>~1.06</td>
+      <td>防御性板块回调</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">强生</span> <span class="stock-code">JNJ</span></td>
+      <td>$253.98</td>
+      <td style="color:#8b949e;">▬ 0.00%</td>
+      <td>~0.61</td>
+      <td>持平</td>
+    </tr>
+  </table>
+
+  <div class="impact-box warning" style="margin-top:12px;">
+    <strong>💡 关键观察：</strong>七巨头内部分化严重——Meta暴涨、微软/苹果/谷歌/亚马逊/特斯拉全线上涨，唯有英伟达下跌。半导体产业链全线崩溃（美光-10.57%、闪迪-10.62%、英特尔-9.03%、AMD-6.89%、台积电-6.98%），反映上半年AI算力主题股严重超买后的获利了结。
+  </div>
+</div>
+
+<!-- 第四部分：大市值异动股（>9%涨幅且>50亿市值） -->
+<div class="section">
+  <h2><span class="icon">⭐</span>四、大市值异动股聚焦（涨幅>9% 且 市值>50亿$）</h2>
+  <table>
+    <tr><th>个股</th><th>涨幅</th><th>市值</th><th>上涨原因</th></tr>
+    <tr>
+      <td><span class="stock-name">Reddit (RDDT)</span></td>
+      <td class="green">▲ +10%</td>
+      <td>~$320亿</td>
+      <td>国际增长仍处早期阶段，CFO强调日活用户增长三大优先事项(Q1 DAU同比+17%)，创五个月新高</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">Bending Spoons (BSP)</span></td>
+      <td class="green">▲ +13%</td>
+      <td>~$80亿</td>
+      <td>意大利软件整合巨头登录美股市场，IPO定价$29，首日大涨。拥有AOL/Evernote/Vimeo等50+收购品牌</td>
+    </tr>
+    <tr>
+      <td><span class="stock-name">聪链集团 (ICG)</span></td>
+      <td class="green">▲ +19%</td>
+      <td>~$10亿</td>
+      <td>比特币反弹突破6万美元，加密概念股集体走强</td>
+    </tr>
+  </table>
+  <p style="color:#8b949e;font-size:14px;margin-top:8px;">注：Meta +8.81%略低于9%门槛，但市值超$1.5万亿已纳入重点分析。除上述外，当日存储/半导体股跌幅>9%的品种较多（美光-10.57%、闪迪-10.62%、英特尔-9.03%、康宁-13.62%等），但均为下跌方向。</p>
+</div>
+
+<!-- 第五部分：中概股 -->
+<div class="section">
+  <h2><span class="icon">🇨🇳</span>五、中概股表现</h2>
+  <div class="impact-box success" style="margin-bottom:16px;">
+    <strong>纳斯达克金龙中国指数：</strong> <span class="green">▲ +2.93%</span> 报 6,018.83点，中概股逆势全线大涨！
+  </div>
+  <table>
+    <tr><th>个股</th><th>收盘价</th><th>涨跌幅</th><th>备注</th></tr>
+    <tr><td><span class="stock-name">拼多多 (PDD)</span></td><td>$82.52</td><td class="green">▲ +8.18%</td><td>领涨中概，市值~1,175亿</td></tr>
+    <tr><td><span class="stock-name">世纪互联 (VNET)</span></td><td>—</td><td class="green">▲ +9.76%</td><td>IDC数据中心概念</td></tr>
+    <tr><td><span class="stock-name">理想汽车 (LI)</span></td><td>$12.23</td><td class="green">▲ +4.17%</td><td>新能车板块走强</td></tr>
+    <tr><td><span class="stock-name">京东 (JD)</span></td><td>$26.31</td><td class="green">▲ +3.26%</td><td>消费复苏预期</td></tr>
+    <tr><td><span class="stock-name">百度 (BIDU)</span></td><td>$117.94</td><td class="green">▲ +3.19%</td><td>AI概念跟随</td></tr>
+    <tr><td><span class="stock-name">小鹏汽车 (XPEV)</span></td><td>$13.60</td><td class="green">▲ +2.72%</td><td>新能车反弹</td></tr>
+    <tr><td><span class="stock-name">哔哩哔哩 (BILI)</span></td><td>$17.43</td><td class="green">▲ +2.35%</td><td>内容平台回暖</td></tr>
+    <tr><td><span class="stock-name">阿里巴巴 (BABA)</span></td><td>$97.99</td><td class="green">▲ +2.09%</td><td>云业务估值修复</td></tr>
+    <tr><td><span class="stock-name">蔚来 (NIO)</span></td><td>$4.97</td><td class="red">▼ -1.78%</td><td>逆势下跌</td></tr>
+  </table>
+  <div class="impact-box success" style="margin-top:12px;">
+    <strong>上涨逻辑：</strong>① 美联储沃什讲话偏鸽派（通胀风险下降），美元走弱利好新兴市场资产；② ADP就业不及预期，加息预期降温；③ 中概股估值处于历史低位，资金从高估值半导体撤出后回流；④ 拼多多涨超8%领涨，Q2财报预期向好。
+  </div>
+</div>
+
+<!-- 第六部分：大宗商品 + 宏观 -->
+<div class="section">
+  <h2><span class="icon">🛢️</span>六、大宗商品 & 宏观数据</h2>
+  <div class="grid-3">
+    <div class="card">
+      <div class="label">WTI原油</div>
+      <div class="value" style="color:#f85149;">$68.09</div>
+      <div class="sub red">▼ -2.03%</div>
+      <div class="sub">布伦特 $71.57 (▼ -1.89%)</div>
+    </div>
+    <div class="card">
+      <div class="label">现货黄金</div>
+      <div class="value" style="color:#d29922;">$4,031.29</div>
+      <div class="sub green">▲ +0.59%</div>
+      <div class="sub">盘中冲高至 $4,109 (▲ +1.89%)</div>
+    </div>
+    <div class="card">
+      <div class="label">现货白银</div>
+      <div class="value" style="color:#d29922;">$59.11</div>
+      <div class="sub green">▲ +0.90%</div>
+      <div class="sub">盘中站上 $60关口 (▲ +3%)</div>
+    </div>
+    <div class="card">
+      <div class="label">LME铜</div>
+      <div class="value" style="color:#f85149;">$13,298/吨</div>
+      <div class="sub red">▼ -0.57% ($76)</div>
+    </div>
+    <div class="card">
+      <div class="label">LME铝</div>
+      <div class="value" style="color:#f85149;">$3,076/吨</div>
+      <div class="sub red">▼ -0.32% ($10)</div>
+    </div>
+    <div class="card">
+      <div class="label">2年期美债收益率</div>
+      <div class="value orange">4.150%</div>
+      <div class="sub red">▲ +2.6bp</div>
+    </div>
+  </div>
+</div>
+
+<!-- 第七部分：重要信息点评 -->
+<div class="section">
+  <h2><span class="icon">📰</span>七、重要信息点评</h2>
+
+  <div class="impact-box warning">
+    <strong>🔴 美联储主席沃什重磅发声（7月1日，葡萄牙辛特拉央行论坛）</strong><br>
+    • 通胀判断：当前美国通胀水平仍然过高，但<strong>过去四周通胀上行风险已有所缓解</strong><br>
+    • 政策前瞻：不会给出前瞻性指引，将"开辟一条新的政策路径"；回避7月是否加息的问题<br>
+    • 改革方向：设立独立工作组，研究货币政策沟通、经济数据体系、生产率、通胀框架及缩表计划<br>
+    • AI观点：AI蓬勃发展在美国最突出，供给扩张将对政策产生重大影响；美国不惧怕生产力驱动的增长<br>
+    • 市场解读：整体偏鸽派——"通胀风险下降"的说法令市场下调加息预期<br>
+    • 📊 CME利率期货：7月维持利率不变概率66.3%→72.7%，加息25bp概率33.7%→27.3%
+  </div>
+
+  <div class="impact-box warning">
+    <strong>📊 经济数据：</strong><br>
+    • <strong>ADP就业（小非农）：</strong>6月新增9.8万人，预期11.8万，前值12.2万——创3个月最低，就业市场降温明显<br>
+    • <strong>ISM制造业PMI：</strong>6月录得53.3，预期54，前值54——连续6个月扩张但增速放缓<br>
+    • <strong>JOLTS职位空缺：</strong>5月759.4万，预期728.8万，前值761.8万——劳动力市场仍偏紧<br>
+    • <strong>明日关注：</strong>6月非农就业报告（预期+11.5万，失业率4.3%）
+  </div>
+
+  <div class="impact-box danger">
+    <strong>💥 Meta引爆"算力过剩"恐慌：</strong>Meta宣布进军云计算市场，向外部客户出售闲置AI算力和模型访问权限，直接与AWS/Azure/谷歌云竞争。此举引发市场对AI算力资本开支见顶的担忧，导致半导体/存储/光通信板块集体暴跌。CoreWeave -10%、Nebius -11%等AI算力租赁商暴跌。Meta全年AI资本开支高达1,250-1,450亿美元。
+  </div>
+</div>
+
+<!-- 第八部分：A股映射（最重要） -->
+<div class="section">
+  <h2><span class="icon">🔗</span>八、映射到A股的潜在方向 ⭐</h2>
+
+  <div class="impact-box success">
+    <strong>🎯 方向一：中概互联/港股科技板块</strong><br>
+    <strong>映射标的：</strong>中概互联ETF(KWEB/513050)、恒生科技ETF(513180)、拼多多概念/阿里概念<br>
+    <strong>逻辑：</strong>中概股在美股大跌中逆势大涨2.93%，显示外资对中国资产的配置意愿回升。ADP就业不及预期→加息预期降温→美元走弱→利好新兴市场。A股港股的互联网龙头（腾讯、阿里、美团、拼多多）估值处于历史底部，反弹空间充足。
+  </div>
+
+  <div class="impact-box success">
+    <strong>🎯 方向二：A股软件/云计算/信创板块</strong><br>
+    <strong>映射标的：</strong>金山办公(688111)、用友网络(600588)、广联达(002410)、中科曙光(603019)、浪潮信息(000977)<br>
+    <strong>逻辑：</strong>美股"软件走强、硬件走弱"的轮动模式可能映射到A股。Meta进军云计算验证AI算力从"硬件军备"转向"软件服务"的趋势。A股软件/云计算板块同样受益于国产替代和AI应用落地。
+  </div>
+
+  <div class="impact-box success">
+    <strong>🎯 方向三：A股金融/银行板块（高股息策略）</strong><br>
+    <strong>映射标的：</strong>招商银行(600036)、工商银行(601398)、建设银行(601939)、中国平安(601318)<br>
+    <strong>逻辑：</strong>美股金融板块大涨2.13%（富国+4%、美银+2.7%），"大轮动"资金从科技流向金融。A股银行股同样具备高股息+低估值特征，在利率下行预期下防御价值凸显。当前A股银行板块股息率普遍5-7%。
+  </div>
+
+  <div class="impact-box success">
+    <strong>🎯 方向四：A股算力租赁/IDC/光通信（反向抄底机会需谨慎）</strong><br>
+    <strong>映射标的：</strong>中际旭创(300308)、新易盛(300502)、天孚通信(300394)、光环新网(300383)、奥飞数据(300738)<br>
+    <strong>逻辑：</strong>美股算力租赁/光通信板块暴跌（康宁-13.6%、Astera -10.8%、CoreWeave -10%），短期有恐慌传导风险。但A股光模块/算力租赁板块前期已调整充分，Meta进军云可能长期利好算力需求（不是减少而是增加），急跌后或迎来布局机会。需密切关注周四非农数据。
+  </div>
+
+  <div class="impact-box success">
+    <strong>🎯 方向五：A股黄金/贵金属板块</strong><br>
+    <strong>映射标的：</strong>山东黄金(600547)、中金黄金(600489)、紫金矿业(601899)、赤峰黄金(600988)<br>
+    <strong>逻辑：</strong>沃什讲话偏鸽派→美元走弱+美债收益率回落→黄金盘中冲上$4,109。金价反弹预期升温，A股黄金板块有望受益。白银站上$60整数关口，白银股弹性更大。
+  </div>
+</div>
+
+<!-- 第九部分：投资机会 -->
+<div class="section">
+  <h2><span class="icon">💎</span>九、投资机会总结</h2>
+  <table>
+    <tr><th>方向</th><th>短期</th><th>中期</th><th>标的</th></tr>
+    <tr><td>中概互联</td><td class="green">看涨</td><td class="green">看涨</td><td>KDXF(513050), 腾讯, 阿里, 拼多多</td></tr>
+    <tr><td>A股软件/信创</td><td class="green">看涨</td><td class="green">看涨</td><td>金山办公, 用友, 中科曙光</td></tr>
+    <tr><td>银行/高股息</td><td class="green">看涨</td><td class="yellow">中性</td><td>招商银行, 四大行, 中国平安</td></tr>
+    <tr><td>黄金/贵金属</td><td class="yellow">偏多</td><td class="green">看涨</td><td>紫金矿业, 山东黄金, 赤峰黄金</td></tr>
+    <tr><td>光模块/算力</td><td class="red">短期承压</td><td class="green">逢低布局</td><td>中际旭创, 新易盛, 光环新网</td></tr>
+    <tr><td>新能源车</td><td class="yellow">中性</td><td class="yellow">中性</td><td>理想, 小鹏, 比亚迪(港股)</td></tr>
+    <tr><td>半导体(A股)</td><td class="red">短期承压</td><td class="yellow">分化</td><td>中芯国际, 北方华创</td></tr>
+  </table>
+</div>
+
+<!-- 第十部分：风险提示 -->
+<div class="section">
+  <h2><span class="icon">⚠️</span>十、风险提示</h2>
+  <div class="impact-box danger">
+    <strong>1. 非农数据风险：</strong>周四（7月2日）将公布6月非农就业报告。若数据超预期强劲（>15万），可能重燃加息预期，导致美股再度承压。若数据疲软（<8万），市场将定价9月降息，利好风险资产。<br><br>
+    <strong>2. 半导体板块调整未完：</strong>费城半导体指数上半年涨101%，二季度涨87%，调整才刚开始。Meta的云计算计划可能只是导火索，获利了结压力仍在。A股半导体板块可能跟随调整。<br><br>
+    <strong>3. 原油持续下跌风险：</strong>WTI跌破$68创阶段性新低，若跌破$65将加剧通缩预期，利空能源板块但利好航空/化工。<br><br>
+    <strong>4. 美联储政策不确定性：</strong>沃什作为新任主席，政策路径不明。7月30日议息会议是关键节点，若意外加息将引发全球资产重定价。<br><br>
+    <strong>5. 地缘政治风险：</strong>中东局势（美伊谈判）和中美贸易关系仍需关注。
+  </div>
+</div>
+
+<div class="footer">
+  <p>📊 美股映射复盘报告 | 数据日期：2026-07-01 | 生成时间：2026-07-02 08:19 CST</p>
+  <p>⚠️ 免责声明：本报告基于公开数据整理，仅供参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+  <p>数据来源：东方财富Choice、新华网、财联社、证券时报、第一财经等</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿尔茨海默创新药日报 - 2026-05-19</title>
+<style>
+  :root {
+    --primary: #1a5276;
+    --accent: #2e86c1;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --success: #27ae60;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #2c3e50;
+    --text-light: #7f8c8d;
+    --border: #e0e0e0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .header {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 15px rgba(26, 82, 118, 0.3);
+  }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header .date { font-size: 16px; opacity: 0.9; }
+  .header .summary {
+    background: rgba(255,255,255,0.15);
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .alert-banner {
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid;
+  }
+  .alert-banner.p1 { background: #fef3e2; border-color: var(--warning); }
+  .alert-banner.p2 { background: #e8f6f3; border-color: var(--success); }
+  .alert-banner h2 { margin-bottom: 10px; display: flex; align-items: center; gap: 8px; font-size: 18px; }
+  .alert-item {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .alert-item .level {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+  }
+  .alert-item .level.p1 { background: var(--warning); }
+  .alert-item .level.p2 { background: var(--success); }
+
+  .section { margin-bottom: 24px; }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .company-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+    transition: box-shadow 0.2s;
+  }
+  .company-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .company-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .company-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .drug-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    color: white;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .info-item { padding: 10px 14px; background: var(--bg); border-radius: 6px; }
+  .info-item .label {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .info-item .value { font-size: 14px; }
+  .info-item.full { grid-column: 1 / -1; }
+
+  .source-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .source-link:hover { text-decoration: underline; }
+
+  .pipeline-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .pipeline-table th {
+    background: var(--primary);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .pipeline-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .pipeline-table tr:hover { background: #f0f7fc; }
+  .pipeline-table tr:last-child td { border-bottom: none; }
+
+  .phase-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .phase-approved { background: #d5f5e3; color: #1e8449; }
+  .phase-3 { background: #d4efdf; color: #1e8449; }
+  .phase-2 { background: #fef9e7; color: #b7950b; }
+  .phase-1 { background: #fef3e2; color: #ca6f1e; }
+  .phase-pre { background: #fde8e8; color: #c0392b; }
+
+  .calendar-item {
+    background: var(--card-bg);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .calendar-date {
+    background: var(--primary);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .importance-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .importance-dot.high { background: var(--danger); }
+  .importance-dot.medium { background: var(--warning); }
+  .importance-dot.low { background: var(--success); }
+
+  .footer {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 768px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .header { padding: 20px; }
+    .header h1 { font-size: 22px; }
+    body { padding: 12px; }
+  }
+
+  .no-news {
+    text-align: center;
+    color: var(--text-light);
+    padding: 40px;
+    font-size: 16px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>🧠 阿尔茨海默创新药日报</h1>
+    <div class="date">2026年5月19日（周二）</div>
+    <div class="summary">
+      <strong>📊 一句话总结：</strong>Biogen BIIB080 II期CELIA研究主要终点未达，但Tau PET/CSF Tau生物标志物全面显著改善且认知获益明确，Biogen仍力推注册性III期；Leqembi IQLIK皮下剂型PDUFA再延期3个月至8月24日（FDA要求补充信息但未质疑可批准性）；AC Immune创始人/CEO Andrea Pfeifer宣布即将退休，23年执掌生涯落幕，董事会主席Martin Zügel接任临时CEO；Cummings 2026 AD药物管线报告发布，全球158种药物在研，靶点多元化趋势确立。
+    </div>
+  </div>
+
+  <!-- Alert Section -->
+  <div class="section">
+    <div class="alert-banner p1">
+      <h2>⚠️ P1 重要事件（需持续关注）</h2>
+      <div class="alert-item">
+        <span class="level p1">P1</span>&nbsp;&nbsp;<strong>Biogen | BIIB080 (Diranersen)</strong> — II期CELIA研究主要终点（CDR-SB剂量应答）未达到，但所有剂量组Tau PET/CSF Tau均显著降低，最低剂量60mg认知获益最佳；Biogen计划推进注册性III期；详细数据将于AAIC 2026（7月12-15日，伦敦）公布。
+        <br><span style="font-size:12px;color:#7f8c8d;">来源：Biogen投资者公告 2026-05-14 | https://investors.biogen.com/news-releases/news-release-details/topline-results-phase-2-celia-study-diranersen-biib080-first</span>
+      </div>
+      <div class="alert-item">
+        <span class="level p1">P1</span>&nbsp;&nbsp;<strong>Biogen/Eisai | Leqembi IQLIK</strong> — FDA将sBLA审评期延长3个月，新PDUFA日期为<strong>2026年8月24日</strong>（原为2026-05-24）；FDA要求补充皮下起始剂量IV转SC的额外信息，构成重大修订；FDA至今未对可批准性提出质疑。
+        <br><span style="font-size:12px;color:#7f8c8d;">来源：Eisai新闻稿 2026-05-08 | https://www.eisai.com/news/2026/news202625.html</span>
+      </div>
+    </div>
+
+    <div class="alert-banner p2">
+      <h2>📋 P2 行业与公司动态</h2>
+      <div class="alert-item">
+        <span class="level p2">P2</span>&nbsp;&nbsp;<strong>AC Immune | 公司治理</strong> — 创始人兼CEO Andrea Pfeifer博士（任职23年）宣布将在2026年6月年度股东大会上退休；董事会主席Martin Zügel被任命为临时CEO；外部猎聘寻找永久继任者中；Pfeifer后将任董事会名誉主席及科学顾问委员会联合主席。
+        <br><span style="font-size:12px;color:#7f8c8d;">来源：AC Immune投资者关系 2026-05-12 | https://ir.acimmune.com/news-releases/news-release-details/ac-immune-announces-retirement-ceo-dr-andrea-pfeifer-upcoming</span>
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>&nbsp;&nbsp;<strong>Biogen | 战略交易</strong> — Biogen正式完成对Apellis Pharmaceuticals的收购（总价约56亿美元），补体疾病产品线（EMPAVELI、SYFOVRE等）纳入麾下，完善罕见病/免疫学布局，与AD中枢神经系统资产形成协同。
+        <br><span style="font-size:12px;color:#7f8c8d;">来源：BioPharmaWatch 2026-05-14 | https://www.biopharmawut</span>
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>&nbsp;&nbsp;<strong>新华制药 | 管线进展</strong> — 盐酸苄丝肼原料药获NMPA上市批准（2026-05-08），用于神经退行性疾病治疗，与现有OAB-14 AD管线形成补充布局。
+        <br><span style="font-size:12px;color:#7f8c8d;">来源：新华制药官网 2026-05-08 | https://www.xhzy.com/GSYW/index.html</span>
+      </div>
+      <div class="alert-item">
+        <span class="level p2">P2</span>&nbsp;&nbsp;<strong>行业 | 管线全景</strong> — Jeff Cummings博士团队发布"Alzheimer's Disease Drug Development Pipeline: 2026"（2026-05-05），全球AD药物管线共158种疗法在研，较往年显著增加；tau、炎症、免疫、代谢等多靶点并行，宣告AD"单一靶点时代"向多元化生物学驱动的范式转变。
+        <br><span style="font-size:12px;color:#7f8c8d;">来源：Alz Journals 2026-05-05 | https://alz-journals.onlinelibrary.wiley.com/doi/10.1002/trc2.70251</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- News Section -->
+  <div class="section">
+    <div class="section-title">📰 今日信息汇总</div>
+
+    <!-- Biogen BIIB080 -->
+    <div class="company-card">
+      <div class="company-header">
+        <span class="company-name">Biogen (BIIB)</span>
+        <span class="drug-badge">BIIB080 / Diranersen</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="label">事件类型</div>
+          <div class="value">CLINICAL_RESULT — II期顶线结果</div>
+        </div>
+        <div class="info-item">
+          <div class="label">靶点 / 机制</div>
+          <div class="value">MAPT (Tau) / ASO反义寡核苷酸</div>
+        </div>
+        <div class="info-item">
+          <div class="label">试验名称</div>
+          <div class="value">CELIA Phase 2（416例，MCI至轻度AD，76周）</div>
+        </div>
+        <div class="info-item">
+          <div class="label">主要终点</div>
+          <div class="value">CDR-SB剂量应答 — <span style="color:#e74c3c;font-weight:bold;">未达到</span></div>
+        </div>
+        <div class="info-item full">
+          <div class="label">核心数据</div>
+          <div class="value">
+            • 所有剂量组：CSF Tau显著 ↓、Tau PET病理显著 ↓，与1b期一致<br>
+            • 所有剂量：临床衰退延缓，<strong>60mg（最低剂量）认知获益最佳</strong><br>
+            • 高剂量组：严重不良事件(SAE)略多；整体安全性与1b期一致
+          </div>
+        </div>
+        <div class="info-item full">
+          <div class="label">意义</div>
+          <div class="value">首个随机II期研究证明Tau导向疗法可同时实现：①生物标志物改善（Tau PET↓ + CSF Tau↓）；②认知获益（非主要终点但一致性高）。最低剂量60mg的优异安全性/疗效比，为未来注册研究剂量选择提供关键依据。Tau从"不可成药靶点"向临床验证迈出里程碑一步。</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">风险</div>
+          <div class="value">主要终点未达，监管审批路径存在不确定性；最高剂量SAE信号需关注；竞品（同靶点ASO/小分子）进展迅速。</div>
+        </div>
+        <div class="info-item">
+          <div class="label">公司计划</div>
+          <div class="value">推进注册性III期；AAIC 2026公布详细数据</div>
+        </div>
+        <div class="info-item">
+          <div class="label">来源</div>
+          <div class="value"><a href="https://investors.biogen.com/news-releases/news-release-details/topline-results-phase-2-celia-study-diranersen-biib080-first" class="source-link">Biogen官方公告 2026-05-14</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Leqembi IQLIK -->
+    <div class="company-card">
+      <div class="company-header">
+        <span class="company-name">Biogen / Eisai (卫材)</span>
+        <span class="drug-badge">Leqembi® IQLIK™</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="label">事件类型</div>
+          <div class="value">REGULATORY — PDUFA延期</div>
+        </div>
+        <div class="info-item">
+          <div class="label">靶点 / 机制</div>
+          <div class="value">Aβ (N3pG-淀粉样蛋白) / 抗Aβ单克隆抗体</div>
+        </div>
+        <div class="info-item">
+          <div class="label">新PDUFA日期</div>
+          <div class="value" style="font-weight:bold;color:#e74c3c;">2026年8月24日（延期3个月）</div>
+        </div>
+        <div class="info-item">
+          <div class="label">延期原因</div>
+          <div class="value">FDA要求补充IV转SC（静脉→皮下起始剂量）额外信息，认定为"重大修订"</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">关键要点</div>
+          <div class="value">① FDA未对Leqembi IQLIK可批准性提出任何质疑；② 皮下维持剂量已于2025-08-26获FDA批准，本次为皮下起始剂量sBLA；③ 皮下制剂可显著改善患者依从性（居家自我注射 vs 医院静脉输注）；④ 全球50+监管机构已批准Leqembi静脉注射剂型。</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">意义</div>
+          <div class="value">延期3个月在FDA审评中属于常规操作（补充信息请求），不意味着疗效/安全性问题；IQLIK皮下制剂上市后将成为早期AD患者的居家治疗选择，极大提升Leqembi市场渗透率。</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">风险</div>
+          <div class="value">延期可能给竞品Donanemab/Kisunla更多追赶时间；竞争对手礼来可能加速Remternetug SC制剂开发。</div>
+        </div>
+        <div class="info-item">
+          <div class="label">来源</div>
+          <div class="value"><a href="https://www.eisai.com/news/2026/news202625.html" class="source-link">Eisai官方新闻稿 2026-05-08</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AC Immune -->
+    <div class="company-card">
+      <div class="company-header">
+        <span class="company-name">AC Immune (ACIU)</span>
+        <span class="drug-badge">ACI-35.030 / ACI-24.060</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="label">事件类型</div>
+          <div class="value">COMPANY_EVENT — 核心高管换届</div>
+        </div>
+        <div class="info-item">
+          <div class="label">离任CEO</div>
+          <div class="value">Dr. Andrea Pfeifer（创始人，联合创始人，23年任职）</div>
+        </div>
+        <div class="info-item">
+          <div class="label">继任安排</div>
+          <div class="value">临时CEO：Dr. Martin Zügel（现任董事会主席）；外部猎聘永久继任者</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">后续安排</div>
+          <div class="value">Pfeifer将任：① 董事会名誉主席；② 科学顾问委员会联合主席；③ 过渡期顾问（确保平稳交接）。</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">管线现状</div>
+          <div class="value">ACI-35.030/JNJ-2056（抗pTau疫苗，II期，ReTain试验暂停招募中）；ACI-24.060（抗Aβ疫苗，I/II期，ABATE试验入组最后队列）；与礼来/武田/强生均有战略合作。</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">意义</div>
+          <div class="value">创始CEO离任对AC Immune是重大治理事件；但Martin Zügel曾主导Merz美金刚商业化，熟悉AD领域；管线处于关键阶段（ReTain招募暂停问题待解决），新CEO人选将直接影响公司战略走向。</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">风险</div>
+          <div class="value">领导层空窗期可能影响：① ReTain IIb暂停入组问题的解决进度；② BD交易谈判节奏；③ 管线战略优先级调整。</div>
+        </div>
+        <div class="info-item">
+          <div class="label">来源</div>
+          <div class="value"><a href="https://ir.acimmune.com/news-releases/news-release-details/ac-immune-announces-retirement-ceo-dr-andrea-pfeifer-upcoming" class="source-link">AC Immune投资者关系 2026-05-12</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cummings Pipeline Report -->
+    <div class="company-card">
+      <div class="company-header">
+        <span class="company-name">行业全景 | Jeff Cummings 2026管线报告</span>
+        <span class="drug-badge">全球AD药物管线</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="label">报告名称</div>
+          <div class="value">Alzheimer's Disease Drug Development Pipeline: 2026</div>
+        </div>
+        <div class="info-item">
+          <div class="label">发布时间</div>
+          <div class="value">2026年5月5日（Alz Journals）</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">核心数据</div>
+          <div class="value">
+            • 全球<strong>158种疗法</strong>在研（Active Clinical Trials），较往年显著增加<br>
+            • 靶点分布：Aβ（减少）、Tau（增加）、神经炎症/免疫（显著增加）、代谢/血管、突触保护等多元并行<br>
+            • 报告被业界公认为"金标准"，自2016年起每年发布
+          </div>
+        </div>
+        <div class="info-item full">
+          <div class="label">行业意义</div>
+          <div class="value">AD治疗从"Aβ单一靶点执念"向多生物学路径并行转变。Tau、神经炎症、小胶质细胞、代谢等新靶点涌现，新型疗法（ASO、AAV基因疗法、疫苗、小分子）同步推进，行业进入真正的"靶点多元化时代"。</div>
+        </div>
+        <div class="info-item">
+          <div class="label">来源</div>
+          <div class="value"><a href="https://alz-journals.onlinelibrary.wiley.com/doi/10.1002/trc2.70251" class="source-link">Alz Journals 2026-05-05</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 新华制药 -->
+    <div class="company-card">
+      <div class="company-header">
+        <span class="company-name">新华制药 (000756.SZ)</span>
+        <span class="drug-badge">盐酸苄丝肼原料药</span>
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="label">事件类型</div>
+          <div class="value">REGULATORY — 原料药上市批准（NMPA）</div>
+        </div>
+        <div class="info-item">
+          <div class="label">获批日期</div>
+          <div class="value">2026年5月8日</div>
+        </div>
+        <div class="info-item full">
+          <div class="label">意义</div>
+          <div class="value">盐酸苄丝肼为左旋多巴/卡比多巴复方制剂的辅助成分，用于帕金森病治疗（非AD适应症），新华制药以此强化神经退行性疾病领域布局；公司同时推进OAB-14 AD治疗药物管线。</div>
+        </div>
+        <div class="info-item">
+          <div class="label">来源</div>
+          <div class="value"><a href="https://www.xhzy.com/GSYW/index.html" class="source-link">新华制药官网 2026-05-08</a></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Pipeline Overview -->
+  <div class="section">
+    <div class="section-title">📋 管线状态总览</div>
+    <table class="pipeline-table">
+      <thead>
+        <tr>
+          <th>公司</th>
+          <th>产品</th>
+          <th>靶点/机制</th>
+          <th>当前阶段</th>
+          <th>最近更新</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Biogen / Eisai</td>
+          <td>Leqembi® (Lecanemab)</td>
+          <td>Aβ / 抗Aβ单抗</td>
+          <td><span class="phase-badge phase-approved">已获批</span></td>
+          <td>IQLIK sBLA PDUFA延期至2026-08-24（P1）</td>
+        </tr>
+        <tr>
+          <td>礼来</td>
+          <td>Donanemab (Kisunla®)</td>
+          <td>N3pG-Aβ / 抗Aβ单抗</td>
+          <td><span class="phase-badge phase-approved">已获批</span></td>
+          <td>2024-07获FDA批准，商业化推进中</td>
+        </tr>
+        <tr>
+          <td>礼来</td>
+          <td>Remternetug</td>
+          <td>Aβ / 抗Aβ单抗（SC）</td>
+          <td><span class="phase-badge phase-3">III期</span></td>
+          <td>TRAILBLAZER-ALZ 3研究中</td>
+        </tr>
+        <tr>
+          <td>Biogen</td>
+          <td>BIIB080 (Diranersen)</td>
+          <td>MAPT (Tau) / ASO</td>
+          <td><span class="phase-badge phase-2">II期完成</span></td>
+          <td>CELIA II主要终点未达，但生物标志物显著改善，计划推进III期（P1）</td>
+        </tr>
+        <tr>
+          <td>Roche</td>
+          <td>Trontinemab (RG7986)</td>
+          <td>Aβ / BBB穿透单抗（Brainshuttle™）</td>
+          <td><span class="phase-badge phase-3">III期</span></td>
+          <td>TRONTIER-1/2注册中（NCT07169578/NCT07170150）</td>
+        </tr>
+        <tr>
+          <td>AC Immune / J&J</td>
+          <td>ACI-35.030 (JNJ-2056)</td>
+          <td>pTau / 抗pTau疫苗</td>
+          <td><span class="phase-badge phase-2">II期</span></td>
+          <td>ReTain试验暂停入组中（P1）；CEO将换届</td>
+        </tr>
+        <tr>
+          <td>AC Immune</td>
+          <td>ACI-24.060</td>
+          <td>Aβ / 抗Aβ疫苗（脂质体）</td>
+          <td><span class="phase-badge phase-1">I/II期</span></td>
+          <td>ABATE试验最后队列已启动（2026-04-30）</td>
+        </tr>
+        <tr>
+          <td>Voyager</td>
+          <td>VY1706</td>
+          <td>Tau / AAV基因疗法</td>
+          <td><span class="phase-badge phase-pre">IND准备中</span></td>
+          <td>GLP毒理Tau最大↓64%，IND Q2 2026提交，H2 2026进临床（P1）</td>
+        </tr>
+        <tr>
+          <td>Voyager</td>
+          <td>VY7523</td>
+          <td>AD相关 / AAV基因疗法</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>2026H2公布数据</td>
+        </tr>
+        <tr>
+          <td>Lexeo</td>
+          <td>LX1001</td>
+          <td>APOE2 / AAV基因疗法</td>
+          <td><span class="phase-badge phase-1">I/II期</span></td>
+          <td>入组进行中（APOE4纯合子AD患者）</td>
+        </tr>
+        <tr>
+          <td>Alnylam</td>
+          <td>Mivelsiran (ALN-APP)</td>
+          <td>APP / RNAi</td>
+          <td><span class="phase-badge phase-1">I期</span></td>
+          <td>I期临床中（鞘内给药）</td>
+        </tr>
+        <tr>
+          <td>万邦德</td>
+          <td>氘代石杉碱甲</td>
+          <td>AChE / 氘代AChE抑制剂</td>
+          <td><span class="phase-badge phase-pre">IND准备中</span></td>
+          <td>全球专利已授权（20年）；公司ST风险（P2）</td>
+        </tr>
+        <tr>
+          <td>新华制药</td>
+          <td>OAB-14 干混悬剂</td>
+          <td>AD（机制待披露）</td>
+          <td><span class="phase-badge phase-pre">临床/注册</span></td>
+          <td>管线推进中；盐酸苄丝肼原料药获批（2026-05-08）</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Calendar -->
+  <div class="section">
+    <div class="section-title">📅 近期关注日历（未来7天：5月19-25日）</div>
+    <div class="calendar-item">
+      <div class="calendar-date">5月24日</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;"><div class="importance-dot medium"></div><strong>Leqembi IQLIK 原PDUFA日期（已延期，实际关注8/24）</strong></div>
+        <div style="font-size:13px;color:#7f8c8d;margin-top:2px;">原计划5/24，现已延期至8/24；提示：市场可能关注皮下制剂审批进展</div>
+      </div>
+    </div>
+    <div class="calendar-item">
+      <div class="calendar-date">7月12-15日</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;"><div class="importance-dot high"></div><strong>AAIC 2026 — 伦敦（线下+线上）</strong></div>
+        <div style="font-size:13px;color:#7f8c8d;margin-top:2px;">重点关注：BIIB080 CELIA详细数据、Trontinemab TRONTIER更新、AC Immune管线数据；距今约7周</div>
+      </div>
+    </div>
+    <div class="calendar-item">
+      <div class="calendar-date">6月11日</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;"><div class="importance-dot medium"></div><strong>AC Immune 年度股东大会（AGM）</strong></div>
+        <div style="font-size:13px;color:#7f8c8d;margin-top:2px;">CEO正式换届，Martin Zügel接任临时CEO；关注新CEO战略表态及ReTain试验后续安排</div>
+      </div>
+    </div>
+    <div class="calendar-item">
+      <div class="calendar-date">Q3 2026</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;"><div class="importance-dot medium"></div><strong>复星医药/AriBio | AR1001 III期数据读出</strong></div>
+        <div style="font-size:13px;color:#7f8c8d;margin-top:2px;">预计2026年9-10月读出；口服Aβ+Tau双靶点AD药，全球多中心III期已入组1500+患者</div>
+      </div>
+    </div>
+    <div class="calendar-item">
+      <div class="calendar-date">2026-08-24</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;"><div class="importance-dot high"></div><strong>Leqembi IQLIK 新PDUFA日期</strong></div>
+        <div style="font-size:13px;color:#7f8c8d;margin-top:2px;">FDA对皮下起始剂量sBLA的正式审评决定；重点关注皮下制剂获批可能性</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    阿尔茨海默创新药跟踪系统 | 自动生成于 2026-05-19 23:10 | 数据来源于公开信息，仅供参考
+  </div>
+
+</div>
+</body>
+</html>

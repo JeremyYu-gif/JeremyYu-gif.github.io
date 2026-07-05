@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股每日复盘 — 2026-06-08</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #0a0e17;
+  color: #e0e6f0;
+  padding: 16px;
+  line-height: 1.6;
+}
+.container { max-width: 1000px; margin: 0 auto; }
+.header {
+  background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 100%);
+  border: 1px solid #1e3a5f;
+  border-radius: 16px;
+  padding: 28px 24px;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(0,100,200,0.08) 0%, transparent 70%);
+}
+.header h1 { font-size: 24px; font-weight: 700; color: #f0f4fa; }
+.header .sub { color: #8899b0; font-size: 14px; margin-top: 4px; }
+.header .date-badge {
+  display: inline-block;
+  background: #1a3a5c;
+  color: #7ab7ff;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin-top: 8px;
+}
+.badge-red { color: #ff4d6a; font-weight: 600; }
+.badge-green { color: #00d68f; font-weight: 600; }
+.badge-yellow { color: #ffc107; font-weight: 600; }
+
+/* Signals row */
+.signals-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.signal-card {
+  background: #111a26;
+  border: 1px solid #1e2a3a;
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+}
+.signal-card .label { font-size: 12px; color: #6b7d98; }
+.signal-card .value { font-size: 20px; font-weight: 700; margin-top: 4px; }
+.signal-card .change { font-size: 13px; margin-top: 2px; }
+
+/* Section */
+.section {
+  background: #0f1722;
+  border: 1px solid #1a2838;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 14px;
+}
+.section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #7ab7ff;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title .icon { font-size: 18px; }
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+th {
+  background: #0d1a2a;
+  color: #7a8da8;
+  font-weight: 600;
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid #1a2a3a;
+}
+td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #15202f;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #13202f; }
+
+/* Market overview grid */
+.market-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.market-item {
+  background: #0d1824;
+  border: 1px solid #152230;
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.market-item .name { font-size: 13px; color: #8899b0; }
+.market-item .price { font-size: 22px; font-weight: 700; margin-top: 2px; }
+.market-item .chg { font-size: 14px; }
+
+/* Tags */
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin: 2px;
+}
+.tag-red { background: rgba(255,77,106,0.15); color: #ff4d6a; }
+.tag-green { background: rgba(0,214,143,0.15); color: #00d68f; }
+.tag-blue { background: rgba(122,183,255,0.15); color: #7ab7ff; }
+.tag-yellow { background: rgba(255,193,7,0.15); color: #ffc107; }
+
+/* Summary box */
+.summary-box {
+  background: linear-gradient(135deg, #0d1824, #131e2e);
+  border: 1px solid #1e3050;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+.summary-box p { color: #c8d4e0; font-size: 14px; line-height: 1.8; }
+
+/* Strategy points */
+.strategy-list { list-style: none; padding: 0; }
+.strategy-list li {
+  padding: 10px 14px;
+  border-left: 3px solid #1a3a5c;
+  margin-bottom: 8px;
+  background: #0d1824;
+  border-radius: 0 8px 8px 0;
+  font-size: 14px;
+}
+.strategy-list li.risk { border-left-color: #ff4d6a; }
+.strategy-list li.opportunity { border-left-color: #00d68f; }
+.strategy-list li.neutral { border-left-color: #ffc107; }
+
+/* Comparison table compact */
+.compact-table td, .compact-table th { padding: 6px 8px; font-size: 12px; }
+
+/* Responsive */
+@media (max-width: 600px) {
+  body { padding: 10px; }
+  .header { padding: 18px; }
+  .header h1 { font-size: 20px; }
+  .signals-row { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .signal-card { padding: 10px; }
+  .signal-card .value { font-size: 16px; }
+  .market-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .market-item .price { font-size: 18px; }
+  .section { padding: 14px; }
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  color: #3a4a5a;
+  font-size: 11px;
+  padding: 20px 0;
+  border-top: 1px solid #15202f;
+  margin-top: 20px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<div class="header">
+  <h1>📊 A股每日实战复盘</h1>
+  <div class="sub">资深公募基金经理 · 首席研究员 · 实战交易员</div>
+  <div class="date-badge">2026年6月8日 · 星期一</div>
+</div>
+
+<!-- SIGNAL ROW -->
+<div class="signals-row">
+  <div class="signal-card">
+    <div class="label">上证指数</div>
+    <div class="value">3,959</div>
+    <div class="change badge-red">-1.70%</div>
+  </div>
+  <div class="signal-card">
+    <div class="label">深证成指</div>
+    <div class="value">14,821</div>
+    <div class="change badge-red">-3.22%</div>
+  </div>
+  <div class="signal-card">
+    <div class="label">创业板指</div>
+    <div class="value">3,812</div>
+    <div class="change badge-red">-3.69%</div>
+  </div>
+  <div class="signal-card">
+    <div class="label">科创50</div>
+    <div class="value">1,597</div>
+    <div class="change badge-red">-4.30%</div>
+  </div>
+  <div class="signal-card">
+    <div class="label">成交额</div>
+    <div class="value">2.79万亿</div>
+    <div class="change badge-yellow">-2765亿</div>
+  </div>
+  <div class="signal-card">
+    <div class="label">北证50</div>
+    <div class="value">—</div>
+    <div class="change badge-green">+1.33%</div>
+  </div>
+</div>
+
+<!-- CORE CONCLUSION -->
+<div class="section">
+  <div class="section-title"><span class="icon">📝</span> 核心结论</div>
+  <div class="summary-box">
+    <p><strong>【市场性质】</strong> 黑色星期一！受上周五美股科技股暴跌（纳指-4.18%、费城半导体-10%）及亚太市场连锁反应（日经-3.85%、韩国KOSPI-8.29%两度熔断）冲击，A股三大指数集体重挫。沪指失守4000点关口，创业板指跌3.69%，科创50暴跌4.30%领跌全市场。全市场近4600只个股下跌，成交额缩量至2.79万亿，呈现典型的恐慌性抛售特征。</p>
+    <p style="margin-top:10px;"><strong>【主线格局】</strong> 中美科技股联动下跌是今日核心驱动逻辑。A股半导体/CPO/通信设备等科技板块遭受重挫，但<strong class="badge-green">机器人/物理AI概念逆势涨停潮</strong>成为唯一亮点，丰光精密30cm二连板、中望软件20cm涨停。银行+煤炭+石油天然气等防御板块获资金避险。</p>
+    <p style="margin-top:10px;"><strong>【核心判断】</strong> 短期市场处于"海外加息预期升温 + 国内科技股估值消化"的双重压力窗口。上证指数支撑位在3928附近（今日最低点），若本周能在此区域企稳，则中期仍有反弹基础；若跌破则需警惕进一步下探。机器人/物理AI是当前唯一具备持续性的主线方向，建议重点跟踪。</p>
+  </div>
+</div>
+
+<!-- INDEX DETAILS -->
+<div class="section">
+  <div class="section-title"><span class="icon">📈</span> 大盘指数详情</div>
+  <table>
+    <thead>
+      <tr><th>指数</th><th>收盘价</th><th>涨跌幅</th><th>成交额</th><th>5日涨跌幅</th><th>上涨家数</th><th>下跌家数</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>上证指数</td><td>3959.34</td><td class="badge-red">-1.70%</td><td>1.267万亿</td><td class="badge-red">-2.42%</td><td>317</td><td>2027</td></tr>
+      <tr><td>深证成指</td><td>14821.19</td><td class="badge-red">-3.22%</td><td>1.525万亿</td><td class="badge-red">-3.38%</td><td>363</td><td>2543</td></tr>
+      <tr><td>创业板指</td><td>3811.79</td><td class="badge-red">-3.69%</td><td>7273亿</td><td class="badge-red">-3.52%</td><td>169</td><td>1224</td></tr>
+      <tr><td>科创50</td><td>1596.57</td><td class="badge-red">-4.30%</td><td>1194亿</td><td class="badge-red">-4.03%</td><td>8</td><td>42</td></tr>
+      <tr><td>北证50</td><td>—</td><td class="badge-green">+1.33%</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <div style="margin-top:10px; font-size:13px; color:#6b7d98;">
+    🔵 上证支撑位: 3928 | 压力位: 4259 | 今日振幅: 1.98%
+  </div>
+</div>
+
+<!-- MARKET SENTIMENT -->
+<div class="section">
+  <div class="section-title"><span class="icon">🔥</span> 市场情绪与量能</div>
+  <table>
+    <thead><tr><th>指标</th><th>数据</th><th>解读</th></tr></thead>
+    <tbody>
+      <tr><td>涨跌家数</td><td>~857涨 / ~4600跌</td><td class="badge-red">极弱，仅约15%个股上涨</td></tr>
+      <tr><td>涨停/跌停</td><td>57-64只涨停 / ~9只跌停</td><td class="badge-yellow">涨停集中度较高，投机资金聚焦小盘</td></tr>
+      <tr><td>连板股</td><td>14只连板，3只≥3连板</td><td class="badge-yellow">连板晋级率50%，情绪分化</td></tr>
+      <tr><td>成交额</td><td>2.79万亿（缩量2765亿）</td><td class="badge-red">缩量下跌，抄底资金观望</td></tr>
+      <tr><td>上证换手率</td><td>1.37%</td><td>较6月均值偏低</td></tr>
+      <tr><td>振幅</td><td>上证1.98% / 创业板3.20%</td><td>波动加大，恐慌情绪释放</td></tr>
+      <tr><td>DDX/DDY</td><td>上证 DDX:-0.054 / DDY:-0.049</td><td class="badge-red">主力与散户均流出</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FUND FLOW -->
+<div class="section">
+  <div class="section-title"><span class="icon">💰</span> 资金面</div>
+
+  <h4 style="color:#7ab7ff; font-size:14px; margin-bottom:8px;">北向资金</h4>
+  <table>
+    <thead><tr><th>项目</th><th>数据</th></tr></thead>
+    <tbody>
+      <tr><td>今日北向成交总额</td><td>3700.65亿（占两市13.25%）</td></tr>
+      <tr><td>最近一周净流向</td><td class="badge-red">估算净流出118亿元</td></tr>
+      <tr><td>深股通成交前三</td><td>中际旭创91.33亿 / 新易盛40.85亿 / 沪电股份37.70亿</td></tr>
+      <tr><td>沪股通成交前三</td><td>寒武纪25.40亿 / 中天科技23.09亿 / 紫金矿业22.81亿</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="color:#7ab7ff; font-size:14px; margin:12px 0 8px;">两融余额（截至6/5）</h4>
+  <table>
+    <thead><tr><th>项目</th><th>数据</th><th>变化</th></tr></thead>
+    <tbody>
+      <tr><td>全市场两融余额</td><td>29,066.88亿</td><td class="badge-red">-139.98亿</td></tr>
+      <tr><td>融资余额</td><td>28,857.15亿</td><td class="badge-red">-52.58亿（上周，8周来首次减少）</td></tr>
+      <tr><td>融券余额</td><td>209.73亿</td><td>—</td></tr>
+      <tr><td>沪市两融</td><td>14,790.51亿</td><td class="badge-red">-112.80亿</td></tr>
+      <tr><td>深市两融</td><td>14,187.71亿</td><td class="badge-red">-27.73亿</td></tr>
+    </tbody>
+  </table>
+  <div style="font-size:12px; color:#6b7d98; margin-top:6px;">⚠️ 融资余额在连续8周增加后首次减少，显示杠杆资金在高位趋于谨慎</div>
+</div>
+
+<!-- TOP SECTORS -->
+<div class="section">
+  <div class="section-title"><span class="icon">🏆</span> 行业主线 TOP6</div>
+  <table>
+    <thead><tr><th>排名</th><th>板块</th><th>涨跌幅</th><th>核心逻辑</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>机器人（申万）</strong></td><td class="badge-green">+4.42%</td><td>宇树科技过会 + 特斯拉Optimus量产临近 + 物理AI驱动</td></tr>
+      <tr><td>2</td><td><strong>工程机械</strong></td><td class="badge-green">+2.30~2.44%</td><td>机器人产业链延伸 + 基建预期</td></tr>
+      <tr><td>3</td><td><strong>国有大型银行</strong></td><td class="badge-green">+1.74%</td><td>防御避险 + 高股息逻辑</td></tr>
+      <tr><td>4</td><td><strong>动力煤</strong></td><td class="badge-green">+1.62%</td><td>中国神华创2007年以来新高</td></tr>
+      <tr><td>5</td><td><strong>石油天然气</strong></td><td class="badge-green">+1.26%</td><td>以色列空袭伊朗石化设施驱动</td></tr>
+      <tr><td>6</td><td><strong>印刷/辅料</strong></td><td class="badge-green">+1.56~2.13%</td><td>资金溢出效应，小盘补涨</td></tr>
+    </tbody>
+  </table>
+  <div style="margin-top:10px;">
+    <span class="tag tag-red">CPO概念</span>
+    <span class="tag tag-red">半导体</span>
+    <span class="tag tag-red">贵金属</span>
+    <span class="tag tag-red">有色金属</span>
+    <span class="tag tag-red">通信设备</span>
+    <span style="font-size:12px; color:#6b7d98;">— 以上板块领跌，跌幅显著</span>
+  </div>
+</div>
+
+<!-- DRAGON LEADER -->
+<div class="section">
+  <div class="section-title"><span class="icon">🐉</span> 龙头梯队（连板股）</div>
+  <table>
+    <thead><tr><th>股票</th><th>连板/高度</th><th>题材</th><th>走势特征</th></tr></thead>
+    <tbody>
+      <tr><td>大有能源</td><td><span class="tag tag-green">6连板</span></td><td>煤炭</td><td>竞价从跌停抢至红盘弱转强，近期首只突破5板</td></tr>
+      <tr><td>达实智能</td><td><span class="tag tag-yellow">6天4板</span></td><td>物理AI</td><td>反复烂板回封，高辨识度</td></tr>
+      <tr><td>中重科技</td><td><span class="tag tag-blue">4连板</span></td><td>机器人</td><td>已澄清不涉及机器人生产，纯情绪博弈</td></tr>
+      <tr><td>丰光精密</td><td><span class="tag tag-yellow">2连板（30cm）</span></td><td>机器人+北证</td><td>两日累涨68.92%，逼近历史新高</td></tr>
+      <tr><td>天娱数科</td><td><span class="tag tag-blue">2连板</span></td><td>物理AI</td><td>游资主导缩量加速</td></tr>
+      <tr><td>能科科技</td><td><span class="tag tag-blue">2连板</span></td><td>物理AI</td><td>放量换手板</td></tr>
+      <tr><td>锋龙股份</td><td><span class="tag tag-blue">3天2板</span></td><td>机器人</td><td>反包涨停</td></tr>
+      <tr><td>百合花</td><td><span class="tag tag-blue">6天3板</span></td><td>PEEK材料/机器人</td><td>趋势型涨停</td></tr>
+    </tbody>
+  </table>
+  <div style="margin-top:10px; font-size:13px; color:#6b7d98;">
+    📌 连板总数14只，3只≥3连板（含6板1只），晋级率50%。20CM涨停9只，30CM涨停2只，投机资金偏好小盘高弹性标的。
+  </div>
+</div>
+
+<!-- INSTITUTIONAL DRAGON TIGER -->
+<div class="section">
+  <div class="section-title"><span class="icon">🏛️</span> 龙虎榜机构动向</div>
+  <table>
+    <thead><tr><th>个股</th><th>方向</th><th>净额</th><th>亮点</th></tr></thead>
+    <tbody>
+      <tr><td>中巨芯（688549）</td><td class="badge-green">机构净买入</td><td>+6111.93万</td><td>北向同步净买入2686.25万</td></tr>
+      <tr><td>福达合金（603045）</td><td class="badge-green">机构净买入</td><td>+1006.19万</td><td>振幅15.72%，换手15.65%</td></tr>
+      <tr><td>易事特（300376）</td><td class="badge-green">机构净买入</td><td>+890.70万</td><td>3家机构席位现身</td></tr>
+      <tr><td>嘉环科技（603206）</td><td class="badge-green">沪股通净买入</td><td>+1221.74万</td><td>涨停，游资+北向合力</td></tr>
+      <tr><td>华正新材（603186）</td><td class="badge-green">北向净买入</td><td>+2482.01万</td><td>涨停，振幅15%</td></tr>
+      <tr><td>中船特气（688146）</td><td class="badge-green">北向净买入</td><td>+3.81亿</td><td>10日涨幅超100%，趋势股</td></tr>
+      <tr><td>火炬电子（603678）</td><td class="badge-red">机构净卖出</td><td>~-1.80亿</td><td>跌停，机构买入1.29亿但卖出3.09亿</td></tr>
+    </tbody>
+  </table>
+  <div style="margin-top:10px; font-size:13px; color:#e0e6f0;">
+    <strong>机构研判：</strong> 机构整体偏防御，买入方向集中在半导体次新股（中巨芯）和机器人产业链（易事特），但跌停板上也有机构大幅卖出（火炬电子）。北向资金大手笔买入中船特气3.81亿值得关注。
+  </div>
+</div>
+
+<!-- RISK SIGNALS -->
+<div class="section">
+  <div class="section-title"><span class="icon">⚠️</span> 风险信号</div>
+  <table>
+    <thead><tr><th>风险因子</th><th>状态</th><th>影响评估</th></tr></thead>
+    <tbody>
+      <tr><td>美非农超预期 → 加息预期升温</td><td class="badge-red">高</td><td>全球科技股估值承压，A股半导体/CPO首当其冲</td></tr>
+      <tr><td>韩国KOSPI单日-8.29%两度熔断</td><td class="badge-red">高</td><td>亚太恐慌情绪传导，A股外资流出压力</td></tr>
+      <tr><td>纳指-4.18%, 费半-10%</td><td class="badge-red">高</td><td>1.2万亿美元市值蒸发，AI泡沫担忧升温</td></tr>
+      <tr><td>融资余额8周来首次减少</td><td class="badge-yellow">中</td><td>杠杆资金撤退信号，市场做多意愿减弱</td></tr>
+      <tr><td>北向资金持续流出</td><td class="badge-yellow">中</td><td>上周净流出118亿，今日成交占比仅13.25%</td></tr>
+      <tr><td>成交缩量至2.79万亿</td><td class="badge-yellow">中</td><td>缩量下跌意味着抄底盘不足，需放量才能确认底部</td></tr>
+      <tr><td>大盘科技股高位退潮</td><td class="badge-yellow">中</td><td>中际旭创仅跌2%显分化，但天孚通信跌7%需警惕</td></tr>
+      <tr><td>地缘政治：以色列空袭伊朗</td><td class="badge-yellow">低-中</td><td>短期利好油气，但对整体市场构成不确定性</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- AH / US LINKAGE -->
+<div class="section">
+  <div class="section-title"><span class="icon">🌍</span> AH联动 &amp; A美联动</div>
+
+  <h4 style="color:#7ab7ff; font-size:14px; margin-bottom:8px;">🇺🇸 美股（6月5日收盘）</h4>
+  <table>
+    <thead><tr><th>指数</th><th>收盘</th><th>涨跌幅</th><th>关键事件</th></tr></thead>
+    <tbody>
+      <tr><td>道琼斯</td><td>50,866.78</td><td class="badge-red">-1.35%</td><td>非农数据远超预期（+17.2万），加息预期飙升</td></tr>
+      <tr><td>标普500</td><td>7,383.74</td><td class="badge-red">-2.64%</td><td>创2025年初关税风波以来最大周跌幅</td></tr>
+      <tr><td>纳斯达克</td><td>25,709.43</td><td class="badge-red">-4.18%</td><td>创一年多最大单日跌幅</td></tr>
+      <tr><td>费城半导体</td><td>—</td><td class="badge-red">-10.00%</td><td>2020年3月以来最大单日跌幅，市值蒸发1.2万亿</td></tr>
+    </tbody>
+  </table>
+  <div style="margin-top:8px; font-size:12px; color:#8899b0;">
+    核心个股：英伟达-6.2% / 美光科技-13.25% / AMD-10.86% / 博通-7.92% / 迈威尔科技-16.74% / 台积电-6%
+  </div>
+
+  <h4 style="color:#7ab7ff; font-size:14px; margin:12px 0 8px;">🇭🇰 港股（6月5日收盘及今日）</h4>
+  <table>
+    <thead><tr><th>指数</th><th>数据</th><th>涨跌幅</th></tr></thead>
+    <tbody>
+      <tr><td>恒生指数</td><td>~24,962</td><td class="badge-red">-1.15%（5日）/ 今日再跌超1%</td></tr>
+      <tr><td>恒生科技</td><td>~4,888</td><td class="badge-red">-1.75%（5日）/ 今日再跌超3%</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="color:#7ab7ff; font-size:14px; margin:12px 0 8px;">🌏 亚太联动</h4>
+  <table>
+    <thead><tr><th>市场</th><th>涨跌幅</th><th>备注</th></tr></thead>
+    <tbody>
+      <tr><td>日经225</td><td class="badge-red">-3.85%</td><td>跌超2500点</td></tr>
+      <tr><td>韩国KOSPI</td><td class="badge-red">-8.29%</td><td>日内两度熔断</td></tr>
+    </tbody>
+  </table>
+  <div style="margin-top:10px; font-size:13px; color:#e0e6f0;">
+    <strong>联动研判：</strong> 美→亚太→A股的传导链条清晰。美国非农超预期引发加息恐慌→美股科技股暴跌→亚太市场连锁反应→A股半导体/CPO板块跟跌。A股今日跌幅小于日韩（有护盘力量和前期涨幅较小的原因），但科创50跌幅接近，显示科技股受海外情绪影响最大。
+  </div>
+</div>
+
+<!-- TOMORROW STRATEGY -->
+<div class="section">
+  <div class="section-title"><span class="icon">🎯</span> 明日策略（6月9日）</div>
+  <ul class="strategy-list">
+    <li class="risk"><strong>⚡ 警惕惯性下杀：</strong> 尾盘未见明显抄底资金，若今晚美股继续走弱，明日早盘可能延续恐慌。上证3928（今日最低点）是短期关键支撑，若放量跌破则考验3850。</li>
+    <li class="risk"><strong>⚡ 回避高位科技股：</strong> 半导体/CPO/光通信等板块受美股费城半导体指数暴跌10%冲击，短期估值压缩尚未结束。即使有反弹也视为减仓窗口，而非抄底机会。</li>
+    <li class="opportunity"><strong>🎯 聚焦机器人/物理AI主线：</strong> 这是当前唯一具备持续赚钱效应的方向。关注丰光精密（北证风向标）、中望软件、达实智能、能科科技、天娱数科的竞价表现。若龙头能继续走强，板块热度有望延续。</li>
+    <li class="opportunity"><strong>🎯 关注防御性板块轮动：</strong> 银行（高股息）、煤炭（中国神华创新高）、油气（地缘催化）——若大盘继续走弱，这些方向是资金避风港。</li>
+    <li class="neutral"><strong>📌 仓位建议：</strong> 维持5成以下防御仓位。急跌不恐慌割肉，但也不急于抄底。等待美股企稳信号（纳指止跌反弹）+ A股放量止跌（成交回到3万亿以上）后的右侧机会。</li>
+    <li class="neutral"><strong>📌 关注今晚美股走势：</strong> 若纳指反弹（修复跌幅的1/3以上），则A股明日有望企稳甚至修复；若继续下跌，建议进一步减仓。</li>
+  </ul>
+</div>
+
+<!-- COMPARISON TABLE -->
+<div class="section">
+  <div class="section-title"><span class="icon">📋</span> 极简对比表</div>
+  <table class="compact-table">
+    <thead>
+      <tr><th>维度</th><th>今日（6/8）</th><th>昨日（6/5）</th><th>变化趋势</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>上证指数</td><td>3959 (-1.70%)</td><td>4028 (-0.74%)</td><td class="badge-red">加速下跌</td></tr>
+      <tr><td>深证成指</td><td>14821 (-3.22%)</td><td>15315 (-2.22%)</td><td class="badge-red">跌幅扩大</td></tr>
+      <tr><td>创业板指</td><td>3812 (-3.69%)</td><td>3958 (-3.20%)</td><td class="badge-red">继续重挫</td></tr>
+      <tr><td>科创50</td><td>1597 (-4.30%)</td><td>1668 (-4.01%)</td><td class="badge-red">连续领跌</td></tr>
+      <tr><td>成交额</td><td>2.79万亿</td><td>3.07万亿</td><td class="badge-yellow">缩量9%</td></tr>
+      <tr><td>北向资金</td><td>成交3700亿</td><td>—</td><td class="badge-yellow">近期净流出</td></tr>
+      <tr><td>两融余额</td><td>29067亿（6/5）</td><td>29207亿（6/4）</td><td class="badge-red">减少140亿</td></tr>
+      <tr><td>涨停家数</td><td>~57只</td><td>~40-50只</td><td class="badge-green">投机活跃</td></tr>
+      <tr><td>市场情绪</td><td>恐慌普跌</td><td>弱势震荡</td><td class="badge-red">明显恶化</td></tr>
+      <tr><td>最强板块</td><td>机器人+4.42%</td><td>—</td><td class="badge-green">唯一亮点</td></tr>
+      <tr><td>最弱板块</td><td>CPO/半导体/有色</td><td>—</td><td class="badge-red">集体崩跌</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  免责声明：本报告基于公开数据生成，仅供学习研究参考，不构成任何投资建议。<br>
+  数据来源：东方财富妙想数据 · 同花顺iFind · 证券时报网 · 每日经济新闻 · 财联社<br>
+  生成时间：2026-06-08 19:46 · Hermes Agent 自动生成
+</div>
+
+</div>
+</body>
+</html>

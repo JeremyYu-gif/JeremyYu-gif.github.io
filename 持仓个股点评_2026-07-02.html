@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>持仓个股点评 2026-07-02</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0e27; color: #c8d6e5; font-family: -apple-system, 'Microsoft YaHei', 'PingFang SC', sans-serif; padding: 20px; }
+.container { max-width: 1000px; margin: 0 auto; }
+.header { background: linear-gradient(135deg, #1a1f4e, #0a0e27); border: 1px solid #2a2f5e; border-radius: 12px; padding: 25px; margin-bottom: 20px; text-align: center; }
+.header h1 { color: #ffd700; font-size: 26px; margin-bottom: 10px; }
+.header .date { color: #7f8fa6; font-size: 14px; }
+.header .summary { margin-top: 15px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+.header .summary-item { text-align: center; }
+.header .summary-item .label { color: #7f8fa6; font-size: 12px; }
+.header .summary-item .value { color: #ffd700; font-size: 22px; font-weight: bold; }
+.header .summary-item .value.red { color: #ff4757; }
+.header .summary-item .value.green { color: #2ed573; }
+.stock-card { background: linear-gradient(135deg, #12163a, #0d1132); border: 1px solid #2a2f5e; border-radius: 12px; margin-bottom: 20px; overflow: hidden; }
+.stock-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: rgba(255,215,0,0.05); border-bottom: 1px solid #2a2f5e; }
+.stock-header .name { color: #ffd700; font-size: 18px; font-weight: bold; }
+.stock-header .code { color: #7f8fa6; font-size: 13px; margin-left: 8px; }
+.stock-header .weight { background: #ffd700; color: #0a0e27; font-size: 12px; padding: 2px 8px; border-radius: 10px; font-weight: bold; }
+.stock-header .price { font-size: 16px; }
+.stock-header .price .change.up { color: #2ed573; }
+.stock-header .price .change.down { color: #ff4757; }
+.stock-header .pnl { font-size: 14px; }
+.stock-header .pnl.profit { color: #2ed573; }
+.stock-header .pnl.loss { color: #ff4757; }
+.stock-body { padding: 15px 20px; }
+.section { margin-bottom: 15px; }
+.section-title { color: #ffd700; font-size: 14px; font-weight: bold; margin-bottom: 8px; padding-bottom: 5px; border-bottom: 1px solid #2a2f5e; }
+.section-content { font-size: 13px; line-height: 1.8; color: #c8d6e5; }
+.table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+.table th { background: rgba(255,215,0,0.1); color: #ffd700; padding: 6px 10px; text-align: center; border: 1px solid #2a2f5e; font-weight: normal; }
+.table td { padding: 5px 10px; text-align: center; border: 1px solid #1a1f4e; }
+.table td.left { text-align: left; }
+.signal-row { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px; }
+.signal-box { flex: 1; min-width: 200px; padding: 10px; border-radius: 8px; }
+.signal-box.bullish { background: rgba(46,213,115,0.1); border: 1px solid rgba(46,213,115,0.3); }
+.signal-box.bearish { background: rgba(255,71,87,0.1); border: 1px solid rgba(255,71,87,0.3); }
+.signal-box .title { font-size: 12px; font-weight: bold; margin-bottom: 5px; }
+.signal-box.bullish .title { color: #2ed573; }
+.signal-box.bearish .title { color: #ff4757; }
+.signal-item { font-size: 12px; line-height: 1.6; color: #c8d6e5; margin: 2px 0; }
+.forecast-box { background: rgba(255,215,0,0.08); border: 1px solid rgba(255,215,0,0.3); border-radius: 8px; padding: 12px 15px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+.forecast-box .forecast { font-size: 18px; font-weight: bold; color: #ffd700; }
+.forecast-box .suggestion { font-size: 16px; }
+.forecast-box .stars { font-size: 18px; letter-spacing: 2px; }
+.stars-box { text-align: center; margin-top: 10px; }
+.fundamental { font-size: 13px; line-height: 1.8; color: #c8d6e5; }
+.fundamental .highlight { color: #ffd700; }
+.fundamental .bullet { color: #7f8fa6; }
+.price-table { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin: 5px 0; }
+.price-col { flex: 1; min-width: 120px; padding: 5px; text-align: center; }
+.price-col .p-label { color: #7f8fa6; font-size: 11px; }
+.price-col .p-value { color: #ffd700; font-size: 14px; font-weight: bold; }
+.last10 { background: rgba(255,255,255,0.03); border-radius: 6px; padding: 8px; font-family: 'Consolas', monospace; font-size: 11px; color: #7f8fa6; overflow-x: auto; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>📋 持仓个股点评</h1>
+  <div class="date">报告日期：2026-07-02 | 数据截止：2026-07-02 16:00 HKT</div>
+  <div class="summary">
+    <div class="summary-item">
+      <div class="label">持仓数量</div>
+      <div class="value">10只</div>
+    </div>
+    <div class="summary-item">
+      <div class="label">总仓位</div>
+      <div class="value">87.0%</div>
+    </div>
+    <div class="summary-item">
+      <div class="label">组合盈亏</div>
+      <div class="value red">-17.48%</div>
+    </div>
+  </div>
+</div>
+
+<div class="stock-card">
+  <div class="stock-header">
+    <div>
+      <span class="name">小鹏汽车</span>
+      <span class="code">09868</span>
+    </div>
+    <div style="text-align:right;">
+      <div style="margin-bottom:3px;"><span class="weight">15.73%</span></div>
+      <div class="price">现价 <b>51.80</b> <span class="change up">(+2.27%)</span></div>
+      <div class="pnl loss">成本 83.53 | 盈亏 -37.99%</div>
+    </div>
+  </div>
+  <div class="stock-body">
+
+    <div class="section">
+      <div class="section-title">📊 行情概览</div>
+      <div class="price-table">
+        <div class="price-col">
+          <div class="p-label">最新价</div>
+          <div class="p-value">51.80</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">成本价</div>
+          <div class="p-value">83.53</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">涨幅</div>
+          <div class="p-value green">+2.27%</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">盈亏</div>
+          <div class="p-value red">-37.99%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🔍 基本面点评</div>
+      <div class="fundamental">
+
+      <p><span class="highlight">投资逻辑：智驾+机器人双轮驱动。</span></p>
+      <p class="bullet">• 最新动态：港股7/2收涨2.27%至51.80港元。小鹏近期公布6月交付数据表现强劲，XNGP城市智驾持续开城。G7/P7+新车型周期推动销量回升。</p>
+      <p class="bullet">• 催化剂：2026年Q3预计发布图灵芯片V2.0版本，智驾能力有望进一步提升。机器人业务（铁蛋/骐骥）逐步进入量产规划阶段。</p>
+      <p class="bullet">• 无明显变化。核心逻辑仍在兑现中，但需关注新车型交付节奏和毛利率修复进度。当前浮亏约38%，属于深套状态。</p>
+      <p class="bullet">• 行业政策：新能源车渗透率持续提升，智驾法规逐步放开，中期利好。</p>
+
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 近期K线（最近5个交易日）</div>
+      <div class="last10">2026-06-25: 47.90  |  2026-06-26: 45.58  |  2026-06-29: 47.40  |  2026-06-30: 50.65  |  2026-07-02: 51.80</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 均线系统</div>
+      <table class="table">
+        <tr>
+          <th>指标</th>
+          <th>MA5</th>
+          <th>MA10</th>
+          <th>MA20</th>
+          <th>MA60</th>
+          <th>排列</th>
+          <th>趋势</th>
+        </tr>
+        <tr>
+          <td>数值</td>
+          <td>48.67</td>
+          <td>49.82</td>
+          <td>55.26</td>
+          <td>61.43</td>
+          <td>偏空头</td>
+          <td>震荡偏空</td>
+        </tr>
+        <tr>
+          <td>偏离</td>
+          <td class="green">6.44%</td>
+          <td colspan="2" class="red">vs MA20: -6.26%</td>
+          <td colspan="3"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📉 技术指标</div>
+      <table class="table">
+        <tr>
+          <th>RSI(14)</th>
+          <th>MACD(DIF)</th>
+          <th>MACD(DEA)</th>
+          <th>MACD柱</th>
+          <th>MACD状态</th>
+        </tr>
+        <tr>
+          <td>33.4 (偏弱区间 ⚠️)</td>
+          <td>-3.793</td>
+          <td>-3.535</td>
+          <td class="red">-0.515</td>
+          <td>DIF在DEA下方 ❌<br>空头(绿柱)</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>布林上轨</th>
+          <th>布林中轨</th>
+          <th>布林下轨</th>
+          <th>价格位置</th>
+          <th>带宽</th>
+        </tr>
+        <tr>
+          <td>68.54</td>
+          <td>55.26</td>
+          <td>41.98</td>
+          <td>中轨附近 ➡️ (37%)</td>
+          <td>⬆️ 带宽较宽，趋势行情</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>量比</th>
+          <th>量能状态</th>
+          <th>上方阻力</th>
+          <th>下方支撑</th>
+        </tr>
+        <tr>
+          <td>1.46x</td>
+          <td>正常 ➡️</td>
+          <td>71.1 / 68.75 / 66.8</td>
+          <td>45.32 / 46.22 / 46.56</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">⚡ 信号汇总</div>
+      <div class="signal-row">
+        <div class="signal-box bullish">
+          <div class="title">✅ 多头信号 (0)</div>
+
+        </div>
+        <div class="signal-box bearish">
+          <div class="title">⚠️ 空头信号 ({len(a['bearish'])})</div>
+<div class="signal-item">⚠️ 均线空头排列</div><div class="signal-item">⚠️ MACD绿柱</div><div class="signal-item">⚠️ DIF在DEA之下</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="forecast-box">
+      <div>
+        <div class="forecast">📉 走势预判：看跌 📉</div>
+      </div>
+      <div>
+        <div class="suggestion">操作建议：<b style="color:#ffd700;">减仓/止损</b></div>
+      </div>
+      <div>
+        <div class="stars">🌕🌑🌑🌑🌑</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="stock-card">
+  <div class="stock-header">
+    <div>
+      <span class="name">阿里巴巴</span>
+      <span class="code">09988</span>
+    </div>
+    <div style="text-align:right;">
+      <div style="margin-bottom:3px;"><span class="weight">12.93%</span></div>
+      <div class="price">现价 <b>94.50</b> <span class="change up">(+1.78%)</span></div>
+      <div class="pnl loss">成本 146.37 | 盈亏 -35.44%</div>
+    </div>
+  </div>
+  <div class="stock-body">
+
+    <div class="section">
+      <div class="section-title">📊 行情概览</div>
+      <div class="price-table">
+        <div class="price-col">
+          <div class="p-label">最新价</div>
+          <div class="p-value">94.50</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">成本价</div>
+          <div class="p-value">146.37</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">涨幅</div>
+          <div class="p-value green">+1.78%</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">盈亏</div>
+          <div class="p-value red">-35.44%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🔍 基本面点评</div>
+      <div class="fundamental">
+
+      <p><span class="highlight">投资逻辑：云计算+AI+电商基本盘。</span></p>
+      <p class="bullet">• 最新动态：港股7/2收涨1.78%至94.50港元。阿里云AI收入持续高速增长，通义千问大模型生态持续拓展。FY2026全年营收稳健增长。</p>
+      <p class="bullet">• 催化剂：AI云业务收入占比提升带动估值重塑。淘宝天猫GMV逐步企稳。蚂蚁集团估值修复预期。</p>
+      <p class="bullet">• 无明显变化。核心电商基本盘稳固，云业务AI驱动增长逻辑不变。当前浮亏约35%，估值处于历史低位区间。</p>
+      <p class="bullet">• 风险：中概股宏观压力，中美关系不确定性，竞争格局（拼多多/抖音）持续。</p>
+
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 近期K线（最近5个交易日）</div>
+      <div class="last10">2026-06-25: 95.00  |  2026-06-26: 89.50  |  2026-06-29: 93.00  |  2026-06-30: 92.85  |  2026-07-02: 94.50</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 均线系统</div>
+      <table class="table">
+        <tr>
+          <th>指标</th>
+          <th>MA5</th>
+          <th>MA10</th>
+          <th>MA20</th>
+          <th>MA60</th>
+          <th>排列</th>
+          <th>趋势</th>
+        </tr>
+        <tr>
+          <td>数值</td>
+          <td>92.97</td>
+          <td>97.79</td>
+          <td>106.68</td>
+          <td>122.07</td>
+          <td>偏空头</td>
+          <td>震荡偏空</td>
+        </tr>
+        <tr>
+          <td>偏离</td>
+          <td class="green">1.65%</td>
+          <td colspan="2" class="red">vs MA20: -11.42%</td>
+          <td colspan="3"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📉 技术指标</div>
+      <table class="table">
+        <tr>
+          <th>RSI(14)</th>
+          <th>MACD(DIF)</th>
+          <th>MACD(DEA)</th>
+          <th>MACD柱</th>
+          <th>MACD状态</th>
+        </tr>
+        <tr>
+          <td>23.5 (超卖区域 💡)</td>
+          <td>-8.584</td>
+          <td>-7.664</td>
+          <td class="red">-1.841</td>
+          <td>DIF在DEA下方 ❌<br>空头(绿柱)</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>布林上轨</th>
+          <th>布林中轨</th>
+          <th>布林下轨</th>
+          <th>价格位置</th>
+          <th>带宽</th>
+        </tr>
+        <tr>
+          <td>128.87</td>
+          <td>106.68</td>
+          <td>84.5</td>
+          <td>中轨附近 ➡️ (22%)</td>
+          <td>⬆️ 带宽较宽，趋势行情</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>量比</th>
+          <th>量能状态</th>
+          <th>上方阻力</th>
+          <th>下方支撑</th>
+        </tr>
+        <tr>
+          <td>1.03x</td>
+          <td>正常 ➡️</td>
+          <td>130.3 / 125.6 / 125.1</td>
+          <td>88.65 / 91.15 / 91.3</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">⚡ 信号汇总</div>
+      <div class="signal-row">
+        <div class="signal-box bullish">
+          <div class="title">✅ 多头信号 (1)</div>
+<div class="signal-item">✅ RSI超卖</div>
+        </div>
+        <div class="signal-box bearish">
+          <div class="title">⚠️ 空头信号 ({len(a['bearish'])})</div>
+<div class="signal-item">⚠️ 均线空头排列</div><div class="signal-item">⚠️ MACD绿柱</div><div class="signal-item">⚠️ DIF在DEA之下</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="forecast-box">
+      <div>
+        <div class="forecast">📉 走势预判：看跌 📉</div>
+      </div>
+      <div>
+        <div class="suggestion">操作建议：<b style="color:#ffd700;">减仓/止损</b></div>
+      </div>
+      <div>
+        <div class="stars">🌕🌕🌑🌑🌑</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="stock-card">
+  <div class="stock-header">
+    <div>
+      <span class="name">福瑞医科</span>
+      <span class="code">300049</span>
+    </div>
+    <div style="text-align:right;">
+      <div style="margin-bottom:3px;"><span class="weight">10.58%</span></div>
+      <div class="price">现价 <b>43.32</b> <span class="change down">(-1.32%)</span></div>
+      <div class="pnl loss">成本 58.14 | 盈亏 -25.49%</div>
+    </div>
+  </div>
+  <div class="stock-body">
+
+    <div class="section">
+      <div class="section-title">📊 行情概览</div>
+      <div class="price-table">
+        <div class="price-col">
+          <div class="p-label">最新价</div>
+          <div class="p-value">43.32</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">成本价</div>
+          <div class="p-value">58.14</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">涨幅</div>
+          <div class="p-value red">-1.32%</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">盈亏</div>
+          <div class="p-value red">-25.49%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🔍 基本面点评</div>
+      <div class="fundamental">
+
+      <p><span class="highlight">投资逻辑：肝病诊断龙头，FibroScan全球化布局。</span></p>
+      <p class="bullet">• 最新动态：A股7/2收跌1.32%至43.32元。福瑞医科（福瑞股份）是全球肝纤维化无创诊断龙头，FibroScan产品在全球肝脏健康筛查领域持续放量。</p>
+      <p class="bullet">• 催化剂：NASH（非酒精性脂肪性肝炎）药物获批带来的筛查需求增长。全球脂肪肝患病率持续上升为公司产品创造广阔市场空间。</p>
+      <p class="bullet">• 无明显变化。核心逻辑（肝脏健康筛查需求增长）未变。当前浮亏约25%，处于中幅套牢状态。</p>
+      <p class="bullet">• 关注：海外收入占比高，汇率波动影响。</p>
+
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 近期K线（最近5个交易日）</div>
+      <div class="last10">2026-06-26: 37.14  |  2026-06-29: 38.77  |  2026-06-30: 38.88  |  2026-07-01: 43.90  |  2026-07-02: 43.32</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 均线系统</div>
+      <table class="table">
+        <tr>
+          <th>指标</th>
+          <th>MA5</th>
+          <th>MA10</th>
+          <th>MA20</th>
+          <th>MA60</th>
+          <th>排列</th>
+          <th>趋势</th>
+        </tr>
+        <tr>
+          <td>数值</td>
+          <td>40.4</td>
+          <td>40.3</td>
+          <td>41.13</td>
+          <td>49.76</td>
+          <td>偏多头</td>
+          <td>震荡偏多</td>
+        </tr>
+        <tr>
+          <td>偏离</td>
+          <td class="green">7.22%</td>
+          <td colspan="2" class="green">vs MA20: 5.32%</td>
+          <td colspan="3"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📉 技术指标</div>
+      <table class="table">
+        <tr>
+          <th>RSI(14)</th>
+          <th>MACD(DIF)</th>
+          <th>MACD(DEA)</th>
+          <th>MACD柱</th>
+          <th>MACD状态</th>
+        </tr>
+        <tr>
+          <td>51.8 (偏强区间 ✅)</td>
+          <td>-2.019</td>
+          <td>-2.742</td>
+          <td class="green">1.446</td>
+          <td>DIF在DEA上方 ✅<br>多头(红柱)</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>布林上轨</th>
+          <th>布林中轨</th>
+          <th>布林下轨</th>
+          <th>价格位置</th>
+          <th>带宽</th>
+        </tr>
+        <tr>
+          <td>44.86</td>
+          <td>41.13</td>
+          <td>37.41</td>
+          <td>中轨附近 ➡️ (79%)</td>
+          <td>➡️ 带宽正常</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>量比</th>
+          <th>量能状态</th>
+          <th>上方阻力</th>
+          <th>下方支撑</th>
+        </tr>
+        <tr>
+          <td>1.48x</td>
+          <td>正常 ➡️</td>
+          <td>45.25 / 44.99 / 44.73</td>
+          <td>36.5 / 37.0 / 38.0</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">⚡ 信号汇总</div>
+      <div class="signal-row">
+        <div class="signal-box bullish">
+          <div class="title">✅ 多头信号 (4)</div>
+<div class="signal-item">✅ 均线多头排列</div><div class="signal-item">✅ MACD红柱</div><div class="signal-item">✅ DIF在DEA之上</div><div class="signal-item">✅ 站上5日线</div>
+        </div>
+        <div class="signal-box bearish">
+          <div class="title">⚠️ 空头信号 ({len(a['bearish'])})</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="forecast-box">
+      <div>
+        <div class="forecast">📈 走势预判：看涨 📈</div>
+      </div>
+      <div>
+        <div class="suggestion">操作建议：<b style="color:#ffd700;">持有/加仓</b></div>
+      </div>
+      <div>
+        <div class="stars">🌕🌕🌕🌕🌕</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="stock-card">
+  <div class="stock-header">
+    <div>
+      <span class="name">腾讯控股</span>
+      <span class="code">00700</span>
+    </div>
+    <div style="text-align:right;">
+      <div style="margin-bottom:3px;"><span class="weight">10.30%</span></div>
+      <div class="price">现价 <b>430.20</b> <span class="change up">(+0.09%)</span></div>
+      <div class="pnl loss">成本 459.84 | 盈亏 -6.45%</div>
+    </div>
+  </div>
+  <div class="stock-body">
+
+    <div class="section">
+      <div class="section-title">📊 行情概览</div>
+      <div class="price-table">
+        <div class="price-col">
+          <div class="p-label">最新价</div>
+          <div class="p-value">430.20</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">成本价</div>
+          <div class="p-value">459.84</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">涨幅</div>
+          <div class="p-value green">+0.09%</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">盈亏</div>
+          <div class="p-value red">-6.45%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🔍 基本面点评</div>
+      <div class="fundamental">
+
+      <p><span class="highlight">投资逻辑：游戏+社交+企业服务+AI。</span></p>
+      <p class="bullet">• 最新动态：港股7/2收涨0.09%至430.20港元，基本平收。腾讯持续大规模回购（日均约10亿港元），提供强力股价支撑。</p>
+      <p class="bullet">• 催化剂：混元大模型持续迭代，视频号广告收入高增。游戏管线丰富（《王者荣耀》国际版、《地下城与勇士》手游等）。企业微信+腾讯会议AI能力增强。</p>
+      <p class="bullet">• 无明显变化。核心护城河牢固，回购提供安全垫。当前浮亏约6.4%，接近回本，是组合中亏损最小的标的。</p>
+      <p class="bullet">• 风险：监管政策变化，宏观经济压力。</p>
+
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 近期K线（最近5个交易日）</div>
+      <div class="last10">2026-06-25: 421.40  |  2026-06-26: 411.80  |  2026-06-29: 420.20  |  2026-06-30: 429.80  |  2026-07-02: 430.20</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 均线系统</div>
+      <table class="table">
+        <tr>
+          <th>指标</th>
+          <th>MA5</th>
+          <th>MA10</th>
+          <th>MA20</th>
+          <th>MA60</th>
+          <th>排列</th>
+          <th>趋势</th>
+        </tr>
+        <tr>
+          <td>数值</td>
+          <td>422.68</td>
+          <td>427.56</td>
+          <td>442.36</td>
+          <td>464.05</td>
+          <td>偏空头</td>
+          <td>震荡偏空</td>
+        </tr>
+        <tr>
+          <td>偏离</td>
+          <td class="green">1.78%</td>
+          <td colspan="2" class="red">vs MA20: -2.75%</td>
+          <td colspan="3"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📉 技术指标</div>
+      <table class="table">
+        <tr>
+          <th>RSI(14)</th>
+          <th>MACD(DIF)</th>
+          <th>MACD(DEA)</th>
+          <th>MACD柱</th>
+          <th>MACD状态</th>
+        </tr>
+        <tr>
+          <td>34.3 (偏弱区间 ⚠️)</td>
+          <td>-9.9</td>
+          <td>-9.077</td>
+          <td class="red">-1.647</td>
+          <td>DIF在DEA下方 ❌<br>空头(绿柱)</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>布林上轨</th>
+          <th>布林中轨</th>
+          <th>布林下轨</th>
+          <th>价格位置</th>
+          <th>带宽</th>
+        </tr>
+        <tr>
+          <td>477.47</td>
+          <td>442.36</td>
+          <td>407.25</td>
+          <td>中轨附近 ➡️ (33%)</td>
+          <td>➡️ 带宽正常</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>量比</th>
+          <th>量能状态</th>
+          <th>上方阻力</th>
+          <th>下方支撑</th>
+        </tr>
+        <tr>
+          <td>1.16x</td>
+          <td>正常 ➡️</td>
+          <td>484.0 / 476.8 / 475.6</td>
+          <td>411.0 / 412.6 / 413.6</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">⚡ 信号汇总</div>
+      <div class="signal-row">
+        <div class="signal-box bullish">
+          <div class="title">✅ 多头信号 (0)</div>
+
+        </div>
+        <div class="signal-box bearish">
+          <div class="title">⚠️ 空头信号 ({len(a['bearish'])})</div>
+<div class="signal-item">⚠️ 均线空头排列</div><div class="signal-item">⚠️ MACD绿柱</div><div class="signal-item">⚠️ DIF在DEA之下</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="forecast-box">
+      <div>
+        <div class="forecast">📉 走势预判：看跌 📉</div>
+      </div>
+      <div>
+        <div class="suggestion">操作建议：<b style="color:#ffd700;">减仓/止损</b></div>
+      </div>
+      <div>
+        <div class="stars">🌕🌑🌑🌑🌑</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="stock-card">
+  <div class="stock-header">
+    <div>
+      <span class="name">科伦博泰</span>
+      <span class="code">06990</span>
+    </div>
+    <div style="text-align:right;">
+      <div style="margin-bottom:3px;"><span class="weight">9.89%</span></div>
+      <div class="price">现价 <b>467.60</b> <span class="change up">(+7.20%)</span></div>
+      <div class="pnl profit">成本 429.41 | 盈亏 +8.89%</div>
+    </div>
+  </div>
+  <div class="stock-body">
+
+    <div class="section">
+      <div class="section-title">📊 行情概览</div>
+      <div class="price-table">
+        <div class="price-col">
+          <div class="p-label">最新价</div>
+          <div class="p-value">467.60</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">成本价</div>
+          <div class="p-value">429.41</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">涨幅</div>
+          <div class="p-value green">+7.20%</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">盈亏</div>
+          <div class="p-value green">+8.89%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🔍 基本面点评</div>
+      <div class="fundamental">
+
+      <p><span class="highlight">投资逻辑：ADC创新药龙头，国际化潜力大。</span></p>
+      <p class="bullet">• 最新动态：港股7/2大涨7.20%至467.60港元，表现极为强劲。科伦博泰ADC管线持续推进，多项临床数据读出。</p>
+      <p class="bullet">• 催化剂：核心品种SKB264（TROP2 ADC）海外临床进展顺利，与默沙东合作的国际授权持续推进。国内NDA审批进展积极。</p>
+      <p class="bullet">• 无明显变化。ADC赛道景气度持续，SKB264有望成为重磅炸弹级药物。当前浮盈约8.9%，是组合中少数盈利标的之一。</p>
+      <p class="bullet">• 今日大涨7.20%，突破460港元压力位，资金积极流入，技术面配合基本面共振。</p>
+
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 近期K线（最近5个交易日）</div>
+      <div class="last10">2026-06-25: 412.60  |  2026-06-26: 418.00  |  2026-06-29: 435.60  |  2026-06-30: 436.20  |  2026-07-02: 467.60</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 均线系统</div>
+      <table class="table">
+        <tr>
+          <th>指标</th>
+          <th>MA5</th>
+          <th>MA10</th>
+          <th>MA20</th>
+          <th>MA60</th>
+          <th>排列</th>
+          <th>趋势</th>
+        </tr>
+        <tr>
+          <td>数值</td>
+          <td>434.0</td>
+          <td>420.2</td>
+          <td>410.46</td>
+          <td>448.87</td>
+          <td>多头排列</td>
+          <td>上升趋势</td>
+        </tr>
+        <tr>
+          <td>偏离</td>
+          <td class="green">7.74%</td>
+          <td colspan="2" class="green">vs MA20: 13.92%</td>
+          <td colspan="3"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📉 技术指标</div>
+      <table class="table">
+        <tr>
+          <th>RSI(14)</th>
+          <th>MACD(DIF)</th>
+          <th>MACD(DEA)</th>
+          <th>MACD柱</th>
+          <th>MACD状态</th>
+        </tr>
+        <tr>
+          <td>67.4 (偏强区间 ✅)</td>
+          <td>1.294</td>
+          <td>-6.124</td>
+          <td class="green">14.837</td>
+          <td>DIF在DEA上方 ✅<br>多头(红柱)</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>布林上轨</th>
+          <th>布林中轨</th>
+          <th>布林下轨</th>
+          <th>价格位置</th>
+          <th>带宽</th>
+        </tr>
+        <tr>
+          <td>451.93</td>
+          <td>410.46</td>
+          <td>368.99</td>
+          <td>触及上轨 ⚠️超买 (119%)</td>
+          <td>⬆️ 带宽较宽，趋势行情</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>量比</th>
+          <th>量能状态</th>
+          <th>上方阻力</th>
+          <th>下方支撑</th>
+        </tr>
+        <tr>
+          <td>2.14x</td>
+          <td>放量 ⬆️</td>
+          <td>484.8 / 470.0</td>
+          <td>372.0 / 377.0 / 378.2</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">⚡ 信号汇总</div>
+      <div class="signal-row">
+        <div class="signal-box bullish">
+          <div class="title">✅ 多头信号 (5)</div>
+<div class="signal-item">✅ 均线多头排列</div><div class="signal-item">✅ MACD红柱</div><div class="signal-item">✅ DIF在DEA之上</div><div class="signal-item">✅ 放量上涨</div><div class="signal-item">✅ 站上5日线</div>
+        </div>
+        <div class="signal-box bearish">
+          <div class="title">⚠️ 空头信号 ({len(a['bearish'])})</div>
+<div class="signal-item">⚠️ 触及上轨</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="forecast-box">
+      <div>
+        <div class="forecast">📈 走势预判：看涨 📈</div>
+      </div>
+      <div>
+        <div class="suggestion">操作建议：<b style="color:#ffd700;">持有/加仓</b></div>
+      </div>
+      <div>
+        <div class="stars">🌕🌕🌕🌕🌕</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="stock-card">
+  <div class="stock-header">
+    <div>
+      <span class="name">金山云</span>
+      <span class="code">03896</span>
+    </div>
+    <div style="text-align:right;">
+      <div style="margin-bottom:3px;"><span class="weight">8.82%</span></div>
+      <div class="price">现价 <b>4.77</b> <span class="change up">(+2.80%)</span></div>
+      <div class="pnl profit">成本 4.45 | 盈亏 +7.19%</div>
+    </div>
+  </div>
+  <div class="stock-body">
+
+    <div class="section">
+      <div class="section-title">📊 行情概览</div>
+      <div class="price-table">
+        <div class="price-col">
+          <div class="p-label">最新价</div>
+          <div class="p-value">4.77</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">成本价</div>
+          <div class="p-value">4.45</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">涨幅</div>
+          <div class="p-value green">+2.80%</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">盈亏</div>
+          <div class="p-value green">+7.19%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🔍 基本面点评</div>
+      <div class="fundamental">
+
+      <p><span class="highlight">投资逻辑：AI云+小米生态。</span></p>
+      <p class="bullet">• 最新动态：港股7/2收涨2.80%至4.77港元。金山云依托金山集团+小米生态，AI云服务收入占比逐步提升。</p>
+      <p class="bullet">• 催化剂：小米汽车+AIoT生态扩容带动云需求。企业级AI云服务市场快速增长。金山办公WPS AI能力增强带动云需求外溢。</p>
+      <p class="bullet">• 无明显变化。云服务行业竞争激烈（阿里云/腾讯云/华为云），金山云差异化定位在中小客户和垂直行业。当前浮盈约7.2%，小幅盈利。</p>
+      <p class="bullet">• 关注：营收增速和盈利改善进度。</p>
+
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 近期K线（最近5个交易日）</div>
+      <div class="last10">2026-06-25: 4.52  |  2026-06-26: 4.28  |  2026-06-29: 4.61  |  2026-06-30: 4.64  |  2026-07-02: 4.77</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 均线系统</div>
+      <table class="table">
+        <tr>
+          <th>指标</th>
+          <th>MA5</th>
+          <th>MA10</th>
+          <th>MA20</th>
+          <th>MA60</th>
+          <th>排列</th>
+          <th>趋势</th>
+        </tr>
+        <tr>
+          <td>数值</td>
+          <td>4.56</td>
+          <td>4.85</td>
+          <td>5.42</td>
+          <td>7.13</td>
+          <td>偏空头</td>
+          <td>震荡偏空</td>
+        </tr>
+        <tr>
+          <td>偏离</td>
+          <td class="green">4.51%</td>
+          <td colspan="2" class="red">vs MA20: -12.03%</td>
+          <td colspan="3"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📉 技术指标</div>
+      <table class="table">
+        <tr>
+          <th>RSI(14)</th>
+          <th>MACD(DIF)</th>
+          <th>MACD(DEA)</th>
+          <th>MACD柱</th>
+          <th>MACD状态</th>
+        </tr>
+        <tr>
+          <td>28.5 (超卖区域 💡)</td>
+          <td>-0.654</td>
+          <td>-0.643</td>
+          <td class="red">-0.022</td>
+          <td>DIF在DEA下方 ❌<br>空头(绿柱)</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>布林上轨</th>
+          <th>布林中轨</th>
+          <th>布林下轨</th>
+          <th>价格位置</th>
+          <th>带宽</th>
+        </tr>
+        <tr>
+          <td>6.83</td>
+          <td>5.42</td>
+          <td>4.02</td>
+          <td>中轨附近 ➡️ (27%)</td>
+          <td>⬆️ 带宽较宽，趋势行情</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>量比</th>
+          <th>量能状态</th>
+          <th>上方阻力</th>
+          <th>下方支撑</th>
+        </tr>
+        <tr>
+          <td>0.65x</td>
+          <td>缩量 ⬇️</td>
+          <td>7.14 / 6.75 / 6.59</td>
+          <td>4.22 / 4.34 / 4.47</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">⚡ 信号汇总</div>
+      <div class="signal-row">
+        <div class="signal-box bullish">
+          <div class="title">✅ 多头信号 (1)</div>
+<div class="signal-item">✅ RSI超卖</div>
+        </div>
+        <div class="signal-box bearish">
+          <div class="title">⚠️ 空头信号 ({len(a['bearish'])})</div>
+<div class="signal-item">⚠️ 均线空头排列</div><div class="signal-item">⚠️ MACD绿柱</div><div class="signal-item">⚠️ DIF在DEA之下</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="forecast-box">
+      <div>
+        <div class="forecast">📉 走势预判：看跌 📉</div>
+      </div>
+      <div>
+        <div class="suggestion">操作建议：<b style="color:#ffd700;">减仓/止损</b></div>
+      </div>
+      <div>
+        <div class="stars">🌕🌕🌑🌑🌑</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="stock-card">
+  <div class="stock-header">
+    <div>
+      <span class="name">福昕软件</span>
+      <span class="code">688095</span>
+    </div>
+    <div style="text-align:right;">
+      <div style="margin-bottom:3px;"><span class="weight">7.24%</span></div>
+      <div class="price">现价 <b>60.40</b> <span class="change down">(-1.21%)</span></div>
+      <div class="pnl loss">成本 81.61 | 盈亏 -25.99%</div>
+    </div>
+  </div>
+  <div class="stock-body">
+
+    <div class="section">
+      <div class="section-title">📊 行情概览</div>
+      <div class="price-table">
+        <div class="price-col">
+          <div class="p-label">最新价</div>
+          <div class="p-value">60.40</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">成本价</div>
+          <div class="p-value">81.61</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">涨幅</div>
+          <div class="p-value red">-1.21%</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">盈亏</div>
+          <div class="p-value red">-25.99%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🔍 基本面点评</div>
+      <div class="fundamental">
+
+      <p><span class="highlight">投资逻辑：PDF+AI文档智能转型。</span></p>
+      <p class="bullet">• 最新动态：A股7/2收跌1.21%至60.40元。7/1主力资金净流入1278万元。2026Q1营收2.32亿元(+14.92%)，归母净利润1126.65万元(同比+293%)，扭亏为盈。</p>
+      <p class="bullet">• 催化剂：AI文档智能产品线拓展（面向AI Agent的"可信文档自动化"），订阅收入占比提升。机构目标均价106.35元，当前折价约43%。国泰海通等5家机构覆盖，4买入1增持。</p>
+      <p class="bullet">• 无明显变化。双转型（订阅+AI）战略持续推进，盈利能力显著改善。当前浮亏约26%，中幅套牢。</p>
+      <p class="bullet">• 股息：累计派现1.96亿元，近三年分红持续。</p>
+
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 近期K线（最近5个交易日）</div>
+      <div class="last10">2026-06-26: 55.80  |  2026-06-29: 57.13  |  2026-06-30: 59.43  |  2026-07-01: 61.14  |  2026-07-02: 60.40</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 均线系统</div>
+      <table class="table">
+        <tr>
+          <th>指标</th>
+          <th>MA5</th>
+          <th>MA10</th>
+          <th>MA20</th>
+          <th>MA60</th>
+          <th>排列</th>
+          <th>趋势</th>
+        </tr>
+        <tr>
+          <td>数值</td>
+          <td>58.78</td>
+          <td>61.07</td>
+          <td>64.53</td>
+          <td>72.25</td>
+          <td>偏空头</td>
+          <td>震荡偏空</td>
+        </tr>
+        <tr>
+          <td>偏离</td>
+          <td class="green">2.76%</td>
+          <td colspan="2" class="red">vs MA20: -6.4%</td>
+          <td colspan="3"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📉 技术指标</div>
+      <table class="table">
+        <tr>
+          <th>RSI(14)</th>
+          <th>MACD(DIF)</th>
+          <th>MACD(DEA)</th>
+          <th>MACD柱</th>
+          <th>MACD状态</th>
+        </tr>
+        <tr>
+          <td>38.2 (偏弱区间 ⚠️)</td>
+          <td>-3.848</td>
+          <td>-3.691</td>
+          <td class="red">-0.314</td>
+          <td>DIF在DEA下方 ❌<br>空头(绿柱)</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>布林上轨</th>
+          <th>布林中轨</th>
+          <th>布林下轨</th>
+          <th>价格位置</th>
+          <th>带宽</th>
+        </tr>
+        <tr>
+          <td>74.0</td>
+          <td>64.53</td>
+          <td>55.07</td>
+          <td>中轨附近 ➡️ (28%)</td>
+          <td>⬆️ 带宽较宽，趋势行情</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>量比</th>
+          <th>量能状态</th>
+          <th>上方阻力</th>
+          <th>下方支撑</th>
+        </tr>
+        <tr>
+          <td>1.06x</td>
+          <td>正常 ➡️</td>
+          <td>73.2 / 72.78 / 72.59</td>
+          <td>55.58 / 56.03 / 56.51</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">⚡ 信号汇总</div>
+      <div class="signal-row">
+        <div class="signal-box bullish">
+          <div class="title">✅ 多头信号 (0)</div>
+
+        </div>
+        <div class="signal-box bearish">
+          <div class="title">⚠️ 空头信号 ({len(a['bearish'])})</div>
+<div class="signal-item">⚠️ 均线空头排列</div><div class="signal-item">⚠️ MACD绿柱</div><div class="signal-item">⚠️ DIF在DEA之下</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="forecast-box">
+      <div>
+        <div class="forecast">📉 走势预判：看跌 📉</div>
+      </div>
+      <div>
+        <div class="suggestion">操作建议：<b style="color:#ffd700;">减仓/止损</b></div>
+      </div>
+      <div>
+        <div class="stars">🌕🌑🌑🌑🌑</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="stock-card">
+  <div class="stock-header">
+    <div>
+      <span class="name">哔哩哔哩</span>
+      <span class="code">09626</span>
+    </div>
+    <div style="text-align:right;">
+      <div style="margin-bottom:3px;"><span class="weight">5.16%</span></div>
+      <div class="price">现价 <b>134.50</b> <span class="change up">(+2.13%)</span></div>
+      <div class="pnl loss">成本 167.74 | 盈亏 -19.82%</div>
+    </div>
+  </div>
+  <div class="stock-body">
+
+    <div class="section">
+      <div class="section-title">📊 行情概览</div>
+      <div class="price-table">
+        <div class="price-col">
+          <div class="p-label">最新价</div>
+          <div class="p-value">134.50</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">成本价</div>
+          <div class="p-value">167.74</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">涨幅</div>
+          <div class="p-value green">+2.13%</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">盈亏</div>
+          <div class="p-value red">-19.82%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🔍 基本面点评</div>
+      <div class="fundamental">
+
+      <p><span class="highlight">投资逻辑：年轻用户社区+广告高增+游戏复苏。</span></p>
+      <p class="bullet">• 最新动态：港股7/2收涨2.13%至134.50港元。2026Q1经调整净利润5.85亿元(+62%)，连续盈利。DAU 1.15亿(+8%)，日均使用时长119分钟创新高。</p>
+      <p class="bullet">• 催化剂：广告收入同比+30%高增，游戏pipeline丰富（《百将牌》7月上线、《三王》H2上线）。AI赋能内容生态，UP主收入+24%。中泰证券增持评级。</p>
+      <p class="bullet">• 无明显变化。商业化持续兑现，盈利能力改善趋势明确。当前浮亏约19.8%，中幅套牢。</p>
+      <p class="bullet">• 关注：高盛持仓降至5.99%，注意机构减持压力。</p>
+
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 近期K线（最近5个交易日）</div>
+      <div class="last10">2026-06-25: 128.40  |  2026-06-26: 124.70  |  2026-06-29: 131.70  |  2026-06-30: 131.70  |  2026-07-02: 134.50</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 均线系统</div>
+      <table class="table">
+        <tr>
+          <th>指标</th>
+          <th>MA5</th>
+          <th>MA10</th>
+          <th>MA20</th>
+          <th>MA60</th>
+          <th>排列</th>
+          <th>趋势</th>
+        </tr>
+        <tr>
+          <td>数值</td>
+          <td>130.2</td>
+          <td>130.67</td>
+          <td>136.16</td>
+          <td>157.72</td>
+          <td>偏空头</td>
+          <td>震荡偏空</td>
+        </tr>
+        <tr>
+          <td>偏离</td>
+          <td class="green">3.3%</td>
+          <td colspan="2" class="red">vs MA20: -1.22%</td>
+          <td colspan="3"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📉 技术指标</div>
+      <table class="table">
+        <tr>
+          <th>RSI(14)</th>
+          <th>MACD(DIF)</th>
+          <th>MACD(DEA)</th>
+          <th>MACD柱</th>
+          <th>MACD状态</th>
+        </tr>
+        <tr>
+          <td>40.2 (偏弱区间 ⚠️)</td>
+          <td>-6.075</td>
+          <td>-6.973</td>
+          <td class="green">1.796</td>
+          <td>DIF在DEA上方 ✅<br>多头(红柱)</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>布林上轨</th>
+          <th>布林中轨</th>
+          <th>布林下轨</th>
+          <th>价格位置</th>
+          <th>带宽</th>
+        </tr>
+        <tr>
+          <td>149.45</td>
+          <td>136.16</td>
+          <td>122.87</td>
+          <td>中轨附近 ➡️ (44%)</td>
+          <td>➡️ 带宽正常</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>量比</th>
+          <th>量能状态</th>
+          <th>上方阻力</th>
+          <th>下方支撑</th>
+        </tr>
+        <tr>
+          <td>0.9x</td>
+          <td>正常 ➡️</td>
+          <td>148.6 / 148.5 / 147.3</td>
+          <td>123.5 / 123.7 / 123.9</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">⚡ 信号汇总</div>
+      <div class="signal-row">
+        <div class="signal-box bullish">
+          <div class="title">✅ 多头信号 (2)</div>
+<div class="signal-item">✅ MACD红柱</div><div class="signal-item">✅ DIF在DEA之上</div>
+        </div>
+        <div class="signal-box bearish">
+          <div class="title">⚠️ 空头信号 ({len(a['bearish'])})</div>
+<div class="signal-item">⚠️ 均线空头排列</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="forecast-box">
+      <div>
+        <div class="forecast">📈 走势预判：震荡偏多 ↗️</div>
+      </div>
+      <div>
+        <div class="suggestion">操作建议：<b style="color:#ffd700;">持有为主</b></div>
+      </div>
+      <div>
+        <div class="stars">🌕🌕🌕🌕🌑</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="stock-card">
+  <div class="stock-header">
+    <div>
+      <span class="name">金丹科技</span>
+      <span class="code">300829</span>
+    </div>
+    <div style="text-align:right;">
+      <div style="margin-bottom:3px;"><span class="weight">3.39%</span></div>
+      <div class="price">现价 <b>14.01</b> <span class="change up">(+0.21%)</span></div>
+      <div class="pnl loss">成本 19.51 | 盈亏 -28.19%</div>
+    </div>
+  </div>
+  <div class="stock-body">
+
+    <div class="section">
+      <div class="section-title">📊 行情概览</div>
+      <div class="price-table">
+        <div class="price-col">
+          <div class="p-label">最新价</div>
+          <div class="p-value">14.01</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">成本价</div>
+          <div class="p-value">19.51</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">涨幅</div>
+          <div class="p-value green">+0.21%</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">盈亏</div>
+          <div class="p-value red">-28.19%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🔍 基本面点评</div>
+      <div class="fundamental">
+
+      <p><span class="highlight">投资逻辑：乳酸+PLA可降解材料龙头。</span></p>
+      <p class="bullet">• 最新动态：A股7/2收涨0.21%至14.01元。2026Q1营收3.9亿元(+13.4%)，归母净利润2971.93万元(-23.03%)，增收不增利。</p>
+      <p class="bullet">• 催化剂：限塑令政策持续推进，PLA可降解材料需求长期增长趋势明确。公司乳酸产能扩张为后续增长奠定基础。</p>
+      <p class="bullet">• 利空因素：Q1利润同比下滑23%，成本端压力较大。毛利率19.1%偏低，盈利能力有待改善。7/1主力资金净流出684万元。</p>
+      <p class="bullet">• 核心逻辑未变但短期业绩承压。当前浮亏约28.2%，较重套牢状态。</p>
+
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 近期K线（最近5个交易日）</div>
+      <div class="last10">2026-06-26: 13.72  |  2026-06-29: 13.71  |  2026-06-30: 13.73  |  2026-07-01: 13.98  |  2026-07-02: 14.01</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 均线系统</div>
+      <table class="table">
+        <tr>
+          <th>指标</th>
+          <th>MA5</th>
+          <th>MA10</th>
+          <th>MA20</th>
+          <th>MA60</th>
+          <th>排列</th>
+          <th>趋势</th>
+        </tr>
+        <tr>
+          <td>数值</td>
+          <td>13.83</td>
+          <td>14.23</td>
+          <td>15.33</td>
+          <td>17.42</td>
+          <td>偏空头</td>
+          <td>震荡偏空</td>
+        </tr>
+        <tr>
+          <td>偏离</td>
+          <td class="green">1.3%</td>
+          <td colspan="2" class="red">vs MA20: -8.63%</td>
+          <td colspan="3"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📉 技术指标</div>
+      <table class="table">
+        <tr>
+          <th>RSI(14)</th>
+          <th>MACD(DIF)</th>
+          <th>MACD(DEA)</th>
+          <th>MACD柱</th>
+          <th>MACD状态</th>
+        </tr>
+        <tr>
+          <td>17.6 (超卖区域 💡)</td>
+          <td>-1.11</td>
+          <td>-1.045</td>
+          <td class="red">-0.13</td>
+          <td>DIF在DEA下方 ❌<br>空头(绿柱)</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>布林上轨</th>
+          <th>布林中轨</th>
+          <th>布林下轨</th>
+          <th>价格位置</th>
+          <th>带宽</th>
+        </tr>
+        <tr>
+          <td>17.96</td>
+          <td>15.33</td>
+          <td>12.71</td>
+          <td>中轨附近 ➡️ (25%)</td>
+          <td>⬆️ 带宽较宽，趋势行情</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>量比</th>
+          <th>量能状态</th>
+          <th>上方阻力</th>
+          <th>下方支撑</th>
+        </tr>
+        <tr>
+          <td>1.05x</td>
+          <td>正常 ➡️</td>
+          <td>17.55 / 17.54 / 17.33</td>
+          <td>13.45 / 13.46 / 13.61</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">⚡ 信号汇总</div>
+      <div class="signal-row">
+        <div class="signal-box bullish">
+          <div class="title">✅ 多头信号 (1)</div>
+<div class="signal-item">✅ RSI超卖</div>
+        </div>
+        <div class="signal-box bearish">
+          <div class="title">⚠️ 空头信号 ({len(a['bearish'])})</div>
+<div class="signal-item">⚠️ 均线空头排列</div><div class="signal-item">⚠️ MACD绿柱</div><div class="signal-item">⚠️ DIF在DEA之下</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="forecast-box">
+      <div>
+        <div class="forecast">📉 走势预判：看跌 📉</div>
+      </div>
+      <div>
+        <div class="suggestion">操作建议：<b style="color:#ffd700;">减仓/止损</b></div>
+      </div>
+      <div>
+        <div class="stars">🌕🌕🌑🌑🌑</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="stock-card">
+  <div class="stock-header">
+    <div>
+      <span class="name">金蝶国际</span>
+      <span class="code">00268</span>
+    </div>
+    <div style="text-align:right;">
+      <div style="margin-bottom:3px;"><span class="weight">2.99%</span></div>
+      <div class="price">现价 <b>6.18</b> <span class="change up">(+4.39%)</span></div>
+      <div class="pnl loss">成本 10.44 | 盈亏 -40.80%</div>
+    </div>
+  </div>
+  <div class="stock-body">
+
+    <div class="section">
+      <div class="section-title">📊 行情概览</div>
+      <div class="price-table">
+        <div class="price-col">
+          <div class="p-label">最新价</div>
+          <div class="p-value">6.18</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">成本价</div>
+          <div class="p-value">10.44</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">涨幅</div>
+          <div class="p-value green">+4.39%</div>
+        </div>
+        <div class="price-col">
+          <div class="p-label">盈亏</div>
+          <div class="p-value red">-40.80%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">🔍 基本面点评</div>
+      <div class="fundamental">
+
+      <p><span class="highlight">投资逻辑：ERP+云SaaS+AI转型。</span></p>
+      <p class="bullet">• 最新动态：港股7/2大涨4.39%至6.18港元！6月1日曾单日涨超15%。AI原生套件签约金额达2.3亿元（=2025全年AI签约额的65%），需求加速兑现。</p>
+      <p class="bullet">• 催化剂：机构预测2026年AI套件收入突破10亿元。订阅ARR达42.2亿元(+19%)，高净值产品净留存率103%。全球SaaS板块情绪回暖（Snowflake大涨36%带动）.</p>
+      <p class="bullet">• 无明显变化，但AI变现正在兑现，利好持续。当前浮亏约40.8%，是组合中亏损比例最大的标的。</p>
+      <p class="bullet">• 注意：虽然亏损幅度大，但技术面近期明显转强，AI催化逻辑正在被市场认可。</p>
+
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 近期K线（最近5个交易日）</div>
+      <div class="last10">2026-06-25: 6.01  |  2026-06-26: 5.68  |  2026-06-29: 6.09  |  2026-06-30: 5.92  |  2026-07-02: 6.18</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📈 均线系统</div>
+      <table class="table">
+        <tr>
+          <th>指标</th>
+          <th>MA5</th>
+          <th>MA10</th>
+          <th>MA20</th>
+          <th>MA60</th>
+          <th>排列</th>
+          <th>趋势</th>
+        </tr>
+        <tr>
+          <td>数值</td>
+          <td>5.98</td>
+          <td>6.15</td>
+          <td>6.79</td>
+          <td>7.91</td>
+          <td>偏空头</td>
+          <td>震荡偏空</td>
+        </tr>
+        <tr>
+          <td>偏离</td>
+          <td class="green">3.41%</td>
+          <td colspan="2" class="red">vs MA20: -9.0%</td>
+          <td colspan="3"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">📉 技术指标</div>
+      <table class="table">
+        <tr>
+          <th>RSI(14)</th>
+          <th>MACD(DIF)</th>
+          <th>MACD(DEA)</th>
+          <th>MACD柱</th>
+          <th>MACD状态</th>
+        </tr>
+        <tr>
+          <td>26.2 (超卖区域 💡)</td>
+          <td>-0.555</td>
+          <td>-0.529</td>
+          <td class="red">-0.053</td>
+          <td>DIF在DEA下方 ❌<br>空头(绿柱)</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>布林上轨</th>
+          <th>布林中轨</th>
+          <th>布林下轨</th>
+          <th>价格位置</th>
+          <th>带宽</th>
+        </tr>
+        <tr>
+          <td>8.31</td>
+          <td>6.79</td>
+          <td>5.28</td>
+          <td>中轨附近 ➡️ (30%)</td>
+          <td>⬆️ 带宽较宽，趋势行情</td>
+        </tr>
+      </table>
+      <table class="table" style="margin-top:5px;">
+        <tr>
+          <th>量比</th>
+          <th>量能状态</th>
+          <th>上方阻力</th>
+          <th>下方支撑</th>
+        </tr>
+        <tr>
+          <td>0.72x</td>
+          <td>正常 ➡️</td>
+          <td>8.7 / 8.02 / 7.98</td>
+          <td>5.63 / 5.85 / 5.88</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">⚡ 信号汇总</div>
+      <div class="signal-row">
+        <div class="signal-box bullish">
+          <div class="title">✅ 多头信号 (1)</div>
+<div class="signal-item">✅ RSI超卖</div>
+        </div>
+        <div class="signal-box bearish">
+          <div class="title">⚠️ 空头信号 ({len(a['bearish'])})</div>
+<div class="signal-item">⚠️ 均线空头排列</div><div class="signal-item">⚠️ MACD绿柱</div><div class="signal-item">⚠️ DIF在DEA之下</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="forecast-box">
+      <div>
+        <div class="forecast">📉 走势预判：看跌 📉</div>
+      </div>
+      <div>
+        <div class="suggestion">操作建议：<b style="color:#ffd700;">减仓/止损</b></div>
+      </div>
+      <div>
+        <div class="stars">🌕🌕🌑🌑🌑</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+</body>
+</html>

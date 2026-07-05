@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>持仓个股点评 2026-07-01</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0e27; color: #c8d6e5; font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; padding: 30px 40px; }
+.header { border-bottom: 2px solid #1e2a5a; padding-bottom: 18px; margin-bottom: 28px; }
+.header h1 { color: #ffd700; font-size: 26px; letter-spacing: 2px; }
+.header .sub { color: #667; font-size: 14px; margin-top: 6px; }
+.header .sub span { color: #ffd700; }
+.summary-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin-bottom: 30px; }
+.summary-item { background: #11143a; border: 1px solid #1e2a5a; border-radius: 8px; padding: 14px; text-align: center; }
+.summary-item .val { color: #ffd700; font-size: 22px; font-weight: bold; }
+.summary-item .lbl { color: #667; font-size: 12px; margin-top: 4px; }
+.stock-card { background: linear-gradient(135deg,#11143a 0%,#0d1030 100%); border: 1px solid #1e2a5a; border-radius: 12px; padding: 24px; margin-bottom: 22px; }
+.stock-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #1e2a4a; }
+.stock-title .name { color: #ffd700; font-size: 18px; font-weight: bold; }
+.stock-title .name .code { color: #667; font-size: 13px; font-weight: normal; margin-left: 8px; }
+.stock-title .cost-info { font-size: 13px; }
+.stock-title .cost-info .cost { color: #8af; }
+.stock-title .cost-info .pos { color: #fa0; }
+.perf-row { display: flex; justify-content: space-between; flex-wrap: wrap; background: #0a0e27; border-radius: 6px; padding: 10px 14px; margin-bottom: 14px; }
+.perf-item { text-align: center; min-width: 100px; }
+.perf-item .label { font-size: 11px; color: #667; }
+.perf-item .value { font-size: 16px; font-weight: bold; margin-top: 2px; }
+.up { color: #f23645 !important; }
+.down { color: #00c853 !important; }
+.flat { color: #ffd700 !important; }
+.sections { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.section-box { background: #0d1038; border: 1px solid #1a1e4a; border-radius: 8px; padding: 14px; }
+.section-box h3 { color: #ffd700; font-size: 14px; margin-bottom: 8px; border-left: 3px solid #ffd700; padding-left: 8px; }
+.section-box p, .section-box li { font-size: 13px; line-height: 1.7; color: #b0bcd4; }
+.section-box ul { padding-left: 16px; }
+.section-box ul li { margin-bottom: 4px; }
+.tech-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 6px; }
+.tech-table td { padding: 4px 8px; border: 1px solid #1a1e4a; }
+.tech-table td:first-child { color: #667; width: 80px; }
+.tech-table td:last-child { color: #c8d6e5; }
+.conclusion { margin-top: 12px; padding: 10px 14px; border-radius: 6px; font-size: 13px; }
+.conclusion.bull { background: rgba(0,200,83,0.1); border: 1px solid #00c853; }
+.conclusion.bear { background: rgba(242,54,69,0.1); border: 1px solid #f23645; }
+.conclusion.neutral { background: rgba(255,215,0,0.1); border: 1px solid #ffd700; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; margin-right: 4px; }
+.tag-buy { background: rgba(0,200,83,0.2); color: #00c853; }
+.tag-hold { background: rgba(255,215,0,0.2); color: #ffd700; }
+.tag-sell { background: rgba(242,54,69,0.2); color: #f23645; }
+.footer { margin-top: 30px; padding-top: 14px; border-top: 1px solid #1e2a5a; font-size: 12px; color: #445; text-align: center; }
+@media (max-width:768px) {
+  .sections { grid-template-columns: 1fr; }
+  .summary-grid { grid-template-columns: repeat(3,1fr); }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📋 持仓个股点评报告</h1>
+  <div class="sub">2026年07月01日（周三） | <span>10只持仓</span> · 总仓位 ≈87%</div>
+</div>
+
+<div class="summary-grid">
+  <div class="summary-item"><div class="val">10</div><div class="lbl">持仓个股</div></div>
+  <div class="summary-item"><div class="val" style="color:#f23645;">5</div><div class="lbl">今日上涨</div></div>
+  <div class="summary-item"><div class="val" style="color:#00c853;">3</div><div class="lbl">今日下跌</div></div>
+  <div class="summary-item"><div class="val" style="color:#ffd700;">2</div><div class="lbl">平盘/微涨</div></div>
+  <div class="summary-item"><div class="val" style="color:#8af;">≈87%</div><div class="lbl">总仓位</div></div>
+</div>
+
+<!-- ======== 1. 小鹏汽车 ======== -->
+<div class="stock-card">
+  <div class="stock-title">
+    <div><span class="name">小鹏汽车-W <span class="code">09868.HK</span></span></div>
+    <div class="cost-info"><span class="cost">成本 83.53</span> · <span class="pos">仓位 15.73%</span> · 🥇 第一大重仓</div>
+  </div>
+
+  <div class="perf-row">
+    <div class="perf-item"><div class="label">现价</div><div class="value up">50.65</div></div>
+    <div class="perf-item"><div class="label">今日涨跌</div><div class="value up">+6.86%</div></div>
+    <div class="perf-item"><div class="label">距成本</div><div class="value down">-39.36%</div></div>
+    <div class="perf-item"><div class="label">盈亏状态</div><div class="value down">浮亏 32.88</div></div>
+  </div>
+
+  <div class="sections">
+    <div class="section-box">
+      <h3>🔍 基本面点评</h3>
+      <ul>
+        <li><b>最新动态：</b>今日盘后公告6月交付新车40,126辆（同比大增），Q2累计交付103,295辆。GX车型月交付6,739辆，第10,000辆整车下线。7月2日发布MONA L03并开启预售，7月登陆全球市场。</li>
+        <li><b>催化剂：</b>✅ MONA L03新品发布+全球化战略落地+6月交付量超预期，三重利好共振</li>
+        <li><b>核心逻辑：</b>智驾图灵芯片+VLA2.0+机器人——交付数据验证智驾商业化能力，逻辑持续强化，无变化</li>
+      </ul>
+    </div>
+    <div class="section-box">
+      <h3>📈 纯技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线排列</td><td>均线缠绕，今日放量突破MA5(48.13)和MA10(50.15)</td></tr>
+        <tr><td>MA5/10/20/60</td><td>48.13 / 50.15 / 56.27 / 61.66</td></tr>
+        <tr><td>MACD</td><td>死叉(DIF=-4.12 &lt; DEA=-3.47)，但绿柱大幅缩小(-1.31 vs -2.13)</td></tr>
+        <tr><td>RSI(14)</td><td>27.71 — 接近超卖区反弹</td></tr>
+        <tr><td>量能</td><td>量比1.47，今日显著放量</td></tr>
+        <tr><td>阻力/支撑</td><td>上方阻力56.27(MA20) / 61.66(MA60)；下方支撑48.13(MA5) / 45.58(前低)</td></tr>
+      </table>
+      <div class="conclusion bull">
+        <b>走势预判：</b>短期反弹 ↗️  | <b>操作建议：</b><span class="tag tag-hold">持有</span>
+        <br>放量突破MA5/MA10，MACD绿柱收窄，6月交付数据超预期+新品催化，短期有望继续反弹至MA20(56.27)附近。距成本仍远，不建议加仓；但逻辑扎实，不建议减仓。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== 2. 阿里巴巴 ======== -->
+<div class="stock-card">
+  <div class="stock-title">
+    <div><span class="name">阿里巴巴-W <span class="code">09988.HK</span></span></div>
+    <div class="cost-info"><span class="cost">成本 146.37</span> · <span class="pos">仓位 12.93%</span></div>
+  </div>
+
+  <div class="perf-row">
+    <div class="perf-item"><div class="label">现价</div><div class="value down">92.85</div></div>
+    <div class="perf-item"><div class="label">今日涨跌</div><div class="value down">-0.16%</div></div>
+    <div class="perf-item"><div class="label">距成本</div><div class="value down">-36.57%</div></div>
+    <div class="perf-item"><div class="label">盈亏状态</div><div class="value down">浮亏 53.52</div></div>
+  </div>
+
+  <div class="sections">
+    <div class="section-box">
+      <h3>🔍 基本面点评</h3>
+      <ul>
+        <li><b>最新动态：</b>无明显变化。恒生科技指数小幅震荡，阿里窄幅横盘整理。</li>
+        <li><b>催化剂：</b>🟡 阿里云AI业务持续增长，但短期内无直接催化</li>
+        <li><b>核心逻辑：</b>无明显变化。等待云业务分拆+AI赋能电商的实质进展。</li>
+      </ul>
+    </div>
+    <div class="section-box">
+      <h3>📈 纯技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线排列</td><td>空头排列 (Price &lt; MA5 &lt; MA10 &lt; MA20 &lt; MA60)</td></tr>
+        <tr><td>MA5/10/20/60</td><td>93.95 / 99.04 / 108.51 / 122.48</td></tr>
+        <tr><td>MACD</td><td>死叉，DIF=-8.77 &lt; DEA=-7.43，绿柱缩小(-2.67 vs -3.21)</td></tr>
+        <tr><td>RSI(14)</td><td>17.88 — 严重超卖</td></tr>
+        <tr><td>量能</td><td>量比0.87，缩量</td></tr>
+        <tr><td>阻力/支撑</td><td>上方阻力93.95(MA5) / 99.04(MA10)；下方支撑89.50(前低) / 85.00(心理位)</td></tr>
+      </table>
+      <div class="conclusion bear">
+        <b>走势预判：</b>底部震荡 ⏸️  | <b>操作建议：</b><span class="tag tag-hold">持有</span>
+        <br>空头排列+RSI严重超卖，但MACD绿柱持续收窄，有筑底迹象。缩量运行表明抛压减弱。短期难以快速反转，但当前价位割肉意义不大。建议持有等待云业务催化。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== 3. 福瑞医科 ======== -->
+<div class="stock-card">
+  <div class="stock-title">
+    <div><span class="name">福瑞医科（福瑞股份）<span class="code">300049.SZ</span></span></div>
+    <div class="cost-info"><span class="cost">成本 58.14</span> · <span class="pos">仓位 10.58%</span></div>
+  </div>
+
+  <div class="perf-row">
+    <div class="perf-item"><div class="label">现价</div><div class="value up">43.90</div></div>
+    <div class="perf-item"><div class="label">今日涨跌</div><div class="value up">+12.91%</div></div>
+    <div class="perf-item"><div class="label">距成本</div><div class="value down">-24.49%</div></div>
+    <div class="perf-item"><div class="label">盈亏状态</div><div class="value down">浮亏 14.24</div></div>
+  </div>
+
+  <div class="sections">
+    <div class="section-box">
+      <h3>🔍 基本面点评</h3>
+      <ul>
+        <li><b>最新动态：</b>今日涨12.91%，成交5.78亿元，换手率5.9%。资金面：主力净流入5,597万，游资净流出2,047万。</li>
+        <li><b>催化剂：</b>✅ 肝病全产业链平台+Fibroscan全球肝纤维化检测龙头+AI医疗概念。无直接新公告，属技术性放量突破。</li>
+        <li><b>核心逻辑：</b>无明显变化。肝病慢病管理和AI医疗诊断赛道长逻辑不变。</li>
+      </ul>
+    </div>
+    <div class="section-box">
+      <h3>📈 纯技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线排列</td><td>均线缠绕，今日放量突破MA5/MA10/MA20三线</td></tr>
+        <tr><td>MA5/10/20/60</td><td>39.56 / 40.07 / 41.13 / 50.01</td></tr>
+        <tr><td>MACD</td><td>✅ 金叉 (DIF=-2.40 &gt; DEA=-2.92)，红柱扩大(1.05 vs 0.29)</td></tr>
+        <tr><td>RSI(14)</td><td>60.02 — 中性偏强，还有上行空间</td></tr>
+        <tr><td>量能</td><td>量比1.82，显著放量</td></tr>
+        <tr><td>阻力/支撑</td><td>上方阻力44.76(布林上轨) / 50.01(MA60)；下方支撑41.13(MA20) / 37.00(前低)</td></tr>
+      </table>
+      <div class="conclusion bull">
+        <b>走势预判：</b>延续反弹 ↗️  | <b>操作建议：</b><span class="tag tag-hold">持有</span>
+        <br>金叉+放量突破多条均线，MACD红柱加速扩大，典型底部反转信号。短期有望冲击布林上轨(44.76)及MA60(50.01)。距成本58.14仍有距离，但趋势已转多，继续持有观察。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== 4. 腾讯控股 ======== -->
+<div class="stock-card">
+  <div class="stock-title">
+    <div><span class="name">腾讯控股 <span class="code">00700.HK</span></span></div>
+    <div class="cost-info"><span class="cost">成本 459.84</span> · <span class="pos">仓位 10.30%</span></div>
+  </div>
+
+  <div class="perf-row">
+    <div class="perf-item"><div class="label">现价</div><div class="value up">429.80</div></div>
+    <div class="perf-item"><div class="label">今日涨跌</div><div class="value up">+2.28%</div></div>
+    <div class="perf-item"><div class="label">距成本</div><div class="value down">-6.53%</div></div>
+    <div class="perf-item"><div class="label">盈亏状态</div><div class="value down">浮亏 30.04</div></div>
+  </div>
+
+  <div class="sections">
+    <div class="section-box">
+      <h3>🔍 基本面点评</h3>
+      <ul>
+        <li><b>最新动态：</b>无明显变化。港股科技股今日整体走强，恒指上涨。</li>
+        <li><b>催化剂：</b>🟡 AI应用国家标准落地(6月底发布)利好腾讯AI布局，但短期影响有限</li>
+        <li><b>核心逻辑：</b>无明显变化。社交护城河+游戏复苏+AI/云业务，长期逻辑稳固。</li>
+      </ul>
+    </div>
+    <div class="section-box">
+      <h3>📈 纯技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线排列</td><td>均线缠绕，今日站上MA5(422.40)和MA10(429.28)</td></tr>
+        <tr><td>MA5/10/20/60</td><td>422.40 / 429.28 / 444.93 / 464.95</td></tr>
+        <tr><td>MACD</td><td>死叉但绿柱大幅缩小(-3.40 vs -5.57)，接近金叉</td></tr>
+        <tr><td>RSI(14)</td><td>40.64 — 中性偏弱，脱离超卖</td></tr>
+        <tr><td>量能</td><td>量比1.11，平量微放</td></tr>
+        <tr><td>阻力/支撑</td><td>上方阻力444.93(MA20) / 464.95(MA60)；下方支撑422.40(MA5) / 411.80(前低)</td></tr>
+      </table>
+      <div class="conclusion bull">
+        <b>走势预判：</b>震荡修复 ⏸️  | <b>操作建议：</b><span class="tag tag-hold">持有</span>
+        <br>MACD绿柱持续收窄接近金叉，价格站上MA5/10，短线修复势头良好。距成本仅-6.53%，是组合中最接近盈亏平衡的个股。等待MACD金叉确认后有望挑战MA20(445)。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== 5. 科伦博泰 ======== -->
+<div class="stock-card">
+  <div class="stock-title">
+    <div><span class="name">科伦博泰生物 <span class="code">06990.HK</span></span></div>
+    <div class="cost-info"><span class="cost">成本 429.41</span> · <span class="pos">仓位 9.89%</span></div>
+  </div>
+
+  <div class="perf-row">
+    <div class="perf-item"><div class="label">现价</div><div class="value up">436.20</div></div>
+    <div class="perf-item"><div class="label">今日涨跌</div><div class="value up">+0.14%</div></div>
+    <div class="perf-item"><div class="label">距成本</div><div class="value up">+1.58%</div></div>
+    <div class="perf-item"><div class="label">盈亏状态</div><div class="value up">浮盈 6.79</div></div>
+  </div>
+
+  <div class="sections">
+    <div class="section-box">
+      <h3>🔍 基本面点评</h3>
+      <ul>
+        <li><b>最新动态：</b>6月30日公告：拟认购浙商银行2亿元+中国银行4亿元结构性存款，使用闲置自有资金。属常规资金管理，不影响经营。</li>
+        <li><b>催化剂：</b>🟡 ADC创新药管线进展正常，无重大新催化</li>
+        <li><b>核心逻辑：</b>无明显变化。ADC龙头，海外授权潜力大。短期无新催化剂但趋势向好。</li>
+      </ul>
+    </div>
+    <div class="section-box">
+      <h3>📈 纯技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线排列</td><td>均线缠绕（价格>MA5>MA10>MA20但<MA60），中短期多头</td></tr>
+        <tr><td>MA5/10/20/60</td><td>424.96 / 415.98 / 407.26 / 448.74</td></tr>
+        <tr><td>MACD</td><td>✅ 金叉，红柱持续扩大(10.29 vs 8.79)</td></tr>
+        <tr><td>RSI(14)</td><td>64.09 — 中性偏强</td></tr>
+        <tr><td>量能</td><td>量比1.22，温和放量</td></tr>
+        <tr><td>阻力/支撑</td><td>上方阻力448.74(MA60) / 460(前高)；下方支撑424.96(MA5) / 407.26(MA20)</td></tr>
+      </table>
+      <div class="conclusion bull">
+        <b>走势预判：</b>震荡上行 ↗️  | <b>操作建议：</b><span class="tag tag-hold">持有</span> / <span class="tag tag-buy">企稳加仓</span>
+        <br>组合中唯一的浮盈标的！MACD金叉持续扩张，RSI偏强，沿MA5稳步上行。短期目标MA60(448.74)。如回调至MA20(407)附近可考虑加仓。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== 6. 金山云 ======== -->
+<div class="stock-card">
+  <div class="stock-title">
+    <div><span class="name">金山云 <span class="code">03896.HK</span></span></div>
+    <div class="cost-info"><span class="cost">成本 4.45</span> · <span class="pos">仓位 8.82%</span></div>
+  </div>
+
+  <div class="perf-row">
+    <div class="perf-item"><div class="label">现价</div><div class="value up">4.64</div></div>
+    <div class="perf-item"><div class="label">今日涨跌</div><div class="value up">+0.65%</div></div>
+    <div class="perf-item"><div class="label">距成本</div><div class="value up">+4.27%</div></div>
+    <div class="perf-item"><div class="label">盈亏状态</div><div class="value up">浮盈 0.19</div></div>
+  </div>
+
+  <div class="sections">
+    <div class="section-box">
+      <h3>🔍 基本面点评</h3>
+      <ul>
+        <li><b>最新动态：</b>6月29日《AI智能体互联》7项国家标准发布，带动港股AI应用股走强，金山云当日涨8.88%。今日小幅续涨0.65%。</li>
+        <li><b>催化剂：</b>✅ AI应用国家标准落地，利好AI云服务赛道</li>
+        <li><b>核心逻辑：</b>无明显变化。AI云+小米生态链，政策催化短期提振情绪。</li>
+      </ul>
+    </div>
+    <div class="section-box">
+      <h3>📈 纯技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线排列</td><td>均线缠绕（价格≈MA5但<MA10<MA20<MA60）</td></tr>
+        <tr><td>MA5/10/20/60</td><td>4.58 / 4.94 / 5.55 / 7.16</td></tr>
+        <tr><td>MACD</td><td>死叉但绿柱缩小(-0.086 vs -0.136)</td></tr>
+        <tr><td>RSI(14)</td><td>24.00 — 超卖区反弹</td></tr>
+        <tr><td>量能</td><td>量比0.81，缩量</td></tr>
+        <tr><td>阻力/支撑</td><td>上方阻力4.94(MA10) / 5.55(MA20)；下方支撑4.58(MA5) / 4.28(前低)</td></tr>
+      </table>
+      <div class="conclusion bull">
+        <b>走势预判：</b>底部震荡修复 ⏸️  | <b>操作建议：</b><span class="tag tag-hold">持有</span>
+        <br>RSI超卖后已小幅反弹3日，MACD绿柱缩小。距成本仅浮盈4.27%，是组合中浮盈比例第二大的标的。短期需要放量突破MA10(4.94)才能确认反弹延续。建议持有。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== 7. 福昕软件 ======== -->
+<div class="stock-card">
+  <div class="stock-title">
+    <div><span class="name">福昕软件 <span class="code">688095.SH</span></span></div>
+    <div class="cost-info"><span class="cost">成本 81.61</span> · <span class="pos">仓位 7.24%</span></div>
+  </div>
+
+  <div class="perf-row">
+    <div class="perf-item"><div class="label">现价</div><div class="value up">61.14</div></div>
+    <div class="perf-item"><div class="label">今日涨跌</div><div class="value up">+2.88%</div></div>
+    <div class="perf-item"><div class="label">距成本</div><div class="value down">-25.08%</div></div>
+    <div class="perf-item"><div class="label">盈亏状态</div><div class="value down">浮亏 20.47</div></div>
+  </div>
+
+  <div class="sections">
+    <div class="section-box">
+      <h3>🔍 基本面点评</h3>
+      <ul>
+        <li><b>最新动态：</b>今日涨2.88%，成交1.42亿元。近5日主力净流入-910万。AIGC概念+智慧政务，收购上海通办信息后进入智慧政务领域。</li>
+        <li><b>催化剂：</b>🟡 AIGC+智慧政务概念，但缺乏实质业绩催化</li>
+        <li><b>核心逻辑：</b>无明显变化。PDF Editor Cloud集成AIGC+智慧政务转型，仍处于转型投入期。</li>
+      </ul>
+    </div>
+    <div class="section-box">
+      <h3>📈 纯技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线排列</td><td>均线缠绕，今日站上MA5(58.57)，接近MA10(61.50)</td></tr>
+        <tr><td>MA5/10/20/60</td><td>58.57 / 61.50 / 65.14 / 72.42</td></tr>
+        <tr><td>MACD</td><td>死叉但绿柱收窄明显(-0.72 vs -1.36)</td></tr>
+        <tr><td>RSI(14)</td><td>34.12 — 偏弱，脱离超卖</td></tr>
+        <tr><td>量能</td><td>量比0.97，平量</td></tr>
+        <tr><td>阻力/支撑</td><td>上方阻力61.50(MA10) / 65.14(MA20)；下方支撑58.57(MA5) / 55.80(前低)</td></tr>
+      </table>
+      <div class="conclusion neutral">
+        <b>走势预判：</b>底部反弹 ↗️  | <b>操作建议：</b><span class="tag tag-hold">持有</span>
+        <br>从55.80低点反弹至61.14，站上MA5，MACD绿柱明显收窄。但量能不足，需放量突破MA10(61.50)才能确认反弹。距成本81.61仍有较大差距，暂不建议加仓。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== 8. 哔哩哔哩 ======== -->
+<div class="stock-card">
+  <div class="stock-title">
+    <div><span class="name">哔哩哔哩-W <span class="code">09626.HK</span></span></div>
+    <div class="cost-info"><span class="cost">成本 167.74</span> · <span class="pos">仓位 5.16%</span></div>
+  </div>
+
+  <div class="perf-row">
+    <div class="perf-item"><div class="label">现价</div><div class="value flat">131.70</div></div>
+    <div class="perf-item"><div class="label">今日涨跌</div><div class="value flat">0.00%</div></div>
+    <div class="perf-item"><div class="label">距成本</div><div class="value down">-21.49%</div></div>
+    <div class="perf-item"><div class="label">盈亏状态</div><div class="value down">浮亏 36.04</div></div>
+  </div>
+
+  <div class="sections">
+    <div class="section-box">
+      <h3>🔍 基本面点评</h3>
+      <ul>
+        <li><b>最新动态：</b>今日平盘。B-UP顶尖技术人才项目启动，长期利好技术和内容生态。</li>
+        <li><b>催化剂：</b>🟡 游戏业务增长+广告收入提升，但暂无重大催化</li>
+        <li><b>核心逻辑：</b>无明显变化。社区黏性+用户增长+亏损收窄，等待商业化提速。</li>
+      </ul>
+    </div>
+    <div class="section-box">
+      <h3>📈 纯技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线排列</td><td>均线缠绕（价格>MA5>MA10但<MA20<MA60）</td></tr>
+        <tr><td>MA5/10/20/60</td><td>128.52 / 130.82 / 136.93 / 158.32</td></tr>
+        <tr><td>MACD</td><td>✅ 金叉(DIF=-6.74 > DEA=-7.20)，红柱扩大(0.91 vs 0.20)</td></tr>
+        <tr><td>RSI(14)</td><td>40.53 — 中性偏弱</td></tr>
+        <tr><td>量能</td><td>量比0.92，平量</td></tr>
+        <tr><td>阻力/支撑</td><td>上方阻力136.93(MA20) / 158.32(MA60)；下方支撑128.52(MA5) / 123.50(前低)</td></tr>
+      </table>
+      <div class="conclusion neutral">
+        <b>走势预判：</b>横盘蓄势 ⏸️  | <b>操作建议：</b><span class="tag tag-hold">持有</span>
+        <br>MACD金叉+红柱扩大是积极信号，但价格受MA20(136.93)压制。量能不足，短期可能在MA5(128.5)-MA20(136.9)区间震荡。金叉确认后若放量突破MA20则可看高一线。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== 9. 金丹科技 ======== -->
+<div class="stock-card">
+  <div class="stock-title">
+    <div><span class="name">金丹科技 <span class="code">300829.SZ</span></span></div>
+    <div class="cost-info"><span class="cost">成本 19.51</span> · <span class="pos">仓位 3.39%</span></div>
+  </div>
+
+  <div class="perf-row">
+    <div class="perf-item"><div class="label">现价</div><div class="value up">13.98</div></div>
+    <div class="perf-item"><div class="label">今日涨跌</div><div class="value up">+1.82%</div></div>
+    <div class="perf-item"><div class="label">距成本</div><div class="value down">-28.34%</div></div>
+    <div class="perf-item"><div class="label">盈亏状态</div><div class="value down">浮亏 5.53</div></div>
+  </div>
+
+  <div class="sections">
+    <div class="section-box">
+      <h3>🔍 基本面点评</h3>
+      <ul>
+        <li><b>最新动态：</b>无明显变化。小仓位配置，关注度较低。</li>
+        <li><b>催化剂：</b>❌ 无明显催化剂</li>
+        <li><b>核心逻辑：</b>无明显变化。乳酸/聚乳酸(PLA)生物降解材料龙头，等待政策催化。</li>
+      </ul>
+    </div>
+    <div class="section-box">
+      <h3>📈 纯技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线排列</td><td>空头排列（Price<MA10<MA20<MA60），弱于MA5</td></tr>
+        <tr><td>MA5/10/20/60</td><td>13.82 / 14.34 / 15.50 / 17.51</td></tr>
+        <tr><td>MACD</td><td>死叉，DIF=-1.15 < DEA=-1.03，绿柱微扩</td></tr>
+        <tr><td>RSI(14)</td><td>12.50 — 深度超卖</td></tr>
+        <tr><td>量能</td><td>量比1.10，平量</td></tr>
+        <tr><td>阻力/支撑</td><td>上方阻力14.34(MA10) / 15.50(MA20)；下方支撑13.71(前低) / 13.00(整数)</td></tr>
+      </table>
+      <div class="conclusion bear">
+        <b>走势预判：</b>底部寻底 ⏸️  | <b>操作建议：</b><span class="tag tag-hold">持有观望</span>
+        <br>深度超卖(RSI=12.5)但未见明显见底信号，MACD仍在死叉中。仓位仅3.39%，影响有限。等待政策催化（限塑令升级等）或技术面反转信号再考虑操作。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== 10. 金蝶国际 ======== -->
+<div class="stock-card">
+  <div class="stock-title">
+    <div><span class="name">金蝶国际 <span class="code">00268.HK</span></span></div>
+    <div class="cost-info"><span class="cost">成本 10.44</span> · <span class="pos">仓位 2.99%</span></div>
+  </div>
+
+  <div class="perf-row">
+    <div class="perf-item"><div class="label">现价</div><div class="value down">5.92</div></div>
+    <div class="perf-item"><div class="label">今日涨跌</div><div class="value down">-2.79%</div></div>
+    <div class="perf-item"><div class="label">距成本</div><div class="value down">-43.30%</div></div>
+    <div class="perf-item"><div class="label">盈亏状态</div><div class="value down">浮亏 4.52</div></div>
+  </div>
+
+  <div class="sections">
+    <div class="section-box">
+      <h3>🔍 基本面点评</h3>
+      <ul>
+        <li><b>最新动态：</b>6月29日AI智能体国家标准发布，金蝶当日涨8.80%。今日回吐2.79%，属正常调整。</li>
+        <li><b>催化剂：</b>✅ AI+SaaS国产替代政策催化，但需持续观察订单转化</li>
+        <li><b>核心逻辑：</b>无明显变化。企业级SaaS+AI赋能，受益于信创和AI标准落地，但盈利改善仍需时间。</li>
+      </ul>
+    </div>
+    <div class="section-box">
+      <h3>📈 纯技术面分析</h3>
+      <table class="tech-table">
+        <tr><td>均线排列</td><td>空头排列 (Price<MA5<MA10<MA20<MA60)，最弱标的</td></tr>
+        <tr><td>MA5/10/20/60</td><td>5.96 / 6.20 / 6.93 / 7.95</td></tr>
+        <tr><td>MACD</td><td>死叉，绿柱缩小(-0.124 vs -0.160)</td></tr>
+        <tr><td>RSI(14)</td><td>16.80 — 严重超卖</td></tr>
+        <tr><td>量能</td><td>量比0.55，显著缩量</td></tr>
+        <tr><td>阻力/支撑</td><td>上方阻力5.96(MA5) / 6.20(MA10)；下方支撑5.63(前低) / 5.20(布林下轨)</td></tr>
+      </table>
+      <div class="conclusion bear">
+        <b>走势预判：</b>弱势震荡 ⏸️  | <b>操作建议：</b><span class="tag tag-hold">持有观望</span>（暂不建议补仓）
+        <br>组合中浮亏最深(-43.3%)。空头排列+RSI严重超卖，但缩量下跌表明抛压减弱。MACD绿柱缩小略有改善。仓位仅3%，建议持有等待6.29政策利好的进一步发酵。MA5(5.96)是短期关键阻力。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== 综合总结 ======== -->
+<div class="stock-card" style="background: linear-gradient(135deg,#0d1038 0%,#0a0e27 100%); border-color: #ffd700;">
+  <div class="stock-title">
+    <div><span class="name" style="font-size:20px;">📊 组合总结与建议</span></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+    <div class="section-box">
+      <h3>✅ 多头信号</h3>
+      <ul>
+        <li>科伦博泰（浮盈+1.58%）：MACD金叉持续，沿MA5上行，组合最强</li>
+        <li>小鹏汽车：6月交付超预期+新品MONA发布，放量突破MA5/MA10</li>
+        <li>福瑞医科：金叉+放量大涨12.91%，底部反转信号明确</li>
+        <li>腾讯控股：距离成本仅-6.53%，MACD绿柱大幅缩小接近金叉</li>
+        <li>哔哩哔哩：MACD金叉形成，红柱扩大</li>
+      </ul>
+    </div>
+    <div class="section-box">
+      <h3>⚠️ 关注信号</h3>
+      <ul>
+        <li>阿里巴巴（-36.6%）：空头排列，RSI=17.9深度超卖，需等待催化</li>
+        <li>金蝶国际（-43.3%）：组合最弱，空头排列，等待AI政策落地转化</li>
+        <li>金丹科技（-28.3%）：RSI=12.5极度超卖但未见反转信号</li>
+        <li>金山云（+4.3%）：浮盈最小，需放量确认反弹延续</li>
+        <li>小鹏（-39.4%）：距成本最远，但逻辑最扎实，需耐心</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="conclusion neutral" style="margin-top:14px;">
+    <b>总体判断：</b>🌕🌕🌕🌑🌑 三星（中性偏谨慎）
+    <br><br>
+    <b>仓位分析：</b>总仓位87%，前三大重仓（小鹏15.7%+阿里12.9%+福瑞10.6%=39.2%）集中度较高，且均处于浮亏状态。但今日小鹏和福瑞均出现积极的技术面反转信号。
+    <br><br>
+    <b>操作建议：</b>
+    <br>① <b>核心持有</b>：小鹏（6月交付+新品催化，反弹持续）、腾讯（接近回本，等待MACD金叉）、科伦博泰（唯一浮盈，趋势健康）
+    <br>② <b>观察等待</b>：阿里巴巴（深度超卖不割肉，等待云业务催化）、福瑞医科（趋势已转多，继续持有）
+    <br>③ <b>耐心持有</b>：哔哩哔哩（金叉形成）、金山云（超卖反弹中）、金蝶国际（政策催化需时间）、金丹科技（仓位小，等待）
+    <br>④ <b>总体</b>：当前市场环境下不建议加仓或减仓，保持现有仓位等待个股催化剂兑现。
+  </div>
+</div>
+
+<div class="footer">
+  <p>本报告由Hermes Agent自动生成 | 数据来源：腾讯qt.gtimg.cn / 新浪财经 / 东方财富妙想 | 生成时间：2026-07-01</p>
+  <p style="margin-top:4px;">⚠️ 报告仅供参考，不构成投资建议</p>
+</div>
+
+</body>
+</html>

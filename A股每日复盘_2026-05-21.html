@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+<title>A股每日复盘 2026-05-21</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0e1a;color:#e0e6f0;font-family:-apple-system,'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif;padding:0;line-height:1.6}
+.header{background:linear-gradient(135deg,#0d1b2a 0%,#1b2838 50%,#0d1b2a 100%);padding:32px 20px 24px;text-align:center;border-bottom:2px solid #1e3a5f;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(0,122,255,0.06) 0%,transparent 70%);animation:pulse 6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+.header h1{font-size:26px;font-weight:700;color:#fff;position:relative;z-index:1}
+.header .date{font-size:14px;color:#8899bb;margin-top:6px;position:relative;z-index:1}
+.header .badge{display:inline-block;background:#e74c3c;color:#fff;padding:3px 14px;border-radius:12px;font-size:13px;font-weight:600;margin-top:10px;position:relative;z-index:1}
+.container{max-width:800px;margin:0 auto;padding:16px 14px 40px}
+.section{margin-bottom:18px;border-radius:12px;overflow:hidden;background:#111827;border:1px solid #1e293b}
+.section-title{display:flex;align-items:center;padding:14px 16px;background:linear-gradient(135deg,#1a2744 0%,#111827 100%);border-bottom:1px solid #1e293b;font-size:16px;font-weight:600;color:#7eb8ff}
+.section-title .icon{margin-right:10px;font-size:18px}
+.section-body{padding:14px 16px}
+.data-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.data-card{background:#0d1520;border-radius:8px;padding:12px;border:1px solid #1a2744}
+.data-card .label{font-size:11px;color:#6b7d9f;text-transform:uppercase;letter-spacing:.5px}
+.data-card .value{font-size:20px;font-weight:700;margin-top:3px}
+.data-card .value.red{color:#ef4444}
+.data-card .value.green{color:#22c55e}
+.data-card .value.yellow{color:#f59e0b}
+.data-card .sub{font-size:12px;color:#6b7d9f;margin-top:2px}
+.quick-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.quick-stat{text-align:center;padding:10px 4px;background:#0d1520;border-radius:8px;border:1px solid #1a2744}
+.quick-stat .num{font-size:18px;font-weight:700}
+.quick-stat .num.green{color:#22c55e}
+.quick-stat .num.red{color:#ef4444}
+.quick-stat .num.yellow{color:#f59e0b}
+.quick-stat .lbl{font-size:11px;color:#6b7d9f;margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:8px 6px;background:#0a0e1a;color:#7eb8ff;font-weight:600;border-bottom:1px solid #1e293b;font-size:12px}
+td{padding:7px 6px;border-bottom:1px solid #131d2e;font-size:13px}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(30,58,95,0.2)}
+.up{color:#ef4444}
+.down{color:#22c55e}
+.neutral{color:#f59e0b}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;margin:1px}
+.tag.red{background:rgba(239,68,68,0.15);color:#ef4444}
+.tag.green{background:rgba(34,197,94,0.15);color:#22c55e}
+.tag.yellow{background:rgba(245,158,11,0.15);color:#f59e0b}
+.tag.blue{background:rgba(59,130,246,0.15);color:#60a5fa}
+.tag.purple{background:rgba(168,85,247,0.15);color:#a855f7}
+.analysis-box{padding:14px;background:#0d1520;border-radius:8px;border-left:3px solid #3b82f6;margin-bottom:10px}
+.analysis-box.warning{border-left-color:#ef4444}
+.analysis-box.success{border-left-color:#22c55e}
+.analysis-box.alert{border-left-color:#f59e0b}
+.analysis-box p{margin-bottom:6px;font-size:13px;line-height:1.7}
+.analysis-box p:last-child{margin-bottom:0}
+.analysis-box strong{color:#7eb8ff}
+.stock-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #131d2e;font-size:13px}
+.stock-row:last-child{border-bottom:none}
+.stock-name{font-weight:600}
+.stock-code{color:#6b7d9f;font-size:11px;margin-left:4px}
+.stock-change{font-weight:600}
+.footer{text-align:center;padding:20px;color:#4a5a7a;font-size:11px;border-top:1px solid #1e293b;margin-top:20px}
+.footer a{color:#3b82f6;text-decoration:none}
+.conclusion-highlight{font-size:14px;font-weight:600;padding:6px 0}
+@media(max-width:480px){
+.header h1{font-size:22px}
+.data-grid{grid-template-columns:1fr}
+.quick-stats{grid-template-columns:repeat(2,1fr)}
+.container{padding:10px 8px}
+.section-body{padding:10px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 A股每日复盘</h1>
+  <div class="date">2026年5月21日（周四）</div>
+  <div class="badge">⚠️ 黑色星期四 · 放量暴跌 · 超4700股下跌</div>
+</div>
+
+<div class="container">
+
+<!-- ========== 核心结论 ========== -->
+<div class="section">
+  <div class="section-title"><span class="icon">🔍</span> 核心结论</div>
+  <div class="section-body">
+    <div class="analysis-box warning">
+      <p><strong>🔥 今日关键词：利好兑现 · 高位崩塌 · 天量出货</strong></p>
+      <p>受隔夜英伟达财报超预期及美股大涨刺激，A股早盘高开高走，上证指数一度冲至4199.53点（距4200仅0.47点）。但11:20左右风云突变，资金集体出逃，午后加速跳水，沪指最终收跌2.04%报4077点，失守4100关口。全市场超4700只个股下跌，仅695只上涨，36股涨停、69股跌停。沪深两市成交额达3.48万亿，较前日放量超5200亿，创阶段天量——<strong>典型"天量见天价"高位出货信号</strong>。</p>
+      <p style="margin-top:6px;color:#fbbf24;">📌 本质判定：前期AI/半导体板块4月涨幅超60%，获利盘天量出逃 + 4200点三重顶压力 + 北向资金/主力资金联合砸盘 = 中期顶部信号明确。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 大盘指数 ========== -->
+<div class="section">
+  <div class="section-title"><span class="icon">📈</span> 大盘指数行情</div>
+  <div class="section-body">
+    <div class="quick-stats">
+      <div class="quick-stat">
+        <div class="num red">4077</div>
+        <div class="lbl">上证指数</div>
+        <div class="lbl" style="color:#ef4444;font-weight:600">-2.04%</div>
+      </div>
+      <div class="quick-stat">
+        <div class="num red">15247</div>
+        <div class="lbl">深证成指</div>
+        <div class="lbl" style="color:#ef4444;font-weight:600">-2.07%</div>
+      </div>
+      <div class="quick-stat">
+        <div class="num red">3830</div>
+        <div class="lbl">创业板指</div>
+        <div class="lbl" style="color:#ef4444;font-weight:600">-2.35%</div>
+      </div>
+      <div class="quick-stat">
+        <div class="num red">1764</div>
+        <div class="lbl">科创50</div>
+        <div class="lbl" style="color:#ef4444;font-weight:600">-3.70%</div>
+      </div>
+    </div>
+    <table>
+      <tr><th>指标</th><th>上证指数</th><th>深证成指</th><th>创业板指</th><th>科创50</th></tr>
+      <tr><td>收盘价</td><td>4077.28</td><td>15,247.27</td><td>3,829.78</td><td>1,764.17</td></tr>
+      <tr><td>开盘价</td><td>4,174.38</td><td>15,707.96</td><td>3,962.30</td><td>1,866.29</td></tr>
+      <tr><td>最高价</td><td>4,200.00</td><td>15,890</td><td>4,018</td><td>1,893</td></tr>
+      <tr><td>最低价</td><td>4,074</td><td>15,230</td><td>3,828</td><td>1,760</td></tr>
+      <tr><td>成交额</td><td>1.596万亿</td><td>1.886万亿</td><td>9,022亿</td><td>2,164亿</td></tr>
+      <tr><td>涨跌幅</td><td class="down">-2.04%</td><td class="down">-2.07%</td><td class="down">-2.35%</td><td class="down">-3.70%</td></tr>
+      <tr><td>5日涨跌幅</td><td class="down">-2.41%</td><td class="down">-3.17%</td><td class="down">-3.07%</td><td class="up">+2.27%</td></tr>
+      <tr><td>换手率</td><td>1.49%</td><td>2.73%</td><td>4.09%</td><td>3.09%</td></tr>
+      <tr><td>振幅</td><td>3.01%</td><td>4.25%</td><td>4.85%</td><td>7.24%</td></tr>
+      <tr><td>上涨家数</td><td>338</td><td>342</td><td>155</td><td>7</td></tr>
+      <tr><td>下跌家数</td><td class="red">1,987</td><td class="red">2,560</td><td class="red">1,236</td><td class="red">42</td></tr>
+    </table>
+    <div style="margin-top:10px;padding:10px;background:#0d1520;border-radius:6px;font-size:13px;">
+      <strong style="color:#f59e0b;">📊 支撑位/压力位：</strong>
+      上证支撑 4061 · 压力 4259 | 深证支撑 14751 · 压力 16208 | 创业板支撑 3578 · 压力 4090 | 科创50支撑 1416 · 压力 1893
+    </div>
+  </div>
+</div>
+
+<!-- ========== 资金面 ========== -->
+<div class="section">
+  <div class="section-title"><span class="icon">💰</span> 资金面分析</div>
+  <div class="section-body">
+    <div class="analysis-box warning">
+      <p><strong>⚠️ 主力资金：</strong>今日主力资金全天净流出约1251亿元（部分口径超1400亿元），连续6个交易日净流出。AI算力、半导体、CPO等高位赛道资金出逃占比超70%。<span style="color:#fbbf24;">散户资金逆势净流入超150亿——完美复刻"主力出货、散户接盘"的经典顶部剧本。</span></p>
+    </div>
+    <div class="analysis-box warning">
+      <p><strong>⚠️ 北向资金：</strong>今日净流出63~85亿元（多数据源交叉验证），终结此前连续净流入态势。重点减仓传媒、电子、计算机三大科技板块。北向资金今日成交4004.86亿元，占两市总成交11.50%。</p>
+      <p style="margin-top:4px;font-size:12px;color:#6b7d9f;">沪股通前三：澜起科技(47.71亿)、中微公司(39.10亿)、兆易创新(27.65亿)</p>
+      <p style="font-size:12px;color:#6b7d9f;">深股通前三：中际旭创(53.72亿)、新易盛(46.88亿)、宁德时代(44.91亿)</p>
+    </div>
+    <div class="analysis-box alert">
+      <p><strong>⚠️ 两融余额：</strong>最新两融余额较前日增加约127亿元，杠杆资金仍在积极运作，但若周五继续下跌，融资盘平仓压力将显著上升。</p>
+    </div>
+    <div style="margin-top:10px;padding:10px;background:#0d1520;border-radius:6px;font-size:13px;">
+      <strong style="color:#f59e0b;">资金流向结构：</strong>主力资金净流入半导体、电池、光伏设备等板块（低位补仓）<br>
+      净流出电力、消费电子、通信服务等板块。中芯国际主力资金净流入34.22亿元。
+    </div>
+  </div>
+</div>
+
+<!-- ========== 市场情绪 ========== -->
+<div class="section">
+  <div class="section-title"><span class="icon">🔥</span> 市场情绪与涨跌温度</div>
+  <div class="section-body">
+    <div class="quick-stats">
+      <div class="quick-stat">
+        <div class="num green">695</div>
+        <div class="lbl">上涨</div>
+      </div>
+      <div class="quick-stat">
+        <div class="num red">4,773</div>
+        <div class="lbl">下跌</div>
+      </div>
+      <div class="quick-stat">
+        <div class="num yellow">36</div>
+        <div class="lbl">涨停</div>
+      </div>
+      <div class="quick-stat">
+        <div class="num red">69</div>
+        <div class="lbl">跌停</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+      <span class="tag red">上涨占比 12.6%</span>
+      <span class="tag green">下跌占比 86.7%</span>
+      <span class="tag yellow">封板率 31-34%</span>
+      <span class="tag red">69只跌停（近两周新高）</span>
+      <span class="tag blue">成交额 3.48万亿 +5279亿</span>
+    </div>
+    <div class="analysis-box warning">
+      <p><strong>📉 情绪诊断：冰点。</strong>今天走出了一个教科书级别的"早盘诱多、午后崩盘"形态。早盘高开高走冲至4199点，散户追高入场，11:20后资金集体出逃，午后加速跳水无反弹。封板率仅31-34%，显示多头承接极弱。</p>
+      <p style="margin-top:4px;"><strong>⚠️ 断头铡刀形态：</strong>上证收出实体122点、上影线122点的巨量大阴线，跌破5日、10日线。历史经验：类似形态出现后，后续通常迎来至少5天、跌幅超6%的调整。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 行业主线TOP6 ========== -->
+<div class="section">
+  <div class="section-title"><span class="icon">🎯</span> 行业主线 TOP6</div>
+  <div class="section-body">
+    <table>
+      <tr><th>排名</th><th>行业板块</th><th>涨跌幅</th><th>核心驱动</th></tr>
+      <tr><td>1</td><td><strong>面板</strong>（申万三级）</td><td class="up">+3.82%</td><td>京东方A一字涨停，封单22.20亿元，MicroLED概念爆发</td></tr>
+      <tr><td>2</td><td>玻璃制造</td><td class="up">+3.51%</td><td>面板产业链传导，玻璃基板需求预期</td></tr>
+      <tr><td>3</td><td>公交</td><td class="up">+3.46%</td><td>智能驾驶概念带动，大众交通2连板</td></tr>
+      <tr><td>4</td><td><strong>机器人</strong>（人形机器人）</td><td class="up">+1.97%</td><td>巴克莱报告2035年市场2000亿美元，昊志机电、埃斯顿涨停</td></tr>
+      <tr><td>5</td><td>血液制品 / 医药</td><td class="up">+1.92%</td><td>创新药捷报频传，联影医疗+11%，迈瑞医疗+4%</td></tr>
+      <tr><td>6</td><td><strong>银行/大金融</strong></td><td class="up">+0.5~1%</td><td>建设银行创历史新高，华安证券+7%，护盘但抽血科技</td></tr>
+    </table>
+    <div style="margin-top:10px;padding:10px;background:#0d1520;border-radius:6px;font-size:13px;">
+      <strong style="color:#f59e0b;">概念板块 TOP5：</strong>减速器 · 电子纸 · 华为汽车 · 智能驾驶 · MicroLED<br>
+      <strong style="color:#ef4444;">领跌板块：</strong>通信(-4%↓) · 石油石化 · 计算机 · 房地产 · 半导体(-3~5%↓) · CPO(-7%↓)
+    </div>
+  </div>
+</div>
+
+<!-- ========== 龙头梯队 ========== -->
+<div class="section">
+  <div class="section-title"><span class="icon">🏆</span> 龙头梯队 & 连板股</div>
+  <div class="section-body">
+    <table>
+      <tr><th>个股</th><th>代码</th><th>连板/涨幅</th><th>板块</th><th>龙虎榜净买</th></tr>
+      <tr><td><strong>威龙股份</strong></td><td>603779</td><td><span class="tag purple">7连板</span></td><td>葡萄酒/实控人变更</td><td>5203万</td></tr>
+      <tr><td><strong>京能电力</strong></td><td>600578</td><td><span class="tag purple">7天5板</span></td><td>电力</td><td>9248万</td></tr>
+      <tr><td><strong>诚邦股份</strong></td><td>603316</td><td><span class="tag purple">4连板</span></td><td>芯片产业链</td><td>3308万</td></tr>
+      <tr><td><strong>京东方A</strong></td><td>000725</td><td><span class="tag green">涨停</span></td><td>面板/MicroLED</td><td>4.21亿</td></tr>
+      <tr><td><strong>红板科技</strong></td><td>603459</td><td><span class="tag green">+6.78%</span></td><td>科技</td><td><span style="color:#22c55e;font-weight:700;">4.27亿★</span></td></tr>
+      <tr><td><strong>德赛西威</strong></td><td>002920</td><td><span class="tag green">涨停</span></td><td>智能驾驶</td><td><span style="color:#22c55e;font-weight:700;">3.89亿★</span></td></tr>
+      <tr><td><strong>豫能控股</strong></td><td>001896</td><td><span class="tag green">涨停</span></td><td>电力</td><td><span style="color:#22c55e;font-weight:700;">5.89亿★</span></td></tr>
+      <tr><td><strong>海星股份</strong></td><td>603115</td><td>4天3板</td><td>电子</td><td>3929万</td></tr>
+    </table>
+    <div style="margin-top:8px;font-size:12px;color:#6b7d9f;">
+      <span class="tag green">★ 机构净买入前三</span> 红板科技4.27亿 > 德赛西威3.89亿 > 豫能控股5.89亿（按绝对金额）
+    </div>
+  </div>
+</div>
+
+<!-- ========== 风险信号 ========== -->
+<div class="section">
+  <div class="section-title"><span class="icon">🚨</span> 风险信号雷达</div>
+  <div class="section-body">
+    <div class="analysis-box warning">
+      <p><strong>🔴 高风险信号（5/5）</strong></p>
+      <p>① <strong>4200三重顶确认：</strong>5月13日4245、5月20日4197、5月21日4200，三次冲击失败，双顶+放量长阴=中期顶部信号</p>
+      <p>② <strong>天量出货：</strong>3.48万亿天量成交+主力连续6日净流出+北向终结流入=历史见顶组合</p>
+      <p>③ <strong>利好兑现杀：</strong>英伟达财报超预期+美股大涨=资金借高开出货，"买预期卖事实"经典演绎</p>
+      <p>④ <strong>美债压制：</strong>10年期收益率维持5%以上，全球流动性收紧压制高估值成长股估值</p>
+      <p>⑤ <strong>微观结构恶化：</strong>封板率31%（极低），跌停69家（近两周新高），半导体板块4月涨60%获利盘丰厚</p>
+    </div>
+    <div class="analysis-box alert">
+      <p><strong>🟡 潜在支撑因素：</strong></p>
+      <p>• 尾盘深股通出现回流迹象，部分外资可能逢低布局</p>
+      <p>• 中芯国际主力净流入34亿，半导体设备（北方华创创新高）仍有结构性机会</p>
+      <p>• 银行/中特估/汽车/面板等低位板块承接力尚可</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== AH联动 ========== -->
+<div class="section">
+  <div class="section-title"><span class="icon">🇭🇰</span> AH联动 · 港股</div>
+  <div class="section-body">
+    <div class="analysis-box">
+      <p>港股今日亦同步走低，恒生指数跌逾1%，恒生科技指数跌超2%。工商银行A股涨0.28%而H股跌1.16%，A/H溢价率扩大至5%以上。中概股（金龙指数）昨夜跌0.47%，万国数据-9%、哔哩哔哩-8.6%。</p>
+      <p style="margin-top:4px;"><strong>AH联动判断：</strong>今日A股跌幅显著大于港股，显示内资主导的AI/半导体抱团瓦解是下跌主因，而非外资系统性撤离。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== A美联动 ========== -->
+<div class="section">
+  <div class="section-title"><span class="icon">🇺🇸</span> A美联动 · 美股（5/20收盘）</div>
+  <div class="section-body">
+    <div class="quick-stats">
+      <div class="quick-stat">
+        <div class="num green">50009</div>
+        <div class="lbl">道指</div>
+        <div class="lbl" style="color:#22c55e;font-weight:600">+1.31%</div>
+      </div>
+      <div class="quick-stat">
+        <div class="num green">7433</div>
+        <div class="lbl">标普500</div>
+        <div class="lbl" style="color:#22c55e;font-weight:600">+1.08%</div>
+      </div>
+      <div class="quick-stat">
+        <div class="num green">26270</div>
+        <div class="lbl">纳指</div>
+        <div class="lbl" style="color:#22c55e;font-weight:600">+1.54%</div>
+      </div>
+      <div class="quick-stat">
+        <div class="num green">223.47</div>
+        <div class="lbl">NVDA</div>
+        <div class="lbl" style="color:#22c55e;font-weight:600">+1.30%</div>
+      </div>
+    </div>
+    <div class="analysis-box alert">
+      <p><strong>🔑 核心观察："跟跌不跟涨"——A股独立走势而非单纯跟风美股</strong></p>
+      <p>昨夜美股三大指数均涨超1%，费城半导体指数暴涨4.49%，ARM+15%、AMD+8%、英特尔+7%，英伟达盘后财报全面超预期（营收816亿+85%，净利583亿+211%）。但A股却高开低走放量暴跌——<strong>这说明问题出在内因（抱团瓦解+获利盘出逃），而非外因（美股/外资）。</strong></p>
+      <p style="margin-top:4px;">英伟达盘后跌超3%的现象值得玩味：即使业绩全面超预期，股价仍回调，反映市场担心AI需求增速见顶。这种担忧情绪通过"利好兑现"逻辑传导至A股科技板块。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 归因分析 ========== -->
+<div class="section">
+  <div class="section-title"><span class="icon">🧠</span> 下跌归因深度分析</div>
+  <div class="section-body">
+    <div class="analysis-box">
+      <p><strong>① 内因：高位科技抱团瓦解（核心因素）</strong></p>
+      <p>AI、半导体板块4月以来涨幅超60%，积累天量获利盘。英伟达财报为机构提供了完美的"借着利好出货"窗口。早盘高开是诱多，散户追高接盘，机构派发，午后砸盘。</p>
+    </div>
+    <div class="analysis-box">
+      <p><strong>② 资金面：多头结构崩溃</strong></p>
+      <p>主力资金单日净流出超1200亿，北向资金同步流出。更关键的是，银行/大金融早盘拉升（建设银行创历史新高、华安证券+7%）反而从科技板块抽走了存量流动性，形成"拉权重、砸小票"的极端分化格局。</p>
+    </div>
+    <div class="analysis-box">
+      <p><strong>③ 技术面：4200三重顶 + 断头铡刀</strong></p>
+      <p>上证在4200点附近形成清晰的双顶/三重顶形态。今日放量大跌收出长阴线，直接跌破5日、10日线，短期均线空头排列。历史类似形态后，通常调整时间不少于5个交易日，幅度不低于6%。</p>
+    </div>
+    <div class="analysis-box">
+      <p><strong>④ 外因：美债收益率压制 + 利好兑现</strong></p>
+      <p>美债10年期收益率维持5%以上压制成长股估值，叠加美联储会议纪要鹰派信号。英伟达财报超预期但股价盘后下跌，强化了AI板块"利好出尽"的市场认知，情绪传导至A股。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 明日策略 ========== -->
+<div class="section">
+  <div class="section-title"><span class="icon">📋</span> 明日策略 · 5月22日（周五）</div>
+  <div class="section-body">
+    <div class="analysis-box warning">
+      <p><strong>⚡ 核心判断：中期调整或已开启，周五大概率惯性下探</strong></p>
+      <p>今日"早盘诱多+午后崩盘+天量出货"是教科书级别的见顶信号。明日周五，市场面临三重压力：<strong>(1)</strong>套牢盘的止损抛压（今日追高的散户）；<strong>(2)</strong>周末避险情绪（不确定性回避）；<strong>(3)</strong>外围美股今晚能否企稳（英伟达盘后下跌）。</p>
+    </div>
+    <div class="analysis-box">
+      <p><strong>📌 关键支撑位与情景推演</strong></p>
+      <p><strong>悲观情景（概率50%）：</strong>继续惯性下探，测试4000-4030区间支撑（今日最低4074，跌停69家显示抛压未释放完毕）。若跌破4000，将向3930-3950寻求支撑。</p>
+      <p><strong>中性情景（概率35%）：</strong>低开后低位震荡，沪指在4050-4100区间整理，局部反弹（银行、电力、面板等今日强势板块可能继续表现），但科技股反弹即卖点。</p>
+      <p><strong>乐观情景（概率15%）：</strong>恐慌释放后超跌反弹，回抽4100。但除非周末有重大政策利好，否则反弹高度有限。</p>
+    </div>
+    <div class="analysis-box">
+      <p><strong>🛡️ 操作建议</strong></p>
+      <p><span class="tag red">减仓</span> <strong>高位科技（AI/半导体/算力）：</strong>反弹即减仓窗口，不宜抄底。半导体4月涨幅超60%，调整至少需要2-3周消化估值。</p>
+      <p><span class="tag yellow">持有</span> <strong>银行/中特估/高股息：</strong>防御属性突出，北向资金近一周加仓超120亿。建设银行创历史新高是强势信号。</p>
+      <p><span class="tag green">关注</span> <strong>面板/MicroLED：</strong>京东方A巨量封单显示资金认可，板块刚启动位置相对低。</p>
+      <p><span class="tag green">关注</span> <strong>智能驾驶/机器人：</strong>产业趋势确定，今日逆势走强，如周二继续强势可适当关注。</p>
+      <p><span class="tag green">关注</span> <strong>电力：</strong>京能电力7天5板、豫能控股涨停，夏季用电高峰预期+防御属性。</p>
+      <p><span class="tag red">规避</span> <strong>ST股/问题股：</strong>*ST瑞茂、*ST三房连续13日跌停，退市风险加剧。</p>
+    </div>
+    <div style="padding:10px;background:#0d1520;border-radius:6px;font-size:13px;margin-top:8px;">
+      <strong style="color:#fbbf24;">⚠️ 我的核心判断：</strong>今日非简单调整，而是中期顶部确认。3.48万亿天量成交是"主力出货+散户接盘"的经典结构。建议严格控制仓位（<strong>降至5成以下</strong>），耐心等待充分调整（时间≥2周，空间≥6%）后再行布局。黎明前的黑暗可能比想象中更漫长。
+    </div>
+  </div>
+</div>
+
+<!-- ========== 极简对比表 ========== -->
+<div class="section">
+  <div class="section-title"><span class="icon">📊</span> 极简对比表</div>
+  <div class="section-body">
+    <table>
+      <tr><th>指标</th><th>今日</th><th>昨日（5/20）</th><th>变化</th></tr>
+      <tr><td>上证指数</td><td class="down">4,077 (-2.04%)</td><td>~4,162 (-0.18%)</td><td class="down">加速下跌</td></tr>
+      <tr><td>成交额</td><td><strong>3.48万亿</strong></td><td>~2.95万亿</td><td class="up" style="color:#ef4444">+5279亿</td></tr>
+      <tr><td>上涨家数</td><td class="down">695</td><td>~1,200</td><td class="down">大幅减少</td></tr>
+      <tr><td>下跌家数</td><td class="red">4,773</td><td>~3,800</td><td class="down">大幅增加</td></tr>
+      <tr><td>涨停</td><td class="yellow">36</td><td>~50</td><td class="down">减少</td></tr>
+      <tr><td>跌停</td><td class="red">69</td><td>~25</td><td class="up" style="color:#ef4444">近两周新高</td></tr>
+      <tr><td>北向资金</td><td class="down">净流出63-85亿</td><td>净流入</td><td class="down">趋势逆转</td></tr>
+      <tr><td>主力资金</td><td class="red">净流出1251亿</td><td>净流出180亿</td><td class="down" style="color:#ef4444">连续6日流出</td></tr>
+      <tr><td>科创50</td><td class="down">-3.70%</td><td>+3%+</td><td class="down">冲高回落</td></tr>
+      <tr><td>封板率</td><td class="yellow">31-34%</td><td>~50%+</td><td class="down">承接极弱</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  <p>📊 A股每日复盘 · 2026-05-21</p>
+  <p>数据来源：东方财富妙想 · 同花顺iFind · 公开财经资讯</p>
+  <p>⚠️ 本报告仅供参考，不构成任何投资建议。投资有风险，入市需谨慎。</p>
+  <p style="margin-top:8px;">Generated by Hermes Agent · <a href="https://JeremyYu-gif.github.io/A股每日复盘+2026-05-21.html">公网链接</a></p>
+</div>
+
+</div>
+</body>
+</html>
