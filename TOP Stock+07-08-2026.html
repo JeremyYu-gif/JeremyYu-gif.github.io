@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOP个股跟踪日报 - 2026年07月08日</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #1a1a2e;
+            color: #e0e0e0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            border-bottom: 2px solid #e6b800;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #e6b800;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            color: #adb5bd;
+            font-size: 14px;
+        }
+        .header .timestamp {
+            color: #868e96;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        .market-section {
+            margin-bottom: 40px;
+        }
+        .market-title {
+            font-size: 22px;
+            color: #e6b800;
+            border-left: 4px solid #e6b800;
+            padding-left: 12px;
+            margin-bottom: 16px;
+        }
+        .stock-card {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid #2a2a4a;
+            transition: border-color 0.3s;
+        }
+        .stock-card:hover {
+            border-color: #e6b800;
+        }
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #2a2a4a;
+        }
+        .stock-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .stock-code {
+            font-size: 20px;
+            font-weight: 700;
+            color: #e6b800;
+        }
+        .stock-name {
+            font-size: 18px;
+            color: #e0e0e0;
+        }
+        .stock-name-en {
+            font-size: 13px;
+            color: #868e96;
+        }
+        .stock-price {
+            text-align: right;
+        }
+        .price-value {
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .price-change {
+            font-size: 16px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #e6b800;
+            margin-top: 10px;
+            margin-bottom: 6px;
+        }
+        .section-content {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .filings {
+            color: #ced4da;
+        }
+        .filing-item {
+            padding: 3px 0;
+        }
+        .filing-form {
+            display: inline-block;
+            background: #264653;
+            color: #e9c46a;
+            padding: 1px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .filing-date {
+            color: #868e96;
+            font-size: 12px;
+        }
+        .news-item {
+            padding: 3px 0;
+            color: #ced4da;
+        }
+        .news-date {
+            color: #868e96;
+            font-size: 12px;
+        }
+        .news-source {
+            color: #6c757d;
+            font-size: 11px;
+            background: #1a1a2e;
+            padding: 1px 6px;
+            border-radius: 3px;
+        }
+        .notes {
+            color: #adb5bd;
+            background: #0f3460;
+            padding: 10px 14px;
+            border-radius: 8px;
+            line-height: 1.7;
+        }
+        .no-data {
+            color: #868e96;
+            font-style: italic;
+        }
+        .footer {
+            text-align: center;
+            color: #6c757d;
+            font-size: 12px;
+            padding: 30px 0 10px;
+            border-top: 1px solid #2a2a4a;
+            margin-top: 30px;
+        }
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            background: #16213e;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+            border: 1px solid #2a2a4a;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 8px 16px;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #e6b800;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #868e96;
+            margin-top: 2px;
+        }
+        @media (max-width: 600px) {
+            .stock-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .stock-price {
+                text-align: left;
+                margin-top: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 TOP个股跟踪日报</h1>
+        <div class="subtitle">2026年07月08日 | 覆盖16只核心持仓</div>
+        <div class="timestamp">更新于 2026-07-08 07:26 (北京时间)</div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-value">16</div>
+            <div class="stat-label">跟踪个股</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value" style="color:#51cf66">4</div>
+            <div class="stat-label">上涨</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value" style="color:#ff6b6b">6</div>
+            <div class="stat-label">下跌</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value" style="color:#adb5bd">6</div>
+            <div class="stat-label">平盘</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">⚡</div>
+            <div class="stat-label">VRTX收购Crinetics</div>
+        </div>
+    </div>
+<div class="market-section"><div class="market-title">美股</div>
+        <div class="stock-card">
+            <div class="stock-header">
+                <div class="stock-title">
+                    <span class="stock-code">🇺🇸 VOR</span>
+                    <span class="stock-name">Vor Bio</span>
+                    <span class="stock-name-en">Vor BioPharma</span>
+                </div>
+                <div class="stock-price">
+                    <span class="price-value">USD 20.10</span>
+                    <span class="price-change" style="color:#adb5bd">+0.00%</span>
+                </div>
+            </div>
+    <div class="section-title">📄 SEC公告</div><div class="section-content filings"><div class="filing-item"><span class="filing-form">8-K</span> <span class="filing-date">2026-07-06</span> - Item 5.02: 董事Andrew Levin辞职，任命David Zaccardelli为新独立董事</div></div><div class="section-title">💡 解读</div><div class="section-content notes">董事变动：Andrew Levin博士于7月6日辞职，同日Board任命David Zaccardelli填补空缺</div></div>
+        <div class="stock-card">
+            <div class="stock-header">
+                <div class="stock-title">
+                    <span class="stock-code">🇺🇸 BIIB</span>
+                    <span class="stock-name">渤健</span>
+                    <span class="stock-name-en">Biogen</span>
+                </div>
+                <div class="stock-price">
+                    <span class="price-value">USD 205.70</span>
+                    <span class="price-change" style="color:#ff6b6b">-2.76%</span>
+                </div>
+            </div>
+    <div class="section-title">📄 信息摘要</div><div class="section-content no-data">近24h无新增公告/新闻</div><div class="section-title">💡 解读</div><div class="section-content notes">近24h无新增公告</div></div>
+        <div class="stock-card">
+            <div class="stock-header">
+                <div class="stock-title">
+                    <span class="stock-code">🇺🇸 SMMT</span>
+                    <span class="stock-name">Summit Therapeutics</span>
+                    <span class="stock-name-en">Summit Therapeutics</span>
+                </div>
+                <div class="stock-price">
+                    <span class="price-value">USD 15.88</span>
+                    <span class="price-change" style="color:#ff6b6b">-0.05%</span>
+                </div>
+            </div>
+    <div class="section-title">📄 信息摘要</div><div class="section-content no-data">近24h无新增公告/新闻</div><div class="section-title">💡 解读</div><div class="section-content notes">近24h无新增公告</div></div>
+        <div class="stock-card">
+            <div class="stock-header">
+                <div class="stock-title">
+                    <span class="stock-code">🇺🇸 VRTX</span>
+                    <span class="stock-name">福泰制药</span>
+                    <span class="stock-name-en">Vertex Pharmaceuticals</span>
+                </div>
+                <div class="stock-price">
+                    <span class="price-value">USD 522.25</span>
+                    <span class="price-change" style="color:#ff6b6b">-7.34%</span>
+                </div>
+            </div>
+    <div class="section-title">📄 SEC公告</div><div class="section-content filings"><div class="filing-item"><span class="filing-form">8-K</span> <span class="filing-date">2026-07-06</span> - Item 1.01: 与Crinetics Pharmaceuticals签署合并协议，$85/股现金收购</div><div class="filing-item"><span class="filing-form">4</span> <span class="filing-date">2026-07-07</span> - 内幕交易报告（2笔）</div></div><div class="section-title">💡 解读</div><div class="section-content notes">【重大】Vertex宣布以每股$85现金收购Crinetics Pharmaceuticals（CRNX），交易隐含估值重大。7/7股价跌7.34%至$522.25</div></div>
+        <div class="stock-card">
+            <div class="stock-header">
+                <div class="stock-title">
+                    <span class="stock-code">🇺🇸 ABOS</span>
+                    <span class="stock-name">Acumen Pharma</span>
+                    <span class="stock-name-en">Acumen Pharmaceuticals</span>
+                </div>
+                <div class="stock-price">
+                    <span class="price-value">USD 2.57</span>
+                    <span class="price-change" style="color:#ff6b6b">-0.10%</span>
+                </div>
+            </div>
+    <div class="section-title">📄 信息摘要</div><div class="section-content no-data">近24h无新增公告/新闻</div><div class="section-title">💡 解读</div><div class="section-content notes">近24h无新增公告</div></div>
+        <div class="stock-card">
+            <div class="stock-header">
+                <div class="stock-title">
+                    <span class="stock-code">🇺🇸 IONS</span>
+                    <span class="stock-name">Ionis Pharma</span>
+                    <span class="stock-name-en">Ionis Pharmaceuticals</span>
+                </div>
+                <div class="stock-price">
+                    <span class="price-value">USD 86.33</span>
+                    <span class="price-change" style="color:#51cf66">+3.15%</span>
+                </div>
+            </div>
+    <div class="section-title">📄 SEC公告</div><div class="section-content filings"><div class="filing-item"><span class="filing-form">144</span> <span class="filing-date">2026-07-07</span> - 拟议出售证券报告（3笔）</div></div><div class="section-title">💡 解读</div><div class="section-content notes">7/7提交3份Form 144（股东拟出售股份），股价涨3.15%</div></div>
+        <div class="stock-card">
+            <div class="stock-header">
+                <div class="stock-title">
+                    <span class="stock-code">🇺🇸 ALNY</span>
+                    <span class="stock-name">阿尔尼拉姆制药</span>
+                    <span class="stock-name-en">Alnylam Pharmaceuticals</span>
+                </div>
+                <div class="stock-price">
+                    <span class="price-value">USD 321.59</span>
+                    <span class="price-change" style="color:#51cf66">+8.55%</span>
+                </div>
+            </div>
+    <div class="section-title">📄 信息摘要</div><div class="section-content no-data">近24h无新增公告/新闻</div><div class="section-title">💡 解读</div><div class="section-content notes">股价大涨8.55%，近24h无SEC新增公告</div></div>
+        <div class="stock-card">
+            <div class="stock-header">
+                <div class="stock-title">
+                    <span class="stock-code">🇺🇸 ACIU</span>
+                    <span class="stock-name">AC Immune</span>
+                    <span class="stock-name-en">AC Immune</span>
+                </div>
+                <div class="stock-price">
+                    <span class="price-value">USD 2.54</span>
+                    <span class="price-change" style="color:#51cf66">+0.03%</span>
+                </div>
+            </div>
+    <div class="section-title">📄 信息摘要</div><div class="section-content no-data">近24h无新增公告/新闻</div><div class="section-title">💡 解读</div><div class="section-content notes">近24h无新增公告</div></div>
+        <div class="stock-card">
+            <div class="stock-header">
+                <div class="stock-title">
+                    <span class="stock-code">🇺🇸 LEGN</span>
+                    <span class="stock-name">传奇生物</span>
+                    <span class="stock-name-en">Legend Biotech</span>
+                </div>
+                <div class="stock-price">
+                    <span class="price-value">USD 27.68</span>
+                    <span class="price-change" style="color:#ff6b6b">-0.36%</span>
+                </div>
+            </div>
+    <div class="section-title">📄 信息摘要</div><div class="section-content no-data">近24h无新增公告/新闻</div><div class="section-title">💡 解读</div><div class="section-content notes">近24h无新增公告</div></div></div><div class="market-section"><div class="market-title">港股</div>
+        <div class="stock-card">
+            <div class="stock-header">
+                <div class="stock-title">
+                    <span class="stock-code">🇭🇰 02269</span>
+                    <span class="stock-name">药明生物</span>
+                    <span class="stock-name-en">药明生物</span>
+                </div>
+                <div class="stock-price">
+                    <span class="price-value">HKD 37.10</span>
+                    <span class="price-change" style="color:#ff6b6b">-2.70%</span>
+                </div>
+            </div>
+    <div class="section-title">📢 新闻动态</div><div class="section-content news"><div class="news-item"><span class="news-date">[2026-07-01]</span> 药明生物(02269.HK)6月30日回购9982.51万港元，年内累计回购11.72亿港元 <span class="news-source">东方财富</span></div><div class="news-item"><span class="news-date">[2026-06-24]</span> 药明生物连续3日回购，累计斥资1.99亿港元 <span class="news-source">东方财富</span></div></div><div class="section-title">💡 解读</div><div class="section-content notes">持续回购但股价仍跌2.70%。7/7收盘HK$37.10</div></div>
+        <div class="stock-card">
+            <div class="stock-header">
+                <div class="stock-title">
+                    <span class="stock-code">🇭🇰 09868</span>
+                    <span class="stock-name">小鹏汽车</span>
+                    <span class="stock-name-en">小鹏汽车-W</span>
+                </div>
+                <div class="stock-price">
+                    <span class="price-value">HKD 52.85</span>
+                    <span class="price-change" style="color:#ff6b6b">-1.14%</span>
+                </div>
+            </div>
+    <div class="section-title">📢 新闻动态</div><div class="section-content news"><div class="news-item"><span class="news-date">[2026-07-06]</span> 小鹏汽车新车首秀，周末门店客流创下2026年新高 <span class="news-source">东方财富</span></div><div class="news-item"><span class="news-date">[2026-07-06]</span> 摩根大通在小鹏汽车-W持股比例于6月30日从6.69%升至7.09% <span class="news-source">东方财富</span></div><div class="news-item"><span class="news-date">[2026-07-03]</span> 小鹏汽车MONA L03瞄准全球爆款，何小鹏：8月智驾版本冲刺行业头部水准 <span class="news-source">东方财富</span></div></div><div class="section-title">💡 解读</div><div class="section-content notes">新车首秀门店客流创新高，获摩根大通增持</div></div>
+        <div class="stock-card">
+            <div class="stock-header">
+                <div class="stock-title">
+                    <span class="stock-code">🇭🇰 00700</span>
+                    <span class="stock-name">腾讯控股</span>
+                    <span class="stock-name-en">腾讯控股</span>
+                </div>
+                <div class="stock-price">
+                    <span class="price-value">HKD 459.00</span>
+                    <span class="price-change" style="color:#51cf66">+2.04%</span>
+                </div>
+            </div>
+    <div class="section-title">📢 新闻动态</div><div class="section-content news"><div class="news-item"><span class="news-date">[2026-07-03]</span> 腾讯控股连续32日回购，累计回购3451.51万股 <span class="news-source">东方财富</span></div><div class="news-item"><span class="news-date">[2026-07-06]</span> 腾讯控股7月6日回购46.50万股，耗资2.05亿港元 <span class="news-source">东方财富</span></div><div class="news-item"><span class="news-date">[2026-07-07]</span> 高盛：国内大模型竞争重心发生变化，腾讯阿里等大涨 <span class="news-source">东方财富</span></div></div><div class="section-title">💡 解读</div><div class="section-content notes">连续32日回购！7/7涨2.04%至HK$459，高盛看好AI大模型竞争</div></div>
+        <div class="stock-card">
+            <div class="stock-header">
+                <div class="stock-title">
+                    <span class="stock-code">🇭🇰 09988</span>
+                    <span class="stock-name">阿里巴巴</span>
+                    <span class="stock-name-en">阿里巴巴-W</span>
+                </div>
+                <div class="stock-price">
+                    <span class="price-value">HKD 96.15</span>
+                    <span class="price-change" style="color:#ff6b6b">-0.16%</span>
+                </div>
+            </div>
+    <div class="section-title">📢 新闻动态</div><div class="section-content news"><div class="news-item"><span class="news-date">[2026-07-07]</span> 腾讯、美团、阿里巴巴开盘大涨！高盛：国内大模型竞争重心发生变化 <span class="news-source">东方财富</span></div><div class="news-item"><span class="news-date">[2026-07-02]</span> 硅基流动冲击'AI Token工厂第一股'：市占率约1.5%，阿里巴巴等入股 <span class="news-source">东方财富</span></div><div class="news-item"><span class="news-date">[2026-07-07]</span> 阿里、腾讯、美团、小米，集体大涨 <span class="news-source">东方财富</span></div></div><div class="section-title">💡 解读</div><div class="section-content notes">受高盛研报提振，阿里随科技股集体上涨。投资的硅基流动提交IPO</div></div></div><div class="market-section"><div class="market-title">A股</div>
+        <div class="stock-card">
+            <div class="stock-header">
+                <div class="stock-title">
+                    <span class="stock-code">🇨🇳 688331</span>
+                    <span class="stock-name">荣昌生物</span>
+                    <span class="stock-name-en">荣昌生物</span>
+                </div>
+                <div class="stock-price">
+                    <span class="price-value">CNY 129.89</span>
+                    <span class="price-change" style="color:#ff6b6b">-9.17%</span>
+                </div>
+            </div>
+    <div class="section-title">📢 新闻动态</div><div class="section-content news"><div class="news-item"><span class="news-date">[2026-07-07]</span> 医药生物行业今日净流出资金67.18亿元，恒瑞医药等16股净流出资金超亿元 <span class="news-source">东方财富</span></div><div class="news-item"><span class="news-date">[2026-07-07]</span> 细胞免疫治疗概念下跌4.11%，主力资金净流出52股 <span class="news-source">东方财富</span></div><div class="news-item"><span class="news-date">[2026-06-22]</span> 荣昌生物：已组建新团队拓展医院渠道，或寻求打包BD授权合作 <span class="news-source">东方财富</span></div></div><div class="section-title">💡 解读</div><div class="section-content notes">7/7暴跌9.17%至¥129.89，细胞免疫治疗概念整体下跌4.11%。公司正拓展医院渠道并寻求BD合作</div></div>
+        <div class="stock-card">
+            <div class="stock-header">
+                <div class="stock-title">
+                    <span class="stock-code">🇨🇳 300782</span>
+                    <span class="stock-name">卓胜微</span>
+                    <span class="stock-name-en">卓胜微</span>
+                </div>
+                <div class="stock-price">
+                    <span class="price-value">CNY 91.42</span>
+                    <span class="price-change" style="color:#ff6b6b">-3.79%</span>
+                </div>
+            </div>
+    <div class="section-title">📢 新闻动态</div><div class="section-content news"><div class="news-item"><span class="news-date">[2026-06-30]</span> 卓胜微：起诉株式会社村田制作所恶意提起知识产权诉讼索赔500万元 <span class="news-source">东方财富</span></div><div class="news-item"><span class="news-date">[2026-06-30]</span> 卓胜微：起诉村田制作所'恶意提起知识产权诉讼'，要求登报消除不良影响 <span class="news-source">东方财富</span></div></div><div class="section-title">💡 解读</div><div class="section-content notes">7/7跌3.79%至¥91.42。此前起诉日本村田制作所恶意知识产权诉讼，索赔500万元</div></div>
+        <div class="stock-card">
+            <div class="stock-header">
+                <div class="stock-title">
+                    <span class="stock-code">🇨🇳 600206</span>
+                    <span class="stock-name">有研新材</span>
+                    <span class="stock-name-en">有研新材</span>
+                </div>
+                <div class="stock-price">
+                    <span class="price-value">CNY 55.98</span>
+                    <span class="price-change" style="color:#51cf66">+10.00%</span>
+                </div>
+            </div>
+    <div class="section-title">📢 新闻动态</div><div class="section-content news"><div class="news-item"><span class="news-date">[2026-07-01]</span> 有研新材(600206)龙虎榜数据(07-01) <span class="news-source">东方财富</span></div><div class="news-item"><span class="news-date">[2026-07-06]</span> 筹划近两年时间，有研新材终止定增 <span class="news-source">东方财富</span></div><div class="news-item"><span class="news-date">[2026-06-30]</span> 有研新材(600206)龙虎榜数据(06-30) <span class="news-source">东方财富</span></div></div><div class="section-title">💡 解读</div><div class="section-content notes">7/7涨停(+10%)至¥55.98！终止定增后市场解读为利好，资金追涨封板。龙虎榜数据显示交易活跃</div></div></div>
+    <div class="footer">
+        <p>⚠️ 数据来源：SEC EDGAR、东方财富、Sina Finance | 数据延迟不超过24小时</p>
+        <p>本报告由 Hermes Agent 自动生成 | 2026-07-08 07:26</p>
+        <p style="margin-top:8px;color:#495057;">免责声明：本报告仅供参考，不构成投资建议</p>
+    </div>
+</body>
+</html>
