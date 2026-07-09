@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOP个股跟踪日报 2026年07月10日</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  background: #0d0d1a;
+  color: #e0e0e0;
+  min-height: 100vh;
+  padding: 20px;
+}
+.header {
+  text-align: center;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  border-radius: 16px;
+  margin-bottom: 24px;
+  border: 1px solid #1e3a5f;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+  animation: glow 8s ease-in-out infinite;
+}
+@keyframes glow {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(10%, 10%); }
+}
+.header h1 {
+  font-size: 2.2em;
+  color: #d4af37;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  position: relative;
+  z-index: 1;
+  letter-spacing: 2px;
+}
+.header .subtitle {
+  color: #888;
+  font-size: 0.95em;
+  margin-top: 8px;
+  position: relative;
+  z-index: 1;
+}
+.header .time {
+  color: #5a7fb5;
+  font-size: 0.85em;
+  margin-top: 6px;
+  position: relative;
+  z-index: 1;
+}
+.summary-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.summary-item {
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 10px;
+  padding: 14px 16px;
+  text-align: center;
+}
+.summary-item .num {
+  font-size: 1.6em;
+  font-weight: bold;
+  color: #d4af37;
+}
+.summary-item .label {
+  font-size: 0.8em;
+  color: #888;
+  margin-top: 4px;
+}
+.section-title {
+  font-size: 1.4em;
+  color: #d4af37;
+  margin: 30px 0 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #d4af37;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-title .badge {
+  font-size: 0.6em;
+  background: #2a2a4a;
+  color: #888;
+  padding: 2px 10px;
+  border-radius: 12px;
+}
+.stock-card {
+  background: #1a1a2e;
+  border: 1px solid #2a2a4a;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.stock-card:hover {
+  border-color: #d4af37;
+}
+.stock-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #1e1e3a, #1a1a2e);
+  border-bottom: 1px solid #2a2a4a;
+}
+.stock-card-header .ticker {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #fff;
+}
+.stock-card-header .ticker .exchange {
+  font-size: 0.55em;
+  color: #5a7fb5;
+  margin-left: 8px;
+}
+.stock-card-header .company-name {
+  font-size: 0.85em;
+  color: #aaa;
+  margin-top: 2px;
+}
+.stock-card-header .price-info {
+  text-align: right;
+}
+.stock-card-header .price {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #fff;
+}
+.stock-card-header .change {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+.change-up { color: #4caf50; }
+.change-down { color: #f44336; }
+.change-flat { color: #888; }
+.stock-card-body {
+  padding: 16px 20px;
+}
+.news-section {
+  margin-bottom: 12px;
+}
+.news-section:last-child {
+  margin-bottom: 0;
+}
+.news-label {
+  font-size: 0.85em;
+  color: #d4af37;
+  font-weight: bold;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.news-content {
+  font-size: 0.9em;
+  line-height: 1.6;
+  color: #ccc;
+  padding-left: 12px;
+  border-left: 2px solid #333;
+}
+.news-content .filing-item {
+  margin-bottom: 4px;
+  padding: 4px 0;
+}
+.filing-form {
+  display: inline-block;
+  background: #2a2a4a;
+  color: #d4af37;
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  font-weight: bold;
+  margin-right: 6px;
+}
+.no-news {
+  color: #666;
+  font-style: italic;
+  padding-left: 12px;
+}
+.ions-alert {
+  background: linear-gradient(135deg, #2a0000, #3a1a1a);
+  border: 1px solid #f44336;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 10px;
+}
+.ions-alert .alert-title {
+  color: #f44336;
+  font-weight: bold;
+  font-size: 0.95em;
+  margin-bottom: 6px;
+}
+.ions-alert .alert-body {
+  color: #ccc;
+  font-size: 0.85em;
+  line-height: 1.5;
+}
+.keyword-highlight {
+  background: linear-gradient(135deg, #1a3a1a, #0d2a0d);
+  border: 1px solid #4caf50;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 10px;
+}
+.keyword-highlight .keyword-title {
+  color: #4caf50;
+  font-weight: bold;
+  font-size: 0.95em;
+  margin-bottom: 6px;
+}
+.footer {
+  text-align: center;
+  padding: 30px 20px;
+  color: #555;
+  font-size: 0.8em;
+  border-top: 1px solid #2a2a4a;
+  margin-top: 30px;
+}
+.footer a {
+  color: #5a7fb5;
+  text-decoration: none;
+}
+@media (max-width: 768px) {
+  body { padding: 10px; }
+  .header h1 { font-size: 1.5em; }
+  .stock-card-header { flex-direction: column; text-align: center; }
+  .stock-card-header .price-info { text-align: center; margin-top: 8px; }
+}
+</style>
+</head>
+<body>
+
+
+<div class="header">
+  <h1>📊 TOP 个股跟踪日报</h1>
+  <div class="subtitle">2026年07月10日 | 16只核心股票每日监测</div>
+  <div class="time">🕐 2026-07-10 07:26 北京时间 · 数据来源: SEC EDGAR / 新浪财经 / 公司公告</div>
+</div>
+
+
+<div class="summary-bar">
+  <div class="summary-item">
+    <div class="num">6</div>
+    <div class="label">📈 上涨</div>
+  </div>
+  <div class="summary-item">
+    <div class="num">10</div>
+    <div class="label">📉 下跌</div>
+  </div>
+  <div class="summary-item">
+    <div class="num">2</div>
+    <div class="label">📄 SEC公告更新</div>
+  </div>
+  <div class="summary-item">
+    <div class="num" style="color:#4caf50">+10.0%</div>
+    <div class="label">🚀 最大涨幅 有研新材</div>
+  </div>
+  <div class="summary-item">
+    <div class="num" style="color:#f44336">-23.9%</div>
+    <div class="label">💥 最大跌幅 Ionis Pharmaceuticals</div>
+  </div>
+</div>
+
+<div class="section-title">🇺🇸 美股 <span class="badge">9只</span></div>
+
+<div class="stock-card">
+  <div class="stock-card-header">
+    <div>
+      <div class="ticker">VRTX <span class="exchange">NASDAQ</span></div>
+      <div class="company-name">福泰制药 (Vertex)</div>
+    </div>
+    <div class="price-info">
+      <div class="price">$496.50</div>
+      <div class="change change-down">▼ -0.39%</div>
+    </div>
+  </div>
+  <div class="stock-card-body">
+
+<div class="news-section"><div class="news-label">📄 SEC公告</div><div class="no-news">近24h无新增SEC公告</div></div>
+<div class="news-section"><div class="news-label">📢 官方新闻</div><div class="news-content">24h内无新增SEC公告</div></div>
+</div></div>
+
+<div class="stock-card">
+  <div class="stock-card-header">
+    <div>
+      <div class="ticker">BIIB <span class="exchange">NASDAQ</span></div>
+      <div class="company-name">渤健 (Biogen)</div>
+    </div>
+    <div class="price-info">
+      <div class="price">$198.91</div>
+      <div class="change change-down">▼ -0.72%</div>
+    </div>
+  </div>
+  <div class="stock-card-body">
+
+<div class="news-section"><div class="news-label">📄 SEC公告</div><div class="no-news">近24h无新增SEC公告</div></div>
+<div class="news-section"><div class="news-label">📢 官方新闻</div><div class="news-content">24h内无新增SEC公告</div></div>
+</div></div>
+
+<div class="stock-card">
+  <div class="stock-card-header">
+    <div>
+      <div class="ticker">ALNY <span class="exchange">NASDAQ</span></div>
+      <div class="company-name">Alnylam Pharmaceuticals</div>
+    </div>
+    <div class="price-info">
+      <div class="price">$312.79</div>
+      <div class="change change-down">▼ -3.31%</div>
+    </div>
+  </div>
+  <div class="stock-card-body">
+
+<div class="news-section"><div class="news-label">📄 SEC公告</div><div class="no-news">近24h无新增SEC公告</div></div>
+<div class="news-section"><div class="news-label">📢 官方新闻</div><div class="news-content">24h内无新增SEC公告</div></div>
+</div></div>
+
+<div class="stock-card">
+  <div class="stock-card-header">
+    <div>
+      <div class="ticker">SMMT <span class="exchange">NASDAQ</span></div>
+      <div class="company-name">Summit Therapeutics</div>
+    </div>
+    <div class="price-info">
+      <div class="price">$15.48</div>
+      <div class="change change-down">▼ -1.34%</div>
+    </div>
+  </div>
+  <div class="stock-card-body">
+
+<div class="news-section"><div class="news-label">📄 SEC公告</div><div class="no-news">近24h无新增SEC公告</div></div>
+<div class="news-section"><div class="news-label">📢 官方新闻</div><div class="news-content">24h内无新增SEC公告</div></div>
+</div></div>
+
+<div class="stock-card">
+  <div class="stock-card-header">
+    <div>
+      <div class="ticker">IONS <span class="exchange">NASDAQ</span></div>
+      <div class="company-name">Ionis Pharmaceuticals</div>
+    </div>
+    <div class="price-info">
+      <div class="price">$64.27</div>
+      <div class="change change-down">▼ -23.90%</div>
+    </div>
+  </div>
+  <div class="stock-card-body">
+
+<div class="news-section"><div class="news-label">📄 SEC公告 (24h内)</div><div class="news-content">
+<div class="filing-item"><span class="filing-form">4</span>Statement of Changes in Beneficial Ownership (2 filings) — 2026-07-09</div>
+<div class="filing-item"><span class="filing-form">8-K</span>CARDIO-TTRansform Phase 3 trial for eplontersen - primary endpoint not met — 2026-07-09</div>
+</div></div>
+<div class="news-section"><div class="news-label">📢 官方新闻</div><div class="news-content">8-K filed: CARDIO-TTRansform Phase 3 trial (eplontersen for ATTR-CM) failed to meet primary endpoint. Stock dropped -23.90%.</div></div>
+<div class="news-section"><div class="news-label">🔍 第三方媒体</div><div class="news-content">【重大利空】Ionis Pharma宣布eplontersen治疗ATTR-CM的III期CARDIO-TTRansform试验未达主要终点。联合标准治疗（大部分患者已用稳定剂）未显示统计学显著获益。单药亚组分析显示HR=0.71名义显著，多个次要/影像/生物标志物分析趋势有利。来源: SEC 8-K, Benzinga</div></div>
+
+    <div class="ions-alert">
+      <div class="alert-title">⚠️ 重大利空 — III期临床试验失败</div>
+      <div class="alert-body">On July 9, 2026, Ionis Pharmaceuticals announced that the CARDIO-TTRansform Phase 3 trial for eplontersen in patients with transthyretin-mediated amyloid cardiomyopathy (ATTR-CM) did not meet the primary efficacy endpoint of the composite outcome of cardiovascular mortality and recurrent CV clinical events up to Week 140 compared with placebo.
+
+In this contemporary patient population treated with standard of care, including a majority on a stabilizer, adding eplontersen did not provide a statistically significant benefit.
+
+In a prespecified subgroup analysis of patients treated with eplontersen monotherapy compared to placebo, a nominally significant hazard ratio of 0.71 was observed on the composite outcome of CV mortality and recurrent CV events. In patients who were on stabilizer therapy at baseline, no treatment effect was observed.
+
+In the overall population, multiple secondary, imaging and biomarker analyses favored eplontersen versus placebo. Large and sustained reductions in transthyretin levels were observed.</div>
+    </div>
+
+</div></div>
+
+<div class="stock-card">
+  <div class="stock-card-header">
+    <div>
+      <div class="ticker">LEGN <span class="exchange">NASDAQ</span></div>
+      <div class="company-name">传奇生物 (Legend Biotech)</div>
+    </div>
+    <div class="price-info">
+      <div class="price">$27.38</div>
+      <div class="change change-down">▼ -1.76%</div>
+    </div>
+  </div>
+  <div class="stock-card-body">
+
+<div class="news-section"><div class="news-label">📄 SEC公告</div><div class="no-news">近24h无新增SEC公告</div></div>
+<div class="news-section"><div class="news-label">📢 官方新闻</div><div class="news-content">24h内无新增SEC公告</div></div>
+</div></div>
+
+<div class="stock-card">
+  <div class="stock-card-header">
+    <div>
+      <div class="ticker">VOR <span class="exchange">NASDAQ</span></div>
+      <div class="company-name">Vor BioPharma</div>
+    </div>
+    <div class="price-info">
+      <div class="price">$19.75</div>
+      <div class="change change-down">▼ -2.76%</div>
+    </div>
+  </div>
+  <div class="stock-card-body">
+
+<div class="news-section"><div class="news-label">📄 SEC公告 (24h内)</div><div class="news-content">
+<div class="filing-item"><span class="filing-form">3</span>Initial Statement of Beneficial Ownership — 2026-07-09</div>
+<div class="filing-item"><span class="filing-form">4</span>Statement of Changes in Beneficial Ownership — 2026-07-09</div>
+</div></div>
+<div class="news-section"><div class="news-label">📢 官方新闻</div><div class="news-content">SEC Form 3 & Form 4 filed on 2026-07-09. Form 3 indicates new insider/director beneficial ownership filing. Form 4 indicates changes in existing insider holdings.</div></div>
+</div></div>
+
+<div class="stock-card">
+  <div class="stock-card-header">
+    <div>
+      <div class="ticker">ABOS <span class="exchange">NASDAQ</span></div>
+      <div class="company-name">Acumen Pharmaceuticals</div>
+    </div>
+    <div class="price-info">
+      <div class="price">$2.70</div>
+      <div class="change change-down">▼ -1.10%</div>
+    </div>
+  </div>
+  <div class="stock-card-body">
+
+<div class="news-section"><div class="news-label">📄 SEC公告</div><div class="no-news">近24h无新增SEC公告</div></div>
+<div class="news-section"><div class="news-label">📢 官方新闻</div><div class="news-content">24h内无新增SEC公告</div></div>
+</div></div>
+
+<div class="stock-card">
+  <div class="stock-card-header">
+    <div>
+      <div class="ticker">ACIU <span class="exchange">NASDAQ</span></div>
+      <div class="company-name">AC Immune</div>
+    </div>
+    <div class="price-info">
+      <div class="price">$2.60</div>
+      <div class="change change-up">▲ +3.17%</div>
+    </div>
+  </div>
+  <div class="stock-card-body">
+
+<div class="news-section"><div class="news-label">📄 SEC公告</div><div class="no-news">近24h无新增SEC公告</div></div>
+<div class="news-section"><div class="news-label">📢 官方新闻</div><div class="news-content">24h内无新增SEC公告</div></div>
+</div></div>
+<div class="section-title">🇭🇰 港股 <span class="badge">4只</span></div>
+
+<div class="stock-card">
+  <div class="stock-card-header">
+    <div>
+      <div class="ticker">02269 <span class="exchange">HKEX</span></div>
+      <div class="company-name">药明生物</div>
+    </div>
+    <div class="price-info">
+      <div class="price">HK$35.66</div>
+      <div class="change change-up">▲ +0.11%</div>
+    </div>
+  </div>
+  <div class="stock-card-body">
+    <div class="news-content">近24h无新增公告/新闻</div>
+  </div>
+</div>
+
+
+<div class="stock-card">
+  <div class="stock-card-header">
+    <div>
+      <div class="ticker">09868 <span class="exchange">HKEX</span></div>
+      <div class="company-name">小鹏汽车-W</div>
+    </div>
+    <div class="price-info">
+      <div class="price">HK$52.15</div>
+      <div class="change change-up">▲ +0.29%</div>
+    </div>
+  </div>
+  <div class="stock-card-body">
+    <div class="news-content">近24h无新增公告/新闻</div>
+  </div>
+</div>
+
+
+<div class="stock-card">
+  <div class="stock-card-header">
+    <div>
+      <div class="ticker">00700 <span class="exchange">HKEX</span></div>
+      <div class="company-name">腾讯控股</div>
+    </div>
+    <div class="price-info">
+      <div class="price">HK$478.80</div>
+      <div class="change change-down">▼ -0.04%</div>
+    </div>
+  </div>
+  <div class="stock-card-body">
+    <div class="news-content">近24h无新增公告/新闻</div>
+  </div>
+</div>
+
+
+<div class="stock-card">
+  <div class="stock-card-header">
+    <div>
+      <div class="ticker">09988 <span class="exchange">HKEX</span></div>
+      <div class="company-name">阿里巴巴-W</div>
+    </div>
+    <div class="price-info">
+      <div class="price">HK$107.50</div>
+      <div class="change change-down">▼ -2.36%</div>
+    </div>
+  </div>
+  <div class="stock-card-body">
+    <div class="news-content">近24h无新增公告/新闻</div>
+  </div>
+</div>
+
+<div class="section-title">🇨🇳 A股 <span class="badge">3只</span></div>
+
+<div class="stock-card">
+  <div class="stock-card-header">
+    <div>
+      <div class="ticker">688331 <span class="exchange">A股</span></div>
+      <div class="company-name">荣昌生物</div>
+    </div>
+    <div class="price-info">
+      <div class="price">¥132.01</div>
+      <div class="change change-up">▲ +4.36%</div>
+    </div>
+  </div>
+  <div class="stock-card-body">
+
+<div class="news-content">近24h无新增公告/新闻；股价+4.36%表现强势</div>
+</div></div>
+
+<div class="stock-card">
+  <div class="stock-card-header">
+    <div>
+      <div class="ticker">300782 <span class="exchange">A股</span></div>
+      <div class="company-name">卓胜微</div>
+    </div>
+    <div class="price-info">
+      <div class="price">¥92.83</div>
+      <div class="change change-up">▲ +3.57%</div>
+    </div>
+  </div>
+  <div class="stock-card-body">
+
+<div class="news-content">近24h无新增公告/新闻；股价+3.57%</div>
+</div></div>
+
+<div class="stock-card">
+  <div class="stock-card-header">
+    <div>
+      <div class="ticker">600206 <span class="exchange">A股</span></div>
+      <div class="company-name">有研新材</div>
+    </div>
+    <div class="price-info">
+      <div class="price">¥59.38</div>
+      <div class="change change-up">▲ +10.00%</div>
+    </div>
+  </div>
+  <div class="stock-card-body">
+
+
+    <div class="keyword-highlight">
+      <div class="keyword-title">🚀 涨停！</div>
+      <div class="news-content">股价涨停(+10.00%)，近期稀土/新材料板块活跃，但24h内未检索到具体公告</div>
+    </div>
+
+</div></div>
+
+<div class="footer">
+  <p>📊 TOP个股跟踪日报 · 由Hermes Agent自动生成</p>
+  <p>数据来源: SEC EDGAR | 新浪财经 | Yahoo Finance | Benzinga</p>
+  <p>报告时间: 2026-07-10 07:26 北京时间</p>
+  <p style="margin-top:8px;color:#444">⚠️ 本报告仅供参考，不构成投资建议。所有数据均来自公开信息，可能存在延迟。</p>
+</div>
+</body>
+</html>
