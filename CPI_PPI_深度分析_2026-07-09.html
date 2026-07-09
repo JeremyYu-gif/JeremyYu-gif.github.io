@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6月CPI/PPI深度分析 — 2026-07-09</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --blue: #58a6ff;
+    --green: #3fb950;
+    --red: #f85149;
+    --orange: #d29922;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 20px;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+  .header {
+    text-align: center; padding: 30px 0 20px;
+    border-bottom: 1px solid var(--border); margin-bottom: 30px;
+  }
+  .header h1 { font-size: 28px; color: var(--blue); margin-bottom: 8px; }
+  .header .date { color: var(--text-muted); font-size: 14px; }
+  .header .badge { display: inline-block; background: #1f6feb33; color: var(--blue); padding: 3px 12px; border-radius: 12px; font-size: 13px; margin-top: 8px; }
+  
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px; margin-bottom: 20px;
+  }
+  .card h2 { font-size: 20px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .card h3 { font-size: 16px; color: var(--blue); margin: 16px 0 8px; }
+
+  .signal-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+  .signal-green { background: var(--green); }
+  .signal-yellow { background: var(--orange); }
+  .signal-red { background: var(--red); }
+
+  .key-value { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #21262d; }
+  .key-value:last-child { border: none; }
+  .key-value .key { color: var(--text-muted); }
+  .key-value .value { font-weight: 600; font-size: 16px; }
+  .value.red { color: var(--red); }
+  .value.green { color: var(--green); }
+  .value.orange { color: var(--orange); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .compare-box {
+    background: #161b22; border: 1px solid var(--border);
+    border-radius: 8px; padding: 16px; text-align: center;
+  }
+  .compare-box .label { color: var(--text-muted); font-size: 13px; margin-bottom: 4px; }
+  .compare-box .number { font-size: 32px; font-weight: 700; }
+  .compare-box .change { font-size: 14px; margin-top: 4px; }
+
+  table.data-table {
+    width: 100%; border-collapse: collapse; margin: 12px 0;
+    font-size: 14px;
+  }
+  table.data-table th {
+    text-align: left; padding: 8px 12px;
+    border-bottom: 2px solid var(--border); color: var(--text-muted); font-weight: 500;
+  }
+  table.data-table td {
+    padding: 8px 12px; border-bottom: 1px solid #21262d;
+  }
+
+  .insight { background: #1f6feb11; border-left: 4px solid var(--blue); padding: 16px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+  .insight.warning { background: #d2992211; border-left-color: var(--orange); }
+  .insight.danger { background: #f8514911; border-left-color: var(--red); }
+
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 12px; margin-right: 4px; }
+  .tag-green { background: #3fb95022; color: var(--green); }
+  .tag-red { background: #f8514922; color: var(--red); }
+  .tag-yellow { background: #d2992222; color: var(--orange); }
+
+  .footer { text-align: center; color: var(--text-muted); font-size: 12px; padding: 20px 0; border-top: 1px solid var(--border); margin-top: 30px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>📊 6月CPI/PPI深度分析</h1>
+  <div class="date">2026年7月9日 · 国家统计局发布 · 10:02推送</div>
+  <div class="badge">📅 每月固定发布（9日）</div>
+</div>
+
+<!-- ====== 总体概览 ====== -->
+<div class="card">
+  <h2>🔍 核心数据速览</h2>
+  <div class="grid-2">
+    <div class="compare-box">
+      <div class="label">6月CPI同比</div>
+      <div class="number" style="color:var(--green)">+1.0%</div>
+      <div class="change" style="color:var(--green)">▼ 前值 +1.2% · 低于预期</div>
+    </div>
+    <div class="compare-box">
+      <div class="label">6月PPI同比</div>
+      <div class="number" style="color:var(--orange)">+4.1%</div>
+      <div class="change" style="color:var(--orange)">▲ 前值 +3.9% · 符合预期上沿</div>
+    </div>
+    <div class="compare-box">
+      <div class="label">核心CPI（扣除食品能源）</div>
+      <div class="number" style="color:var(--green)">+1.0%</div>
+      <div class="change" style="color:var(--text-muted)">▼ 前值 +1.1%</div>
+    </div>
+    <div class="compare-box">
+      <div class="label">PPI环比</div>
+      <div class="number" style="color:var(--red)">-0.3%</div>
+      <div class="change" style="color:var(--text-muted)">▼ 前值 +0.5% · 转负</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== CPI 深度分析 ====== -->
+<div class="card">
+  <h2>🥬 CPI 居民消费价格 · 温和回落</h2>
+
+  <h3>📈 趋势对比</h3>
+  <table class="data-table">
+    <tr><th>月份</th><th>1月</th><th>2月</th><th>3月</th><th>4月</th><th>5月</th><th>6月</th></tr>
+    <tr>
+      <td style="color:var(--text-muted)">CPI同比(%)</td>
+      <td>0.2</td><td>1.3</td><td>1.0</td><td>1.2</td><td>1.2</td><td><b style="color:var(--green)">1.0</b></td>
+    </tr>
+  </table>
+  <div style="font-size:13px; color:var(--text-muted); margin-top:4px;">上半年平均 +1.0% · 波动区间 0.2%~1.3%</div>
+
+  <h3>🔬 结构拆解</h3>
+  <table class="data-table">
+    <tr><th>分项</th><th>同比</th><th>环比</th><th>点评</th></tr>
+    <tr>
+      <td>整体CPI</td>
+      <td><span class="tag tag-green">+1.0%</span></td>
+      <td><span class="tag tag-red">-0.3%</span></td>
+      <td>涨幅回落0.2pp，低于市场预期</td>
+    </tr>
+    <tr>
+      <td>食品</td>
+      <td><span class="tag tag-red">-1.6%</span></td>
+      <td>-0.4%</td>
+      <td>猪肉-15.9%（降幅收窄）· 蛋+20.0%</td>
+    </tr>
+    <tr>
+      <td>非食品</td>
+      <td><span class="tag tag-green">+1.5%</span></td>
+      <td>-0.3%</td>
+      <td>工业消费品+2.9%（涨幅高位回落）</td>
+    </tr>
+    <tr>
+      <td>核心CPI</td>
+      <td><span class="tag tag-green">+1.0%</span></td>
+      <td>—</td>
+      <td>温和稳定，内需不强</td>
+    </tr>
+    <tr>
+      <td>消费品</td>
+      <td><span class="tag tag-green">+1.1%</span></td>
+      <td><span class="tag tag-red">-0.6%</span></td>
+      <td>消费需求疲弱</td>
+    </tr>
+    <tr>
+      <td>服务</td>
+      <td><span class="tag tag-green">+0.8%</span></td>
+      <td>持平</td>
+      <td>出行淡季，机票/酒店降价</td>
+    </tr>
+  </table>
+
+  <h3>🔑 关键驱动因素</h3>
+  <div class="key-value"><span class="key">国际金价回调</span><span class="value orange">黄金饰品 -8.7% 环比 → 同比+28.1%（涨幅回落）</span></div>
+  <div class="key-value"><span class="key">国际油价下行</span><span class="value orange">汽油价格 -4.9% 环比 → 同比涨幅收窄</span></div>
+  <div class="key-value"><span class="key">应季果蔬上市</span><span class="value green">鲜菜-1.0% 鲜果-2.0%（环比）</span></div>
+  <div class="key-value"><span class="key">猪肉价格</span><span class="value orange">同比-15.9%（降幅收窄0.2pp）影响CPI约-0.30pp</span></div>
+  <div class="key-value"><span class="key">鸡蛋价格</span><span class="value green">同比+20.0%（涨幅扩大11.6pp）存栏低+高温减产</span></div>
+  <div class="key-value"><span class="key">出行淡季</span><span class="value red">宾馆住宿-5.3% 飞机票-4.0% 旅行社-0.7%</span></div>
+
+  <div class="insight">
+    <strong>📌 解读：</strong>6月CPI同比+1.0%，低于市场预期的1.1%-1.2%。核心CPI+1.0%稳定但不强，反映终端消费需求仍显温和。<br>
+    主导下行因素：国际油价回调带动工业消费品价格涨幅高位回落（从+3.9%→+2.9%），猪肉持续低迷。<br>
+    食品价格降幅收窄（-1.6%→收窄0.1pp）提供边际支撑，但力度有限。<br>
+    <strong>含义：通胀压力极低，为货币政策保留宽松空间。</strong>
+  </div>
+</div>
+
+<!-- ====== PPI 深度分析 ====== -->
+<div class="card">
+  <h2>🏭 PPI 工业生产者出厂价格 · 涨幅略扩但环比转负</h2>
+
+  <h3>📈 趋势对比</h3>
+  <table class="data-table">
+    <tr><th>月份</th><th>1月</th><th>2月</th><th>3月</th><th>4月</th><th>5月</th><th>6月</th></tr>
+    <tr>
+      <td style="color:var(--text-muted)">PPI同比(%)</td>
+      <td>—</td><td>—</td><td>—</td><td>—</td><td>+3.9</td><td><b style="color:var(--orange)">+4.1</b></td>
+    </tr>
+    <tr>
+      <td style="color:var(--text-muted)">PPI累计同比(%)</td>
+      <td>-1.4</td><td>-1.2</td><td>-0.6</td><td>+0.2</td><td>+1.0</td><td><b style="color:var(--blue)">+1.5</b></td>
+    </tr>
+  </table>
+
+  <h3>🔬 行业分布</h3>
+  <table class="data-table">
+    <tr><th>涨幅前五行业</th><th>同比</th><th>环比</th><th>趋势</th></tr>
+    <tr>
+      <td>有色金属矿采选业</td>
+      <td><span class="tag tag-green">+25.5%</span></td>
+      <td>回落</td>
+      <td><span class="tag tag-yellow">涨幅收窄</span></td>
+    </tr>
+    <tr>
+      <td>有色金属冶炼加工</td>
+      <td><span class="tag tag-green">+23.4%</span></td>
+      <td>回落</td>
+      <td><span class="tag tag-yellow">涨幅收窄</span></td>
+    </tr>
+    <tr>
+      <td>煤炭开采和洗选业</td>
+      <td><span class="tag tag-green">+20.6%</span></td>
+      <td><span class="tag tag-green">+5.6%</span></td>
+      <td><span class="tag tag-green">涨幅扩大</span></td>
+    </tr>
+    <tr>
+      <td>石油和天然气开采</td>
+      <td><span class="tag tag-green">+16.8%</span></td>
+      <td><span class="tag tag-red">-16.0%</span></td>
+      <td><span class="tag tag-red">涨幅收窄</span></td>
+    </tr>
+    <tr>
+      <td>石油煤炭加工业</td>
+      <td><span class="tag tag-green">+16.7%</span></td>
+      <td>-3.1%</td>
+      <td><span class="tag tag-red">涨幅收窄</span></td>
+    </tr>
+  </table>
+
+  <br>
+  <table class="data-table">
+    <tr><th>跌幅前四行业</th><th>同比</th><th>趋势</th></tr>
+    <tr><td>酒饮料和精制茶制造业</td><td><span class="tag tag-red">-5.3%</span></td><td><span class="tag tag-red">跌幅扩大3.4pp</span></td></tr>
+    <tr><td>非金属矿物制品业</td><td><span class="tag tag-red">-4.4%</span></td><td><span class="tag tag-green">收窄0.7pp</span></td></tr>
+    <tr><td>电力热力供应</td><td><span class="tag tag-red">-4.4%</span></td><td>持平</td></tr>
+    <tr><td>汽车制造业</td><td><span class="tag tag-red">-2.1%</span></td><td><span class="tag tag-red">跌幅扩大0.1pp</span></td></tr>
+  </table>
+
+  <h3>🔑 关键驱动因素</h3>
+  <div class="key-value"><span class="key">国际原油暴跌</span><span class="value red">石油开采环比-16.0%（WTI月跌-18.6%），带动各环节价格下行</span></div>
+  <div class="key-value"><span class="key">迎峰度夏煤炭</span><span class="value green">煤炭开采+5.6%环比，旺季备煤启动</span></div>
+  <div class="key-value"><span class="key">AI产业链景气</span><span class="value green">虚拟现实设备+8.4%·可穿戴+3.4%·工控机+3.3%·机器人+0.5%</span></div>
+  <div class="key-value"><span class="key">新能源发电</span><span class="value orange">水电-9.1%·风电-2.2%·光电-2.5%（夏季出力充沛）</span></div>
+  <div class="key-value"><span class="key">制冷需求</span><span class="value green">制冷空调设备+0.4%·家用制冷+0.6%</span></div>
+
+  <div class="insight warning">
+    <strong>📌 解读：</strong>6月PPI同比+4.1%（+0.2pp），看似继续改善，但<strong>环比大幅转负至-0.3%</strong>（前值+0.5%），这是关键信号。<br>
+    核心原因：国际原油暴跌传导至国内——石油开采环比-16.0%，化学原料由涨转跌。<br>
+    但结构亮点：<strong>AI产业链相关价格持续上行</strong>（虚拟现实+8.4%、可穿戴+3.4%、工控机+3.3%），新旧动能切换明显。<br>
+    煤炭因迎峰度夏需求+安全停产整顿，逆势上涨+5.6%。<br>
+    <strong>PPI面临触顶风险，后续同比涨幅可能收窄。</strong>
+  </div>
+</div>
+
+<!-- ====== PPI-CPI 剪刀差 ====== -->
+<div class="card">
+  <h2>⚡ PPI-CPI 剪刀差 · 结构性分化加剧</h2>
+  
+  <div class="grid-2">
+    <div class="compare-box">
+      <div class="label">6月CPI同比</div>
+      <div class="number" style="color:var(--green)">+1.0%</div>
+    </div>
+    <div class="compare-box">
+      <div class="label">6月PPI同比</div>
+      <div class="number" style="color:var(--orange)">+4.1%</div>
+    </div>
+  </div>
+  
+  <div style="text-align:center; padding:20px 0;">
+    <span style="font-size:48px; font-weight:700; color:var(--orange);">3.1pp</span>
+    <div style="color:var(--text-muted); font-size:14px;">PPI-CPI 剪刀差（5月2.7pp → 6月3.1pp，扩大0.4pp）</div>
+  </div>
+
+  <div class="insight danger">
+    <strong>⚠️ 剪刀差持续扩大</strong> — 中上游利润改善但中下游（尤其是消费品制造）成本压力加大。<br>
+    中上游受益：有色/煤炭/化工 → 利润改善<br>
+    中下游承压：食品加工/汽车制造/酒饮料 → 成本难以转嫁<br>
+    历史经验表明，剪刀差连续3个月>3pp可能挤压中下游企业利润，需关注中小制造业经营状况。
+  </div>
+</div>
+
+<!-- ====== 市场预期对比 ====== -->
+<div class="card">
+  <h2>🎯 市场预期 vs 实际值</h2>
+  <table class="data-table">
+    <tr><th>机构</th><th>CPI预期</th><th>PPI预期</th><th>报告日期</th></tr>
+    <tr>
+      <td>天风证券</td>
+      <td>+1.2%</td>
+      <td>+3.5%</td>
+      <td>7月9日</td>
+    </tr>
+    <tr>
+      <td>华创证券</td>
+      <td>+1.1%</td>
+      <td>+4.4%</td>
+      <td>7月8日</td>
+    </tr>
+    <tr>
+      <td style="border-bottom:2px solid var(--blue); font-weight:600;">📌 实际值</td>
+      <td style="border-bottom:2px solid var(--blue); color:var(--green); font-weight:600;">+1.0%</td>
+      <td style="border-bottom:2px solid var(--blue); color:var(--orange); font-weight:600;">+4.1%</td>
+      <td style="border-bottom:2px solid var(--blue);">国家统计局</td>
+    </tr>
+    <tr><td colspan="4" style="font-size:12px; color:var(--text-muted);">Choice数据预测最小值：PPI同比+3.8% → 实际+4.1%高于下限</td></tr>
+  </table>
+  <div class="insight">
+    <strong>💡 预期差分析：</strong>CPI低于所有主流机构预期（偏弱），PPI符合华创上沿预期但高于天风预期。市场此前普遍预期CPI至少+1.1%，实际+1.0%反映终端需求比预期更弱。
+  </div>
+</div>
+
+<!-- ====== 宏观背景整合 ====== -->
+<div class="card">
+  <h2>🧩 宏观背景整合 · 上半年回顾</h2>
+
+  <h3>已发布的其他6月数据</h3>
+  <table class="data-table">
+    <tr><th>指标</th><th>6月/最新</th><th>前值</th><th>趋势</th></tr>
+    <tr><td>6月PMI</td><td>50.3%</td><td>50.0%（5月）</td><td><span class="tag tag-green">扩张 ↑</span></td></tr>
+    <tr><td>1-5月工业增加值累计</td><td>+5.4%</td><td>+5.6%（1-4月）</td><td><span class="tag tag-yellow">小幅放缓</span></td></tr>
+    <tr><td>1-5月固投累计</td><td>-4.1%</td><td>-1.6%（1-4月）</td><td><span class="tag tag-red">收缩加剧</span></td></tr>
+    <tr><td>5月社零同比</td><td>-0.6%</td><td>+0.2%（4月）</td><td><span class="tag tag-red">转负</span></td></tr>
+    <tr><td>5月M2同比</td><td>+8.6%</td><td>+8.6%（4月）</td><td><span class="tag tag-yellow">平稳</span></td></tr>
+  </table>
+
+  <h3>综合研判</h3>
+  <div class="key-value"><span class="key">CPI</span><span class="value green">🟢 通胀温和·货币政策宽松空间充裕</span></div>
+  <div class="key-value"><span class="key">PPI</span><span class="value orange">🟡 拐点信号·环比转负后同比可能见顶</span></div>
+  <div class="key-value"><span class="key">PMI</span><span class="value green">🟢 连续4月荣枯线上·但K型分化明显</span></div>
+  <div class="key-value"><span class="key">社零</span><span class="value red">🔴 消费疲弱·同比转负</span></div>
+  <div class="key-value"><span class="key">固投</span><span class="value red">🔴 投资收缩·-4.1%加剧</span></div>
+  <div class="key-value"><span class="key">工业</span><span class="value green">🟢 稳健但放缓·新动能（AI）支撑</span></div>
+
+  <div class="insight warning">
+    <strong>🔮 展望：</strong>经济延续"K型分化"——外需（AI/高端制造）+煤炭（安全供给）+基建支撑正面，但地产、居民消费、小微企业持续承压。<br>
+    CPI大概率维持1%附近低位运行；PPI同比可能在3季度见顶回落，原油走势是关键变量。<br>
+    货币政策空间充裕（CPI+1%、核心CPI+1%、PPI环比转负），降准降息窗口犹存。
+  </div>
+</div>
+
+<!-- ====== 投资启示 ====== -->
+<div class="card">
+  <h2>💡 投资启示</h2>
+
+  <div class="insight">
+    <strong>🔴 利好方向（通胀受益/景气向上）：</strong><br>
+    • <strong>AI产业链</strong>（电子/通信/工控/机器人）— PPI数据显示涨价持续，需求旺盛<br>
+    • <strong>煤炭</strong>（迎峰度夏+安全停产）— 6月环比+5.6%，供给约束持续<br>
+    • <strong>电力（火电）</strong>— 夏季用电高峰来临<br>
+    • <strong>制冷设备/家电</strong>— 季节性需求+AI散热概念
+  </div>
+
+  <div class="insight warning">
+    <strong>🟡 中性/关注变化：</strong><br>
+    • <strong>有色金属</strong>— 同比仍高（+25%/23%）但环比回落，关注铜/铝价格拐点<br>
+    • <strong>石油石化</strong>— 短期受油价暴跌冲击，中下游化工品利润或修复<br>
+    • <strong>黄金珠宝</strong>— 金价回调影响短期营收，但中长期配置逻辑未变
+  </div>
+
+  <div class="insight danger">
+    <strong>🔴 利空方向（成本承压/需求疲弱）：</strong><br>
+    • <strong>汽车制造</strong>— PPI同比-2.1%且跌幅扩大，价格战持续<br>
+    • <strong>酒饮料</strong>— PPI同比-5.3%且跌幅扩大3.4pp，消费降级<br>
+    • <strong>食品加工</strong>— 成本端PPI仍高（化工/包材），但终端需求弱<br>
+    • <strong>房地产链</strong>（水泥/建材）— 同比-4.4%，固投-4.1%，基本面未改善
+  </div>
+</div>
+
+<!-- ====== 近期日历 ====== -->
+<div class="card">
+  <h2>📅 经济日历 · 未来一周</h2>
+  <table class="data-table">
+    <tr><th>日期</th><th>指标</th><th>重要性</th><th>前值</th></tr>
+    <tr><td>7月9日</td><td>✅ 6月CPI/PPI ← 今日已发布</td><td><span class="tag tag-green">⭐⭐⭐</span></td><td>CPI+1.2% PPI+3.9%</td></tr>
+    <tr><td>7月10-15日</td><td>6月金融数据（M2/社融/新增贷款）</td><td><span class="tag tag-green">⭐⭐⭐</span></td><td>M2+8.6% 社融2.03万亿</td></tr>
+    <tr><td>7月13日</td><td>6月进出口数据（海关总署）</td><td><span class="tag tag-yellow">⭐⭐</span></td><td>待查</td></tr>
+  </table>
+</div>
+
+<div class="footer">
+  数据来源：国家统计局 · 东方财富妙想 API · iFind MCP<br>
+  生成时间：2026-07-09 10:02 · 宏观经济监控日报
+</div>
+
+</div>
+</body>
+</html>
