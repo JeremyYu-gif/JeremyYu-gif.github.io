@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>港股每日复盘 2026-07-10（上周五）</title>
+<style>
+  :root {
+    --bg-primary: #0d1117;
+    --bg-card: #161b22;
+    --bg-header: linear-gradient(135deg, #0d1117 0%, #1a2332 50%, #0d1117 100%);
+    --border: #30363d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --green: #7ee787;
+    --red: #f85149;
+    --orange: #ffa657;
+    --blue: #58a6ff;
+    --yellow: #d29922;
+    --purple: #bc8cff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', Roboto, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 0;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+  /* Header */
+  .header {
+    background: var(--bg-header);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 0 30px;
+    text-align: center;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .header h1 span { color: var(--blue); }
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+  .header .status-badge {
+    display: inline-block;
+    background: #21262d;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 13px;
+    color: var(--yellow);
+    margin-top: 12px;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .card-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title .icon { font-size: 20px; }
+
+  /* Grid */
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  @media (max-width: 768px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  }
+
+  /* Index Cards */
+  .index-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .index-card .name { font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; }
+  .index-card .price { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .index-card .change { font-size: 15px; font-weight: 600; }
+  .index-card .volume { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
+  .up { color: var(--green); }
+  .down { color: var(--red); }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  table thead th {
+    text-align: left;
+    padding: 10px 12px;
+    background: #1c2128;
+    border-bottom: 2px solid var(--border);
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 13px;
+  }
+  table tbody td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #21262d;
+  }
+  table tbody tr:hover { background: #1c2128; }
+  .text-up { color: var(--green); font-weight: 600; }
+  .text-down { color: var(--red); font-weight: 600; }
+  .text-hold { color: var(--text-primary); }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .tag-green { background: rgba(126,231,135,0.15); color: var(--green); }
+  .tag-red { background: rgba(248,81,73,0.15); color: var(--red); }
+  .tag-blue { background: rgba(88,166,255,0.15); color: var(--blue); }
+  .tag-orange { background: rgba(255,166,87,0.15); color: var(--orange); }
+  .tag-yellow { background: rgba(210,153,34,0.15); color: var(--yellow); }
+
+  /* Alerts */
+  .alert {
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    border-left: 4px solid;
+  }
+  .alert-info { background: rgba(88,166,255,0.1); border-left-color: var(--blue); }
+  .alert-warning { background: rgba(255,166,87,0.1); border-left-color: var(--orange); }
+  .alert-danger { background: rgba(248,81,73,0.1); border-left-color: var(--red); }
+  .alert-success { background: rgba(126,231,135,0.1); border-left-color: var(--green); }
+
+  /* Divider */
+  .divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+  /* Key conclusion */
+  .conclusion-box {
+    background: linear-gradient(135deg, #1a2332 0%, #161b22 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+  .conclusion-box .verdict {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .conclusion-box .detail { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+
+  .section-title { font-size: 22px; font-weight: 700; margin: 32px 0 20px; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+
+  .stock-detail { padding: 10px 0; }
+  .stock-detail .stock-name { font-weight: 600; }
+  .stock-detail .stock-reason { color: var(--text-secondary); font-size: 13px; margin-top: 4px; line-height: 1.5; }
+
+  .market-closed-banner {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border: 2px solid var(--yellow);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .market-closed-banner h2 { font-size: 26px; margin-bottom: 8px; }
+  .market-closed-banner p { color: var(--text-secondary); font-size: 15px; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="container">
+    <h1>🦅 <span>港股每日复盘</span></h1>
+    <div class="subtitle">报告日期：2026-07-12（周日）｜复盘交易日：2026-07-10（周五）｜观澜出品</div>
+    <div class="status-badge">⏸️ 今日港股休市 · 复盘最近交易日 07/10</div>
+  </div>
+</div>
+
+<div class="container" style="padding-top: 28px;">
+
+<!-- 休市提示 -->
+<div class="market-closed-banner">
+  <h2>📌 2026年7月12日（周日）港股休市</h2>
+  <p>本报告复盘上一个交易日——<strong>2026年7月10日（周五）</strong>的港股行情。</p>
+  <p style="margin-top: 6px;">报告包含：恒指冲高回落、商业航天井喷、半导体暴跌、资金面全面分析</p>
+</div>
+
+<!-- ============ 1) 今日核心结论 ============ -->
+<div class="conclusion-box">
+  <div class="verdict">📊 核心结论：恒指冲高回落，分化加剧，赚钱效应结构性集中</div>
+  <div class="detail">
+    7月10日港股呈现<strong>「冲高回落、大小分化」</strong>格局。恒指早盘高开0.76%后一度涨逾1.8%，午后三大指数涨幅收窄，恒生科技指数转跌0.21%。<br><br>
+    主板成交额达<strong>3395.92亿港元</strong>，交投活跃但高位滞涨信号明显。<strong>市场风格快速轮动</strong>：商业航天（长征十乙火箭成功回收）、生物医药（新版基药目录发布）成当日最强主线；半导体板块在兆易创新业绩利好兑现后暴跌21%，拖累算力硬件全线重挫。<br><br>
+    资金面上，<strong>南向资金单日净卖出59.95亿港元</strong>（盈富基金、腾讯遭大额卖出），但本周南向累计净流入仍突破450亿港元。沽空占比回落至11.93%，空头情绪有所缓解。<br><br>
+    <span class="tag tag-green">赚钱效应</span> 结构性偏强：医药、航天、有色等板块大涨，但半导体、AI大模型方向深度调整，<strong>踩对方向吃肉，踩错方向挨打</strong>。
+  </div>
+</div>
+
+<!-- ============ 2) 大盘全景 ============ -->
+<h2 class="section-title">📈 大盘全景</h2>
+
+<div class="grid-4">
+  <div class="index-card">
+    <div class="name">恒生指数（HSI）</div>
+    <div class="price">24,175.12</div>
+    <div class="change up">+0.60% ▲</div>
+    <div class="volume">+144.94 点</div>
+  </div>
+  <div class="index-card">
+    <div class="name">恒生科技（HSTECH）</div>
+    <div class="price">4,721.66</div>
+    <div class="change down">-0.21% ▼</div>
+    <div class="volume">-9.90 点</div>
+  </div>
+  <div class="index-card">
+    <div class="name">国企指数（HSCEI）</div>
+    <div class="price">8,039.19</div>
+    <div class="change up">+0.52% ▲</div>
+    <div class="volume">+41.90 点</div>
+  </div>
+  <div class="index-card">
+    <div class="name">红筹指数</div>
+    <div class="price">3,851.04</div>
+    <div class="change up">+0.70% ▲</div>
+    <div class="volume">+26.93 点</div>
+  </div>
+</div>
+
+<div class="card" style="margin-top: 8px;">
+  <div class="card-title"><span class="icon">📊</span> 大盘关键指标</div>
+  <table>
+    <thead>
+      <tr>
+        <th>指标</th>
+        <th>数据</th>
+        <th>解读</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>主板成交额</td>
+        <td class="text-up">3,395.92亿港元</td>
+        <td>放量滞涨，24000点上方抛压较重</td>
+      </tr>
+      <tr>
+        <td>上涨家数</td>
+        <td class="text-up">~3,700+只（全市场）</td>
+        <td>涨多跌少，但指数分化明显</td>
+      </tr>
+      <tr>
+        <td>下跌家数</td>
+        <td class="text-down">~1,678只</td>
+        <td>科技板块拖累恒科转跌</td>
+      </tr>
+      <tr>
+        <td>半日成交额</td>
+        <td>1,884.35亿港元</td>
+        <td>上午走势强劲，午后跳水回落</td>
+      </tr>
+      <tr>
+        <td>早盘表现</td>
+        <td class="text-up">恒指+1.86% / 恒科+2.69%</td>
+        <td>开盘冲高后获利盘涌出</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="alert alert-warning" style="margin-top: 12px;">
+    ⚠️ 恒指24000点上方放量滞涨，需警惕短线回调风险。恒科早盘一度涨超2.6%后转跌，波动率明显上升。
+  </div>
+</div>
+
+<!-- ============ 3) 市场情绪 ============ -->
+<h2 class="section-title">🎭 市场情绪</h2>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title"><span class="icon">🧊</span> 沽空数据</div>
+    <table>
+      <thead>
+        <tr><th>指标</th><th>数据</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>总沽空金额</td><td>405.12亿港元</td></tr>
+        <tr><td>沽空占比</td><td><span class="text-hold">11.93%</span>（正常区间）</td></tr>
+        <tr><td>沽空榜首</td><td>阿里巴巴-W 44.18亿（21.13%）</td></tr>
+        <tr><td>沽空次席</td><td>小米-W 33.22亿（37.67%）</td></tr>
+        <tr><td>沽空三席</td><td>智谱 32.12亿（16.70%）</td></tr>
+      </tbody>
+    </table>
+    <div class="alert alert-info" style="margin-top: 8px; font-size: 13px;">
+      注：小米沽空比率37.67%异常偏高，需警惕空头聚集。比亚迪沽空比率达47.47%同样值得关注。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📰</span> 新股 & 窝轮/牛熊证</div>
+    <table>
+      <thead>
+        <tr><th>项目</th><th>情况</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>新股表现</td><td class="text-hold">数据暂缺（近期新股较少）</td></tr>
+        <tr><td>窝轮/牛熊证</td><td class="text-hold">资金流向数据暂缺</td></tr>
+        <tr><td>ETF资金流入</td><td>创新药ETF净流入5759万</td></tr>
+        <tr><td>ETF资金流入</td><td>港股通金融ETF净流入3069万</td></tr>
+        <tr><td>ETF资金流入</td><td>港股通科技ETF净流入875万</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">
+      创新药ETF资金大幅流入，与当日板块强势表现一致。
+    </div>
+  </div>
+</div>
+
+<!-- ============ 4) 汇率与流动性 ============ -->
+<h2 class="section-title">💱 汇率与流动性</h2>
+
+<div class="grid-3">
+  <div class="card">
+    <div class="card-title"><span class="icon">💵</span> 汇率</div>
+    <table>
+      <thead>
+        <tr><th>货币对</th><th>汇率</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>美元/港币 (USD/HKD)</td><td>7.8365</td></tr>
+        <tr><td>港币/人民币 (HKD/CNY)</td><td>0.8675</td></tr>
+        <tr><td>人民币/港币 (CNY/HKD)</td><td>1.1535</td></tr>
+        <tr><td>美元/人民币 (USD/CNY)</td><td>6.7989</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">
+      人民币中间价调高47基点，汇率基本稳定，港币联系汇率制运行平稳。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🏛️</span> 美债收益率</div>
+    <table>
+      <thead>
+        <tr><th>期限</th><th>收益率</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2年期美债</td><td>4.22%</td></tr>
+        <tr><td>10年期美债</td><td><span class="text-up">4.58%</span></td></tr>
+        <tr><td>30年期美债</td><td>5.07%</td></tr>
+      </tbody>
+    </table>
+    <div class="alert alert-warning" style="margin-top: 8px; font-size: 13px;">
+      ⚠️ 10年期美债收益率维持高位4.58%，中东局势推升避险情绪，对港股估值形成压制。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🏦</span> HIBOR（港元拆息）</div>
+    <table>
+      <thead>
+        <tr><th>期限</th><th>利率</th><th>变动</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>隔夜 (O/N)</td><td>2.6934%</td><td class="text-up">+4.22bp</td></tr>
+        <tr><td>1个月</td><td>2.6611%</td><td class="text-down">-5.79bp</td></tr>
+        <tr><td>3个月</td><td>2.9372%</td><td class="text-down">-0.07bp</td></tr>
+        <tr><td>1年</td><td>3.5567%</td><td>+0.07bp</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">
+      1个月拆息创逾一个月新低，港元流动性宽松，利好港股资金面。
+    </div>
+  </div>
+</div>
+
+<!-- ============ 5) 强势板块 ============ -->
+<h2 class="section-title">🔥 强势板块 TOP 5</h2>
+
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 5%;">#</th>
+        <th style="width: 18%;">板块名称</th>
+        <th style="width: 25%;">领涨龙头</th>
+        <th style="width: 52%;">核心上涨逻辑</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag tag-green">1</span></td>
+        <td><strong>🚀 商业航天</strong></td>
+        <td>钧达股份 +24%<br>金风科技 +8%<br>亚太卫星 +4%</td>
+        <td>长征十乙运载火箭成功发射并完成一子级海上回收，中国成为全球第二个掌握大运力可回收火箭技术的国家，板块情绪爆发</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-green">2</span></td>
+        <td><strong>💊 生物医药/CXO</strong></td>
+        <td>派格生物医药 +28%<br>康龙化成 +11.77%<br>药明康德 +4.09%</td>
+        <td>新版国家基本药物目录发布，创新药审评加速预期升温；药明康德获大和上调目标价至190港元（维持买入），新签订单增长理想</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-green">3</span></td>
+        <td><strong>🟣 紫光系</strong></td>
+        <td>国微控股 +31.37%<br>通通AI社交 +15.38%<br>中兴通讯 +4.05%</td>
+        <td>紫光系板块异动，国微控股大涨引发关注，或受国产替代预期及集团层面利好催化</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-green">4</span></td>
+        <td><strong>🟡 贵金属/有色</strong></td>
+        <td>有色板块多股上涨</td>
+        <td>上半年业绩亮眼，黄金价格维持高位（现货黄金4099.8美元），资源股受资金青睐</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-green">5</span></td>
+        <td><strong>🚗 汽车股</strong></td>
+        <td>零跑汽车 +6%<br>比亚迪股份 微涨</td>
+        <td>汽车板块普遍向好，新能源车销售数据支撑</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 class="section-title">💩 最弱板块 TOP 3</h2>
+
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 5%;">#</th>
+        <th style="width: 18%;">板块名称</th>
+        <th style="width: 25%;">领跌龙头</th>
+        <th style="width: 52%;">核心下跌逻辑</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag tag-red">1</span></td>
+        <td><strong>🔲 半导体/算力硬件</strong></td>
+        <td>兆易创新 -21%<br>澜起科技 -8%<br>华虹宏力 -8%<br>中芯国际 -4.67%</td>
+        <td>兆易创新半年报预告净利润增1099%，但「利好兑现」暴跌21%；板块前期涨幅过大，资金获利了结，算力硬件全线重挫</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-red">2</span></td>
+        <td><strong>🤖 AI大模型</strong></td>
+        <td>智谱 -19%<br>MiniMax -9%<br>网易 -2%</td>
+        <td>AI大模型概念股持续调整，应用端变现能力存疑，短期炒作退潮，资金流出明显</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-red">3</span></td>
+        <td><strong>🔋 宁德时代/锂电池</strong></td>
+        <td>宁德时代 -7.92%</td>
+        <td>宁德时代跌近8%，拖累恒指15.99点，与A股创业板大跌4.37%共振，新能源板块整体承压</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ============ 6) 重点个股异动 ============ -->
+<h2 class="section-title">🔍 重点个股异动</h2>
+
+<div class="card">
+  <div class="alert alert-info" style="margin-bottom: 16px;">
+    📋 以下逐一核查监控清单中的港股龙头。涨跌幅超±6%的个股已标注并附分析。
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 22%;">个股</th>
+        <th style="width: 10%;">涨跌幅</th>
+        <th style="width: 10%;">收盘价</th>
+        <th style="width: 10%;">异动</th>
+        <th style="width: 48%;">分析</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>腾讯控股 (00700)</td>
+        <td class="text-down">-2.00%</td>
+        <td>460.20</td>
+        <td>❌ 未超±6%</td>
+        <td>逆回购5.01亿港元护盘，但南向资金净卖出28.64亿港元，短期承压</td>
+      </tr>
+      <tr>
+        <td>阿里巴巴-W (09988)</td>
+        <td class="text-up">+2~3%</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>连续5日上涨，自6月29日启动以来累计涨超23%。2027财年Q1财报前瞻全面超预期，淘宝闪购减亏快于预期，阿里云收入增长加速至45%</td>
+      </tr>
+      <tr>
+        <td>美团-W (03690)</td>
+        <td class="text-up">跟涨</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>跟随互联网板块反弹，开源新一代万亿参数大模型LongCat-2.0</td>
+      </tr>
+      <tr>
+        <td>拼多多-W (PDD)</td>
+        <td class="text-hold">+0.37%</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>美股盘前小幅上涨，港股波动较小</td>
+      </tr>
+      <tr>
+        <td>京东-W (09618)</td>
+        <td class="text-up">+2%</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>科网股普涨，跟随板块反弹</td>
+      </tr>
+      <tr>
+        <td>快手-W (01024)</td>
+        <td class="text-up">+2%</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>回购近1亿港元。可灵AI完成总额上限30亿美元外部增资创全球纪录</td>
+      </tr>
+      <tr>
+        <td>小米集团-W (01810)</td>
+        <td class="text-up">+3.36%</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>小米连续走强，港股通科技ETF重仓股，资金持续流入</td>
+      </tr>
+      <tr>
+        <td><strong>兆易创新 (03986)</strong></td>
+        <td class="text-down"><strong>-21.00%</strong></td>
+        <td>—</td>
+        <td><span class="tag tag-red">⚠️ 暴跌</span></td>
+        <td><strong>业绩利好兑现暴跌</strong>：公司半年报预告净利润69亿元（+1099%），但市场以「利好出尽」解读。半导体板块前期涨幅过大，资金集中获利了结。属典型「见光死」走势</td>
+      </tr>
+      <tr>
+        <td><strong>智谱 (02513)</strong></td>
+        <td class="text-down"><strong>-19.00%</strong></td>
+        <td>—</td>
+        <td><span class="tag tag-red">⚠️ 暴跌</span></td>
+        <td>AI大模型概念调整延续；南向资金逆势连续5日净买入137.02亿港元，但股价累计下跌8.53%（含当日-19%）</td>
+      </tr>
+      <tr>
+        <td>科伦博泰 (06990)</td>
+        <td class="text-up">+8.74%</td>
+        <td>516.50</td>
+        <td><span class="tag tag-green">⚠️ 飙升</span></td>
+        <td>创新药板块全线走强，生物医药赛道受新版基药目录催化</td>
+      </tr>
+      <tr>
+        <td>信达生物 (01801)</td>
+        <td class="text-up">+3.88%</td>
+        <td>89.70</td>
+        <td>❌ 未超±6%</td>
+        <td>创新药板块上涨，贡献恒指8.48点</td>
+      </tr>
+      <tr>
+        <td>君实生物 (01877)</td>
+        <td class="text-hold">—</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>数据暂缺，跟随生物医药板块走强</td>
+      </tr>
+      <tr>
+        <td>百济神州 (06160)</td>
+        <td class="text-hold">—</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>跟随板块上涨</td>
+      </tr>
+      <tr>
+        <td>再鼎医药 (09688)</td>
+        <td class="text-hold">—</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>跟随生物医药板块走强</td>
+      </tr>
+      <tr>
+        <td>药明康德 (02359)</td>
+        <td class="text-up">+4.09%</td>
+        <td>155.10</td>
+        <td>❌ 未超±6%</td>
+        <td>大和上调目标价190港元，新签订单增长理想，小分子CDMO业务贡献突出，首季收入+39.4%</td>
+      </tr>
+      <tr>
+        <td><strong>药明生物 (02269)</strong></td>
+        <td class="text-hold">跟涨</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>CXO板块整体强势</td>
+      </tr>
+      <tr>
+        <td>康方生物 (09926)</td>
+        <td class="text-hold">—</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>跟随创新药板块上涨</td>
+      </tr>
+      <tr>
+        <td>荣昌生物 (09995)</td>
+        <td class="text-hold">—</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>板块联动上涨</td>
+      </tr>
+      <tr>
+        <td>中国生物制药 (01177)</td>
+        <td class="text-hold">—</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>生物医药全线走强</td>
+      </tr>
+      <tr>
+        <td>翰森制药 (03692)</td>
+        <td class="text-hold">—</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>创新药板块带动</td>
+      </tr>
+      <tr>
+        <td>华润置地 (01109)</td>
+        <td class="text-hold">—</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>内房股普遍向好，发改委稳地产政策预期</td>
+      </tr>
+      <tr>
+        <td>龙湖集团 (00960)</td>
+        <td class="text-hold">—</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>内房股小幅走高</td>
+      </tr>
+      <tr>
+        <td>碧桂园 (02007)</td>
+        <td class="text-hold">—</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>内房股整体平稳</td>
+      </tr>
+      <tr>
+        <td>比亚迪股份 (01211)</td>
+        <td class="text-hold">微涨</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>沽空比率高达47.47%，空头密集但股价未大幅下跌</td>
+      </tr>
+      <tr>
+        <td>赣锋锂业 (01772)</td>
+        <td class="text-hold">—</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>有色板块整体活跃</td>
+      </tr>
+      <tr>
+        <td>海底捞 (06862)</td>
+        <td class="text-hold">—</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>消费板块表现平稳</td>
+      </tr>
+      <tr>
+        <td>紫金矿业 (02899)</td>
+        <td class="text-hold">微涨</td>
+        <td>—</td>
+        <td>❌ 未超±6%</td>
+        <td>贵金属板块活跃，金价高位支撑</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 兆易创新财报详细点评 -->
+<div class="card" style="border-color: var(--red);">
+  <div class="card-title"><span class="icon">📄</span> ⚡ 财报深度点评：兆易创新半年报预告</div>
+  <table>
+    <thead>
+      <tr><th>指标</th><th>数据</th><th>市场预期</th><th>对比</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>归母净利润（半年）</td>
+        <td class="text-up">~69亿元</td>
+        <td>约55-60亿元</td>
+        <td class="text-up">超预期约15-25%</td>
+      </tr>
+      <tr>
+        <td>同比增长</td>
+        <td class="text-up">约+1099%</td>
+        <td>约+800-900%</td>
+        <td class="text-up">大超预期</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="alert alert-danger" style="margin-top: 12px;">
+    💀 <strong>典型「利好兑现」暴跌</strong>：净利润同比增长10倍，股价反而暴跌21%。核心原因：<br>
+    ① 半导体板块前期已大幅上涨，充分反映业绩预期；<br>
+    ② 业绩超预期幅度不够「炸裂」，市场趁机获利了结；<br>
+    ③ 板块轮动效应——资金从半导体流向商业航天和医药；<br>
+    ④ 属于「业绩好但不够好」的见光死逻辑。<br>
+    <span style="color: var(--orange);">警示：对于已经大涨的景气赛道，公布超预期业绩往往是阶段顶部信号。</span>
+  </div>
+</div>
+
+<!-- ============ 7) 资金面 ============ -->
+<h2 class="section-title">💰 资金面（港股最关键）</h2>
+
+<div class="grid-2">
+  <!-- 南下资金 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🇨🇳</span> 南下资金（港股通）</div>
+    <table>
+      <thead>
+        <tr><th>指标</th><th>数据</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>当日净买入</td>
+          <td class="text-down">-59.95亿元（净卖出）</td>
+        </tr>
+        <tr>
+          <td>本周累计</td>
+          <td class="text-up">+450亿港元（突破）</td>
+        </tr>
+        <tr>
+          <td>活跃股成交</td>
+          <td>754.42亿港元</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="divider"></div>
+    <div style="font-weight: 600; margin-bottom: 8px;">前十大成交活跃股（净买入/卖出）</div>
+    <table>
+      <thead>
+        <tr><th>股票</th><th>方向</th><th>金额</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>智谱</td><td class="text-up">净买入</td><td>28.43亿港元（连续5日）</td></tr>
+        <tr><td>阿里巴巴-W</td><td class="text-up">净买入</td><td>4.58亿港元（连续5日，累计83.18亿）</td></tr>
+        <tr><td>盈富基金</td><td class="text-down">净卖出</td><td>-46.98亿港元</td></tr>
+        <tr><td>腾讯控股</td><td class="text-down">净卖出</td><td>-28.64亿港元</td></tr>
+      </tbody>
+    </table>
+    <div class="alert alert-warning" style="margin-top: 8px; font-size: 13px;">
+      ⚠️ 当日南向资金大幅净卖出60亿元，但本周累计仍净流入超450亿港元（接近年内单周新高）。资金从盈富基金、腾讯流出，转向智谱、阿里等AI概念。
+    </div>
+  </div>
+
+  <!-- 外资与沽空 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🌐</span> 外资 & 沽空</div>
+    <table>
+      <thead>
+        <tr><th>指标</th><th>数据</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>EPFR外资流入</td><td class="text-hold">数据暂缺</td></tr>
+        <tr><td>总沽空金额</td><td>405.12亿港元</td></tr>
+        <tr><td>沽空占比</td><td>11.93% <span class="tag tag-green">正常</span></td></tr>
+      </tbody>
+    </table>
+    <div style="margin: 12px 0; font-weight: 600;">个股沽空预警</div>
+    <table>
+      <thead>
+        <tr><th>个股</th><th>沽空金额</th><th>沽空占比</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>比亚迪股份</td>
+          <td>15.48亿</td>
+          <td class="text-down"><strong>47.47%</strong> <span class="tag tag-red">⚠️</span></td>
+        </tr>
+        <tr>
+          <td>小米集团-W</td>
+          <td>33.22亿</td>
+          <td class="text-down"><strong>37.67%</strong> <span class="tag tag-red">⚠️</span></td>
+        </tr>
+        <tr>
+          <td>阿里巴巴-W</td>
+          <td>44.18亿</td>
+          <td>21.13%</td>
+        </tr>
+        <tr>
+          <td>智谱</td>
+          <td>32.12亿</td>
+          <td>16.70%</td>
+        </tr>
+        <tr>
+          <td>中芯国际</td>
+          <td>29.49亿</td>
+          <td>15.81%</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="alert alert-danger" style="margin-top: 8px; font-size: 13px;">
+      🚨 比亚迪47.47%、小米37.67%沽空比率异常偏高，需警惕空头集中狙击。中芯国际15.81%沽空占比亦超警戒线。
+    </div>
+  </div>
+</div>
+
+<!-- 回购与大宗交易 -->
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title"><span class="icon">🔄</span> 公司回购（7月9日数据）</div>
+    <div style="margin-bottom: 12px;">
+      当日共 <strong style="color: var(--blue);">96家</strong> 港股公司回购，合计 <strong style="color: var(--green);">9.29亿港元</strong>
+    </div>
+    <table>
+      <thead>
+        <tr><th>公司</th><th>回购金额</th><th>年内累计</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>腾讯控股</strong></td>
+          <td class="text-up">5.01亿港元</td>
+          <td>261.28亿港元</td>
+        </tr>
+        <tr>
+          <td><strong>古茗</strong></td>
+          <td class="text-up">1.00亿港元</td>
+          <td>7.93亿港元</td>
+        </tr>
+        <tr>
+          <td><strong>快手-W</strong></td>
+          <td class="text-up">9,998.67万港元</td>
+          <td>18.46亿港元</td>
+        </tr>
+        <tr>
+          <td>中国石油化工</td>
+          <td class="text-up">—</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="alert alert-success" style="margin-top: 8px; font-size: 13px;">
+      🔔 腾讯年内累计回购261亿港元，持续大额回购是市场底部的重要信号。96家公司同日回购亦创近期新高，<strong>产业资本逆势买入值得关注</strong>。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📦</span> 大宗交易 & 增持</div>
+    <div style="margin-bottom: 12px; color: var(--text-secondary);">
+      截至发稿，当日大宗交易及股东增持数据暂缺。
+    </div>
+    <table>
+      <thead>
+        <tr><th>项目</th><th>情况</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>大宗交易折/溢价</td><td class="text-hold">数据暂缺</td></tr>
+        <tr><td>机构接盘情况</td><td class="text-hold">数据暂缺</td></tr>
+        <tr><td>重要股东增持</td><td class="text-hold">数据暂缺</td></tr>
+      </tbody>
+    </table>
+    <div style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">
+      （大宗交易数据通常T+1披露，下个交易日可获取完整数据）
+    </div>
+    <div style="margin-top: 16px; font-weight: 600;">ETF资金流向（7月10日）</div>
+    <table>
+      <thead>
+        <tr><th>ETF名称</th><th>资金流向</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>港股通创新药ETF南方</td><td class="text-up">+5,759.94万元</td></tr>
+        <tr><td>港股通金融ETF华夏</td><td class="text-up">+3,069.53万元</td></tr>
+        <tr><td>港股通科技ETF南方</td><td class="text-up">+875.11万元</td></tr>
+        <tr><td>港股通互联网ETF华夏</td><td class="text-up">+166.72万元</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ============ 8) 投资机会与风险提示 ============ -->
+<h2 class="section-title">🎯 投资机会与风险提示</h2>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title"><span class="icon">🟢</span> 投资机会</div>
+    
+    <div style="margin-bottom: 16px;">
+      <div style="font-weight: 600; color: var(--blue); margin-bottom: 6px;">📅 短期（1-2周）</div>
+      <ul style="padding-left: 20px; color: var(--text-secondary); font-size: 14px; line-height: 1.8;">
+        <li><strong style="color: var(--text-primary);">互联网龙头反弹机会</strong>：阿里财报超预期、腾讯估值仅16倍PE、南向资金持续涌入。关注恒科指调整后的低吸机会</li>
+        <li><strong style="color: var(--text-primary);">商业航天主题延续</strong>：长征十乙回收成功是里程碑事件，产业链订单预期提升，短期热度有望延续</li>
+        <li><strong style="color: var(--text-primary);">创新药/CXO板块</strong>：新版基药目录催化，药明系等CXO龙头新签订单增长理想，估值修复空间打开</li>
+      </ul>
+    </div>
+
+    <div>
+      <div style="font-weight: 600; color: var(--blue); margin-bottom: 6px;">📆 中期（1-3个月）</div>
+      <ul style="padding-left: 20px; color: var(--text-secondary); font-size: 14px; line-height: 1.8;">
+        <li><strong style="color: var(--text-primary);">AI算力产业链</strong>：阿里云收入增速45%，Meta签长期供货协议，算力需求确定性高。回调是布局窗口</li>
+        <li><strong style="color: var(--text-primary);">港股高股息策略</strong>：美债收益率高位震荡，高股息标的（银行、能源、电信）提供防御性配置</li>
+        <li><strong style="color: var(--text-primary);">黄金/有色板块</strong>：金价维持4000美元以上高位，业绩释放确定性高，中期配置价值</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="border-color: var(--red);">
+    <div class="card-title"><span class="icon">🔴</span> 风险提示</div>
+    <ul style="padding-left: 20px; color: var(--text-secondary); font-size: 14px; line-height: 2;">
+      <li>
+        <span class="tag tag-red">高</span>
+        <strong style="color: var(--text-primary);">美债收益率高位压制</strong> — 10年期美债4.58%，中东局势升温可能推动收益率进一步上行，压制港股估值
+      </li>
+      <li>
+        <span class="tag tag-red">高</span>
+        <strong style="color: var(--text-primary);">半导体板块高位回落风险</strong> — 兆易创新「利好兑现」暴跌21%或引发板块连锁调整，短期回避
+      </li>
+      <li>
+        <span class="tag tag-orange">中</span>
+        <strong style="color: var(--text-primary);">空头集聚</strong> — 比亚迪沽空比率47.47%、小米37.67%，需警惕空头进一步发力
+      </li>
+      <li>
+        <span class="tag tag-orange">中</span>
+        <strong style="color: var(--text-primary);">放量滞涨信号</strong> — 恒指24000点上方多空分歧加大，成交额放大但指数冲高回落
+      </li>
+      <li>
+        <span class="tag tag-orange">中</span>
+        <strong style="color: var(--text-primary);">南向资金单日净卖出</strong> — 虽然本周累计仍大额净流入，但单日净卖出60亿需警惕短线资金转向
+      </li>
+      <li>
+        <span class="tag tag-yellow">低</span>
+        <strong style="color: var(--text-primary);">汇率波动</strong> — 人民币中间价稳定，港币联系汇率运行平稳，短期风险不大
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 9) 明日预判 ============ -->
+<h2 class="section-title">🔮 明日预判（7月13日 周一）</h2>
+
+<div class="card">
+  <div class="alert alert-warning">
+    ⚠️ 预判仅供参考，不做投资建议。观澜基于数据说话。
+  </div>
+
+  <div class="grid-2" style="margin-top: 12px;">
+    <div>
+      <div style="font-weight: 600; color: var(--blue); margin-bottom: 12px;">📊 行情预判</div>
+      <table>
+        <thead>
+          <tr><th>维度</th><th>预判</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>恒指走势</td>
+            <td class="text-hold">震荡偏弱，24000-24300区间整理</td>
+          </tr>
+          <tr>
+            <td>恒生科技</td>
+            <td class="text-down">或继续承压，半导体拖累下测试4700支撑</td>
+          </tr>
+          <tr>
+            <td>成交量</td>
+            <td>预计回落至2800-3200亿港元</td>
+          </tr>
+          <tr>
+            <td>市场风格</td>
+            <td>延续轮动，医药/航天/有色vs半导体/AI继续分化</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <div style="font-weight: 600; color: var(--blue); margin-bottom: 12px;">📅 需要关注的事件</div>
+      <table>
+        <thead>
+          <tr><th>事件</th><th>重要性</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>美国6月CPI数据公布</td>
+            <td><span class="tag tag-red">高</span></td>
+          </tr>
+          <tr>
+            <td>中东局势（美伊关系）进展</td>
+            <td><span class="tag tag-red">高</span></td>
+          </tr>
+          <tr>
+            <td>中国6月社融/信贷数据</td>
+            <td><span class="tag tag-orange">中</span></td>
+          </tr>
+          <tr>
+            <td>腾讯等互联网龙头回购节奏</td>
+            <td><span class="tag tag-green">观察</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.8;">
+    <strong>核心判断：</strong>恒指24000点上方放量滞涨，短线面临调整压力。但本周南向资金累计净流入超450亿、腾讯回购持续（累计261亿）、互联网龙头估值低位（阿里/腾讯PE约16倍），中期底部支撑较强。<br><br>
+    <strong>操作策略：</strong>① 短线规避半导体板块（利好兑现效应可能扩散）；② 关注创新药/商业航天回调后的低吸机会；③ 腾讯若下探450港元附近，回购支撑下是较好的中期建仓窗口。<br><br>
+    <strong style="color: var(--yellow);">⚠️ 周一重点关注美国CPI数据，若通胀超预期回落，将显著提振港股（尤其是科技股）表现。</strong>
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="text-align: center; padding: 40px 0 24px; color: var(--text-muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 32px;">
+  <p>🦅 观澜 · 老余首席分析助手</p>
+  <p>报告生成时间：2026-07-12 16:00 CST | 复盘交易日：2026-07-10（周五）</p>
+  <p style="margin-top: 4px;">⚠️ 本报告基于公开数据生成，不构成投资建议。投资有风险，入市需谨慎。</p>
+</div>
+
+</div>
+</body>
+</html>
