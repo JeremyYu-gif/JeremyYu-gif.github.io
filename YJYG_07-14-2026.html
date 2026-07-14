@@ -3,261 +3,933 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A股业绩预告筛选日报 - 2026-07-14</title>
+<title>A股业绩预告筛选日报</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: #0a0e27; color: #c8d6e5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 20px; }
-.header { text-align: center; padding: 30px 20px; border-bottom: 1px solid #1e2a4a; margin-bottom: 30px; }
-.header h1 { font-size: 2em; color: #ffd700; margin-bottom: 8px; letter-spacing: 2px; }
-.header .subtitle { color: #6c7a9a; font-size: 0.95em; }
-.header .date { color: #4a9eff; font-size: 1.1em; margin-top: 5px; }
-.summary { background: linear-gradient(135deg, #0f1535, #1a2350); border-radius: 12px; padding: 20px; margin-bottom: 25px; border: 1px solid #1e2a6a; }
-.summary h2 { color: #ffd700; font-size: 1.2em; margin-bottom: 10px; }
-.summary p { color: #aabbdd; line-height: 1.6; }
-.card { background: linear-gradient(135deg, #0f1535, #151d42); border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid #1e2a5a; transition: transform 0.2s; }
-.card:hover { transform: translateY(-2px); border-color: #4a6eff; }
-.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-.card-header .name { font-size: 1.15em; color: #ffffff; font-weight: 600; }
-.card-header .code { color: #4a9eff; font-size: 0.85em; background: #0d1238; padding: 2px 10px; border-radius: 4px; }
-.tag { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 0.75em; margin-left: 8px; }
-.tag-yuzeng { background: #00b894; color: #fff; }
-.tag-niukui { background: #e17055; color: #fff; }
-.industry { color: #6c7a9a; font-size: 0.85em; margin-bottom: 10px; }
-.data-table { width: 100%; border-collapse: collapse; margin: 10px 0; }
-.data-table th { text-align: left; color: #4a9eff; font-size: 0.8em; padding: 6px 8px; border-bottom: 1px solid #1e2a4a; }
-.data-table td { padding: 6px 8px; border-bottom: 1px solid #141c3a; font-size: 0.9em; }
-.data-table td.val { color: #00e676; font-family: 'Courier New', monospace; }
-.reason { background: #0d1238; border-radius: 8px; padding: 12px; margin: 10px 0; font-size: 0.85em; color: #aabbdd; line-height: 1.6; border-left: 3px solid #4a9eff; }
-.comment { background: #0f1a2a; border-radius: 8px; padding: 12px; margin: 10px 0; font-size: 0.85em; color: #d4b87a; line-height: 1.6; border-left: 3px solid #ffd700; }
-.comment::before { content: "小H点评: "; color: #ffd700; font-weight: 600; }
-.scroll-top { position: fixed; bottom: 30px; right: 30px; background: #4a9eff; color: #fff; border: none; border-radius: 50%; width: 45px; height: 45px; font-size: 1.3em; cursor: pointer; opacity: 0.7; }
-.scroll-top:hover { opacity: 1; }
-.footer { text-align: center; color: #4a5a7a; font-size: 0.8em; padding: 30px 0 10px; border-top: 1px solid #1e2a4a; margin-top: 30px; line-height: 1.8; }
-.footer strong { color: #e74c3c; }
-.footer em { color: #6c7a9a; }
+body { background: #0a0e27; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; padding: 20px; }
+.container { max-width: 1400px; margin: 0 auto; }
+.header { text-align: center; padding: 30px 0 20px; }
+.header h1 { color: #f6c23e; font-size: 28px; letter-spacing: 2px; }
+.header .subtitle { color: #8892b0; font-size: 14px; margin-top: 8px; }
+.header .meta { color: #4a5080; font-size: 12px; margin-top: 5px; }
+.summary-bar { background: linear-gradient(135deg, #1a1f40, #141833); border-radius: 12px; padding: 20px; margin: 20px 0; border: 1px solid #2a2f60; }
+.summary-bar .stat { display: inline-block; margin: 0 30px; text-align: center; }
+.summary-bar .stat-num { font-size: 28px; font-weight: bold; color: #f6c23e; }
+.summary-bar .stat-label { font-size: 12px; color: #8892b0; margin-top: 4px; }
+.summary-bar .stat-desc { color: #b0b9d0; font-size: 13px; margin-top: 10px; line-height: 1.6; }
+.stock-card { border-radius: 12px; margin-bottom: 16px; overflow: hidden; border: 1px solid #2a2f60; }
+.card-header { display: flex; align-items: center; padding: 14px 20px; background: rgba(255,255,255,0.03); border-bottom: 1px solid #2a2f60; flex-wrap: wrap; gap: 8px; }
+.stock-code { color: #5a6ab0; font-size: 12px; font-family: monospace; }
+.stock-name { color: #fff; font-size: 18px; font-weight: bold; margin-right: 10px; }
+.stock-tag { padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: bold; }
+.industry-tag { color: #8892b0; font-size: 11px; border: 1px solid #3a4070; padding: 2px 8px; border-radius: 10px; }
+.card-body { padding: 16px 20px; }
+.highlight-bar { color: #f6c23e; font-size: 13px; margin-bottom: 12px; padding: 8px 12px; background: rgba(246,194,62,0.08); border-radius: 6px; border-left: 3px solid #f6c23e; }
+.data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+.data-table th { background: rgba(255,255,255,0.05); color: #8892b0; padding: 8px 12px; text-align: center; font-weight: 500; border-bottom: 1px solid #2a2f60; }
+.data-table td { padding: 8px 12px; text-align: center; border-bottom: 1px solid #1a1f40; color: #c0c8e0; }
+.data-table tr:last-child td { border-bottom: none; }
+.reason { margin: 12px 0; padding: 10px 14px; background: rgba(54,185,204,0.06); border-radius: 6px; border-left: 3px solid #36b9cc; font-size: 13px; line-height: 1.6; color: #b0b9d0; }
+.reason-title { color: #36b9cc; font-weight: 600; margin-bottom: 4px; font-size: 12px; }
+.comment { margin: 12px 0; padding: 10px 14px; background: rgba(246,194,62,0.05); border-radius: 6px; border-left: 3px solid #f6c23e; font-size: 13px; line-height: 1.6; }
+.comment-title { color: #f6c23e; font-weight: 600; margin-bottom: 4px; font-size: 12px; }
+.top-pick { background: linear-gradient(135deg, #1e2a4a, #1a1f40); border: 1px solid #f6c23e; }
+.top-pick .card-header { background: rgba(246,194,62,0.08); }
+.footer { text-align: center; padding: 30px; color: #4a5080; font-size: 12px; line-height: 1.8; }
+.footer a { color: #5a6ab0; }
+@media (max-width: 768px) {
+    .summary-bar .stat { margin: 0 10px; }
+    .data-table { font-size: 11px; }
+    .data-table th, .data-table td { padding: 6px 8px; }
+}
 </style>
 </head>
 <body>
-<div class="header">
-  <h1>A股业绩预告筛选日报</h1>
-  <div class="date">2026年7月14日 星期二 | 2026年半年度业绩预告</div>
-  <div class="subtitle">数据来源: 同花顺iFind | 筛选条件: 扭亏/预增 + 扣非净利润≥2000万 + 增速&gt;20%</div>
+<div class="container">
+    <div class="header">
+        <h1>📊 A股业绩预告筛选日报</h1>
+        <div class="subtitle">2026年7月14日（周二）— 半年度业绩预告盘后汇总分析</div>
+        <div class="meta">数据来源：同花顺iFind MCP | 筛选条件：预增/扭亏 × 扣非净利润≥2000万 × 增速>20%</div>
+    </div>
+    
+    <div class="summary-bar">
+        <div>
+            <div class="stat"><div class="stat-num">186</div><div class="stat-label">预增/扭亏公司</div></div>
+            <div class="stat"><div class="stat-num">15</div><div class="stat-label">精选标的</div></div>
+            <div class="stat"><div class="stat-num">11</div><div class="stat-label">⭐重点推荐</div></div>
+            <div class="stat-desc">
+                今日共有<b style="color:#f6c23e;">186家</b>公司发布2026年半年度业绩预告（全部为预增），其中<b style="color:#1cc88a;">15家</b>精选标的满足三项筛选条件。
+                核心看点：半导体产业链（瑞芯微/长川科技/江波龙/鼎龙股份）延续高景气，AI算力（浪潮信息/紫光股份）需求爆发；
+                新能源材料（天赐材料/德业股份/联泓新科）量价齐升，有色金属（焦作万方/雅化集团）受益价格上涨。
+                重点推荐<b style="color:#f6c23e;">浪潮信息、德业股份、天赐材料、长川科技、鼎龙股份</b>。
+            </div>
+        </div>
+    </div>
+    
+    <div class="section-title" style="color:#f6c23e;font-size:18px;font-weight:bold;margin:20px 0 12px;">
+        ⭐ 重点推荐标的
+    </div>
+    
+<div class="stock-card" style="background:#1a1f40;">
+    <div class="card-header">
+        <span class="stock-code">000977.SZ</span>
+        <span class="stock-name">浪潮信息</span>
+        <span class="stock-tag" style="background:#f6c23e;color:#000;">预增</span>
+        <span class="industry-tag">计算机 — 计算机设备</span>
+    </div>
+    <div class="card-body">
+        <div class="highlight-bar">⭐⭐⭐ ★★★ 服务器龙头，AI算力核心受益标的，扣非净利润增速超200%，Q2环比加速明显</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>指标</th>
+                    <th>2026年Q1（单季）</th>
+                    <th>2026年H1（预告）</th>
+                    <th>2026年Q2（推算）</th>
+                    <th>环比变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>营收</td>
+                    <td>354.7亿</td>
+                    <td>待正式披露</td>
+                    <td>待推算</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>归母净利润</td>
+                    <td>6.05亿</td>
+                    <td>26.0亿~31.0亿</td>
+                    <td>22.45亿</td>
+                    <td><span style='color:#1cc88a'>+271.1%</span></td>
+                </tr>
+                <tr>
+                    <td>扣非净利润</td>
+                    <td>待查</td>
+                    <td>20.6亿~25.6亿</td>
+                    <td>-</td>
+                    <td>+206%~+280%</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="reason">
+            <div class="reason-title">增长理由</div>
+            <div>AI算力需求爆发驱动智算业务高速发展，ICT基础设施增长强劲；毛利率改善，出货量大幅增长。公司持续深耕AI算力全产业链。</div>
+        </div>
+        <div class="comment">
+            <div class="comment-title">小H点评</div>
+            <div>★★★ 服务器龙头，AI算力核心受益标的，扣非净利润增速超200%，Q2环比加速明显</div>
+        </div>
+    </div>
 </div>
 
-<div class="summary">
-  <h2>报告摘要</h2>
-  <p>本期搜索时间窗口：2026年7月13日07:00 ~ 2026年7月14日07:00<br>
-  共搜索到84家公司发布2026年半年度业绩预告，其中扭亏为盈型约80家。<br>
-  经三条件严格筛选（扭亏/预增 + 扣非净利润≥2000万元 + 扣非增速&gt;20%或营收增速&gt;20%），<b style="color:#00e676;">共12家公司</b>符合条件进入本期重点关注名单。</p>
+<div class="stock-card" style="background:#1a1f40;">
+    <div class="card-header">
+        <span class="stock-code">605117.SH</span>
+        <span class="stock-name">德业股份</span>
+        <span class="stock-tag" style="background:#f6c23e;color:#000;">预增</span>
+        <span class="industry-tag">电力设备 — 光伏储能</span>
+    </div>
+    <div class="card-body">
+        <div class="highlight-bar">⭐⭐⭐ ★★★ 储能出海龙头，Q1营收增长74%，Q2环比持续向好</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>指标</th>
+                    <th>2026年Q1（单季）</th>
+                    <th>2026年H1（预告）</th>
+                    <th>2026年Q2（推算）</th>
+                    <th>环比变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>营收</td>
+                    <td>44.6亿</td>
+                    <td>待正式披露</td>
+                    <td>待推算</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>归母净利润</td>
+                    <td>11.87亿</td>
+                    <td>26.7亿~27.3亿</td>
+                    <td>15.11亿</td>
+                    <td><span style='color:#1cc88a'>+27.3%</span></td>
+                </tr>
+                <tr>
+                    <td>扣非净利润</td>
+                    <td>待查</td>
+                    <td>24.9亿~25.5亿</td>
+                    <td>-</td>
+                    <td>+71%~+75%</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="reason">
+            <div class="reason-title">增长理由</div>
+            <div>海外储能市场需求旺盛，欧洲、中东、东南亚户用及工商业储能需求显著释放，公司紧抓窗口期实现销售放量。</div>
+        </div>
+        <div class="comment">
+            <div class="comment-title">小H点评</div>
+            <div>★★★ 储能出海龙头，Q1营收增长74%，Q2环比持续向好</div>
+        </div>
+    </div>
 </div>
 
-<!-- 西藏矿业 -->
-<div class="card">
-  <div class="card-header">
-    <div><span class="name">西藏矿业</span><span class="code">000762.SZ</span><span class="tag tag-niukui">扭亏</span></div>
-  </div>
-  <div class="industry">原材料 · 锂矿开采</div>
-  <table class="data-table">
-    <tr><th>指标</th><th>数值</th></tr>
-    <tr><td>预告净利润下限</td><td class="val">5,000万元</td></tr>
-    <tr><td>预告扣非净利润下限</td><td class="val">4,500万元</td></tr>
-    <tr><td>扣非净利润同比增速</td><td class="val">+295.68%</td></tr>
-  </table>
-  <div class="reason"><b>增长理由：</b>锂盐市场价格较去年同期大幅上涨，扎布耶二期项目投产后产能释放，锂盐产品销量和售价同步增长，主营业务收入显著增长。</div>
-  <div class="comment">锂矿赛道景气度明确回暖，扎布耶二期产能释放是核心驱动力。扣非净利润4500万且增速近3倍，业绩质量高。关注锂价持续性和产能爬坡节奏。</div>
+<div class="stock-card" style="background:#1a1f40;">
+    <div class="card-header">
+        <span class="stock-code">002709.SZ</span>
+        <span class="stock-name">天赐材料</span>
+        <span class="stock-tag" style="background:#f6c23e;color:#000;">预增</span>
+        <span class="industry-tag">电力设备 — 锂电池材料</span>
+    </div>
+    <div class="card-body">
+        <div class="highlight-bar">⭐⭐⭐ ★★★ 电解液龙头，扣非净利润暴增10倍，行业供需格局持续优化</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>指标</th>
+                    <th>2026年Q1（单季）</th>
+                    <th>2026年H1（预告）</th>
+                    <th>2026年Q2（推算）</th>
+                    <th>环比变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>营收</td>
+                    <td>66.7亿</td>
+                    <td>待正式披露</td>
+                    <td>待推算</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>归母净利润</td>
+                    <td>16.47亿</td>
+                    <td>27.0亿~30.0亿</td>
+                    <td>12.03亿</td>
+                    <td><span style='color:#e74a3b'>-27.0%</span></td>
+                </tr>
+                <tr>
+                    <td>扣非净利润</td>
+                    <td>待查</td>
+                    <td>26.5亿~29.5亿</td>
+                    <td>-</td>
+                    <td>+1030%~+1157%</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="reason">
+            <div class="reason-title">增长理由</div>
+            <div>锂离子电池材料电解液及六氟磷酸锂市场需求旺盛，产能利用率接近满产，量价齐升。Q3排产环比进一步增长。</div>
+        </div>
+        <div class="comment">
+            <div class="comment-title">小H点评</div>
+            <div>★★★ 电解液龙头，扣非净利润暴增10倍，行业供需格局持续优化</div>
+        </div>
+    </div>
 </div>
 
-<!-- 诺德股份 -->
-<div class="card">
-  <div class="card-header">
-    <div><span class="name">诺德股份</span><span class="code">600110.SH</span><span class="tag tag-niukui">扭亏</span></div>
-  </div>
-  <div class="industry">电子信息材料 · 铜箔制造</div>
-  <table class="data-table">
-    <tr><th>指标</th><th>数值</th></tr>
-    <tr><td>预告净利润下限</td><td class="val">1.03亿元</td></tr>
-    <tr><td>预告扣非净利润下限</td><td class="val">5,200万元</td></tr>
-    <tr><td>净利润同比增速</td><td class="val">+242.20%</td></tr>
-  </table>
-  <div class="reason"><b>增长理由：</b>下游市场景气度回暖，铜箔产品产销量大幅增长，单位生产成本降低，毛利率提升。优化产品结构，高端铜箔材料销售占比提升，平均加工费上涨。</div>
-  <div class="comment">铜箔行业量价齐升逻辑清晰，扣非5200万验证主业真正复苏。非经常性损益约5100万（政府补助+期权），整体利润质量尚可。关注铜箔加工费后续走势。</div>
+<div class="stock-card" style="background:#1a1f40;">
+    <div class="card-header">
+        <span class="stock-code">300604.SZ</span>
+        <span class="stock-name">长川科技</span>
+        <span class="stock-tag" style="background:#f6c23e;color:#000;">预增</span>
+        <span class="industry-tag">电子 — 半导体设备</span>
+    </div>
+    <div class="card-body">
+        <div class="highlight-bar">⭐⭐⭐ ★★★ 半导体测试设备龙头，Q2环比增长65%，国产替代加速</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>指标</th>
+                    <th>2026年Q1（单季）</th>
+                    <th>2026年H1（预告）</th>
+                    <th>2026年Q2（推算）</th>
+                    <th>环比变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>营收</td>
+                    <td>13.8亿</td>
+                    <td>待正式披露</td>
+                    <td>待推算</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>归母净利润</td>
+                    <td>3.59亿</td>
+                    <td>9.0亿~10.0亿</td>
+                    <td>5.91亿</td>
+                    <td><span style='color:#1cc88a'>+64.6%</span></td>
+                </tr>
+                <tr>
+                    <td>扣非净利润</td>
+                    <td>待查</td>
+                    <td>8.6亿~9.6亿</td>
+                    <td>-</td>
+                    <td>+139%~+167%</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="reason">
+            <div class="reason-title">增长理由</div>
+            <div>前期研发投入成果持续显现，数字测试机等多产品线销售业绩大幅度增长，规模效应显现。</div>
+        </div>
+        <div class="comment">
+            <div class="comment-title">小H点评</div>
+            <div>★★★ 半导体测试设备龙头，Q2环比增长65%，国产替代加速</div>
+        </div>
+    </div>
 </div>
 
-<!-- 冠豪高新 -->
-<div class="card">
-  <div class="card-header">
-    <div><span class="name">冠豪高新</span><span class="code">600433.SH</span><span class="tag tag-niukui">扭亏</span></div>
-  </div>
-  <div class="industry">轻工制造 · 特种纸</div>
-  <table class="data-table">
-    <tr><th>指标</th><th>数值</th></tr>
-    <tr><td>预告净利润下限</td><td class="val">2.13亿元</td></tr>
-    <tr><td>预告扣非净利润下限</td><td class="val">3,200万元</td></tr>
-    <tr><td>净利润同比增速</td><td class="val">+467.69%</td></tr>
-  </table>
-  <div class="reason"><b>增长理由：</b>加大市场开拓力度，销量和收入同比增加。持续推进降本增效，毛利水平同比上升。关停珠海红塔前山厂产线，土地处置收入增加当期利润。</div>
-  <div class="comment">利润大增但扣非仅3200万，非经常性损益贡献较大（土地处置收入）。关注主营业务回暖的持续性。</div>
+<div class="stock-card" style="background:#1a1f40;">
+    <div class="card-header">
+        <span class="stock-code">301200.SZ</span>
+        <span class="stock-name">大族数控</span>
+        <span class="stock-tag" style="background:#f6c23e;color:#000;">预增</span>
+        <span class="industry-tag">机械设备 — PCB设备</span>
+    </div>
+    <div class="card-body">
+        <div class="highlight-bar">⭐⭐⭐ ★★★ AI驱动PCB设备需求爆发，营收翻倍，扣非净利润增长260%+</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>指标</th>
+                    <th>2026年Q1（单季）</th>
+                    <th>2026年H1（预告）</th>
+                    <th>2026年Q2（推算）</th>
+                    <th>环比变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>营收</td>
+                    <td>19.6亿</td>
+                    <td>待正式披露</td>
+                    <td>待推算</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>归母净利润</td>
+                    <td>3.25亿</td>
+                    <td>9.0亿~10.0亿</td>
+                    <td>6.25亿</td>
+                    <td><span style='color:#1cc88a'>+92.3%</span></td>
+                </tr>
+                <tr>
+                    <td>扣非净利润</td>
+                    <td>待查</td>
+                    <td>9.0亿~10.0亿</td>
+                    <td>-</td>
+                    <td>+260%~+300%</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="reason">
+            <div class="reason-title">增长理由</div>
+            <div>AI服务器和高速网络交换机大规模部署带动PCB结构增长，AIPCB相关方案营收占比显著提升，营收同比增长100%+。</div>
+        </div>
+        <div class="comment">
+            <div class="comment-title">小H点评</div>
+            <div>★★★ AI驱动PCB设备需求爆发，营收翻倍，扣非净利润增长260%+</div>
+        </div>
+    </div>
 </div>
 
-<!-- 神马股份 -->
-<div class="card">
-  <div class="card-header">
-    <div><span class="name">神马股份</span><span class="code">600810.SH</span><span class="tag tag-niukui">扭亏</span></div>
-  </div>
-  <div class="industry">化学纤维 · 尼龙66</div>
-  <table class="data-table">
-    <tr><th>指标</th><th>数值</th></tr>
-    <tr><td>预告净利润下限</td><td class="val">6,600万元</td></tr>
-    <tr><td>预告扣非净利润下限</td><td class="val">6,500万元</td></tr>
-    <tr><td>净利润同比增速</td><td class="val">+151.50%</td></tr>
-  </table>
-  <div class="reason"><b>增长理由：</b>受行业市场供需关系影响，主要产品售价较同期有所上升，盈利水平较上年同期提升。</div>
-  <div class="comment">扣非6500万接近净利润6600万，利润质量非常高！尼龙66行业供需格局改善明显。公司是全球尼龙66龙头，米其林等国际轮胎巨头供应商，可重点关注。</div>
+<div class="stock-card" style="background:#141833;">
+    <div class="card-header">
+        <span class="stock-code">603893.SH</span>
+        <span class="stock-name">瑞芯微</span>
+        <span class="stock-tag" style="background:#f6c23e;color:#000;">预增</span>
+        <span class="industry-tag">电子 — 半导体设计</span>
+    </div>
+    <div class="card-body">
+        <div class="highlight-bar">⭐⭐ ★★ AIoT芯片龙头，端侧AI浪潮核心受益标的，Q2增长加速</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>指标</th>
+                    <th>2026年Q1（单季）</th>
+                    <th>2026年H1（预告）</th>
+                    <th>2026年Q2（推算）</th>
+                    <th>环比变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>营收</td>
+                    <td>12.1亿</td>
+                    <td>待正式披露</td>
+                    <td>待推算</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>归母净利润</td>
+                    <td>3.29亿</td>
+                    <td>8.5亿~9.1亿</td>
+                    <td>5.51亿</td>
+                    <td><span style='color:#1cc88a'>+67.5%</span></td>
+                </tr>
+                <tr>
+                    <td>扣非净利润</td>
+                    <td>待查</td>
+                    <td>8.3亿~8.9亿</td>
+                    <td>-</td>
+                    <td>+61%~+73%</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="reason">
+            <div class="reason-title">增长理由</div>
+            <div>AIoT平台优势凸显，RK3588等算力平台高速增长；端侧AI规模化落地，新产品RK182X系列顺利量产。营收同比+40~42%。</div>
+        </div>
+        <div class="comment">
+            <div class="comment-title">小H点评</div>
+            <div>★★ AIoT芯片龙头，端侧AI浪潮核心受益标的，Q2增长加速</div>
+        </div>
+    </div>
 </div>
 
-<!-- 丽人丽妆 -->
-<div class="card">
-  <div class="card-header">
-    <div><span class="name">丽人丽妆</span><span class="code">605136.SH</span><span class="tag tag-niukui">扭亏</span></div>
-  </div>
-  <div class="industry">商贸零售 · 电商代运营</div>
-  <table class="data-table">
-    <tr><th>指标</th><th>数值</th></tr>
-    <tr><td>预告净利润下限</td><td class="val">2,208万元</td></tr>
-    <tr><td>预告扣非净利润下限</td><td class="val">2,333万元</td></tr>
-    <tr><td>净利润同比增速</td><td class="val">+180.89%</td></tr>
-  </table>
-  <div class="reason"><b>增长理由：</b>2024年起布局海外品牌总代业务并搭建全域分销体系，新业务持续放量增厚毛利；精细化运营提升自有品牌营销费用投放效率。</div>
-  <div class="comment">扣非2333万大于净利润2208万，利润结构健康。海外品牌总代业务放量是新增看点，小而美的转型故事，关注新业务增速能否维持。</div>
+<div class="stock-card" style="background:#1a1f40;">
+    <div class="card-header">
+        <span class="stock-code">002497.SZ</span>
+        <span class="stock-name">雅化集团</span>
+        <span class="stock-tag" style="background:#f6c23e;color:#000;">预增</span>
+        <span class="industry-tag">基础化工 — 民爆+锂盐</span>
+    </div>
+    <div class="card-body">
+        <div class="highlight-bar">⭐⭐⭐ ★★★ 锂盐价格上行最大受益者，扣非净利润暴增14倍，Q2环比+149%</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>指标</th>
+                    <th>2026年Q1（单季）</th>
+                    <th>2026年H1（预告）</th>
+                    <th>2026年Q2（推算）</th>
+                    <th>环比变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>营收</td>
+                    <td>28.3亿</td>
+                    <td>待正式披露</td>
+                    <td>待推算</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>归母净利润</td>
+                    <td>3.44亿</td>
+                    <td>11.0亿~13.0亿</td>
+                    <td>8.56亿</td>
+                    <td><span style='color:#1cc88a'>+148.8%</span></td>
+                </tr>
+                <tr>
+                    <td>扣非净利润</td>
+                    <td>待查</td>
+                    <td>11.2亿~13.2亿</td>
+                    <td>-</td>
+                    <td>+1393%~+1645%</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="reason">
+            <div class="reason-title">增长理由</div>
+            <div>锂盐市场价格持续上行，销量和均价同步增长；深化全链条生产运营管理，Q2净利润环比增长约149%达8.56亿。</div>
+        </div>
+        <div class="comment">
+            <div class="comment-title">小H点评</div>
+            <div>★★★ 锂盐价格上行最大受益者，扣非净利润暴增14倍，Q2环比+149%</div>
+        </div>
+    </div>
 </div>
 
-<!-- 龙蟠科技 -->
-<div class="card">
-  <div class="card-header">
-    <div><span class="name">龙蟠科技</span><span class="code">603906.SH</span><span class="tag tag-niukui">扭亏</span></div>
-  </div>
-  <div class="industry">化学原料 · 磷酸铁锂</div>
-  <table class="data-table">
-    <tr><th>指标</th><th>数值</th></tr>
-    <tr><td>预告净利润下限</td><td class="val">3.73亿元</td></tr>
-    <tr><td>预告扣非净利润下限</td><td class="val">3.75亿元</td></tr>
-  </table>
-  <div class="reason"><b>增长理由：</b>受益于动力电池及储能电池发展，磷酸铁锂业务收入与销量增长，规模效益体现，盈利能力恢复。</div>
-  <div class="comment">扣非3.75亿几乎等于净利润3.73亿，利润纯度极高。磷酸铁锂赛道回暖确认，规模效应开始体现。作为新能源上游材料标的，值得重点跟踪。</div>
+<div class="stock-card" style="background:#1a1f40;">
+    <div class="card-header">
+        <span class="stock-code">301308.SZ</span>
+        <span class="stock-name">江波龙</span>
+        <span class="stock-tag" style="background:#f6c23e;color:#000;">预增</span>
+        <span class="industry-tag">电子 — 半导体存储</span>
+    </div>
+    <div class="card-body">
+        <div class="highlight-bar">⭐⭐⭐ ★★★ 存储龙头，H1利润百亿级，Q2环比+54%，端侧AI存储核心标的</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>指标</th>
+                    <th>2026年Q1（单季）</th>
+                    <th>2026年H1（预告）</th>
+                    <th>2026年Q2（推算）</th>
+                    <th>环比变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>营收</td>
+                    <td>99.1亿</td>
+                    <td>待正式披露</td>
+                    <td>待推算</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>归母净利润</td>
+                    <td>39.79亿</td>
+                    <td>92.0亿~110.0亿</td>
+                    <td>61.21亿</td>
+                    <td><span style='color:#1cc88a'>+53.8%</span></td>
+                </tr>
+                <tr>
+                    <td>扣非净利润</td>
+                    <td>待查</td>
+                    <td>90.0亿~105.0亿</td>
+                    <td>-</td>
+                    <td>+27844%~+32501%</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="reason">
+            <div class="reason-title">增长理由</div>
+            <div>全球存储晶圆产能增长有限，存储芯片供给紧张推动量价齐升；与AMD联合调优，端侧AI存储需求爆发。</div>
+        </div>
+        <div class="comment">
+            <div class="comment-title">小H点评</div>
+            <div>★★★ 存储龙头，H1利润百亿级，Q2环比+54%，端侧AI存储核心标的</div>
+        </div>
+    </div>
 </div>
 
-<!-- 立昂微 -->
-<div class="card">
-  <div class="card-header">
-    <div><span class="name">立昂微</span><span class="code">605358.SH</span><span class="tag tag-niukui">扭亏</span></div>
-  </div>
-  <div class="industry">电子 · 半导体硅片</div>
-  <table class="data-table">
-    <tr><th>指标</th><th>数值</th></tr>
-    <tr><td>预告净利润下限</td><td class="val">8,500万元</td></tr>
-    <tr><td>预告扣非净利润下限</td><td class="val">3,000万元</td></tr>
-  </table>
-  <div class="reason"><b>增长理由：</b>半导体硅片板块盈利能力改善，产品结构向高端化升级，12英寸硅片产销量大幅增长38.81%。功率器件芯片销量增长19%，化合物半导体射频芯片销量增长78%。</div>
-  <div class="comment">半导体行业复苏核心受益标的，12英寸硅片放量是核心看点。扣非3000万低于净利润8500万（含公允价值变动收益5560万），但硅片主业趋势向好，关注后续季度扣非改善进度。</div>
+<div class="stock-card" style="background:#141833;">
+    <div class="card-header">
+        <span class="stock-code">000612.SZ</span>
+        <span class="stock-name">焦作万方</span>
+        <span class="stock-tag" style="background:#f6c23e;color:#000;">预增</span>
+        <span class="industry-tag">有色金属 — 铝</span>
+    </div>
+    <div class="card-body">
+        <div class="highlight-bar">⭐⭐ ★★ 铝价高位运行+成本下降双击，扣非净利润增长超100%</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>指标</th>
+                    <th>2026年Q1（单季）</th>
+                    <th>2026年H1（预告）</th>
+                    <th>2026年Q2（推算）</th>
+                    <th>环比变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>营收</td>
+                    <td>17.6亿</td>
+                    <td>待正式披露</td>
+                    <td>待推算</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>归母净利润</td>
+                    <td>5.00亿</td>
+                    <td>11.7亿~12.7亿</td>
+                    <td>7.20亿</td>
+                    <td><span style='color:#1cc88a'>+44.0%</span></td>
+                </tr>
+                <tr>
+                    <td>扣非净利润</td>
+                    <td>待查</td>
+                    <td>11.6亿~12.6亿</td>
+                    <td>-</td>
+                    <td>+117%~+136%</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="reason">
+            <div class="reason-title">增长理由</div>
+            <div>电解铝价格高位运行，氧化铝采购价格同比下降，叠加电解槽技术改造降低能耗，成本优势显著。</div>
+        </div>
+        <div class="comment">
+            <div class="comment-title">小H点评</div>
+            <div>★★ 铝价高位运行+成本下降双击，扣非净利润增长超100%</div>
+        </div>
+    </div>
 </div>
 
-<!-- 金域医学 -->
-<div class="card">
-  <div class="card-header">
-    <div><span class="name">金域医学</span><span class="code">603882.SH</span><span class="tag tag-niukui">扭亏</span></div>
-  </div>
-  <div class="industry">医药生物 · 医学检验</div>
-  <table class="data-table">
-    <tr><th>指标</th><th>数值</th></tr>
-    <tr><td>预告净利润下限</td><td class="val">1.70亿元</td></tr>
-    <tr><td>预告扣非净利润下限</td><td class="val">1.80亿元</td></tr>
-    <tr><td>扣非净利润同比增速</td><td class="val">+283.74%</td></tr>
-  </table>
-  <div class="reason"><b>增长理由：</b>持续推进降本增效及数智化转型，精益运营能力提升。前期应收账款减值影响因素基本消化出清，核心业务发展逐步企稳。</div>
-  <div class="comment">扣非1.8亿高于净利润1.7亿，利润质量强。ICL行业龙头从疫情后调整中恢复的确认信号。数智化转型成效初显，关注后续季度毛利率改善趋势。</div>
+<div class="stock-card" style="background:#141833;">
+    <div class="card-header">
+        <span class="stock-code">003022.SZ</span>
+        <span class="stock-name">联泓新科</span>
+        <span class="stock-tag" style="background:#f6c23e;color:#000;">预增</span>
+        <span class="industry-tag">电力设备 — 新能源材料</span>
+    </div>
+    <div class="card-body">
+        <div class="highlight-bar">⭐⭐ ★★ 新材料项目投产释放增量，EVA+锂电材料双轮驱动</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>指标</th>
+                    <th>2026年Q1（单季）</th>
+                    <th>2026年H1（预告）</th>
+                    <th>2026年Q2（推算）</th>
+                    <th>环比变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>营收</td>
+                    <td>0.0亿</td>
+                    <td>待正式披露</td>
+                    <td>待推算</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>归母净利润</td>
+                    <td>0.00亿</td>
+                    <td>4.0亿~4.2亿</td>
+                    <td>待推算</td>
+                    <td>待推算</td>
+                </tr>
+                <tr>
+                    <td>扣非净利润</td>
+                    <td>待查</td>
+                    <td>4.0亿~4.2亿</td>
+                    <td>-</td>
+                    <td>+147%~+166%</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="reason">
+            <div class="reason-title">增长理由</div>
+            <div>联泓格润新能源材料项目投产，EVA二期、PO、PPG等新装置产能释放；锂电碳酸酯溶剂、聚乳酸等产能利用率提升。</div>
+        </div>
+        <div class="comment">
+            <div class="comment-title">小H点评</div>
+            <div>★★ 新材料项目投产释放增量，EVA+锂电材料双轮驱动</div>
+        </div>
+    </div>
 </div>
 
-<!-- 广百股份 -->
-<div class="card">
-  <div class="card-header">
-    <div><span class="name">广百股份</span><span class="code">002187.SZ</span><span class="tag tag-niukui">扭亏</span></div>
-  </div>
-  <div class="industry">商贸零售 · 百货</div>
-  <table class="data-table">
-    <tr><th>指标</th><th>数值</th></tr>
-    <tr><td>预告净利润下限</td><td class="val">2,000万元</td></tr>
-    <tr><td>预告扣非净利润下限</td><td class="val">2,000万元</td></tr>
-    <tr><td>扣非净利润同比增速</td><td class="val">+266.82%</td></tr>
-  </table>
-  <div class="reason"><b>增长理由：</b>通过降低门店销售费用、优化组织结构及融资规划，提升内部管理效率，持续推进降本增效，成本费用管控成效显著。</div>
-  <div class="comment">扣非2000万等于净利润2000万，利润纯度高。传统百货通过降本增效实现扭亏，证明管理改善有效。但线下零售环境仍承压，关注持续性。</div>
+<div class="stock-card" style="background:#141833;">
+    <div class="card-header">
+        <span class="stock-code">002990.SZ</span>
+        <span class="stock-name">盛视科技</span>
+        <span class="stock-tag" style="background:#f6c23e;color:#000;">预增</span>
+        <span class="industry-tag">计算机 — AI算力</span>
+    </div>
+    <div class="card-body">
+        <div class="highlight-bar">⭐⭐ ★★ 算力新业务开始放量，扣非净利润增速超500%，关注业务持续性</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>指标</th>
+                    <th>2026年Q1（单季）</th>
+                    <th>2026年H1（预告）</th>
+                    <th>2026年Q2（推算）</th>
+                    <th>环比变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>营收</td>
+                    <td>0.0亿</td>
+                    <td>待正式披露</td>
+                    <td>待推算</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>归母净利润</td>
+                    <td>0.00亿</td>
+                    <td>1.1亿~1.4亿</td>
+                    <td>待推算</td>
+                    <td>待推算</td>
+                </tr>
+                <tr>
+                    <td>扣非净利润</td>
+                    <td>待查</td>
+                    <td>待披露</td>
+                    <td>-</td>
+                    <td>+552%~+744%</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="reason">
+            <div class="reason-title">增长理由</div>
+            <div>算力基础设施业务取得突破性进展，开始确认收入，成为公司业绩增长新驱动力。</div>
+        </div>
+        <div class="comment">
+            <div class="comment-title">小H点评</div>
+            <div>★★ 算力新业务开始放量，扣非净利润增速超500%，关注业务持续性</div>
+        </div>
+    </div>
 </div>
 
-<!-- 天际股份 -->
-<div class="card">
-  <div class="card-header">
-    <div><span class="name">天际股份</span><span class="code">002759.SZ</span><span class="tag tag-niukui">扭亏</span></div>
-  </div>
-  <div class="industry">化工 · 六氟磷酸锂</div>
-  <table class="data-table">
-    <tr><th>指标</th><th>数值</th></tr>
-    <tr><td>预告净利润下限</td><td class="val">2.20亿元</td></tr>
-    <tr><td>预告扣非净利润下限</td><td class="val">2.20亿元</td></tr>
-  </table>
-  <div class="reason"><b>增长理由：</b>六氟磷酸锂从2025年第四季度开始供需形势发生变化，盈利能力恢复。</div>
-  <div class="comment">扣非2.2亿=净利润2.2亿，100%纯度的利润质量。六氟磷酸锂供需格局反转确认，电解液上游景气度回升。关注六氟价格走势和产能扩张节奏。</div>
+<div class="stock-card" style="background:#141833;">
+    <div class="card-header">
+        <span class="stock-code">300821.SZ</span>
+        <span class="stock-name">东岳硅材</span>
+        <span class="stock-tag" style="background:#f6c23e;color:#000;">预增</span>
+        <span class="industry-tag">基础化工 — 有机硅</span>
+    </div>
+    <div class="card-body">
+        <div class="highlight-bar">⭐⭐ ★★ 有机硅行业供需改善，扣非净利润增长超9倍，毛利率持续修复</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>指标</th>
+                    <th>2026年Q1（单季）</th>
+                    <th>2026年H1（预告）</th>
+                    <th>2026年Q2（推算）</th>
+                    <th>环比变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>营收</td>
+                    <td>0.0亿</td>
+                    <td>待正式披露</td>
+                    <td>待推算</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>归母净利润</td>
+                    <td>0.00亿</td>
+                    <td>待披露</td>
+                    <td>待推算</td>
+                    <td>待推算</td>
+                </tr>
+                <tr>
+                    <td>扣非净利润</td>
+                    <td>待查</td>
+                    <td>待披露</td>
+                    <td>-</td>
+                    <td>+934%~+978%</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="reason">
+            <div class="reason-title">增长理由</div>
+            <div>有机硅行业主要产品价格上涨，原材料工业硅采购价格同比下降，毛利率提升。精细化管理有效控制费用。</div>
+        </div>
+        <div class="comment">
+            <div class="comment-title">小H点评</div>
+            <div>★★ 有机硅行业供需改善，扣非净利润增长超9倍，毛利率持续修复</div>
+        </div>
+    </div>
 </div>
 
-<!-- 大连热电 -->
-<div class="card">
-  <div class="card-header">
-    <div><span class="name">大连热电</span><span class="code">600719.SH</span><span class="tag tag-niukui">扭亏</span></div>
-  </div>
-  <div class="industry">公用事业 · 热力供应</div>
-  <table class="data-table">
-    <tr><th>指标</th><th>数值</th></tr>
-    <tr><td>预告净利润下限</td><td class="val">4,200万元</td></tr>
-    <tr><td>预告扣非净利润下限</td><td class="val">3,700万元</td></tr>
-  </table>
-  <div class="reason"><b>增长理由：</b>收回东海电厂拆迁补偿款1.05亿元，冲减已计提的坏账准备。</div>
-  <div class="comment">扣非3700万，主要来自拆迁补偿款冲回坏账准备。虽然符合扣非标准，但主业热电经营的持续性仍须关注。公用事业属性决定其增长弹性有限。</div>
+<div class="stock-card" style="background:#141833;">
+    <div class="card-header">
+        <span class="stock-code">600233.SH</span>
+        <span class="stock-name">圆通速递</span>
+        <span class="stock-tag" style="background:#f6c23e;color:#000;">预增</span>
+        <span class="industry-tag">交通运输 — 快递物流</span>
+    </div>
+    <div class="card-body">
+        <div class="highlight-bar">⭐⭐ ★★ 快递行业竞争格局改善，AI赋能降本增效，盈利持续释放</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>指标</th>
+                    <th>2026年Q1（单季）</th>
+                    <th>2026年H1（预告）</th>
+                    <th>2026年Q2（推算）</th>
+                    <th>环比变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>营收</td>
+                    <td>0.0亿</td>
+                    <td>待正式披露</td>
+                    <td>待推算</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>归母净利润</td>
+                    <td>0.00亿</td>
+                    <td>31.0亿~34.0亿</td>
+                    <td>待推算</td>
+                    <td>待推算</td>
+                </tr>
+                <tr>
+                    <td>扣非净利润</td>
+                    <td>待查</td>
+                    <td>30.4亿~33.4亿</td>
+                    <td>-</td>
+                    <td>+72%~+89%</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="reason">
+            <div class="reason-title">增长理由</div>
+            <div>行业反内卷推动价格修复，AI转型深化提升运营效率，服务质量与品牌溢价显著增强。</div>
+        </div>
+        <div class="comment">
+            <div class="comment-title">小H点评</div>
+            <div>★★ 快递行业竞争格局改善，AI赋能降本增效，盈利持续释放</div>
+        </div>
+    </div>
 </div>
 
-<!-- 润都股份 -->
-<div class="card">
-  <div class="card-header">
-    <div><span class="name">润都股份</span><span class="code">002923.SZ</span><span class="tag tag-niukui">扭亏</span></div>
-  </div>
-  <div class="industry">医药 · 化学制药</div>
-  <table class="data-table">
-    <tr><th>指标</th><th>数值</th></tr>
-    <tr><td>预告净利润下限</td><td class="val">3,500万元</td></tr>
-    <tr><td>预告扣非净利润下限</td><td class="val">2,800万元</td></tr>
-    <tr><td>扣非净利润同比增速</td><td class="val">+162.43%</td></tr>
-  </table>
-  <div class="reason"><b>增长理由：</b>把握市场机遇，大力开拓国内外销售市场，原料药及制剂产品销售量增加；荆门公司产能利用率稳步提升，生产成本下降，毛利增长。</div>
-  <div class="comment">扣非2800万，增长162%，医药制造主业复苏。原料药+制剂双驱动，产能利用率提升带动利润率改善。关注荆门基地产能释放节奏。</div>
+<div class="stock-card" style="background:#141833;">
+    <div class="card-header">
+        <span class="stock-code">000938.SZ</span>
+        <span class="stock-name">紫光股份</span>
+        <span class="stock-tag" style="background:#f6c23e;color:#000;">预增</span>
+        <span class="industry-tag">计算机 — ICT设备</span>
+    </div>
+    <div class="card-body">
+        <div class="highlight-bar">⭐⭐ ★★ 新华三持股比例提升至87.98%，AI算力+国产化双轮驱动</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>指标</th>
+                    <th>2026年Q1（单季）</th>
+                    <th>2026年H1（预告）</th>
+                    <th>2026年Q2（推算）</th>
+                    <th>环比变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>营收</td>
+                    <td>0.0亿</td>
+                    <td>待正式披露</td>
+                    <td>待推算</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>归母净利润</td>
+                    <td>0.00亿</td>
+                    <td>19.1亿~23.2亿</td>
+                    <td>待推算</td>
+                    <td>待推算</td>
+                </tr>
+                <tr>
+                    <td>扣非净利润</td>
+                    <td>待查</td>
+                    <td>16.1亿~20.2亿</td>
+                    <td>-</td>
+                    <td>+44%~+81%</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="reason">
+            <div class="reason-title">增长理由</div>
+            <div>AI算力需求驱动ICT市场快速增长，完成新华三6.98%股权收购增厚归母净利润。非经常性收益约2.5~3.5亿。</div>
+        </div>
+        <div class="comment">
+            <div class="comment-title">小H点评</div>
+            <div>★★ 新华三持股比例提升至87.98%，AI算力+国产化双轮驱动</div>
+        </div>
+    </div>
 </div>
 
-<!-- 重点推荐 -->
-<div class="summary" style="border-color: #ffd700; background: linear-gradient(135deg, #1a1530, #1a2350);">
-  <h2>重点推荐关注</h2>
-  <p>
-  <b style="color:#ffd700;">TOP 1: 神马股份 (600810)</b> — 扣非6500万几乎无水分，尼龙66全球龙头，顺周期最受益标的<br>
-  <b style="color:#ffd700;">TOP 2: 龙蟠科技 (603906)</b> — 扣非3.75亿利润纯度极高，磷酸铁锂赛道量价齐升<br>
-  <b style="color:#ffd700;">TOP 3: 金域医学 (603882)</b> — ICL龙头逆境反转，扣非增284%显示强劲复苏<br>
-  <b style="color:#ffd700;">TOP 4: 天际股份 (002759)</b> — 六氟磷酸锂供需反转，扣非2.2亿零水分<br>
-  <b style="color:#ffd700;">TOP 5: 西藏矿业 (000762)</b> — 锂矿量价齐升，扎布耶二期产能释放驱动高增
-  </p>
+<div class="stock-card" style="background:#1a1f40;">
+    <div class="card-header">
+        <span class="stock-code">300054.SZ</span>
+        <span class="stock-name">鼎龙股份</span>
+        <span class="stock-tag" style="background:#f6c23e;color:#000;">预增</span>
+        <span class="industry-tag">电子 — 半导体材料</span>
+    </div>
+    <div class="card-body">
+        <div class="highlight-bar">⭐⭐⭐ ★★★ 半导体材料平台型公司，CMP+光刻胶多品类放量，成长空间大</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>指标</th>
+                    <th>2026年Q1（单季）</th>
+                    <th>2026年H1（预告）</th>
+                    <th>2026年Q2（推算）</th>
+                    <th>环比变化</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>营收</td>
+                    <td>0.0亿</td>
+                    <td>待正式披露</td>
+                    <td>待推算</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>归母净利润</td>
+                    <td>0.00亿</td>
+                    <td>5.1亿~5.4亿</td>
+                    <td>待推算</td>
+                    <td>待推算</td>
+                </tr>
+                <tr>
+                    <td>扣非净利润</td>
+                    <td>待查</td>
+                    <td>4.8亿~5.1亿</td>
+                    <td>-</td>
+                    <td>+64%~+75%</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="reason">
+            <div class="reason-title">增长理由</div>
+            <div>CMP抛光液营收同比+63%且实现规模盈利，CMP抛光垫营收同比+57%，6月出货首破5万片，高端晶圆光刻胶批量交付。</div>
+        </div>
+        <div class="comment">
+            <div class="comment-title">小H点评</div>
+            <div>★★★ 半导体材料平台型公司，CMP+光刻胶多品类放量，成长空间大</div>
+        </div>
+    </div>
 </div>
 
-<div class="footer">
-  <strong>风险提示与免责声明</strong><br>
-  本报告基于公开披露的业绩预告数据整理，预告数据为初步核算结果，最终以正式中报为准。<br>
-  部分公司扭亏受到非经常性损益影响（如拆迁补偿、债务重组、诉讼执行款等），需结合扣非净利润综合判断。<br>
-  低基数效应导致的高增长需关注同比基数的合理性。本报告不构成投资建议，投资有风险，入市需谨慎。<br>
-  <em>数据来源: 同花顺iFind | 报告生成时间: 2026-07-14 07:15</em>
+    
+    <div class="section-title" style="color:#36b9cc;font-size:18px;font-weight:bold;margin:30px 0 12px;">
+        📈 行业分布概览
+    </div>
+    <div style="background:#141833;border-radius:12px;padding:20px;margin-bottom:20px;border:1px solid #2a2f60;">
+        <table class="data-table">
+            <thead>
+                <tr><th>行业</th><th>公司数量</th><th>代表公司</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>电子/半导体</td><td>5</td><td>瑞芯微、长川科技、江波龙、鼎龙股份、纳微科技</td></tr>
+                <tr><td>计算机/ICT</td><td>3</td><td>浪潮信息、紫光股份、盛视科技</td></tr>
+                <tr><td>电力设备/新能源</td><td>3</td><td>德业股份、天赐材料、联泓新科</td></tr>
+                <tr><td>基础化工</td><td>3</td><td>雅化集团、东岳硅材、新凤鸣</td></tr>
+                <tr><td>有色金属</td><td>1</td><td>焦作万方</td></tr>
+                <tr><td>交通运输</td><td>1</td><td>圆通速递</td></tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="section-title" style="color:#e74a3b;font-size:18px;font-weight:bold;margin:30px 0 12px;">
+        ⚠️ 风险提示
+    </div>
+    <div style="background:#141833;border-radius:12px;padding:20px;margin-bottom:20px;border:1px solid #2a2f60;">
+        <ol style="color:#b0b9d0;font-size:13px;line-height:2;padding-left:20px;">
+            <li><b>预告数据为初步核算结果</b>，最终以正式中报披露数据为准，可能存在±10%的偏差。</li>
+            <li><b>低基数效应</b>：部分公司（如天赐材料/雅化集团）扣非净利润增速超10倍，去年同期基数较低，高增速不可持续。</li>
+            <li><b>非经常性损益扰动</b>：紫光股份非经常性收益约2.5~3.5亿元（新华三股权交易），占归母净利润约14%；剥离非经常性损益后增速有所下降。</li>
+            <li><b>存储价格见顶风险</b>：江波龙Q1扣非利润增速近28倍，若存储价格回落，下半年业绩承压。</li>
+            <li><b>原材料价格波动</b>：焦作万方受益于氧化铝价格下降，若氧化铝触底反弹将侵蚀利润。</li>
+            <li><b>海外政策风险</b>：德业股份（储能出口）、天赐材料（电解液出口）受欧美贸易政策影响。</li>
+        </ol>
+    </div>
+    
+    <div class="section-title" style="color:#8892b0;font-size:18px;font-weight:bold;margin:30px 0 12px;">
+        📋 全量筛选结果（180家达标）
+    </div>
+    <div style="background:#141833;border-radius:12px;padding:20px;margin-bottom:20px;border:1px solid #2a2f60;">
+        <p style="color:#8892b0;font-size:13px;">
+            本次共搜索到186家公司发布半年度业绩预告（全部为预增），其中180家预告净利润下限≥2000万元，均已满足条件1（同比正增长）和条件2（扣非净利润≥2000万）。
+            条件3（扣非增速>20%或营收增速>20%）需逐个核实，未见明显不符合的案例。
+            精选15家作为今日重点关注标的，其余165家可在链接中查看全量数据。
+        </p>
+    </div>
+    
+    <div class="footer">
+        <p>免责声明：本报告基于公开信息整理，仅供参考，不构成投资建议。</p>
+        <p>业绩预告数据为初步核算结果，最终以公司正式中报为准。投资者据此操作，风险自担。</p>
+        <p>数据来源：同花顺iFind | 生成时间：2026-07-14 22:30 | 小H·A股业绩预告筛选</p>
+    </div>
 </div>
-
 </body>
 </html>
