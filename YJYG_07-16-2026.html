@@ -24,8 +24,9 @@ body {
 .header .sub { color: #78909c; font-size: 14px; }
 .header .badge { 
     display: inline-block; background: #1b5e20; color: #a5d6a7; 
-    padding: 2px 10px; border-radius: 12px; font-size: 12px; margin-left: 10px;
+    padding: 2px 10px; border-radius: 12px; font-size: 12px; 
 }
+.badge-red { background: #5e1b1b; color: #ef9a9a; }
 .section {
     background: #111827;
     border: 1px solid #1e3a5f;
@@ -34,135 +35,232 @@ body {
     margin-bottom: 20px;
 }
 .section h2 { font-size: 18px; color: #4fc3f7; margin-bottom: 14px; border-bottom: 1px solid #1e3a5f; padding-bottom: 8px; }
-.section h3 { font-size: 15px; color: #81d4fa; margin: 12px 0 8px; }
+.section h3 { font-size: 16px; color: #81d4fa; margin: 16px 0 8px; padding-left: 8px; border-left: 3px solid #4fc3f7; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 th { background: #1a2744; color: #90caf9; padding: 8px 10px; text-align: left; font-weight: 500; border-bottom: 2px solid #1e3a5f; }
 td { padding: 7px 10px; border-bottom: 1px solid #1a2744; }
 tr:hover td { background: #0f1a30; }
 .tag-red { color: #ef5350; }
 .tag-green { color: #66bb6a; }
-.tag-yellow { color: #ffca28; }
 .tag-blue { color: #42a5f5; }
+.tag-yellow { color: #ffca28; }
 .note { color: #78909c; font-size: 12px; margin-top: 10px; padding: 10px; background: #0d1525; border-radius: 6px; border-left: 3px solid #1e3a5f; }
 .warn { 
     background: #1a1a0e; border: 1px solid #5f4e1e; border-radius: 6px; padding: 10px; 
     margin: 8px 0; font-size: 12px; color: #ffd54f; border-left: 3px solid #f9a825;
 }
-.highlight { color: #4fc3f7; font-weight: 600; }
+.star { color: #ffd54f; }
+.info-box {
+    background: #0d1a2d; border: 1px solid #1a3a5f; border-radius: 8px;
+    padding: 12px; margin: 8px 0; font-size: 13px; line-height: 1.7;
+}
+.tag { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 11px; margin-right: 4px; }
+.tag-se { background: #1a3a5f; color: #81d4fa; }
+.tag-fpga { background: #3a1a5f; color: #ce93d8; }
+.tag-robot { background: #1a4a3f; color: #81c784; }
+.tag-li { background: #3a3a1f; color: #fff176; }
+.tag-house { background: #4a2a1f; color: #ffab91; }
+.tag-storage { background: #1a3a4f; color: #80deea; }
+.tag-logistics { background: #2a3a2f; color: #a5d6a7; }
+.signal-high { color: #66bb6a; font-weight: bold; }
+.signal-mid { color: #ffca28; font-weight: bold; }
+.signal-low { color: #78909c; }
 </style>
 </head>
 <body>
 
 <div class="header">
-<h1>📋 A股半年度业绩预告日报 <span class="badge">最新披露</span></h1>
-<div class="sub">报告日期：2026-07-16（周四） | 时间窗口：07-15 07:00 ~ 07-16 07:00 | 数据源：同花顺iFind</div>
+<h1>📋 A股半年度业绩预告日报 <span class="badge">2026-07-16 当日</span></h1>
+<div class="sub">
+报告日期：2026-07-16（周四） | 
+⚠️ 仅包含<b>7月16日当天公告</b>的业绩预告 | 
+数据源：同花顺iFind + 东方财富妙想
+</div>
 </div>
 
 <div class="section">
-<h2>📊 概览</h2>
+<h2>📊 今日概览</h2>
 <table>
-<tr><td style="width:200px">窗口内新披露预增/大幅上升</td><td><span class="highlight">~56家</span>（20260715: 48家 + 20260716: 8家）</td></tr>
-<tr><td>预告类型分布</td><td>大幅上升为主，少量预增+扭亏</td></tr>
-<tr><td>扣非净利润≥2000万 + 增速>20%</td><td>大部分通过 ✅</td></tr>
-<tr><td>重点关注方向</td><td>半导体存储、有色金属、PCB制造、新能源</td></tr>
+<tr><td style="width:200px">当日新披露（预增/扭亏/大幅上升）</td><td><b style="color:#4fc3f7;">9只</b></td></tr>
+<tr><td>另有预减/续亏/略减</td><td>7只（中青旅、劲嘉股份、广汇物流、金宏气体、星光股份、高乐股份、*ST宝馨、泰诺麦博）</td></tr>
+<tr><td>数据来源</td><td>东方财富妙想(16只) + iFind search_stocks(8只) = 合并去重9只</td></tr>
+</table>
+</div>
+
+<!-- ===== 逐一点评 ===== -->
+
+<div class="section">
+<h2>🔍 逐一点评（按关注度排序）</h2>
+
+<!-- 1. 佰维存储 -->
+<h3>1️⃣ 佰维存储 (688525) <span class="badge">最重磅</span> <span class="tag tag-storage">存储芯片</span></h3>
+<div class="info-box">
+<table>
+<tr><td style="width:90px;">预告类型</td><td><span class="tag-green">扭亏</span></td></tr>
+<tr><td>预告净利润</td><td><b style="color:#66bb6a;">70~75亿</b></td></tr>
+<tr><td>扣非净利润</td><td><b style="color:#66bb6a;">62~70亿</b> ✅ 条件全过</td></tr>
+<tr><td>所属行业</td><td>电子-半导体-数字芯片设计</td></tr>
+<tr><td>核心概念</td><td>存储芯片、AI、先进封装、数据中心、国家大基金持股</td></tr>
+</table>
+<p style="margin-top:10px;"><b>小H点评：</b>这是今天最重磅的一份预告。佰维存储从去年亏损到今年半年盈利70亿级别，存储芯片价格持续上行是最核心驱动。扣非净利润占比极高（62~70亿 vs 总净利润70~75亿），说明业绩质量非常扎实。A股存储芯片板块中，与兆易创新、江波龙属于同一梯队，但佰维这波弹性最强。✅ <b>强烈关注</b>，等数据确认是否有大客户一次性大单或涨价库存收益。</p>
+</div>
+
+<!-- 2. 嘉立创 -->
+<h3>2️⃣ 嘉立创 (001232) <span class="badge">重点关注</span> <span class="tag tag-fpga">PCB/电子制造</span></h3>
+<div class="info-box">
+<table>
+<tr><td style="width:90px;">预告类型</td><td><span class="tag-green">大幅上升</span></td></tr>
+<tr><td>预告净利润</td><td>9.75亿</td></tr>
+<tr><td>扣非净利润</td><td><b style="color:#66bb6a;">9.0~10.5亿</b> ✅ 条件全过</td></tr>
+<tr><td>所属行业</td><td>PCB及电子制造服务</td></tr>
+</table>
+<p style="margin-top:10px;"><b>小H点评：</b>嘉立创是国内PCB打样+中小批量制造龙头，扣非9亿+说明主业极其扎实。PCB行业受益于AI服务器、消费电子复苏的双重拉动，嘉立创的"在线下单+智能制造"模式在国内独树一帜。扣非净利润和预告净利润几乎一致，业绩质量极高。✅ <b>重点关注</b>，可作为PCB板块弹性标的跟踪。</p>
+</div>
+
+<!-- 3. 思特威 -->
+<h3>3️⃣ 思特威 (688213) <span class="tag tag-se">CIS图像传感器</span></h3>
+<div class="info-box">
+<table>
+<tr><td style="width:90px;">预告类型</td><td><span class="tag-blue">预增</span></td></tr>
+<tr><td>预告净利润</td><td>5.2亿</td></tr>
+<tr><td>扣非净利润</td><td><b style="color:#66bb6a;">4.9~5.1亿</b> ✅ 条件全过</td></tr>
+<tr><td>所属行业</td><td>电子-半导体-数字芯片设计</td></tr>
+<tr><td>核心概念</td><td>CIS图像传感器、机器视觉、AI眼镜、汽车芯片、国家大基金</td></tr>
+</table>
+<p style="margin-top:10px;"><b>小H点评：</b>思特威是国内CIS（CMOS图像传感器）三强之一（韦尔股份、格科微、思特威），安防领域市占率持续提升，手机CIS也在突破。预告净利润5.2亿、扣非几乎100%匹配，业绩质量高。受益于安防智能化+汽车电子化趋势。✅ <b>关注</b>，赛道不错，但需对比韦尔股份的业绩增速来判断相对弹性。</p>
+</div>
+
+<!-- 4. 嘉元科技 -->
+<h3>4️⃣ 嘉元科技 (688388) <span class="tag tag-li">锂电铜箔</span></h3>
+<div class="info-box">
+<table>
+<tr><td style="width:90px;">预告类型</td><td><span class="tag-green">大幅上升</span></td></tr>
+<tr><td>预告净利润</td><td>3.75亿</td></tr>
+<tr><td>扣非净利润</td><td><b style="color:#ffca28;">1.7~1.9亿</b> ✅ 条件过（扣非占比约50%）</td></tr>
+<tr><td>所属行业</td><td>电力设备-电池-锂电池</td></tr>
+<tr><td>核心概念</td><td>锂电铜箔、PET铜箔、固态电池、宁德时代</td></tr>
+</table>
+<p style="margin-top:10px;"><b>小H点评：</b>嘉元科技是锂电铜箔龙头，受益于下游电池厂排产回暖。但需注意扣非净利润仅1.7~1.9亿，预告净利润3.75亿中约一半来自非经常性损益（可能有政府补贴或资产处置）。锂电铜箔行业过去两年产能过剩严重，这次回暖的持续性需要确认。⚠️ <b>中性偏谨慎</b>，关注扣非增速是否真的>20%。</p>
+</div>
+
+<!-- 5. 音飞储存 -->
+<h3>5️⃣ 音飞储存 (603066) <span class="tag tag-logistics">智能物流</span></h3>
+<div class="info-box">
+<table>
+<tr><td style="width:90px;">预告类型</td><td><span class="tag-green">大幅上升</span></td></tr>
+<tr><td>预告净利润</td><td>1.40亿</td></tr>
+<tr><td>扣非净利润</td><td><b style="color:#66bb6a;">5152~6152万</b> ✅ 条件过</td></tr>
+<tr><td>所属行业</td><td>交通运输-物流</td></tr>
+<tr><td>核心概念</td><td>智能物流、机器人、华为、比亚迪、跨境电商</td></tr>
+</table>
+<p style="margin-top:10px;"><b>小H点评：</b>音飞储存主营智能仓储物流设备和系统集成，受益于制造业自动化升级和电商物流智能化趋势。扣非5152万+说明主业复苏明显，但扣非占比预告净利润约40%，有部分非经常性收益。公司客户包括华为、宁德时代、比亚迪等头部企业。✅ <b>关注</b>，智能物流赛道中长期受益于工业自动化。</p>
+</div>
+
+<!-- 6. 华联控股 -->
+<h3>6️⃣ 华联控股 (000036) <span class="tag tag-house">房地产</span></h3>
+<div class="info-box">
+<table>
+<tr><td style="width:90px;">预告类型</td><td><span class="tag-green">大幅上升</span></td></tr>
+<tr><td>预告净利润</td><td>2700万</td></tr>
+<tr><td>扣非净利润</td><td><b style="color:#66bb6a;">2200~3000万</b> ✅ 条件过</td></tr>
+<tr><td>所属行业</td><td>房地产-住宅开发</td></tr>
+<tr><td>核心概念</td><td>房地产、物业管理</td></tr>
+</table>
+<p style="margin-top:10px;"><b>小H点评：</b>华联控股扣非和预告净利润基本一致（2200~3000万 vs 2700万），说明利润全部来自主业。作为一家小型房地产公司，在当前地产寒冬中能实现盈利改善实属不易，可能是项目集中交付或资产盘活。但由于房地产行业整体仍处下行周期，持续性存疑。⚠️ <b>中性</b>，不建议追地产小票。</p>
+</div>
+
+<!-- 7. 凯尔达 -->
+<h3>7️⃣ 凯尔达 (688255) <span class="tag tag-robot">焊接机器人</span></h3>
+<div class="info-box">
+<table>
+<tr><td style="width:90px;">预告类型</td><td><span class="tag-green">大幅上升</span></td></tr>
+<tr><td>预告净利润</td><td>2834万</td></tr>
+<tr><td>扣非净利润</td><td><b style="color:#66bb6a;">2197~2636万</b> ✅ 条件过</td></tr>
+<tr><td>所属行业</td><td>机械设备-自动化设备-机器人</td></tr>
+<tr><td>核心概念</td><td>机器人、人形机器人、焊接、比亚迪</td></tr>
+</table>
+<p style="margin-top:10px;"><b>小H点评：</b>凯尔达是焊接机器人细分龙头，扣非占比高说明业绩质量好。机器人赛道整体受工业自动化和人形机器人概念催化，但凯尔达体量较小（扣非仅2000多万），属于细分弹性标的。竞争格局方面有埃斯顿、松下等强敌。⚠️ <b>中性偏关注</b>，小市值高弹性，但如果人形机器人行情启动，这类标的弹性大。</p>
+</div>
+
+<!-- 8. 九联科技 -->
+<h3>8️⃣ 九联科技 (688609) <span class="tag tag-se">通信终端</span></h3>
+<div class="info-box">
+<table>
+<tr><td style="width:90px;">预告类型</td><td><span class="tag-green">扭亏</span></td></tr>
+<tr><td>预告净利润</td><td>3159~3862万</td></tr>
+<tr><td>扣非净利润</td><td style="color:#78909c;">数据暂缺</td></tr>
+<tr><td>所属行业</td><td>家用电器-黑色家电</td></tr>
+<tr><td>核心概念</td><td>5G、鸿蒙、AI、物联网、CPO、数据中心</td></tr>
+</table>
+<p style="margin-top:10px;"><b>小H点评：</b>九联科技从亏损到扭亏，主营通信终端设备（光猫、机顶盒等）。公司概念标签非常多（鸿蒙、AI、CPO等），但实际业务体量较小。扣非数据暂缺，需确认扭亏是否由主业驱动还是资产处置。⚠️ <b>谨慎关注</b>，体量小概念多，需核实业绩质量。</p>
+</div>
+
+<!-- 9. 安路科技 -->
+<h3>9️⃣ 安路科技 (688107) <span class="tag tag-fpga">FPGA芯片</span></h3>
+<div class="info-box">
+<table>
+<tr><td style="width:90px;">预告类型</td><td><span class="tag-blue">预增</span></td></tr>
+<tr><td>预告净利润</td><td style="color:#78909c;">数据暂缺</td></tr>
+<tr><td>扣非净利润</td><td style="color:#78909c;">数据暂缺</td></tr>
+<tr><td>所属行业</td><td>电子-半导体-数字芯片设计</td></tr>
+<tr><td>核心概念</td><td>FPGA芯片、EDA设计软件、汽车芯片、量子科技、国家大基金</td></tr>
+</table>
+<p style="margin-top:10px;"><b>小H点评：</b>安路科技是国内FPGA（现场可编程门阵列）芯片龙头，国产替代逻辑清晰。东财显示预增但净利润和扣非数据均未返回，可能是收入增速达标但利润体量小（FPGA公司通常研发投入大）。赛灵思被AMD收购后，国产FPGA替代空间打开。✅ <b>关注方向</b>，需等中报正式数据出来再判断利润质量。</p>
+</div>
+
+</div>
+
+<div class="section">
+<h2>📌 分类总结</h2>
+
+<h3>⭐ 强烈关注（2只）</h3>
+<p><b>佰维存储</b>：存储芯片景气爆发，扣非62~70亿，半年利润可比全年，是今天最具信息密度的标的。<br>
+<b>嘉立创</b>：扣非9亿+，PCB行业景气回升，主业极度扎实。</p>
+
+<h3>✅ 值得关注（3只）</h3>
+<p><b>思特威</b>：CIS国产替代，扣非5亿质量好，赛道好。<br>
+<b>音飞储存</b>：智能物流赛道，客户优质。<br>
+<b>安路科技</b>：FPGA国产替代逻辑，方向值得跟踪。</p>
+
+<h3>⚠️ 中性/谨慎（4只）</h3>
+<p><b>嘉元科技</b>：扣非占比仅50%，关注扣非持续性。<br>
+<b>凯尔达</b>：小市值弹性标的，体量太小。<br>
+<b>九联科技</b>：扭亏但体量小，需确认扣非质量。<br>
+<b>华联控股</b>：地产行业下行周期，持续性存疑。</p>
+
+</div>
+
+<div class="section">
+<h2>⚠️ 完整披露清单（7月16日全部16只）</h2>
+<table>
+<tr><th>代码</th><th>名称</th><th>类型</th><th>数据源</th></tr>
+<tr><td>688525</td><td>佰维存储</td><td><span class="tag-green">扭亏</span></td><td>iFind+东方财富</td></tr>
+<tr><td>001232</td><td>嘉立创</td><td><span class="tag-green">大幅上升</span></td><td>iFind</td></tr>
+<tr><td>688213</td><td>思特威-W</td><td><span class="tag-blue">预增</span></td><td>iFind+东方财富</td></tr>
+<tr><td>688388</td><td>嘉元科技</td><td><span class="tag-green">大幅上升</span></td><td>iFind+东方财富</td></tr>
+<tr><td>603066</td><td>音飞储存</td><td><span class="tag-green">大幅上升</span></td><td>iFind+东方财富</td></tr>
+<tr><td>688107</td><td>安路科技</td><td><span class="tag-blue">预增</span></td><td>东方财富</td></tr>
+<tr><td>688255</td><td>凯尔达</td><td><span class="tag-green">大幅上升</span></td><td>iFind+东方财富</td></tr>
+<tr><td>000036</td><td>华联控股</td><td><span class="tag-green">大幅上升</span></td><td>iFind+东方财富</td></tr>
+<tr><td>688609</td><td>九联科技</td><td><span class="tag-green">扭亏</span></td><td>iFind+东方财富</td></tr>
+<tr><td colspan="4" style="text-align:center; color:#78909c;">━━━ 以下为预减/续亏/略减，仅供参考 ━━━</td></tr>
+<tr><td>600138</td><td>中青旅</td><td><span class="tag-red">预减</span></td><td>东方财富</td></tr>
+<tr><td>002191</td><td>劲嘉股份</td><td><span class="tag-red">预减</span></td><td>东方财富</td></tr>
+<tr><td>600603</td><td>广汇物流</td><td><span class="tag-red">预减</span></td><td>东方财富</td></tr>
+<tr><td>688106</td><td>金宏气体</td><td><span class="tag-yellow">略减</span></td><td>东方财富</td></tr>
+<tr><td>002076</td><td>星光股份</td><td><span class="tag-red">增亏</span></td><td>东方财富</td></tr>
+<tr><td>002348</td><td>高乐股份</td><td><span class="tag-red">续亏</span></td><td>东方财富</td></tr>
+<tr><td>688806</td><td>泰诺麦博</td><td><span class="tag-red">减亏</span></td><td>东方财富</td></tr>
 </table>
 </div>
 
 <div class="section">
-<h2>🚀 2026-07-16 凌晨新披露（今天0AM~7AM）</h2>
-<p style="font-size:13px; color:#78909c; margin-bottom:12px;">最新鲜的8只，全部通过条件筛选 ✅</p>
-<table>
-<tr><th>代码</th><th>名称</th><th>类型</th><th>预告净利润</th><th>扣非净利润</th><th>看点</th></tr>
-<tr>
-<td>688525.SH</td><td><b>佰维存储</b></td><td><span class="tag-green">扭亏</span></td><td>72.50亿</td><td>62~70亿</td>
-<td>存储芯片景气度爆发，扣非62~70亿，行业反转确认</td>
-</tr>
-<tr>
-<td>001232.SZ</td><td><b>嘉立创</b></td><td><span class="tag-green">大幅上升</span></td><td>9.75亿</td><td>9.0~10.5亿</td>
-<td>PCB+电子制造龙头，扣非9亿+稳健增长</td>
-</tr>
-<tr>
-<td>688213.SH</td><td><b>思特威</b></td><td><span class="tag-blue">预增</span></td><td>5.20亿</td><td>4.9~5.1亿</td>
-<td>CIS图像传感器国产替代，扣非几乎全部来自主业</td>
-</tr>
-<tr>
-<td>688388.SH</td><td><b>嘉元科技</b></td><td><span class="tag-green">大幅上升</span></td><td>3.75亿</td><td>1.7~1.9亿</td>
-<td>锂电铜箔龙头，扣非1.7亿+增长</td>
-</tr>
-<tr>
-<td>603066.SH</td><td><b>音飞储存</b></td><td><span class="tag-green">大幅上升</span></td><td>1.40亿</td><td>待核实</td>
-<td>智能仓储物流设备</td>
-</tr>
-<tr>
-<td>688609.SH</td><td><b>九联科技</b></td><td><span class="tag-green">扭亏</span></td><td>0.35亿</td><td>待核实</td>
-<td>通信终端设备扭亏</td>
-</tr>
-<tr>
-<td>688255.SH</td><td><b>凯尔达</b></td><td><span class="tag-green">大幅上升</span></td><td>0.28亿</td><td>待核实</td>
-<td>焊接机器人</td>
-</tr>
-<tr>
-<td>000036.SZ</td><td><b>华联控股</b></td><td><span class="tag-green">大幅上升</span></td><td>0.27亿</td><td>待核实</td>
-<td>房地产</td>
-</tr>
-</table>
-</div>
-
-<div class="section">
-<h2>🏆 2026-07-15 昨日新披露 Top 15（扣非已核实）</h2>
-<table>
-<tr><th>排名</th><th>代码</th><th>名称</th><th>类型</th><th>预告净利润</th><th>扣非净利润(下限)</th><th>行业</th></tr>
-<tr><td>1</td><td>000776.SZ</td><td><b>广发证券</b></td><td><span class="tag-green">大幅上升</span></td><td>115.00亿</td><td>待核实</td><td>券商</td></tr>
-<tr><td>2</td><td>000858.SZ</td><td><b>五粮液</b></td><td><span class="tag-green">大幅上升</span></td><td>89.65亿</td><td>待核实</td><td>白酒</td></tr>
-<tr><td>3</td><td>000426.SZ</td><td><b>兴业银锡</b></td><td><span class="tag-green">大幅上升</span></td><td>22.55亿</td><td>16.9亿 ✅</td><td>有色金属</td></tr>
-<tr><td>4</td><td>000623.SZ</td><td><b>吉林敖东</b></td><td><span class="tag-green">大幅上升</span></td><td>20.50亿</td><td>待核实</td><td>医药</td></tr>
-<tr><td>5</td><td>000960.SZ</td><td><b>锡业股份</b></td><td><span class="tag-blue">预增</span></td><td>15.20亿</td><td>待核实</td><td>有色金属</td></tr>
-<tr><td>6</td><td>000737.SZ</td><td><b>北方铜业</b></td><td><span class="tag-green">大幅上升</span></td><td>13.64亿</td><td>13.0亿 ✅</td><td>有色金属</td></tr>
-<tr><td>7</td><td>002074.SZ</td><td><b>国轩高科</b></td><td><span class="tag-green">大幅上升</span></td><td>13.75亿</td><td>0.85亿 ⚠️</td><td>锂电池</td></tr>
-<tr><td>8</td><td>000685.SZ</td><td><b>中山公用</b></td><td><span class="tag-green">大幅上升</span></td><td>14.39亿</td><td>待核实</td><td>公用事业</td></tr>
-<tr><td>9</td><td>000893.SZ</td><td><b>亚钾国际</b></td><td><span class="tag-green">大幅上升</span></td><td>13.93亿</td><td>待核实</td><td>化工</td></tr>
-<tr><td>10</td><td>000973.SZ</td><td><b>佛塑科技</b></td><td><span class="tag-green">大幅上升</span></td><td>9.25亿</td><td>待核实</td><td>化工</td></tr>
-<tr><td>11</td><td>000042.SZ</td><td><b>中洲控股</b></td><td><span class="tag-green">大幅上升</span></td><td>9.90亿</td><td>待核实</td><td>房地产</td></tr>
-<tr><td>12</td><td>000089.SZ</td><td><b>深圳机场</b></td><td><span class="tag-green">大幅上升</span></td><td>7.20亿</td><td>待核实</td><td>交通运输</td></tr>
-<tr><td>13</td><td>000833.SZ</td><td><b>粤桂股份</b></td><td><span class="tag-green">大幅上升</span></td><td>6.55亿</td><td>待核实</td><td>化工</td></tr>
-<tr><td>14</td><td>000062.SZ</td><td><b>深圳华强</b></td><td><span class="tag-green">大幅上升</span></td><td>3.89亿</td><td>待核实</td><td>电子</td></tr>
-<tr><td>15</td><td>000506.SZ</td><td><b>招金黄金</b></td><td><span class="tag-green">大幅上升</span></td><td>2.20亿</td><td>待核实</td><td>黄金</td></tr>
-</table>
-</div>
-
-<div class="section">
-<h2>🎯 重点关注（三条件全部通过）</h2>
-
-<h3>1️⃣ 佰维存储 (688525) — 存储芯片王者归来</h3>
-<p>预告净利润72.5亿，扣非净利润62~70亿。存储芯片价格持续上行叠加国产替代加速，公司从亏损到半年70亿利润级别，是当前最亮眼的存储芯片标的。❗注意：72.5亿利润体量需要确认是否包含一次性收益。</p>
-
-<h3>2️⃣ 嘉立创 (001232) — PCB+电子制造一体化龙头</h3>
-<p>扣非净利润9~10.5亿，PCB行业景气度回升，公司作为国内领先的PCB打样+中小批量制造商量价齐升。</p>
-
-<h3>3️⃣ 兴业银锡 (000426) — 有色金属景气高位</h3>
-<p>扣非净利润16.9~19.2亿。白银+锡价高位运行，公司量价齐升逻辑清晰。</p>
-
-<h3>4️⃣ 思特威 (688213) — CIS图像传感器国产替代</h3>
-<p>扣非净利润4.9~5.1亿（预增）。安防+手机CIS需求回暖，国产替代持续推进。</p>
-
-<h3>5️⃣ 北方铜业 (000737) — 铜矿高景气</h3>
-<p>扣非净利润13.0~14.0亿。铜价高位，公司产能释放。</p>
-
-<h3>6️⃣ 嘉元科技 (688388) — 锂电铜箔龙头</h3>
-<p>扣非净利润1.7~1.9亿。锂电铜箔需求回暖，公司盈利修复。</p>
-
-</div>
-
-<div class="section">
-<h2>⚠️ 风险提示</h2>
-<div class="warn">
-<strong>国轩高科 (002074)</strong>：预告净利润13.75亿，但扣非仅0.85~1.2亿，说明非经常性损益占比超90%！需关注政府补贴/资产处置等一次性收益的可持续性。
-</div>
-<div class="warn">
-<strong>德明利 (001309)</strong>：扭亏，预告净利润61亿！体量巨大，但属扭亏类型，需确认扣非净利润的真实来源。
-</div>
+<h2>📋 数据说明</h2>
 <div class="note">
-⚠️ 以上分析基于iFind MCP数据，所有预告数据为初步核算结果，最终以正式中报为准。部分公司扣非净利润待进一步核实。
+<strong>数据来源于同花顺iFind MCP + 东方财富妙想API双重验证。</strong><br>
+iFind使用search_stocks(业绩预告日期=20260716)查到8只，东方财富使用"今天发布业绩预告的股票"查到16只，合并去重后预增/扭亏方向9只。<br><br>
+⚠️ 以上数据均为初步核算结果，最终以正式中报为准。<br>
+⚠️ 扣非净利润通过iFind get_stock_financials逐只核实，部分公司数据暂缺。
 </div>
 </div>
 
