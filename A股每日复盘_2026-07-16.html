@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股每日复盘 — 2026-07-16 (周四)</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #0a0e1a; color: #e0e4f0; line-height: 1.6; }
+.container { max-width: 1200px; margin:0 auto; padding: 20px; }
+.header { background: linear-gradient(135deg, #1a1f35 0%, #0d1225 100%); padding: 30px; border-radius: 16px; margin-bottom: 24px; border: 1px solid #2a3050; text-align: center; }
+.header h1 { font-size: 28px; font-weight: 700; color: #f0f4ff; letter-spacing: 2px; }
+.header .subtitle { color: #8892b0; font-size: 14px; margin-top: 8px; }
+.header .date-badge { display: inline-block; background: #1e3a5f; color: #6db3f2; padding: 4px 16px; border-radius: 20px; font-size: 13px; margin-top: 12px; }
+.section { background: #111827; border-radius: 12px; padding: 24px; margin-bottom: 20px; border: 1px solid #1e2745; }
+.section h2 { font-size: 20px; font-weight: 600; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid #1e3a5f; color: #c8d6f0; display: flex; align-items: center; gap: 8px; }
+.section h2 .icon { font-size: 22px; }
+.section h3 { font-size: 16px; font-weight: 600; margin: 16px 0 10px; color: #a0b4d8; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.card { background: #0f1729; border-radius: 10px; padding: 16px; border: 1px solid #1e2745; }
+.card-value { font-size: 24px; font-weight: 700; margin: 4px 0; }
+.card-label { color: #8892b0; font-size: 13px; }
+.red { color: #f23645; }
+.green { color: #00c853; }
+.neutral { color: #ffa726; }
+table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 14px; }
+th { text-align: left; padding: 10px 12px; background: #0f1729; color: #8892b0; font-weight: 500; border-bottom: 1px solid #1e2745; }
+td { padding: 10px 12px; border-bottom: 1px solid #1a2340; }
+tr:hover td { background: rgba(30, 58, 95, 0.15); }
+.tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; }
+.tag-red { background: rgba(242, 54, 69, 0.15); color: #f23645; }
+.tag-green { background: rgba(0, 200, 83, 0.15); color: #00c853; }
+.tag-yellow { background: rgba(255, 167, 38, 0.15); color: #ffa726; }
+.tag-blue { background: rgba(109, 179, 242, 0.15); color: #6db3f2; }
+.tag-gray { background: rgba(136, 146, 176, 0.15); color: #8892b0; }
+.stock-red { color: #f23645; font-weight: 600; }
+.stock-green { color: #00c853; font-weight: 600; }
+.stock-gray { color: #8892b0; }
+.progress-bar { height: 6px; border-radius: 3px; background: #1e2745; margin: 4px 0; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 3px; }
+.progress-red { background: #f23645; }
+.progress-green { background: #00c853; }
+.summary-box { background: linear-gradient(135deg, #0f1a30 0%, #162040 100%); border-left: 4px solid #6db3f2; padding: 16px 20px; border-radius: 8px; margin: 12px 0; }
+.warning-box { background: linear-gradient(135deg, #2a1a0a 0%, #3a1a0a 100%); border-left: 4px solid #ffa726; padding: 16px 20px; border-radius: 8px; margin: 12px 0; }
+.danger-box { background: linear-gradient(135deg, #2a0a0a 0%, #3a0a0a 100%); border-left: 4px solid #f23645; padding: 16px 20px; border-radius: 8px; margin: 12px 0; }
+.info-box { background: linear-gradient(135deg, #0a1a2a 0%, #0a2a3a 100%); border-left: 4px solid #6db3f2; padding: 16px 20px; border-radius: 8px; margin: 12px 0; }
+ul { padding-left: 20px; color: #c0c8dc; }
+li { margin-bottom: 6px; }
+.footer { text-align: center; color: #4a5270; font-size: 12px; padding: 20px; border-top: 1px solid #1e2745; margin-top: 24px; }
+@media (max-width: 768px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .container { padding: 12px; }
+  .header h1 { font-size: 22px; }
+}
+.rating-star { color: #ffd700; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>📊 A股每日复盘报告</h1>
+  <div class="date-badge">2026年7月16日 · 星期四 · 交易日</div>
+  <div class="subtitle">数据来源: 腾讯行情API · 东方财富 · iFind · 新浪财经</div>
+</div>
+
+<div class="grid-2" style="margin-bottom:20px;">
+  <div class="card" style="text-align:center;">
+    <div class="card-label">上证指数</div>
+    <div class="card-value stock-red" style="font-size:32px;">3882.41</div>
+    <div style="color:#f23645;font-size:18px;font-weight:600;">-1.85%</div>
+    <div style="color:#8892b0;font-size:13px;margin-top:4px;">高 3940.45 / 低 3867.60</div>
+  </div>
+  <div class="card" style="text-align:center;">
+    <div class="card-label">两市成交额</div>
+    <div class="card-value" style="font-size:32px;color:#ffa726;">24,036亿</div>
+    <div style="color:#ffa726;font-size:14px;font-weight:500;">⚠️ 天量成交 · 放量下杀</div>
+    <div style="color:#8892b0;font-size:13px;margin-top:4px;">沪 11,242亿 / 深 12,794亿</div>
+  </div>
+</div>
+
+<!-- 核心结论 -->
+<div class="section">
+  <h2><span class="icon">📋</span> 核心结论</h2>
+  <div class="summary-box">
+    <strong>一句话总结：</strong>2026年7月16日，A股遭遇放量普跌，三大指数全线下挫，科创50暴跌4.02%领跌全场。两市成交额激增至2.4万亿天量水平，资金出逃科技板块明显。消费和医药成为唯二避风港，中证消费逆势上涨0.78%，中证医药微涨0.30%。地缘政治风险（美伊冲突升级）叠加科技股高估值回调是本日主要驱动力。
+  </div>
+  <div class="grid-3" style="margin-top:16px;">
+    <div class="card" style="text-align:center;">
+      <div style="color:#f23645;font-size:28px;">⬇ 普跌</div>
+      <div style="color:#8892b0;font-size:13px;">市场情绪 · 恐慌</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div style="color:#ffa726;font-size:28px;">2.4万亿</div>
+      <div style="color:#8892b0;font-size:13px;">成交额 · 放量</div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div style="color:#00c853;font-size:28px;">消费+0.78%</div>
+      <div style="color:#8892b0;font-size:13px;">唯一上涨板块</div>
+    </div>
+  </div>
+</div>
+
+<!-- 大盘指数 -->
+<div class="section">
+  <h2><span class="icon">📈</span> 一、大盘指数全景</h2>
+  <table>
+    <tr><th>指数</th><th>收盘价</th><th>涨跌幅</th><th>最高</th><th>最低</th><th>成交额(亿)</th><th>振幅</th></tr>
+    <tr>
+      <td>上证指数</td><td>3882.41</td><td class="stock-red">-1.85%</td><td>3940.45</td><td>3867.60</td><td>11,242</td><td>1.84%</td>
+    </tr>
+    <tr>
+      <td>上证50</td><td>2904.12</td><td class="stock-red">-2.12%</td><td>2948.95</td><td>2892.05</td><td>2,323</td><td>1.69%</td>
+    </tr>
+    <tr>
+      <td>沪深300</td><td>4698.43</td><td class="stock-red">-1.85%</td><td>4771.06</td><td>4673.35</td><td>7,988</td><td>2.07%</td>
+    </tr>
+    <tr>
+      <td>科创50</td><td style="font-weight:700;">1846.88</td><td class="stock-red" style="font-weight:700;font-size:16px;">-4.02% 🚨</td><td>1947.25</td><td>1828.57</td><td>1,748</td><td>6.15%</td>
+    </tr>
+    <tr>
+      <td>深证成指</td><td>14488.65</td><td class="stock-red">-1.97%</td><td>14780.46</td><td>14386.41</td><td>12,794</td><td>2.67%</td>
+    </tr>
+    <tr>
+      <td>创业板指</td><td>3692.46</td><td class="stock-red" style="font-weight:700;">-2.95%</td><td>3796.35</td><td>3658.07</td><td>5,774</td><td>3.60%</td>
+    </tr>
+    <tr>
+      <td>中小100</td><td>9045.83</td><td class="stock-red">-0.98%</td><td>9206.44</td><td>8914.12</td><td>2,369</td><td>3.13%</td>
+    </tr>
+    <tr>
+      <td>中证500</td><td>7955.66</td><td class="stock-red">-2.36%</td><td>8148.04</td><td>7907.10</td><td>4,746</td><td>2.98%</td>
+    </tr>
+  </table>
+
+  <div class="danger-box" style="margin-top:12px;">
+    <strong>🚨 重点关注：</strong>科创50暴跌4.02%为全市场最弱指数，科技成长风格遭遇全面抛售。创业板指-2.95%跟随下行。价值风格（上证50 -2.12%, 300价值 -1.29%）跌幅相对可控，市场呈现显著的"杀成长、避科技"特征。
+  </div>
+</div>
+
+<!-- 资金面 -->
+<div class="section">
+  <h2><span class="icon">💰</span> 二、资金面分析</h2>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-label">两市成交额</div>
+      <div class="card-value" style="color:#ffa726;">24,036亿</div>
+      <div style="font-size:13px;color:#8892b0;margin-top:4px;">较前日放量明显 · 天量换手</div>
+      <div class="progress-bar" style="margin-top:8px;"><div class="progress-fill progress-red" style="width:85%;"></div></div>
+      <div style="font-size:12px;color:#8892b0;margin-top:4px;">量能处于近3个月极高水平</div>
+    </div>
+    <div class="card">
+      <div class="card-label">沪市 / 深市</div>
+      <div class="card-value" style="font-size:20px;"><span style="color:#6db3f2;">11,242亿</span> / <span style="color:#a78bfa;">12,794亿</span></div>
+      <div style="font-size:13px;color:#8892b0;margin-top:4px;">深市成交额超越沪市，显示中小盘&成长股换手率更高</div>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top:12px;">
+    <strong>📌 资金流向判断：</strong>从板块结构看，300信息（TMT）成交3530亿（占沪市31%），资金从科技板块大规模流出。300金融成交591亿（正常水平），300医药成交383亿（活跃）。北向资金数据暂不可用（API受限），但结合量价关系，大概率北向资金今日净流出。
+    <br><br>
+    <strong>风格特征：</strong>300成长(-2.66%) vs 300价值(-1.29%) — <strong>价值防御显著跑赢成长</strong>，风格切换信号强烈。
+  </div>
+</div>
+
+<!-- 市场情绪 -->
+<div class="section">
+  <h2><span class="icon">🌡️</span> 三、市场情绪与龙头表现</h2>
+  
+  <h3>🔵 龙头股涨跌分布（大市值样本）</h3>
+  <div class="grid-2">
+    <div class="card">
+      <div style="color:#00c853;font-weight:600;margin-bottom:8px;">📈 逆势上涨龙头</div>
+      <table>
+        <tr><th>个股</th><th>涨跌幅</th><th>备注</th></tr>
+        <tr><td>万科A</td><td class="stock-green">+3.19%</td><td>地产异动，政策预期</td></tr>
+        <tr><td>牧原股份</td><td class="stock-green">+3.15%</td><td>猪肉板块走强，猪周期预期</td></tr>
+        <tr><td>比亚迪</td><td class="stock-green">+2.59%</td><td>新能源车逆势走强</td></tr>
+        <tr><td>立讯精密</td><td class="stock-green">+1.84%</td><td>果链龙头，消费电子需求提振</td></tr>
+        <tr><td>贵州茅台</td><td class="stock-green">+0.63%</td><td>消费避险，核心资产止跌</td></tr>
+        <tr><td>伊利股份</td><td class="stock-green">+0.39%</td><td>必选消费防御</td></tr>
+        <tr><td>五粮液</td><td class="stock-green">+0.11%</td><td>白酒板块企稳</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div style="color:#f23645;font-weight:600;margin-bottom:8px;">🔻 领跌龙头</div>
+      <table>
+        <tr><th>个股</th><th>涨跌幅</th><th>备注</th></tr>
+        <tr><td>恒瑞医药</td><td class="stock-red">-2.63%</td><td>医药板块分化，创新药承压</td></tr>
+        <tr><td>宁德时代</td><td class="stock-red">-1.82%</td><td>成长龙头跟随回调</td></tr>
+        <tr><td>中信证券</td><td class="stock-red">-1.75%</td><td>券商跟跌</td></tr>
+        <tr><td>工商银行</td><td class="stock-red">-1.60%</td><td>银行板块补跌</td></tr>
+        <tr><td>东方财富</td><td class="stock-red">-1.59%</td><td>券商+互联网板块双杀</td></tr>
+        <tr><td>长江电力</td><td class="stock-red">-1.53%</td><td>防御板块补跌</td></tr>
+        <tr><td>隆基绿能</td><td class="stock-red">-1.17%</td><td>光伏龙头持续弱势</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h3 style="margin-top:16px;">📊 板块结构分析</h3>
+  <table>
+    <tr><th>板块/指数</th><th>涨跌幅</th><th>成交额(亿)</th><th>判断</th></tr>
+    <tr><td>中证消费</td><td class="stock-green" style="font-weight:700;">+0.78%</td><td>331</td><td><span class="tag tag-green">🏆 最强板块</span> 核心资产避风港</td></tr>
+    <tr><td>中证医药</td><td class="stock-green">+0.30%</td><td>873</td><td><span class="tag tag-green">防御走强</span> 结构性行情，CXO和医美或分化</td></tr>
+    <tr><td>300医药</td><td class="stock-red">-0.35%</td><td>383</td><td>大盘医药微跌，个股分化明显</td></tr>
+    <tr><td>300金融</td><td class="stock-red">-1.26%</td><td>591</td><td>银行保险跌幅可控</td></tr>
+    <tr><td>300价值</td><td class="stock-red">-1.29%</td><td>1,203</td><td>价值风格相对抗跌</td></tr>
+    <tr><td>300公用</td><td class="stock-red">-1.34%</td><td>111</td><td>防御板块缩量调整</td></tr>
+    <tr><td>300成长</td><td class="stock-red">-2.66%</td><td>4,291</td><td>成长风格大幅杀跌</td></tr>
+    <tr><td>300通信</td><td class="stock-red">-2.78%</td><td>1,320</td><td>通信板块大幅回调</td></tr>
+    <tr><td style="font-weight:700;">300信息 (TMT)</td><td class="stock-red" style="font-weight:700;">-3.62%</td><td style="font-weight:700;">3,530</td><td><span class="tag tag-red">🚨 最弱板块</span> 放量暴跌，资金出逃</td></tr>
+  </table>
+
+  <div class="warning-box" style="margin-top:12px;">
+    <strong>⚠️ 风险信号：</strong>科技板块（300信息-3.62%+科创50-4.02%）放量杀跌，成交额3530亿占沪市31%。半导体、AI、数字经济等赛道遭遇集体抛售。需要关注是否有外部催化（如美对华科技制裁升级）或内部资金大调仓。
+  </div>
+</div>
+
+<!-- 行业主线 -->
+<div class="section">
+  <h2><span class="icon">🎯</span> 四、行业主线Top 6</h2>
+  <table>
+    <tr><th>排名</th><th>主线方向</th><th>代表个股</th><th>今日表现</th><th>信号强度</th><th>逻辑</th></tr>
+    <tr>
+      <td>🥇</td><td><strong>消费/白酒</strong></td><td>贵州茅台、五粮液、伊利股份</td><td class="stock-green">+0.5%~+0.8%</td>
+      <td><span class="tag tag-green">强烈关注</span></td>
+      <td>防御资金流入，中报窗口期消费龙头业绩确定性高</td>
+    </tr>
+    <tr>
+      <td>🥇</td><td><strong>猪肉/畜牧</strong></td><td>牧原股份、温氏股份、新希望</td><td class="stock-green">+2%~+3%</td>
+      <td><span class="tag tag-green">强烈关注</span></td>
+      <td>猪周期底部预期+供给收缩逻辑，逆势走强</td>
+    </tr>
+    <tr>
+      <td>🥈</td><td><strong>医药/CXO</strong></td><td>恒瑞医药、药明康德、迈瑞医疗</td><td class="stock-green">+0%~-2%</td>
+      <td><span class="tag tag-blue">关注</span></td>
+      <td>医药板块分化，中证医药微涨，部分个股承压</td></tr>
+    <tr>
+      <td>🥈</td><td><strong>地产链</strong></td><td>万科A、保利发展、招商蛇口</td><td class="stock-green">+1%~+3%</td>
+      <td><span class="tag tag-blue">关注</span></td>
+      <td>万科A异动+3.19%，地产板块可能有政策预期催化</td></tr>
+    <tr>
+      <td>🥉</td><td><strong>新能源车</strong></td><td>比亚迪、赛力斯、理想</td><td class="stock-green">+1%~+3%</td>
+      <td><span class="tag tag-yellow">中性谨慎</span></td>
+      <td>比亚迪逆势+2.59%，但宁德时代-1.82%拖累板块整体</td></tr>
+    <tr>
+      <td style="color:#f23645;">❌</td><td><strong>TMT/科技</strong></td><td>中科曙光、寒武纪、中际旭创</td><td class="stock-red">-3%~-5%</td>
+      <td><span class="tag tag-red">回避</span></td>
+      <td>科创50-4.02%领跌，科技板块放量暴跌，短期回避</td></tr>
+  </table>
+</div>
+
+<!-- 龙头梯队 -->
+<div class="section">
+  <h2><span class="icon">🏢</span> 五、龙头梯队与市场结构</h2>
+  
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-label" style="margin-bottom:8px;">第一梯队 · 核心资产</div>
+      <div>贵州茅台 <span class="stock-green">+0.63%</span></div>
+      <div class="progress-bar"><div class="progress-fill progress-green" style="width:30%;"></div></div>
+      <div style="margin-top:6px;">宁德时代 <span class="stock-red">-1.82%</span></div>
+      <div class="progress-bar"><div class="progress-fill progress-red" style="width:70%;"></div></div>
+      <div style="margin-top:6px;">中国平安 <span class="stock-red">-0.55%</span></div>
+      <div class="progress-bar"><div class="progress-fill progress-red" style="width:25%;"></div></div>
+      <div style="margin-top:6px;">比亚迪 <span class="stock-green">+2.59%</span> ⭐</div>
+      <div class="progress-bar"><div class="progress-fill progress-green" style="width:60%;"></div></div>
+    </div>
+    <div class="card">
+      <div class="card-label" style="margin-bottom:8px;">第二梯队 · 成长龙头</div>
+      <div>立讯精密 <span class="stock-green">+1.84%</span> ⭐</div>
+      <div class="progress-bar"><div class="progress-fill progress-green" style="width:50%;"></div></div>
+      <div style="margin-top:6px;">东方财富 <span class="stock-red">-1.59%</span></div>
+      <div class="progress-bar"><div class="progress-fill progress-red" style="width:55%;"></div></div>
+      <div style="margin-top:6px;">恒瑞医药 <span class="stock-red">-2.63%</span></div>
+      <div class="progress-bar"><div class="progress-fill progress-red" style="width:80%;"></div></div>
+      <div style="margin-top:6px;">汇川技术 <span class="stock-red">-1.20%</span></div>
+      <div class="progress-bar"><div class="progress-fill progress-red" style="width:40%;"></div></div>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top:12px;">
+    <strong>⭐ 强势信号个股：</strong>
+    <ul>
+      <li><strong>万科A (+3.19%)</strong> — 地产龙头逆势放量上涨，可能受政策托底预期或销售数据改善驱动，值得关注后续政策信号</li>
+      <li><strong>牧原股份 (+3.15%)</strong> — 猪周期预期升温，供给端去化加速，猪肉价格企稳回升，逆势走强</li>
+      <li><strong>比亚迪 (+2.59%)</strong> — 新能源整车龙头逆势走强，海外市场拓展+国内以旧换新政策双轮驱动</li>
+      <li><strong>立讯精密 (+1.84%)</strong> — 果链龙头，AI终端产品需求预期+苹果18代新品备货周期</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 风险信号 -->
+<div class="section">
+  <h2><span class="icon">🚨</span> 六、风险信号监测</h2>
+  <div class="grid-3">
+    <div class="card" style="border-left: 3px solid #f23645;">
+      <div class="card-label">🚨 高风险</div>
+      <div style="font-size:14px;margin-top:8px;font-weight:600;">科创50暴跌4.02%</div>
+      <div style="font-size:13px;color:#8892b0;margin-top:4px;">科技板块系统性杀跌，TMT成交3530亿，放量出逃</div>
+    </div>
+    <div class="card" style="border-left: 3px solid #ffa726;">
+      <div class="card-label">⚠️ 中风险</div>
+      <div style="font-size:14px;margin-top:8px;font-weight:600;">地缘政治升温</div>
+      <div style="font-size:13px;color:#8892b0;margin-top:4px;">美伊冲突延续，霍尔木兹海峡石油运输骤降，全球风险偏好下行</div>
+    </div>
+    <div class="card" style="border-left: 3px solid #ffa726;">
+      <div class="card-label">⚠️ 中风险</div>
+      <div style="font-size:14px;margin-top:8px;font-weight:600;">两市天量成交2.4万亿</div>
+      <div style="font-size:13px;color:#8892b0;margin-top:4px;">放量下跌说明分歧巨大，短期惯性下探风险不容忽视</div>
+    </div>
+  </div>
+  <div class="grid-3" style="margin-top:12px;">
+    <div class="card" style="border-left: 3px solid #00c853;">
+      <div class="card-label">✅ 低风险信号</div>
+      <div style="font-size:14px;margin-top:8px;font-weight:600;">消费/医药逆势走强</div>
+      <div style="font-size:13px;color:#8892b0;margin-top:4px;">防御性板块有资金流入，市场并非全面恐慌</div>
+    </div>
+    <div class="card" style="border-left: 3px solid #00c853;">
+      <div class="card-label">✅ 低风险信号</div>
+      <div style="font-size:14px;margin-top:8px;font-weight:600;">价值风格跌幅可控</div>
+      <div style="font-size:13px;color:#8892b0;margin-top:4px;">300价值-1.29%远低于300成长-2.66%，大盘价值股相对稳固</div>
+    </div>
+    <div class="card" style="border-left: 3px solid #6db3f2;">
+      <div class="card-label">📊 情绪指标</div>
+      <div style="font-size:14px;margin-top:8px;font-weight:600;">样本8涨15跌</div>
+      <div style="font-size:13px;color:#8892b0;margin-top:4px;">大市值蓝筹分化明显，消费类强势，科技类承压</div>
+    </div>
+  </div>
+</div>
+
+<!-- AH联动 & 美联动 -->
+<div class="section">
+  <h2><span class="icon">🌐</span> 七、AH联动 & 国际市场</h2>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-label" style="margin-bottom:8px;">隔夜关键事件</div>
+      <ul>
+        <li>🌍 <strong>美伊冲突升级：</strong>美国连续五天袭击伊朗，霍尔木兹海峡石油运输量骤降，油价大幅攀升</li>
+        <li>🇺🇸 <strong>特朗普全国讲话：</strong>将发表黄金时段讲话，或为质疑中期选举结果铺路</li>
+        <li>🇯🇵 <strong>日本AI布局：</strong>计划购买英伟达Rubin芯片，打造本土机器人AI模型</li>
+        <li>💵 <strong>美元走软：</strong>美元指数回落，商品价格获得支撑，利好资源股</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label" style="margin-bottom:8px;">A-H溢价映射</div>
+      <ul>
+        <li><strong>万科A (+3.19%)</strong> → 万科H股联动关注</li>
+        <li><strong>比亚迪 (+2.59%)</strong> → AH同步走强，新能源整车景气</li>
+        <li><strong>招商银行 (-0.24%)</strong> → AH小幅调整，银行板块同步性高</li>
+        <li><strong>中国平安 (-0.55%)</strong> → 保险板块AH同步偏弱</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="info-box" style="margin-top:12px;">
+    <strong>🌐 国际市场映射分析：</strong>
+    <ul>
+      <li><strong>地缘风险 → 避险资产受益：</strong>美伊冲突升级推动油价上涨，同时利好黄金等避险资产。A股黄金板块、石油石化板块可能受提振</li>
+      <li><strong>美元走软 → 新兴市场利好：</strong>美元指数回落有助于外资回流A股，但今日北向资金大概率流出，说明短期情绪主导</li>
+      <li><strong>日本AI布局 → 英伟达产业链：</strong>日本采购Rubin芯片可能提振全球AI算力需求，A股AI服务器、光模块等产业链可关注</li>
+      <li><strong>特朗普讲话 → 不确定性上升：</strong>政治事件可能引发全球市场波动，A股短期规避风险为主</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 明日策略 -->
+<div class="section">
+  <h2><span class="icon">🎯</span> 八、明日策略与操作建议</h2>
+
+  <div class="summary-box">
+    <strong>📌 核心判断：短期偏谨慎，中期不悲观</strong><br><br>
+    今日放量下跌（2.4万亿成交）显示市场分歧巨大，短期仍有惯性下探风险。但消费和医药板块逆势走强表明资金并未全面撤退，而是在进行结构调仓——从高估值科技成长转向低估值消费价值和防御性板块。这是典型的"避高就低"行为，而非系统性恐慌。
+  </div>
+
+  <h3>🔴 需要警惕的方向</h3>
+  <div class="danger-box">
+    <ul>
+      <li><strong>TMT/科技板块 — 短期回避：</strong>科创50-4.02%+300信息-3.62%，放量暴跌尚未见底，高估值板块在利率和地缘风险双重压力下仍有调整空间。不建议抄底。</li>
+      <li><strong>高估值成长股 — 谨慎持有：</strong>创业板指-2.95%，300成长-2.66%，成长风格处于退潮期。持仓者需审视估值合理性和业绩兑现能力。</li>
+      <li><strong>券商板块 — 偏弱：</strong>中信证券-1.75%、东方财富-1.59%，市场交投活跃但券商股不涨反跌，说明情绪面悲观。</li>
+    </ul>
+  </div>
+
+  <h3>🟢 可以关注的方向</h3>
+  <div class="summary-box">
+    <ul>
+      <li><strong>消费/白酒 — 逢低布局：</strong>贵州茅台+0.63%、五粮液+0.11%企稳，中报业绩确定性高。白酒板块作为A股核心资产，在市场调整中提供安全垫。重点关注高端白酒和区域龙头。</li>
+      <li><strong>猪肉/畜牧 — 右侧确认：</strong>牧原股份+3.15%逆势放量走强。猪周期底部信号增多，供给去化加速，若猪价持续回升则板块弹性大。可适度参与。</li>
+      <li><strong>医药/CXO — 精选个股：</strong>中证医药+0.30%微涨，但恒瑞医药-2.63%领跌，板块内分化明显。关注创新药和CXO中报业绩拐点的个股。</li>
+      <li><strong>地产链 — 关注政策信号：</strong>万科A+3.19%异动。若有政策利好兑现（如进一步放松限购、收储加码），地产板块有望阶段性反弹。</li>
+    </ul>
+  </div>
+
+  <h3>⚡ 短线交易策略</h3>
+  <div class="info-box">
+    <ul>
+      <li><strong>仓位建议：</strong>5成以下，防御为主。控制回撤是当前首要任务。</li>
+      <li><strong>开仓方向：</strong>优先选择消费（白酒/食品饮料）、医药、公用事业等低波动防御品种。</li>
+      <li><strong>止损纪律：</strong>上证指数若跌破3800点（今日最低3867.60），需进一步减仓。关注能否在3850附近企稳。</li>
+      <li><strong>事件驱动：</strong>美伊冲突 → 石油/黄金板块；特朗普讲话 → 政治不确定；中报窗口 → 业绩超预期个股。</li>
+      <li><strong>尾盘信号：</strong>如果明日继续低开放量下杀后收长下影线，可视为短期见底信号，适度回补仓位。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 极简对比表 -->
+<div class="section">
+  <h2><span class="icon">📊</span> 九、极简对比小结</h2>
+  <table>
+    <tr><th>维度</th><th>今日表现</th><th>趋势判断</th></tr>
+    <tr><td>大盘方向</td><td class="stock-red">放量下跌，普跌格局</td><td><span class="tag tag-red">短期偏空</span></td></tr>
+    <tr><td>市场量能</td><td style="color:#ffa726;">2.4万亿天量，放量下杀</td><td><span class="tag tag-yellow">分歧加剧</span></td></tr>
+    <tr><td>最强板块</td><td class="stock-green">消费(+0.78%) / 猪肉(+3%)</td><td><span class="tag tag-green">防御性走强</span></td></tr>
+    <tr><td>最弱板块</td><td class="stock-red">科创50(-4.02%) / TMT(-3.62%)</td><td><span class="tag tag-red">回避</span></td></tr>
+    <tr><td>风格偏好</td><td class="stock-green">价值 > 成长</td><td><span class="tag tag-green">风格切换</span></td></tr>
+    <tr><td>地缘风险</td><td class="stock-red">美伊冲突升温</td><td><span class="tag tag-yellow">短期负面</span></td></tr>
+    <tr><td>情绪温度</td><td class="stock-red">恐慌（放量杀跌）</td><td><span class="tag tag-red">偏冷</span></td></tr>
+    <tr><td>操作建议</td><td>防御为主，控制仓位</td><td><span class="tag tag-yellow">谨慎观望</span></td></tr>
+  </table>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>A股每日复盘报告 · 2026-07-16 · 由 Hermes Agent 自动生成</p>
+  <p>数据来源: 腾讯行情API / 东方财富 / iFind MCP / 新浪财经</p>
+  <p style="margin-top:8px;">⚠️ 免责声明：本报告由AI自动生成，仅供参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+</div>
+
+</div>
+</body>
+</html>
