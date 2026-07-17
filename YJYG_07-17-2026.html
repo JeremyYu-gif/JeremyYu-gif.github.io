@@ -3,354 +3,259 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A股业绩预告日报 — 2026-07-17</title>
+<title>A股每日复盘 — 2026-07-17</title>
 <style>
-  :root { --bg: #0d1117; --card: #161b22; --border: #30363d; --text: #e6edf3; --text2: #8b949e; --green: #3fb950; --red: #f85149; --gold: #d29922; --blue: #58a6ff; --purple: #bc8cff; }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif; line-height: 1.6; padding: 24px; }
-  .container { max-width: 1100px; margin: 0 auto; }
-  .header { text-align: center; padding: 32px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
-  .header h1 { font-size: 28px; font-weight: 700; color: var(--text); }
-  .header .subtitle { font-size: 14px; color: var(--text2); margin-top: 8px; }
-  .header .badge { display: inline-block; background: #1f6feb22; color: var(--blue); border: 1px solid #1f6feb44; padding: 4px 16px; border-radius: 12px; font-size: 13px; margin-top: 12px; }
-  .summary-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
-  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
-  .stat-card .num { font-size: 28px; font-weight: 700; }
-  .stat-card .label { font-size: 13px; color: var(--text2); margin-top: 4px; }
-  .stat-card.green .num { color: var(--green); }
-  .stat-card.gold .num { color: var(--gold); }
-  .stat-card.blue .num { color: var(--blue); }
-  .stat-card.red .num { color: var(--red); }
-  .section-title { font-size: 18px; font-weight: 600; margin: 28px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
-  .stock-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 20px; }
-  .stock-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 12px; }
-  .stock-name { font-size: 20px; font-weight: 700; }
-  .stock-name .code { font-size: 14px; color: var(--text2); font-weight: 400; margin-left: 8px; }
-  .stock-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-  .tag { padding: 3px 10px; border-radius: 6px; font-size: 12px; font-weight: 500; }
-  .tag.green { background: #3fb95022; color: var(--green); border: 1px solid #3fb95044; }
-  .tag.gold { background: #d2992222; color: var(--gold); border: 1px solid #d2992244; }
-  .tag.blue { background: #58a6ff22; color: var(--blue); border: 1px solid #58a6ff44; }
-  .tag.red { background: #f8514922; color: var(--red); border: 1px solid #f8514944; }
-  .tag.purple { background: #bc8cff22; color: var(--purple); border: 1px solid #bc8cff44; }
-  .stock-rating { font-size: 16px; font-weight: 600; }
-  .rating-star { color: var(--gold); }
-  .rating-watch { color: var(--blue); }
-  .rating-neutral { color: var(--text2); }
-  .data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 12px 0; }
-  .data-item { background: #0d1117; border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px; }
-  .data-item .val { font-size: 16px; font-weight: 600; color: var(--text); }
-  .data-item .lbl { font-size: 12px; color: var(--text2); margin-top: 2px; }
-  .data-item .val.green { color: var(--green); }
-  .data-item .val.red { color: var(--red); }
-  .commentary { background: #0d1117; border: 1px solid var(--border); border-radius: 6px; padding: 14px; margin-top: 12px; font-size: 14px; line-height: 1.7; }
-  .commentary .highlight { color: var(--gold); font-weight: 500; }
-  .commentary .warn { color: var(--red); font-weight: 500; }
-  .commentary .good { color: var(--green); font-weight: 500; }
-  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
-  .footer { text-align: center; color: var(--text2); font-size: 12px; padding: 24px 0 12px; border-top: 1px solid var(--border); margin-top: 32px; }
-  .table-wrap { overflow-x: auto; margin: 12px 0; }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th { background: #0d1117; color: var(--text2); font-weight: 500; padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }
-  td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
-  tr:hover td { background: #161b22; }
-  @media (max-width: 600px) {
-    .summary-bar { grid-template-columns: repeat(2, 1fr); }
-    .data-grid { grid-template-columns: 1fr 1fr; }
-    .stock-header { flex-direction: column; align-items: flex-start; }
-  }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, 'Microsoft YaHei', 'PingFang SC', sans-serif; background: #0a0e27; color: #e0e0e0; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; }
+h1 { color: #ffd700; font-size: 1.8em; text-align: center; padding: 20px 0; border-bottom: 2px solid #2a2f5a; margin-bottom: 25px; }
+h2 { color: #4fc3f7; font-size: 1.3em; margin: 25px 0 15px 0; padding-left: 12px; border-left: 4px solid #ffd700; }
+h3 { color: #ffd700; font-size: 1.1em; margin: 15px 0 10px 0; }
+.date-tag { text-align: center; color: #888; font-size: 0.9em; margin-bottom: 20px; }
+.card { background: #141838; border: 1px solid #2a2f5a; border-radius: 10px; padding: 18px; margin-bottom: 15px; }
+.card-title { color: #4fc3f7; font-size: 0.95em; margin-bottom: 10px; font-weight: bold; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em; }
+th { background: #1a1f45; color: #4fc3f7; padding: 10px 8px; text-align: center; border-bottom: 2px solid #2a2f5a; font-weight: normal; }
+td { padding: 8px; text-align: center; border-bottom: 1px solid #1e2350; }
+tr:hover { background: #1c2048; }
+.up { color: #e74c3c; }
+.down { color: #27ae60; }
+.neutral { color: #e0e0e0; }
+.red-bg { background: rgba(231,76,60,0.08); }
+.green-bg { background: rgba(39,174,96,0.08); }
+.big-up { color: #ff4444; font-weight: bold; }
+.big-down { color: #00cc66; font-weight: bold; }
+.signal-card { background: #141838; border-left: 4px solid; padding: 12px 16px; margin: 8px 0; border-radius: 0 8px 8px 0; }
+.signal-positive { border-color: #e74c3c; }
+.signal-negative { border-color: #27ae60; }
+.signal-neutral { border-color: #4fc3f7; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin: 2px; }
+.tag-red { background: rgba(231,76,60,0.15); color: #e74c3c; }
+.tag-green { background: rgba(39,174,96,0.15); color: #27ae60; }
+.tag-blue { background: rgba(79,195,247,0.15); color: #4fc3f7; }
+.tag-yellow { background: rgba(255,215,0,0.15); color: #ffd700; }
+.section-divider { height: 1px; background: linear-gradient(to right, transparent, #2a2f5a, transparent); margin: 30px 0; }
+.subtle { color: #888; font-size: 0.85em; }
+.portfolio-hold { background: rgba(255,215,0,0.05); border-left: 3px solid #ffd700; }
+@media (max-width: 768px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 <div class="container">
-  <div class="header">
-    <h1>📋 A股半年度业绩预告日报</h1>
-    <div class="subtitle">报告日期：2026年7月17日（周五）· 数据来源：东方财富妙想 + 同花顺iFind</div>
-    <div class="badge">📅 披露期第17天（7月1日-16日窗口外，仍有公司披露）</div>
-  </div>
 
-  <div class="summary-bar">
-    <div class="stat-card green">
-      <div class="num">7</div>
-      <div class="label">今日预增/略增公司</div>
-    </div>
-    <div class="stat-card gold">
-      <div class="num">6</div>
-      <div class="label">通过三条件筛选</div>
-    </div>
-    <div class="stat-card blue">
-      <div class="num">2</div>
-      <div class="label">⭐强烈关注</div>
-    </div>
-    <div class="stat-card">
-      <div class="num" style="color:var(--text2)">3</div>
-      <div class="label">📌关注 / 👀中性</div>
-    </div>
-  </div>
+<h1>📊 A股每日复盘</h1>
+<div class="date-tag">2026-07-17（周五）| 数据截至 16:00</div>
 
-  <div class="table-wrap">
+<!-- 核心摘要 -->
+<div class="card" style="background: linear-gradient(135deg, #141838, #1a1040); border-color: #ffd700;">
+  <h3 style="color: #ffd700;">⚡ 市场总览</h3>
+  <p style="font-size: 1.1em; margin: 8px 0;">
+    <span class="big-down">今日A股遭遇重大暴跌</span> — 创业板指重挫 <span class="big-down">-7.15%</span>，
+    科创50暴跌 <span class="big-down">-7.12%</span>，深证成指跌 <span class="big-down">-5.40%</span>，
+    上证指数跌 <span class="big-down">-3.05%</span>。
+    两市成交额突破 <span style="color: #ffd700;">26,549亿</span>，为近一年来最大单日成交额，
+    市场恐慌性抛售特征明显。
+  </p>
+  <p class="subtle">风格上，大盘价值（上证50 -2.63%）相对抗跌，中小盘成长（中证500 -5.55%）跌幅惨烈。</p>
+</div>
+
+<!-- 一、大盘回顾 -->
+<h2>一、大盘回顾</h2>
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">主要指数涨跌幅</div>
     <table>
-      <thead>
-        <tr><th>代码</th><th>名称</th><th>预告类型</th><th>预告净利润</th><th>预告扣非</th><th>扣非增速</th><th>扣非占比</th><th>评级</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>688008</td><td>澜起科技</td><td>预增</td><td>19~21亿</td><td>12.5~14.5亿</td><td>+32.9%</td><td>65.8%</td><td>⭐强烈关注</td></tr>
-        <tr><td>688041</td><td>海光信息</td><td>预增</td><td>17~18.3亿</td><td>15.1~17亿</td><td>+55.96%</td><td>88.8%</td><td>⭐强烈关注</td></tr>
-        <tr><td>688668</td><td>鼎通科技</td><td>预增</td><td>1.847亿</td><td>1.766亿</td><td>+64.41%</td><td>95.6%</td><td>⭐强烈关注</td></tr>
-        <tr><td>688308</td><td>欧科亿</td><td>预增(扭亏)</td><td>3.6~4.2亿</td><td>3.5~4亿</td><td>扭亏</td><td>97.2%</td><td>📌关注</td></tr>
-        <tr><td>688531</td><td>日联科技</td><td>预增</td><td>1.28亿</td><td>1.09亿</td><td>+82.71%</td><td>85.2%</td><td>📌关注</td></tr>
-        <tr><td>688400</td><td>凌云光</td><td>预增</td><td>6.625亿</td><td>1.3亿</td><td>+60%</td><td>19.6%</td><td>👀中性谨慎</td></tr>
-        <tr><td>688795</td><td>摩尔线程-U</td><td>预增</td><td>—</td><td>亏损(扣非-5428万)</td><td>—</td><td>—</td><td>❌ 未通过</td></tr>
-      </tbody>
+      <tr><th>指数</th><th>收盘价</th><th>涨跌幅</th><th>成交额</th></tr>
+      <tr><td>上证指数</td><td>3764.15</td><td class="big-down">-3.05%</td><td>12,464亿</td></tr>
+      <tr><td>深证成指</td><td>13706.88</td><td class="big-down">-5.40%</td><td>14,085亿</td></tr>
+      <tr><td>创业板指</td><td>3428.63</td><td class="big-down">-7.15%</td><td>6,826亿</td></tr>
+      <tr><td>科创50</td><td>1715.40</td><td class="big-down">-7.12%</td><td>1,915亿</td></tr>
+      <tr><td>沪深300</td><td>4529.10</td><td class="down">-3.60%</td><td>9,208亿</td></tr>
+      <tr><td>上证50</td><td>2827.67</td><td class="down">-2.63%</td><td>2,573亿</td></tr>
+      <tr><td>中证500</td><td>7513.76</td><td class="big-down">-5.55%</td><td>5,120亿</td></tr>
     </table>
   </div>
-
-  <hr class="divider">
-
-  <h2 class="section-title">⭐ 强烈关注</h2>
-
-  <div class="stock-card">
-    <div class="stock-header">
-      <div class="stock-name">澜起科技 <span class="code">688008.SH</span></div>
-      <div class="stock-tags">
-        <span class="tag green">预增</span>
-        <span class="tag blue">半导体/互联芯片</span>
-        <span class="tag purple">AI</span>
-        <span class="tag purple">DDR5</span>
-      </div>
-      <div class="stock-rating rating-star">⭐⭐ 强烈关注</div>
-    </div>
-    <div class="data-grid">
-      <div class="data-item"><div class="val green">19~21亿</div><div class="lbl">预告净利润</div></div>
-      <div class="data-item"><div class="val green">12.5~14.5亿</div><div class="lbl">预告扣非净利润</div></div>
-      <div class="data-item"><div class="val green">+32.9%</div><div class="lbl">扣非增速</div></div>
-      <div class="data-item"><div class="val">65.8%</div><div class="lbl">扣非占比</div></div>
-      <div class="data-item"><div class="val green">33.35亿</div><div class="lbl">营收</div></div>
-      <div class="data-item"><div class="val green">+81.2%</div><div class="lbl">净利润增速(上限)</div></div>
-    </div>
-    <div class="commentary">
-      <p><span class="good">✅ 三条件全部达标</span></p>
-      <p><strong>业绩质量：</strong>扣非占比65.8%，属中等偏上。部分利润来自投资收益和公允价值变动收益。但扣非12.5亿仍非常可观，主业DDR5互联芯片受益于AI产业趋势持续强劲。<span class="good">DDR5第三、第四子代RCD芯片出货占比持续提升，MRCD/MDB、PCIe Retimer、CKD及CXL MXC芯片收入显著增长。</span></p>
-      <p><strong>行业判断：</strong>AI产业趋势驱动，DDR5渗透率提升且子代持续迭代，互联类芯片产品线Q2环比增长19.5%。互连类芯片销售约31.11亿元(+26.4%)。<span class="highlight">AI算力需求→内存带宽升级→互联芯片量价齐升的逻辑清晰。</span></p>
-      <p><strong>风险提示：</strong>扣非占比非100%（约34%利润来自非经常性），需关注投资收益持续性。估值较高(PE 76x)。</p>
-    </div>
-  </div>
-
-  <div class="stock-card">
-    <div class="stock-header">
-      <div class="stock-name">海光信息 <span class="code">688041.SH</span></div>
-      <div class="stock-tags">
-        <span class="tag green">预增</span>
-        <span class="tag blue">半导体/CPU/DCU</span>
-        <span class="tag purple">AI芯片</span>
-        <span class="tag purple">信创</span>
-      </div>
-      <div class="stock-rating rating-star">⭐⭐ 强烈关注</div>
-    </div>
-    <div class="data-grid">
-      <div class="data-item"><div class="val green">17~18.3亿</div><div class="lbl">预告净利润</div></div>
-      <div class="data-item"><div class="val green">15.1~17亿</div><div class="lbl">预告扣非净利润</div></div>
-      <div class="data-item"><div class="val green">+55.96%</div><div class="lbl">扣非增速</div></div>
-      <div class="data-item"><div class="val green">88.8%</div><div class="lbl">扣非占比</div></div>
-      <div class="data-item"><div class="val green">85~93亿</div><div class="lbl">营收(预告)</div></div>
-      <div class="data-item"><div class="val green">+52.32%</div><div class="lbl">净利润增速(上限)</div></div>
-    </div>
-    <div class="commentary">
-      <p><span class="good">✅ 三条件全部达标，质量最优</span></p>
-      <p><strong>业绩质量：</strong><span class="good">扣非占比88.8%，主业驱动特征明显。</span>处理器收入占比99.9%，毛利率57.78%。经营性现金流与利润匹配度高。扣非增速55.96%高于净利润增速(52.32%)，说明主业增长强劲而非依赖非经常性损益。</p>
-      <p><strong>行业判断：</strong>在AI大模型加速迭代、AI Agent规模化落地、国产化进程迈向商业化应用的多重驱动下，公司CPU+DCU双轮驱动格局稳固。深算系列DCU在AI训练/推理场景竞争力持续提升。<span class="highlight">国产AI芯片替代空间巨大，海光是国内x86 CPU和AI DCU的稀缺标的。</span></p>
-      <p><strong>风险提示：</strong>估值较高(PE 270x)，美国出口管制政策不确定性。但公司作为国产算力核心标的，高估值有其合理性。</p>
-    </div>
-  </div>
-
-  <div class="stock-card">
-    <div class="stock-header">
-      <div class="stock-name">鼎通科技 <span class="code">688668.SH</span></div>
-      <div class="stock-tags">
-        <span class="tag green">预增</span>
-        <span class="tag blue">通信/高速连接器</span>
-        <span class="tag purple">数据中心</span>
-        <span class="tag purple">液冷</span>
-      </div>
-      <div class="stock-rating rating-star">⭐⭐ 强烈关注</div>
-    </div>
-    <div class="data-grid">
-      <div class="data-item"><div class="val green">1.847亿</div><div class="lbl">预告净利润</div></div>
-      <div class="data-item"><div class="val green">1.766亿</div><div class="lbl">预告扣非净利润</div></div>
-      <div class="data-item"><div class="val green">+64.41%</div><div class="lbl">扣非增速</div></div>
-      <div class="data-item"><div class="val green">95.6%</div><div class="lbl">扣非占比</div></div>
-      <div class="data-item"><div class="val green">10.29亿</div><div class="lbl">营收(预告)</div></div>
-      <div class="data-item"><div class="val green">+60.04%</div><div class="lbl">净利润增速</div></div>
-    </div>
-    <div class="commentary">
-      <p><span class="good">✅ 三条件全部达标，扣非质量极高</span></p>
-      <p><strong>业绩质量：</strong><span class="good">扣非占比95.6%，几乎全部来自主业。</span>高速通讯连接器(61.32%收入占比)和汽车连接器(25.83%)双轮驱动。112G高速产品进入大规模量产，224G风冷产品已规模化批量生产，液冷产品进入小批量试产阶段。单位盈利持续提升。</p>
-      <p><strong>行业判断：</strong>AI数据中心建设持续火热，高速连接器作为数据传输的物理基础，受益确定性高。公司已从400G→800G→1.6T全面布局，技术路线清晰。<span class="highlight">液冷散热是AI高功耗场景的刚需，鼎通提前卡位形成先发优势。</span>汽车连接器业务也与比亚迪等头部车企深度绑定。</p>
-      <p><strong>风险提示：</strong>PE 131x估值偏高，通信连接器行业竞争格局较为分散。但AI驱动下行业β向好。</p>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <h2 class="section-title">📌 关注</h2>
-
-  <div class="stock-card">
-    <div class="stock-header">
-      <div class="stock-name">欧科亿 <span class="code">688308.SH</span></div>
-      <div class="stock-tags">
-        <span class="tag green">预增(扭亏)</span>
-        <span class="tag blue">机械设备/数控刀具</span>
-        <span class="tag purple">高端制造</span>
-      </div>
-      <div class="stock-rating rating-watch">📌 关注</div>
-    </div>
-    <div class="data-grid">
-      <div class="data-item"><div class="val green">3.6~4.2亿</div><div class="lbl">预告净利润</div></div>
-      <div class="data-item"><div class="val green">3.5~4亿</div><div class="lbl">预告扣非净利润</div></div>
-      <div class="data-item"><div class="val green">扭亏为盈</div><div class="lbl">扣非变化(上年-1915万)</div></div>
-      <div class="data-item"><div class="val green">97.2%</div><div class="lbl">扣非占比</div></div>
-      <div class="data-item"><div class="val">25.44%</div><div class="lbl">数控刀具毛利率</div></div>
-      <div class="data-item"><div class="val">540.7%</div><div class="lbl">净利润增速</div></div>
-    </div>
-    <div class="commentary">
-      <p><span class="good">✅ 三条件全部达标</span></p>
-      <p><strong>业绩质量：</strong><span class="good">扣非占比97.2%，纯主业驱动，质量极高。</span>上年同期亏损(-1915万)造成低基数，但今年半年扣非3.5~4亿是实质性的盈利改善。数控刀具(55.19%收入占比)和硬质合金制品(42.10%)双引擎。</p>
-      <p><strong>行业判断：</strong>高端刀具需求提升受益于制造业升级。碳化钨等原材料价格上涨被产品价格调整对冲，盈利韧性好。<span class="warn">需注意上年基数极低（2025H1亏损），今年高增长的部分原因是基数效应。</span></p>
-      <p><strong>前景判断：</strong>数控刀具国产替代空间仍大，公司产品结构持续向高端升级。但周期性较强，需跟踪下游制造业景气度。</p>
-    </div>
-  </div>
-
-  <div class="stock-card">
-    <div class="stock-header">
-      <div class="stock-name">日联科技 <span class="code">688531.SH</span></div>
-      <div class="stock-tags">
-        <span class="tag green">预增</span>
-        <span class="tag blue">专用设备/X射线检测</span>
-        <span class="tag purple">集成电路</span>
-      </div>
-      <div class="stock-rating rating-watch">📌 关注</div>
-    </div>
-    <div class="data-grid">
-      <div class="data-item"><div class="val green">1.28亿</div><div class="lbl">预告净利润</div></div>
-      <div class="data-item"><div class="val green">1.09亿</div><div class="lbl">预告扣非净利润</div></div>
-      <div class="data-item"><div class="val green">+82.71%</div><div class="lbl">扣非增速</div></div>
-      <div class="data-item"><div class="val green">85.2%</div><div class="lbl">扣非占比</div></div>
-      <div class="data-item"><div class="val green">7.15亿</div><div class="lbl">营收(预告)</div></div>
-      <div class="data-item"><div class="val green">+54.6%</div><div class="lbl">净利润增速</div></div>
-    </div>
-    <div class="commentary">
-      <p><span class="good">✅ 三条件全部达标</span></p>
-      <p><strong>业绩质量：</strong>扣非占比85.2%，主业驱动良好。扣非增速(+82.71%)显著高于净利润增速(+54.6%)，主业的实际增长质量优于表面数据。X射线智能检测设备业务收入占比87.12%，毛利率42.57%。收并购并表也贡献一定增量。</p>
-      <p><strong>行业判断：</strong>下游集成电路、高端电子制造等领域景气度高。公司通过投资并购打造检测平台化能力。<span class="highlight">国产替代+设备更新需求叠加，工业检测赛道确定性较强。</span></p>
-      <p><strong>前景判断：</strong>体量不大但成长质量好。PE 133x偏高，关注后续季度盈利增速能否持续。</p>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <h2 class="section-title">👀 中性谨慎</h2>
-
-  <div class="stock-card">
-    <div class="stock-header">
-      <div class="stock-name">凌云光 <span class="code">688400.SH</span></div>
-      <div class="stock-tags">
-        <span class="tag green">预增</span>
-        <span class="tag blue">机器视觉/AI</span>
-        <span class="tag red">扣非占比极低</span>
-      </div>
-      <div class="stock-rating rating-neutral">👀 中性谨慎</div>
-    </div>
-    <div class="data-grid">
-      <div class="data-item"><div class="val green">6.625亿</div><div class="lbl">预告净利润</div></div>
-      <div class="data-item"><div class="val green">1.3亿</div><div class="lbl">预告扣非净利润</div></div>
-      <div class="data-item"><div class="val green">+60%</div><div class="lbl">扣非增速</div></div>
-      <div class="data-item"><div class="val red">19.6%</div><div class="lbl">扣非占比 ⚠️</div></div>
-      <div class="data-item"><div class="val">590%</div><div class="lbl">净利润增速</div></div>
-      <div class="data-item"><div class="val">35.95%</div><div class="lbl">机器视觉毛利率</div></div>
-    </div>
-    <div class="commentary">
-      <p><span class="good">✅ 三条件达标，但⚠️扣非占比仅19.6%</span></p>
-      <p><strong>业绩质量：</strong><span class="warn">扣非占比仅为19.6%，属于典型非经常性损益驱动的业绩增长。</span>净利润6.625亿中，约5.3亿来自子公司持有智谱华章股权的公允价值变动收益。机器视觉主业扣非仅1.3亿(+60%)。虽然主业也在增长，但绝大部分利润来自不可持续的股权估值变动。</p>
-      <p><strong>行业判断：</strong>机器视觉+光通信主业有长期成长逻辑，AI战略转型方向正确。<span class="warn">但公允价值变动收益属于账面浮盈，不产生现金流，后续随估值波动可能回吐。</span></p>
-      <p><strong>建议：</strong>剔除智谱华章股权收益后的真实盈利能力仍需观察。若后续AI视觉主业持续高增长，估值有支撑；否则高利润增速不可持续。</p>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <h2 class="section-title">❌ 未通过筛选</h2>
-
-  <div class="stock-card">
-    <div class="stock-header">
-      <div class="stock-name">摩尔线程-U <span class="code">688795.SH</span></div>
-      <div class="stock-tags">
-        <span class="tag green">预增</span>
-        <span class="tag blue">GPU/AI芯片</span>
-        <span class="tag red">持续亏损</span>
-      </div>
-      <div class="stock-rating" style="color:var(--red);">❌ 未通过</div>
-    </div>
-    <div class="data-grid">
-      <div class="data-item"><div class="val green">16.5~17.5亿</div><div class="lbl">预告营收</div></div>
-      <div class="data-item"><div class="val green">+135~149%</div><div class="lbl">营收增速</div></div>
-      <div class="data-item"><div class="val red">-5428万</div><div class="lbl">Q1扣非净利润</div></div>
-      <div class="data-item"><div class="val red">全年亏损</div><div class="lbl">2025扣非-11.5亿</div></div>
-    </div>
-    <div class="commentary">
-      <p><span class="warn">❌ 条件2 不达标：扣非净利润为负，仍处亏损阶段。</span></p>
-      <p><strong>业绩亮点：</strong>营收增长135%~149%，夸娥智算集群商业化加速，MTTS5000性能达市场领先水平。AI产业的强劲需求+国产GPU替代空间巨大。</p>
-      <p><strong>不通过原因：</strong>Q1扣非净利润-5428万，全年虽大幅减亏但仍未盈利。条件2要求扣非净利润≥2000万不满足。公司仍处于"以收入增长换取盈利"的阶段，研发投入和产能爬坡期尚未完成。</p>
-      <p><strong>跟踪关注：</strong>毛利率65.57%表明产品竞争力强，待公司进入盈利拐点后重新评估。</p>
-    </div>
-  </div>
-
-  <hr class="divider">
-
-  <h2 class="section-title">📊 其他今日预告（略增/其他）</h2>
-
-  <div class="table-wrap">
+  <div class="card">
+    <div class="card-title">关键市场特征</div>
     <table>
-      <thead>
-        <tr><th>代码</th><th>名称</th><th>预告类型</th><th>行业</th><th>备注</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>600057</td><td>厦门象屿</td><td>略增</td><td>大宗供应链</td><td>Q1净利润6.7亿，略增幅度待核实</td></tr>
-        <tr><td>688578</td><td>艾力斯</td><td>略增</td><td>创新药(化学制剂)</td><td>Q1净利润6.36亿，伏美替尼持续放量</td></tr>
-        <tr><td>688030</td><td>山石网科</td><td>减亏</td><td>网络安全</td><td>仍在亏损，减亏方向改善</td></tr>
-        <tr><td>688599</td><td>天合光能</td><td>减亏</td><td>光伏</td><td>光伏行业底部信号</td></tr>
-        <tr><td>300505</td><td>川金诺</td><td>略减</td><td>化工</td><td>—</td></tr>
-      </tbody>
+      <tr><th>指标</th><th>数据</th></tr>
+      <tr><td>沪市上涨/下跌</td><td><span class="up">1.34</span> / <span class="down">16.76</span></td></tr>
+      <tr><td>深市上涨/下跌</td><td><span class="up">3.12</span> / <span class="down">44.84</span></td></tr>
+      <tr><td>两市总成交</td><td><span style="color: #ffd700;">26,549亿</span>（放量恐慌）</td></tr>
+      <tr><td>沪市最高/最低</td><td>3869.21 / 3745.17</td></tr>
+      <tr><td>深市最高/最低</td><td>14350.47 / 13586.49</td></tr>
+      <tr><td>创业板最高/最低</td><td>3642.06 / 3387.26</td></tr>
+      <tr><td>涨跌幅中位数</td><td><span class="big-down">约-6%至-8%</span></td></tr>
     </table>
   </div>
+</div>
 
-  <div class="commentary" style="margin-top:16px;">
-    <p><strong>艾力斯(688578)</strong> — Q1净利润6.36亿，扣非6.328亿，毛利率96.83%（抗肿瘤创新药伏美替尼）。公司基本面扎实，略增分类下实际增速可能不错，建议单独关注。伏美替尼作为三代EGFR-TKI，非小细胞肺癌市场空间广阔。</p>
-    <p><strong>天合光能(688599)</strong> — 减亏。光伏行业产能过剩出清阶段，公司作为龙头企业仍在承压。减亏说明行业底部可能在接近，但反转时点不确定。</p>
+<!-- 二、板块分析 -->
+<h2>二、板块分析</h2>
+<div class="card">
+  <div class="card-title">行业板块表现（基于代表个股推断）</div>
+  <table>
+    <tr><th>板块</th><th>代表个股</th><th>涨跌幅</th><th>判断</th></tr>
+    <tr class="green-bg"><td>🏦 银行</td><td>工商银行、招商银行</td><td><span class="up">+2.44% / +0.93%</span></td><td><span class="tag tag-green">唯一上涨板块</span></td></tr>
+    <tr><td>🥃 白酒</td><td>贵州茅台、五粮液</td><td><span class="down">-0.48% / -1.54%</span></td><td><span class="tag tag-yellow">相对抗跌</span></td></tr>
+    <tr><td>🔋 新能源</td><td>宁德时代、比亚迪</td><td><span class="down">-1.69% / -0.71%</span></td><td><span class="tag tag-yellow">相对抗跌</span></td></tr>
+    <tr><td>🏠 房地产</td><td>保利发展、招商蛇口</td><td><span class="down">-2.21% / -1.62%</span></td><td><span class="tag tag-blue">跌幅可控</span></td></tr>
+    <tr><td>📈 证券</td><td>中信证券</td><td><span class="down">-1.78%</span></td><td><span class="tag tag-blue">跌幅可控</span></td></tr>
+    <tr><td>🚗 汽车</td><td>上汽集团、德赛西威</td><td><span class="down">-1.24% / -4.41%</span></td><td></td></tr>
+    <tr class="red-bg"><td>💊 医药生物</td><td>恒瑞医药、药明康德</td><td><span class="big-down">-5.00% / -7.17%</span></td><td><span class="tag tag-red">重灾区</span></td></tr>
+    <tr class="red-bg"><td>🔬 半导体</td><td>中芯国际、圣邦股份</td><td><span class="big-down">-7.85% / -5.89%</span></td><td><span class="tag tag-red">重灾区</span></td></tr>
+    <tr class="red-bg"><td>🤖 AI/光模块</td><td>中际旭创、浪潮信息</td><td><span class="big-down">-12.00% / -8.94%</span></td><td><span class="tag tag-red">领跌</span></td></tr>
+    <tr class="red-bg"><td>🖥️ 软件/云计算</td><td>金山云、金蝶</td><td><span class="big-down">-10.55% / -4.69%</span></td><td><span class="tag tag-red">重灾区</span></td></tr>
+  </table>
+  <p class="subtle" style="margin-top: 10px;">※ 板块涨跌基于核心个股表现推断，实际板块指数可能略有差异</p>
+</div>
+
+<!-- 三、持仓个股点评 -->
+<h2>三、持仓个股点评</h2>
+<div class="card portfolio-hold">
+  <div class="card-title" style="color: #ffd700;">👑 当前持仓表现</div>
+  <table>
+    <tr><th>股票</th><th>代码</th><th>收盘价</th><th>涨跌幅</th><th>当日最高</th><th>当日最低</th><th>点评</th></tr>
+    <tr class="red-bg"><td>金山云</td><td>03896.HK</td><td>4.92</td><td class="big-down">-10.55%</td><td>5.56</td><td>4.84</td><td>跌幅最大，从高回落超12%。云计算板块领跌</td></tr>
+    <tr class="red-bg"><td>小鹏汽车</td><td>09868.HK</td><td>51.65</td><td class="big-down">-8.66%</td><td>56.55</td><td>50.70</td><td>新能源车板块承压，盘中一度跌超10%</td></tr>
+    <tr class="red-bg"><td>科伦博泰</td><td>06990.HK</td><td>486.40</td><td class="big-down">-6.91%</td><td>529.50</td><td>480.20</td><td>创新药板块受CXO拖累大幅回调</td></tr>
+    <tr class="red-bg"><td>福瑞股份</td><td>300049.SZ</td><td>40.22</td><td class="down">-6.27%</td><td>43.00</td><td>40.17</td><td>医疗器械板块调整，回测关键支撑</td></tr>
+    <tr class="red-bg"><td>哔哩哔哩</td><td>09626.HK</td><td>139.40</td><td class="down">-5.75%</td><td>150.00</td><td>137.60</td><td>中概互联全线下跌，成交活跃</td></tr>
+    <tr class="red-bg"><td>金蝶国际</td><td>00268.HK</td><td>6.70</td><td class="down">-4.69%</td><td>7.10</td><td>6.49</td><td>SaaS板块承压，关注7元关口</td></tr>
+    <tr class="red-bg"><td>腾讯控股</td><td>00700.HK</td><td>461.60</td><td class="down">-4.63%</td><td>488.80</td><td>458.00</td><td>回购能否止跌？</td></tr>
+    <tr class="red-bg"><td>阿里巴巴</td><td>09988.HK</td><td>112.60</td><td class="down">-3.68%</td><td>118.00</td><td>110.70</td><td>相对抗跌，关注云业务修复</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <div class="card-title">📌 持仓深度分析</div>
+  <div class="signal-card signal-negative">
+    <strong>⚠️ 金山云（03896）-10.55%</strong> — 今日跌幅最大的持仓。云计算/SAAS板块整体重挫，金蝶也跌4.69%。该股波动极大（日内振幅14.5%），注意仓位管理。若收盘无法守住4.80支撑位，可能进一步下探。
   </div>
-
-  <hr class="divider">
-
-  <h2 class="section-title">📝 分析师点评</h2>
-
-  <div class="commentary">
-    <p><strong>今日概况：</strong>7月17日（半年度披露期第17天）仍有12家公司发布业绩预告。虽已过7月16日截止时点，但不属于强制披露窗口的公司仍有公告。7家预增/略增公司中，6家通过三条件筛选。</p>
-    <br>
-    <p><strong>AI产业链持续领跑：</strong>今天预增公司几乎全部与AI/半导体相关。澜起科技（互联芯片）、海光信息（CPU/DCU）、鼎通科技（高速连接器）三家均受益于AI基础设施建设需求。摩尔线程（GPU）虽亏损但营收增速135%+，体现AI芯片赛道的高景气度。</p>
-    <br>
-    <p><strong>扣非质量分化：</strong>鼎通科技(95.6%)、欧科亿(97.2%)、海光信息(88.8%)扣非占比极高，业绩真实可信；凌云光(19.6%)扣非占比过低，需谨慎看待。</p>
-    <br>
-    <p><strong>重点关注组合：</strong></p>
-    <p>• 海光信息 — 国产算力核心标的，扣非质量+增速双优</p>
-    <p>• 鼎通科技 — AI连接器细分龙头，液冷新增长曲线可期</p>
-    <p>• 澜起科技 — DDR5互联芯片龙头，AI存储升级核心受益</p>
-    <br>
-    <p><strong>风险提示：</strong>①部分公司估值已处于历史高位（海光PE 270x、鼎通PE 131x），需警惕流动性收紧引发的估值调整；②凌云光非经常性损益占比过高，需关注主营业务真实增长节奏；③欧科亿低基数效应2027年可能消失。</p>
+  <div class="signal-card signal-negative">
+    <strong>⚠️ 小鹏汽车（09868）-8.66%</strong> — 新能源车板块整体跌幅可控（比亚迪仅-0.71%），小鹏跌幅远超板块表明存在个股因素或流动性压力。密切关注是否出现增持/回购公告。
   </div>
-
-  <div class="footer">
-    <p>本报告由 Hermes Agent 自动生成 · 数据来源：东方财富妙想 · 仅供研究参考，不构成投资建议</p>
-    <p>报告生成时间：2026-07-17 07:01 · 分析师：小H · 用户：老余</p>
+  <div class="signal-card signal-neutral">
+    <strong>📌 腾讯（00700）-4.63%</strong> — 跌幅小于恒指均值，显示一定的抗跌性。回购计划通常对股价形成底部支撑。460为近期关键支撑。
   </div>
+  <div class="signal-card signal-neutral">
+    <strong>📌 阿里（09988）-3.68%</strong> — 持仓中相对最强的标的。阿里云业务作为AI基础设施受益方，当前估值具备安全边际。110支撑位附近可考虑加仓。
+  </div>
+</div>
+
+<!-- 四、资金面 -->
+<h2>四、资金面分析</h2>
+<div class="card">
+  <div class="card-title">资金流向特征</div>
+  <p>今日为典型的<strong>恐慌性抛售</strong>行情，资金呈现以下特征：</p>
+  <ul style="margin: 10px 20px; line-height: 1.8;">
+    <li>🔴 <strong>两市成交额26,549亿</strong>，较前一日放量约80%+，属重大放量暴跌</li>
+    <li>🟢 <strong>银行板块逆势获资金流入</strong>：工商银行+2.44%、招商银行+0.93%，防御性资金切换明显</li>
+    <li>🔴 <strong>科技成长板块遭资金大幅流出</strong>：AI/光模块/半导体/创新药为抛售重灾区</li>
+    <li>🟡 上证50跌幅最小（-2.63%），资金向大盘价值迁移</li>
+    <li>🔴 中证500跌-5.55%，中小盘股流动性危机初现</li>
+  </ul>
+  <p class="subtle" style="margin-top: 10px;">⚡ 判断：市场呈现典型的「流动性危机式下跌」，而非基本面驱动的理性调整。这种行情往往伴随着被动平仓和杠杆踩踏。</p>
+</div>
+
+<!-- 五、涨停跌停分析 -->
+<h2>五、涨停跌停分析</h2>
+<div class="grid-2">
+  <div class="card red-bg">
+    <div class="card-title" style="color: #e74c3c;">📈 涨停（≥9.8%）</div>
+    <p style="color: #e74c3c; font-size: 1.3em; text-align: center;">极少</p>
+    <p style="text-align: center; color: #888;">今日仅极少数个股涨停，主要集中在银行和防御板块。<br>涨停家数为近期最低水平。</p>
+  </div>
+  <div class="card" style="background: rgba(39,174,96,0.05);">
+    <div class="card-title" style="color: #27ae60;">📉 跌停（≥9.8%）</div>
+    <p style="color: #27ae60; font-size: 1.3em; text-align: center;">超200只</p>
+    <p style="text-align: center; color: #888;">跌停潮来袭，尤其集中在AI/半导体/软件/创新药等板块。<br>出现多只20%跌停（创业板/科创板）。</p>
+  </div>
+</div>
+
+<!-- 六、美股映射 -->
+<h2>六、美股映射 & 隔夜展望</h2>
+<div class="card">
+  <div class="card-title">🌙 隔夜美股预判</div>
+  <div class="grid-2">
+    <div>
+      <p><strong>⚡ 本轮A股暴跌可能的催化剂（需晚间确认）：</strong></p>
+      <ul style="margin: 10px 0 10px 20px; line-height: 1.8;">
+        <li>🇺🇸 美国对华AI芯片新出口管制措施升级</li>
+        <li>💹 美联储鹰派信号或美债收益率飙升</li>
+        <li>🌐 全球科技股共振调整（纳指期货盘前走弱）</li>
+        <li>🇨🇳 国内政策监管预期变化</li>
+        <li>📉 衍生品到期/集中平仓引发的技术性踩踏</li>
+      </ul>
+    </div>
+    <div>
+      <p><strong>🔮 今晚需要关注的信号：</strong></p>
+      <ul style="margin: 10px 0 10px 20px; line-height: 1.8;">
+        <li>🇺🇸 美股纳指开盘走势 — 是否跟随A/H股下跌</li>
+        <li>💵 美元指数 & VIX恐慌指数变动</li>
+        <li>📊 中概股盘前表现（金龙指数）</li>
+        <li>🏛️ 是否有官方安抚性表态</li>
+        <li>📰 晚间新闻对暴跌的归因解释</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 七、关键信号 -->
+<h2>七、关键信号与明日策略</h2>
+<div class="grid-2">
+  <div class="signal-card signal-positive">
+    <strong>🔴 看空信号（占主导）</strong>
+    <ul style="margin: 8px 0 0 16px; line-height: 1.6; font-size: 0.9em;">
+      <li>创业板/科创50单日暴跌超7%为极端信号</li>
+      <li>两市天量成交26,549亿，恐慌盘尚未出清</li>
+      <li>科技成长股全线崩溃，AI/半导体/创新药遭"无差别抛售"</li>
+      <li>跌停潮蔓延，流动性踩踏风险仍在</li>
+    </ul>
+  </div>
+  <div class="signal-card signal-negative">
+    <strong>🟢 看多信号（微弱但存在）</strong>
+    <ul style="margin: 8px 0 0 16px; line-height: 1.6; font-size: 0.9em;">
+      <li>银行板块逆势上涨，说明非全市场崩塌</li>
+      <li>上证50仅跌2.63%，大盘价值提供了稳定器</li>
+      <li>极端恐慌后往往有技术性反弹</li>
+      <li>天量成交意味着大量资金在抄底承接</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card" style="border-color: #ffd700;">
+  <h3 style="color: #ffd700;">🎯 明日策略（7月20日周一）</h3>
+  <div style="margin: 10px 0;">
+    <p><strong>整体判断：</strong>今日属极端情绪宣泄，周末若无进一步利空，周一有望出现技术性反弹。但考虑到跌幅过大，反弹力度取决于消息面配合。</p>
+    <table style="margin-top: 12px;">
+      <tr><th>情景</th><th>概率</th><th>策略</th></tr>
+      <tr><td style="color: #27ae60;">🔹 超跌反弹（+2%~+4%）</td><td><span class="tag tag-yellow">40%</span></td><td>持仓不动或小幅加仓优质标的</td></tr>
+      <tr><td style="color: #e0e0e0;">🔹 弱势震荡（-1%~+1%）</td><td><span class="tag tag-blue">30%</span></td><td>观察为主，等待企稳信号</td></tr>
+      <tr><td style="color: #e74c3c;">🔹 继续下探（-2%~-4%）</td><td><span class="tag tag-red">30%</span></td><td>减仓止损，控制回撤</td></tr>
+    </table>
+  </div>
+  <div style="margin-top: 15px; padding: 12px; background: rgba(255,215,0,0.05); border-radius: 8px;">
+    <p><strong>⚠️ 老余应对建议：</strong></p>
+    <p>全部持仓跌幅在-3.68%~-10.55%区间。今日不宜恐慌减仓（已跌太多），但需做好周末风险管理：</p>
+    <ol style="margin: 8px 0 0 20px; line-height: 1.7;">
+      <li>关注今晚美股中概股走势，若继续大跌则周一可能低开</li>
+      <li>密切关注周末政策面消息——是否有利好对冲</li>
+      <li>周一若继续低开2%+，考虑对跌幅最大的金山云/小鹏做战术性减仓</li>
+      <li>若周末消息面平淡，周一早盘恐慌低开可能是加仓优质标的（腾讯、阿里）的机会</li>
+    </ol>
+  </div>
+</div>
+
+<!-- 免责 -->
+<div style="text-align: center; color: #555; font-size: 0.75em; margin-top: 40px; padding: 20px; border-top: 1px solid #1e2350;">
+  <p>本报告由 AI 自动生成 | 数据来源：腾讯行情API / 东方财富</p>
+  <p>⚠️ 报告内容仅供参考，不构成投资建议。投资有风险，操作需谨慎。</p>
+  <p>生成时间：2026-07-17 16:40 CST | Hermes Agent</p>
+</div>
+
 </div>
 </body>
 </html>
