@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🇺🇸 美股映射复盘 | 2026-07-18</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans SC', -apple-system, 'Segoe UI', sans-serif;
+    background: #0a0e1a;
+    color: #c8d6e5;
+    line-height: 1.8;
+    padding: 0;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #0f1923 0%, #1a2332 50%, #0d1117 100%);
+    border-bottom: 3px solid #f0b90b;
+    padding: 40px 0 30px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(240,185,11,0.03) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header-content { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+  .header h1 {
+    font-size: 2.4em;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 2px;
+  }
+  .header h1 span { color: #f0b90b; }
+  .header .subtitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    color: #8899aa;
+    font-size: 0.95em;
+  }
+  .header .badge {
+    display: inline-block;
+    background: #f0b90b;
+    color: #0a0e1a;
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85em;
+  }
+
+  /* Section */
+  .section {
+    background: linear-gradient(135deg, #111927, #0d1520);
+    border: 1px solid #1e2d3d;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #f0b90b;
+    border-radius: 4px 0 0 4px;
+  }
+  .section h2 {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #f0b90b;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section h2 .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: #f0b90b;
+    color: #0a0e1a;
+    border-radius: 8px;
+    font-size: 0.8em;
+    font-weight: 900;
+  }
+  .section h3 {
+    color: #e8e8e8;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 18px 0 10px;
+    padding-left: 8px;
+    border-left: 3px solid #f0b90b44;
+  }
+  .section p, .section li { color: #b0bed0; font-size: 0.95em; margin-bottom: 8px; }
+  .section ul, .section ol { padding-left: 20px; }
+
+  /* Tables */
+  .table-wrap { overflow-x: auto; margin: 12px 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+  }
+  thead th {
+    background: #1a2a3d;
+    color: #f0b90b;
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #f0b90b44;
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #1a2a3d;
+    vertical-align: top;
+  }
+  tbody tr:hover { background: #141e2f; }
+  .up { color: #f23645; font-weight: 600; }
+  .down { color: #00c853; font-weight: 600; }
+  .neutral { color: #f0b90b; }
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: 600;
+  }
+  .tag-red { background: #f2364522; color: #f23645; }
+  .tag-green { background: #00c85322; color: #00c853; }
+  .tag-yellow { background: #f0b90b22; color: #f0b90b; }
+  .tag-blue { background: #2196f322; color: #2196f3; }
+
+  /* Highlight box */
+  .highlight-box {
+    background: #0d1a2d;
+    border: 1px solid #f0b90b33;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
+  .highlight-box.warn { border-color: #f2364533; background: #1a0d0d; }
+  .highlight-box.ok { border-color: #00c85333; background: #0d1a10; }
+
+  /* Summary cards */
+  .index-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 12px 0;
+  }
+  .index-card {
+    background: #0d1824;
+    border: 1px solid #1e2d3d;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .index-card .name { color: #8899aa; font-size: 0.85em; }
+  .index-card .value { font-size: 1.4em; font-weight: 700; margin: 4px 0; }
+  .index-card .change { font-size: 0.95em; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 30px;
+    color: #5a6a7a;
+    font-size: 0.85em;
+    border-top: 1px solid #1a2a3d;
+    margin-top: 30px;
+  }
+  .footer a { color: #f0b90b; text-decoration: none; }
+
+  .tagline {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 0.75em;
+    margin-right: 4px;
+  }
+
+  @media (max-width: 768px) {
+    .header h1 { font-size: 1.6em; }
+    .section { padding: 16px; }
+    table { font-size: 0.8em; }
+    .index-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-content">
+    <h1>🇺🇸 <span>美股映射复盘</span> 🦅</h1>
+    <div class="subtitle">
+      <span>📅 2026年7月18日（周六）| 覆盖7月16-17日美股交易周</span>
+      <span class="badge">观澜 · 首席研究</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ========== 一、美股整体表现 ========== -->
+<div class="section">
+  <h2><span class="num">一</span> 美股整体表现</h2>
+
+  <h3>📊 7月16日（周四）收盘</h3>
+  <div class="index-grid">
+    <div class="index-card">
+      <div class="name">道琼斯</div>
+      <div class="value">52,552.97</div>
+      <div class="change down">▼ -105.67 (-0.20%)</div>
+    </div>
+    <div class="index-card">
+      <div class="name">纳斯达克</div>
+      <div class="value">25,881.95</div>
+      <div class="change down">▼ -387.28 (-1.47%)</div>
+    </div>
+    <div class="index-card">
+      <div class="name">标普500</div>
+      <div class="value">7,533.77</div>
+      <div class="change down">▼ -38.64 (-0.51%)</div>
+    </div>
+    <div class="index-card">
+      <div class="name">VIX恐慌指数</div>
+      <div class="value" style="color:#f23645;">16.71</div>
+      <div class="change up">▲ +6.64%</div>
+    </div>
+    <div class="index-card">
+      <div class="name">费城半导体</div>
+      <div class="value" style="color:#f23645;">11,673.89</div>
+      <div class="change up">▼ -4.29%</div>
+    </div>
+    <div class="index-card">
+      <div class="name">金龙中国指数</div>
+      <div class="value" style="color:#00c853;">6,396.75</div>
+      <div class="change down">▲ +1.79%</div>
+    </div>
+  </div>
+
+  <h3>📊 7月17日（周五）收盘</h3>
+  <div class="index-grid">
+    <div class="index-card">
+      <div class="name">道琼斯</div>
+      <div class="value">52,146.42</div>
+      <div class="change down">▼ -406.55 (-0.77%)</div>
+    </div>
+    <div class="index-card">
+      <div class="name">纳斯达克</div>
+      <div class="value" style="color:#f23645;">25,520.24</div>
+      <div class="change down">▼ -361.70 (-1.40%)</div>
+    </div>
+    <div class="index-card">
+      <div class="name">标普500</div>
+      <div class="value">7,457.69</div>
+      <div class="change down">▼ -76.08 (-1.01%)</div>
+    </div>
+    <div class="index-card">
+      <div class="name">费城半导体</div>
+      <div class="value" style="color:#f23645;">—</div>
+      <div class="change up">▼ -1.63%</div>
+    </div>
+    <div class="index-card">
+      <div class="name">10Y美债</div>
+      <div class="value">4.55%</div>
+      <div class="change neutral">持平</div>
+    </div>
+    <div class="index-card">
+      <div class="name">美元指数</div>
+      <div class="value">100.72</div>
+      <div class="change neutral">▲ +0.20%</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <strong>📌 市场情绪：</strong>避险情绪显著升温。VIX升至16.71（+6.64%），AI/半导体板块连续第二周遭到大规模抛售。费城半导体指数较6月22日历史最高位回撤超20%，<strong>正式进入技术性熊市</strong>。本周标普500跌0.6%，道指跌0.2%，纳指跌1.5%。
+  </div>
+
+  <h3>关键影响因素</h3>
+  <ul>
+    <li><strong>⚠️ AI热潮降温：</strong>中国开源AI模型（Kimi K3等）竞争引发AI支出担忧，市场开始质疑AI基础设施投入回报</li>
+    <li><strong>⚠️ 台积电财报"利好出尽"：</strong>Q2利润同比+77%超预期，但上调全年资本支出至600-640亿美元（原指引520-560亿），市场担忧过度投资</li>
+    <li><strong>⚠️ 美伊冲突升级：</strong>伊朗袭击科威特/叙利亚美军目标，威胁关闭霍尔木兹海峡和曼德海峡，油价单日飙涨超4%</li>
+    <li><strong>⚠️ 谷歌Gemini 3.5 Pro发布延期：</strong>技术表现未达目标，引发AI竞争力担忧，谷歌A跌4.44%</li>
+    <li><strong>💊 财报季开局强劲：</strong>标普500已有40家公司公布业绩，87%超预期；雅培+12%、联合健康业绩超预期</li>
+  </ul>
+</div>
+
+<!-- ========== 二、强势板块与核心逻辑 ========== -->
+<div class="section">
+  <h2><span class="num">二</span> 强势板块与核心逻辑</h2>
+
+  <h3>✅ 涨幅前5板块</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>排名</th><th>板块</th><th>涨幅</th><th>领涨龙头</th><th>上涨逻辑</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>🥇</td>
+          <td>医疗保健/制药</td>
+          <td class="down">▲ +2.1%~12%</td>
+          <td>雅培(+12%)、默沙东(+3%)、联合健康(+8%)</td>
+          <td>雅培Q2营收利润双超预期、上调全年指引；默沙东新型降胆固醇药获FDA批准；联合健康上调全年业绩展望</td>
+        </tr>
+        <tr>
+          <td>🥈</td>
+          <td>日常消费品</td>
+          <td class="down">▲ +2.9%</td>
+          <td>宝洁、可口可乐等防御型龙头</td>
+          <td>资金从科技股轮动至防御型板块，市场避险情绪升温</td>
+        </tr>
+        <tr>
+          <td>🥉</td>
+          <td>能源</td>
+          <td class="down">▲ +1%~1.16%</td>
+          <td>埃克森美孚、雪佛龙</td>
+          <td>美伊冲突升级，伊朗威胁封锁霍尔木兹海峡，油价飙涨超4%</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>区域银行</td>
+          <td class="down">▲ +2.82%</td>
+          <td>摩根大通、美国银行等</td>
+          <td>Q2银行财报亮眼，经济数据韧性叠加利率环境利好息差</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>房地产</td>
+          <td class="down">▲ +2.1%</td>
+          <td>REITs板块</td>
+          <td>降息预期+防御性资金流入</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>❌ 最弱板块TOP3</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>排名</th><th>板块</th><th>跌幅</th><th>领跌龙头</th><th>下跌逻辑</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>🥇</td>
+          <td>半导体/存储芯片</td>
+          <td class="up">▼ -4.29%（SOX）</td>
+          <td>SK海力士(-13.5%)、闪迪(-12.6%)、希捷(-10%)、西部数据(-9.2%)、美光(-5.6%)、AMD(-5.3%)</td>
+          <td>AI支出过度担忧；中国开源AI模型竞争；台积电上调资本支出引发"支出泡沫"担忧；存储周期见顶预期；对冲基金大幅削减AI敞口</td>
+        </tr>
+        <tr>
+          <td>🥈</td>
+          <td>通信服务</td>
+          <td class="up">▼ -2.38%~-2.85%</td>
+          <td>谷歌A(-4.44%)、Meta(-2.46%)</td>
+          <td>谷歌Gemini 3.5 Pro延期发布，AI竞争力受质疑；Meta跟随科技股抛售潮</td>
+        </tr>
+        <tr>
+          <td>🥉</td>
+          <td>可选消费（含流媒体）</td>
+          <td class="up">▼ -1.58%</td>
+          <td>奈飞(-7.77%)、亚马逊(-2%)、特斯拉(-0.86%)</td>
+          <td>奈飞Q3指引低于预期引发成长放缓担忧；整体消费板块受科技拖累</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight-box warn">
+    <strong>⚠️ 核心观察：</strong>半导体板块6月中旬至今累计回调超20%，正式进入技术性熊市。摩根大通研究显示，过去5-6周对冲基金大幅削减AI相关敞口及杠杆ETF持仓。但板块内部分化，周五盘中存储股一度逆势拉升（SK海力士涨5%、美光涨0.38%），显示短期超卖后有资金抄底。
+  </div>
+</div>
+
+<!-- ========== 三、重点个股异动 ========== -->
+<div class="section">
+  <h2><span class="num">三</span> 重点个股异动</h2>
+
+  <h3>🚀 3.1 涨幅超9%的大市值个股</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>股票</th><th>代码</th><th>涨幅</th><th>市值</th><th>上涨核心原因</th><th>A股映射</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>雅培</strong></td>
+          <td><code>ABT</code></td>
+          <td class="down"><strong>▲ +12%</strong>（盘中最高+14%）</td>
+          <td>~$2,100亿</td>
+          <td>
+            Q2营收125.9亿美元（同比+13%，超预期），调整后EPS $1.31（超预期）；<br>
+            上调全年EPS指引至$5.45-$5.60（中值+5美分）；<br>
+            FreeStyle Libre 3血糖传感器、医疗器械业务表现强劲；<br>
+            诊断业务强劲增长
+          </td>
+          <td>
+            <span class="tag tag-yellow">✅ 强映射</span><br>
+            <strong>医疗器械：</strong>鱼跃医疗、迈瑞医疗<br>
+            <strong>血糖监测：</strong>三诺生物（GLP-1产业链受益）<br>
+            <strong>诊断试剂：</strong>安图生物、新产业生物
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight-box">
+    <strong>💡 雅培映射逻辑：</strong>美股医疗器械板块在防御市场中逆势走强，雅培12%大涨是医疗健康赛道估值修复的标杆信号。A股对标需关注：（1）具有全球化布局的器械龙头；（2）血糖/IVD赛道有技术壁垒的公司。
+  </div>
+
+  <h3>🔍 3.2 重点科技/医药龙头逐一检查</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>公司</th><th>代码</th><th>周四涨跌</th><th>周五涨跌</th><th>异动原因点评</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>苹果</td><td><code>AAPL</code></td>
+          <td class="down">▲ +1.76%</td>
+          <td class="down">▲ 上涨（具体未报）</td>
+          <td>科技七巨头中唯二上涨的。消息面：计划对iPad mini进行五年来最大升级，秋季发布。周五盘中市值反超英伟达，重夺全球市值第一</td>
+        </tr>
+        <tr>
+          <td>微软</td><td><code>MSFT</code></td>
+          <td class="down">▲ +1.38%</td>
+          <td class="up">▼ -1.76%</td>
+          <td>周四逆势上涨，周五受大盘拖累回调。AI叙事未受损，但整体避险情绪下承压</td>
+        </tr>
+        <tr>
+          <td><strong>谷歌A</strong></td><td><code>GOOGL</code></td>
+          <td class="up"><strong>▼ -4.44%</strong></td>
+          <td class="up">▼ 盘前-2.68%</td>
+          <td><strong>⚠️ 异动！</strong>媒体曝Gemini 3.5 Pro发布延期数月，技术表现未达目标，尤其在代码能力方面落后竞品。引发AI竞争力担忧</td>
+        </tr>
+        <tr>
+          <td><strong>英伟达</strong></td><td><code>NVDA</code></td>
+          <td class="up"><strong>▼ -2.40%</strong></td>
+          <td class="up"><strong>▼ -4%+</strong></td>
+          <td><strong>⚠️ 连续两日重挫。</strong>AI支出恐慌+中国开源模型竞争+存储板块拖累。高盛称美光+英伟达贡献标普500二季度盈利增长的40%+，但市场仍抛售</td>
+        </tr>
+        <tr>
+          <td><strong>AMD</strong></td><td><code>AMD</code></td>
+          <td class="up"><strong>▼ -5.33%</strong></td>
+          <td class="up">▼ 盘前-3.96%</td>
+          <td>跟随芯片板块大幅回调，AI芯片竞争激烈</td>
+        </tr>
+        <tr>
+          <td><strong>台积电</strong></td><td><code>TSM</code></td>
+          <td class="up">▼ -2.26%</td>
+          <td class="up">▼ -2.25%</td>
+          <td>Q2利润同比+77%远超预期，但上调资本支出指引至600-640亿美元，市场解读为"过度投资"信号，利好出尽</td>
+        </tr>
+        <tr>
+          <td>Meta</td><td><code>META</code></td>
+          <td class="up">▼ -2.46%</td>
+          <td class="up">▼ 盘前-3.10%</td>
+          <td>跟随AI板块整体回调</td>
+        </tr>
+        <tr>
+          <td>亚马逊</td><td><code>AMZN</code></td>
+          <td class="up">▼ -1.99%</td>
+          <td class="up">▼ -2.00%</td>
+          <td>科技股普遍走弱</td>
+        </tr>
+        <tr>
+          <td><strong>特斯拉</strong></td><td><code>TSLA</code></td>
+          <td class="up">▼ -0.86%</td>
+          <td class="up">▼ -2.81%</td>
+          <td>跌幅相对温和。周五盘中存储板块逆势拉升时，特斯拉仍承压</td>
+        </tr>
+        <tr>
+          <td>英特尔</td><td><code>INTC</code></td>
+          <td class="up"><strong>▼ -5.84%</strong></td>
+          <td class="up">▼ 盘前-3%</td>
+          <td>芯片板块重灾区，存储/代工双重压力</td>
+        </tr>
+        <tr>
+          <td><strong>奈飞</strong></td><td><code>NFLX</code></td>
+          <td>—</td>
+          <td class="up"><strong>▼ -7.77%</strong></td>
+          <td><strong>⚠️ 异动！</strong>Q3营收指引$129亿（低于预期），EPS $0.82（低于预期），下调全年营收预期至$510-514亿（+13%~14%），引发成长放缓担忧</td>
+        </tr>
+        <tr>
+          <td>博通</td><td><code>AVGO</code></td>
+          <td class="up">▼ -4%~5%</td>
+          <td class="up">▼ 盘前-2%</td>
+          <td>AI芯片/网络芯片双线承压</td>
+        </tr>
+        <tr>
+          <td><strong>雅培</strong></td><td><code>ABT</code></td>
+          <td class="down"><strong>▲ +12%</strong></td>
+          <td>—</td>
+          <td><strong>✅ 亮点财报！</strong>Q2营收+13%超预期，上调全年EPS指引，医疗器械+诊断业务全面回暖</td>
+        </tr>
+        <tr>
+          <td>联合健康</td><td><code>UNH</code></td>
+          <td class="down">▲ +8%</td>
+          <td>—</td>
+          <td>Q2盈利超预期，上调2026全年业绩展望</td>
+        </tr>
+        <tr>
+          <td>默沙东</td><td><code>MRK</code></td>
+          <td class="down">▲ +3%</td>
+          <td>—</td>
+          <td>FDA批准新型降胆固醇口服药Lipfendra（PCSK9抑制剂），股价迫近历史新高</td>
+        </tr>
+        <tr>
+          <td>礼来</td><td><code>LLY</code></td>
+          <td>—</td>
+          <td>—</td>
+          <td>拟以最高$38亿收购Atai Beckley，押注神经科学新疗法</td>
+        </tr>
+        <tr>
+          <td>SpaceX</td><td><code>SPCE</code></td>
+          <td class="up">▼ -3.08%</td>
+          <td class="up">▼ -4%</td>
+          <td>收盘价$131.11，首次低于IPO发行价($135)。取消"星舰"重大试飞任务</td>
+        </tr>
+        <tr>
+          <td>直觉外科</td><td><code>ISRG</code></td>
+          <td>—</td>
+          <td class="up">▼ 盘初-11%</td>
+          <td>Q2营收利润均超预期，但维持全年手术量增长展望不变，警告美国医保政策变化影响患者就医时机</td>
+        </tr>
+        <tr>
+          <td>康宁</td><td><code>GLW</code></td>
+          <td class="up"><strong>▼ -9%+</strong></td>
+          <td class="up">▼ 盘前-6%</td>
+          <td>光通信概念领跌，AI基础设施投资预期降温</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight-box warn">
+    <strong>⚠️ 关键观察：</strong>科技七巨头（Magnificent 7）指数周四跌1.31%，周五继续走弱。苹果成唯一"避风港"。存储板块经历周四暴跌后在周五盘中出现明显反弹（SK海力士+5.13%），显示多空分歧加剧，短期超卖后有抄底资金入场。
+  </div>
+</div>
+
+<!-- ========== 四、中概股表现 ========== -->
+<div class="section">
+  <h2><span class="num">四</span> 中概股表现</h2>
+
+  <h3>📊 7月16日（周四）—— 金龙指数逆势涨1.79%</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>分类</th><th>股票</th><th>涨跌幅</th><th>点评</th></tr>
+      </thead>
+      <tbody>
+        <tr><td rowspan="6" style="vertical-align:middle;color:#00c853;"><strong>上涨</strong></td>
+          <td>腾讯音乐</td><td class="down">▲ +4.35%</td><td>涨幅领先中概，AI+音乐平台催化</td></tr>
+        <tr><td>哔哩哔哩</td><td class="down">▲ +3.94%</td><td>AI模型概念+社区平台活跃度提升</td></tr>
+        <tr><td>贝壳</td><td class="down">▲ +2.52%</td><td>地产政策预期向好</td></tr>
+        <tr><td>携程</td><td class="down">▲ +2.05%</td><td>暑期出行旺季催化</td></tr>
+        <tr><td>小鹏汽车</td><td class="down">▲ +1.89%</td><td>新能源汽车销量持续向好</td></tr>
+        <tr><td>京东/百度/拼多多/理想</td><td class="down">▲ +1%~+1.4%</td><td>普涨格局，受人民币资产情绪回暖带动</td></tr>
+        <tr><td rowspan="4" style="vertical-align:middle;color:#f23645;"><strong>下跌</strong></td>
+          <td>联电(UMC)</td><td class="up"><strong>▼ -10.15%</strong></td><td>跟随半导体板块大幅回调</td></tr>
+        <tr><td>慧荣科技</td><td class="up"><strong>▼ -7.14%</strong></td><td>存储芯片设计公司，受板块拖累</td></tr>
+        <tr><td>台积电</td><td class="up">▼ -2.25%</td><td>利好出尽，资本支出上调引发担忧</td></tr>
+        <tr><td>阿里巴巴</td><td class="up">▼ -0.14%</td><td>微跌，相对抗跌</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>📊 7月17日（周五）—— 盘中走弱，收盘涨跌不一</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>时段</th><th>表现</th><th>说明</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>盘前</td><td class="up">全线普跌</td><td>B站、小鹏跌超5%，理想蔚来跌超3%，阿里拼多多跌超2%</td></tr>
+        <tr><td>开盘</td><td class="up">延续弱势</td><td>B站-5.89%，小鹏-5.63%，理想-3.11%，阿里-2.44%，拼多多-2.64%</td></tr>
+        <tr><td>最终收报</td><td>涨跌不一</td><td>数据待确认，盘中跌幅明显但尾盘有部分回升</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight-box">
+    <strong>📌 中概整体判断：</strong>周四中概逆势走强，金龙指数+1.79%，显著跑赢美股大盘，显示资金从美股科技股撤出后部分流入低估值的中国资产。但周五受芯片板块持续暴跌及中东局势影响，中概未能延续独立行情。关注下周中概财报季启动情况。
+  </div>
+</div>
+
+<!-- ========== 五、大宗商品与相关资产 ========== -->
+<div class="section">
+  <h2><span class="num">五</span> 大宗商品与相关资产</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>资产</th><th>价格</th><th>涨跌幅</th><th>走势分析</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>现货黄金</td>
+          <td>$3,977/盎司</td>
+          <td class="up">▼ 跌破$4,000关口</td>
+          <td>美元走强+美债收益率走高压制黄金避险需求。市场对美联储9月加息预期升温（~53%概率），实际利率上行打压金价</td>
+        </tr>
+        <tr>
+          <td>COMEX黄金</td>
+          <td>$3,979.90</td>
+          <td class="up">▼ -1.77%</td>
+          <td>自7月初高位$4,200+大幅回调，多头获利了结+实际利率抬升</td>
+        </tr>
+        <tr>
+          <td>COMEX白银</td>
+          <td>$55.77</td>
+          <td class="up">▼ -2.90%</td>
+          <td>跟随黄金走弱，跌幅大于黄金</td>
+        </tr>
+        <tr>
+          <td>WTI原油</td>
+          <td>$79.58（周四）→ $82+（周五）</td>
+          <td class="down">周四持平 → 周五<strong>▲ +4%+</strong></td>
+          <td>美伊冲突升级第六天，伊朗袭击科威特/叙利亚美军基地，威胁关闭霍尔木兹海峡和曼德海峡。周五盘中油价飙涨超4%</td>
+        </tr>
+        <tr>
+          <td>布伦特原油</td>
+          <td>$84.90（周四）→ $88+（周五）</td>
+          <td class="down">周四-0.06% → 周五<strong>▲ +4%+</strong></td>
+          <td>中东地缘溢价大幅上行，白宫称"仍有对话空间"但伊朗立场趋硬</td>
+        </tr>
+        <tr>
+          <td>10年期美债收益率</td>
+          <td>4.55%~4.57%</td>
+          <td class="neutral">小幅上行1bp</td>
+          <td>前端收益率上行（加息预期），长端基本持平，曲线进一步平坦化</td>
+        </tr>
+        <tr>
+          <td>2年期美债收益率</td>
+          <td>4.16%</td>
+          <td class="neutral">上行</td>
+          <td>反映短期加息预期升温，2-10年期利差逼近年内最平</td>
+        </tr>
+        <tr>
+          <td>美元指数</td>
+          <td>100.72~100.76</td>
+          <td class="neutral">▲ +0.2%~0.3%</td>
+          <td>经济数据韧性+中东局势支撑美元反弹。离岸人民币贬至6.7733</td>
+        </tr>
+        <tr>
+          <td>LME期镍</td>
+          <td>—</td>
+          <td class="down">▲ +1.83%</td>
+          <td>基本金属多数上涨，镍价领涨</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight-box warn">
+    <strong>⚠️ 关键观察：</strong>霍尔木兹海峡是全球最重要的石油运输通道，伊朗威胁封锁将导致全球油价剧烈波动。若局势持续升级，布伦特可能快速突破$90甚至$100。OPEC+后续应对措施值得密切关注。
+  </div>
+</div>
+
+<!-- ========== 六、重要信息点评 ========== -->
+<div class="section">
+  <h2><span class="num">六</span> 重要信息点评</h2>
+
+  <h3>📊 重要经济数据</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>指标</th><th>实际值</th><th>预期值</th><th>前值</th><th>判断</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>6月新屋开工（年化）</td>
+          <td><strong>142.7万套</strong></td>
+          <td>132万套</td>
+          <td>119.9万套</td>
+          <td class="down">✅ 超预期！创近期高点，建筑市场回暖</td>
+        </tr>
+        <tr>
+          <td>6月新屋许可（年化）</td>
+          <td>136.7万套</td>
+          <td>140万套</td>
+          <td>141万套</td>
+          <td class="up">❌ 低于预期，未来建筑活动可能放缓</td>
+        </tr>
+        <tr>
+          <td>6月工业生产（环比）</td>
+          <td>+0.1%</td>
+          <td>+0.2%</td>
+          <td>+0.1%</td>
+          <td class="neutral">⚡ 略低于预期，制造业扩张动能温和</td>
+        </tr>
+        <tr>
+          <td>6月产能利用率</td>
+          <td>76.1%</td>
+          <td>76.2%</td>
+          <td>76.1%</td>
+          <td class="neutral">⚡ 基本符合预期，产能释放平稳</td>
+        </tr>
+        <tr>
+          <td>7月密歇根消费者信心</td>
+          <td><strong>54.4</strong></td>
+          <td>51.3</td>
+          <td>49.5</td>
+          <td class="down">✅ 超预期！消费者信心自低位反弹</td>
+        </tr>
+        <tr>
+          <td>1年通胀预期</td>
+          <td><strong>4.2%</strong></td>
+          <td>—</td>
+          <td>4.6%</td>
+          <td class="down">✅ 通胀预期回落，缓解加息压力</td>
+        </tr>
+        <tr>
+          <td>初请失业金人数</td>
+          <td>20.8万人</td>
+          <td>—</td>
+          <td>—</td>
+          <td class="down">✅ 历史低位，劳动力市场仍紧俏</td>
+        </tr>
+        <tr>
+          <td>抵押贷款利率</td>
+          <td>6.55%</td>
+          <td>—</td>
+          <td>6.50%（前周）</td>
+          <td class="neutral">⚡ 升至2025年8月以来最高</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>🏛️ 美联储动态</h3>
+  <div class="highlight-box">
+    <ul>
+      <li><strong>洛根（鹰派）：</strong>应加息以应对通胀。重申抗通胀立场</li>
+      <li><strong>市场定价：</strong>芝加哥商品交易所FedWatch显示7月加息概率维持10-15%，9月加息概率约53%</li>
+      <li><strong>美债曲线：</strong>短端（2年期）上行明显，2-10年期利差逼近年内最平水平。7月加息溢价已降至仅约2.5bp，7月加息基本退出市场定价</li>
+      <li><strong>CNBC调查：</strong>61%受访选民对美国经济持悲观态度（2023年12月以来最高），仅25%持乐观态度</li>
+    </ul>
+  </div>
+
+  <h3>🌍 地缘政治</h3>
+  <div class="highlight-box warn">
+    <ul>
+      <li><strong>美伊冲突第六天：</strong>伊朗革命卫队袭击科威特和叙利亚美军目标；伊朗威胁关闭霍尔木兹海峡和曼德海峡</li>
+      <li><strong>科威特设施受损：</strong>一座发电及海水淡化设施遭伊朗袭击，多台发电机组严重受损</li>
+      <li><strong>油价风险：</strong>伊朗称只要美国继续侵略，"不会有石油或天然气通过该地区出口"</li>
+      <li><strong>缓和信号：</strong>伊朗释放一名美国公民，白宫称伊朗仍在与美国对话，暗示仍有重返外交谈判可能</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ========== 七、映射到A股的潜在方向 ========== -->
+<div class="section">
+  <h2><span class="num">七</span> 映射到A股的潜在方向</h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>美股映射</th><th>映射方向</th><th>A股对标标的</th><th>推荐逻辑</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>雅培(+12%)</strong><br>医疗器械龙头业绩超预期</td>
+          <td><span class="tag tag-yellow">✅ 强映射 — 医疗器械</span></td>
+          <td>
+            <strong>迈瑞医疗</strong>（监护/超声龙头，全球化布局）<br>
+            <strong>鱼跃医疗</strong>（家用医疗器械龙头，血糖仪+呼吸机）<br>
+            <strong>三诺生物</strong>（血糖监测龙头，CGM在研）<br>
+            <strong>新产业生物</strong>（化学发光诊断龙头）
+          </td>
+          <td>美股器械板块在Q2财报季展现出强劲的业绩韧性，雅培的大涨将带动全球医疗器械板块估值修复。A股器械龙头当前估值处于历史低位，性价比突出</td>
+        </tr>
+        <tr>
+          <td><strong>默沙东(+3%)</strong><br>FDA批准新型降胆固醇药</td>
+          <td><span class="tag tag-blue">⚡ 关注 — 创新药</span></td>
+          <td>
+            <strong>信达生物</strong>（PCSK9靶点在研）<br>
+            <strong>君实生物</strong>（PCSK9单抗）<br>
+            <strong>恒瑞医药</strong>（创新药综合龙头）<br>
+            <strong>康方生物</strong>（双抗龙头）
+          </td>
+          <td>PCSK9抑制剂赛道升温，默沙东口服PCSK9抑制剂获批标志着降脂药进入口服时代。A股PCSK9赛道研发企业有望获得价值重估</td>
+        </tr>
+        <tr>
+          <td><strong>存储芯片暴跌</strong><br>SOX进入技术性熊市</td>
+          <td><span class="tag tag-red">⚠️ 映射风险 — 存储/AI算力</span></td>
+          <td>
+            <strong>兆易创新</strong>（存储芯片设计，周四已跌停）<br>
+            <strong>澜起科技</strong>（内存接口芯片，近一周跌超20%）<br>
+            <strong>中芯国际</strong>（晶圆代工）<br>
+            <strong>寒武纪/海光信息</strong>（AI芯片）
+          </td>
+          <td>A股存储/AI芯片板块已先于美股调整（周四兆易创新跌停），下周大概率继续承压。但存储板块周五盘中出现反弹信号，需关注是否形成短期底部</td>
+        </tr>
+        <tr>
+          <td><strong>能源股上涨</strong><br>油价因中东危机飙涨</td>
+          <td><span class="tag tag-yellow">✅ 强映射 — 能源</span></td>
+          <td>
+            <strong>中国石油</strong>（上游资源龙头）<br>
+            <strong>中国海油</strong>（纯上游，弹性最大）<br>
+            <strong>中曼石油/杰瑞股份</strong>（油服）<br>
+            <strong>广汇能源</strong>（天然气）
+          </td>
+          <td>霍尔木兹海峡封锁风险推高油价，叠加A股能源板块估值低、分红高，是当下极具防御性的配置方向</td>
+        </tr>
+        <tr>
+          <td><strong>苹果逆势上涨</strong><br>市值反超英伟达</td>
+          <td><span class="tag tag-blue">⚡ 关注 — 消费电子</span></td>
+          <td>
+            <strong>立讯精密</strong>（苹果核心供应链）<br>
+            <strong>歌尔股份</strong>（声学/VR）<br>
+            <strong>蓝思科技</strong>（玻璃盖板）<br>
+            <strong>东山精密</strong>（FPC）
+          </td>
+          <td>苹果iPad mini大升级计划+苹果相对AI股更抗跌，关注消费电子产业链的防御属性。若AI持续杀估值，资金可能轮动至消费电子</td>
+        </tr>
+        <tr>
+          <td><strong>黄金跌破$4,000</strong><br>实际利率上行打压</td>
+          <td><span class="tag tag-red">⚠️ 映射风险 — 贵金属</span></td>
+          <td>
+            <strong>山东黄金/中金黄金</strong><br>
+            <strong>紫金矿业</strong>
+          </td>
+          <td>短期美元走强+加息预期压制金价，但中东局势提供底部支撑。中期看，全球央行购金趋势未变，回调是布局机会</td>
+        </tr>
+        <tr>
+          <td><strong>中概逆势走强</strong><br>金龙指数+1.79%</td>
+          <td><span class="tag tag-yellow">✅ 强映射 — 港股/A股</span></td>
+          <td>
+            <strong>港股互联网：</strong>腾讯、美团、阿里、快手<br>
+            <strong>A股AI模型：</strong>九安医疗（参股Kimi）、开润股份（参股DeepSeek）
+          </td>
+          <td>中概在美股暴跌中展现独立性，资金从美股科技流出后寻找估值洼地。中国开源AI模型（Kimi K3等）崛起可能成为新的催化</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ========== 八、投资机会 ========== -->
+<div class="section">
+  <h2><span class="num">八</span> 投资机会 &amp; 操作思路</h2>
+
+  <div class="highlight-box ok">
+    <h3 style="color:#00c853;border-left-color:#00c853;">🟢 可以关注的方向</h3>
+    <ol>
+      <li><strong>医疗器械（短期机会）</strong> — 雅培映射效应。推荐关注：<strong>迈瑞医疗、鱼跃医疗</strong>。A股器械板块Q2业绩预计普遍向好，叠加估值低位，是当下攻守兼备的品种</li>
+      <li><strong>能源股（地缘催化）</strong> — 中东局势短期难缓和。推荐关注：<strong>中国海油</strong>（弹性最大）。若油价突破$90，上游能源股有10-15%上行空间</li>
+      <li><strong>中概互联网（结构性机会）</strong> — 资金从美股科技流出后，中概低估值+AI催化提供吸引力。推荐关注：<strong>腾讯、美团</strong>（核心持仓）</li>
+      <li><strong>电力板块（防御+夏季用电）</strong> — 周四A股电力板块一枝独秀（立新能源2连板，华银电力涨停），夏季用电高峰来临，电力/公用事业是确定性较高的防御品种</li>
+    </ol>
+  </div>
+
+  <div class="highlight-box warn">
+    <h3 style="color:#f0b90b;border-left-color:#f0b90b;">🟡 需要等待信号的方向</h3>
+    <ol>
+      <li><strong>存储/AI芯片</strong> — SOX已进入技术性熊市（较高点回撤20%+），但周五盘中存储股出现反弹（SK海力士+5%），可能短期超卖后有技术性反弹。关注：若下周费半指数企稳，可小仓位参与A股存储反弹（兆易创新、澜起科技）</li>
+      <li><strong>创新药</strong> — 默沙东PCSK9新药获批验证赛道价值，但A股创新药仍需关注Q2业绩和临床数据。关注：信达生物、康方生物</li>
+      <li><strong>消费电子/果链</strong> — 苹果逆势抗跌+新iPad mini催化，但需观察整体科技股资金面变化</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ========== 九、风险提示 ========== -->
+<div class="section">
+  <h2><span class="num">九</span> 风险提示</h2>
+
+  <div class="highlight-box warn">
+    <ul>
+      <li><strong>⚠️ 美伊冲突超预期升级</strong> — 伊朗威胁封锁霍尔木兹海峡，若局势失控可能引发全球性供应危机，油价飙升至$100+将压制全球风险资产</li>
+      <li><strong>⚠️ 美联储加息预期升温</strong> — 洛根等鹰派官员支持加息，9月加息概率约53%。若CPI/PCE数据超预期，加息预期将进一步打压估值</li>
+      <li><strong>⚠️ AI/半导体抛售进入负反馈循环</strong> — 费半指数进入技术性熊市，对冲基金持续削减AI敞口，动量因子遭遇2000年以来最剧烈抛售。可能从"AI回调"演变为"系统性科技股崩盘"</li>
+      <li><strong>⚠️ 美股高估值脆弱性</strong> — 标普500盈利预期已定价2027年（分析师预期约$400），当前"金发姑娘"定价极为脆弱，任何不及预期的经济数据或财报都可能触发更大回调</li>
+      <li><strong>⚠️ 奈飞Q3指引不及预期</strong> — 流媒体巨头指引疲弱可能暗示消费端需求走软，后续财报季可能成为新的压力测试点</li>
+      <li><strong>⚠️ 中概股需警惕联动下跌</strong> — 虽然周四中概逆势走强，但周五盘前已出现明显下跌。若美股继续暴跌，中概难以持续独立行情</li>
+    </ul>
+  </div>
+</div>
+
+<div class="footer">
+  <p>🦅 <strong>观澜 · 首席研究</strong> | 数据来源：同花顺iFind MCP + 财联社 + 新华财经 + 公开资讯</p>
+  <p>📅 生成时间：2026-07-18 08:00 CST | 仅供老余参考，不构成投资建议</p>
+  <p>⚠️ 股市有风险，投资须谨慎</p>
+</div>
+
+</div>
+</body>
+</html>
