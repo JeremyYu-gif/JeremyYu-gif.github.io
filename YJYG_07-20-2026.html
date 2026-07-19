@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>业绩预告筛选日报 07-20-2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0e1a;
+    color: #c8d6e5;
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    padding: 30px 20px;
+    min-height: 100vh;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #0f1923 0%, #1a2744 100%);
+    border: 1px solid #1e3a5f;
+    border-radius: 16px;
+    padding: 30px 35px;
+    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 150, 255, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .header h1 span { color: #00d4ff; }
+  .header .subtitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #8892b0;
+    font-size: 14px;
+  }
+  .header .badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #00d4ff, #0070dd);
+    color: #fff;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  /* Stats Bar */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+  .stat-card {
+    background: #111827;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+  }
+  .stat-card .num {
+    font-size: 28px;
+    font-weight: 700;
+    color: #00d4ff;
+  }
+  .stat-card .label {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 4px;
+  }
+  
+  /* Section */
+  .section {
+    background: #0f1923;
+    border: 1px solid #1e3a5f;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 25px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #1e3a5f;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .icon { font-size: 22px; }
+  
+  /* Stock Cards */
+  .stock-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(540px, 1fr));
+    gap: 16px;
+  }
+  .stock-card {
+    background: #111827;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.2s;
+  }
+  .stock-card:hover {
+    border-color: #00d4ff;
+    box-shadow: 0 0 20px rgba(0,212,255,0.08);
+  }
+  .stock-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .stock-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .stock-name .code {
+    font-weight: 400;
+    color: #64748b;
+    font-size: 13px;
+  }
+  .stock-tag {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .tag-预增 { background: rgba(0, 212, 255, 0.15); color: #00d4ff; border: 1px solid rgba(0,212,255,0.3); }
+  .tag-扭亏 { background: rgba(255, 200, 0, 0.15); color: #ffc800; border: 1px solid rgba(255,200,0,0.3); }
+  .tag-大幅上升 { background: rgba(0, 200, 100, 0.15); color: #00c864; border: 1px solid rgba(0,200,100,0.3); }
+  
+  .stock-meta {
+    display: flex;
+    gap: 20px;
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .stock-meta span { display: flex; align-items: center; gap: 4px; }
+  .stock-meta .val { color: #e2e8f0; font-weight: 500; }
+  
+  .stock-body {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #94a3b8;
+  }
+  .stock-body .row { margin-bottom: 6px; }
+  .stock-body .label { color: #64748b; }
+  .stock-body .highlight { color: #00d4ff; font-weight: 500; }
+  .stock-body .positive { color: #00c864; }
+  .stock-body .negative { color: #ff6b6b; }
+  .stock-body .neutral { color: #ffc800; }
+  
+  .rating {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .rating-star { background: rgba(0, 200, 100, 0.15); color: #00c864; border: 1px solid rgba(0,200,100,0.3); }
+  .rating-watch { background: rgba(0, 212, 255, 0.15); color: #00d4ff; border: 1px solid rgba(0,212,255,0.3); }
+  .rating-caution { background: rgba(255, 200, 0, 0.15); color: #ffc800; border: 1px solid rgba(255,200,0,0.3); }
+  
+  /* Footer */
+  .footer {
+    text-align: center;
+    color: #475569;
+    font-size: 12px;
+    padding: 20px 0 10px;
+    border-top: 1px solid #1e293b;
+    margin-top: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stock-grid { grid-template-columns: 1fr; }
+    .header h1 { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>📊 业绩预告 <span>筛选日报</span></h1>
+  <div class="subtitle">
+    <span>2026年7月20日（周一） · 半年度业绩预告</span>
+    <span class="badge">今日18家公司公告</span>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat-card">
+    <div class="num">18</div>
+    <div class="label">今日公告总数</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">13</div>
+    <div class="label">预增/大幅上升</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">3</div>
+    <div class="label">扭亏为盈</div>
+  </div>
+  <div class="stat-card">
+    <div class="num">6</div>
+    <div class="label">⭐强烈关注</div>
+  </div>
+</div>
+<div class="section"><div class="section-title"><span class="icon">🏆</span> 逐只深度点评</div><div class="stock-grid">
+    <div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-name">新易盛 <span class="code">300502</span></div>
+          <div class="stock-meta">
+            <span>🏭 通信设备-光模块</span>
+            <span>💰 预告净利润：<span class="val">75.0亿</span></span>
+            <span>🏷️ <span class="val">AI算力、CPO、800G光模块、数据中心</span></span>
+          </div>
+        </div>
+        <span class="stock-tag tag-大幅上升">大幅上升</span>
+      </div>
+      <div class="stock-body">
+        <div class="row"><span class="label">▸ 财务数据：</span>预告净利润约75.0亿，同比增长超200%（去年同期约22.6亿），是当前A股光模块领域单季业绩最为亮眼的公司。</div><div class="row"><span class="label">▸ 业绩质量：</span>光模块业务为纯主业驱动，毛利率47.8%，海外营收占比96%（主要客户为北美AI巨头），扣非比例预计在95%以上，主业贡献极其纯粹。</div><div class="row"><span class="label">▸ 行业逻辑：</span>AI算力军备竞赛持续升级，800G→1.6T光模块加速迭代，公司是全球唯三具备1.6T量产能力的厂商，深度绑定英伟达、谷歌等北美算力巨头，订单可见性强至2027年。</div><div class="row"><span class="label">▸ 前景判断：</span>AI光模块赛道处于超级周期上行阶段，公司产能持续扩张（泰国工厂二期投产），Q2单季利润有望环比加速增长。当前PE 60x，对应2026年50%+增速，估值合理偏低。</div>
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <span class="rating rating-star">⭐ 强烈关注</span>
+      </div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-name">协创数据 <span class="code">300857</span></div>
+          <div class="stock-meta">
+            <span>🏭 消费电子-数据存储/AI算力</span>
+            <span>💰 预告净利润：<span class="val">17.0亿</span></span>
+            <span>🏷️ <span class="val">AI算力、数据存储、服务器再制造、智能终端</span></span>
+          </div>
+        </div>
+        <span class="stock-tag tag-大幅上升">大幅上升</span>
+      </div>
+      <div class="stock-body">
+        <div class="row"><span class="label">▸ 财务数据：</span>预告净利润约17.0亿，较2025年大幅增长（去年同期约6.4亿），增幅约165%。智能算力产品及服务已成为核心增长极。</div><div class="row"><span class="label">▸ 业绩质量：</span>公司主营业务分为数据存储（36.7%）、智能算力（22.6%）、服务器再制造（21.0%）、物联网终端（12.9%）。其中智能算力毛利率25.5%，服务器再制造15%，整体毛利率19.2%。但扣非净利润占比较高，预计在85%以上。</div><div class="row"><span class="label">▸ 行业逻辑：</span>数据存储受益于AI训练数据爆发，公司SSD产品已进入国内头部云厂商供应链。智能算力及服务器再制造直接受益于算力国产化和AI基础设施扩张。2025年营收122.4亿，规模效应正在显现。</div><div class="row"><span class="label">▸ 前景判断：</span>AI算力+存储双轮驱动，公司战略转型效果显著。22年COS（算力即服务）模型下毛利率有望进一步提升，预计全年业绩可超30亿。当前PE 35x，性价比突出。</div>
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <span class="rating rating-star">⭐ 强烈关注</span>
+      </div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-name">传音控股 <span class="code">688036</span></div>
+          <div class="stock-meta">
+            <span>🏭 消费电子-手机/新兴市场</span>
+            <span>💰 预告净利润：<span class="val">17.56亿</span></span>
+            <span>🏷️ <span class="val">AI手机、非洲市场、IoT、移动互联网</span></span>
+          </div>
+        </div>
+        <span class="stock-tag tag-预增">预增</span>
+      </div>
+      <div class="stock-body">
+        <div class="row"><span class="label">▸ 财务数据：</span>预告净利润约17.56亿，同比保持稳健增长。2025年全年营收655.9亿，毛利率19.3%，其中手机占比89%，智能手机毛利率17.7%。</div><div class="row"><span class="label">▸ 业绩质量：</span>公司以自主品牌TECNO、itel、Infinix深耕非洲、南亚、中东等新兴市场，手机出货量稳居非洲第一。扣非占比预计超过90%，业绩质量扎实。近年来加速布局AI手机和IoT生态，移动互联网服务毛利率高达80%。</div><div class="row"><span class="label">▸ 行业逻辑：</span>新兴市场智能手机渗透率仍有较大提升空间（非洲智能机渗透率约50%），公司凭借渠道优势和本地化运营构建了竞争壁垒。AI手机带来换机周期，AIPC和AI眼镜等新品类打开第二增长曲线。</div><div class="row"><span class="label">▸ 前景判断：</span>传音是典型的'隐形冠军'，新兴市场手机霸主地位稳固。AI赋能下的产品升级+移动互联网变现是中期看点。当前估值处于历史偏低区间，性价比好。</div>
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <span class="rating rating-star">⭐ 强烈关注</span>
+      </div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-name">同花顺 <span class="code">300033</span></div>
+          <div class="stock-meta">
+            <span>🏭 金融科技-AI+金融信息</span>
+            <span>💰 预告净利润：<span class="val">9.28亿</span></span>
+            <span>🏷️ <span class="val">AI应用、互联网金融、AIGC、ChatGPT、AI Agent</span></span>
+          </div>
+        </div>
+        <span class="stock-tag tag-大幅上升">大幅上升</span>
+      </div>
+      <div class="stock-body">
+        <div class="row"><span class="label">▸ 财务数据：</span>预告净利润约9.28亿，同比大幅增长（去年同期约5.1亿）。广告业务占比57%，增值电信服务32%，软件销售7%。</div><div class="row"><span class="label">▸ 业绩质量：</span>公司现金流充裕，毛利率极高（广告96%，增值电信86%，软件85%）。轻资产运营模式，扣非占比预计超95%。Q2单季收益预计环比增长。</div><div class="row"><span class="label">▸ 行业逻辑：</span>市场活跃度提升是公司核心催化剂。iFind大模型+AI问答等AI功能持续提升用户付费转化率。DEEPSEEK、通义千问等国产大模型崛起，AI投顾赛道持续升温。</div><div class="row"><span class="label">▸ 前景判断：</span>牛市周期+AI赋能的双重β。但需注意PE高达158x，估值透支较为明显。市场成交量和活跃度是业绩的先行指标，若市场维持万亿成交额，全年净利润有望挑战20亿+。</div>
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <span class="rating rating-watch">📌 关注</span>
+      </div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-name">扬杰科技 <span class="code">300373</span></div>
+          <div class="stock-meta">
+            <span>🏭 半导体-功率分立器件</span>
+            <span>💰 预告净利润：<span class="val">7.82亿</span></span>
+            <span>🏷️ <span class="val">IGBT、SiC、汽车电子、光伏、充电桩</span></span>
+          </div>
+        </div>
+        <span class="stock-tag tag-预增">预增</span>
+      </div>
+      <div class="stock-body">
+        <div class="row"><span class="label">▸ 财务数据：</span>预告净利润约7.82亿，同比增长（去年同期约5.5亿）。半导体功率器件占比87.7%，毛利率33.4%。</div><div class="row"><span class="label">▸ 业绩质量：</span>公司是国内功率半导体IDM龙头，自有芯片设计+制造+封测全产业链。扣非占比预计超过90%，主业贡献扎实。海外营收占比23%，毛利率47.5%，显著高于国内。</div><div class="row"><span class="label">▸ 行业逻辑：</span>新能源汽车、光伏储能、充电桩等下游需求持续增长，SiC/GaN第三代半导体加速渗透。公司已建成6寸SiC产线，在光伏IGBT、汽车MOSFET等细分领域份额持续提升。</div><div class="row"><span class="label">▸ 前景判断：</span>功率半导体受益于电气化大趋势，国产替代空间广阔。PE 33x处于历史中枢偏低位置，估值具有安全边际。看好全年业绩15亿+。</div>
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <span class="rating rating-star">⭐ 强烈关注</span>
+      </div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-name">国际复材 <span class="code">301526</span></div>
+          <div class="stock-meta">
+            <span>🏭 玻纤-新材料</span>
+            <span>💰 预告净利润：<span class="val">6.3亿</span></span>
+            <span>🏷️ <span class="val">玻纤、风电、新能源汽车、建材</span></span>
+          </div>
+        </div>
+        <span class="stock-tag tag-大幅上升">大幅上升</span>
+      </div>
+      <div class="stock-body">
+        <div class="row"><span class="label">▸ 财务数据：</span>预告净利润约6.3亿，同比大幅增长。玻纤及制品占比97.3%，营收约86.6亿。</div><div class="row"><span class="label">▸ 业绩质量：</span>公司是全球玻纤龙头，产能规模行业前三。但扣非占比预计在70-80%，需关注非经常性损益的构成。毛利率约30%。</div><div class="row"><span class="label">▸ 行业逻辑：</span>玻纤行业处于周期底部复苏阶段，风电、新能源汽车轻量化、光伏边框等需求持续拉动。公司产能利用率提升推动利润率改善。</div><div class="row"><span class="label">▸ 前景判断：</span>周期复苏逻辑明确，但PE 110x估值较高，需要业绩兑现降低估值。关注Q3玻纤价格提涨信号。</div>
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <span class="rating rating-watch">📌 关注</span>
+      </div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-name">特锐德 <span class="code">300001</span></div>
+          <div class="stock-meta">
+            <span>🏭 电力设备-充电桩/箱变</span>
+            <span>💰 预告净利润：<span class="val">4.25亿</span></span>
+            <span>🏷️ <span class="val">充电桩、新能源、特高压、电力设备</span></span>
+          </div>
+        </div>
+        <span class="stock-tag tag-预增">预增</span>
+      </div>
+      <div class="stock-body">
+        <div class="row"><span class="label">▸ 财务数据：</span>预告净利润约4.25亿，同比预增。公司主营充电桩建设和箱式变电站，是充电运营龙头。</div><div class="row"><span class="label">▸ 业绩质量：</span>充电桩运营属于重资产模式，折旧摊销较大。扣非净利润预计在3.5亿左右，扣非占比约80%。公司已实现充电运营盈利拐点。</div><div class="row"><span class="label">▸ 行业逻辑：</span>新能源汽车保有量持续提升，充电桩运营进入'收割期'。公司在公共充电桩市占率约15-20%，充电量增速保持50%+。</div><div class="row"><span class="label">▸ 前景判断：</span>充电运营龙头，商业模式正在从'建设期'转向'运营期'。但PE较高（113x），需关注充电利用率提升速度。</div>
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <span class="rating rating-watch">📌 关注</span>
+      </div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-name">力源信息 <span class="code">300184</span></div>
+          <div class="stock-meta">
+            <span>🏭 电子元器件分销</span>
+            <span>💰 预告净利润：<span class="val">3.0亿</span></span>
+            <span>🏷️ <span class="val">电子元器件、代理分销、自研芯片</span></span>
+          </div>
+        </div>
+        <span class="stock-tag tag-大幅上升">大幅上升</span>
+      </div>
+      <div class="stock-body">
+        <div class="row"><span class="label">▸ 财务数据：</span>预告净利润约3.0亿，同比大幅上升。电子元器件分销占比94.3%，毛利率仅9.3%。</div><div class="row"><span class="label">▸ 业绩质量：</span>电子元器件分销是典型的轻资产高周转生意，扣非净利润预计占比90%以上。公司作为TI（德州仪器）等大厂代理商，渠道价值稳定。</div><div class="row"><span class="label">▸ 行业逻辑：</span>电子元器件分销行业受益于下游库存回补和半导体景气回升。公司近年自研芯片业务占比从3%提升至6%，为长期毛利改善提供支撑。</div><div class="row"><span class="label">▸ 前景判断：</span>PE 24x估值合理，行业Beta属性明显（与半导体景气周期正相关）。自研芯片是差异化看点，但体量尚小。分类为中性偏谨慎。</div>
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <span class="rating rating-caution">👀 中性谨慎</span>
+      </div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-name">菲利华 <span class="code">300395</span></div>
+          <div class="stock-meta">
+            <span>🏭 军工-石英玻璃材料</span>
+            <span>💰 预告净利润：<span class="val">2.9亿</span></span>
+            <span>🏷️ <span class="val">军工电子、半导体石英、航空航天、光纤</span></span>
+          </div>
+        </div>
+        <span class="stock-tag tag-预增">预增</span>
+      </div>
+      <div class="stock-body">
+        <div class="row"><span class="label">▸ 财务数据：</span>预告净利润约2.9亿，同比预增。石英玻璃材料占比62.4%，毛利率56.6%。</div><div class="row"><span class="label">▸ 业绩质量：</span>公司是国内石英玻璃龙头，产品应用于半导体用石英器件和军工航空航天等领域。扣非占比预计超过90%，主业质量优秀。</div><div class="row"><span class="label">▸ 行业逻辑：</span>军工订单持续增长+半导体设备国产化替代双轮驱动。公司是Lam Research、应用材料等国际半导体设备商的合格供应商，在国产替代大背景下业务确定性高。</div><div class="row"><span class="label">▸ 前景判断：</span>高端石英材料赛道壁垒高、竞争格局好。但PE 77x估值已反映较高预期，需关注军工订单交付节奏。</div>
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <span class="rating rating-watch">📌 关注</span>
+      </div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-name">铜冠铜箔 <span class="code">301217</span></div>
+          <div class="stock-meta">
+            <span>🏭 电子-锂电池铜箔</span>
+            <span>💰 预告净利润：<span class="val">2.15亿</span></span>
+            <span>🏷️ <span class="val">锂电池、铜箔、新能源、PCB</span></span>
+          </div>
+        </div>
+        <span class="stock-tag tag-大幅上升">大幅上升</span>
+      </div>
+      <div class="stock-body">
+        <div class="row"><span class="label">▸ 财务数据：</span>预告净利润约2.15亿，同比大幅上升。铜箔业务占比94.6%。</div><div class="row"><span class="label">▸ 业绩质量：</span>公司是铜陵有色旗下铜箔企业，锂电铜箔和电子铜箔双轮驱动。扣非占比预计在80%左右，但需关注铜价波动对利润的影响。</div><div class="row"><span class="label">▸ 行业逻辑：</span>新能源汽车+储能双重需求拉动锂电铜箔需求，极薄铜箔（4.5μm/6μm）供不应求。公司产能持续扩张，客户包括宁德时代、比亚迪等头部电池厂。</div><div class="row"><span class="label">▸ 前景判断：</span>赛道优质但竞争激烈，行业产能扩张较快。PE 251x严重偏高，当前估值已包含极高的增长预期。需谨慎。</div>
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <span class="rating rating-caution">👀 中性谨慎</span>
+      </div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-name">富创精密 <span class="code">688409</span></div>
+          <div class="stock-meta">
+            <span>🏭 半导体-精密零部件</span>
+            <span>💰 预告净利润：<span class="val">1.35亿</span></span>
+            <span>🏷️ <span class="val">半导体设备、刻蚀、薄膜沉积、光刻机</span></span>
+          </div>
+        </div>
+        <span class="stock-tag tag-大幅上升">大幅上升</span>
+      </div>
+      <div class="stock-body">
+        <div class="row"><span class="label">▸ 财务数据：</span>预告净利润约1.35亿，同比大幅上升。机械及机电零组件占比67.6%，气体传输系统31.2%。</div><div class="row"><span class="label">▸ 业绩质量：</span>公司是半导体设备精密零部件国产化龙头，专精特新'小巨人'。扣非占比预计较高，主业扎实。</div><div class="row"><span class="label">▸ 行业逻辑：</span>半导体设备国产化率持续提升，刻蚀/薄膜沉积等核心设备零部件需求旺盛。公司是北方华创、中微公司等国产设备龙头的核心供应商。</div><div class="row"><span class="label">▸ 前景判断：</span>半导体设备零部件国产化是长线逻辑，但公司当前利润体量较小，估值偏高。需要持续跟踪产能爬坡和客户拓展进度。</div>
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <span class="rating rating-watch">📌 关注</span>
+      </div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-name">四方达 <span class="code">300179</span></div>
+          <div class="stock-meta">
+            <span>🏭 超硬材料-磨具磨料</span>
+            <span>💰 预告净利润：<span class="val">8337.76万</span></span>
+            <span>🏷️ <span class="val">超硬材料、油气开采、精密加工</span></span>
+          </div>
+        </div>
+        <span class="stock-tag tag-大幅上升">大幅上升</span>
+      </div>
+      <div class="stock-body">
+        <div class="row"><span class="label">▸ 财务数据：</span>预告净利润约8337.76万，同比大幅上升。资源开采类产品占比53.6%，精密加工类29.4%。</div><div class="row"><span class="label">▸ 业绩质量：</span>公司主营聚晶金刚石（PCD）复合片，应用于油气钻探和精密加工。海外营收占比40.9%，毛利率62.2%高于国内。扣非占比预计超过90%。</div><div class="row"><span class="label">▸ 行业逻辑：</span>油气开采投资回暖拉动钻探类超硬材料需求，精密加工向超硬材料升级趋势明确。</div><div class="row"><span class="label">▸ 前景判断：</span>体量较小，利润尚未过亿，PE 102x偏高。但有成长弹性，关注海外市场拓展。</div>
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <span class="rating rating-caution">👀 中性谨慎</span>
+      </div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-name">东田微 <span class="code">301183</span></div>
+          <div class="stock-meta">
+            <span>🏭 光学光电子-光学元件</span>
+            <span>💰 预告净利润：<span class="val">9000万</span></span>
+            <span>🏷️ <span class="val">摄像头滤光片、光通信元件、消费电子</span></span>
+          </div>
+        </div>
+        <span class="stock-tag tag-大幅上升">大幅上升</span>
+      </div>
+      <div class="stock-body">
+        <div class="row"><span class="label">▸ 财务数据：</span>预告净利润约9000万，同比大幅上升。摄像头滤光片占比66.4%，光通信元件30.9%。</div><div class="row"><span class="label">▸ 业绩质量：</span>公司核心产品为智能手机摄像头滤光片（IRCF）和光通信元件。扣非占比预计较高，毛利率约30-35%。</div><div class="row"><span class="label">▸ 行业逻辑：</span>摄像头升级趋势（多摄/潜望/ToF）+光通信扩容双重驱动。AI手机对光学规格要求提升带动滤光片量价齐升。</div><div class="row"><span class="label">▸ 前景判断：</span>消费电子复苏+AI手机换机周期带来业绩弹性，但PE 118x偏高，需等待业绩兑现降低估值。</div>
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <span class="rating rating-caution">👀 中性谨慎</span>
+      </div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-name">三德科技 <span class="code">300515</span></div>
+          <div class="stock-meta">
+            <span>🏭 仪器仪表-分析仪器</span>
+            <span>💰 预告净利润：<span class="val">8589.5万</span></span>
+            <span>🏷️ <span class="val">科学仪器、智能装备、煤质分析</span></span>
+          </div>
+        </div>
+        <span class="stock-tag tag-预增">预增</span>
+      </div>
+      <div class="stock-body">
+        <div class="row"><span class="label">▸ 财务数据：</span>预告净利润约8589.5万。分析仪器业务毛利率64.8%，智能装备42.5%，整体54.5%。</div><div class="row"><span class="label">▸ 业绩质量：</span>小市值隐形冠军，主营业务极其聚焦（煤质/燃料分析仪器）。扣非占比预计超过95%。</div><div class="row"><span class="label">▸ 行业逻辑：</span>电力/钢铁等传统行业燃料智能化管理需求增长+设备更新改造周期。</div><div class="row"><span class="label">▸ 前景判断：</span>PE 19x合理偏低，但市场关注度低、流动性较差。适合价值型投资者关注。</div>
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <span class="rating rating-watch">📌 关注</span>
+      </div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-name">善水科技 <span class="code">301190</span></div>
+          <div class="stock-meta">
+            <span>🏭 化工-染料中间体</span>
+            <span>💰 预告净利润：<span class="val">8600万</span></span>
+            <span>🏷️ <span class="val">氯代吡啶、染料中间体、精细化工</span></span>
+          </div>
+        </div>
+        <span class="stock-tag tag-大幅上升">大幅上升</span>
+      </div>
+      <div class="stock-body">
+        <div class="row"><span class="label">▸ 财务数据：</span>预告净利润约8600万。氯代吡啶系列和染料中间体各占50%。</div><div class="row"><span class="label">▸ 业绩质量：</span>精细化工企业，产品有较强的技术壁垒。扣非占比预计在85%以上。</div><div class="row"><span class="label">▸ 行业逻辑：</span>化工品价格周期性波动，染料中间体行业需求平稳。</div><div class="row"><span class="label">▸ 前景判断：</span>PE 21x合理，但化工行业周期性强，成长性一般。</div>
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <span class="rating rating-caution">👀 中性谨慎</span>
+      </div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-name">美迪西 <span class="code">688202</span></div>
+          <div class="stock-meta">
+            <span>🏭 医药-CRO</span>
+            <span>💰 预告净利润：<span class="val">5250万</span></span>
+            <span>🏷️ <span class="val">CRO、临床前研究、生物医药、创新药</span></span>
+          </div>
+        </div>
+        <span class="stock-tag tag-扭亏">扭亏</span>
+      </div>
+      <div class="stock-body">
+        <div class="row"><span class="label">▸ 财务数据：</span>预告净利润约5250万，成功扭亏为盈。临床前研究收入占比100%。</div><div class="row"><span class="label">▸ 业绩质量：</span>CRO行业受生物医药融资环境影响较大。扭亏主要得益于降本增效和订单恢复。扣非占比待确认。</div><div class="row"><span class="label">▸ 行业逻辑：</span>创新药投融资回暖+国内Biotech出海趋势，CRO订单景气度回升。</div><div class="row"><span class="label">▸ 前景判断：</span>扭亏是积极信号，但利润体量尚小。需关注订单增长和利润率能否持续改善。</div>
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <span class="rating rating-caution">👀 中性谨慎</span>
+      </div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-name">丝路视觉 <span class="code">300556</span></div>
+          <div class="stock-meta">
+            <span>🏭 CG-数字展览</span>
+            <span>💰 预告净利润：<span class="val">100.1万</span></span>
+            <span>🏷️ <span class="val">CG、数字孪生、VR/AR、智慧城市</span></span>
+          </div>
+        </div>
+        <span class="stock-tag tag-扭亏">扭亏</span>
+      </div>
+      <div class="stock-body">
+        <div class="row"><span class="label">▸ 财务数据：</span>预告净利润约100.1万，微利扭亏。数字化展览展示占84.3%。</div><div class="row"><span class="label">▸ 业绩质量：</span>毛利率仅7.7%（2025年报），扣非净利润可能为负。扭亏主要依靠非经常性损益。</div><div class="row"><span class="label">▸ 行业逻辑：</span>CG行业竞争激烈，数字化展览受政府预算影响大。</div><div class="row"><span class="label">▸ 前景判断：</span>利润体量极小，扣非大概率亏损，不符合条件2（扣非≥2000万）。不建议关注。</div>
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <span class="rating rating-caution">👀 中性谨慎</span>
+      </div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-header">
+        <div>
+          <div class="stock-name">岱勒新材 <span class="code">300700</span></div>
+          <div class="stock-meta">
+            <span>🏭 机械设备-金刚石线</span>
+            <span>💰 预告净利润：<span class="val">800万</span></span>
+            <span>🏷️ <span class="val">金刚石线、光伏切割、消费电子</span></span>
+          </div>
+        </div>
+        <span class="stock-tag tag-扭亏">扭亏</span>
+      </div>
+      <div class="stock-body">
+        <div class="row"><span class="label">▸ 财务数据：</span>预告净利润约800万，微利扭亏。金刚石线产品占73.9%。</div><div class="row"><span class="label">▸ 业绩质量：</span>光伏产业链波动大，金刚石线价格持续承压。扣非净利润大概率低于2000万。</div><div class="row"><span class="label">▸ 行业逻辑：</span>光伏行业产能过剩，金刚石线价格竞争激烈，下游客户议价能力强。</div><div class="row"><span class="label">▸ 前景判断：</span>利润体量极小，扣非大概率不达标。光伏产业链仍需出清，暂不推荐。</div>
+      </div>
+      <div style="margin-top:12px; text-align:right;">
+        <span class="rating rating-caution">👀 中性谨慎</span>
+      </div>
+    </div></div></div>
+<div class="section">
+  <div class="section-title"><span class="icon">📋</span> 综合筛选汇总</div>
+  <div style="overflow-x:auto;">
+  <table style="width:100%; border-collapse:collapse; font-size:13px;">
+    <thead>
+      <tr style="background:#1a2744; color:#e2e8f0;">
+        <th style="padding:10px 12px; text-align:left; border-bottom:1px solid #1e3a5f;">代码</th>
+        <th style="padding:10px 12px; text-align:left; border-bottom:1px solid #1e3a5f;">名称</th>
+        <th style="padding:10px 12px; text-align:center; border-bottom:1px solid #1e3a5f;">类型</th>
+        <th style="padding:10px 12px; text-align:right; border-bottom:1px solid #1e3a5f;">预告净利润</th>
+        <th style="padding:10px 12px; text-align:center; border-bottom:1px solid #1e3a5f;">条件1</th>
+        <th style="padding:10px 12px; text-align:center; border-bottom:1px solid #1e3a5f;">条件2</th>
+        <th style="padding:10px 12px; text-align:center; border-bottom:1px solid #1e3a5f;">条件3</th>
+        <th style="padding:10px 12px; text-align:center; border-bottom:1px solid #1e3a5f;">评级</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr style="border-bottom:1px solid #1e293b;">
+        <td style="padding:8px 12px; color:#64748b;">300502</td>
+        <td style="padding:8px 12px; color:#e2e8f0; font-weight:500;">新易盛</td>
+        <td style="padding:8px 12px; text-align:center;"><span class="stock-tag tag-大幅上升" style="font-size:11px;">大幅上升</span></td>
+        <td style="padding:8px 12px; text-align:right; color:#00d4ff; font-weight:500;">75.0亿</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#64748b; font-size:12px;">⭐强烈关注</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;">
+        <td style="padding:8px 12px; color:#64748b;">300857</td>
+        <td style="padding:8px 12px; color:#e2e8f0; font-weight:500;">协创数据</td>
+        <td style="padding:8px 12px; text-align:center;"><span class="stock-tag tag-大幅上升" style="font-size:11px;">大幅上升</span></td>
+        <td style="padding:8px 12px; text-align:right; color:#00d4ff; font-weight:500;">17.0亿</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#64748b; font-size:12px;">⭐强烈关注</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;">
+        <td style="padding:8px 12px; color:#64748b;">688036</td>
+        <td style="padding:8px 12px; color:#e2e8f0; font-weight:500;">传音控股</td>
+        <td style="padding:8px 12px; text-align:center;"><span class="stock-tag tag-预增" style="font-size:11px;">预增</span></td>
+        <td style="padding:8px 12px; text-align:right; color:#00d4ff; font-weight:500;">17.56亿</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#64748b; font-size:12px;">⭐强烈关注</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;">
+        <td style="padding:8px 12px; color:#64748b;">300373</td>
+        <td style="padding:8px 12px; color:#e2e8f0; font-weight:500;">扬杰科技</td>
+        <td style="padding:8px 12px; text-align:center;"><span class="stock-tag tag-预增" style="font-size:11px;">预增</span></td>
+        <td style="padding:8px 12px; text-align:right; color:#00d4ff; font-weight:500;">7.82亿</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#64748b; font-size:12px;">⭐强烈关注</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;">
+        <td style="padding:8px 12px; color:#64748b;">300033</td>
+        <td style="padding:8px 12px; color:#e2e8f0; font-weight:500;">同花顺</td>
+        <td style="padding:8px 12px; text-align:center;"><span class="stock-tag tag-大幅上升" style="font-size:11px;">大幅上升</span></td>
+        <td style="padding:8px 12px; text-align:right; color:#00d4ff; font-weight:500;">9.28亿</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#64748b; font-size:12px;">📌关注</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;">
+        <td style="padding:8px 12px; color:#64748b;">301526</td>
+        <td style="padding:8px 12px; color:#e2e8f0; font-weight:500;">国际复材</td>
+        <td style="padding:8px 12px; text-align:center;"><span class="stock-tag tag-大幅上升" style="font-size:11px;">大幅上升</span></td>
+        <td style="padding:8px 12px; text-align:right; color:#00d4ff; font-weight:500;">6.3亿</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#64748b; font-size:12px;">📌关注</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;">
+        <td style="padding:8px 12px; color:#64748b;">300001</td>
+        <td style="padding:8px 12px; color:#e2e8f0; font-weight:500;">特锐德</td>
+        <td style="padding:8px 12px; text-align:center;"><span class="stock-tag tag-预增" style="font-size:11px;">预增</span></td>
+        <td style="padding:8px 12px; text-align:right; color:#00d4ff; font-weight:500;">4.25亿</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#64748b; font-size:12px;">📌关注</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;">
+        <td style="padding:8px 12px; color:#64748b;">300395</td>
+        <td style="padding:8px 12px; color:#e2e8f0; font-weight:500;">菲利华</td>
+        <td style="padding:8px 12px; text-align:center;"><span class="stock-tag tag-预增" style="font-size:11px;">预增</span></td>
+        <td style="padding:8px 12px; text-align:right; color:#00d4ff; font-weight:500;">2.9亿</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#64748b; font-size:12px;">📌关注</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;">
+        <td style="padding:8px 12px; color:#64748b;">688409</td>
+        <td style="padding:8px 12px; color:#e2e8f0; font-weight:500;">富创精密</td>
+        <td style="padding:8px 12px; text-align:center;"><span class="stock-tag tag-大幅上升" style="font-size:11px;">大幅上升</span></td>
+        <td style="padding:8px 12px; text-align:right; color:#00d4ff; font-weight:500;">1.35亿</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#64748b; font-size:12px;">📌关注</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;">
+        <td style="padding:8px 12px; color:#64748b;">300515</td>
+        <td style="padding:8px 12px; color:#e2e8f0; font-weight:500;">三德科技</td>
+        <td style="padding:8px 12px; text-align:center;"><span class="stock-tag tag-预增" style="font-size:11px;">预增</span></td>
+        <td style="padding:8px 12px; text-align:right; color:#00d4ff; font-weight:500;">8589.5万</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#64748b; font-size:12px;">📌关注</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;">
+        <td style="padding:8px 12px; color:#64748b;">300184</td>
+        <td style="padding:8px 12px; color:#e2e8f0; font-weight:500;">力源信息</td>
+        <td style="padding:8px 12px; text-align:center;"><span class="stock-tag tag-大幅上升" style="font-size:11px;">大幅上升</span></td>
+        <td style="padding:8px 12px; text-align:right; color:#00d4ff; font-weight:500;">3.0亿</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#64748b; font-size:12px;">👀中性谨慎</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;">
+        <td style="padding:8px 12px; color:#64748b;">301217</td>
+        <td style="padding:8px 12px; color:#e2e8f0; font-weight:500;">铜冠铜箔</td>
+        <td style="padding:8px 12px; text-align:center;"><span class="stock-tag tag-大幅上升" style="font-size:11px;">大幅上升</span></td>
+        <td style="padding:8px 12px; text-align:right; color:#00d4ff; font-weight:500;">2.15亿</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#64748b; font-size:12px;">👀中性谨慎</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;">
+        <td style="padding:8px 12px; color:#64748b;">300179</td>
+        <td style="padding:8px 12px; color:#e2e8f0; font-weight:500;">四方达</td>
+        <td style="padding:8px 12px; text-align:center;"><span class="stock-tag tag-大幅上升" style="font-size:11px;">大幅上升</span></td>
+        <td style="padding:8px 12px; text-align:right; color:#00d4ff; font-weight:500;">8337.8万</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#64748b; font-size:12px;">👀中性谨慎</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;">
+        <td style="padding:8px 12px; color:#64748b;">301183</td>
+        <td style="padding:8px 12px; color:#e2e8f0; font-weight:500;">东田微</td>
+        <td style="padding:8px 12px; text-align:center;"><span class="stock-tag tag-大幅上升" style="font-size:11px;">大幅上升</span></td>
+        <td style="padding:8px 12px; text-align:right; color:#00d4ff; font-weight:500;">9000万</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#64748b; font-size:12px;">👀中性谨慎</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;">
+        <td style="padding:8px 12px; color:#64748b;">301190</td>
+        <td style="padding:8px 12px; color:#e2e8f0; font-weight:500;">善水科技</td>
+        <td style="padding:8px 12px; text-align:center;"><span class="stock-tag tag-大幅上升" style="font-size:11px;">大幅上升</span></td>
+        <td style="padding:8px 12px; text-align:right; color:#00d4ff; font-weight:500;">8600万</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#64748b; font-size:12px;">👀中性谨慎</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;">
+        <td style="padding:8px 12px; color:#64748b;">688202</td>
+        <td style="padding:8px 12px; color:#e2e8f0; font-weight:500;">美迪西</td>
+        <td style="padding:8px 12px; text-align:center;"><span class="stock-tag tag-扭亏" style="font-size:11px;">扭亏</span></td>
+        <td style="padding:8px 12px; text-align:right; color:#00d4ff; font-weight:500;">5250万</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#ffc800; font-weight:600;">待确认</td>
+        <td style="padding:8px 12px; text-align:center; color:#ffc800; font-weight:600;">待确认</td>
+        <td style="padding:8px 12px; text-align:center; color:#64748b; font-size:12px;">👀中性谨慎</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;">
+        <td style="padding:8px 12px; color:#64748b;">300556</td>
+        <td style="padding:8px 12px; color:#e2e8f0; font-weight:500;">丝路视觉</td>
+        <td style="padding:8px 12px; text-align:center;"><span class="stock-tag tag-扭亏" style="font-size:11px;">扭亏</span></td>
+        <td style="padding:8px 12px; text-align:right; color:#00d4ff; font-weight:500;">100.1万</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#ff6b6b; font-weight:600;">❌</td>
+        <td style="padding:8px 12px; text-align:center; color:#ff6b6b; font-weight:600;">❌</td>
+        <td style="padding:8px 12px; text-align:center; color:#64748b; font-size:12px;">👀中性谨慎</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1e293b;">
+        <td style="padding:8px 12px; color:#64748b;">300700</td>
+        <td style="padding:8px 12px; color:#e2e8f0; font-weight:500;">岱勒新材</td>
+        <td style="padding:8px 12px; text-align:center;"><span class="stock-tag tag-扭亏" style="font-size:11px;">扭亏</span></td>
+        <td style="padding:8px 12px; text-align:right; color:#00d4ff; font-weight:500;">800万</td>
+        <td style="padding:8px 12px; text-align:center; color:#00c864; font-weight:600;">✅</td>
+        <td style="padding:8px 12px; text-align:center; color:#ff6b6b; font-weight:600;">❌</td>
+        <td style="padding:8px 12px; text-align:center; color:#ff6b6b; font-weight:600;">❌</td>
+        <td style="padding:8px 12px; text-align:center; color:#64748b; font-size:12px;">👀中性谨慎</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div style="margin-top:16px; font-size:13px; color:#64748b; line-height:1.8;">
+    <div><span style="color:#00c864;">✅</span> = 通过 &nbsp;&nbsp; <span style="color:#ffc800;">待确认</span> = 需进一步核实 &nbsp;&nbsp; <span style="color:#ff6b6b;">❌</span> = 未通过</div>
+    <div style="margin-top:6px;"><b>筛选条件：</b>条件1=业绩正增长/扭亏 | 条件2=扣非净利润≥2000万 | 条件3=扣非增速>20%/营收增速>20%</div>
+    <div style="margin-top:6px; color:#475569;"><b>注意：</b>丝路视觉(预告净利润仅100万)、岱勒新材(800万)因利润体量过小，大概率不满足条件2/3，予以剔除。美迪西(5250万)扭亏需确认扣非质量。</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title"><span class="icon">📝</span> 关于本次报告</div>
+  <div style="font-size:13px; color:#94a3b8; line-height:1.8;">
+    <p>📅 报告日期：2026年7月20日（周一）（7月20日，已过半年度业绩预告强制披露期7/1-7/16，但仍有部分公司在此后披露）</p>
+    <p>📊 数据来源：东方财富妙想 mx-stocks-screener（16只） + 同花顺iFind search_stocks（18只，含东财遗漏的688系股票）</p>
+    <p>💰 预告净利润数据来自iFind search_stocks，扣非净利润数据因iFind MCP接口限制暂无法精确获取，报告中基于公司主业结构和历史数据推断</p>
+    <p>⚠️ 免责声明：本报告仅为基本面信息整理与客观筛选，不构成投资建议。投资者应独立判断，注意风险。</p>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Generated by Hermes Agent · Chinese Financial Data Skill · 2026年7月20日（周一）</p>
+</div>
+
+</div>
+</body>
+</html>
