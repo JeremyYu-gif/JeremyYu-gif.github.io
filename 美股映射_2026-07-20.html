@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美股映射复盘报告 2026-07-20</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif; background: #0a0e17; color: #d0d5dd; padding: 20px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  
+  /* Header */
+  .header { background: linear-gradient(135deg, #0f1923 0%, #1a2a3a 100%); border: 1px solid #2a3a4a; border-radius: 16px; padding: 30px; margin-bottom: 24px; }
+  .header h1 { font-size: 28px; font-weight: 700; color: #f0f4f8; margin-bottom: 6px; }
+  .header h1 span { color: #f6c343; }
+  .header .sub { font-size: 14px; color: #8899aa; margin-top: 8px; }
+  .header .date-badge { display: inline-block; background: #1a3050; color: #7ab7ff; padding: 4px 14px; border-radius: 20px; font-size: 13px; margin-top: 10px; }
+  
+  /* Summary Bar */
+  .summary-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+  .summary-card { background: linear-gradient(135deg, #111d2e 0%, #1a2a3a 100%); border: 1px solid #2a3a4a; border-radius: 12px; padding: 20px; text-align: center; }
+  .summary-card .index-name { font-size: 13px; color: #8899aa; margin-bottom: 8px; }
+  .summary-card .index-price { font-size: 28px; font-weight: 700; color: #f0f4f8; }
+  .summary-card .index-change { font-size: 16px; margin-top: 6px; }
+  .down { color: #e95a5a; }
+  .up { color: #4ecdc4; }
+  
+  /* Section */
+  .section { background: #111d2e; border: 1px solid #2a3a4a; border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+  .section h2 { font-size: 20px; font-weight: 600; color: #f0f4f8; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #2a3a4a; }
+  .section h2 .badge { float: right; font-size: 12px; padding: 3px 10px; border-radius: 12px; }
+  
+  /* Table */
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; padding: 10px 12px; background: #0f1923; color: #8899aa; font-weight: 500; border-bottom: 1px solid #2a3a4a; }
+  td { padding: 10px 12px; border-bottom: 1px solid #1a2a3a; }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+  
+  /* Tags */
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500; }
+  .tag-red { background: rgba(233,90,90,0.15); color: #e95a5a; }
+  .tag-green { background: rgba(78,205,196,0.15); color: #4ecdc4; }
+  .tag-yellow { background: rgba(246,195,67,0.15); color: #f6c343; }
+  .tag-blue { background: rgba(122,183,255,0.15); color: #7ab7ff; }
+  
+  /* Mapping Grid */
+  .mapping-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .mapping-card { background: #0f1923; border: 1px solid #2a3a4a; border-radius: 10px; padding: 18px; }
+  .mapping-card .mapping-title { font-size: 15px; font-weight: 600; color: #f0f4f8; margin-bottom: 10px; }
+  .mapping-card .mapping-desc { font-size: 13px; color: #aabbcc; line-height: 1.6; }
+  .mapping-card .stock-list { margin-top: 10px; font-size: 13px; }
+  .mapping-card .stock-list span { display: inline-block; margin: 3px 4px; padding: 2px 8px; background: #1a2a3a; border-radius: 4px; color: #7ab7ff; }
+  .signal-strong { border-left: 3px solid #4ecdc4; }
+  .signal-watch { border-left: 3px solid #f6c343; }
+  .signal-neutral { border-left: 3px solid #8899aa; }
+  
+  /* News */
+  .news-item { padding: 10px 0; border-bottom: 1px solid #1a2a3a; font-size: 14px; }
+  .news-item:last-child { border-bottom: none; }
+  .news-item .bullet { color: #f6c343; margin-right: 8px; }
+  
+  /* Holdings */
+  .holding-row { display: flex; padding: 10px 0; border-bottom: 1px solid #1a2a3a; font-size: 13px; }
+  .holding-row:last-child { border-bottom: none; }
+  .holding-name { width: 150px; font-weight: 600; color: #f0f4f8; }
+  .holding-adr { width: 120px; }
+  .holding-impact { width: 100px; }
+  .holding-suggest { flex: 1; }
+  
+  .footer { text-align: center; color: #556677; font-size: 12px; padding: 20px 0; }
+  
+  @media (max-width: 768px) {
+    .summary-bar { grid-template-columns: 1fr; }
+    .mapping-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1><span>US</span> 美股映射复盘报告</h1>
+  <div class="sub">A股映射策略分析 · 2026年07月20日 (星期一)</div>
+  <div class="date-badge">数据截至：2026-07-17 美东收盘</div>
+</div>
+
+<!-- Summary -->
+<div class="summary-bar">
+  <div class="summary-card">
+    <div class="index-name">道琼斯工业指数</div>
+    <div class="index-price">52,146.42</div>
+    <div class="index-change down">▼ 406.55 (-0.77%)</div>
+  </div>
+  <div class="summary-card">
+    <div class="index-name">纳斯达克综合指数</div>
+    <div class="index-price">25,520.24</div>
+    <div class="index-change down">▼ 361.71 (-1.40%)</div>
+  </div>
+  <div class="summary-card">
+    <div class="index-name">标普500指数</div>
+    <div class="index-price">7,457.69</div>
+    <div class="index-change down">▼ 76.08 (-1.01%)</div>
+  </div>
+</div>
+
+<!-- Macro Snapshot -->
+<div class="section">
+  <h2>🌍 商品与宏观 <span class="badge tag tag-blue">实时数据</span></h2>
+  <table>
+    <tr><th>品种</th><th>价格</th><th>涨跌幅</th><th>趋势判断</th></tr>
+    <tr><td>WTI原油 (USO)</td><td>$123.96</td><td class="up">+3.91%</td><td>🔴 伊朗冲突升级，油价大涨，地缘溢价持续</td></tr>
+    <tr><td>黄金 (GLD)</td><td>$368.41</td><td class="up">+0.95%</td><td>🟡 避险情绪推升，金价高位运行</td></tr>
+    <tr><td>国际金价 (XAU)</td><td>$4,004/oz</td><td class="up">+0.95%</td><td>🟡 突破$4000关口，避险与美元弱势共振</td></tr>
+    <tr><td>美债20Y+ (TLT)</td><td>$84.52</td><td class="up">+0.37%</td><td>🟢 避险资金流入债市，收益率下行</td></tr>
+    <tr><td>美元指数 (DXY)</td><td>~104.5</td><td class="tag tag-yellow">估计</td><td>🟡 避险需求支撑，但美债收益率下行限制涨幅</td></tr>
+  </table>
+</div>
+
+<!-- Tech Giants -->
+<div class="section">
+  <h2>📡 科技龙头表现 <span class="badge tag tag-red">7跌1涨</span></h2>
+  <table>
+    <tr><th>公司</th><th>代码</th><th>收盘价</th><th>涨跌幅</th><th>成交额</th><th>信号</th></tr>
+    <tr><td>英伟达</td><td>NVDA</td><td>$202.81</td><td class="down">-2.21%</td><td>$293亿</td><td><span class="tag tag-red">承压</span></td></tr>
+    <tr><td>苹果</td><td>AAPL</td><td>$333.74</td><td class="up">+0.14%</td><td>$211亿</td><td><span class="tag tag-green">抗跌</span></td></tr>
+    <tr><td>微软</td><td>MSFT</td><td>$393.82</td><td class="down">-1.82%</td><td>$130亿</td><td><span class="tag tag-red">承压</span></td></tr>
+    <tr><td>谷歌</td><td>GOOGL</td><td>$346.77</td><td class="down">-2.17%</td><td>$104亿</td><td><span class="tag tag-red">承压</span></td></tr>
+    <tr><td>亚马逊</td><td>AMZN</td><td>$247.23</td><td class="down">-1.06%</td><td>$108亿</td><td><span class="tag tag-yellow">温和</span></td></tr>
+    <tr><td>Meta</td><td>META</td><td>$646.01</td><td class="down">-2.79%</td><td>$143亿</td><td><span class="tag tag-red">领跌</span></td></tr>
+    <tr><td>特斯拉</td><td>TSLA</td><td>$380.84</td><td class="down">-2.61%</td><td>$120亿</td><td><span class="tag tag-red">承压</span></td></tr>
+    <tr><td>博通</td><td>AVGO</td><td>$370.83</td><td class="down">-0.97%</td><td>$86亿</td><td><span class="tag tag-yellow">温和</span></td></tr>
+    <tr><td>AMD</td><td>AMD</td><td>$495.76</td><td class="down">-1.03%</td><td>$157亿</td><td><span class="tag tag-yellow">温和</span></td></tr>
+  </table>
+  <div style="margin-top:12px; font-size:13px; color:#8899aa;">
+    💡 Mag 7 全军承压，META(-2.79%)/GOOGL(-2.17%)领跌。苹果独涨0.14%显示防御性。半导体板块分化，NVDA(-2.21%)受行业整体拖累，AVGO/AMD跌幅较小。
+  </div>
+</div>
+
+<!-- Chinese ADRs -->
+<div class="section">
+  <h2>🇨🇳 中概股表现 <span class="badge tag tag-red">全线下跌</span></h2>
+  <table>
+    <tr><th>公司</th><th>代码</th><th>收盘价</th><th>涨跌幅</th><th>成交额</th><th>映射A股</th></tr>
+    <tr><td>阿里巴巴</td><td>BABA</td><td>$114.97</td><td class="down">-2.14%</td><td>$13.0亿</td><td>阿里概念</td></tr>
+    <tr><td>小鹏汽车</td><td>XPEV</td><td>$13.53</td><td class="down">-3.63%</td><td>$0.99亿</td><td>小鹏汽车产业链</td></tr>
+    <tr><td>理想汽车</td><td>LI</td><td>$12.39</td><td class="down">-3.65%</td><td>$0.83亿</td><td>理想汽车产业链</td></tr>
+    <tr><td>蔚来</td><td>NIO</td><td>$4.88</td><td class="down">-2.20%</td><td>$1.09亿</td><td>蔚来产业链</td></tr>
+    <tr><td>哔哩哔哩</td><td>BILI</td><td>$18.04</td><td class="down">-5.05%</td><td>$0.56亿</td><td>❌ 中概互联/游戏</td></tr>
+    <tr><td>拼多多</td><td>PDD</td><td>$84.14</td><td class="down">-2.93%</td><td>$8.85亿</td><td>电商板块联动</td></tr>
+    <tr><td>京东</td><td>JD</td><td>$29.62</td><td class="down">-0.20%</td><td>$2.06亿</td><td>京东概念</td></tr>
+  </table>
+  <div style="margin-top:12px; font-size:13px; color:#8899aa;">
+    💡 中概股全线下挫，新能源车三强（小鹏-3.63%、理想-3.65%、蔚来-2.20%）跌幅居前。哔哩哔哩-5.05%领跌中概。整体受科技板块下跌拖累及地缘避险情绪影响。
+  </div>
+</div>
+
+<!-- Overnight Events -->
+<div class="section">
+  <h2>📰 隔夜关键事件 <span class="badge tag tag-yellow">5+ 要闻</span></h2>
+  <div class="news-item"><span class="bullet">🔴</span> <strong>伊美冲突周末升级：</strong> 美军对伊朗沿海监视和防空设施实施打击，此前2名美军士兵在伊朗对约旦的袭击中阵亡。地缘风险急剧升温，美伊冲突进入新阶段。</div>
+  <div class="news-item"><span class="bullet">🟡</span> <strong>台积电加速亚利桑那工厂建设：</strong> CFO表示扩大投资以应对AI"大趋势"强劲客户需求。半导体产业链长期利好信号。</div>
+  <div class="news-item"><span class="bullet">🟢</span> <strong>本周财报季爆发：</strong> 谷歌Alphabet和特斯拉本周公布业绩，市场高度关注科技巨头Q2业绩指引。</div>
+  <div class="news-item"><span class="bullet">🔴</span> <strong>俄罗斯大规模空袭基辅：</strong> 41枚各型导弹袭击乌克兰首都，俄乌冲突持续升温，加剧地缘不确定性。</div>
+  <div class="news-item"><span class="bullet">🟡</span> <strong>三星美国裁员：</strong> 据报三星裁减部分美国员工并提供搬迁方案，消费电子需求疲软信号。</div>
+  <div class="news-item"><span class="bullet">🟢</span> <strong>美股期货小幅波动：</strong> 周日盘前三大期指基本持平，经历连跌后市场暂处观望状态。</div>
+</div>
+
+<!-- A-Share Mapping -->
+<div class="section">
+  <h2>🎯 A股映射方向分析 <span class="badge tag tag-blue">6大方向</span></h2>
+  
+  <div class="mapping-grid">
+    <div class="mapping-card signal-strong">
+      <div class="mapping-title">🔴 石油/能源 — 强烈关注</div>
+      <div class="mapping-desc">
+        伊美冲突升级 + 油价单日大涨3.91%至$123.96。地缘溢价持续，A股石油开采、油服、石化板块将直接受益。NYMEX原油连续突破，能源板块为本周最明确的避险+趋势方向。
+      </div>
+      <div class="stock-list">
+        <span>中国石油(601857)</span><span>中国石化(600028)</span><span>中海油服(601808)</span>
+        <span>杰瑞股份(002353)</span><span>中曼石油(603619)</span><span>潜能恒信(300191)</span>
+        <span>海油工程(600583)</span>
+      </div>
+      <div style="margin-top:8px; font-size:12px; color:#4ecdc4;">信号强度：⭐强烈关注 | 逻辑：地缘冲突 + 油价突破</div>
+    </div>
+
+    <div class="mapping-card signal-watch">
+      <div class="mapping-title">🥇 黄金/贵金属 — 关注</div>
+      <div class="mapping-desc">
+        金价突破$4000/oz创历史性高位，GLD涨0.95%。美伊冲突+俄乌冲突双重地缘避险，叠加市场对美联储降息预期。A股黄金板块有持续催化。
+      </div>
+      <div class="stock-list">
+        <span>紫金矿业(601899)</span><span>山东黄金(600547)</span><span>中金黄金(600489)</span>
+        <span>赤峰黄金(600988)</span><span>湖南黄金(002155)</span><span>银泰黄金(000975)</span>
+      </div>
+      <div style="margin-top:8px; font-size:12px; color:#f6c343;">信号强度：📌关注 | 逻辑：金价新高+避险双驱动</div>
+    </div>
+
+    <div class="mapping-card signal-neutral">
+      <div class="mapping-title">💻 AI/芯片半导体 — 中性</div>
+      <div class="mapping-desc">
+        台积电加速建厂利好长期AI叙事，但本周NVDA(-2.21%)/META(-2.79%)等AI龙头普跌。短期回调压力传导至A股AI板块。台积电CFO讲话利好半导体设备/材料方向。
+      </div>
+      <div class="stock-list">
+        <span>中际旭创(300308)</span><span>工业富联(601138)</span><span>中科曙光(603019)</span>
+        <span>北方华创(002371)</span><span>中微公司(688012)</span><span>澜起科技(688008)</span>
+      </div>
+      <div style="margin-top:8px; font-size:12px; color:#8899aa;">信号强度：👀中性 | 逻辑：美科技股回调压制，中长期AI趋势不变</div>
+    </div>
+
+    <div class="mapping-card signal-watch">
+      <div class="mapping-title">🚗 新能源车 — 关注（偏空）</div>
+      <div class="mapping-desc">
+        小鹏(-3.63%)/理想(-3.65%)/蔚来(-2.20%)全线下跌，中概新能源汽车三强同步承压。映射A股新能源车板块短期承压，但国内销量数据强劲可能提供支撑。
+      </div>
+      <div class="stock-list">
+        <span>比亚迪(002594)</span><span>赛力斯(601127)</span><span>长安汽车(000625)</span>
+        <span>拓普集团(601689)</span><span>德赛西威(002920)</span><span>科博达(603786)</span>
+      </div>
+      <div style="margin-top:8px; font-size:12px; color:#f6c343;">信号强度：📌关注（偏空）| 逻辑：中概新能源车全线下跌，但国内基本面有支撑</div>
+    </div>
+
+    <div class="mapping-card signal-strong">
+      <div class="mapping-title">🛡️ 军工/国防 — 强烈关注</div>
+      <div class="mapping-desc">
+        美伊冲突周末急剧升级（美军实施打击+2名士兵阵亡）+ 俄军41枚导弹袭击基辅。两大军事冲突同时升温，A股军工板块将直接受益于地缘风险溢价。
+      </div>
+      <div class="stock-list">
+        <span>中航沈飞(600760)</span><span>航发动力(600893)</span><span>中航西飞(000768)</span>
+        <span>中国船舶(600150)</span><span>中兵红箭(000519)</span><span>内蒙一机(600967)</span>
+        <span>洪都航空(600316)</span><span>航天电器(002025)</span>
+      </div>
+      <div style="margin-top:8px; font-size:12px; color:#4ecdc4;">信号强度：⭐强烈关注 | 逻辑：双线军事冲突升级</div>
+    </div>
+
+    <div class="mapping-card signal-watch">
+      <div class="mapping-title">📱 中概互联/电商 — 关注（偏空）</div>
+      <div class="mapping-desc">
+        中概股全线下挫，BILI(-5.05%)领跌，PDD(-2.93%)/BABA(-2.14%)跌幅明显。科技板块整体回调+地缘避险情绪双重压制，A股港股互联网板块短期承压。
+      </div>
+      <div class="stock-list">
+        <span>腾讯控股(00700)</span><span>美团(03690)</span><span>快手(01024)</span>
+        <span>小米集团(01810)</span><span>东方财富(300059)</span><span>同花顺(300033)</span>
+      </div>
+      <div style="margin-top:8px; font-size:12px; color:#f6c343;">信号强度：📌关注（偏空）| 逻辑：中概全线承压，港股科技板块面临调整压力</div>
+    </div>
+  </div>
+</div>
+
+<!-- Holdings Impact -->
+<div class="section">
+  <h2>📋 持仓直接影响评估</h2>
+  <div style="font-size:13px; color:#8899aa; margin-bottom:12px;">
+    基于美股映射方向，以下为A股主要持仓标的今日预期影响：
+  </div>
+  <div style="border:1px solid #2a3a4a; border-radius:8px; overflow:hidden;">
+    <div class="holding-row" style="background:#0f1923; font-weight:600; color:#8899aa;">
+      <div class="holding-name">持仓标的</div>
+      <div class="holding-adr">ADR/映射</div>
+      <div class="holding-impact">预期影响</div>
+      <div class="holding-suggest">操作建议</div>
+    </div>
+    <div class="holding-row">
+      <div class="holding-name">中国石油</div>
+      <div class="holding-adr">油服板块</div>
+      <div class="holding-impact up">↑ 强利好</div>
+      <div class="holding-suggest">油价大涨+地缘冲突，持有或加仓</div>
+    </div>
+    <div class="holding-row">
+      <div class="holding-name">紫金矿业</div>
+      <div class="holding-adr">黄金</div>
+      <div class="holding-impact up">↑ 利好</div>
+      <div class="holding-suggest">金价创新高，避险资金驱动，持有</div>
+    </div>
+    <div class="holding-row">
+      <div class="holding-name">中际旭创</div>
+      <div class="holding-adr">NVDA映射</div>
+      <div class="holding-impact down">↓ 承压</div>
+      <div class="holding-suggest">NVDA回调，短期观望，关注本周谷歌/特斯拉财报指引</div>
+    </div>
+    <div class="holding-row">
+      <div class="holding-name">比亚迪</div>
+      <div class="holding-adr">新能源车</div>
+      <div class="holding-impact down">↓ 偏弱</div>
+      <div class="holding-suggest">中概新能源车全线下跌，但国内销量有支撑，观望</div>
+    </div>
+    <div class="holding-row">
+      <div class="holding-name">中航沈飞</div>
+      <div class="holding-adr">军工</div>
+      <div class="holding-impact up">↑ 强利好</div>
+      <div class="holding-suggest">美伊+俄乌双重军事冲突，军工板块催化明确</div>
+    </div>
+    <div class="holding-row">
+      <div class="holding-name">腾讯控股</div>
+      <div class="holding-adr">中概互联</div>
+      <div class="holding-impact down">↓ 承压</div>
+      <div class="holding-suggest">中概全线下跌，港股科技承压，等待本周业绩落地</div>
+    </div>
+  </div>
+</div>
+
+<!-- Weekly Preview -->
+<div class="section">
+  <h2>📅 本周关注（7月20日-24日）</h2>
+  <table>
+    <tr><th>日期</th><th>事件</th><th>影响</th></tr>
+    <tr><td>7/20 周一</td><td>美股期货开盘 / 伊朗局势发展</td><td class="tag tag-yellow">地缘风险是核心变量</td></tr>
+    <tr><td>7/21 周二</td><td>谷歌(Alphabet)财报</td><td class="tag tag-red">AI广告收入指引</td></tr>
+    <tr><td>7/22 周三</td><td>特斯拉财报</td><td class="tag tag-red">交付量/FSD进展</td></tr>
+    <tr><td>7/23 周四</td><td>美国初请失业金 / 成屋销售</td><td class="tag tag-yellow">经济数据指引</td></tr>
+    <tr><td>7/24 周五</td><td>美国Markit PMI初值</td><td class="tag tag-blue">制造业/服务业景气度</td></tr>
+  </table>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  本报告由 Hermes Agent 自动生成 | 数据来源：腾讯行情API | 2026年07月20日<br>
+  以上分析仅供参考，不构成投资建议。投资有风险，入市需谨慎。
+</div>
+
+</div>
+</body>
+</html>
