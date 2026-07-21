@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股每日复盘 — 2026-07-21 (周二)</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --card: #161b22;
+  --border: #30363d;
+  --text: #e6edf3;
+  --text-dim: #8b949e;
+  --green: #3fb950;
+  --red: #f85149;
+  --semi: #d2a8ff;
+  --gold: #ffa657;
+  --cyan: #58a6ff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: var(--bg); color: var(--text); padding: 20px; line-height: 1.7; }
+.container { max-width: 1200px; margin: 0 auto; }
+h1 { font-size: 28px; margin-bottom: 4px; }
+.subtitle { color: var(--text-dim); font-size: 14px; margin-bottom: 24px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 16px; }
+.card h2 { font-size: 16px; color: var(--cyan); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+.card h3 { font-size: 14px; color: var(--gold); margin: 12px 0 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { padding: 6px 10px; text-align: right; border-bottom: 1px solid var(--border); }
+th { color: var(--text-dim); font-weight: 500; }
+td:first-child, th:first-child { text-align: left; }
+.up { color: var(--red); } .down { color: var(--green); }
+.up-bg { background: rgba(248,81,73,0.08); } .down-bg { background: rgba(63,185,80,0.08); }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; margin: 2px; }
+.tag-red { background: rgba(248,81,73,0.2); color: var(--red); }
+.tag-green { background: rgba(63,185,80,0.15); color: var(--green); }
+.tag-blue { background: rgba(88,166,255,0.15); color: var(--cyan); }
+.tag-purple { background: rgba(210,168,255,0.2); color: var(--semi); }
+.tag-gold { background: rgba(255,166,87,0.2); color: var(--gold); }
+.summary-box { background: linear-gradient(135deg, #1a2332, #16212e); border: 1px solid var(--gold); border-radius: 8px; padding: 20px; margin-bottom: 16px; }
+.summary-box h2 { color: var(--gold); font-size: 18px; margin-bottom: 10px; }
+.signal { display: flex; gap: 12px; flex-wrap: wrap; margin: 10px 0; }
+.signal-item { flex: 1; min-width: 140px; padding: 12px; border-radius: 6px; text-align: center; }
+.signal-item .value { font-size: 24px; font-weight: 700; }
+.signal-item .label { font-size: 12px; color: var(--text-dim); }
+.signal-green { background: rgba(63,185,80,0.1); border: 1px solid rgba(63,185,80,0.3); }
+.signal-red { background: rgba(248,81,73,0.1); border: 1px solid rgba(248,81,73,0.3); }
+.signal-blue { background: rgba(88,166,255,0.1); border: 1px solid rgba(88,166,255,0.3); }
+.signal-gold { background: rgba(255,166,87,0.1); border: 1px solid rgba(255,166,87,0.3); }
+.signal-purple { background: rgba(210,168,255,0.1); border: 1px solid rgba(210,168,255,0.3); }
+@media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+.bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; margin: 8px 0; }
+.bar-red { background: var(--red); }
+.bar-green { background: var(--green); }
+.footer { text-align: center; color: var(--text-dim); font-size: 12px; margin-top: 40px; padding: 20px; border-top: 1px solid var(--border); }
+.warning { background: rgba(248,81,73,0.08); border-left: 3px solid var(--red); padding: 10px 14px; border-radius: 0 4px 4px 0; margin: 8px 0; font-size: 13px; }
+.info { background: rgba(88,166,255,0.08); border-left: 3px solid var(--cyan); padding: 10px 14px; border-radius: 0 4px 4px 0; margin: 8px 0; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>📊 A股每日复盘</h1>
+<div class="subtitle">2026年7月21日（周二）| 数据来源：腾讯行情API / iFind MCP</div>
+
+<!-- 核心结论 -->
+<div class="summary-box">
+<h2>🔥 核心结论：半导体史诗级暴涨 — 风格极致切换日</h2>
+<p style="font-size:15px; line-height:1.8;">
+今日A股出现极端结构性行情：<strong style="color:var(--red);">半导体板块全线暴涨</strong>，科创50狂飙<strong style="color:var(--red);">+10.73%</strong>创年内最大单日涨幅，创业板指大涨<strong style="color:var(--red);">+7.05%</strong>。半导体ETF（512480/512760）双双涨停（+10%），拓荆科技+20%、中微公司+19%领涨。与此形成鲜明对比的是，<strong style="color:var(--green);">传统价值板块全面下跌</strong>：银行股-2~3%，石油石化-2~3%，白酒-1.5~2.8%，呈现极致"科技吸血效应"。两市成交额预计<strong style="color:var(--gold);">超2.9万亿</strong>，为近期天量。<br><br>
+<strong style="color:var(--gold);">驱动力判断</strong>：半导体大基金三期落地预期 + 美国对华AI芯片出口限制升级传闻 + 台积电CoWoS产能紧缺外溢效应。短期情绪极度亢奋，但需警惕板块内部分化。
+</p>
+</div>
+
+<!-- Key Metrics -->
+<div class="card">
+<h2>📈 核心指数</h2>
+<div class="signal">
+  <div class="signal-item signal-green">
+    <div class="value" style="color:var(--red)">+1.79%</div>
+    <div class="label">上证指数 3864</div>
+  </div>
+  <div class="signal-item signal-green">
+    <div class="value" style="color:var(--red)">+4.81%</div>
+    <div class="label">深证成指 14264</div>
+  </div>
+  <div class="signal-item signal-green">
+    <div class="value" style="color:var(--red)">+7.05%</div>
+    <div class="label">创业板指 3686</div>
+  </div>
+  <div class="signal-item signal-purple">
+    <div class="value" style="color:var(--red)">+10.73%</div>
+    <div class="label">科创50 1903</div>
+  </div>
+  <div class="signal-item signal-green">
+    <div class="value" style="color:var(--red)">+3.06%</div>
+    <div class="label">沪深300 4739</div>
+  </div>
+  <div class="signal-item signal-green">
+    <div class="value" style="color:var(--red)">+5.25%</div>
+    <div class="label">中证500 7801</div>
+  </div>
+</div>
+<table>
+<tr><th>指数</th><th>收盘</th><th>涨跌幅</th><th>最高</th><th>最低</th><th>振幅</th></tr>
+<tr><td>上证指数</td><td>3864.37</td><td class="up">+1.79%</td><td>3864.60</td><td>3743.36</td><td>3.19%</td></tr>
+<tr><td>深证成指</td><td>14264.29</td><td class="up">+4.81%</td><td>14264.80</td><td>13364.41</td><td>6.62%</td></tr>
+<tr><td>创业板指</td><td>3685.97</td><td class="up">+7.05%</td><td>3687.15</td><td>3373.04</td><td>9.12%</td></tr>
+<tr><td>科创50</td><td>1903.16</td><td class="up">+10.73%</td><td>1904.86</td><td>1663.85</td><td>14.02%</td></tr>
+<tr><td>沪深300</td><td>4739.23</td><td class="up">+3.06%</td><td>4739.23</td><td>4566.28</td><td>3.76%</td></tr>
+<tr><td>上证50</td><td>2973.81</td><td class="up">+2.09%</td><td>2973.83</td><td>2904.48</td><td>2.38%</td></tr>
+</table>
+</div>
+
+<!-- 资金面 -->
+<div class="grid-2">
+<div class="card">
+<h2>💰 资金面</h2>
+<table>
+<tr><th>指标</th><th>今日</th><th>状态</th></tr>
+<tr><td>沪市成交额</td><td>~13965亿</td><td><span class="tag tag-red">放量</span></td></tr>
+<tr><td>深市成交额</td><td>~15606亿</td><td><span class="tag tag-red">放量</span></td></tr>
+<tr><td>两市合计</td><td>~29571亿</td><td><span class="tag tag-red">天量</span></td></tr>
+<tr><td>上证50成交</td><td>~2288亿</td><td>权重放量</td></tr>
+<tr><td>科创50成交</td><td>~567亿</td><td><span class="tag tag-purple">历史天量</span></td></tr>
+<tr><td>沪深300成交</td><td>~5272亿</td><td>大资金入场</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>📉 市场情绪</h2>
+<div style="margin:10px 0;">
+<span class="tag tag-red">🔥 极度亢奋</span>
+<span class="tag tag-purple">📊 半导体涨停潮</span>
+<span class="tag tag-green">📉 银行遭抛售</span>
+</div>
+<div class="info">
+<strong>风格特征：</strong>极致科技vs价值分化。科创50振幅14.02%创记录，说明多空分歧极大但最终多方完胜。创业板振幅9.12%，同样是极端水平。
+</div>
+<div class="warning">
+<strong>⚠️ 警示：</strong>半导体单日涨幅过大（板块ETF涨停），短线获利盘极大，明日必然分化。银行/消费/能源的持续下跌说明市场存量博弈特征明显——增量资金不足以支撑全面行情。
+</div>
+</div>
+</div>
+
+<!-- 行业主线 -->
+<div class="card">
+<h2>🎯 行业主线 TOP 6</h2>
+
+<h3>🏆 TOP 1: 半导体/芯片（涨停家数最多）</h3>
+<table>
+<tr><th>个股</th><th>代码</th><th>最新价</th><th>涨跌幅</th><th>说明</th></tr>
+<tr><td>拓荆科技</td><td>688072</td><td>764.46</td><td class="up">+20.00%</td><td>半导体设备龙头</td></tr>
+<tr><td>中微公司</td><td>688012</td><td>407.89</td><td class="up">+19.09%</td><td>刻蚀设备龙头</td></tr>
+<tr><td>澜起科技</td><td>688008</td><td>219.60</td><td class="up">+15.62%</td><td>内存接口芯片</td></tr>
+<tr><td>圣邦股份</td><td>300661</td><td>110.05</td><td class="up">+12.28%</td><td>模拟芯片</td></tr>
+<tr><td>中芯国际</td><td>688981</td><td>160.00</td><td class="up">+11.11%</td><td>晶圆代工龙头</td></tr>
+<tr><td>寒武纪</td><td>688256</td><td>1350.02</td><td class="up">+11.66%</td><td>AI芯片</td></tr>
+<tr><td>北方华创</td><td>002371</td><td>744.60</td><td class="up">+10.00%</td><td>半导体设备（涨停）</td></tr>
+<tr><td>兆易创新</td><td>603986</td><td>475.53</td><td class="up">+10.00%</td><td>存储芯片（涨停）</td></tr>
+<tr><td>长电科技</td><td>600584</td><td>84.69</td><td class="up">+10.00%</td><td>封测龙头（涨停）</td></tr>
+<tr><td>通富微电</td><td>002156</td><td>69.30</td><td class="up">+10.00%</td><td>封测（涨停）</td></tr>
+<tr><td>长川科技</td><td>300604</td><td>318.00</td><td class="up">+20.00%</td><td>半导体测试设备</td></tr>
+<tr><td>精测电子</td><td>300567</td><td>245.80</td><td class="up">+16.60%</td><td>检测设备</td></tr>
+<tr><td>江波龙</td><td>301308</td><td>421.86</td><td class="up">+12.05%</td><td>存储模组</td></tr>
+</table>
+<div class="tag tag-purple">ETF: 半导体ETF 512480 +10.00%(涨停) | 芯片ETF 512760 +10.00%(涨停)</div>
+
+<h3>🥈 TOP 2: AI算力/服务器</h3>
+<table>
+<tr><th>个股</th><th>涨跌幅</th><th>说明</th></tr>
+<tr><td>浪潮信息</td><td class="up">+9.07%</td><td>AI服务器龙头</td></tr>
+<tr><td>工业富联</td><td class="up">+7.93%</td><td>AI服务器代工</td></tr>
+<tr><td>新易盛</td><td class="up">+8.19%</td><td>光模块</td></tr>
+<tr><td>立讯精密</td><td class="up">+6.37%</td><td>果链/通信</td></tr>
+<tr><td>深南电路</td><td class="up">+7.90%</td><td>PCB/封装基板</td></tr>
+</table>
+
+<h3>🥉 TOP 3: 通信/5G</h3>
+<table>
+<tr><th>个股</th><th>涨跌幅</th><th>说明</th></tr>
+<tr><td>中兴通讯</td><td class="up">+3.41%</td><td>通信设备</td></tr>
+<tr><td>通信ETF</td><td class="up">+8.84%</td><td>515050</td></tr>
+</table>
+
+<h3>❄️ TOP 4: 银行（遭抛售）</h3>
+<table>
+<tr><th>个股</th><th>涨跌幅</th><th>说明</th></tr>
+<tr><td>招商银行</td><td class="down">-2.36%</td><td>股份行龙头</td></tr>
+<tr><td>兴业银行</td><td class="down">-2.45%</td><td></td></tr>
+<tr><td>浦发银行</td><td class="down">-2.08%</td><td></td></tr>
+</table>
+
+<h3>❄️ TOP 5: 消费/白酒</h3>
+<table>
+<tr><th>个股</th><th>涨跌幅</th><th>说明</th></tr>
+<tr><td>泸州老窖</td><td class="down">-2.81%</td><td>白酒领跌</td></tr>
+<tr><td>五粮液</td><td class="down">-2.44%</td><td></td></tr>
+<tr><td>贵州茅台</td><td class="down">-1.47%</td><td>权重股拖累上证</td></tr>
+</table>
+
+<h3>❄️ TOP 6: 石油石化</h3>
+<table>
+<tr><th>个股</th><th>涨跌幅</th><th>说明</th></tr>
+<tr><td>中国石油</td><td class="down">-3.09%</td><td>能源板块领跌</td></tr>
+<tr><td>中国石化</td><td class="down">-2.29%</td><td></td></tr>
+</table>
+</div>
+
+<!-- 龙头梯队 -->
+<div class="card">
+<h2>🏅 龙头梯队</h2>
+<div class="grid-2">
+<div>
+<h3 style="color:var(--red);">🔥 情绪龙头</h3>
+<ul style="font-size:13px; line-height:2;">
+<li><strong>拓荆科技</strong> 688072 — +20%涨停，半导体设备情绪标杆</li>
+<li><strong>中微公司</strong> 688012 — +19%，刻蚀龙头创历史</li>
+<li><strong>长川科技</strong> 300604 — +20%，测试设备趋势龙头</li>
+<li><strong>寒武纪</strong> 688256 — +12%，AI芯片千元股王</li>
+<li><strong>中芯国际</strong> 688981 — +11%，晶圆代工旗舰</li>
+</ul>
+</div>
+<div>
+<h3 style="color:var(--gold);">🎯 中军龙头</h3>
+<ul style="font-size:13px; line-height:2;">
+<li><strong>北方华创</strong> 002371 — +10%涨停，设备龙头</li>
+<li><strong>兆易创新</strong> 603986 — +10%涨停，存储芯片</li>
+<li><strong>长电科技</strong> 600584 — +10%涨停，封测龙头</li>
+<li><strong>澜起科技</strong> 688008 — +16%，内存接口</li>
+<li><strong>浪潮信息</strong> 000977 — +9%，AI算力中军</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- AH联动 + 美股映射 -->
+<div class="grid-2">
+<div class="card">
+<h2>🤝 A-H联动</h2>
+<table>
+<tr><th>港股</th><th>最新</th><th>涨跌幅</th></tr>
+<tr><td>恒生指数</td><td>25132</td><td>-0.04%</td></tr>
+<tr><td>国企指数</td><td>8361</td><td>-0.25%</td></tr>
+<tr><td>华虹宏力</td><td>168.50</td><td class="up">+17.91%</td></tr>
+<tr><td>阿里巴巴</td><td>117.00</td><td>+0.17%</td></tr>
+<tr><td>腾讯控股</td><td>474.00</td><td>-0.80%</td></tr>
+<tr><td>中国平安</td><td>56.25</td><td>+0.99%</td></tr>
+<tr><td>招商银行H</td><td>47.96</td><td class="down">-1.64%</td></tr>
+</table>
+<div class="info">华虹宏力+17.91%显示半导体行情在港股同样爆发，A-H联动确认全球资金流入中国半导体。恒指持平说明资金从传统行业向科技剧烈再平衡。</div>
+</div>
+
+<div class="card">
+<h2>🇺🇸 美股映射（隔夜）</h2>
+<table>
+<tr><th>美股</th><th>最新</th><th>涨跌幅</th></tr>
+<tr><td>英伟达</td><td>203.28</td><td>+0.23%</td></tr>
+<tr><td>台积电</td><td>402.30</td><td>+0.99%</td></tr>
+<tr><td>AMD</td><td>503.57</td><td>+1.58%</td></tr>
+<tr><td>博通</td><td>378.16</td><td>+1.98%</td></tr>
+<tr><td>微软</td><td>402.29</td><td>+2.15%</td></tr>
+<tr><td>阿里巴巴</td><td>120.34</td><td>+4.67%</td></tr>
+<tr><td>苹果</td><td>326.59</td><td class="down">-2.14%</td></tr>
+<tr><td>特斯拉</td><td>369.57</td><td class="down">-2.96%</td></tr>
+</table>
+<div class="info">美科技股温和上行（微软+2.15%，AMD+1.58%），为A股半导体行情提供外部支撑。阿里巴巴+4.67%利好中概情绪。</div>
+</div>
+</div>
+
+<!-- 风险信号 -->
+<div class="card">
+<h2>🚨 风险信号</h2>
+<div class="grid-2">
+<div>
+<div class="warning">
+<strong>1. 半导体单日涨幅过大</strong><br>
+板块ETF涨停、多处个股20%涨停，明日集合竞价必然大幅高开但获利盘汹涌。历史上半导体ETF涨停后次日的平均回落幅度约3-5%。
+</div>
+<div class="warning">
+<strong>2. 存量资金博弈</strong><br>
+银行-2~3%、消费-1.5~2.8%说明市场并非普涨，而是资金从价值/红利板块"搬家"到科技成长。成交量虽大但结构极不均衡。
+</div>
+<div class="warning">
+<strong>3. 上证50 vs 科创50极端背离</strong><br>
+上证50 +2.09% vs 科创50 +10.73%，分化度创近期新高。一旦科技股回调，可能引发指数级波动。
+</div>
+</div>
+<div>
+<div class="info">
+<strong>4. 利好预期</strong><br>
+重点关注：大基金三期细则、美国半导体出口管制最新动态、台积电产能分配。
+</div>
+<div class="info">
+<strong>5. 外部环境</strong><br>
+美联储降息预期持续，美元走弱利好新兴市场。关注本周美股科技股财报对A股情绪的传导。
+</div>
+</div>
+</div>
+</div>
+
+<!-- 明日策略 -->
+<div class="card">
+<h2>📋 明日策略（2026-07-22 周三）</h2>
+<div class="signal">
+  <div class="signal-item signal-green" style="flex:2;">
+    <div style="font-size:14px; text-align:left;">
+    <strong style="color:var(--gold);">持仓者策略</strong><br>
+    • 半导体仓位重者：明日高开5%以上可减仓1/3锁定利润<br>
+    • 核心龙头（北方华创/中芯国际/澜起科技）可留底仓观察趋势强度<br>
+    • 跟风品种（二三线封测/设备）建议高抛<br>
+    • 银行/消费持仓：不急于割肉，等半导体情绪冷却后资金回流
+    </div>
+  </div>
+  <div class="signal-item signal-red" style="flex:2;">
+    <div style="font-size:14px; text-align:left;">
+    <strong style="color:var(--gold);">空仓者策略</strong><br>
+    • 不追高！半导体ETF涨停日次日追涨胜率低<br>
+    • 等待回调（板块ETF -3%~-5%时）分批建仓<br>
+    • 关注尚未发酵的补涨方向：半导体材料（光刻胶/特种气体）、EDA软件<br>
+    • 银行/消费急跌后可左侧布局优质龙头
+    </div>
+  </div>
+</div>
+<div class="info">
+<strong>重点观察指标：</strong>①科创50开盘方向及30分钟内走势 ②半导体ETF是否高开回落 ③中国石油/招行是否止跌 ④北向资金流向 ⑤隔夜美股费城半导体指数表现
+</div>
+</div>
+
+<!-- 对比表 -->
+<div class="card">
+<h2>📊 极简对比表</h2>
+<table>
+<tr><th>维度</th><th>今日（07/21）</th><th>昨日（07/20）参考</th><th>变化</th></tr>
+<tr><td>上证指数</td><td>3864 (+1.79%)</td><td>3796</td><td class="up">↑ 强势</td></tr>
+<tr><td>科创50</td><td>1903 (+10.73%)</td><td>1719</td><td class="up">↑↑ 极端强势</td></tr>
+<tr><td>创业板指</td><td>3686 (+7.05%)</td><td>3443</td><td class="up">↑ 极强</td></tr>
+<tr><td>半导体ETF</td><td>+10.00%</td><td>—</td><td class="up">↑↑ 涨停</td></tr>
+<tr><td>银行板块</td><td>跌2~3%</td><td>—</td><td class="down">↓ 资金流出</td></tr>
+<tr><td>两市成交</td><td>~29571亿</td><td>—</td><td class="up">↑ 天量</td></tr>
+<tr><td>恒生指数</td><td>25132 (-0.04%)</td><td>25143</td><td>→ 持平</td></tr>
+</table>
+</div>
+
+<!-- 生成说明 -->
+<div class="footer">
+<p>A股每日复盘 — 2026年7月21日（周二）</p>
+<p>数据来源：腾讯行情API (qt.gtimg.cn) | iFind MCP（限流中）</p>
+<p style="font-size:11px; margin-top:8px;">⚠️ 本报告仅供参考，不构成投资建议。市场有风险，投资需谨慎。</p>
+</div>
+
+</div>
+</body>
+</html>
