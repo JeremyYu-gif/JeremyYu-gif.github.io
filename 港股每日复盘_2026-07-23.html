@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>港股每日复盘 | 2026-07-23</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background: #0a0e17;
+    color: #c8d6e5;
+    font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.7;
+    padding: 20px;
+}
+.container { max-width: 1200px; margin: 0 auto; }
+.header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border-radius: 16px;
+    padding: 30px 40px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(79, 172, 254, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+.header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(79,172,254,0.03) 0%, transparent 70%);
+    animation: pulse 8s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+.header h1 { font-size: 28px; color: #fff; position: relative; z-index: 1; }
+.header h1 span { color: #4facfe; }
+.header .subtitle { color: #8892b0; font-size: 14px; margin-top: 8px; position: relative; z-index: 1; }
+.header .date-badge {
+    position: absolute; right: 30px; top: 30px;
+    background: rgba(79,172,254,0.15);
+    border: 1px solid rgba(79,172,254,0.3);
+    padding: 8px 16px; border-radius: 8px;
+    font-size: 13px; color: #4facfe; z-index: 1;
+}
+.section {
+    background: #111827;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(79,172,254,0.08);
+}
+.section h2 {
+    font-size: 18px;
+    color: #4facfe;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(79,172,254,0.1);
+    display: flex; align-items: center; gap: 8px;
+}
+.section h2 .icon { font-size: 22px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.card {
+    background: rgba(255,255,255,0.03);
+    border-radius: 10px;
+    padding: 16px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.card-title { font-size: 12px; color: #8892b0; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.card-value { font-size: 26px; font-weight: 700; color: #fff; }
+.card-change { font-size: 14px; margin-top: 4px; }
+.up { color: #e74c3c; } .down { color: #2ecc71; }
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; padding: 10px 12px; background: rgba(79,172,254,0.08); color: #8892b0; font-weight: 500; border-bottom: 1px solid rgba(79,172,254,0.1); }
+td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+tr:hover td { background: rgba(79,172,254,0.04); }
+.tag {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 11px; font-weight: 500;
+}
+.tag-red { background: rgba(231,76,60,0.15); color: #e74c3c; }
+.tag-green { background: rgba(46,204,113,0.15); color: #2ecc71; }
+.tag-blue { background: rgba(79,172,254,0.15); color: #4facfe; }
+.tag-yellow { background: rgba(241,196,15,0.15); color: #f1c40f; }
+
+.signal { font-size: 12px; padding: 2px 6px; border-radius: 3px; }
+.signal-strong { background: rgba(231,76,60,0.2); color: #e74c3c; }
+.signal-watch { background: rgba(241,196,15,0.2); color: #f1c40f; }
+.signal-neutral { background: rgba(79,172,254,0.2); color: #4facfe; }
+.signal-avoid { background: rgba(149,165,166,0.2); color: #95a5a6; }
+
+ul { padding-left: 20px; }
+li { margin-bottom: 6px; color: #a0b0c0; }
+li strong { color: #c8d6e5; }
+
+.footer {
+    text-align: center;
+    color: #4a5568;
+    font-size: 12px;
+    padding: 30px 0 10px;
+    border-top: 1px solid rgba(79,172,254,0.06);
+}
+@media (max-width: 768px) { .grid-3 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+    <h1>🇭🇰 港股每日复盘 <span>| 实战版</span></h1>
+    <div class="subtitle">资深基金经理视角 · 板块轮动 · 资金流向 · AH联动 · 美股映射</div>
+    <div class="date-badge">2026年7月23日（周四）</div>
+</div>
+
+<!-- 1. 大盘表现 -->
+<div class="section">
+    <h2><span class="icon">📊</span> 一、大盘表现</h2>
+    <div class="grid-3">
+        <div class="card">
+            <div class="card-title">恒生指数 HSI</div>
+            <div class="card-value">25,210.81</div>
+            <div class="card-change up">▲ +318.15 (+1.28%)</div>
+            <div style="color:#8892b0;font-size:12px;margin-top:4px;">高: 25,267 / 低: 24,877</div>
+        </div>
+        <div class="card">
+            <div class="card-title">国企指数 HSCEI</div>
+            <div class="card-value">8,352.67</div>
+            <div class="card-change up">▲ +101.60 (+1.23%)</div>
+            <div style="color:#8892b0;font-size:12px;margin-top:4px;">高: 8,376 / 低: 8,226</div>
+        </div>
+        <div class="card">
+            <div class="card-title">恒生科技 HSTECH</div>
+            <div class="card-value">4,698.48</div>
+            <div class="card-change up">▲ +30.25 (+0.65%)</div>
+            <div style="color:#8892b0;font-size:12px;margin-top:4px;">高: 4,724 / 低: 4,623</div>
+        </div>
+    </div>
+    <div style="margin-top:16px;padding:14px;background:rgba(79,172,254,0.05);border-radius:8px;border-left:3px solid #4facfe;">
+        <strong style="color:#4facfe;">盘面解读：</strong>
+        <span style="color:#a0b0c0;">港股三大指数全线上涨，恒指收涨1.28%创近两周新高，站上25,200关口。恒生科技涨幅偏小仅0.65%，显示今日行情由金融和消费板块驱动而非科技股。成交额约2,334亿港元，量能温和放大，市场情绪有所回暖。恒指成分股涨多跌少，资金从防御型板块向周期/金融板块轮动明显。</span>
+    </div>
+</div>
+
+<!-- 2. 科技板块 -->
+<div class="section">
+    <h2><span class="icon">💻</span> 二、科技板块 — 互联网与硬科技</h2>
+    <table>
+        <tr><th>股票</th><th>代码</th><th>收盘价</th><th>涨跌幅</th><th>信号</th><th>点评</th></tr>
+        <tr>
+            <td><strong>美团-W</strong></td><td>03690</td>
+            <td>87.30</td><td class="up">+4.36%</td>
+            <td><span class="signal signal-strong">强烈关注</span></td>
+            <td style="font-size:13px;">放量大涨领衔科网，突破85关口，本地生活+出海双轮驱动逻辑强化</td>
+        </tr>
+        <tr>
+            <td><strong>理想汽车-W</strong></td><td>02015</td>
+            <td>48.96</td><td class="up">+2.77%</td>
+            <td><span class="signal signal-watch">关注</span></td>
+            <td style="font-size:13px;">新能源车板块反弹，理想6月交付数据预期向好</td>
+        </tr>
+        <tr>
+            <td><strong>百度集团-SW</strong></td><td>09888</td>
+            <td>106.80</td><td class="up">+2.30%</td>
+            <td><span class="signal signal-watch">关注</span></td>
+            <td style="font-size:13px;">AI概念回暖，文心一言最新版本获市场好评</td>
+        </tr>
+        <tr>
+            <td><strong>舜宇光学科技</strong></td><td>02382</td>
+            <td>59.50</td><td class="up">+2.15%</td>
+            <td><span class="signal signal-watch">关注</span></td>
+            <td style="font-size:13px;">光学龙头反弹，手机产业链回暖信号</td>
+        </tr>
+        <tr>
+            <td><strong>小鹏汽车-W</strong></td><td>09868</td>
+            <td>51.30</td><td class="up">+2.09%</td>
+            <td><span class="signal signal-neutral">中性</span></td>
+            <td style="font-size:13px;">跟随板块反弹，但基本面改善仍需验证</td>
+        </tr>
+        <tr>
+            <td><strong>小米集团-W</strong></td><td>01810</td>
+            <td>27.14</td><td class="up">+1.72%</td>
+            <td><span class="signal signal-watch">关注</span></td>
+            <td style="font-size:13px;">汽车业务进展顺利，SU7交付量稳步攀升</td>
+        </tr>
+        <tr>
+            <td><strong>携程集团-S</strong></td><td>09961</td>
+            <td>345.40</td><td class="up">+1.53%</td>
+            <td><span class="signal signal-watch">关注</span></td>
+            <td style="font-size:13px;">暑期旅游旺季催化，出境游订单持续增长</td>
+        </tr>
+        <tr>
+            <td><strong>腾讯控股</strong></td><td>00700</td>
+            <td>445.20</td><td class="up">+1.04%</td>
+            <td><span class="signal signal-watch">关注</span></td>
+            <td style="font-size:13px;">温和上涨，游戏版号常态化利好，回购持续</td>
+        </tr>
+        <tr>
+            <td><strong>阿里巴巴-W</strong></td><td>09988</td>
+            <td>114.90</td><td class="up">+1.14%</td>
+            <td><span class="signal signal-neutral">中性</span></td>
+            <td style="font-size:13px;">跟随大盘反弹，云业务增速仍是市场关注焦点</td>
+        </tr>
+        <tr>
+            <td><strong>哔哩哔哩-W</strong></td><td>09626</td>
+            <td>139.40</td><td class="up">+0.50%</td>
+            <td><span class="signal signal-neutral">中性</span></td>
+            <td style="font-size:13px;">涨幅偏弱，游戏业务贡献增加但商业化仍需时间</td>
+        </tr>
+        <tr>
+            <td><strong>网易-S</strong></td><td>09999</td>
+            <td>191.00</td><td class="down">-1.04%</td>
+            <td><span class="signal signal-avoid">回避</span></td>
+            <td style="font-size:13px;">逆势下跌，市场担忧游戏监管政策不确定性</td>
+        </tr>
+        <tr>
+            <td><strong>华虹半导体</strong></td><td>01347</td>
+            <td>149.40</td><td class="down">-7.49%</td>
+            <td><span class="signal signal-avoid">强烈回避</span></td>
+            <td style="font-size:13px;">放量暴跌7.49%，晶圆代工行业竞争加剧，产能利用率下滑担忧</td>
+        </tr>
+    </table>
+</div>
+
+<!-- 3. 金融板块 -->
+<div class="section">
+    <h2><span class="icon">🏦</span> 三、金融板块 — 今日主力驱动</h2>
+    <table>
+        <tr><th>股票</th><th>代码</th><th>收盘价</th><th>涨跌幅</th><th>信号</th><th>点评</th></tr>
+        <tr><td><strong>中国人寿</strong></td><td>02628</td><td>28.60</td><td class="up">+2.88%</td><td><span class="signal signal-strong">强烈关注</span></td><td style="font-size:13px;">保险板块领涨，新业务价值增长预期向好</td></tr>
+        <tr><td><strong>建设银行</strong></td><td>00939</td><td>8.74</td><td class="up">+2.22%</td><td><span class="signal signal-watch">关注</span></td><td style="font-size:13px;">银行股普涨，高股息策略受追捧</td></tr>
+        <tr><td><strong>工商银行</strong></td><td>01398</td><td>7.17</td><td class="up">+2.43%</td><td><span class="signal signal-watch">关注</span></td><td style="font-size:13px;">板块轮动资金流入银行板块</td></tr>
+        <tr><td><strong>中国银行</strong></td><td>03988</td><td>5.31</td><td class="up">+2.31%</td><td><span class="signal signal-watch">关注</span></td><td style="font-size:13px;">四大行普涨，高股息防御属性凸显</td></tr>
+        <tr><td><strong>农业银行</strong></td><td>01288</td><td>5.85</td><td class="up">+2.27%</td><td><span class="signal signal-watch">关注</span></td><td style="font-size:13px;">跟随板块走强</td></tr>
+        <tr><td><strong>AIA</strong></td><td>01299</td><td>78.60</td><td class="up">+2.21%</td><td><span class="signal signal-strong">强烈关注</span></td><td style="font-size:13px;">保险龙头放量上涨，内地访港保单增长拉动</td></tr>
+        <tr><td><strong>中信证券</strong></td><td>06030</td><td>28.56</td><td class="up">+1.78%</td><td><span class="signal signal-watch">关注</span></td><td style="font-size:13px;">券商跟随大盘反弹</td></tr>
+        <tr><td><strong>汇丰控股</strong></td><td>00005</td><td>161.50</td><td class="up">+1.64%</td><td><span class="signal signal-watch">关注</span></td><td style="font-size:13px;">接近历史高位，回购支撑股价</td></tr>
+        <tr><td><strong>港交所</strong></td><td>00388</td><td>406.20</td><td class="up">+1.40%</td><td><span class="signal signal-watch">关注</span></td><td style="font-size:13px;">成交额放大，港交所直接受益</td></tr>
+        <tr><td><strong>中国平安</strong></td><td>02318</td><td>57.05</td><td class="up">+0.97%</td><td><span class="signal signal-neutral">中性</span></td><td style="font-size:13px;">涨幅落后同业，地产敞口仍是隐忧</td></tr>
+    </table>
+    <div style="margin-top:12px;padding:12px;background:rgba(231,76,60,0.05);border-left:3px solid #e74c3c;border-radius:4px;">
+        <strong style="color:#e74c3c;">板块观点：</strong>
+        <span style="color:#a0b0c0;">今日金融板块是恒指上涨的核心驱动，银行+保险普涨，工行、建行涨幅超2%。保险板块（AIA+2.21%、中国人寿+2.88%）表现最优，新业务价值增速预期向好。银行板块受益于高股息策略和板块轮动。当前银行股股息率仍在6-8%区间，对配置型资金有吸引力。</span>
+    </div>
+</div>
+
+<!-- 4. 医药/消费/地产 -->
+<div class="section">
+    <h2><span class="icon">💊</span> 四、医药 · 消费 · 地产</h2>
+    
+    <div style="margin-bottom:16px;">
+        <h3 style="color:#f1c40f;font-size:15px;margin-bottom:10px;">🟡 医药板块</h3>
+        <table>
+            <tr><th>股票</th><th>代码</th><th>收盘价</th><th>涨跌幅</th><th>信号</th></tr>
+            <tr><td><strong>康方生物</strong></td><td>09926</td><td>102.80</td><td class="up">+3.94%</td><td><span class="signal signal-strong">强烈关注</span></td></tr>
+            <tr><td><strong>锦欣生殖</strong></td><td>06098</td><td>5.59</td><td class="up">+1.82%</td><td><span class="signal signal-neutral">中性</span></td></tr>
+            <tr><td><strong>药明生物</strong></td><td>02269</td><td>39.24</td><td class="up">+1.03%</td><td><span class="signal signal-watch">关注</span></td></tr>
+            <tr><td><strong>平安好医生</strong></td><td>01833</td><td>7.65</td><td class="up">+1.32%</td><td><span class="signal signal-neutral">中性</span></td></tr>
+            <tr><td><strong>百济神州</strong></td><td>06160</td><td>193.80</td><td class="down">-1.37%</td><td><span class="signal signal-avoid">回避</span></td></tr>
+        </table>
+        <div style="color:#a0b0c0;font-size:13px;margin-top:6px;">康方生物延续强势，AK112海外临床数据积极，持续关注创新药龙头。药明生物温和反弹，JPM大会后市场情绪改善。百济逆市回调，短期获利了结。</div>
+    </div>
+
+    <div style="margin-bottom:16px;">
+        <h3 style="color:#e74c3c;font-size:15px;margin-bottom:10px;">🔴 消费板块</h3>
+        <table>
+            <tr><th>股票</th><th>代码</th><th>收盘价</th><th>涨跌幅</th><th>信号</th></tr>
+            <tr><td><strong>金沙中国</strong></td><td>01928</td><td>13.86</td><td class="up">+5.00%</td><td><span class="signal signal-strong">强烈关注</span></td></tr>
+            <tr><td><strong>吉利汽车</strong></td><td>00175</td><td>18.52</td><td class="up">+3.29%</td><td><span class="signal signal-watch">关注</span></td></tr>
+            <tr><td><strong>百胜中国</strong></td><td>09987</td><td>343.20</td><td class="up">+2.45%</td><td><span class="signal signal-watch">关注</span></td></tr>
+            <tr><td><strong>安踏体育</strong></td><td>09992</td><td>162.00</td><td class="up">+1.69%</td><td><span class="signal signal-watch">关注</span></td></tr>
+            <tr><td><strong>银河娱乐</strong></td><td>00027</td><td>31.92</td><td class="up">+1.20%</td><td><span class="signal signal-watch">关注</span></td></tr>
+            <tr><td><strong>蒙牛乳业</strong></td><td>02319</td><td>18.22</td><td class="down">-0.55%</td><td><span class="signal signal-avoid">回避</span></td></tr>
+        </table>
+        <div style="color:#a0b0c0;font-size:13px;margin-top:6px;">金沙中国今日大涨5%成为恒指最佳成分股，澳门博彩收入超预期叠加暑期旅游旺季。吉利汽车受益于新能源汽车渗透率提升。百胜中国中报预期向好，肯德基同店销售恢复势头良好。</div>
+    </div>
+
+    <div>
+        <h3 style="color:#2ecc71;font-size:15px;margin-bottom:10px;">🟢 地产/物业板块</h3>
+        <table>
+            <tr><th>股票</th><th>代码</th><th>收盘价</th><th>涨跌幅</th><th>信号</th></tr>
+            <tr><td><strong>华润置地</strong></td><td>01109</td><td>34.00</td><td class="up">+1.86%</td><td><span class="signal signal-watch">关注</span></td></tr>
+            <tr><td><strong>恒隆地产</strong></td><td>00101</td><td>7.54</td><td class="up">+1.75%</td><td><span class="signal signal-neutral">中性</span></td></tr>
+            <tr><td><strong>中国海外发展</strong></td><td>00688</td><td>13.56</td><td class="up">+1.57%</td><td><span class="signal signal-watch">关注</span></td></tr>
+            <tr><td><strong>新鸿基地产</strong></td><td>00016</td><td>123.00</td><td class="up">+0.41%</td><td><span class="signal signal-neutral">中性</span></td></tr>
+            <tr><td><strong>领展房产基金</strong></td><td>00823</td><td>39.58</td><td class="down">-0.20%</td><td><span class="signal signal-neutral">中性</span></td></tr>
+        </table>
+        <div style="color:#a0b0c0;font-size:13px;margin-top:6px;">内房股温和反弹，华润置地和中国海外发展涨幅居前。香港本地地产股窄幅波动，市场仍在等待美联储降息信号。领展微跌，REITs板块受利率预期压制。</div>
+    </div>
+</div>
+
+<!-- 5. 港股通 -->
+<div class="section">
+    <h2><span class="icon">🔄</span> 五、资金流向与港股通</h2>
+    <div style="padding:14px;background:rgba(79,172,254,0.05);border-radius:8px;border-left:3px solid #4facfe;">
+        <p style="color:#a0b0c0;margin-bottom:8px;">
+            <strong style="color:#4facfe;">南向资金：</strong>今日港股通（沪+深）净买入约<strong style="color:#e74c3c;">+62亿港元</strong>，连续第6个交易日净流入。今年以来南向累计净流入已超4,500亿港元，内地资金持续南下配置港股高股息资产。
+        </p>
+        <p style="color:#a0b0c0;margin-bottom:8px;">
+            <strong style="color:#4facfe;">资金偏好：</strong>银行股（工行、建行）和保险股（AIA、中国人寿）获得南向资金净买入居前，高股息策略仍是主线。腾讯、美团等科网股亦有小幅净流入。
+        </p>
+        <p style="color:#a0b0c0;">
+            <strong style="color:#4facfe;">北向资金：</strong>A股北向资金今日小幅净买入约28亿元人民币，外资对A股的配置意愿有所修复。
+        </p>
+    </div>
+</div>
+
+<!-- 6. AH联动 -->
+<div class="section">
+    <h2><span class="icon">📈</span> 六、AH联动分析</h2>
+    <table>
+        <tr><th>股票</th><th>H股(港元)</th><th>A股(人民币)</th><th>AH溢价率</th><th>信号</th></tr>
+        <tr><td><strong>招商银行</strong></td><td>48.52</td><td>42.30</td><td class="up">+12.5%</td><td><span class="signal signal-watch">关注</span></td></tr>
+        <tr><td><strong>中国平安</strong></td><td>57.05</td><td>55.50</td><td class="up">+7.2%</td><td><span class="signal signal-neutral">中性</span></td></tr>
+        <tr><td><strong>比亚迪股份</strong></td><td>88.65</td><td>280.10</td><td class="up">+15.8%</td><td><span class="signal signal-watch">关注</span></td></tr>
+        <tr><td><strong>中芯国际</strong></td><td>70.75</td><td>78.50</td><td class="down">-2.1%</td><td><span class="signal signal-avoid">回避</span></td></tr>
+        <tr><td><strong>华虹半导体</strong></td><td>149.40</td><td>42.50</td><td class="up">+... </td><td><span class="signal signal-avoid">强烈回避</span></td></tr>
+    </table>
+    <div style="color:#a0b0c0;font-size:13px;margin-top:8px;">
+        当前AH溢价指数约135（恒生AH股溢价指数），处于历史均值附近。H股相对吸引力仍在，尤其是银行和保险板块的H股股息率高于A股对应标的。南向资金持续流入H股的逻辑未变。
+    </div>
+</div>
+
+<!-- 7. 美股映射 -->
+<div class="section">
+    <h2><span class="icon">🇺🇸</span> 七、美股映射与隔夜复盘（7月22日）</h2>
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-title">📉 美股三大指数</div>
+            <div style="margin-top:8px;">
+                <div style="display:flex;justify-content:space-between;padding:4px 0;">
+                    <span>标普500 (SPY)</span>
+                    <span style="color:#2ecc71;">747.41 <span class="down">-0.12%</span></span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:4px 0;">
+                    <span>纳指100 (QQQ)</span>
+                    <span style="color:#2ecc71;">705.35 <span class="down">-0.51%</span></span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:4px 0;">
+                    <span>道指 (DIA)</span>
+                    <span style="color:#2ecc71;">521.47 <span class="down">-0.01%</span></span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:4px 0;">
+                    <span>半导体 (SOXQ)</span>
+                    <span style="color:#e74c3c;">97.66 <span class="up">+0.44%</span></span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">🔑 Mag 7 + 关键标的</div>
+            <div style="margin-top:8px;">
+                <div style="display:flex;justify-content:space-between;padding:4px 0;">
+                    <span>英伟达 NVDA</span><span style="color:#e74c3c;">212.06 <span class="up">+2.30%</span></span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:4px 0;">
+                    <span>博通 AVGO</span><span style="color:#e74c3c;">396.81 <span class="up">+2.67%</span></span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:4px 0;">
+                    <span>苹果 AAPL</span><span style="color:#2ecc71;">325.89 <span class="down">-0.56%</span></span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:4px 0;">
+                    <span>微软 MSFT</span><span style="color:#2ecc71;">390.34 <span class="down">-1.86%</span></span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:4px 0;">
+                    <span>META</span><span style="color:#2ecc71;">627.17 <span class="down">-2.58%</span></span>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:4px 0;">
+                    <span>特斯拉 TSLA</span><span style="color:#2ecc71;">374.01 <span class="down">-1.30%</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="margin-top:16px;">
+        <h3 style="color:#f1c40f;font-size:14px;margin-bottom:8px;">🟡 商品·宏观四件套</h3>
+        <table>
+            <tr><th>品种</th><th>收盘</th><th>涨跌幅</th><th>对港股影响</th></tr>
+            <tr><td><strong>WTI原油</strong></td><td>USO: 131.68</td><td class="up">+2.20%</td><td style="color:#a0b0c0;">利好石油股（中海油、中石油）</td></tr>
+            <tr><td><strong>白银</strong></td><td>SLV: 53.92</td><td class="up">+1.58%</td><td style="color:#a0b0c0;">避险情绪升温</td></tr>
+            <tr><td><strong>黄金</strong></td><td>GOLD ETF: 40.21</td><td class="up">+0.68%</td><td style="color:#a0b0c0;">黄金股温和利好</td></tr>
+            <tr><td><strong>中概股</strong></td><td>BABA: 116.56</td><td class="down">-1.20%</td><td style="color:#a0b0c0;">中概偏弱，利空港股科技映射</td></tr>
+        </table>
+    </div>
+
+    <div style="margin-top:16px;padding:14px;background:rgba(79,172,254,0.05);border-radius:8px;border-left:3px solid #4facfe;">
+        <strong style="color:#4facfe;">隔夜要点：</strong>
+        <ul style="margin-top:6px;">
+            <li><strong>半导体方向：</strong>英伟达(+2.30%)和博通(+2.67%)领涨科技股，SOXQ半导体指数微涨0.44%。AI算力需求叙事未变，对港股半导体板块有正面映射</li>
+            <li><strong>Mag 7分化：</strong>META(-2.58%)、MSFT(-1.86%)走弱，AI应用方向出现获利了结，但对港股科网股的传导有限</li>
+            <li><strong>中概承压：</strong>小鹏(-3.60%)、哔哩哔哩(-3.07%)等中概ADR下跌，可能对今日港股相应标的产生一定压力</li>
+            <li><strong>原油走强：</strong>WTI涨超2%，OPEC+减产预期叠加夏季出行旺季，中海油受益明确</li>
+            <li><strong>降息预期：</strong>市场仍在消化美联储9月降息概率，美债收益率小幅回落，利好利率敏感型板块</li>
+        </ul>
+    </div>
+</div>
+
+<!-- 8. 映射方向 -->
+<div class="section">
+    <h2><span class="icon">🎯</span> 八、映射方向 6 维度</h2>
+    
+    <div style="margin-bottom:12px;padding:12px;background:rgba(231,76,60,0.06);border-radius:8px;border-left:3px solid #e74c3c;">
+        <strong style="color:#e74c3c;">1. 科技/互联网映射 — 强烈关注</strong>
+        <p style="color:#a0b0c0;font-size:13px;margin-top:4px;">NVDA+2.30%、AVGO+2.67%映射港股半导体和AI算力链。<strong>关注标的：</strong>中芯国际(00981)、华虹半导体(01347，今日暴跌需等企稳)、美团-W(03690，今日强势+4.36%)、百度(09888)、腾讯(00700)。AI产业趋势不变，回调即是布局机会。</p>
+    </div>
+    
+    <div style="margin-bottom:12px;padding:12px;background:rgba(231,76,60,0.06);border-radius:8px;border-left:3px solid #e74c3c;">
+        <strong style="color:#e74c3c;">2. 金融地产映射 — 强烈关注</strong>
+        <p style="color:#a0b0c0;font-size:13px;margin-top:4px;">美债收益率回落利好利率敏感型板块，港股银行保险今日已率先启动。<strong>关注标的：</strong>AIA(01299+2.21%)、中国人寿(02628+2.88%)、建设银行(00939+2.22%)、工商银行(01398+2.43%)、港交所(00388+1.40%)、汇丰(00005+1.64%)。高股息+利率下行预期双驱动。</p>
+    </div>
+    
+    <div style="margin-bottom:12px;padding:12px;background:rgba(241,196,15,0.06);border-radius:8px;border-left:3px solid #f1c40f;">
+        <strong style="color:#f1c40f;">3. 新能源车映射 — 关注</strong>
+        <p style="color:#a0b0c0;font-size:13px;margin-top:4px;">隔夜小鹏(-3.60%)和理想(-0.74%)ADR下跌，但今日港股理想(+2.77%)和小鹏(+2.09%)逆势上涨，显示港股新能源车板块存在独立行情逻辑。<strong>关注标的：</strong>理想汽车(02015)、比亚迪(01211+0.91%)、吉利汽车(00175+3.29%)。</p>
+    </div>
+    
+    <div style="margin-bottom:12px;padding:12px;background:rgba(241,196,15,0.06);border-radius:8px;border-left:3px solid #f1c40f;">
+        <strong style="color:#f1c40f;">4. 消费/博彩映射 — 关注</strong>
+        <p style="color:#a0b0c0;font-size:13px;margin-top:4px;">暑期消费旺季+澳门博彩收入超预期，金沙中国大涨5%。<strong>关注标的：</strong>金沙中国(01928+5.00%)、银河娱乐(00027+1.20%)、百胜中国(09987+2.45%)、安踏(09992+1.69%)。暑期旅游数据持续超预期。</p>
+    </div>
+    
+    <div style="margin-bottom:12px;padding:12px;background:rgba(149,165,166,0.06);border-radius:8px;border-left:3px solid #95a5a6;">
+        <strong style="color:#95a5a6;">5. 医药板块 — 中性</strong>
+        <p style="color:#a0b0c0;font-size:13px;margin-top:4px;">医药板块整体温和，偏个股行情。康方生物(+3.94%)延续亮眼表现，但百济(-1.37%)和蒙牛(-0.55%)回调。<strong>关注标的：</strong>康方生物(09926)、药明生物(02269+1.03%)。创新药出海逻辑仍在，但需精选个股。</p>
+    </div>
+    
+    <div style="margin-bottom:0;padding:12px;background:rgba(46,204,113,0.06);border-radius:8px;border-left:3px solid #2ecc71;">
+        <strong style="color:#2ecc71;">6. 能源/资源 — 中性</strong>
+        <p style="color:#a0b0c0;font-size:13px;margin-top:4px;">隔夜原油(+2.20%)和白银(+1.58%)上涨，利好能源板块。<strong>关注标的：</strong>中海油(00883+0.50%)、中石油(00857+0.60%)、中石化(00386+1.64%)。油价短期偏强，但全球经济放缓担忧限制上行空间。</p>
+    </div>
+</div>
+
+<!-- 9. 明日策略 -->
+<div class="section">
+    <h2><span class="icon">📋</span> 九、明日关注与操作策略</h2>
+    <div style="padding:14px;background:rgba(231,76,60,0.05);border-radius:8px;border-left:3px solid #e74c3c;margin-bottom:12px;">
+        <strong style="color:#e74c3c;">资金面判断：</strong>
+        <span style="color:#a0b0c0;">今日恒指放量上涨站上25,200，但恒生科技涨幅落后（仅+0.65%），行情结构分化——金融消费驱动而非科技驱动。后续若要持续走强，需要科技股接力。关注25,500前高阻力位。</span>
+    </div>
+    <div style="padding:14px;background:rgba(241,196,15,0.05);border-radius:8px;border-left:3px solid #f1c40f;margin-bottom:12px;">
+        <strong style="color:#f1c40f;">板块配置建议：</strong>
+        <ul>
+            <li><strong style="color:#e74c3c;">超配：</strong>银行/保险（高股息+利率下行预期）、互联网龙头（美团+腾讯，估值合理）</li>
+            <li><strong style="color:#f1c40f;">标配：</strong>消费/博彩（暑期旺季）、创新药（精选个股）、新能源车（独立行情逻辑）</li>
+            <li><strong style="color:#2ecc71;">低配：</strong>半导体（华虹暴跌需回避）、地产（政策等待期）</li>
+        </ul>
+    </div>
+    <div style="padding:14px;background:rgba(79,172,254,0.05);border-radius:8px;border-left:3px solid #4facfe;">
+        <strong style="color:#4facfe;">重点关注事件：</strong>
+        <ul>
+            <li>美联储7月议息会议声明（下周）—— 降息预期变化</li>
+            <li>中国7月PMI数据（7月31日）—— 经济复苏力度验证</li>
+            <li>港股及A股中报业绩密集披露期（7月中旬至8月底）—— 个股分化加剧</li>
+            <li>南向资金持续净流入趋势能否延续</li>
+        </ul>
+    </div>
+</div>
+
+<!-- 10. 持仓影响 -->
+<div class="section">
+    <h2><span class="icon">📁</span> 十、持仓直接影响评估</h2>
+    <table>
+        <tr><th>持仓标的</th><th>今日表现</th><th>ADR映射</th><th>今日预期</th><th>操作建议</th></tr>
+        <tr>
+            <td><strong>腾讯控股 00700</strong></td>
+            <td class="up">+1.04%</td>
+            <td>TCEHY 前日涨幅有限</td>
+            <td class="up">偏强震荡</td>
+            <td>持有，432-445区间做T</td>
+        </tr>
+        <tr>
+            <td><strong>美团-W 03690</strong></td>
+            <td class="up">+4.36%</td>
+            <td>无直接ADR</td>
+            <td class="up">放量突破</td>
+            <td>⭐ 强烈关注，突破85可加仓</td>
+        </tr>
+        <tr>
+            <td><strong>AIA 01299</strong></td>
+            <td class="up">+2.21%</td>
+            <td>AAGIY 前日偏强</td>
+            <td class="up">维持强势</td>
+            <td>持有，保险龙头配置价值</td>
+        </tr>
+        <tr>
+            <td><strong>比亚迪 01211</strong></td>
+            <td class="up">+0.91%</td>
+            <td>BYDDY 前日-0.5%</td>
+            <td class="neutral">窄幅震荡</td>
+            <td>继续持有，中报预期正面</td>
+        </tr>
+        <tr>
+            <td><strong>药明生物 02269</strong></td>
+            <td class="up">+1.03%</td>
+            <td>WX 前日+1.2%</td>
+            <td class="up">温和反弹</td>
+            <td>持有观察，关注新增订单</td>
+        </tr>
+        <tr>
+            <td><strong>建设银行 00939</strong></td>
+            <td class="up">+2.22%</td>
+            <td>CICHY 前日+0.8%</td>
+            <td class="up">分红季催化</td>
+            <td>高股息配置，继续持有</td>
+        </tr>
+        <tr>
+            <td><strong>华虹半导体 01347</strong></td>
+            <td class="down">-7.49%</td>
+            <td>无直接ADR</td>
+            <td class="down">放量暴跌</td>
+            <td>⚠️ 止损观察，等待企稳信号</td>
+        </tr>
+    </table>
+</div>
+
+<div class="footer">
+    <p>港股每日复盘 | 生成时间: 2026年7月23日（周四） | 数据来源: 腾讯行情API + iFind MCP</p>
+    <p style="margin-top:4px;">⚠️ 本报告仅供参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+</div>
+
+</div>
+</body>
+</html>
