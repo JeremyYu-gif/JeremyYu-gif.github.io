@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股业绩预告日报 — 2026-07-24</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0d1117; color: #e6edf3; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; line-height: 1.7; padding: 40px 20px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  /* Header */
+  .header { text-align: center; padding: 30px 0; border-bottom: 1px solid #30363d; margin-bottom: 30px; }
+  .header h1 { font-size: 28px; font-weight: 700; background: linear-gradient(135deg, #58a6ff, #79c0ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .header .subtitle { color: #8b949e; font-size: 14px; margin-top: 8px; }
+  .header .badge { display: inline-block; background: #21262d; border: 1px solid #30363d; border-radius: 20px; padding: 4px 16px; font-size: 12px; color: #8b949e; margin-top: 12px; }
+  .header .badge span { color: #58a6ff; font-weight: 600; }
+  /* Stats row */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 30px; }
+  .stat-card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; text-align: center; }
+  .stat-card .num { font-size: 28px; font-weight: 700; }
+  .stat-card .num.green { color: #3fb950; }
+  .stat-card .num.blue { color: #58a6ff; }
+  .stat-card .num.yellow { color: #d29922; }
+  .stat-card .num.purple { color: #bc8cff; }
+  .stat-card .label { font-size: 12px; color: #8b949e; margin-top: 4px; }
+  /* Section */
+  .section-title { font-size: 18px; font-weight: 600; margin: 30px 0 16px; padding-left: 12px; border-left: 3px solid #58a6ff; }
+  .section-desc { color: #8b949e; font-size: 13px; margin-bottom: 16px; }
+  /* Stock card */
+  .stock-card { background: #161b22; border: 1px solid #30363d; border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+  .stock-card .card-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid #21262d; }
+  .stock-card .card-header .name { font-size: 16px; font-weight: 600; }
+  .stock-card .card-header .name .code { color: #8b949e; font-weight: 400; font-size: 13px; margin-left: 6px; }
+  .stock-card .card-header .tag { display: inline-block; border-radius: 12px; padding: 2px 12px; font-size: 12px; font-weight: 600; }
+  .tag-strong { background: rgba(56, 139, 253, 0.15); color: #58a6ff; border: 1px solid rgba(56, 139, 253, 0.3); }
+  .tag-watch { background: rgba(209, 158, 34, 0.15); color: #d29922; border: 1px solid rgba(209, 158, 34, 0.3); }
+  .tag-caution { background: rgba(248, 81, 73, 0.15); color: #f85149; border: 1px solid rgba(248, 81, 73, 0.3); }
+  .stock-card .card-body { padding: 16px 20px; }
+  .data-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 12px; }
+  .data-item .dlabel { font-size: 11px; color: #8b949e; text-transform: uppercase; }
+  .data-item .dvalue { font-size: 18px; font-weight: 600; margin-top: 2px; }
+  .data-item .dvalue.green { color: #3fb950; }
+  .data-item .dvalue.red { color: #f85149; }
+  .data-item .dvalue.yellow { color: #d29922; }
+  .analysis-text { color: #c9d1d9; font-size: 14px; line-height: 1.8; border-top: 1px solid #21262d; padding-top: 12px; margin-top: 8px; }
+  .analysis-text p { margin-bottom: 6px; }
+  .analysis-text strong { color: #58a6ff; }
+  /* Excluded table */
+  .excluded-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .excluded-table th { background: #21262d; padding: 10px 12px; text-align: left; font-weight: 600; color: #8b949e; font-size: 12px; border-bottom: 1px solid #30363d; }
+  .excluded-table td { padding: 10px 12px; border-bottom: 1px solid #21262d; }
+  .excluded-table tr:hover { background: #1c2128; }
+  .fail-tag { color: #f85149; font-weight: 600; }
+  .pass-tag { color: #3fb950; font-weight: 600; }
+  /* Footer */
+  .footer { text-align: center; color: #484f58; font-size: 12px; padding: 30px 0; border-top: 1px solid #21262d; margin-top: 40px; }
+  /* Responsive */
+  @media (max-width: 768px) { .stats { grid-template-columns: repeat(2, 1fr); } .data-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>📊 A股业绩预告日报</h1>
+  <div class="subtitle">2026年7月24日 · 星期五</div>
+  <div class="badge">披露期外自愿公告 · 共 <span>9</span> 家公司 · <span>7</span> 家通过筛选</div>
+</div>
+
+<div class="stats">
+  <div class="stat-card">
+    <div class="num green">7</div>
+    <div class="label">通过三条件筛选</div>
+  </div>
+  <div class="stat-card">
+    <div class="num blue">4</div>
+    <div class="label">扭亏为盈</div>
+  </div>
+  <div class="stat-card">
+    <div class="num yellow">2</div>
+    <div class="label">预增/大幅上升</div>
+  </div>
+  <div class="stat-card">
+    <div class="num purple">1</div>
+    <div class="label">略增但通过</div>
+  </div>
+</div>
+
+<div class="section-title">🔥 强烈关注</div>
+<div class="section-desc">扣非占比高 + 增速强劲 + 行业景气确认</div>
+
+<!-- 长鑫科技 -->
+<div class="stock-card">
+  <div class="card-header">
+    <div class="name">长鑫科技 <span class="code">688825</span></div>
+    <span class="tag tag-strong">⭐ 强烈关注</span>
+  </div>
+  <div class="card-body">
+    <div class="data-grid">
+      <div class="data-item">
+        <div class="dlabel">预告类型</div>
+        <div class="dvalue green">扭亏为盈</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">预告净利润</div>
+        <div class="dvalue">500亿 ~ 570亿</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非净利润</div>
+        <div class="dvalue">520亿 ~ 580亿</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非占比</div>
+        <div class="dvalue green">~100%</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非增速</div>
+        <div class="dvalue green">+2279% ~ +2530%</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">总市值</div>
+        <div class="dvalue">5,792亿</div>
+      </div>
+    </div>
+    <div class="analysis-text">
+      <p><strong>行业/概念：</strong>电子 · DRAM芯片 | 核心概念：AI芯片、半导体国产替代、存储器</p>
+      <p><strong>业绩质量：</strong>扣非占比接近100%，净利润完全由DRAM主业贡献。DRAM芯片板块处于强周期复苏阶段，HBM高带宽内存需求随AI基建爆发。</p>
+      <p><strong>前景判断：</strong>国产DRAM龙头，是国内唯一量产DRAM的企业。随着AI推理需求爆发式增长，HBM/DDR5需求持续旺盛。市值近5800亿，体量巨大但增速极高，处于半导体存储超级周期中。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 普冉股份 -->
+<div class="stock-card">
+  <div class="card-header">
+    <div class="name">普冉股份 <span class="code">688766</span></div>
+    <span class="tag tag-strong">⭐ 强烈关注</span>
+  </div>
+  <div class="card-body">
+    <div class="data-grid">
+      <div class="data-item">
+        <div class="dlabel">预告类型</div>
+        <div class="dvalue green">大幅上升</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">预告净利润</div>
+        <div class="dvalue">8.25亿</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非净利润</div>
+        <div class="dvalue">8.2亿</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非占比</div>
+        <div class="dvalue green">~99%</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非增速</div>
+        <div class="dvalue green">+2976.99%</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">总市值</div>
+        <div class="dvalue">606亿</div>
+      </div>
+    </div>
+    <div class="analysis-text">
+      <p><strong>行业/概念：</strong>电子 · 半导体 | 核心概念：存储芯片、NOR Flash、MCU、AI端侧</p>
+      <p><strong>业绩质量：</strong>扣非占比99%，核心利润几乎完全由存储器芯片业务贡献。扣非增速2977%，显示半导体存储行业处于强复苏周期。</p>
+      <p><strong>前景判断：</strong>非易失性存储芯片设计龙头，受益于AI server、IoT和消费电子复苏。NOR Flash/NAND需求旺盛，叠加国内存储产业链国产替代加速，成长逻辑清晰。股价407.4元，PE 60x，但增速远超估值消化能力。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section-title">📌 关注</div>
+<div class="section-desc">通过三条件但有单项瑕疵，值得密切跟踪</div>
+
+<!-- 五矿新能 -->
+<div class="stock-card">
+  <div class="card-header">
+    <div class="name">五矿新能 <span class="code">688779</span></div>
+    <span class="tag tag-watch">📌 关注</span>
+  </div>
+  <div class="card-body">
+    <div class="data-grid">
+      <div class="data-item">
+        <div class="dlabel">预告类型</div>
+        <div class="dvalue green">扭亏为盈</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">预告净利润</div>
+        <div class="dvalue">3.4亿 ~ 4.0亿</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非净利润</div>
+        <div class="dvalue">3.3亿 ~ 3.9亿</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非占比</div>
+        <div class="dvalue green">~97%</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非增速</div>
+        <div class="dvalue green">扭亏为盈</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">总市值</div>
+        <div class="dvalue">142亿</div>
+      </div>
+    </div>
+    <div class="analysis-text">
+      <p><strong>行业/概念：</strong>电力设备 · 正极材料 | 核心概念：锂电池、新能源、磷酸铁锂</p>
+      <p><strong>业绩质量：</strong>扣非占比97%，主业驱动特征明确。扭亏为盈说明正极材料行业周期见底回升。</p>
+      <p><strong>前景判断：</strong>五矿集团旗下正极材料平台，客户涵盖宁德时代、比亚迪等头部电池厂。经历2024-2025年锂电行业深度出清后，正极材料价格企稳回升，公司产能利用率提升带动盈利修复。需关注行业产能过剩格局是否真正出清。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 欧莱新材 -->
+<div class="stock-card">
+  <div class="card-header">
+    <div class="name">欧莱新材 <span class="code">688530</span></div>
+    <span class="tag tag-watch">📌 关注</span>
+  </div>
+  <div class="card-body">
+    <div class="data-grid">
+      <div class="data-item">
+        <div class="dlabel">预告类型</div>
+        <div class="dvalue green">扭亏为盈</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">预告净利润</div>
+        <div class="dvalue">6500万 ~ 7000万</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非净利润</div>
+        <div class="dvalue">6500万 ~ 7000万</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非占比</div>
+        <div class="dvalue green">~100%</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非增速</div>
+        <div class="dvalue green">扭亏为盈</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">总市值</div>
+        <div class="dvalue">87亿</div>
+      </div>
+    </div>
+    <div class="analysis-text">
+      <p><strong>行业/概念：</strong>电子 · 半导体材料 | 核心概念：溅射靶材、国产替代、半导体产业链</p>
+      <p><strong>业绩质量：</strong>扣非占比100%，主业经营质量极佳。溅射靶材属于半导体/显示面板领域的核心耗材，技术壁垒高。</p>
+      <p><strong>前景判断：</strong>国内溅射靶材国产替代进程加速，下游晶圆厂扩产带来持续需求。公司作为高性能溅射靶材供应商，受益于半导体材料自主可控政策利好，成长空间较大。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 中无人机 -->
+<div class="stock-card">
+  <div class="card-header">
+    <div class="name">中无人机 <span class="code">688297</span></div>
+    <span class="tag tag-watch">📌 关注</span>
+  </div>
+  <div class="card-body">
+    <div class="data-grid">
+      <div class="data-item">
+        <div class="dlabel">预告类型</div>
+        <div class="dvalue green">大幅上升</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">预告净利润</div>
+        <div class="dvalue">5200万 ~ 5800万</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非净利润</div>
+        <div class="dvalue">3300万 ~ 3900万</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非占比</div>
+        <div class="dvalue yellow">~66%</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非增速</div>
+        <div class="dvalue green">+50% ~ +78%</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">总市值</div>
+        <div class="dvalue">270亿</div>
+      </div>
+    </div>
+    <div class="analysis-text">
+      <p><strong>行业/概念：</strong>国防军工 · 无人机 | 核心概念：军工、无人机、高端装备</p>
+      <p><strong>业绩质量：</strong>扣非占比约66%，部分利润来自非经常性损益（可能含政府补贴等），但扣非增速50%+，主业增长动力充足。</p>
+      <p><strong>前景判断：</strong>中航工业集团旗下无人机平台，是国内大型固定翼无人机龙头。全球化冲突背景下军用无人机需求持续增长，民用物流/巡检场景也在拓展。PE 400x看似极高，实为前期亏损后的利润修复阶段。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 晶晨股份 -->
+<div class="stock-card">
+  <div class="card-header">
+    <div class="name">晶晨股份 <span class="code">688099</span></div>
+    <span class="tag tag-watch">📌 关注</span>
+  </div>
+  <div class="card-body">
+    <div class="data-grid">
+      <div class="data-item">
+        <div class="dlabel">预告类型</div>
+        <div class="dvalue green">预增</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">预告净利润</div>
+        <div class="dvalue">6.08亿</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非净利润</div>
+        <div class="dvalue">5.6亿</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非占比</div>
+        <div class="dvalue green">~92%</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非增速</div>
+        <div class="dvalue green">+22.54%</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">总市值</div>
+        <div class="dvalue">390亿</div>
+      </div>
+    </div>
+    <div class="analysis-text">
+      <p><strong>行业/概念：</strong>电子 · 半导体设计 | 核心概念：SoC芯片、智能电视、AIoT、机顶盒</p>
+      <p><strong>业绩质量：</strong>扣非占比92%，主营业务驱动，业绩质量较高。22.5%的增速虽不及普冉/长鑫的爆发式增长，但稳健可持续。</p>
+      <p><strong>前景判断：</strong>国内多媒体智能终端SoC龙头，产品覆盖智能电视、机顶盒、AIoT等场景。受益于全球智能家居和AI边缘计算需求增长。PE 56x，增速稳健，适合作为半导体板块的底仓配置。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 海达股份 -->
+<div class="stock-card">
+  <div class="card-header">
+    <div class="name">海达股份 <span class="code">300320</span></div>
+    <span class="tag tag-caution">👀 中性谨慎</span>
+  </div>
+  <div class="card-body">
+    <div class="data-grid">
+      <div class="data-item">
+        <div class="dlabel">预告类型</div>
+        <div class="dvalue green">预增</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">预告净利润</div>
+        <div class="dvalue">1.30亿 ~ 1.41亿</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非净利润</div>
+        <div class="dvalue">1.29亿 ~ 1.40亿</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非占比</div>
+        <div class="dvalue green">~99%</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">扣非增速</div>
+        <div class="dvalue yellow">+19.66% ~ +29.71%</div>
+      </div>
+      <div class="data-item">
+        <div class="dlabel">总市值</div>
+        <div class="dvalue">47亿</div>
+      </div>
+    </div>
+    <div class="analysis-text">
+      <p><strong>行业/概念：</strong>基础化工 · 橡胶制品 | 核心概念：橡胶密封件、轨道交通、汽车零部件</p>
+      <p><strong>业绩质量：</strong>扣非占比99%，主业经营扎实。扣非增速~25%，稳健增长但弹性有限。</p>
+      <p><strong>前景判断：</strong>传统橡胶制品制造商，受益于基建和汽车行业需求稳定。公司体量较小（市值47亿），增速处在通过线边缘。行业属于传统制造业，成长性一般，缺乏估值催化因素。建议作为防御性配置观察。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section-title">❌ 未通过筛选</div>
+<div class="section-desc">当天公告但未满足三条件的公司</div>
+
+<table class="excluded-table">
+  <thead>
+    <tr>
+      <th>代码</th>
+      <th>名称</th>
+      <th>预告类型</th>
+      <th>未通过原因</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>688655</td>
+      <td>迅捷兴</td>
+      <td>扭亏</td>
+      <td><span class="fail-tag">扣非净利润1180万 < 2000万 ❌</span> PCB行业回暖但利润体量尚不足</td>
+    </tr>
+    <tr>
+      <td>600006</td>
+      <td>东风股份</td>
+      <td>预增</td>
+      <td><span class="fail-tag">扣非净利润为负（-2500万~-1500万）❌</span> 利润来自非经常性损益，主营业务亏损</td>
+    </tr>
+    <tr>
+      <td>301677</td>
+      <td>欣兴工具</td>
+      <td>略增</td>
+      <td><span class="fail-tag">略增，未达预增/扭亏标准</span></td>
+    </tr>
+    <tr>
+      <td>688192</td>
+      <td>迪哲医药-U</td>
+      <td>减亏</td>
+      <td><span class="fail-tag">减亏（仍在亏损中）</span> 创新药研发阶段，尚未盈利</td>
+    </tr>
+    <tr>
+      <td>300320</td>
+      <td>海达股份</td>
+      <td>略增（EM）/预增（iFind）</td>
+      <td><span class="pass-tag">已纳入分析</span>（iFind归类为预增，按高标准纳入）</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section-title">📋 今日市场小结</div>
+<div class="analysis-text" style="border: 1px solid #30363d; border-radius: 10px; padding: 16px 20px; background: #161b22;">
+  <p><strong>今日概况：</strong>7月24日（已过7/16强制披露截止日）仍有11家公司自愿公告业绩预告，其中<strong style="color:#3fb950">7家通过三条件筛选</strong>。</p>
+  <br>
+  <p><strong>核心亮点：</strong></p>
+  <p>🔹 <strong>半导体存储链全面爆发：</strong>长鑫科技（DRAM扭亏+2279%）、普冉股份（存储芯片+2977%）、晶晨股份（SoC+22.5%）三家半导体公司同日预喜，AI驱动的存储/计算芯片周期确认上行。</p>
+  <p>🔹 <strong>国产材料替代加速：</strong>欧莱新材（溅射靶材扭亏）受益于国产晶圆厂扩产。</p>
+  <p>🔹 <strong>军工无人机高景气：</strong>中无人机（+50%~78%）受全球军事冲突和民用物流需求双轮驱动。</p>
+  <p>🔹 <strong>锂电材料周期见底：</strong>五矿新能（正极材料扭亏）释放行业筑底信号。</p>
+  <br>
+  <p><strong>风险提示：</strong>东风股份扣非为负提醒我们——并非所有"预增"都值得投资，非经常性损益导致"假预增"的公司需要警惕。</p>
+  <br>
+  <p><strong style="color:#58a6ff">老余，今日7只标的中，长鑫科技和普冉股份最具战略关注价值，分属国产DRAM和存储芯片设计两大半导体自主可控核心环节，且均处于行业强周期起点。</strong></p>
+</div>
+
+<div class="footer">
+  数据来源：东方财富妙想 · 同花顺iFind · 数据日期：2026-07-24 · 报告由AI自动生成，仅供参考
+</div>
+
+</div>
+</body>
+</html>
