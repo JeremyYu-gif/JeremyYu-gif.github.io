@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>资金流向日报 2026-07-24</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: #0a0e1a;
+  color: #c8d6e5;
+  padding: 20px 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.header {
+  background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 28px 32px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #58a6ff, #3fb950, #d29922);
+}
+.header h1 {
+  font-size: 26px;
+  color: #f0f6fc;
+  margin-bottom: 6px;
+}
+.header .subtitle {
+  font-size: 14px;
+  color: #8b949e;
+}
+.header .date {
+  position: absolute;
+  right: 32px;
+  top: 28px;
+  font-size: 14px;
+  color: #8b949e;
+}
+.header .market-status {
+  display: inline-block;
+  background: #21262d;
+  color: #d29922;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-top: 8px;
+}
+.section {
+  background: #0d1117;
+  border: 1px solid #21262d;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #f0f6fc;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title .icon {
+  width: 24px; height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th {
+  background: #161b22;
+  color: #8b949e;
+  font-weight: 500;
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid #21262d;
+}
+td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #161b22;
+}
+tr:hover td { background: rgba(88, 166, 255, 0.04); }
+.price { text-align: right; font-variant-numeric: tabular-nums; }
+.change-up { color: #f85149; }
+.change-down { color: #3fb950; }
+.change-neutral { color: #8b949e; }
+.flow-in { color: #f85149; }
+.flow-out { color: #3fb950; }
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.badge-red { background: rgba(248, 81, 73, 0.15); color: #f85149; }
+.badge-green { background: rgba(63, 185, 80, 0.15); color: #3fb950; }
+.badge-yellow { background: rgba(210, 153, 34, 0.15); color: #d29922; }
+.badge-gray { background: rgba(139, 148, 158, 0.15); color: #8b949e; }
+.kpi-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+.kpi-card {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 14px 18px;
+  min-width: 130px;
+  flex: 1;
+}
+.kpi-card .kpi-label { font-size: 12px; color: #8b949e; margin-bottom: 4px; }
+.kpi-card .kpi-value { font-size: 22px; font-weight: 700; color: #f0f6fc; }
+.kpi-card .kpi-change { font-size: 13px; margin-top: 2px; }
+.signal-box {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-left: 3px solid #d29922;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+}
+.signal-box.positive { border-left-color: #f85149; }
+.signal-box.negative { border-left-color: #3fb950; }
+.signal-box.neutral { border-left-color: #8b949e; }
+.signal-box .signal-title { font-weight: 600; color: #f0f6fc; margin-bottom: 4px; }
+.signal-box .signal-desc { font-size: 13px; color: #8b949e; line-height: 1.5; }
+.rating-score {
+  text-align: center;
+  padding: 20px;
+  background: #161b22;
+  border-radius: 10px;
+  border: 1px solid #21262d;
+}
+.rating-score .score-number { font-size: 48px; font-weight: 700; }
+.rating-score .score-label { font-size: 14px; color: #8b949e; margin-top: 4px; }
+.rating-score .score-desc { font-size: 13px; color: #d29922; margin-top: 8px; }
+.footer {
+  text-align: center;
+  padding: 20px;
+  color: #484f58;
+  font-size: 12px;
+  border-top: 1px solid #21262d;
+  margin-top: 20px;
+}
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #21262d;
+  border-radius: 3px;
+  margin-top: 4px;
+  overflow: hidden;
+}
+.progress-bar .fill { height: 100%; border-radius: 3px; }
+.indices-flex {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.indices-item {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 8px;
+  padding: 12px 16px;
+  min-width: 150px;
+  flex: 1;
+}
+.indices-item .index-name { font-size: 13px; color: #8b949e; }
+.indices-item .index-price { font-size: 20px; font-weight: 700; color: #f0f6fc; margin: 4px 0; }
+.indices-item .index-change { font-size: 13px; }
+@media (max-width: 768px) {
+  .two-col, .three-col { grid-template-columns: 1fr; }
+  body { padding: 12px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>💰 资金流向日报</h1>
+  <div class="subtitle">A股资金面全景分析 · 聪明钱动向追踪</div>
+  <div class="date">📅 2026-07-24 周五</div>
+  <div class="market-status">🕐 收盘后分析 · 数据截至 15:30</div>
+</div>
+
+<!-- 大盘概览 -->
+<div class="section">
+  <div class="section-title"><span class="icon" style="background:#1a2332;color:#58a6ff;">📊</span> 大盘指数概览</div>
+  <div class="indices-flex">
+    <div class="indices-item">
+      <div class="index-name">上证指数</div>
+      <div class="index-price">3,814.20</div>
+      <div class="index-change change-down">-62.58 (-1.61%)</div>
+    </div>
+    <div class="indices-item">
+      <div class="index-name">深证成指</div>
+      <div class="index-price">13,774.68</div>
+      <div class="index-change change-down">-348.63 (-2.47%)</div>
+    </div>
+    <div class="indices-item">
+      <div class="index-name">创业板指</div>
+      <div class="index-price">3,480.87</div>
+      <div class="index-change change-down">-94.65 (-2.65%)</div>
+    </div>
+    <div class="indices-item">
+      <div class="index-name">科创50</div>
+      <div class="index-price">1,787.20</div>
+      <div class="index-change change-down">-2.49 (-0.14%)</div>
+    </div>
+    <div class="indices-item">
+      <div class="index-name">沪深300</div>
+      <div class="index-price">4,649.19</div>
+      <div class="index-change change-down">-78.81 (-1.67%)</div>
+    </div>
+    <div class="indices-item">
+      <div class="index-name">上证50</div>
+      <div class="index-price">2,956.35</div>
+      <div class="index-change change-down">-22.42 (-0.75%)</div>
+    </div>
+    <div class="indices-item">
+      <div class="index-name">中证500</div>
+      <div class="index-price">7,532.70</div>
+      <div class="index-change change-down">-201.61 (-2.61%)</div>
+    </div>
+  </div>
+  <div style="display:flex; gap:12px; margin-top:16px; flex-wrap:wrap;">
+    <div class="kpi-card">
+      <div class="kpi-label">两市成交额</div>
+      <div class="kpi-value">19,446亿</div>
+      <div class="kpi-change change-down">缩量 12%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">涨跌比</div>
+      <div class="kpi-value">555 : 4,940</div>
+      <div class="kpi-change change-down">近乎普跌</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">前日成交额</div>
+      <div class="kpi-value">22,094亿</div>
+      <div class="kpi-change change-neutral">缩量 4,591亿</div>
+    </div>
+  </div>
+</div>
+
+<!-- 北向资金 -->
+<div class="section">
+  <div class="section-title"><span class="icon" style="background:#1a2d1a;color:#3fb950;">🔵</span> 北向资金</div>
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-label">当日北向净买入</div>
+      <div class="kpi-value" style="color:#8b949e;">数据暂缺</div>
+      <div class="kpi-change change-neutral">港交所结算延迟 (预计18:00更新)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">前日(7/23)成交总额</div>
+      <div class="kpi-value" style="color:#3fb950;">3,075.50亿</div>
+      <div class="kpi-change change-neutral">存量博弈</div>
+    </div>
+  </div>
+  <div class="signal-box neutral">
+    <div class="signal-title">📋 北向资金动态 (新闻综合)</div>
+    <div class="signal-desc">
+      • 7月23日北向资金成交额3075.50亿元，温和回流成长龙头<br>
+      • 市场整体偏弱，北向资金净买入状态待结算后确认<br>
+      • 今日市场普跌(4940股下跌)，外资存在流出压力<br>
+      • 隔夜美股大跌(GOOGL -7.13%) → 可能影响今日北向风偏
+    </div>
+  </div>
+</div>
+
+<!-- 主力资金行业分布 -->
+<div class="section">
+  <div class="section-title"><span class="icon" style="background:#2d1a1a;color:#f85149;">🟡</span> 主力资金行业分布</div>
+  <div class="two-col">
+    <div>
+      <h3 style="color:#f85149;font-size:15px;margin-bottom:10px;">📈 资金净流入 TOP 板块</h3>
+      <table>
+        <tr><th>板块</th><th class="price">主力净流入</th><th class="price">涨跌幅</th></tr>
+        <tr>
+          <td>半导体</td>
+          <td class="price flow-in">+17.38亿</td>
+          <td class="price change-down">-0.25%</td>
+        </tr>
+        <tr>
+          <td>国防军工</td>
+          <td class="price flow-in">+流入</td>
+          <td class="price change-up">逆势走强</td>
+        </tr>
+        <tr>
+          <td>环保</td>
+          <td class="price flow-in">+流入</td>
+          <td class="price change-neutral">持平</td>
+        </tr>
+        <tr>
+          <td>纺服行业</td>
+          <td class="price flow-in">+小幅流入</td>
+          <td class="price change-neutral">持平</td>
+        </tr>
+        <tr>
+          <td>电力</td>
+          <td class="price flow-in">+流入</td>
+          <td class="price change-up">活跃</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <h3 style="color:#3fb950;font-size:15px;margin-bottom:10px;">📉 资金净流出 TOP 板块</h3>
+      <table>
+        <tr><th>板块</th><th class="price">主力净流出</th><th class="price">涨跌幅</th></tr>
+        <tr>
+          <td>有色金属</td>
+          <td class="price flow-out">-83.51亿</td>
+          <td class="price change-down">较大跌幅</td>
+        </tr>
+        <tr>
+          <td>电新行业</td>
+          <td class="price flow-out">-49亿+</td>
+          <td class="price change-down">-1.85%</td>
+        </tr>
+        <tr>
+          <td>计算机</td>
+          <td class="price flow-out">-流出</td>
+          <td class="price change-down">较大跌幅</td>
+        </tr>
+        <tr>
+          <td>元件</td>
+          <td class="price flow-out">-31.50亿</td>
+          <td class="price change-down">-2.42%</td>
+        </tr>
+        <tr>
+          <td>证券</td>
+          <td class="price flow-out">-26.99亿</td>
+          <td class="price change-down">-2.01%</td>
+        </tr>
+        <tr>
+          <td>IT服务</td>
+          <td class="price flow-out">-19.63亿</td>
+          <td class="price change-down">-3.54%</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 个股资金流向 -->
+<div class="section">
+  <div class="section-title"><span class="icon" style="background:#1a2332;color:#58a6ff;">🎯</span> 个股资金流向</div>
+  <div class="two-col">
+    <div>
+      <h3 style="color:#f85149;font-size:15px;margin-bottom:10px;">🏆 主力净买入 TOP5</h3>
+      <table>
+        <tr><th>个股</th><th class="price">净买入</th><th>特征</th></tr>
+        <tr>
+          <td>通富微电</td>
+          <td class="price flow-in">+21.93亿</td>
+          <td><span class="badge badge-red">半导体封测</span></td>
+        </tr>
+        <tr>
+          <td>华天科技</td>
+          <td class="price flow-in">+流入</td>
+          <td><span class="badge badge-red">半导体封测</span></td>
+        </tr>
+        <tr>
+          <td>中微公司</td>
+          <td class="price flow-in">+流入</td>
+          <td><span class="badge badge-red">半导体设备</span></td>
+        </tr>
+        <tr>
+          <td>深科技</td>
+          <td class="price flow-in">+流入</td>
+          <td><span class="badge badge-yellow">存储/消费电子</span></td>
+        </tr>
+        <tr>
+          <td>澜起科技</td>
+          <td class="price flow-in">+流入</td>
+          <td><span class="badge badge-red">半导体设计</span></td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <h3 style="color:#3fb950;font-size:15px;margin-bottom:10px;">⚠️ 主力净卖出 TOP5</h3>
+      <table>
+        <tr><th>个股</th><th class="price">净卖出</th><th>特征</th></tr>
+        <tr>
+          <td>紫金矿业</td>
+          <td class="price flow-out">-14.35亿</td>
+          <td><span class="badge badge-gray">有色金属</span></td>
+        </tr>
+        <tr>
+          <td>德明利</td>
+          <td class="price flow-out">-流出</td>
+          <td><span class="badge badge-gray">芯片/存储</span></td>
+        </tr>
+        <tr>
+          <td>东方财富</td>
+          <td class="price flow-out">-流出</td>
+          <td><span class="badge badge-gray">券商</span></td>
+        </tr>
+        <tr>
+          <td>京东方A</td>
+          <td class="price flow-out">-流出</td>
+          <td><span class="badge badge-gray">面板</span></td>
+        </tr>
+        <tr>
+          <td>工业富联</td>
+          <td class="price flow-out">-流出</td>
+          <td><span class="badge badge-gray">AI算力</span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 资金结构 -->
+<div class="section">
+  <div class="section-title"><span class="icon" style="background:#1a2d1a;color:#3fb950;">📊</span> 资金结构分析</div>
+  <div class="two-col">
+    <div>
+      <h3 style="color:#f0f6fc;font-size:15px;margin-bottom:10px;">市场资金格局</h3>
+      <div class="signal-box negative">
+        <div class="signal-title">📉 今日特征：存量调仓、增量不足</div>
+        <div class="signal-desc">
+          • 两市成交额缩至19,446亿，较前日缩量12%<br>
+          • 涨跌比555:4940，近乎普跌，赚钱效应极差<br>
+          • 半导体逆势获主力加仓，显示资金在科技调整中低位布局<br>
+          • 有色金属遭巨额净流出(83.51亿)，资源品集体退潮<br>
+          • 电新行业流出49亿+，新能源赛道持续失血
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 style="color:#f0f6fc;font-size:15px;margin-bottom:10px;">资金行为解读</h3>
+      <table>
+        <tr><th>资金类型</th><th>方向</th><th>解读</th></tr>
+        <tr>
+          <td>超大单 (机构)</td>
+          <td class="flow-in">→ 半导体</td>
+          <td style="font-size:12px;color:#8b949e;">科技龙头低位吸筹</td>
+        </tr>
+        <tr>
+          <td>大单 (游资)</td>
+          <td class="flow-out">→ 撤出</td>
+          <td style="font-size:12px;color:#8b949e;">高位兑现资源股</td>
+        </tr>
+        <tr>
+          <td>中单 (散户)</td>
+          <td class="flow-out">→ 跟风卖出</td>
+          <td style="font-size:12px;color:#8b949e;">恐慌情绪蔓延</td>
+        </tr>
+        <tr>
+          <td>小单 (散户)</td>
+          <td class="flow-out">→ 卖出</td>
+          <td style="font-size:12px;color:#8b949e;">整体避险</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 两融数据 -->
+<div class="section">
+  <div class="section-title"><span class="icon" style="background:#2d1a1a;color:#d29922;">📋</span> 两融余额 (截至7月23日)</div>
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-label">科创板两融余额</div>
+      <div class="kpi-value" style="color:#d29922;">3,524.95亿</div>
+      <div class="kpi-change change-down">-33.09亿 (-0.93%)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">科创板融资余额</div>
+      <div class="kpi-value">3,509.60亿</div>
+      <div class="kpi-change change-down">-32.64亿</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">ETF两融余额</div>
+      <div class="kpi-value">1,152.20亿</div>
+      <div class="kpi-change change-up">+2.59亿 (4连增)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">ETF融券余额</div>
+      <div class="kpi-value">75.58亿</div>
+      <div class="kpi-change change-up">连续4日增加</div>
+    </div>
+  </div>
+  <div class="signal-box neutral" style="margin-top:8px;">
+    <div class="signal-title">📊 两融信号</div>
+    <div class="signal-desc">
+      • 科创板融资余额减少33亿 → 科技板块杠杆资金在撤退<br>
+      • ETF两融余额连续4日增加 → 被动配置型资金仍在流入<br>
+      • ETF融券余额连续4日增加 → 对冲/做空需求提升<br>
+      • 融资数据整体偏空，但ETF净流入提供一定缓冲
+    </div>
+  </div>
+</div>
+
+<!-- 隔夜影响 -->
+<div class="section">
+  <div class="section-title"><span class="icon" style="background:#1a2332;color:#58a6ff;">🌙</span> 隔夜外部影响 (7/23 美股)</div>
+  <div class="two-col">
+    <div>
+      <table>
+        <tr><th>美股标的</th><th class="price">收盘价</th><th class="price">涨跌幅</th></tr>
+        <tr><td>标普500 (SPY)</td><td class="price">738.18</td><td class="price change-down">-1.23%</td></tr>
+        <tr><td>纳指100 (QQQ)</td><td class="price">691.96</td><td class="price change-down">-1.90%</td></tr>
+        <tr><td>道指 (DIA)</td><td class="price">516.26</td><td class="price change-down">-1.00%</td></tr>
+        <tr><td>英伟达 (NVDA)</td><td class="price">208.76</td><td class="price change-down">-1.56%</td></tr>
+        <tr><td>苹果 (AAPL)</td><td class="price">321.66</td><td class="price change-down">-1.30%</td></tr>
+        <tr><td>微软 (MSFT)</td><td class="price">381.58</td><td class="price change-down">-2.24%</td></tr>
+        <tr><td>谷歌 (GOOGL)</td><td class="price">317.69</td><td class="price change-down" style="font-weight:700;">-7.13%</td></tr>
+        <tr><td>亚马逊 (AMZN)</td><td class="price">233.66</td><td class="price change-down">-4.57%</td></tr>
+        <tr><td>Meta (META)</td><td class="price">606.10</td><td class="price change-down">-1.41%</td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="signal-box negative">
+        <div class="signal-title">🔻 Alphabet财报引发AI担忧</div>
+        <div class="signal-desc">
+          Google Cloud收入同比+82%，但市场对AI资本开支回报率产生质疑。<br>
+          GOOGL暴跌7.13%成为科技股下跌核心导火索。<br>
+          亚马逊跟跌4.57%，微软跌2.24%。<br><br>
+          <strong>→ 对A股影响：</strong>今日AI/算力链承压，工业富联等主力净流出。但半导体逆势获加仓（国产替代逻辑强化）。
+        </div>
+      </div>
+      <div style="margin-top:10px;">
+        <h3 style="color:#f0f6fc;font-size:15px;margin-bottom:8px;">港股 (7/24)</h3>
+        <table>
+          <tr><td>恒生指数</td><td class="price">24,943</td><td class="price change-down">-1.06%</td></tr>
+          <tr><td>恒生国企</td><td class="price">8,266</td><td class="price change-down">-1.04%</td></tr>
+          <tr><td>腾讯</td><td class="price">435.20</td><td class="price change-down">-2.25%</td></tr>
+          <tr><td>阿里</td><td class="price">109.90</td><td class="price change-down">-4.35%</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 关键信号 -->
+<div class="section">
+  <div class="section-title"><span class="icon" style="background:#2d1a1a;color:#d29922;">🎯</span> 关键信号 & 综合判断</div>
+  
+  <div class="signal-box positive">
+    <div class="signal-title">🟢 积极信号 (2个)</div>
+    <div class="signal-desc">
+      <strong>① 半导体逆势吸金</strong> — 在普跌行情中获得17.38亿主力净流入，通富微电单只获21.93亿净买入。资金在科技调整中低位布局意愿强，国产替代逻辑未被破坏。<br>
+      <strong>② ETF两融余额连续4日增加</strong> — 被动配置型资金仍在稳步流入，市场底部有支撑。
+    </div>
+  </div>
+  
+  <div class="signal-box negative">
+    <div class="signal-title">🔴 风险信号 (4个)</div>
+    <div class="signal-desc">
+      <strong>① 成交额缩量12%</strong> — 仅19,446亿，增量资金观望，存量博弈加剧。<br>
+      <strong>② 涨跌比555:4940</strong> — 近乎全线下跌，赚钱效应冰点。<br>
+      <strong>③ 有色金属净流出83.51亿</strong> — 资源品集体退潮，紫金矿业单只流出14.35亿。<br>
+      <strong>④ 隔夜美股科技大跌</strong> — GOOGL -7.13%引发AI投资逻辑担忧，继续压制科技风偏。
+    </div>
+  </div>
+  
+  <div class="signal-box neutral">
+    <div class="signal-title">📌 中性信号 (2个)</div>
+    <div class="signal-desc">
+      <strong>① 科创板融资余额减少33亿</strong> — 科技杠杆资金撤退，但幅度可控。<br>
+      <strong>② 北向资金数据待更新</strong> — 今日北向方向需18:00后确认，海外美股大跌背景下流出概率较大。
+    </div>
+  </div>
+
+  <!-- 综合评分 -->
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-top:16px;">
+    <div class="rating-score" style="border-color:#3fb950;">
+      <div class="score-number" style="color:#3fb950;">4.5</div>
+      <div class="score-label">资金面综合评分</div>
+      <div class="score-desc">/10 · 偏弱</div>
+    </div>
+    <div class="rating-score" style="border-color:#d29922;">
+      <div class="score-number" style="color:#d29922;">⬇️</div>
+      <div class="score-label">短期方向判断</div>
+      <div class="score-desc">震荡偏弱 · 等待企稳信号</div>
+    </div>
+    <div class="rating-score" style="border-color:#58a6ff;">
+      <div class="score-number" style="color:#58a6ff;">🔬</div>
+      <div class="score-label">关注主线</div>
+      <div class="score-desc">半导体国产替代 · 军工</div>
+    </div>
+  </div>
+</div>
+
+<!-- 持仓影响 -->
+<div class="section">
+  <div class="section-title"><span class="icon" style="background:#1a2332;color:#58a6ff;">📂</span> 对持仓个股的资金面影响评估</div>
+  <table>
+    <tr>
+      <th>关注标的</th>
+      <th>今日资金方向</th>
+      <th>资金面判断</th>
+      <th>操作建议</th>
+    </tr>
+    <tr>
+      <td>半导体/芯片持仓</td>
+      <td><span class="badge badge-red">净流入</span></td>
+      <td>主力逆势加仓，通富微电+21.93亿居首</td>
+      <td><span style="color:#f85149;">可持有观察</span></td>
+    </tr>
+    <tr>
+      <td>有色金属持仓</td>
+      <td><span class="badge badge-green">巨量流出</span></td>
+      <td>板块净流出83.51亿，紫金矿业-14.35亿</td>
+      <td><span style="color:#3fb950;">注意减仓避险</span></td>
+    </tr>
+    <tr>
+      <td>新能源/电新持仓</td>
+      <td><span class="badge badge-green">净流出</span></td>
+      <td>电新行业流出49亿+，持续失血</td>
+      <td><span style="color:#d29922;">观望、等待企稳</span></td>
+    </tr>
+    <tr>
+      <td>AI算力持仓</td>
+      <td><span class="badge badge-green">净流出</span></td>
+      <td>工业富联流出，隔夜GOOGL -7.13%冲击</td>
+      <td><span style="color:#d29922;">短期承压，中期逻辑待验证</span></td>
+    </tr>
+    <tr>
+      <td>金融/券商持仓</td>
+      <td><span class="badge badge-green">净流出</span></td>
+      <td>证券板块净流出26.99亿，东方财富流出</td>
+      <td><span style="color:#d29922;">成交缩量不利券商</span></td>
+    </tr>
+  </table>
+</div>
+
+<!-- 港股 -->
+<div class="section">
+  <div class="section-title"><span class="icon" style="background:#1a2d1a;color:#3fb950;">🇭🇰</span> 港股通关联</div>
+  <div class="signal-box neutral">
+    <div class="signal-title">📊 南向资金方向</div>
+    <div class="signal-desc">
+      • 南向资金数据暂缺 (结算延迟)<br>
+      • 恒指今日跌1.06%，A股跌幅更大(创业板-2.65%) → 内资可能通过港股通南下抄底<br>
+      • 腾讯-2.25%、阿里-4.35% → 互联网龙头承压<br>
+      • 关注港股通净买入数据更新后评估
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>📊 资金流向日报 · 2026年7月24日 周五 · 数据来源：东方财富、财联社、每日经济新闻、证券时报</p>
+  <p>⚠️ 本报告仅供参考，不构成投资建议。北向资金数据以港交所最终结算为准。</p>
+  <p>Generated at 2026-07-24 15:45 CST | Capital Flow Tracker v1.0</p>
+</div>
+
+</body>
+</html>
