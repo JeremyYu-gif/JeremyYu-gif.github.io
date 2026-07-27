@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股业绩预告日报 | 2026-07-28</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #0a0e17; color: #c8d6e5; padding: 0; line-height: 1.6; }
+.header { background: linear-gradient(135deg, #0f1923 0%, #1a2a3a 100%); padding: 40px 50px; border-bottom: 2px solid #1e3a5f; }
+.header h1 { font-size: 28px; color: #e0e8f0; margin-bottom: 8px; }
+.header h1 span { color: #4fc3f7; }
+.header .subtitle { font-size: 14px; color: #78909c; }
+.header .badge { display: inline-block; background: #1e3a5f; color: #4fc3f7; padding: 4px 14px; border-radius: 12px; font-size: 12px; margin-top: 10px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+.summary-card { background: linear-gradient(135deg, #0f1923 0%, #162a3e 100%); border: 1px solid #1e3a5f; border-radius: 12px; padding: 24px 30px; margin-bottom: 30px; }
+.summary-card h2 { color: #4fc3f7; font-size: 18px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.summary-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 16px; text-align: center; }
+.summary-item .num { font-size: 28px; font-weight: 700; color: #e0e8f0; }
+.summary-item .label { font-size: 12px; color: #78909c; margin-top: 4px; }
+.summary-item .highlight-green { color: #66bb6a; }
+.section-title { font-size: 20px; color: #e0e8f0; margin: 30px 0 16px; padding-left: 12px; border-left: 3px solid #4fc3f7; }
+.stock-card { background: #0f1923; border: 1px solid #1e3a5f; border-radius: 12px; margin-bottom: 24px; overflow: hidden; }
+.stock-header { background: linear-gradient(135deg, #132a3e 0%, #0f1923 100%); padding: 18px 24px; border-bottom: 1px solid #1e3a5f; display: flex; justify-content: space-between; align-items: center; }
+.stock-name { font-size: 18px; font-weight: 700; color: #e0e8f0; }
+.stock-name .code { font-size: 13px; color: #546e7a; font-weight: 400; margin-left: 6px; }
+.stock-type { font-size: 13px; padding: 4px 12px; border-radius: 10px; }
+.type-turnaround { background: #1b3d1b; color: #66bb6a; }
+.type-increase { background: #1b3d6b; color: #42a5f5; }
+.type-caution { background: #3d1b1b; color: #ef5350; }
+.stock-body { padding: 24px; }
+.data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+@media (max-width: 640px) { .data-grid { grid-template-columns: 1fr; } }
+.data-item { background: rgba(255,255,255,0.02); border-radius: 8px; padding: 12px 16px; }
+.data-item .data-label { font-size: 11px; color: #546e7a; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.data-item .data-value { font-size: 16px; font-weight: 600; color: #e0e8f0; }
+.data-item .data-value.green { color: #66bb6a; }
+.data-item .data-value.red { color: #ef5350; }
+.data-item .data-value.yellow { color: #ffa726; }
+.condition-pass { color: #66bb6a; font-weight: 600; }
+.condition-fail { color: #ef5350; font-weight: 600; }
+.analysis-box { background: rgba(255,255,255,0.02); border-radius: 8px; padding: 16px 20px; margin-top: 16px; }
+.analysis-box h4 { color: #4fc3f7; font-size: 14px; margin-bottom: 10px; }
+.analysis-box p { font-size: 14px; color: #b0bec5; line-height: 1.8; }
+.analysis-box .tag { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 11px; margin: 2px 4px 2px 0; }
+.tag-green { background: rgba(102,187,106,0.15); color: #66bb6a; }
+.tag-blue { background: rgba(79,195,247,0.15); color: #4fc3f7; }
+.tag-orange { background: rgba(255,167,38,0.15); color: #ffa726; }
+.tag-red { background: rgba(239,83,80,0.15); color: #ef5350; }
+.rating { margin-top: 12px; padding: 10px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; }
+.rating-strong { background: rgba(102,187,106,0.08); border: 1px solid rgba(102,187,106,0.3); color: #66bb6a; }
+.rating-watch { background: rgba(79,195,247,0.08); border: 1px solid rgba(79,195,247,0.3); color: #4fc3f7; }
+.rating-neutral { background: rgba(255,167,38,0.08); border: 1px solid rgba(255,167,38,0.3); color: #ffa726; }
+.rating-skip { background: rgba(239,83,80,0.08); border: 1px solid rgba(239,83,80,0.3); color: #ef5350; }
+.note-box { background: rgba(255,167,38,0.06); border: 1px solid rgba(255,167,38,0.2); border-radius: 8px; padding: 14px 18px; margin-top: 16px; font-size: 13px; color: #b0bec5; }
+.note-box strong { color: #ffa726; }
+.footer { text-align: center; padding: 30px; color: #546e7a; font-size: 12px; border-top: 1px solid #1a2a3a; margin-top: 40px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 <span>A股业绩预告日报</span></h1>
+  <div class="subtitle">报告日期：2026-07-28（周二）｜数据截止：前交易日收盘</div>
+  <div class="badge">📅 已过披露截止日（7/16），今日为自愿性披露</div>
+</div>
+
+<div class="container">
+
+<!-- 概要 -->
+<div class="summary-card">
+  <h2>📋 今日概况</h2>
+  <div class="summary-grid">
+    <div class="summary-item">
+      <div class="num">2</div>
+      <div class="label">今日公告公司数</div>
+    </div>
+    <div class="summary-item">
+      <div class="num highlight-green">1</div>
+      <div class="label">正向方向公司</div>
+    </div>
+    <div class="summary-item">
+      <div class="num">0</div>
+      <div class="label">通过三条件筛选</div>
+    </div>
+    <div class="summary-item">
+      <div class="num" style="color:#ffa726;">1</div>
+      <div class="label">🔍 值得关注</div>
+    </div>
+  </div>
+  <div class="note-box" style="margin-top:16px;">
+    <strong>📌 说明：</strong>7月28日（已过半年度强制披露截止日7月16日），今日仅2家公司发布业绩预告。新天科技（300259）为「预减」方向，壹石通（688733）为「扭亏」方向，但扣非净利润仍为负值，未通过三条件筛选。以下对壹石通进行逐只深度点评。
+  </div>
+</div>
+
+<!-- 筛选结果 -->
+<h2 class="section-title">🔍 正向方向股票分析</h2>
+
+<!-- 壹石通 -->
+<div class="stock-card">
+  <div class="stock-header">
+    <div class="stock-name">壹石通 <span class="code">688733.SH</span></div>
+    <div class="stock-type type-turnaround">🔄 扭亏</div>
+  </div>
+  <div class="stock-body">
+    <div class="data-grid">
+      <div class="data-item">
+        <div class="data-label">归母净利润（预告）</div>
+        <div class="data-value green">950万 ~ 1,400万</div>
+      </div>
+      <div class="data-item">
+        <div class="data-label">扣非净利润（预告）</div>
+        <div class="data-value red">-920万 ~ -620万</div>
+      </div>
+      <div class="data-item">
+        <div class="data-label">营收（预告）</div>
+        <div class="data-value green">4.0亿 ~ 4.2亿</div>
+      </div>
+      <div class="data-item">
+        <div class="data-label">营收同比增速</div>
+        <div class="data-value green">+47.3% ~ +54.7%</div>
+      </div>
+      <div class="data-item">
+        <div class="data-label">扣非占比</div>
+        <div class="data-value red">❌（负值）</div>
+      </div>
+      <div class="data-item">
+        <div class="data-label">所属行业</div>
+        <div class="data-value" style="font-size:14px;">电力设备（申万一级）</div>
+      </div>
+      <div class="data-item">
+        <div class="data-label">主营业务</div>
+        <div class="data-value yellow" style="font-size:14px;">无机非金属功能性粉体材料</div>
+      </div>
+      <div class="data-item">
+        <div class="data-label">概念标签</div>
+        <div class="data-value" style="font-size:13px;">
+          <span class="tag tag-green">锂电池</span>
+          <span class="tag tag-blue">新能源汽车</span>
+          <span class="tag tag-blue">储能</span>
+          <span class="tag tag-orange">涂覆材料</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 三条件判断 -->
+    <div class="analysis-box" style="margin-top:0;">
+      <h4>✅ 三条件筛选结果</h4>
+      <table style="width:100%; border-collapse: collapse; font-size:14px; color:#b0bec5;">
+        <tr style="border-bottom:1px solid #1e3a5f;">
+          <td style="padding:8px 0; width:50%;">条件1：同比正增长/扭亏为盈</td>
+          <td style="padding:8px 0;"><span class="condition-pass">✅ 通过</span> <span style="color:#78909c;font-size:12px;">扭亏为盈，归母净利+950~1,400万</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid #1e3a5f;">
+          <td style="padding:8px 0;">条件2：扣非净利润 ≥ 2,000万</td>
+          <td style="padding:8px 0;"><span class="condition-fail">❌ 未通过</span> <span style="color:#78909c;font-size:12px;">扣非净利润-920~-620万</span></td>
+        </tr>
+        <tr>
+          <td style="padding:8px 0;">条件3：扣非净利润同比增速 > 20%</td>
+          <td style="padding:8px 0;"><span class="condition-fail">❌ 未通过</span> <span style="color:#78909c;font-size:12px;">扣非仍为负值，亏损收窄70.8%~80.3%</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 深度分析 -->
+    <div class="analysis-box">
+      <h4>📊 财务数据详解</h4>
+      <p>
+        <strong>营收端：</strong>预计营收4.0~4.2亿，同比增长约50%，受益于新能源汽车及储能市场需求快速增长，锂电池涂覆材料等主要产品销量同比显著提升。营收增速强劲，说明下游需求景气度较高。<br><br>
+        <strong>利润端：</strong>归母净利润950~1,400万（扭亏，上年同期亏损1,748万），但<strong style="color:#ef5350;">扣非净利润仍为-620~-920万</strong>。盈利全部来自政府补助等非经常性损益，主业尚未实现真正盈利。<br><br>
+        <strong>质量判断：</strong>扣非占比为负值，意味着当期利润100%依赖非经常性损益。虽然亏损大幅收窄（扣非亏损同比减少70.8%~80.3%），但距离扣非转正仍有距离。营收高增长叠加亏损收窄是积极信号，但扣非未转正说明盈利质量有待提升。
+      </p>
+    </div>
+
+    <div class="analysis-box">
+      <h4>🏭 行业/概念分析</h4>
+      <p>
+        所属申万一级行业为<strong>电力设备</strong>，主营业务为无机非金属功能性粉体材料（锂电池涂覆材料为核心）。公司处于<strong>锂电产业链上游材料环节</strong>，直接受益于：①新能源汽车销量持续增长；②储能市场需求爆发；③锂电涂覆材料国产替代趋势。可比公司包括国瓷材料、天奈科技、德方纳米等。
+      </p>
+    </div>
+
+    <div class="analysis-box">
+      <h4>🎯 前景判断</h4>
+      <p>
+        <strong>积极因素：</strong>①营收增速超47%创近两年新高；②亏损同比大幅收窄70%+，规模效应显现；③产能释放后毛利率持续改善；④下游新能源汽车+储能双轮驱动，行业景气度确认。<br><br>
+        <strong>风险因素：</strong>①扣非仍亏损，盈利拐点尚未到来；②政府补助依赖度高，可持续性存疑；③估值高企（PE 3161倍），市场已提前定价改善预期；④锂电材料行业竞争激烈，毛利率承压。<br><br>
+        <strong>综合判断：</strong>公司处于<strong>从亏损到盈利的过渡期</strong>，营收增长强劲、亏损收窄趋势确立，但扣非净利润尚未转正，距离"真正盈利"还有一段距离。当前更应视为<strong>行业周期反转的早期信号</strong>而非确定性机会。
+      </p>
+    </div>
+
+    <div class="rating rating-neutral">
+      👀 评级：中性谨慎 — 营收高增长+亏损大幅收窄趋势明确，但扣非未转正，盈利质量待验证。可纳入观察池，待扣非转正后再做投资决策。
+    </div>
+  </div>
+</div>
+
+<!-- 未通过原因说明 -->
+<h2 class="section-title">📈 市场观察</h2>
+
+<div class="summary-card">
+  <h2>💡 今日异动信息</h2>
+  <div class="note-box" style="margin-top:0;">
+    <strong>📰 石药创新 (300765)</strong> 于7月27日晚间也披露了业绩预告（扭亏），归母净利润11.8~13.6亿元，扣非净利润11.5~13.3亿元，主业高质量扭亏。但该公告发布日期为7月27日（昨日），已过本报告的"当天公告"筛选范围。<br><br>
+    <strong>🔗 延伸关注：</strong>石药创新（前称新诺威）控股子公司巨石生物与阿斯利康达成4.2亿美元首付款合作，驱动业绩爆发。叠加恩朗苏拜单抗、奥马珠单抗等产品商业化加速，生物药管线兑现能力强劲，值得持续跟踪。
+  </div>
+% if exist('石药创新'):
+<% endif
+</div>
+
+<!-- 补充说明 -->
+<h2 class="section-title">📋 未通过筛选股票说明</h2>
+
+<div class="stock-card">
+  <div class="stock-header">
+    <div class="stock-name">新天科技 <span class="code">300259.SZ</span></div>
+    <div class="stock-type type-caution">⬇️ 预减</div>
+  </div>
+  <div class="stock-body" style="padding-bottom:18px;">
+    <p style="color:#b0bec5; font-size:14px;">
+      今日发布业绩预告为「预减」方向（净利润同比大幅下降），不在正向选股范围内，未进入深度分析环节。
+    </p>
+    <div class="data-grid" style="margin-top:12px;">
+      <div class="data-item">
+        <div class="data-label">最新价（7/27）</div>
+        <div class="data-value">4.41元</div>
+      </div>
+      <div class="data-item">
+        <div class="data-label">总市值</div>
+        <div class="data-value">50.94亿</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>A股业绩预告日报 · 数据来源：东方财富 + iFind 同花顺</p>
+  <p>报告由 Hermes Agent 自动生成 ｜ 仅供内部参考，不构成投资建议</p>
+  <p>生成时间：2026-07-28 07:02 CST</p>
+</div>
+
+</div>
+</body>
+</html>
