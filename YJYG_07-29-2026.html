@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>业绩预告日报 | 2026-07-29</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --card: #161b22;
+  --border: #30363d;
+  --text: #e6edf3;
+  --text-dim: #8b949e;
+  --green: #3fb950;
+  --red: #f85149;
+  --orange: #d29922;
+  --blue: #58a6ff;
+  --purple: #bc8cff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+}
+.header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.header .subtitle {
+  color: var(--text-dim);
+  font-size: 14px;
+  margin-top: 6px;
+}
+.header .subtitle span { margin-right: 16px; }
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.summary-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+}
+.summary-card .label {
+  color: var(--text-dim);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.summary-card .value {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+.summary-card .value.green { color: var(--green); }
+.summary-card .value.red { color: var(--red); }
+.summary-card .value.orange { color: var(--orange); }
+.stock-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.stock-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.stock-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+.stock-name .code {
+  color: var(--text-dim);
+  font-weight: 400;
+  font-size: 14px;
+  margin-left: 8px;
+}
+.stock-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tag {
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.tag.green { background: rgba(63,185,80,0.15); color: var(--green); }
+.tag.red { background: rgba(248,81,73,0.15); color: var(--red); }
+.tag.orange { background: rgba(210,153,34,0.15); color: var(--orange); }
+.tag.purple { background: rgba(188,140,255,0.15); color: var(--purple); }
+.tag.blue { background: rgba(88,166,255,0.15); color: var(--blue); }
+.stock-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+  padding: 12px;
+  background: rgba(48,54,61,0.3);
+  border-radius: 6px;
+}
+.meta-item { }
+.meta-item .label {
+  color: var(--text-dim);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.meta-item .value {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 2px;
+}
+.stock-analysis {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.stock-analysis p { margin-bottom: 8px; }
+.rating {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.rating.strong { background: rgba(63,185,80,0.12); color: var(--green); border: 1px solid rgba(63,185,80,0.3); }
+.rating.watch { background: rgba(88,166,255,0.12); color: var(--blue); border: 1px solid rgba(88,166,255,0.3); }
+.rating.caution { background: rgba(210,153,34,0.12); color: var(--orange); border: 1px solid rgba(210,153,34,0.3); }
+.rating.exclude { background: rgba(248,81,73,0.12); color: var(--red); border: 1px solid rgba(248,81,73,0.3); }
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.data-table th {
+  background: rgba(48,54,61,0.5);
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+}
+.data-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(48,54,61,0.5);
+}
+.data-table tr:hover td { background: rgba(88,166,255,0.05); }
+.data-table .green { color: var(--green); }
+.data-table .red { color: var(--red); }
+.data-table .orange { color: var(--orange); }
+.footer {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 12px;
+  text-align: center;
+}
+.disclaimer {
+  background: rgba(210,153,34,0.1);
+  border: 1px solid rgba(210,153,34,0.3);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: var(--orange);
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>📋 A股半年度业绩预告日报</h1>
+  <div class="subtitle">
+    <span>📅 2026-07-29（周三）</span>
+    <span>📊 已过披露截止日（7/16），自愿公告</span>
+    <span>🕐 数据截至 07:01</span>
+  </div>
+</div>
+
+<div class="summary-cards">
+  <div class="summary-card">
+    <div class="label">今日公告</div>
+    <div class="value">5</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">预增</div>
+    <div class="value green">4</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">通过三条件</div>
+    <div class="value green">3</div>
+  </div>
+  <div class="summary-card">
+    <div class="label">强烈关注</div>
+    <div class="value orange">2</div>
+  </div>
+</div>
+
+<div class="disclaimer">
+  ⚠️ <strong>披露期情况</strong>：7月16日半年度强制披露截止日已过，今日为自愿公告。
+  共5家公司发布业绩预告/业绩快报，其中4家预增、1家减亏。三条件筛选（归母利润正增长、扣非≥2000万、扣非增速>20%或营收增速>20%）通过3家。
+</div>
+
+<h2 style="font-size:18px;font-weight:600;margin-bottom:14px;">🏆 入选股票深度分析</h2>
+
+<!-- ============ 海博思创 ============ -->
+<div class="stock-card">
+  <div class="stock-header">
+    <div class="stock-name">海博思创 <span class="code">688411.SH</span></div>
+    <div class="stock-tags">
+      <span class="tag green">预增</span>
+      <span class="tag green">入选</span>
+      <span class="tag blue">储能设备</span>
+    </div>
+  </div>
+  <div class="stock-meta">
+    <div class="meta-item">
+      <div class="label">归母净利润</div>
+      <div class="value green">6.20亿 ~ 7.00亿</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">同比增速</div>
+      <div class="value green">+96% ~ +122%</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">扣非净利润</div>
+      <div class="value green">6.10亿 ~ 7.00亿</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">扣非同比</div>
+      <div class="value green">+135% ~ +170%</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">所属行业</div>
+      <div class="value">电力设备 / 储能设备</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">营收</div>
+      <div class="value">56亿 ~ 69亿</div>
+    </div>
+  </div>
+  <div class="stock-analysis">
+    <p><strong>📊 财务数据：</strong>预告归母净利润6.20-7.00亿（同比+96%~122%），扣非净利润6.10-7.00亿（同比+135%~170%）。<strong>扣非占比高达98%~100%</strong>，几乎全部为主业贡献，是今日公告中质量最高的一份预报。</p>
+    <p><strong>🏭 行业/概念：</strong>电力设备-电源设备-储能。公司主营业务为储能系统和电池管理系统，是储能行业综合方案提供商，海外业务占比8.2%。</p>
+    <p><strong>📈 业绩质量：</strong>扣非占比接近100%，利润结构纯净。上年同期扣非2.60亿，今年增长至6.10-7.00亿，翻倍增长属实。营收56-69亿（同比+24%~53%）增速与利润增速匹配，说明规模效应显著。</p>
+    <p><strong>🔮 前景判断：</strong>三驱动力：①全球化布局落地，海外业务版图拓宽；②高价值应用场景拓展（大储/工商业储能）；③从单一设备供应商转型为一体化综合能源服务商，产业链价值释放。储能行业正处于全球需求爆发期，公司作为龙头充分受益。</p>
+    <p>前一日（7/28）收盘跌4.25%报189.47元，市值345.70亿。业绩预告发布后有望获得市场正面反馈。</p>
+  </div>
+  <div class="rating strong">⭐ 强烈关注 — 纯主业驱动，扣非翻倍增长，储能赛道景气确认，全球化+一体化转型打开成长空间</div>
+</div>
+
+<!-- ============ 金山办公 ============ -->
+<div class="stock-card">
+  <div class="stock-header">
+    <div class="stock-name">金山办公 <span class="code">688111.SH</span></div>
+    <div class="stock-tags">
+      <span class="tag green">预增</span>
+      <span class="tag green">入选</span>
+      <span class="tag blue">基础软件</span>
+    </div>
+  </div>
+  <div class="stock-meta">
+    <div class="meta-item">
+      <div class="label">归母净利润</div>
+      <div class="value green">23.16亿 ~ 27.19亿</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">同比增速</div>
+      <div class="value green">+210% ~ +264%</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">扣非净利润</div>
+      <div class="value green">22.88亿 ~ 26.86亿</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">经调整净利润</div>
+      <div class="value orange">9.99亿 ~ 11.74亿</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">经调整增速</div>
+      <div class="value orange">+18% ~ +39%</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">营收增速</div>
+      <div class="value green">+21% ~ +28%</div>
+    </div>
+  </div>
+  <div class="stock-analysis">
+    <p><strong>📊 财务数据：</strong>营收32.14-34.13亿（+21%~28%），归母净利润23.16-27.19亿（+210%~264%），扣非净利润22.88-26.86亿（+215%~269%）。表面数据极为亮眼。</p>
+    <p><strong>⚠️ 重要提示：</strong>扣非净利润中包含了<strong>大额对外投资基金的公允价值变动收益</strong>。公司披露的"经调整归属于上市公司股东的净利润"（剔除股份支付+基金投资收益）为<strong>9.99亿~11.74亿</strong>，同比增长仅<strong>18%~39%</strong>。核心主业增长远低于账面上的扣非增速。</p>
+    <p><strong>🏭 行业/概念：</strong>计算机-软件开发-横向通用软件（信创/AI办公/WPS Office）。</p>
+    <p><strong>📈 业绩质量：</strong>虽然账面上扣非增速超过200%，但核心业务的经调整净利润增速仅18%~39%。基金投资收益受资本市场环境影响大，未来可能大幅波动。公司已主动提示相关风险："若未来市场环境发生不利变化，不排除相关被投企业估值出现较大波动"。</p>
+    <p><strong>🔮 前景判断：</strong>AI办公方向正确（灵犀专业版、WPS Comate等产品持续推进），营收20%+的稳健增长值得肯定。但投资收益占比过高，需要关注未来持续性。1119亿市值的蓝筹股，符合基金经理配置需求。</p>
+    <p>前一日（7/28）收盘241.24元，市值1119.39亿，市盈率仅12.75倍（动态PE已大幅消化）。</p>
+  </div>
+  <div class="rating strong">⭐ 强烈关注（审慎） — 营收稳健增长、AI战略清晰，但扣非含大额投资收益，核心利润增速18~39%需客观看待</div>
+</div>
+
+<!-- ============ 中红医疗 ============ -->
+<div class="stock-card">
+  <div class="stock-header">
+    <div class="stock-name">中红医疗 <span class="code">300981.SZ</span></div>
+    <div class="stock-tags">
+      <span class="tag green">预增</span>
+      <span class="tag green">入选</span>
+      <span class="tag blue">医疗器械</span>
+    </div>
+  </div>
+  <div class="stock-meta">
+    <div class="meta-item">
+      <div class="label">归母净利润</div>
+      <div class="value green">1.40亿 ~ 2.10亿</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">同比增速</div>
+      <div class="value green">+2338% ~ +3557%</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">扣非净利润</div>
+      <div class="value green">0.99亿 ~ 1.48亿</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">扣非同比</div>
+      <div class="value green">+851% ~ +1223%</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">行业</div>
+      <div class="value">医药生物 / 医疗耗材</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">扣非占比</div>
+      <div class="value orange">~70%</div>
+    </div>
+  </div>
+  <div class="stock-analysis">
+    <p><strong>📊 财务数据：</strong>预告归母净利润1.40-2.10亿（同比增长2338%~3557%），扣非净利润0.99-1.48亿（同比增长851%~1223%）。上年同期仅574万归母净利润、-1317万扣非，基数极低。</p>
+    <p><strong>🏭 行业/概念：</strong>医药生物-医疗器械-医疗耗材。主营健康防护手套（占比87.92%，毛利率仅8.54%），属低毛利大宗商品行业。</p>
+    <p><strong>📈 业绩质量：</strong>扣非占比约70%~74%，尚可但非完美。业绩增长主因：①防护手套销售价格上涨带动毛利率提升；②原材料周期管理降低成本；③人民币贬值产生汇兑损失（负面影响）。需注意：公司仍有较大汇兑损失，若扣除该影响盈利更高。</p>
+    <p><strong>⚠️ 风险关注：</strong>①手套行业具有强周期性，2020-2021年曾因疫情暴赚后大幅回落，当前或处于底部反弹周期；②90%以上收入来自国外（海外占比80.76%），汇率敏感度极高；③公司2024年报仍亏损（扣非-1.44亿），盈利持续性待观察。总市值仅45.93亿，流通市值42.09亿，体量较小。</p>
+    <p><strong>🔮 前景判断：</strong>手套价格底部反弹带来的弹性极大，若上行周期持续则空间可观。但需跟踪手套价格走势和海外需求变化。45亿市值弹性标的。</p>
+  </div>
+  <div class="rating watch">📌 关注 — 手套价格反弹驱动扭亏为盈，弹性极大但周期性也强，适合作弹性配置</div>
+</div>
+
+<!-- ============ 聚辰股份 (未入选) ============ -->
+<div class="stock-card">
+  <div class="stock-header">
+    <div class="stock-name">聚辰股份 <span class="code">688123.SH</span></div>
+    <div class="stock-tags">
+      <span class="tag green">预增</span>
+      <span class="tag red">未入选</span>
+      <span class="tag purple">半导体</span>
+    </div>
+  </div>
+  <div class="stock-meta">
+    <div class="meta-item">
+      <div class="label">归母净利润</div>
+      <div class="value green">5.25亿</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">同比增速</div>
+      <div class="value green">+156%</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">扣非净利润</div>
+      <div class="value">9,347万</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">扣非同比</div>
+      <div class="value red">-47.30%</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">行业</div>
+      <div class="value">电子 / 数字芯片设计</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">营收增速</div>
+      <div class="value orange">+4.71%</div>
+    </div>
+  </div>
+  <div class="stock-analysis">
+    <p><strong>❌ 未通过条件3：</strong>扣非净利润同比<strong>-47.30%</strong>（<20%），营收增速仅<strong>+4.71%</strong>（<20%），两项均不达标。</p>
+    <p><strong>⚠️ 归母利润大增的真相：</strong>非经常性损益4.32亿（其中含参与盛合晶微战略配售的公允价值变动收益），占比高达82%。剔除股份支付后扣非仅1.36亿，同比下降26.48%。</p>
+    <p><strong>📉 核心问题：</strong>主营EEPROM芯片受存储颗粒涨价影响，PC/手机终端需求短期承压，Q2扣非环比改善（+147%）但同比仍下滑。DDR5 SPD芯片和车规EEPROM在增长，但尚不足以扭转整体趋势。</p>
+    <p><strong>💡 值得跟踪：</strong>VPD芯片通过eSSD和CXL内存模组客户认证，DDR5 SPD芯片放量中，Q2经营数据环比改善明显（营收环比+15%、扣非环比+147%），下半年有望迎来经营拐点。</p>
+  </div>
+  <div class="rating caution">👀 中性谨慎 — 扣非同比下降未通过条件3，但Q2环比明显改善，下半年重点关注经营拐点</div>
+</div>
+
+<!-- ============ 三未信安 (未入选) ============ -->
+<div class="stock-card">
+  <div class="stock-header">
+    <div class="stock-name">三未信安 <span class="code">688489.SH</span></div>
+    <div class="stock-tags">
+      <span class="tag orange">减亏</span>
+      <span class="tag red">未入选</span>
+    </div>
+  </div>
+  <div class="stock-meta">
+    <div class="meta-item">
+      <div class="label">归母净利润</div>
+      <div class="value red">-1,256万</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">同比变化</div>
+      <div class="value orange">+57.25%（减亏）</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">预告类型</div>
+      <div class="value orange">减亏</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">总市值</div>
+      <div class="value">35.61亿</div>
+    </div>
+  </div>
+  <div class="stock-analysis">
+    <p><strong>❌ 未通过条件1：</strong>虽有减亏但归母净利润仍为<strong>负值（-1256万）</strong>，不符合"扭亏为盈"标准。</p>
+    <p>减亏57.25%说明经营有所改善，但尚未回到盈利区间。继续观察后续季度能否实现扭亏。</p>
+  </div>
+  <div class="rating exclude">❌ 排除 — 仍处于亏损状态</div>
+</div>
+
+<!-- ============ 汇总表 ============ -->
+<h2 style="font-size:18px;font-weight:600;margin:24px 0 14px;">📊 三条件筛选总表</h2>
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>股票</th>
+      <th>代码</th>
+      <th>预告类型</th>
+      <th>归母净利润</th>
+      <th>归母增速</th>
+      <th>扣非净利润</th>
+      <th>扣非增速</th>
+      <th>条件1</th>
+      <th>条件2</th>
+      <th>条件3</th>
+      <th>评级</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>海博思创</strong></td>
+      <td>688411</td>
+      <td><span class="green">预增</span></td>
+      <td>6.20~7.00亿</td>
+      <td class="green">+96~122%</td>
+      <td>6.10~7.00亿</td>
+      <td class="green">+135~170%</td>
+      <td class="green">✅</td>
+      <td class="green">✅</td>
+      <td class="green">✅</td>
+      <td class="green">⭐强烈关注</td>
+    </tr>
+    <tr>
+      <td><strong>金山办公</strong></td>
+      <td>688111</td>
+      <td><span class="green">预增</span></td>
+      <td>23.16~27.19亿</td>
+      <td class="green">+210~264%</td>
+      <td>22.88~26.86亿</td>
+      <td class="green">+215~269%</td>
+      <td class="green">✅</td>
+      <td class="green">✅</td>
+      <td class="green">✅</td>
+      <td class="green">⭐强烈关注*</td>
+    </tr>
+    <tr>
+      <td><strong>中红医疗</strong></td>
+      <td>300981</td>
+      <td><span class="green">预增</span></td>
+      <td>1.40~2.10亿</td>
+      <td class="green">+2338~3557%</td>
+      <td>0.99~1.48亿</td>
+      <td class="green">+851~1223%</td>
+      <td class="green">✅</td>
+      <td class="green">✅</td>
+      <td class="green">✅</td>
+      <td class="blue">📌关注</td>
+    </tr>
+    <tr>
+      <td>聚辰股份</td>
+      <td>688123</td>
+      <td><span class="green">预增</span></td>
+      <td>5.25亿</td>
+      <td class="green">+156%</td>
+      <td>0.93亿</td>
+      <td class="red">-47.30%</td>
+      <td class="green">✅</td>
+      <td class="green">✅</td>
+      <td class="red">❌</td>
+      <td class="orange">👀中性</td>
+    </tr>
+    <tr>
+      <td>三未信安</td>
+      <td>688489</td>
+      <td><span class="orange">减亏</span></td>
+      <td class="red">-1256万</td>
+      <td class="orange">+57%</td>
+      <td>—</td>
+      <td>—</td>
+      <td class="red">❌</td>
+      <td class="red">❌</td>
+      <td class="red">❌</td>
+      <td class="red">排除</td>
+    </tr>
+  </tbody>
+</table>
+
+<div style="background:rgba(48,54,61,0.3);border:1px solid var(--border);border-radius:8px;padding:16px;margin-top:16px;">
+  <p style="font-size:13px;color:var(--text-dim);margin-bottom:6px;"><strong>筛选条件说明：</strong></p>
+  <p style="font-size:12px;color:var(--text-dim);line-height:1.6;">
+    条件1：业绩同比正增长 OR 扭亏为盈<br>
+    条件2：扣非净利润 ≥ 2,000万元<br>
+    条件3：扣非净利润同比增速 > 20% OR 营收增速 > 20%<br>
+    * 金山办公的扣非净利润含大额基金投资收益（约12~15亿），经调整后的核心净利润增速为+18%~39%
+  </p>
+</div>
+
+<div class="footer">
+  <p>数据来源：东方财富妙想（mx-stocks-screener + mx-finance-search + mx-finance-data）& iFind MCP</p>
+  <p>报告生成时间：2026-07-29 07:01 | Hermes Agent 自动生成 | 仅供内部参考，不构成投资建议</p>
+</div>
+</body>
+</html>
