@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>港股每日复盘 — 2026-07-29</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+  background: #0d1117;
+  color: #e6edf3;
+  line-height: 1.6;
+  padding: 0;
+}
+.header {
+  background: linear-gradient(135deg, #161b22 0%, #1a1e24 100%);
+  border-bottom: 1px solid #30363d;
+  padding: 30px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.header::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 300px; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(56,139,253,0.05));
+}
+.header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #f0f6fc;
+  margin-bottom: 6px;
+}
+.header .subtitle {
+  color: #8b949e;
+  font-size: 14px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 20px 40px; }
+.section {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.section-title {
+  background: #1c2128;
+  padding: 14px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #f0f6fc;
+  border-bottom: 1px solid #30363d;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title .badge {
+  background: #238636;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  margin-left: auto;
+}
+.section-body { padding: 20px; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+table th {
+  background: #1c2128;
+  color: #8b949e;
+  font-weight: 500;
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid #30363d;
+  white-space: nowrap;
+}
+table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #21262d;
+}
+table tr:hover td { background: #1c2128; }
+table tr:last-child td { border-bottom: none; }
+.up { color: #3fb950; }
+.down { color: #f85149; }
+.neutral { color: #8b949e; }
+.bold { font-weight: 600; }
+.val-up { color: #3fb950; }
+.val-down { color: #f85149; }
+.price { font-family: 'SF Mono', 'Courier New', monospace; font-size: 14px; }
+.num { font-family: 'SF Mono', 'Courier New', monospace; text-align: right; }
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+}
+.tag-red { background: rgba(248,81,73,0.15); color: #f85149; }
+.tag-green { background: rgba(63,185,80,0.15); color: #3fb950; }
+.tag-blue { background: rgba(56,139,253,0.15); color: #58a6ff; }
+.tag-yellow { background: rgba(210,153,34,0.15); color: #d29922; }
+.tag-gray { background: rgba(139,148,158,0.15); color: #8b949e; }
+.flex { display: flex; gap: 10px; flex-wrap: wrap; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.stat-card {
+  background: #1c2128;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 14px;
+  text-align: center;
+}
+.stat-card .label { color: #8b949e; font-size: 12px; margin-bottom: 4px; }
+.stat-card .value { font-size: 22px; font-weight: 700; }
+.stat-card .change { font-size: 13px; margin-top: 2px; }
+.insight-box {
+  background: linear-gradient(135deg, #1a2332, #1c2128);
+  border-left: 3px solid #58a6ff;
+  border-radius: 4px;
+  padding: 14px 16px;
+  margin: 12px 0;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.insight-box.warning { border-left-color: #d29922; background: linear-gradient(135deg, #1f1d16, #1c2128); }
+.insight-box.danger { border-left-color: #f85149; background: linear-gradient(135deg, #221818, #1c2128); }
+.insight-box.success { border-left-color: #3fb950; background: linear-gradient(135deg, #17261a, #1c2128); }
+.signal { font-size: 16px; }
+.footer {
+  text-align: center;
+  color: #484f58;
+  font-size: 12px;
+  padding: 30px;
+  border-top: 1px solid #21262d;
+  margin-top: 20px;
+}
+.footer a { color: #58a6ff; text-decoration: none; }
+@media (max-width: 768px) {
+  .container { padding: 10px 15px; }
+  .header { padding: 20px; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 港股每日复盘 · 2026年7月29日 周三</h1>
+  <div class="subtitle">
+    <span>🕐 数据截止: 2026-07-29 16:08 HKT</span>
+    <span>📈 恒指大涨1.96% 科技股领涨</span>
+    <span>⚠️ 关注次日凌晨美联储利率决议</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ===== 大盘表现 ===== -->
+<div class="section">
+  <div class="section-title">
+    <span>📈 大盘表现 · 三大指数</span>
+    <span class="badge">全面上涨</span>
+  </div>
+  <div class="section-body">
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="label">恒生指数 HSI</div>
+        <div class="value val-up">25,807.92</div>
+        <div class="change val-up">+497.07 (+1.96%)</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">国企指数 HSCEI</div>
+        <div class="value val-up">8,623.52</div>
+        <div class="change val-up">+2.22%</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">恒生科技指数</div>
+        <div class="value val-up">4,864.73</div>
+        <div class="change val-up">+2.84%</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">今日波幅 (HSI)</div>
+        <div class="value">25,487 ~ 25,809</div>
+        <div class="change neutral">振幅 ~1.26%</div>
+      </div>
+    </div>
+
+    <div class="insight-box success">
+      <strong>📌 盘面解读：</strong>恒指今日强势上攻，高开高走收复25,800关口。科技股全线上扬带动恒生科技大涨2.84%领跑三大指数。市场做多情绪浓厚，隔夜美股道指创高、美联储议息前夕降息预期博弈提供了风险偏好改善窗口。全天成交额约3,122亿港元，量能配合良好。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 核心权重股表现 ===== -->
+<div class="section">
+  <div class="section-title">
+    <span>🏢 核心权重股 · 科技龙头</span>
+    <span class="badge">📌 重点关注</span>
+  </div>
+  <div class="section-body">
+    <table>
+      <thead>
+        <tr>
+          <th>股票</th><th>代码</th><th>收盘价</th><th>涨跌幅</th><th>最高</th><th>最低</th><th>成交额(亿)</th><th>信号</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="bold">腾讯控股</td><td>00700</td>
+          <td class="price val-up">466.40</td><td class="val-up">+4.29%</td>
+          <td class="num">469.40</td><td class="num">450.00</td>
+          <td class="num">167.6</td>
+          <td><span class="tag tag-red">🔥 领涨</span></td>
+        </tr>
+        <tr>
+          <td class="bold">小米集团</td><td>01810</td>
+          <td class="price val-up">31.88</td><td class="val-up">+8.95%</td>
+          <td class="num">32.00</td><td class="num">29.48</td>
+          <td class="num">—</td>
+          <td><span class="tag tag-red">🚀 爆发</span></td>
+        </tr>
+        <tr>
+          <td class="bold">阿里巴巴</td><td>09988</td>
+          <td class="price val-up">113.60</td><td class="val-up">+1.43%</td>
+          <td class="num">115.50</td><td class="num">111.70</td>
+          <td class="num">106.1</td>
+          <td><span class="tag tag-green">稳步上行</span></td>
+        </tr>
+        <tr>
+          <td class="bold">美团</td><td>03690</td>
+          <td class="price val-up">92.30</td><td class="val-up">+2.21%</td>
+          <td class="num">94.00</td><td class="num">90.90</td>
+          <td class="num">—</td>
+          <td><span class="tag tag-green">温和放量</span></td>
+        </tr>
+        <tr>
+          <td class="bold">快手</td><td>01024</td>
+          <td class="price val-up">42.80</td><td class="val-up">+1.09%</td>
+          <td class="num">43.26</td><td class="num">42.12</td>
+          <td class="num">—</td>
+          <td><span class="tag tag-gray">跟涨</span></td>
+        </tr>
+        <tr>
+          <td class="bold">京东集团</td><td>09618</td>
+          <td class="price val-up">126.20</td><td class="val-up">+1.69%</td>
+          <td class="num">127.00</td><td class="num">124.90</td>
+          <td class="num">—</td>
+          <td><span class="tag tag-green">温和</span></td>
+        </tr>
+        <tr>
+          <td class="bold">舜宇光学</td><td>02382</td>
+          <td class="price val-up">61.20</td><td class="val-up">+5.43%</td>
+          <td class="num">—</td><td class="num">—</td>
+          <td class="num">—</td>
+          <td><span class="tag tag-red">🔥 光学龙头</span></td>
+        </tr>
+        <tr>
+          <td class="bold">中兴通讯</td><td>00763</td>
+          <td class="price val-up">25.08</td><td class="val-up">+3.98%</td>
+          <td class="num">—</td><td class="num">—</td>
+          <td class="num">—</td>
+          <td><span class="tag tag-green">通信回暖</span></td>
+        </tr>
+        <tr>
+          <td class="bold">比亚迪电子</td><td>00285</td>
+          <td class="price val-up">24.60</td><td class="val-up">+6.13%</td>
+          <td class="num">—</td><td class="num">—</td>
+          <td class="num">—</td>
+          <td><span class="tag tag-red">🔥 消费电子</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== 板块轮动 ===== -->
+<div class="section">
+  <div class="section-title">
+    <span>🎯 板块轮动</span>
+    <span class="badge">科技消费领涨</span>
+  </div>
+  <div class="section-body">
+    <div class="grid-2">
+      <div>
+        <h4 style="color:#3fb950;margin-bottom:10px;">✅ 领涨板块</h4>
+        <table>
+          <tr><th>板块/个股</th><th>涨跌幅</th><th>驱动</th></tr>
+          <tr><td>🚗 新能源车</td><td class="val-up"><strong>板块强势</strong></td><td>理想+9.90% 小鹏+4.42% 比亚迪+4.23% 吉利+6.17%</td></tr>
+          <tr><td>📱 消费电子</td><td class="val-up"><strong>强势</strong></td><td>舜宇光学+5.43% 比亚迪电子+6.13% 瑞声+1.03%</td></tr>
+          <tr><td>💊 医药</td><td class="val-up"><strong>普涨</strong></td><td>京东健康+5.37% 平安好医生+5.35% 药明+2.07% 百济+1.95%</td></tr>
+          <tr><td>👟 消费</td><td class="val-up"><strong>回暖</strong></td><td>李宁+4.52% 安踏+3.37% 康师傅+3.23%</td></tr>
+          <tr><td>🛢️ 能源</td><td class="val-up"><strong>油价联动</strong></td><td>中海油+2.26%</td></tr>
+          <tr><td>🎰 博彩</td><td class="val-up"><strong>复苏</strong></td><td>金沙中国+2.96% 银河娱乐+2.02%</td></tr>
+        </table>
+      </div>
+      <div>
+        <h4 style="color:#f85149;margin-bottom:10px;">⚠️ 弱势板块</h4>
+        <table>
+          <tr><th>板块/个股</th><th>涨跌幅</th><th>原因</th></tr>
+          <tr><td>🔬 半导体</td><td class="val-down"><strong>承压</strong></td><td>中芯国际-2.75%（美股费城半导体跌超4%拖累）</td></tr>
+          <tr><td>💻 PC/硬件</td><td class="val-down"><strong>微跌</strong></td><td>联想集团-1.88%</td></tr>
+          <tr><td>🏦 银行/保险</td><td class="val-up"><strong>稳中有升</strong></td><td>中国平安+1.49% 国寿+1.36% 友邦+0.32%</td></tr>
+          <tr><td>🏠 地产</td><td class="val-up"><strong>温和</strong></td><td>华润置地+1.55% 新鸿基+0.33% 恒基+0.77%</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <strong>🔍 板块轮动分析：</strong>今日呈现典型的"科技+消费"双轮驱动行情。<br>
+      <strong>① 新能源车板块：</strong>理想汽车暴涨9.90%领跑全市场，隔夜美股理想ADR +4.68%形成映射效应，叠加Q2交付数据强劲预期。小鹏+4.42%、比亚迪股份+4.23%、吉利汽车+6.17%集体走强，板块形成赚钱效应。<br>
+      <strong>② 科技龙头：</strong>小米+8.95%创近期最大单日涨幅，市场传言可能与汽车业务进展或Q2业绩预期有关；腾讯+4.29%成交额高达167亿港元，资金大举涌入。<br>
+      <strong>③ 医药板块：</strong>互联网医疗领涨（京东健康+5.37%、阿里健康+4.66%、平安好医生+5.35%），生物医药跟随（金斯瑞+3.51%）。<br>
+      <strong>④ 半导体逆势承压：</strong>中芯国际-2.75%受隔夜美股费城半导体指数跌超4%拖累，AMD -8.15%业绩指引不及预期引发全球半导体板块调整，但港股影响相对有限。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 新能源车专题 ===== -->
+<div class="section">
+  <div class="section-title">
+    <span>🚗 新能源车板块 · 全线爆发</span>
+    <span class="badge">🔥 今日最强</span>
+  </div>
+  <div class="section-body">
+    <table>
+      <tr><th>股票</th><th>代码</th><th>收盘价</th><th>涨跌幅</th><th>隔夜ADR</th><th>信号</th></tr>
+      <tr>
+        <td class="bold">理想汽车</td><td>02015</td>
+        <td class="price val-up">54.60</td><td class="val-up">+9.90%</td>
+        <td class="val-up">+4.68%</td>
+        <td><span class="tag tag-red">🚀 强烈关注</span></td>
+      </tr>
+      <tr>
+        <td class="bold">小鹏汽车</td><td>09868</td>
+        <td class="price val-up">51.75</td><td class="val-up">+4.42%</td>
+        <td class="val-down">-0.55%</td>
+        <td><span class="tag tag-green">关注</span></td>
+      </tr>
+      <tr>
+        <td class="bold">比亚迪股份</td><td>01211</td>
+        <td class="price val-up">93.60</td><td class="val-up">+4.23%</td>
+        <td>—</td>
+        <td><span class="tag tag-green">关注</span></td>
+      </tr>
+      <tr>
+        <td class="bold">吉利汽车</td><td>00175</td>
+        <td class="price val-up">20.30</td><td class="val-up">+6.17%</td>
+        <td>—</td>
+        <td><span class="tag tag-red">🔥 关注</span></td>
+      </tr>
+    </table>
+
+    <div class="insight-box success">
+      <strong>📌 新能源车板块点评：</strong>今日新能源车板块成为全市场最强主线。理想汽车+9.90%逼近涨停，股价创近期新高，隔夜美股理想ADR +4.68%形成正向映射。港股投资者对新能源车赛道信心恢复，叠加Q3旺季预期和以旧换新政策催化。比亚迪+4.23%成交放量，市场对其Q2业绩有较高期待。吉利汽车+6.17%创近期最大涨幅，极氪品牌交付数据向好构成催化剂。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 科技龙头深度 ===== -->
+<div class="section">
+  <div class="section-title">
+    <span>💻 科技龙头深度分析</span>
+    <span class="badge">腾讯+小米领涨</span>
+  </div>
+  <div class="section-body">
+    <div class="insight-box success">
+      <strong>🐧 腾讯控股 (00700) · +4.29% → 466.40港元</strong><br>
+      成交额167.6亿港元位居全市场第一。股价逼近470关口，创近期新高。催化剂：① 市场对Q2业绩预期乐观（游戏+广告双轮驱动）；② AI大模型混元持续迭代；③ 回购计划提供底部支撑。技术面突破450阻力位后加速上行，下一目标480港元。
+    </div>
+    <div class="insight-box warning">
+      <strong>📱 小米集团 (01810) · +8.95% → 31.88港元</strong><br>
+      今日最大亮点！股价从29.48低开高走收于31.88，逼近32关口创阶段新高。市场传闻：① SU7汽车交付量超预期，7月有望突破2万台；② Q2海外手机市场份额持续提升；③ 市场预期小米将在AIoT生态方面有重大发布。技术面放量突破31阻力位，短期动能极强。
+    </div>
+    <div class="insight-box">
+      <strong>📷 舜宇光学 (02382) · +5.43% → 61.20港元</strong><br>
+      消费电子复苏预期持续发酵。苹果即将发布财报（北京时间周五），市场对iPhone供应链业绩持乐观态度。光学赛道景气度回升，车载镜头业务贡献增量。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 南下资金 ===== -->
+<div class="section">
+  <div class="section-title">
+    <span>💧 资金流向与港股通</span>
+    <span class="badge">关注</span>
+  </div>
+  <div class="section-body">
+    <div class="insight-box">
+      <strong>📌 港股通资金动向：</strong><br>
+      <span style="color:#8b949e;">今日港股通数据暂未通过API获取到精确数值，但从成交额和行情走势判断：</span><br>
+      • 腾讯控股167.6亿港元成交额中，南下资金大概率为主力买方<br>
+      • 小米集团放量暴涨，南下资金买入意愿强烈<br>
+      • 理想汽车、比亚迪等新能源车板块亦有增量资金进场<br>
+      • AH溢价方面，A股今日同样走强，溢价率维持稳定
+    </div>
+
+    <div class="insight-box warning">
+      <strong>⚠️ 全球资金面关注：</strong><br>
+      美联储7月FOMC利率决议将于北京时间<strong>周四凌晨2:00</strong>公布，2:30主席沃什召开新闻发布会。当前CME FedWatch显示：<br>
+      • 维持利率不变概率：69.5%<br>
+      • 加息25bp概率：30.5%<br>
+      • 若意外加息，可能引发港股短期回调；若按兵不动，风险偏好有望继续改善，港股有望挑战26,000关口。
+    </div>
+  </div>
+</div>
+
+<!-- ===== AH联动 & 美股映射 ===== -->
+<div class="section">
+  <div class="section-title">
+    <span>🌐 AH联动 · 美股映射</span>
+    <span class="badge">隔夜关注</span>
+  </div>
+  <div class="section-body">
+    <div class="grid-2">
+      <div>
+        <h4 style="color:#58a6ff;margin-bottom:10px;">🇺🇸 隔夜美股 (7/28收盘)</h4>
+        <table>
+          <tr><th>指数/个股</th><th>收盘价</th><th>涨跌幅</th></tr>
+          <tr><td>道琼斯</td><td>52,747.32</td><td class="val-up">+1.03%</td></tr>
+          <tr><td>标普500</td><td>7,428.78</td><td class="val-up">+0.21%</td></tr>
+          <tr><td>纳斯达克</td><td>24,876.91</td><td class="val-down">-0.22%</td></tr>
+          <tr><td>英伟达 NVDA</td><td>197.01</td><td class="val-up">+0.25%</td></tr>
+          <tr><td>谷歌 GOOGL</td><td>333.71</td><td class="val-up">+2.19%</td></tr>
+          <tr><td>AMD</td><td>454.62</td><td class="val-down">-8.15%⚠️</td></tr>
+          <tr><td>苹果 AAPL</td><td>340.08</td><td class="val-up">+0.94%</td></tr>
+          <tr><td>特斯拉 TSLA</td><td>307.44</td><td class="val-down">-0.58%</td></tr>
+        </table>
+        <div style="margin-top:10px;">
+          <h4 style="color:#d29922;margin-bottom:8px;">🇨🇳 中概ADR</h4>
+          <table>
+            <tr><th>个股</th><th>涨跌幅</th><th>今日港股映射</th></tr>
+            <tr><td>理想汽车 LI</td><td class="val-up">+4.68%</td><td class="val-up">→ 港股+9.90% ✅</td></tr>
+            <tr><td>京东 JD</td><td class="val-up">+2.71%</td><td class="val-up">→ 港股+1.69% ✅</td></tr>
+            <tr><td>网易 NTES</td><td class="val-up">+2.89%</td><td>—</td></tr>
+            <tr><td>阿里巴巴 BABA</td><td class="val-up">+0.17%</td><td class="val-up">→ 港股+1.43% ✅</td></tr>
+            <tr><td>百度 BIDU</td><td class="val-down">-0.35%</td><td>—</td></tr>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h4 style="color:#d29922;margin-bottom:10px;">📊 商品·宏观</h4>
+        <table>
+          <tr><th>品种</th><th>最新价</th><th>变动</th></tr>
+          <tr><td>WTI原油</td><td>79.26</td><td class="val-down">-4.06%</td></tr>
+          <tr><td>布伦特原油</td><td>84.09</td><td class="val-down">-4.83%</td></tr>
+          <tr><td>COMEX黄金</td><td>4,090.40</td><td class="val-down">-1.11%</td></tr>
+          <tr><td>10Y美债收益率</td><td>4.60%</td><td class="val-down">-4.3bp</td></tr>
+        </table>
+
+        <div style="margin-top:16px;">
+          <h4 style="color:#58a6ff;margin-bottom:8px;">📡 映射方向 (6维)</h4>
+          <table>
+            <tr><th>映射方向</th><th>A股受益标的</th><th>强度</th></tr>
+            <tr><td>🚗 新能源车</td><td>比亚迪(002594)、赛力斯(601127)、长安汽车(000625)</td><td><span class="tag tag-red">强烈关注</span></td></tr>
+            <tr><td>📱 消费电子</td><td>立讯精密(002475)、歌尔股份(002241)、蓝思科技(300433)</td><td><span class="tag tag-green">关注</span></td></tr>
+            <tr><td>🤖 AI/大模型</td><td>科大讯飞(002230)、中科曙光(603019)</td><td><span class="tag tag-green">关注</span></td></tr>
+            <tr><td>💊 医药/医疗</td><td>药明康德(603259)、迈瑞医疗(300760)</td><td><span class="tag tag-yellow">中性</span></td></tr>
+            <tr><td>🔬 半导体</td><td>中芯国际(688981)、北方华创(002371)</td><td><span class="tag tag-yellow">中性偏弱</span></td></tr>
+            <tr><td>🛢️ 能源/商品</td><td>中国石油(601857)、中国海油(600938)</td><td><span class="tag tag-yellow">关注油价</span></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <strong>🌙 隔夜关键事件：</strong><br>
+      <strong>① 美联储FOMC</strong> — 7月议息会议进行中，决议明晨公布。加息概率约30%，市场重点关注点阵图和沃什讲话基调。<br>
+      <strong>② AMD暴跌-8.15%</strong> — 业绩指引不及预期拖累半导体板块，费城半导体指数跌超4%。关注今日A股半导体板块是否承压。<br>
+      <strong>③ 原油大跌</strong> — WTI -4.06%至$79.26，美伊外交进展缓解中东供应担忧。油价回落有助于缓解全球通胀预期。<br>
+      <strong>④ "超级财报周"</strong> — 苹果、微软、亚马逊、Meta本周集中披露财报，直接影响全球科技股风险偏好。
+    </div>
+  </div>
+</div>
+
+<!-- ===== AH溢价 ===== -->
+<div class="section">
+  <div class="section-title">
+    <span>🔄 A/H股联动分析</span>
+    <span class="badge">参考</span>
+  </div>
+  <div class="section-body">
+    <table>
+      <tr><th>A股标的</th><th>H股标的</th><th>H股表现</th><th>联动分析</th></tr>
+      <tr><td>比亚迪(002594)</td><td>比亚迪股份(01211)</td><td class="val-up">+4.23%</td><td>新能源车板块A/H共振，今日港股涨幅更大</td></tr>
+      <tr><td>中兴通讯(000063)</td><td>中兴通讯(00763)</td><td class="val-up">+3.98%</td><td>通信基建预期升温，5G-A商用催化</td></tr>
+      <tr><td>药明康德(603259)</td><td>药明生物(02269)</td><td class="val-up">+2.07%</td><td>医药板块温和跟涨</td></tr>
+      <tr><td>中芯国际(688981)</td><td>中芯国际(00981)</td><td class="val-down">-2.75%</td><td>半导体板块受费城半导体拖累，港股跌幅更大</td></tr>
+      <tr><td>中国平安(601318)</td><td>中国平安(02318)</td><td class="val-up">+1.49%</td><td>保险板块温和上行</td></tr>
+      <tr><td>中国人寿(601628)</td><td>中国人寿(02628)</td><td class="val-up">+1.36%</td><td>利率敏感型资产，关注美联储决议</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== 强势个股精选 ===== -->
+<div class="section">
+  <div class="section-title">
+    <span>⭐ 强势个股精选 · TOP 10</span>
+    <span class="badge">今日涨幅榜</span>
+  </div>
+  <div class="section-body">
+    <table>
+      <tr><th>排名</th><th>股票</th><th>代码</th><th>涨跌幅</th><th>收盘价</th><th>评级</th><th>看多逻辑</th></tr>
+      <tr>
+        <td>1</td><td>理想汽车</td><td>02015</td><td class="val-up">+9.90%</td><td>54.60</td>
+        <td><span class="tag tag-red">⭐强烈关注</span></td>
+        <td>Q2交付超预期+以旧换新政策+ADR映射</td>
+      </tr>
+      <tr>
+        <td>2</td><td>小米集团</td><td>01810</td><td class="val-up">+8.95%</td><td>31.88</td>
+        <td><span class="tag tag-red">⭐强烈关注</span></td>
+        <td>SU7放量+AIoT生态+海外市场扩张</td>
+      </tr>
+      <tr>
+        <td>3</td><td>吉利汽车</td><td>00175</td><td class="val-up">+6.17%</td><td>20.30</td>
+        <td><span class="tag tag-red">🔥关注</span></td>
+        <td>极氪品牌交付新高+新能源转型提速</td>
+      </tr>
+      <tr>
+        <td>4</td><td>比亚迪电子</td><td>00285</td><td class="val-up">+6.13%</td><td>24.60</td>
+        <td><span class="tag tag-green">关注</span></td>
+        <td>苹果供应链+汽车电子双轮驱动</td>
+      </tr>
+      <tr>
+        <td>5</td><td>舜宇光学</td><td>02382</td><td class="val-up">+5.43%</td><td>61.20</td>
+        <td><span class="tag tag-green">关注</span></td>
+        <td>消费电子复苏+车载镜头增量</td>
+      </tr>
+      <tr>
+        <td>6</td><td>平安好医生</td><td>01833</td><td class="val-up">+5.35%</td><td>7.87</td>
+        <td><span class="tag tag-yellow">中性谨慎</span></td>
+        <td>互联网医疗政策催化，但基本面仍需验证</td>
+      </tr>
+      <tr>
+        <td>7</td><td>京东健康</td><td>06618</td><td class="val-up">+5.37%</td><td>40.00</td>
+        <td><span class="tag tag-yellow">中性</span></td>
+        <td>医药电商跟随上涨</td>
+      </tr>
+      <tr>
+        <td>8</td><td>腾讯控股</td><td>00700</td><td class="val-up">+4.29%</td><td>466.40</td>
+        <td><span class="tag tag-red">⭐强烈关注</span></td>
+        <td>Q2业绩预期+AI大模型+巨额回购</td>
+      </tr>
+      <tr>
+        <td>9</td><td>小鹏汽车</td><td>09868</td><td class="val-up">+4.42%</td><td>51.75</td>
+        <td><span class="tag tag-green">关注</span></td>
+        <td>新车周期+智驾领先+Q3预期改善</td>
+      </tr>
+      <tr>
+        <td>10</td><td>比亚迪股份</td><td>01211</td><td class="val-up">+4.23%</td><td>93.60</td>
+        <td><span class="tag tag-green">关注</span></td>
+        <td>全球新能源车龙头+Q2业绩预期</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== 明日关注 ===== -->
+<div class="section">
+  <div class="section-title">
+    <span>🎯 明日关注 · 2026-07-30 周四</span>
+    <span class="badge">关键交易日</span>
+  </div>
+  <div class="section-body">
+    <div class="insight-box danger">
+      <strong>🔴 首要关注：美联储利率决议（北京时间周四凌晨2:00）</strong><br>
+      这是今晚到明天最大的不确定性。CME FedWatch显示加息概率约30.5%，但中东局势推升能源价格后预期有所升温。若加息25bp，港股短期可能低开1-2%；若维持不变，有望继续上攻26,000关口。主席沃什新闻发布会基调同样关键。
+    </div>
+
+    <div class="grid-2" style="margin-top:12px;">
+      <div>
+        <h4 style="color:#58a6ff;margin-bottom:8px;">📅 关键事件日历</h4>
+        <table>
+          <tr><td>02:00</td><td>美联储7月利率决议<br><small>基准利率：3.50%-3.75%</small></td><td><span class="tag tag-red">🔴 最重要</span></td></tr>
+          <tr><td>02:30</td><td>美联储主席沃什新闻发布会</td><td><span class="tag tag-red">🔴 关键</span></td></tr>
+          <tr><td>盘后</td><td>苹果(AAPL)、亚马逊(AMZN) 财报</td><td><span class="tag tag-yellow">重要</span></td></tr>
+          <tr><td>20:30</td><td>美国EIA原油库存</td><td><span class="tag tag-gray">关注</span></td></tr>
+        </table>
+      </div>
+      <div>
+        <h4 style="color:#3fb950;margin-bottom:8px;">📌 港股策略</h4>
+        <table>
+          <tr><td>✅ 若Fed不加息</td><td class="val-up">恒指看涨26,000+，加仓科技龙头</td></tr>
+          <tr><td>⚠️ 若加息25bp</td><td class="val-down">预计低开，关注25,500支撑，逢低布局</td></tr>
+          <tr><td>📈 科技线</td><td>腾讯、小米、舜宇光学继续看多</td></tr>
+          <tr><td>🚗 新能源车</td><td>理想、比亚迪、吉利持有为主</td></tr>
+          <tr><td>🔬 半导体</td><td>中芯国际观望，等待AMD利空消化</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="insight-box success" style="margin-top:12px;">
+      <strong>📝 明日操作建议：</strong><br>
+      <strong>1️⃣</strong> 美联储决议前控制仓位，避免追高；<br>
+      <strong>2️⃣</strong> 若加息落地，关注恒指25,500支撑位，可逢低布局腾讯、小米等核心资产；<br>
+      <strong>3️⃣</strong> 若不加息，恒生科技有望领涨突破5,000点关口，加仓科技ETF (03033)；<br>
+      <strong>4️⃣</strong> 关注苹果/亚马逊财报对消费电子供应链的指引（舜宇光学、比亚迪电子）；<br>
+      <strong>5️⃣</strong> 油价下跌利好航空、航运，关注国泰航空等成本端改善标的。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 宏观背景 ===== -->
+<div class="section">
+  <div class="section-title">
+    <span>🌍 宏观背景</span>
+    <span class="badge">综合参考</span>
+  </div>
+  <div class="section-body">
+    <div class="grid-2">
+      <div>
+        <h4 style="color:#58a6ff;margin-bottom:8px;">🇨🇳 中国宏观</h4>
+        <table>
+          <tr><td>商务部</td><td>发布《关于所谓"产能过剩"问题的中方立场》</td></tr>
+          <tr><td>工信部</td><td>印发国家级零碳工厂建设工作通知</td></tr>
+          <tr><td>政策面</td><td>政治局会议定调下半年经济，稳增长预期升温</td></tr>
+        </table>
+      </div>
+      <div>
+        <h4 style="color:#d29922;margin-bottom:8px;">🌏 全球宏观</h4>
+        <table>
+          <tr><td>美联储</td><td>7月FOMC进行中，关注利率决议</td></tr>
+          <tr><td>中东局势</td><td>美伊外交进展缓解供应担忧，油价回落</td></tr>
+          <tr><td>美国就业</td><td>初请失业金18.7万人创1969年来最低</td></tr>
+          <tr><td>欧洲</td><td>ECB管委暗示9月仍可能加息</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Footer ===== -->
+<div class="footer">
+  <p>📊 港股每日复盘 · 2026年7月29日 周三</p>
+  <p>数据来源：腾讯行情API · EastMoney新闻缓存</p>
+  <p style="margin-top:6px;">⚠️ 本报告仅供参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+</div>
+
+</div>
+</body>
+</html>
