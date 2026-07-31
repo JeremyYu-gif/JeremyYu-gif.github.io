@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美股映射复盘 — 07/30/2026</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #0d1117;
+            color: #e6edf3;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid #30363d;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 28px;
+            background: linear-gradient(135deg, #58a6ff, #3fb950);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            color: #8b949e;
+            font-size: 14px;
+        }
+        .header .date-badge {
+            display: inline-block;
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 14px;
+            color: #c9d1d9;
+            margin-top: 10px;
+        }
+        .section {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #58a6ff;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #21262d;
+        }
+        .section-title .icon { margin-right: 8px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        th {
+            background: #21262d;
+            color: #8b949e;
+            font-weight: 500;
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 1px solid #30363d;
+            white-space: nowrap;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #21262d;
+        }
+        tr:last-child td { border-bottom: none; }
+        .up { color: #3fb950; }
+        .down { color: #f85149; }
+        .flat { color: #8b949e; }
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .tag-bull { background: rgba(63,185,80,0.15); color: #3fb950; }
+        .tag-bear { background: rgba(248,81,73,0.15); color: #f85149; }
+        .tag-neutral { background: rgba(139,148,158,0.15); color: #8b949e; }
+        .tag-hot { background: rgba(255,165,0,0.15); color: #ffa500; }
+        
+        .mapping-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 16px;
+        }
+        .mapping-card {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 16px;
+        }
+        .mapping-card h3 {
+            font-size: 15px;
+            color: #f0f6fc;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .mapping-card .signal {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .signal-strong { background: rgba(63,185,80,0.2); color: #3fb950; }
+        .signal-watch { background: rgba(88,166,255,0.2); color: #58a6ff; }
+        .signal-caution { background: rgba(139,148,158,0.2); color: #8b949e; }
+        .signal-avoid { background: rgba(248,81,73,0.2); color: #f85149; }
+        .mapping-card p { color: #8b949e; font-size: 13px; line-height: 1.6; }
+        .mapping-card ul { color: #8b949e; font-size: 13px; padding-left: 16px; line-height: 1.8; }
+        
+        .summary-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 12px 0;
+        }
+        .summary-item {
+            flex: 1;
+            min-width: 140px;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+        .summary-item .label { color: #8b949e; font-size: 12px; }
+        .summary-item .value { font-size: 20px; font-weight: 700; margin-top: 4px; }
+        .footer {
+            text-align: center;
+            color: #484f58;
+            font-size: 12px;
+            padding: 20px 0;
+            border-top: 1px solid #21262d;
+            margin-top: 30px;
+        }
+        .news-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #21262d;
+            font-size: 13px;
+            color: #c9d1d9;
+        }
+        .news-item:last-child { border-bottom: none; }
+        .news-item .source { color: #8b949e; font-size: 11px; }
+        .highlight { background: rgba(255,165,0,0.1); border-left: 3px solid #ffa500; padding-left: 12px; }
+        @media (max-width: 768px) {
+            .summary-item { min-width: 100px; }
+            .mapping-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+    <h1>📊 美股映射复盘报告</h1>
+    <div class="subtitle">A股映射策略：隔夜美股信号 → 今日A股受益方向</div>
+    <div class="date-badge">📅 07/30/2026（周四）交易数据 | 报告生成：2026年07月31日</div>
+</div>
+
+<!-- Summary Bar -->
+<div class="summary-bar">
+    <div class="summary-item">
+        <div class="label">纳斯达克</div>
+        <div class="value up">+2.78%</div>
+    </div>
+    <div class="summary-item">
+        <div class="label">标普500</div>
+        <div class="value up">+1.66%</div>
+    </div>
+    <div class="summary-item">
+        <div class="label">道琼斯</div>
+        <div class="value up">+1.19%</div>
+    </div>
+    <div class="summary-item">
+        <div class="label">QQQ</div>
+        <div class="value up">+3.30%</div>
+    </div>
+    <div class="summary-item">
+        <div class="label">科技龙头 (Mag 7)</div>
+        <div class="value" style="font-size:16px; color:#58a6ff;">4涨4跌</div>
+    </div>
+    <div class="summary-item">
+        <div class="label">中概股</div>
+        <div class="value" style="font-size:16px; color:#58a6ff;">4涨3跌</div>
+    </div>
+</div>
+
+<!-- 三大指数 -->
+<div class="section">
+    <div class="section-title"><span class="icon">📈</span> 三大指数收盘</div>
+    <table>
+        <thead>
+            <tr><th>指数</th><th>代码</th><th>收盘价</th><th>涨跌额</th><th>涨跌幅</th><th>状态</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>纳斯达克综合指数</td><td><code>IXIC</code></td><td><strong>25,122.18</strong></td><td class="up">+679.24</td><td class="up"><strong>+2.78%</strong></td><td><span class="tag tag-bull">大涨</span></td></tr><tr><td>标普500指数</td><td><code>INX</code></td><td><strong>7,437.63</strong></td><td class="up">+121.48</td><td class="up"><strong>+1.66%</strong></td><td><span class="tag tag-bull">大涨</span></td></tr><tr><td>道琼斯工业指数</td><td><code>DJI</code></td><td><strong>52,208.06</strong></td><td class="up">+613.92</td><td class="up"><strong>+1.19%</strong></td><td><span class="tag tag-bull">上涨</span></td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- 核心ETF -->
+<div class="section">
+    <div class="section-title"><span class="icon">📊</span> 核心ETF</div>
+    <table>
+        <thead>
+            <tr><th>ETF</th><th>代码</th><th>收盘价</th><th>涨跌额</th><th>涨跌幅</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>QQQ (纳指100ETF)</td><td><code>QQQ</code></td><td><strong>$683.55</strong></td><td class="up">+$21.82</td><td class="up"><strong>+3.30%</strong></td></tr><tr><td>SPY (标普500ETF)</td><td><code>SPY</code></td><td><strong>$741.69</strong></td><td class="up">+$12.23</td><td class="up"><strong>+1.68%</strong></td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- 科技龙头 -->
+<div class="section">
+    <div class="section-title"><span class="icon">💻</span> 科技龙头（Magnificent 7 + 半导体）</div>
+    <table>
+        <thead>
+            <tr><th>公司</th><th>代码</th><th>收盘价</th><th>涨跌额</th><th>涨跌幅</th><th>备注</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>微软</td><td><code>MSFT</code></td><td><strong>$451.10</strong></td><td class="up">+60.56</td><td class="up"><strong>+15.51%</strong></td><td><span class="tag tag-bull">🔥 暴涨（财报超预期）</span></td></tr><tr><td>亚马逊</td><td><code>AMZN</code></td><td><strong>$235.50</strong></td><td class="up">+8.85</td><td class="up"><strong>+3.90%</strong></td><td><span class="tag tag-bull">大涨</span></td></tr><tr><td>英伟达</td><td><code>NVDA</code></td><td><strong>$195.04</strong></td><td class="up">+5.03</td><td class="up"><strong>+2.65%</strong></td><td><span class="tag tag-bull">上涨</span></td></tr><tr><td>特斯拉</td><td><code>TSLA</code></td><td><strong>$308.85</strong></td><td class="up">+10.53</td><td class="up"><strong>+3.53%</strong></td><td><span class="tag tag-bull">上涨</span></td></tr><tr><td>博通</td><td><code>AVGO</code></td><td><strong>$387.84</strong></td><td class="up">+17.52</td><td class="up"><strong>+4.73%</strong></td><td><span class="tag tag-bull">大涨</span></td></tr><tr><td>谷歌</td><td><code>GOOGL</code></td><td><strong>$333.66</strong></td><td class="down">-3.05</td><td class="down"><strong>-0.91%</strong></td><td><span class="tag tag-bear">微跌</span></td></tr><tr><td>苹果</td><td><code>AAPL</code></td><td><strong>$333.43</strong></td><td class="down">-4.76</td><td class="down"><strong>-1.41%</strong></td><td><span class="tag tag-bear">下跌</span></td></tr><tr><td>Meta</td><td><code>META</code></td><td><strong>$539.03</strong></td><td class="down">-46.58</td><td class="down"><strong>-7.95%</strong></td><td><span class="tag tag-bear">⚠️ 暴跌（财报不及预期）</span></td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- 中概股 -->
+<div class="section">
+    <div class="section-title"><span class="icon">🇨🇳</span> 热门中概股</div>
+    <table>
+        <thead>
+            <tr><th>公司</th><th>代码</th><th>收盘价</th><th>涨跌额</th><th>涨跌幅</th><th>状态</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>阿里巴巴</td><td><code>BABA</code></td><td><strong>$116.32</strong></td><td class="up">+1.29</td><td class="up"><strong>+1.12%</strong></td><td><span class="tag tag-bull">上涨</span></td></tr><tr><td>百度</td><td><code>BIDU</code></td><td><strong>$107.48</strong></td><td class="up">+2.21</td><td class="up"><strong>+2.10%</strong></td><td><span class="tag tag-bull">上涨</span></td></tr><tr><td>哔哩哔哩</td><td><code>BILI</code></td><td><strong>$18.70</strong></td><td class="up">+0.17</td><td class="up"><strong>+0.92%</strong></td><td><span class="tag tag-bull">上涨</span></td></tr><tr><td>蔚来</td><td><code>NIO</code></td><td><strong>$4.84</strong></td><td class="up">+0.08</td><td class="up"><strong>+1.68%</strong></td><td><span class="tag tag-bull">上涨</span></td></tr><tr><td>小鹏汽车</td><td><code>XPEV</code></td><td><strong>$12.98</strong></td><td class="down">-0.08</td><td class="down"><strong>-0.61%</strong></td><td><span class="tag tag-bear">微跌</span></td></tr><tr><td>理想汽车</td><td><code>LI</code></td><td><strong>$13.49</strong></td><td class="down">-0.31</td><td class="down"><strong>-2.25%</strong></td><td><span class="tag tag-bear">下跌</span></td></tr><tr><td>拼多多</td><td><code>PDD</code></td><td><strong>$87.44</strong></td><td class="down">-0.88</td><td class="down"><strong>-1.00%</strong></td><td><span class="tag tag-bear">下跌</span></td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- 隔夜要闻 -->
+<div class="section">
+    <div class="section-title"><span class="icon">📰</span> 隔夜关键事件</div>
+    <div class="news-item highlight">
+        <strong>🔥 微软财报超预期，股价暴涨15.51%</strong><br>
+        微软Q4营收、净利润全面超预期，Azure云服务增速加快，AI业务贡献显著提升。市值逼近3.5万亿美元，带动科技股全面反弹。
+        <span class="source">—— 财报亮点：Azure +33% YoY，AI收入年化超$60B</span>
+    </div>
+    <div class="news-item highlight">
+        <strong>⚠️ Meta财报不及预期，暴跌7.95%</strong><br>
+        Meta Q3营收指引低于市场预期，Reality Labs亏损持续扩大，资本开支计划令市场担忧。股价跌破$540。
+        <span class="source">—— 指引不及预期，广告收入增速放缓</span>
+    </div>
+    <div class="news-item">
+        <strong>📈 亚马逊涨3.90%，AWS业务表现强劲</strong><br>
+        亚马逊继续受益于AI云需求增长，AWS收入增速加快，电商业务利润率改善。
+    </div>
+    <div class="news-item">
+        <strong>📈 博通涨4.73%，AI芯片需求持续旺盛</strong><br>
+        博通受益于AI网络芯片和定制ASIC需求，VMware整合进展顺利。
+    </div>
+    <div class="news-item">
+        <strong>📈 英伟达涨2.65%，AI算力长期趋势不变</strong><br>
+        英伟达跟随科技板块反弹，Blackwell架构GPU需求旺盛，数据中心业务持续超预期。
+    </div>
+    <div class="news-item">
+        <strong>🇨🇳 中概股分化：百度涨2.10%，理想跌2.25%</strong><br>
+        百度受益于AI大模型进展和智能驾驶业务推进；理想汽车受新能源汽车价格战影响承压。
+    </div>
+</div>
+
+<!-- A股映射分析 -->
+<div class="section">
+    <div class="section-title"><span class="icon">🔄</span> 美股热点 → A股映射方向</div>
+    <div class="mapping-grid">
+        
+        <div class="mapping-card">
+            <h3>
+                🤖 AI/大模型 — 微软/英伟达映射
+                <span class="signal signal-strong">强烈关注</span>
+            </h3>
+            <p><strong>逻辑：</strong>微软财报超预期（+15.51%）验证AI商业化加速，Azure AI收入高速增长。英伟达+2.65%维持算力需求旺盛基调。AI算力→应用→基础设施全链条受益。</p>
+            <ul>
+                <li><strong>中际旭创 (300308)</strong> — 光模块龙头，英伟达供应链</li>
+                <li><strong>工业富联 (601138)</strong> — AI服务器代工，英伟达合作</li>
+                <li><strong>浪潮信息 (000977)</strong> — AI服务器龙头，受益算力需求</li>
+                <li><strong>科大讯飞 (002230)</strong> — 国产大模型/AI应用对标</li>
+                <li><strong>寒武纪 (688256)</strong> — 国产AI芯片，自主可控逻辑</li>
+                <li><strong>海光信息 (688041)</strong> — CPU/DCU芯片，国产替代</li>
+            </ul>
+        </div>
+
+        <div class="mapping-card">
+            <h3>
+                ☁️ 云计算/AWS — 亚马逊映射
+                <span class="signal signal-watch">关注</span>
+            </h3>
+            <p><strong>逻辑：</strong>亚马逊涨3.90%，AWS云服务受益AI需求。国内云计算产业链跟随受益。</p>
+            <ul>
+                <li><strong>光环新网 (300383)</strong> — AWS中国合作伙伴</li>
+                <li><strong>网宿科技 (300017)</strong> — CDN/云计算</li>
+                <li><strong>数据港 (603881)</strong> — 数据中心运营商</li>
+                <li><strong>奥飞数据 (300738)</strong> — IDC服务商</li>
+                <li><strong>用友网络 (600588)</strong> — 企业云服务</li>
+            </ul>
+        </div>
+
+        <div class="mapping-card">
+            <h3>
+                🔗 半导体/芯片 — 博通/纳指映射
+                <span class="signal signal-strong">强烈关注</span>
+            </h3>
+            <p><strong>逻辑：</strong>纳指+2.78%，博通+4.73%，AI芯片需求旺盛。A股半导体板块有望跟涨。</p>
+            <ul>
+                <li><strong>北方华创 (002371)</strong> — 半导体设备龙头</li>
+                <li><strong>中微公司 (688012)</strong> — 刻蚀设备龙头</li>
+                <li><strong>韦尔股份 (603501)</strong> — CIS芯片龙头</li>
+                <li><strong>长电科技 (600584)</strong> — 先进封装</li>
+                <li><strong>通富微电 (002156)</strong> — AMD封装合作</li>
+                <li><strong>兆易创新 (603986)</strong> — 存储芯片龙头</li>
+            </ul>
+        </div>
+
+        <div class="mapping-card">
+            <h3>
+                🚗 新能源汽车 — 中概股映射
+                <span class="signal signal-caution">中性谨慎</span>
+            </h3>
+            <p><strong>逻辑：</strong>中概新能源车分化：蔚来+1.68%反弹，但小鹏-0.61%、理想-2.25%走弱。新能源车价格战持续，行业竞争加剧。</p>
+            <ul>
+                <li><strong>比亚迪 (002594)</strong> — 整车龙头，份额持续提升</li>
+                <li><strong>赛力斯 (601127)</strong> — 华为合作，问界系列</li>
+                <li><strong>拓普集团 (601689)</strong> — 汽车零部件</li>
+                <li><strong>德赛西威 (002920)</strong> — 智能驾驶</li>
+                <li><strong>三花智控 (002050)</strong> — 热管理龙头</li>
+            </ul>
+        </div>
+
+        <div class="mapping-card">
+            <h3>
+                📱 中概互联 — 阿里巴巴/百度映射
+                <span class="signal signal-watch">关注</span>
+            </h3>
+            <p><strong>逻辑：</strong>百度+2.10%受益AI进展，阿里+1.12%温和上涨。中概互联板块有修复空间。</p>
+            <ul>
+                <li><strong>中概互联ETF (513050)</strong> — 直接映射中概股</li>
+                <li><strong>恒生科技ETF (513130)</strong> — 港股科技龙头</li>
+                <li><strong>腾讯控股 (00700.HK)</strong> — 港股科技龙头</li>
+                <li><strong>美团 (03690.HK)</strong> — 本地生活龙头</li>
+                <li><strong>快手 (01024.HK)</strong> — 短视频/内容平台</li>
+            </ul>
+        </div>
+
+        <div class="mapping-card">
+            <h3>
+                📉 Meta映射 — 互联网广告警示
+                <span class="signal signal-avoid">回避</span>
+            </h3>
+            <p><strong>逻辑：</strong>Meta暴跌7.95%因广告收入增速放缓和资本开支超预期。对A股互联网广告/流量平台构成负面情绪传导。</p>
+            <ul>
+                <li><strong>分众传媒 (002027)</strong> — 广告龙头，关注收入指引</li>
+                <li><strong>天下秀 (600556)</strong> — 数字营销</li>
+                <li><strong>蓝色光标 (300058)</strong> — 营销服务</li>
+                <li>板块整体偏谨慎，等待企稳信号</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<!-- 整体判断 -->
+<div class="section">
+    <div class="section-title"><span class="icon">📋</span> 今日A股整体判断</div>
+    <div style="background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 16px;">
+        <table style="margin-bottom: 12px;">
+            <tr><td style="width: 140px; color: #8b949e; border: none;">🧭 大盘方向</td><td style="border: none;"><span class="tag tag-bull">偏多</span> 美股大涨带动情绪，A股有望高开</td></tr>
+            <tr><td style="color: #8b949e; border: none;">🎯 最强方向</td><td style="border: none;"><span class="tag tag-bull">AI/算力/半导体</span> 微软财报验证AI商业化加速</td></tr>
+            <tr><td style="color: #8b949e; border: none;">⚠️ 风险提示</td><td style="border: none;"><span class="tag tag-bear">Meta映射</span> 互联网广告板块承压；新能源车分化</td></tr>
+            <tr><td style="color: #8b949e; border: none;">💡 操作建议</td><td style="border: none;">关注AI算力链（光模块/服务器）、半导体设备、中概互联ETF。短期聚焦业绩确定性高的AI赛道。</td></tr>
+        </table>
+    </div>
+</div>
+
+<!-- 持仓影响评估 -->
+<div class="section">
+    <div class="section-title"><span class="icon">💼</span> 持仓直接影响评估</div>
+    <table>
+        <thead>
+            <tr><th>持仓标的</th><th>ADR映射</th><th>隔夜涨跌</th><th>今日预期</th><th>操作建议</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>中际旭创</td><td>NVDA产业链</td><td class="up">NVDA +2.65%</td><td class="up">利好，AI算力需求确认</td><td>持仓/加仓</td></tr>
+            <tr><td>工业富联</td><td>NVDA供应链</td><td class="up">NVDA +2.65%</td><td class="up">利好，AI服务器需求旺盛</td><td>持仓</td></tr>
+            <tr><td>北方华创</td><td>半导体设备</td><td class="up">SOX预期+3%</td><td class="up">利好，纳指强势</td><td>持仓</td></tr>
+            <tr><td>中概互联ETF</td><td>BABA/BIDU</td><td class="up">+1~2%</td><td class="up">温和利好</td><td>持仓</td></tr>
+            <tr><td>分众传媒</td><td>META广告映射</td><td class="down">META -7.95%</td><td class="down">偏谨慎</td><td>观望</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="footer">
+    <p>⚠️ 声明：本报告由AI生成，仅供参考，不构成投资建议。数据来源：腾讯行情API。</p>
+    <p>生成时间：2026年07月31日 08:53 · 美股数据日期：07/30/2026</p>
+</div>
+
+</div>
+</body>
+</html>
