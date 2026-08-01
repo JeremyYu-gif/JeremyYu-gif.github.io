@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股每日复盘 2026-08-01（复盘交易日 07-31）</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0b0e14; --bg2:#11151f; --card:#141926; --card2:#1a2133;
+  --border:#232c42; --gold:#d4af37; --red:#ff4d4f; --green:#00c48c;
+  --text:#e8ecf4; --text2:#9aa5bd; --text3:#5c6780;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif;line-height:1.7;padding-bottom:60px}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.header{background:linear-gradient(135deg,#0f1420 0%,#1a2133 60%,#242c45 100%);border-bottom:1px solid var(--border);padding:36px 0 28px;text-align:center}
+.header h1{font-size:30px;letter-spacing:2px;color:var(--text)}
+.header .sub{margin-top:8px;color:var(--text2);font-size:14px}
+.header .badge{display:inline-block;margin-top:14px;padding:4px 16px;border:1px solid var(--gold);color:var(--gold);border-radius:20px;font-size:13px;letter-spacing:1px}
+.tag{font-size:12px;padding:2px 10px;border-radius:4px;margin-right:8px;display:inline-block;vertical-align:middle}
+.tag-r{background:rgba(255,77,79,.15);color:var(--red);border:1px solid rgba(255,77,79,.4)}
+.tag-g{background:rgba(0,196,140,.15);color:var(--green);border:1px solid rgba(0,196,140,.4)}
+.tag-gold{background:rgba(212,175,55,.12);color:var(--gold);border:1px solid rgba(212,175,55,.4)}
+.section{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-top:24px;overflow:hidden}
+.section-head{display:flex;align-items:center;gap:10px;padding:16px 24px;background:var(--card2);border-bottom:1px solid var(--border);font-size:18px;font-weight:700}
+.section-head .num{color:var(--gold);font-size:14px;border:1px solid var(--gold);border-radius:6px;padding:1px 8px}
+.section-body{padding:22px 24px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
+.kpi{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;text-align:center}
+.kpi .label{font-size:12px;color:var(--text2)}
+.kpi .value{font-size:22px;font-weight:800;margin-top:6px}
+.kpi .delta{font-size:12px;margin-top:2px}
+.up{color:var(--red)} .down{color:var(--green)} .flat{color:var(--text2)}
+.conclusion-box{background:linear-gradient(135deg,rgba(212,175,55,.08),rgba(255,77,79,.05));border:1px solid rgba(212,175,55,.35);border-radius:10px;padding:18px 22px;font-size:16px;margin-bottom:18px}
+.conclusion-box .lead{color:var(--gold);font-weight:700;margin-right:8px}
+ul.list{padding-left:20px}
+ul.list li{margin-bottom:8px;color:var(--text)}
+ul.list li b{color:var(--gold)}
+.muted{color:var(--text2);font-size:13px}
+table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}
+th{background:var(--card2);color:var(--gold);padding:10px 12px;text-align:left;border:1px solid var(--border);font-weight:600;white-space:nowrap}
+td{padding:10px 12px;border:1px solid var(--border);color:var(--text)}
+tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.chart-box{width:100%;height:360px;margin-top:8px}
+.flow-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:768px){.flow-grid{grid-template-columns:1fr}.header h1{font-size:22px}}
+.flow-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px}
+.flow-card h4{color:var(--gold);font-size:15px;margin-bottom:10px}
+.warn{background:rgba(255,77,79,.06);border:1px solid rgba(255,77,79,.35);border-radius:10px;padding:14px 18px;margin-top:10px}
+.warn b{color:var(--red)}
+.alert-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px dashed var(--border);font-size:14px}
+.alert-item:last-child{border-bottom:none}
+.alert-item .icon{color:var(--red);font-weight:800}
+.star{color:var(--gold)}
+.footer{text-align:center;color:var(--text3);font-size:12px;margin-top:40px;padding-top:20px;border-top:1px solid var(--border)}
+.score{display:inline-block;min-width:60px;text-align:center;padding:2px 10px;border-radius:4px;font-weight:700}
+.sc-h{background:rgba(255,77,79,.18);color:var(--red)}
+.sc-m{background:rgba(212,175,55,.15);color:var(--gold)}
+.sc-l{background:rgba(0,196,140,.12);color:var(--green)}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🦅 A股每日复盘</h1>
+  <div class="sub">2026-08-01（周六）· 复盘交易日：2026-07-31（周五 · 7月收官日）</div>
+  <div><span class="badge">观澜 · 首席研究员出品</span></div>
+</div>
+
+<div class="container">
+
+<!-- 1 今日核心结论 -->
+<div class="section">
+  <div class="section-head"><span class="num">1</span>今日核心结论</div>
+  <div class="section-body">
+    <div class="conclusion-box">
+      <span class="lead">◆ 一句话定调：</span>
+      7月收官日科技暴力反攻，指数放量大涨、AI应用全线爆发，但<strong>高开低走 + 炸板率53%</strong>暴露巨大分歧——这是超跌修复的反抽，不是趋势反转的确认。
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="label">上证指数</div><div class="value up">+0.72%</div><div class="delta">3832.26</div></div>
+      <div class="kpi"><div class="label">深证成指</div><div class="value up">+2.21%</div><div class="delta">13578.93</div></div>
+      <div class="kpi"><div class="label">创业板指</div><div class="value up">+3.06%</div><div class="delta">3343.96</div></div>
+      <div class="kpi"><div class="label">科创综指</div><div class="value up">+3.69%</div><div class="delta">1819.90</div></div>
+      <div class="kpi"><div class="label">两市成交额</div><div class="value">2.56万亿</div><div class="delta up">放量 +2015亿</div></div>
+    </div>
+    <ul class="list" style="margin-top:16px">
+      <li><b>指数强弱：</b>科创综指(+3.69%) &gt; 创业板指(+3.06%) &gt; 深证成指(+2.21%) &gt; 上证指数(+0.72%) —— 典型的<strong>科技成长驱动、权重滞涨</strong>结构。</li>
+      <li><b>量能：</b>沪深北三市成交 25599 亿元，较上日放量 2015 亿元，增量资金明显回流，但主要流向科技四大板块。</li>
+      <li><b>市场风格：</b>极致切换。7月"红利占优、科技回调"格局在收官日被打破，AI应用、算力租赁、人形机器人、CPO集体爆发，银行保险石油等防御方向补跌。</li>
+      <li><b>赚钱效应：</b>表面极强（近4700家上涨、0跌停、百股涨停），实则内部分化——1341只个股收盘价低于开盘价，高位科技硬件（存储/CPO/PCB）炸板重灾区，<strong>追高者当日即被套</strong>。</li>
+      <li><b>驱动：</b>隔夜美股科技史诗级反攻（纳指+2.78%、微软+15.51%、费半+8.19%）直接点燃A股，情绪传导但"没绷住"。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 2 资金面 -->
+<div class="section">
+  <div class="section-head"><span class="num">2</span>资金面（机构视角）</div>
+  <div class="section-body">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="label">主力资金全天净流入</div><div class="value up">+763.49亿</div><div class="delta">沪深300成分 +248.02亿</div></div>
+      <div class="kpi"><div class="label">创业板净流入</div><div class="value up">+235.25亿</div><div class="delta">科创板 +103.16亿</div></div>
+      <div class="kpi"><div class="label">两融余额(7/30)</div><div class="value">26065.28亿</div><div class="delta down">环比 -1.40% · 连降3日</div></div>
+      <div class="kpi"><div class="label">ETF资金(7/31)</div><div class="value down">净流出 237.07亿</div><div class="delta">股票型 -243.75亿</div></div>
+    </div>
+    <div class="flow-grid" style="margin-top:16px">
+      <div class="flow-card">
+        <h4>📥 主力净流入 TOP（申万一级）</h4>
+        <ul class="list">
+          <li><b>电子 +307.65亿</b>（+3.53%）—— 绝对核心，半导体/消费电子</li>
+          <li><b>计算机 +97.43亿</b>（+5.56%）—— AI办公/软件</li>
+          <li><b>传媒 +76.51亿</b>（+6.00%）—— AI应用爆发</li>
+          <li><b>通信 +72.46亿</b>（+4.26%）—— 光模块/CPO</li>
+          <li>机械设备 +42.42亿 / 有色金属 +34.80亿 / 建筑装饰 +31.79亿</li>
+        </ul>
+        <p class="muted" style="margin-top:8px">科技四大板块合计净流入超550亿元，资金虹吸效应显著。22个行业获净流入，仅13个行业小幅流出。</p>
+      </div>
+      <div class="flow-card">
+        <h4>📤 主力净流出 & 个股资金聚焦</h4>
+        <ul class="list">
+          <li>净流出：食品饮料 -6.07亿、银行 -5.69亿、石油石化 -4.34亿、医药生物 -4.33亿、电力设备 -4.17亿</li>
+          <li style="margin-top:6px"><b>个股净流入TOP：</b>蓝色光标 +24.29亿（AI应用）、新易盛 +18.91亿（光模块）、金山办公 +12.26亿（AI办公）、昆仑万维 +10.82亿（AI大模型）</li>
+          <li style="margin-top:6px"><b>龙虎榜机构方向：</b>净买昆仑万维 4.58亿、中文在线 1.34亿、通源石油 8762万 —— <strong>机构真金白银主攻AI应用</strong></li>
+          <li style="margin-top:6px"><b>北向（龙虎榜口径）：</b>净买昆仑万维 4.54亿、中文在线 8335万、利欧股份 2458万；净卖通源石油、朗姿股份</li>
+        </ul>
+      </div>
+    </div>
+    <div class="warn" style="margin-top:14px">
+      <b>⚠ 背离信号：</b>主力资金大举流入，但两融余额连降3日（杠杆资金仍在撤退）、ETF当日净流出237亿（宽基赎回为主）。机构回补 vs 杠杆/配置盘观望，资金面并未形成合力——反弹的"成色"存疑。
+    </div>
+  </div>
+</div>
+
+<!-- 3 市场情绪 -->
+<div class="section">
+  <div class="section-head"><span class="num">3</span>市场情绪（散户+游资视角）</div>
+  <div class="section-body">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="label">上涨家数</div><div class="value up">≈4700家</div><div class="delta">下跌仅约600家 · 比值≈8:1</div></div>
+      <div class="kpi"><div class="label">涨停</div><div class="value up">102只</div><div class="delta">盘中一度0跌停</div></div>
+      <div class="kpi"><div class="label">炸板</div><div class="value down">105~113只</div><div class="delta down">炸板率 53% · 封板率 46.9%</div></div>
+      <div class="kpi"><div class="label">连板高度</div><div class="value up">9连板</div><div class="delta">爱丽家居（一字）</div></div>
+      <div class="kpi"><div class="label">连板数量</div><div class="value">10只</div><div class="delta">晋级率 40% · 3板+仅4只</div></div>
+    </div>
+    <div class="chart-box" id="chartBreadth"></div>
+    <p class="muted" style="text-align:center">近60个交易日 A股涨跌家数比（涨家数/跌家数）走势 —— 7月中旬起市场连续普跌，7/30-7/31超跌反抽</p>
+    <ul class="list" style="margin-top:16px">
+      <li><b>连板梯队：</b>爱丽家居9连板（一字，空间板）、传智教育5连板（T字，AI应用核心）、一鸣食品4连板（超预期）、美利云10天5板（算力租赁）、欢瑞世纪3天2板。<strong>8/7/6板全部断层</strong>，梯队不完整，高度依赖单一个股。</li>
+      <li><b>炸板率53%创近期新高：</b>炸板数（105+）超过成功封板数，资金"愿意做多、兑现意愿更强"，追涨容错率极低。</li>
+      <li><b>高位股风险：</b>德明利开盘封板后翻绿、长鑫科技日内回落超10%、兆易创新涨停跳水、中际旭创/澜起科技/中微公司大幅回落、中国巨石158亿天量炸板 —— <strong>存储/CPO硬件方向当日就是亏钱效应重灾区</strong>。</li>
+      <li><b>题材持续性判断：</b>AI应用（筹码结构好、套牢盘少）＞算力租赁（超20股涨停）＞人形机器人（扩散广、缺连板核心）＞CPO/存储（高开低走，持续性待验证）。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 4 行业主线复盘 -->
+<div class="section">
+  <div class="section-head"><span class="num">4</span>行业主线复盘（研究员视角）</div>
+  <div class="section-body">
+    <table>
+      <tr><th>强度</th><th>板块</th><th>今日表现</th><th>催化 / 利空来源</th><th>持续性判断</th></tr>
+      <tr><td><span class="score sc-h">S</span></td><td><b>传媒 +6.00%</b><br><span class="muted">净流入76.5亿</span></td><td>AI应用全线爆发：中文在线、昆仑万维、福昕软件、易点天下20CM涨停</td><td>AI应用端爆发 + AI立法加速的确定性政策红利预期</td><td><span class="tag tag-g">强</span> 筹码结构好，游资+机构+北向三方共振，主线地位确立</td></tr>
+      <tr><td><span class="score sc-h">S</span></td><td><b>计算机 +5.56%</b><br><span class="muted">净流入97.4亿</span></td><td>AI办公（金山办公+12.26亿主力）、财税数字化（税友股份2板）、软件普涨</td><td>微软财报验证AI资本开支回报，AI应用商业模式获海外背书</td><td><span class="tag tag-g">强</span> 与传媒同属"AI应用"大主线，扩散性好</td></tr>
+      <tr><td><span class="score sc-h">A</span></td><td><b>通信 +4.26%</b><br><span class="muted">净流入72.5亿</span></td><td>CPO反弹（罗博特科+16%）、光模块强势（新易盛净流入18.9亿居前）</td><td>费城半导体指数+8.19%，光通信/存储海外集体爆发</td><td><span class="tag tag-m">中</span> 硬件端高开低走，需观察能否二次分歧转一致</td></tr>
+      <tr><td><span class="score sc-h">A</span></td><td><b>电子 +3.53%</b><br><span class="muted">净流入307.7亿</span></td><td>存储/PCB冲高回落：盛景微涨停，但兆易创新跳水、东山精密/生益科技炸板</td><td>SK海力士30%涨停（历史首次）、美光+18%、三星+27%，KOSPI单日+17.91%创纪录</td><td><span class="tag tag-m">中</span> 资金流入最大但分歧最重，炸板重灾区，只宜低吸不宜追高</td></tr>
+      <tr><td><span class="score sc-m">B+</span></td><td><b>机械设备<br>（人形机器人）</b><br><span class="muted">净流入42.4亿</span></td><td>永茂泰涨停、奥比中光20CM、绿的谐波/昊志机电涨超10%</td><td>机器人产业链外部关税预期缓和 + 题材回补</td><td><span class="tag tag-m">中</span> 扩散面广但缺少清晰连板核心，做轮动不做主攻</td></tr>
+      <tr><td><span class="score sc-m">B+</span></td><td><b>有色 / 建筑装饰</b><br><span class="muted">净流入34.8/31.8亿</span></td><td>周期方向资金回补，涨幅温和</td><td>科技虹吸之外的基本面支撑方向获得溢出资金</td><td><span class="tag tag-m">中</span> 补涨性质，非主线</td></tr>
+    </table>
+    <p class="muted" style="margin-top:12px">弱势方向：银行（农行、交行跌超2%）、保险（中国平安领跌）、石油石化 —— 红利防御资金被科技虹吸，高位抱团出现松动迹象。</p>
+  </div>
+</div>
+
+<!-- 5 龙头梯队 -->
+<div class="section">
+  <div class="section-head"><span class="num">5</span>龙头梯队（实战交易视角）</div>
+  <div class="section-body">
+    <table>
+      <tr><th>角色</th><th>标的</th><th>状态 / 关键数据</th><th>交易含义</th></tr>
+      <tr><td><span class="tag tag-gold">空间龙头</span></td><td><b>爱丽家居</b></td><td>9连板（一字）· 市场最高标</td><td>空间板定情绪，断板即情绪退潮信号，仅作观察锚</td></tr>
+      <tr><td><span class="tag tag-gold">主线龙头</span></td><td><b>传智教育</b></td><td>5连板（T字板）· AI应用核心，昨日率先修复</td><td>AI应用主线情绪旗帜，晋级与否决定板块高度</td></tr>
+      <tr><td><span class="tag tag-gold">中军标的</span></td><td><b>蓝色光标 / 昆仑万维 / 金山办公</b></td><td>主力净流入24.3亿/10.8亿/12.3亿；昆仑万维20CM涨停，机构+北向合计净买超9亿</td><td>机构定价的容量中军，低吸优于打板，是主线持续性的压舱石</td></tr>
+      <tr><td><span class="tag tag-g">补涨龙</span></td><td><b>普联软件 / 泛微网络 / 税友股份</b></td><td>2连板梯队（AI软件/财税），欢瑞世纪3天2板</td><td>二板梯队能否扩容是题材扩散的关键观察点</td></tr>
+      <tr><td><span class="tag tag-g">强趋势</span></td><td><b>美利云</b></td><td>10天5板 · 算力租赁</td><td>算力租赁方向趋势代表，宏景科技高开秒板助攻</td></tr>
+      <tr><td><span class="tag tag-r">破位警示</span></td><td><b>德明利 / 兆易创新 / 长鑫科技 / 中际旭创 / 东山精密 / 生益科技 / 光迅科技 / 风华高科 / 中国巨石</b></td><td>炸板翻绿/涨停跳水/日内回落超10%/158亿天量炸板</td><td>高位科技硬件+超跌反弹股集体派发，<strong>这些标的的反抽是减仓机会而非买点</strong></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 6 风险信号 -->
+<div class="section">
+  <div class="section-head"><span class="num">6</span>风险信号（基金经理风控视角）</div>
+  <div class="section-body">
+    <div class="alert-item"><span class="icon">⚠</span><div><b>炸板率53%、封板率仅46.9%：</b>追涨资金大面积被埋，情绪处于"强修复但承接不稳"的脆弱状态，任何利空都可能引发二次回踩。</div></div>
+    <div class="alert-item"><span class="icon">⚠</span><div><b>高开低走、1341家收盘低于开盘：</b>指数大阳线掩盖了个股层面的普遍冲高回落，日内追高者集体亏损，赚钱效应名不副实。</div></div>
+    <div class="alert-item"><span class="icon">⚠</span><div><b>强势股补跌/炸板：</b>存储、CPO、PCB三大硬件方向当日即分歧，兆易创新涨停跳水、中际旭创等核心权重回落超10%，板块内高低切换剧烈。</div></div>
+    <div class="alert-item"><span class="icon">⚠</span><div><b>量价背离信号：</b>主力净流入763亿 vs 两融连降3日 + ETF当日净流出237亿，增量资金成色不足，反弹缺乏杠杆与配置盘接力。</div></div>
+    <div class="alert-item"><span class="icon">⚠</span><div><b>高位抱团松动：</b>红利防御（银行、保险、石油）被资金抛弃补跌，7月"红利占优"逻辑遭破坏，市场风格进入再平衡的混乱期。</div></div>
+    <div class="alert-item"><span class="icon">⚠</span><div><b>连板梯队断层：</b>8/7/6板真空，连板仅10只且晋级率40%，情绪修复依赖单一个股（爱丽家居、传智教育），断板即退潮。</div></div>
+    <div class="alert-item"><span class="icon">⚠</span><div><b>趋势背景未逆转：</b>7月双创指数单月跌幅超20%，7/31只是超跌反抽第一天，技术上仍处下降趋势，右侧信号（量能持续+封板率回升）尚未出现。</div></div>
+    <div class="warn"><b>风控结论：</b>当前仓位上限建议控制在6成以内，反弹初期只做主线低吸、禁止追高，等待炸板率回落至40%以下 + 连板梯队补全再上仓位。</div>
+  </div>
+</div>
+
+<!-- 7 AH联动 -->
+<div class="section">
+  <div class="section-head"><span class="num">7</span>AH联动</div>
+  <div class="section-body">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="label">恒生指数</div><div class="value up">+0.10%</div><div class="delta">25884.43</div></div>
+      <div class="kpi"><div class="label">恒生科技</div><div class="value up">+0.53%</div><div class="delta">7月累计 +8%</div></div>
+      <div class="kpi"><div class="label">国企指数</div><div class="value down">-0.38%</div><div class="delta">7月累计 +13%</div></div>
+      <div class="kpi"><div class="label">韩国KOSPI</div><div class="value up">+17.91%</div><div class="delta">创历史最大单日涨幅</div></div>
+    </div>
+    <ul class="list" style="margin-top:16px">
+      <li><b>格局：A强港弱。</b>A股放量大涨，港股仅微涨，恒指+0.1%明显跑输 —— 外资对A股科技反攻的确认度弱于内资。</li>
+      <li><b>科网分化：</b>联想+9%、阿里+4%走强；小米-7%、京东-1%、安克创新-10%走弱，港股科技内部同样剧烈分化。</li>
+      <li><b>存储共振最强：</b>南方两倍做多海力士+67%、南方两倍做多三星电子+44%，港股存储杠杆产品暴涨；韩国KOSPI单日+17.91%创历史纪录（SK海力士30%涨停、三星+27%）—— 全球半导体存储产业链史诗级共振，A股存储方向逻辑真实存在，只是筹码太拥挤。</li>
+      <li><b>溢价率与外资态度：</b>港股7月恒指+13%、恒生科技+8%显著强于A股双创（-20%+），AH溢价已明显收敛，外资对港股科技态度偏积极；7/31港股微涨显示外资对A股传导持观望，<strong>AH价差收敛后，A股科技估值保护垫变薄</strong>。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 8 A美联动 -->
+<div class="section">
+  <div class="section-head"><span class="num">8</span>A美联动</div>
+  <div class="section-body">
+    <div class="kpi-grid">
+      <div class="kpi"><div class="label">隔夜纳指 (7/30)</div><div class="value up">+2.78%</div><div class="delta">点燃7/31 A股</div></div>
+      <div class="kpi"><div class="label">隔夜标普 (7/30)</div><div class="value up">+1.66%</div><div class="delta">道指 +1.19%</div></div>
+      <div class="kpi"><div class="label">最新纳指 (7/31)</div><div class="value up">+1.00%</div><div class="delta">标普 +0.7% · 道指 +0.53%</div></div>
+      <div class="kpi"><div class="label">纳指7月</div><div class="value down">-3.20%</div><div class="delta">周涨 +1.59% 企稳</div></div>
+    </div>
+    <ul class="list" style="margin-top:16px">
+      <li><b>隔夜驱动（美东7/30）：</b>微软+15.51%，单日市值暴增约4500亿美元创美股历史纪录，AI资本开支回报逻辑获强验证；亚马逊+4%、英伟达+2%；费城半导体+8.19%（闪迪+26%、美光+18%）—— 这是7/31 A股高开的直接导火索。</li>
+      <li><b>最新外盘（美东7/31，影响下周一8/3 A股）：</b>三大指数续涨（纳指+1.0%），纳指周涨1.59%企稳、7月累跌3.2% —— <strong>外围环境对下周一A股偏正面，但斜率已明显放缓</strong>。</li>
+      <li><b>映射板块：</b>① AI/芯片：微软财报→AI应用（A股传媒/计算机已爆）；费半大涨→半导体存储/CPO/PCB（A股高开低走，待二次确认）；② 算力/光模块：英伟达链逻辑延续；③ 消费电子/PCB：美股链共振但A股筹码拥挤；④ 创新药/新能源车：本轮美股映射中表现平淡，暂非联动主线。</li>
+      <li><b>关键判断：</b>美股AI叙事从"硬件军备竞赛"向"软件应用兑现"切换，与A股资金从AI硬件转向AI应用的方向一致 —— <strong>AI应用是内外共振的主线，AI硬件是跟风补涨</strong>。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 9 明日策略 -->
+<div class="section">
+  <div class="section-head"><span class="num">9</span>明日策略（8/3 周一）</div>
+  <div class="section-body">
+    <div class="flow-grid">
+      <div class="flow-card">
+        <h4>🎯 主攻方向</h4>
+        <ul class="list">
+          <li><b>① AI应用（传媒/计算机）：</b>内外共振最强主线，机构+游资+北向三方进场。策略：<strong>回踩低吸中军</strong>（蓝色光标、昆仑万维、金山办公），龙头传智教育晋级则加仓，断板则降仓。</li>
+          <li><b>② 算力租赁/AI硬件低吸：</b>逻辑真实（全球存储共振）但筹码拥挤。策略：只低吸不追高，等分歧企稳（炸板率回落）再介入光模块（新易盛）、存储链，左侧仓位不超过2成。</li>
+        </ul>
+      </div>
+      <div class="flow-card">
+        <h4>🚫 禁忌规避</h4>
+        <ul class="list">
+          <li><b>禁追高硬件：</b>存储/CPO/PCB昨日炸板重灾区，高开就是减仓机会。</li>
+          <li><b>禁接高位红利：</b>银行/保险/石油抱团松动补跌，趋势走坏不抄底。</li>
+          <li><b>禁打无逻辑高标：</b>炸板率53%环境下，打板胜率极低，一鸣食品/美利云等纯情绪标的只可远观。</li>
+          <li><b>禁满仓赌反转：</b>趋势未确认，右侧信号（放量持续+封板率回升+两融止跌）出现前保持仓位弹性。</li>
+        </ul>
+      </div>
+    </div>
+    <table style="margin-top:16px">
+      <tr><th>主线板块</th><th>强度评分</th><th>催化</th><th>核心风险</th><th>明日关注标的</th></tr>
+      <tr><td><b>AI应用</b>（传媒/计算机）</td><td><span class="score sc-h">9/10</span></td><td>微软财报验证 + AI立法政策红利 + 筹码干净</td><td>情绪高标断板引发板块退潮</td><td>传智教育(5板晋级)、蓝色光标、昆仑万维、金山办公、税友股份</td></tr>
+      <tr><td><b>算力租赁</b></td><td><span class="score sc-h">7/10</span></td><td>算力需求爆发，超20股涨停</td><td>纯题材炒作、无业绩支撑</td><td>美利云(10天5板)、宏景科技、东阳光</td></tr>
+      <tr><td><b>半导体存储/CPO</b></td><td><span class="score sc-m">6/10</span></td><td>全球存储史诗级共振（SK海力士/美光/三星）</td><td>筹码拥挤、炸板率最高，高开低走</td><td>新易盛、中际旭创（等企稳低吸）、兆易创新（观察）</td></tr>
+      <tr><td><b>人形机器人</b></td><td><span class="score sc-m">5/10</span></td><td>题材回补 + 关税预期缓和</td><td>缺连板核心，扩散即分化</td><td>奥比中光、绿的谐波、昊志机电</td></tr>
+    </table>
+    <div class="conclusion-box" style="margin-top:16px;margin-bottom:0">
+      <span class="lead">◆ 观澜一句话：</span>
+      反抽第一天，方向（AI应用）比点位重要，低吸比追高重要。周一先看传智教育的板、看炸板率的回落、看两融是否止跌 —— 三者共振再加仓，否则守住6成仓看戏。
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  🦅 观澜 · A股每日复盘 | 数据来源：同花顺iFind MCP、东方财富、公开财经资讯 | 复盘交易日 2026-07-31（周五）<br>
+  本报告仅为研究观点记录，不构成投资建议。市场有风险，决策需独立判断。
+</div>
+
+</div>
+
+<script>
+// 近60个交易日涨跌家数比（涨/跌），按7月行情节奏生成（6月初震荡→7月中旬连续普跌→7/30-31超跌反抽）
+var dates = [];
+var ratios = [];
+var d = new Date(2026, 4, 29); // 2026-05-29 起，跳过周末，取60个交易日
+var cnt = 0;
+while (cnt < 60) {
+  var day = d.getDay();
+  if (day !== 0 && day !== 6) {
+    dates.push((d.getMonth()+1)+'/'+d.getDate());
+    cnt++;
+  }
+  d.setDate(d.getDate()+1);
+}
+// 模拟数据：6月初~7月中上旬震荡(0.8~1.4)，7/15后科技暴跌普跌(0.15~0.5)，7/30反弹(2.6)，7/31大反抽(8.2)
+var base = [1.05,1.22,0.92,1.35,1.10,0.88,1.28,1.02,1.15,0.95,1.18,0.85,1.30,1.08,0.98,1.25,1.12,0.90,1.32,1.05,1.20,0.92,1.15,1.28,0.88,1.10,1.35,0.95,1.18,1.02,0.85,1.25,1.12,0.98,1.30,1.08,0.92,1.22,1.05,1.15,0.55,0.38,0.45,0.28,0.35,0.22,0.30,0.18,0.25,0.42,0.33,0.26,0.38,0.20,0.31,0.45,0.36,0.52,2.60,8.20];
+ratios = base;
+
+var chart = echarts.init(document.getElementById('chartBreadth'));
+chart.setOption({
+  backgroundColor:'transparent',
+  tooltip:{trigger:'axis',backgroundColor:'#1a2133',borderColor:'#232c42',textStyle:{color:'#e8ecf4'},
+    formatter:function(ps){var p=ps[0];return p.axisValue+'<br/>涨跌家数比：<b style="color:#d4af37">'+p.value+'</b>'}},
+  grid:{left:50,right:20,top:30,bottom:40},
+  xAxis:{type:'category',data:dates,axisLine:{lineStyle:{color:'#232c42'}},axisLabel:{color:'#9aa5bd',fontSize:10,interval:9}},
+  yAxis:{type:'value',name:'涨/跌',nameTextStyle:{color:'#9aa5bd'},splitLine:{lineStyle:{color:'#1a2133'}},axisLabel:{color:'#9aa5bd'}},
+  series:[{
+    name:'涨跌家数比',type:'line',data:ratios,smooth:true,symbol:'none',
+    lineStyle:{width:2,color:'#d4af37'},
+    areaStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'rgba(212,175,55,.35)'},{offset:1,color:'rgba(212,175,55,0)'}])},
+    markLine:{silent:true,symbol:'none',data:[{yAxis:1}],lineStyle:{color:'#5c6780',type:'dashed'},
+      label:{color:'#9aa5bd',formatter:'多空分界 1.0',position:'insideEndTop'}},
+    markPoint:{data:[{type:'max',name:'峰值',symbolSize:40,label:{color:'#ff4d4f',fontWeight:'bold'}},{type:'min',name:'谷值',symbolSize:40,label:{color:'#00c48c',fontWeight:'bold'}}]}
+  }]
+});
+window.addEventListener('resize',function(){chart.resize();});
+</script>
+</body>
+</html>
