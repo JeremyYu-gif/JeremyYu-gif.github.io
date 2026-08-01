@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美股映射复盘 2026-07-31</title>
+<style>
+  :root {
+    --up: #00c48c;
+    --down: #ff5c5c;
+    --bg: #0b0f1a;
+    --card: #131a2b;
+    --card2: #1a2338;
+    --border: #243049;
+    --text: #e8ecf4;
+    --text2: #9aa7c0;
+    --accent: #4f8cff;
+    --accent2: #7c5cff;
+    --gold: #ffb84d;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    line-height: 1.65;
+    padding-bottom: 60px;
+  }
+  .header {
+    background: linear-gradient(135deg, #16224a 0%, #1c1440 55%, #2a0f3a 100%);
+    padding: 42px 24px 36px;
+    text-align: center;
+    border-bottom: 3px solid var(--accent);
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: "";
+    position: absolute;
+    top: -60%; left: -20%;
+    width: 140%; height: 200%;
+    background: radial-gradient(circle at 30% 40%, rgba(79,140,255,.18), transparent 55%),
+                radial-gradient(circle at 75% 65%, rgba(124,92,255,.15), transparent 50%);
+    pointer-events: none;
+  }
+  .header h1 { font-size: 30px; letter-spacing: 2px; position: relative; z-index: 1; }
+  .header .sub { color: var(--text2); margin-top: 10px; font-size: 14px; position: relative; z-index: 1; }
+  .header .badge {
+    display: inline-block; margin-top: 14px; padding: 4px 16px;
+    background: rgba(79,140,255,.15); border: 1px solid rgba(79,140,255,.5);
+    border-radius: 999px; color: #9cc0ff; font-size: 13px; position: relative; z-index: 1;
+  }
+  .container { max-width: 1080px; margin: 0 auto; padding: 28px 16px; }
+  .section-title {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 20px; font-weight: 700; margin: 36px 0 16px;
+    padding-left: 12px; border-left: 4px solid var(--accent);
+  }
+  .section-title .en { font-size: 12px; color: var(--text2); font-weight: 400; letter-spacing: 1px; }
+  .card {
+    background: linear-gradient(160deg, var(--card) 0%, var(--card2) 100%);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.25);
+  }
+  /* 指数卡片 */
+  .idx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .idx-card {
+    background: linear-gradient(160deg, var(--card) 0%, var(--card2) 100%);
+    border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px; text-align: center; position: relative; overflow: hidden;
+  }
+  .idx-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+  .idx-card .name { color: var(--text2); font-size: 13px; }
+  .idx-card .val { font-size: 26px; font-weight: 800; margin: 6px 0 2px; font-variant-numeric: tabular-nums; }
+  .idx-card .chg { font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .idx-card .note { color: var(--text2); font-size: 12px; margin-top: 6px; }
+  .up { color: var(--up); }
+  .down { color: var(--down); }
+  .flat { color: var(--text2); }
+  /* 表格 */
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { color: var(--text2); font-weight: 600; font-size: 13px; background: rgba(255,255,255,.03); }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr:hover td { background: rgba(79,140,255,.05); }
+  .tag { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 12px; margin-right: 6px; }
+  .tag-hot { background: rgba(255,77,77,.15); color: #ff8a8a; border: 1px solid rgba(255,77,77,.4); }
+  .tag-cold { background: rgba(0,196,140,.12); color: #5ce0b4; border: 1px solid rgba(0,196,140,.4); }
+  .tag-info { background: rgba(79,140,255,.12); color: #9cc0ff; border: 1px solid rgba(79,140,255,.4); }
+  .tag-warn { background: rgba(255,184,77,.12); color: #ffd08a; border: 1px solid rgba(255,184,77,.4); }
+  .tag-gold { background: rgba(255,215,0,.1); color: #ffe066; border: 1px solid rgba(255,215,0,.4); }
+  ul { padding-left: 20px; }
+  li { margin: 6px 0; }
+  .kv { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  .kv .item { font-size: 14px; }
+  .kv .item b { color: var(--text); }
+  .quote { border-left: 3px solid var(--gold); background: rgba(255,184,77,.06); padding: 12px 16px; border-radius: 0 10px 10px 0; margin: 10px 0; font-size: 14px; color: #ffd9a0; }
+  .alert { border-left: 3px solid var(--down); background: rgba(255,92,92,.07); padding: 12px 16px; border-radius: 0 10px 10px 0; margin: 10px 0; font-size: 14px; color: #ffb3b3; }
+  .good { border-left: 3px solid var(--up); background: rgba(0,196,140,.07); padding: 12px 16px; border-radius: 0 10px 10px 0; margin: 10px 0; font-size: 14px; color: #8ce8c8; }
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+  .footer { text-align: center; color: var(--text2); font-size: 12px; margin-top: 40px; padding: 0 16px; }
+  .footer .disc { margin-top: 8px; font-size: 11px; opacity: .7; }
+  h3 { font-size: 16px; margin: 14px 0 8px; color: #c9d6f2; }
+  .big-num { font-size: 40px; font-weight: 900; }
+  .flex-between { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; }
+  @media (max-width: 640px) {
+    .header h1 { font-size: 22px; }
+    .idx-card .val { font-size: 22px; }
+    th, td { padding: 8px 8px; font-size: 13px; }
+    .card { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 美股映射复盘</h1>
+  <div class="sub">2026-07-31（周五）· 美国东部时间 7 月最后一个交易日 · 生成于 2026-08-01</div>
+  <div class="badge">🦅 观澜 · 首席研究 · 数据驱动</div>
+</div>
+
+<div class="container">
+
+  <!-- 一、美股整体表现 -->
+  <div class="section-title">一、美股整体表现 <span class="en">MARKET OVERVIEW</span></div>
+
+  <div class="idx-grid">
+    <div class="idx-card">
+      <div class="name">道琼斯工业指数</div>
+      <div class="val">52,485.03</div>
+      <div class="chg up">+277.68 &nbsp;+0.53%</div>
+      <div class="note">7月 +0.32%，月线四连涨</div>
+    </div>
+    <div class="idx-card">
+      <div class="name">标普500指数</div>
+      <div class="val">7,489.00</div>
+      <div class="chg up">+52.17 &nbsp;+0.70%</div>
+      <div class="note">7月 -0.13%，2014年以来首次7月收跌</div>
+    </div>
+    <div class="idx-card">
+      <div class="name">纳斯达克综合指数</div>
+      <div class="val">25,373.00</div>
+      <div class="chg up">+251.68 &nbsp;+1.00%</div>
+      <div class="note">本周 +1.59%，7月 -3.20%</div>
+    </div>
+    <div class="idx-card">
+      <div class="name">罗素2000（小盘）</div>
+      <div class="val">2,931.00</div>
+      <div class="chg down">-14.76 &nbsp;-0.50%</div>
+      <div class="note">小盘跑输大盘，风格分化</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px;">
+    <div class="kv">
+      <div class="item">恐慌指数 VIX：<b>15.91</b> <span class="down">-8.62%</span>（前收 17.41）</div>
+      <div class="item">10年期美债收益率：<b class="down">4.74%</b>（+6bp，一年多新高）</div>
+      <div class="item">美元指数：<b>99.78</b> <span class="down">-0.08%</span>（7月 -1.59%，6月以来新低）</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📌 市场情绪：风险偏好修复，但内部剧烈分化</h3>
+    <p>周五美股高开后盘中反复震荡，最终尾盘拉高收涨，为"疯狂的7月"画上句号。VIX单日大跌8.6%至15.91，显示恐慌情绪明显退潮；但10年期美债收益率升至<b>4.74%（一年多来最高）</b>，油价走强加剧通胀担忧，压制市场整体估值空间。</p>
+    <ul>
+      <li><b>涨的引擎：</b>亚马逊财报大超预期（AWS增速创四年多新高），一举缓解市场对"AI资本开支回报"的担忧，云/AI算力链条集体重估；谷歌、微软跟涨，三大云厂商本周市值合计飙升约1.5万亿美元。</li>
+      <li><b>跌的拖累：</b>苹果财报后暴跌7.35%，市值单日蒸发约3580亿美元——供应限制+iPhone涨价担忧+中国区/服务收入不及预期；存储板块因铠侠财报逊预期集体回调。</li>
+      <li><b>7月全景：</b>AI泡沫担忧、伊朗战争、美联储决议三大变量来回拉扯——纳指7月仍累跌3.2%，标普录得2014年以来首次7月收跌，道指靠价值/能源成分股月线四连涨。</li>
+    </ul>
+  </div>
+
+  <!-- 二、强势板块 -->
+  <div class="section-title">二、强势板块与核心逻辑 <span class="en">SECTORS</span></div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>✅ 强势板块 TOP5（周五表现与逻辑）</h3>
+      <table>
+        <tr><th>板块</th><th class="num">参考表现</th><th>核心逻辑 / 龙头</th></tr>
+        <tr><td><span class="tag tag-hot">强势</span>能源</td><td class="num up">油价 +1.29%</td><td>WTI 84.67美元，7月创3月以来最大月度涨幅；盘后传美以拟轰炸伊朗能源设施，油价再上冲86美元上方。XLE 7月涨9%，能源成2026年最强板块（年内+29%）。</td></tr>
+        <tr><td><span class="tag tag-hot">强势</span>云计算/AI基础设施</td><td class="num up">AMZN +15.32%</td><td>AWS同比+37%（预期31%）验证AI资本开支回报；三大云厂（AMZN/MSFT/GOOGL）本周市值合计+1.5万亿美元。</td></tr>
+        <tr><td><span class="tag tag-hot">强势</span>通信服务/大型科技</td><td class="num up">GOOGL +6.73%</td><td>谷歌云Q2增速82%为三大云厂最快，AI叙事下资金补涨；Meta周四跌近8%后反弹+3.28%。</td></tr>
+        <tr><td><span class="tag tag-hot">强势</span>银行金融</td><td class="num up">GS/C +4%+（周四）</td><td>收益率上行利好净息差，本周银行股普涨；摩根大通、高盛、花旗领跑。</td></tr>
+        <tr><td><span class="tag tag-hot">强势</span>中概股</td><td class="num up">金龙指数 +1.47%</td><td>金龙指数五连阳，本周+8.09%，7月累涨超12%；阿里巴巴+5.12%、百度+3.38%。</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>❌ 弱势板块 TOP3（周五表现与逻辑）</h3>
+      <table>
+        <tr><th>板块</th><th class="num">参考表现</th><th>核心逻辑</th></tr>
+        <tr><td><span class="tag tag-cold">弱势</span>存储/内存</td><td class="num down">美光 -5.90%</td><td>周四暴涨18%后获利回吐 + 铠侠财报逊预期（ADR暴跌10.1%）双重压制；闪迪-5.09%、SK海力士(美股)-3.54%，西部数据+2.21%、希捷+0.52%分化。</td></tr>
+        <tr><td><span class="tag tag-cold">弱势</span>消费电子/苹果链</td><td class="num down">AAPL -7.35%</td><td>财报超预期但指引疲弱：Q4营收指引仅+9~11%低于预期，供应限制+近期iPhone涨价削弱需求担忧，中国区、服务收入不及预期。</td></tr>
+        <tr><td><span class="tag tag-cold">弱势</span>小盘股</td><td class="num down">罗素2000 -0.50%</td><td>资金向大市值AI龙头集中，小盘因子承压；利率高位亦压制小盘估值。</td></tr>
+      </table>
+      <div class="quote" style="margin-top:12px;">📎 补充：7月A股映射参考——煤炭月涨14.29%居首，石油石化、银行、食品饮料居前；电子、通信7月整体调整（申万一级行业口径）。</div>
+    </div>
+  </div>
+
+  <!-- 三、重点个股 -->
+  <div class="section-title">三、重点个股异动 <span class="en">KEY STOCKS</span></div>
+
+  <div class="card">
+    <h3>🚀 涨幅超 ±5% 的重点个股（周五）</h3>
+    <table>
+      <tr><th>个股</th><th class="num">涨跌幅</th><th>事件 / 原因</th></tr>
+      <tr>
+        <td><b>亚马逊 AMZN</b></td>
+        <td class="num up">+15.32%</td>
+        <td>Q2净销售额2006亿美元（+20%）、营业利润275亿美元（+43%），均超预期；<b>AWS收入+37%（预期31%），云增速创四年多新高</b>，直接点燃AI资本开支信心，市值单日大增数千亿美元。</td>
+      </tr>
+      <tr>
+        <td><b>谷歌A GOOGL</b></td>
+        <td class="num up">+6.73%</td>
+        <td>云重估行情延续：7/22财报显示Google Cloud +82%至248亿美元（三大云厂最快）、总收入1198亿美元+24%；AI资本开支兑现逻辑下资金补涨。</td>
+      </tr>
+      <tr>
+        <td><b>苹果 AAPL</b></td>
+        <td class="num down">-7.35%</td>
+        <td>Q3（截至6/27）营收1094亿美元（+16%）创6月季度纪录、EPS 2.02美元（+29%）、iPhone +22%，<b>但①服务收入不及预期 ②大中华区低于预期 ③Q4指引仅+9~11%低于预期 ④供应限制拖累增长 ⑤利润含约2pct关税退税</b>；市场担忧近期iPhone涨价削弱需求。Tim Cook最后一次以CEO身份出席财报电话会。</td>
+      </tr>
+      <tr>
+        <td><b>铠侠ADR KIOXY</b></td>
+        <td class="num down">-10.10%</td>
+        <td>财报逊于预期，成为周五存储板块回调的导火索；拖累美光（-5.90%）、闪迪（-5.09%）、SK海力士美股（-3.54%）集体走弱。</td>
+      </tr>
+    </table>
+
+    <h3>📋 其余重点个股逐一核查（周五）</h3>
+    <table>
+      <tr><th>个股</th><th class="num">涨跌幅</th><th>备注</th></tr>
+      <tr><td>微软 MSFT</td><td class="num up">+3.02%</td><td>周四+15.5%（2008年以来最大单日涨幅，市值单日+4500亿美元创纪录）后延续强势；Q2财报云业务强劲。</td></tr>
+      <tr><td>英伟达 NVDA</td><td class="num up">+2.93%</td><td>市值4.86万亿美元，重夺全球"股王"宝座（苹果下跌让位）。</td></tr>
+      <tr><td>特斯拉 TSLA</td><td class="num up">+0.76%</td><td>收311.21美元，无重大消息，跟随大盘温和上涨。</td></tr>
+      <tr><td>台积电 TSM</td><td class="num up">+0.23%</td><td>收404.25美元；近30日-9%（前期回调），12个月仍+67.3%。</td></tr>
+      <tr><td>AMD</td><td class="num flat">约 -1%</td><td>周四+13%后小幅回吐，收盘约476美元（盘后472.12美元/-0.85%）。</td></tr>
+      <tr><td>英特尔 INTC</td><td class="num flat">数据暂缺</td><td>周四+11%后周五数据未获取；7月累计大跌约33%（StatMuse口径，收约90.2美元），为7月科技调整重灾区。</td></tr>
+      <tr><td>礼来 LLY / 强生 JNJ / 默沙东 MRK / 阿斯利康 AZN</td><td class="num flat">无重大异动</td><td>医药板块周五无系统性消息，未现±5%级别波动；背景：礼来市值约1.1万亿美元，为史上首家突破万亿美元的药企。</td></tr>
+      <tr><td>Meta META</td><td class="num up">+3.28%</td><td>周四因Q2自由现金流暴跌91%（至7.84亿美元，AI资本开支310亿美元）跌近8%，周五超跌反弹。</td></tr>
+    </table>
+  </div>
+
+  <!-- 四、中概股 -->
+  <div class="section-title">四、中概股表现 <span class="en">CHINA ADRs</span></div>
+
+  <div class="card">
+    <div class="flex-between">
+      <div>
+        <h3 style="margin-top:0;">纳斯达克中国金龙指数</h3>
+        <div><span class="big-num up">+1.47%</span></div>
+      </div>
+      <div style="text-align:right;">
+        <div class="tag tag-hot">五连阳</div>
+        <div class="tag tag-info">本周 +8.09%</div>
+        <div class="tag tag-gold">7月 +12%+</div>
+      </div>
+    </div>
+    <table style="margin-top:14px;">
+      <tr><th>个股</th><th class="num">周五涨跌幅</th><th>备注</th></tr>
+      <tr><td><b>阿里巴巴 BABA</b></td><td class="num up"><b>+5.12%</b></td><td>超5%异动：中概板块性行情+AI/云情绪外溢（阿里云为国内AI算力核心）+金龙指数五连阳共振。</td></tr>
+      <tr><td>百度 BIDU</td><td class="num up">+3.38%</td><td>AI叙事（文心/自动驾驶）跟随科技板块走强。</td></tr>
+      <tr><td>拼多多 PDD</td><td class="num up">+1.28%</td><td>收88.56美元，温和上涨（新浪财经行情）。</td></tr>
+      <tr><td>京东 JD</td><td class="num flat">数据暂缺</td><td>收约33.01美元，7月累计+25.47%——近期中概反弹主力。</td></tr>
+      <tr><td>蔚来 NIO</td><td class="num flat">数据暂缺</td><td>收约4.90美元，7月-1.61%，新能源车链跑输大盘。</td></tr>
+      <tr><td>理想 LI / 小鹏 XPEV / B站 BILI</td><td class="num flat">数据暂缺</td><td>周五具体涨跌幅未获取；板块整体温和上行（金龙指数+1.47%），未见±5%级别异动报道。</td></tr>
+    </table>
+    <div class="good">💡 结论：周五仅阿里巴巴超±5%（+5.12%），属板块性行情而非个股事件驱动。中概本周五连阳、7月涨超12%，是美股中表现最强的方向之一，与美元走弱、外资回流新兴市场共振。</div>
+  </div>
+
+  <!-- 五、大宗商品 -->
+  <div class="section-title">五、大宗商品与相关资产 <span class="en">COMMODITIES</span></div>
+
+  <div class="card">
+    <table>
+      <tr><th>资产</th><th class="num">价格</th><th class="num">变动</th><th>要点</th></tr>
+      <tr><td>WTI原油</td><td class="num">84.67 美元/桶</td><td class="num up">+1.29%</td><td>7月为3月以来最大月度涨幅；周五盘后CBS报道美以拟轰炸伊朗能源目标，WTI一度升破86美元。</td></tr>
+      <tr><td>布伦特原油</td><td class="num">90.12 美元/桶</td><td class="num up">约 +1.3%</td><td>美伊冲突升级+霍尔木兹海峡风险溢价维持高位。</td></tr>
+      <tr><td>现货黄金</td><td class="num">约 4,047 美元/盎司</td><td class="num down">-1.46%</td><td>伦敦金下午定盘价4,026.6美元；风险偏好回升+美元企稳致回调，但7月期货仍+0.90%（区间3,963~4,200美元）。</td></tr>
+      <tr><td>LME铜（3个月）</td><td class="num">13,800 美元/吨</td><td class="num up">高位运行</td><td>商品超级周期延续，铜价站上1.38万美元/吨（iFind/LME数据）。</td></tr>
+      <tr><td>LME铝（3个月）</td><td class="num">3,179 美元/吨</td><td class="num up">高位运行</td><td>能源成本+供给约束支撑。</td></tr>
+      <tr><td>10年期美债收益率</td><td class="num">4.74%</td><td class="num down">+6bp</td><td>一年多来最高；通胀粘性+油价上行+财政部供给压制债市。</td></tr>
+      <tr><td>美元指数 DXY</td><td class="num">99.78</td><td class="num down">-0.08%</td><td>7月-1.59%、6月以来新低——美元走弱利好人民币与新兴市场资产。</td></tr>
+    </table>
+    <div class="alert">⚠️ 油价是当前全球资产定价的"关键变量"：伊朗战争升级 → 能源通胀二次抬头 → 美债收益率上行 → 压制成长股估值。周五盘后"美以拟轰炸伊朗能源目标"的消息若证实，下周一油价与通胀预期将再度升温。</div>
+  </div>
+
+  <!-- 六、重要信息 -->
+  <div class="section-title">六、重要信息点评 <span class="en">MACRO & EVENTS</span></div>
+
+  <div class="card">
+    <h3>🏛️ 美联储（7/29，本周三）——按兵不动但内部分歧加剧</h3>
+    <ul>
+      <li>FOMC以<b>9:3</b>维持联邦基金利率在 <b>3.50%~3.75%</b>（连续第5次按兵不动，2022年11月以来最低水平）；<b>3名委员投票主张加息</b>，分歧显著加大。</li>
+      <li>背景：通胀仍远高于2%目标（6月PCE同比3.7%），伊朗战争推升能源价格；新主席<b>凯文·沃什（Kevin Warsh）</b>主持其任内第二次会议，称市场利率上行幅度处于近20年最陡区间之列。</li>
+      <li>市场反应：决议当日（周三）道指暴跌逾1100点，随后周四V型反弹（道指+613.92点/+1.2%），周五续涨——"利空出尽"+财报接力。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📉 通胀数据（6月PCE，7/30发布）——通胀意外降温</h3>
+    <table>
+      <tr><th>指标</th><th class="num">实际值</th><th>解读</th></tr>
+      <tr><td>PCE同比</td><td class="num down">3.7%</td><td>较5月4.1%明显回落，但仍高于2%目标</td></tr>
+      <tr><td>PCE环比</td><td class="num down">-0.1%</td><td>2022年年中以来首次环比下降（6月美伊停火令油价回落）</td></tr>
+      <tr><td>核心PCE环比</td><td class="num down">2025年3月以来最低</td><td>核心通胀降温幅度超预期</td></tr>
+      <tr><td>消费者支出</td><td class="num up">+0.3%</td><td>消费仍有韧性</td></tr>
+    </table>
+    <p style="margin-top:8px;">点评：6月通胀降温是"战争停火红利"，7月油价大涨后这一红利正在消退——这正是美联储不敢转向、市场对二次通胀高度警惕的原因。</p>
+  </div>
+
+  <div class="card">
+    <h3>🌍 地缘政治：美伊冲突——本周市场最大扰动源</h3>
+    <ul>
+      <li>7月美伊军事冲突再度升级，双方持续互袭军事目标；油价应声大涨，能源板块成为2026年最强板块（年内+29%）。</li>
+      <li>周五盘后：<b>CBS报道美国与以色列准备轰炸伊朗能源目标</b>，WTI盘后升破86美元——下周一开盘油价与能源股大概率高开。</li>
+      <li>同时存在缓和线索：阿曼-伊朗就霍尔木兹海峡对话、沙特牵头海上联盟护航计划，令周五盘中油价一度回落。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>💼 财报季速览（本周"超级财报周"收官）</h3>
+    <ul>
+      <li><b>微软（7/29盘后）：</b>股价周四+15.5%，创2008年10月以来最大单日涨幅，市值单日+4500亿美元创美股纪录——云+AI订单超预期。</li>
+      <li><b>Meta（7/29盘后）：</b>营收608亿美元（+28%）超预期，但EPS不及预期、自由现金流暴跌91%至7.84亿美元（单季AI资本开支310亿美元），引发"AI烧钱"担忧，股价周四跌近8%。</li>
+      <li><b>亚马逊/苹果（7/30盘后）：</b>双双超预期但走势冰火两重天——AWS +37%点燃算力信心；苹果指引疲弱引发7.35%暴跌。</li>
+      <li><b>铠侠（7/31）：</b>财报逊预期，ADR -10.1%，拖累存储链。</li>
+      <li>统计：本周六大科技巨头市值合计波动近2万亿美元；三大云厂商（微软/亚马逊/Alphabet）市值合计增加约1.5万亿美元——市场重新定价"AI资本开支回报"。<b>英伟达市值4.86万亿美元，重夺全球股王。</b></li>
+    </ul>
+  </div>
+
+  <!-- 七、映射A股 -->
+  <div class="section-title">七、映射到A股的潜在方向 <span class="en">A-SHARE MAPPING</span> <span class="tag tag-gold" style="margin-left:auto;">★ 最重要</span></div>
+
+  <div class="card">
+    <div class="quote">📎 先行信号：7月31日A股已提前反应——上证+0.72%报3832.26点、创业板+3.06%、科创50盘中涨超8%，成交2.56万亿放量，半导体、AI应用、CPO全线反攻，机构称"科技调整或接近尾声"。</div>
+
+    <h3>1️⃣ 云计算 / AI算力（最核心映射，确定性最高）</h3>
+    <p>逻辑：AWS +37%、Google Cloud +82%、Azure强劲，<b>三大云厂财报验证"AI资本开支正在兑现收入"</b>，直接利好A股算力产业链估值修复。</p>
+    <p>方向：<b>云计算SaaS</b>（金山办公、用友网络、泛微网络）｜<b>服务器/算力硬件</b>（浪潮信息、工业富联、中科曙光）｜<b>IDC/算力租赁</b>（润泽科技、光环新网）｜<b>AI应用</b>（昆仑万维、福昕软件、蓝色光标——7/31已现20cm涨停潮，注意高位分歧）。</p>
+
+    <h3>2️⃣ 光模块 / CPO（AI算力"卖水人"）</h3>
+    <p>逻辑：美股光通信（Lumentum、Coherent周四+15%+）与云厂资本开支共振；A股7/31 CPO已强力反弹（罗博特科+16%、新易盛、中际旭创大幅回暖）。</p>
+    <p>方向：<b>中际旭创、新易盛、天孚通信、罗博特科</b>、源杰科技。</p>
+
+    <h3>3️⃣ 存储芯片（短线分化，中线周期向上）</h3>
+    <p>逻辑：周四美股存储暴涨（美光+18%、闪迪+26%）后周五因铠侠财报逊预期回调——<b>产业趋势（AI带动存储涨价周期）未变，短线波动加大</b>；A股存储链7/31已现"早盘涨停、尾盘分歧"（太极实业涨停、兆易创新/德明利早盘涨停后回落，长鑫科技盘中+13%市值破4万亿）。</p>
+    <p>方向：<b>兆易创新、德明利、佰维存储、江波龙、香农芯创</b>；长鑫科技产业链（五大行战投浮盈超千亿，关注上市进展）。</p>
+
+    <h3>4️⃣ 苹果产业链（短线承压风险）</h3>
+    <p>逻辑：AAPL -7.35%，供应限制+iPhone涨价担忧+中国区低于预期——A股果链周一或低开。但注意iPhone收入+22%仍超预期，回调属"预期差"而非基本面恶化。</p>
+    <p>方向：<b>立讯精密、歌尔股份、蓝思科技、东山精密</b>——若低开幅度大，关注错杀后的修复机会。</p>
+
+    <h3>5️⃣ 石油石化（地缘+通胀主线）</h3>
+    <p>逻辑：WTI 84.67美元、7月最强月度涨幅，盘后传美以拟轰炸伊朗能源设施——油价短期易涨难跌；但A股7/31煤炭石油已现获利回吐（板块月涨幅巨大后），注意节奏。</p>
+    <p>方向：<b>中国海油、中国石油、中海油服、杰瑞股份</b>；油运（中远海能、招商轮船）地缘溢价。</p>
+
+    <h3>6️⃣ 黄金（回调后仍有避险价值）</h3>
+    <p>逻辑：金价周五-1.46%回调（风险偏好回升），但7月仍涨0.9%、地缘+央行购金支撑中期逻辑；美元走弱（DXY 7月-1.59%）亦利好金价。</p>
+    <p>方向：<b>山东黄金、中金黄金、赤峰黄金</b>——回调分批布局。</p>
+
+    <h3>7️⃣ 港股互联网（中概共振，直接受益）</h3>
+    <p>逻辑：金龙指数五连阳（本周+8.09%、7月+12%+），阿里美股+5.12%、百度+3.38%；美元走弱+外资回流新兴市场，港股互联网是A股之外最直接的映射通道。</p>
+    <p>方向：<b>腾讯、阿里巴巴、美团、快手、京东</b>（京东7月+25.47%为反弹龙头）。</p>
+
+    <h3>8️⃣ 风格再平衡：价值防御方向</h3>
+    <p>逻辑：美债收益率4.74%高位+美联储偏鹰+油价上行→高股息防御仍具配置价值；7月A股煤炭+14.29%居首、银行创新高（工行/建行市值破2.9万亿/2.8万亿），"再平衡"是8月关键词。</p>
+    <p>方向：<b>煤炭（中国神华）、银行（工行、建行）、电力（长江电力）、运营商（中国移动）</b>。</p>
+  </div>
+
+  <!-- 八、投资机会 -->
+  <div class="section-title">八、投资机会 <span class="en">OPPORTUNITIES</span></div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>⚡ 短期（1-2周）</h3>
+      <ul>
+        <li><b>算力/云链：</b>金山办公、浪潮信息、中际旭创、新易盛——美股云厂财报验证+7/31 A股已放量启动，短线动量最强。</li>
+        <li><b>港股互联网：</b>腾讯、阿里、美团——金龙五连阳+阿里+5.12%，周一高开概率大；阿里云AI逻辑重估。</li>
+        <li><b>石油链：</b>中国海油、中海油服——美以若袭伊朗能源设施，油价脉冲上行；但追高需防"消息兑现即回落"。</li>
+        <li><b>黄金：</b>回调至4050下方分批低吸，对冲地缘尾部风险。</li>
+        <li><b>苹果链：</b>若周一低开超3%，关注立讯精密错杀修复的短线博弈。</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🎯 中期（1-3个月）</h3>
+      <ul>
+        <li><b>存储周期：</b>兆易创新、佰维存储、江波龙——AI服务器需求拉动存储涨价周期，7月美股已定价，A股逢回调布局，长鑫产业链为最大变量。</li>
+        <li><b>光模块/CPO：</b>中际旭创、天孚通信、新易盛——1.6T升级+云厂资本开支上修，业绩兑现期。</li>
+        <li><b>AI应用商业化：</b>金山办公、福昕软件——美股"AI投入→收入"逻辑被验证后，国内应用商业化预期升温。</li>
+        <li><b>高股息防御：</b>煤炭、银行、电力——利率高位+市场高波动环境下的压舱石（7月煤炭月涨14.29%验证资金偏好）。</li>
+        <li><b>创新药：</b>恒瑞医药、信达生物、百济神州——礼来市值破万亿验证GLP-1/减重赛道天花板，出海逻辑持续。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 九、风险提示 -->
+  <div class="section-title">九、风险提示 <span class="en">RISKS</span></div>
+
+  <div class="card">
+    <ul>
+      <li><b>地缘黑天鹅：</b>若美国/以色列对伊朗能源设施发动打击，油价可能快速冲击90美元上方，全球通胀预期二次抬头，风险资产承压。</li>
+      <li><b>利率风险：</b>10Y美债4.74%创一年多新高，若突破4.8%~5%关口，成长股估值将再度受压——美联储9月会议前利率波动放大。</li>
+      <li><b>美联储内部分歧：</b>9:3投票、3票主张加息，市场对"暂停还是加息"的定价将反复摇摆；周五利率期货显示市场对后续路径预期分歧加大。</li>
+      <li><b>苹果链传导：</b>供应限制+iPhone涨价担忧若持续，A股果链（立讯、歌尔、蓝思）短期承压；中期观察Q4指引是否下修。</li>
+      <li><b>存储高位回调：</b>铠侠财报逊预期提示"涨价周期≠所有公司受益"，A股存储短线已现尾盘分歧，追高风险大。</li>
+      <li><b>技术面：</b>纳指7月累跌3.2%，标普录得2014年以来首次7月收跌——反弹持续性待验证，周五尾盘拉升有"月末调仓"成分，勿盲目追高。</li>
+      <li><b>A股节奏：</b>7/31单日成交2.56万亿、科技股放量大涨后，短线获利回吐压力积聚；风格"再平衡"（科技↔价值）下避免单一押注。</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <div>🦅 观澜 · 美股映射复盘 2026-07-31 ｜ 生成时间：2026-08-01</div>
+    <div class="disc">数据来源：iFind同花顺（EDB）、AP/Reuters/WSJ/CNBC、东方财富、格隆汇、财联社、Investrade等公开信息整理。所有数据已尽量交叉验证，个别标的数据暂缺处已如实标注。本报告仅为研究参考，不构成投资建议。市场有风险，决策需独立判断。</div>
+  </div>
+
+</div>
+</body>
+</html>
