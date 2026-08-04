@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股业绩预告/快报日报 2026-08-05</title>
+<style>
+  :root {
+    --bg: #0d1117; --bg2: #161b22; --bg3: #1c2333;
+    --card: #12181f; --border: #2a3441;
+    --gold: #e3b341; --gold-dim: #b8912e;
+    --green: #2ea06f; --green-bg: rgba(46,160,111,.12);
+    --red: #e5534b; --red-bg: rgba(229,83,75,.12);
+    --blue: #58a6ff; --text: #e6edf3; --muted: #8b949e; --muted2: #6e7681;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif; line-height:1.65; padding:24px 16px 60px; }
+  .wrap { max-width:1080px; margin:0 auto; }
+  .header { text-align:center; padding:34px 20px 26px; background:linear-gradient(135deg,#10161f 0%,#0d1117 60%,#101a26 100%); border:1px solid var(--border); border-radius:14px; margin-bottom:22px; position:relative; overflow:hidden; }
+  .header::before { content:""; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+  .header h1 { font-size:26px; letter-spacing:2px; color:#f0f3f6; font-weight:700; }
+  .header .sub { color:var(--gold); font-size:14px; margin-top:8px; letter-spacing:4px; }
+  .header .meta { color:var(--muted); font-size:12.5px; margin-top:14px; }
+  .header .meta span { display:inline-block; margin:0 10px; }
+  .badge { display:inline-block; padding:2px 10px; border-radius:20px; font-size:11.5px; border:1px solid var(--border); background:var(--bg2); color:var(--muted); }
+  .section { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px 22px; margin-bottom:20px; }
+  .section h2 { font-size:17px; color:var(--gold); margin-bottom:14px; padding-left:11px; border-left:3px solid var(--gold); letter-spacing:1px; }
+  .section h2 .en { color:var(--muted2); font-size:11px; margin-left:8px; letter-spacing:2px; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th { background:var(--bg3); color:var(--gold); font-weight:600; padding:9px 10px; text-align:left; border-bottom:1px solid var(--border); white-space:nowrap; }
+  td { padding:9px 10px; border-bottom:1px solid rgba(42,52,65,.5); color:var(--text); vertical-align:top; }
+  tr:hover td { background:rgba(88,166,255,.04); }
+  .up { color:var(--green); } .down { color:var(--red); } .flat { color:var(--muted); }
+  .tag { display:inline-block; font-size:11px; padding:1px 8px; border-radius:4px; margin-right:5px; }
+  .tag-star { background:var(--gold); color:#1a1a1a; font-weight:700; }
+  .tag-watch { background:rgba(88,166,255,.15); color:var(--blue); border:1px solid rgba(88,166,255,.35); }
+  .tag-neutral { background:rgba(139,148,158,.12); color:var(--muted); border:1px solid var(--border); }
+  .tag-green { background:var(--green-bg); color:var(--green); border:1px solid rgba(46,160,111,.4); }
+  .tag-red { background:var(--red-bg); color:var(--red); border:1px solid rgba(229,83,75,.4); }
+  .card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:16px 18px; margin-bottom:14px; }
+  .card h3 { font-size:15.5px; margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .card h3 .code { color:var(--muted); font-size:12px; font-weight:400; }
+  .card .quote { font-size:13px; color:var(--muted); margin-bottom:10px; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .kv { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px; font-size:12.5px; }
+  .kv b { color:var(--gold); font-weight:600; margin-right:6px; }
+  .kv div { margin-bottom:4px; }
+  .analysis { font-size:13px; margin-top:10px; color:var(--text); }
+  .analysis p { margin-bottom:8px; }
+  .analysis .label { color:var(--blue); font-weight:600; margin-right:4px; }
+  .foot { text-align:center; color:var(--muted2); font-size:11.5px; margin-top:26px; line-height:1.9; }
+  .note { background:rgba(227,179,65,.06); border:1px solid rgba(227,179,65,.25); border-radius:8px; padding:10px 14px; font-size:12.5px; color:var(--muted); margin-bottom:12px; }
+  .kpi-row { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:6px; }
+  .kpi { flex:1; min-width:150px; background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:12px 14px; text-align:center; }
+  .kpi .num { font-size:20px; font-weight:700; color:var(--gold); }
+  .kpi .lbl { font-size:11.5px; color:var(--muted); margin-top:3px; }
+  @media(max-width:720px){ .grid2{grid-template-columns:1fr;} .header h1{font-size:20px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="header">
+  <h1>A股业绩预告 / 业绩快报 日报</h1>
+  <div class="sub">FOR 基金经理老余 · 基本面筛选</div>
+  <div class="meta">
+    <span>📅 报告日期：2026-08-05（周三）</span>
+    <span>📊 当日公告：2家业绩预告 + 2家业绩快报</span>
+    <span class="badge">iFind MCP 断线 · 已降级 EastMoney</span>
+  </div>
+</div>
+
+<div class="section">
+  <h2>市场背景 <span class="en">MARKET CONTEXT · 8/4收盘</span></h2>
+  <div class="kpi-row">
+    <div class="kpi"><div class="num">3822.28 <span style="font-size:13px;color:var(--green)">+0.33%</span></div><div class="lbl">上证指数</div></div>
+    <div class="kpi"><div class="num">13885.71 <span style="font-size:13px;color:var(--green)">+3.25%</span></div><div class="lbl">深证成指</div></div>
+    <div class="kpi"><div class="num">3488.97 <span style="font-size:13px;color:var(--green)">+5.64%</span></div><div class="lbl">创业板指</div></div>
+    <div class="kpi"><div class="num">4600.93 <span style="font-size:13px;color:var(--green)">+1.27%</span></div><div class="lbl">沪深300</div></div>
+    <div class="kpi"><div class="num">1616.36 <span style="font-size:13px;color:var(--green)">+4.09%</span></div><div class="lbl">科创50</div></div>
+  </div>
+  <div class="analysis" style="margin-top:10px;">
+    <p><span class="label">解读：</span>8月4日市场成长风格显著占优，创业板指单日大涨5.64%、科创50涨4.09%，深成指涨幅远超沪指，风险偏好处于高位。科技成长板块强势背景下，中报业绩兑现度成为资金定价核心；8月进入半年报/快报披露密集期，业绩超预期与高景气赛道个股弹性放大。</p>
+  </div>
+  <div class="note">📌 披露期检查：8月5日处于半年报披露窗口（强制预告期7/1-16已过，8月为半年报与业绩快报集中披露期）。当日新增业绩预告2家、业绩快报2家，均为自愿性披露。</div>
+</div>
+
+<div class="section">
+  <h2>今日公告一览 <span class="en">TODAY'S ANNOUNCEMENTS · 共4家</span></h2>
+  <table>
+    <tr><th>代码</th><th>名称</th><th>类型</th><th>方向</th><th>归母净利润(H1)</th><th>同比</th><th>收盘(8/4)</th><th>评级</th></tr>
+    <tr><td>603680</td><td>今创集团</td><td><span class="tag tag-watch">业绩快报</span></td><td><span class="tag tag-green">增长20.64%</span></td><td>4.43亿元</td><td class="up">+20.64%</td><td>10.08 <span class="down">-2.42%</span></td><td><span class="tag tag-watch">📌 关注</span></td></tr>
+    <tr><td>600919</td><td>江苏银行</td><td><span class="tag tag-watch">业绩快报</span></td><td><span class="tag tag-green">稳健增长8.09%</span></td><td>218.76亿元</td><td class="up">+8.09%</td><td>11.46 <span class="down">-1.97%</span></td><td><span class="tag tag-watch">📌 关注</span></td></tr>
+    <tr><td>002933</td><td>新兴装备</td><td><span class="tag tag-neutral">业绩预告(修正)</span></td><td><span class="tag tag-neutral">续盈·扣非高增</span></td><td>1300万-1800万元</td><td class="flat">-16.94%~+15.01%</td><td>25.85 <span class="up">+0.74%</span></td><td><span class="tag tag-neutral">👀 观察</span></td></tr>
+    <tr><td>688510</td><td>航亚科技</td><td><span class="tag tag-neutral">业绩预告</span></td><td><span class="tag tag-red">略减·Q2环比改善</span></td><td>5000万-5500万元</td><td class="down">-10.15%~-18.32%</td><td>21.61 <span class="up">+0.51%</span></td><td><span class="tag tag-neutral">👀 观察</span></td></tr>
+  </table>
+  <div class="note" style="margin-top:12px;">筛选口径：按核心条件（①净利润同比正增长/扭亏 ②扣非净利润≥2000万 ③扣非增速>20%或营收增速>20%）逐项核验；当日方向为"略减"的航亚科技与扣非体量不足的新兴装备列入观察名单。</div>
+</div>
+
+<div class="section">
+  <h2>入选个股深度点评 <span class="en">QUALIFIED PICKS</span></h2>
+
+  <div class="card">
+    <h3>🏆 今创集团 <span class="code">603680.SH</span> <span class="tag tag-watch">📌 关注</span> <span class="tag tag-green">业绩快报·净利+20.64%</span></h3>
+    <div class="quote">轨交车辆装备龙头主动提质：营收-10.16%但净利+20.64%，盈利质量显著改善</div>
+    <div class="grid2">
+      <div class="kv">
+        <div><b>H1营收</b>22.56亿元 <span class="down">(-10.16%)</span></div>
+        <div><b>H1归母净利</b>4.43亿元 <span class="up">(+20.64%)</span></div>
+        <div><b>营业利润</b>5.13亿元 <span class="up">(+20.95%)</span></div>
+        <div><b>H1 ROE(加权)</b>7.50%</div>
+        <div><b>总市值</b>79.0亿 · <b>PE(动)</b>8.91倍 · <b>PB</b>1.37</div>
+      </div>
+      <div class="kv">
+        <div><b>行业</b>轨交设备（申万：机械设备-轨交设备Ⅲ）</div>
+        <div><b>主营</b>轨道交通车辆装备83.3% / 重工设备8.98%（港口起重机械）</div>
+        <div><b>海外占比</b>20.79%（2025年报）</div>
+        <div><b>概念</b>交运设备、储能、新能源、沪股通、破发股</div>
+        <div><b>实控人</b>戈建鸣、俞金坤（民营）</div>
+      </div>
+    </div>
+    <div class="analysis">
+      <p><span class="label">财务质量：</span>三条件全部通过——净利+20.64%正增长、净利体量4.43亿远超扣非门槛、增速>20%达标。更关键的是增量质量：营收同比下降10.16%的同时营业利润增长20.95%，验证公司"主动削减低效、亏损业务，集中资源深耕核心优质业务，加码港口起重机械布局"的战略转型确实在报表端兑现，属于典型的"瘦身提质"式增长（利润增长>收入增长，结构优化驱动）。</p>
+      <p><span class="label">行业/前景：</span>轨交设备行业进入"高铁存量维保+城轨平稳建设+出海"阶段，公司海外收入占比约21%提供第二曲线；港口起重机械受益于港口自动化与设备更新周期，是新增长点。盈利结构的优化（毛利率更高的核心业务占比提升）具备可持续性。</p>
+      <p><span class="label">风险提示：</span>营收端仍处收缩通道，若核心业务订单未能接力，增长可持续性存疑；轨交投资节奏受政策影响大。</p>
+      <p><span class="label">评级：</span>📌 <b>关注</b> —— 增速达标、质量优异，但营收收缩+行业β平淡，建议结合轨交/港口设备订单验证后加仓。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🏦 江苏银行 <span class="code">600919.SH</span> <span class="tag tag-watch">📌 关注</span> <span class="tag tag-green">业绩快报·净利+8.09%</span></h3>
+    <div class="quote">城商行龙头：营收+9.11%、不良率0.81%创上市以来最优，资产质量持续领跑</div>
+    <div class="grid2">
+      <div class="kv">
+        <div><b>H1营收</b>489.52亿元 <span class="up">(+9.11%)</span></div>
+        <div><b>H1归母净利</b>218.76亿元 <span class="up">(+8.09%)</span></div>
+        <div><b>EPS</b>1.13元 · <b>H1 ROE(加权)</b>7.86%</div>
+        <div><b>不良率</b>0.81% <span class="up">(-0.03pct 创新低)</span></div>
+        <div><b>拨备覆盖率</b>304.83%</div>
+        <div><b>总市值</b>2103亿 · <b>PE</b>4.81 · <b>PB</b>0.81</div>
+      </div>
+      <div class="kv">
+        <div><b>行业</b>银行-城商行（全国20家系统重要性银行之一）</div>
+        <div><b>主营</b>公司金融50.96% / 个人金融30.22% / 资金业务18.08%</div>
+        <div><b>概念</b>HS300、MSCI中国、红利股、长期破净、机构重仓</div>
+        <div><b>股东</b>江苏省国际信托（地方国资背景）</div>
+      </div>
+    </div>
+    <div class="analysis">
+      <p><span class="label">财务质量：</span>营收+9.11%在上市银行中处于头部，净利+8.09%保持两位数附近增长；不良率0.81%较上年末再降0.03pct、创上市以来最优，拨备覆盖率304.83%风险抵补充足，"以量补价+资产质量持续出清"的基本面组合扎实。银行股无传统"扣非"口径，净利即核心利润，体量远超门槛。</p>
+      <p><span class="label">行业/前景：</span>城商行中基本面最稳健的标的之一，长三角经济腹地信贷需求有支撑；红利属性突出（长期破净+高股息），在无风险利率下行环境中具备配置价值。注意：净利增速8.09%未达"增速>20%"的成长门槛，属于<b>稳健型而非成长型</b>标的，适合底仓配置而非进攻品种。</p>
+      <p><span class="label">风险提示：</span>息差收窄压力、地产与城投敞口、红利风格切换。</p>
+      <p><span class="label">评级：</span>📌 <b>关注</b> —— 质量最优+红利防御属性，作为组合底仓配置，不适合追求高弹性的资金。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>观察名单 <span class="en">WATCHLIST · 未完全达标</span></h2>
+
+  <div class="card">
+    <h3>⚙️ 新兴装备 <span class="code">002933.SZ</span> <span class="tag tag-neutral">👀 中性谨慎</span> <span class="tag tag-red">预告修正·续盈</span></h3>
+    <div class="quote">扣非+64%~+140%高增但绝对体量不足2000万，归母受参股基金公允价值扰动</div>
+    <div class="grid2">
+      <div class="kv">
+        <div><b>H1归母净利(修正)</b>1300万-1800万 <span class="flat">(-16.94%~+15.01%)</span></div>
+        <div><b>H1扣非净利</b>1230万-1800万 <span class="up">(+64.29%~+140.42%)</span></div>
+        <div><b>Q1归母</b>-222万（Q2环比大幅改善）</div>
+        <div><b>总市值</b>30.3亿 · <b>PB</b>1.98 · PE(动)为负</div>
+      </div>
+      <div class="kv">
+        <div><b>行业</b>国防军工-航空装备（机载悬挂/发射装置、航空电源）</div>
+        <div><b>概念</b>军工、无人机、低空经济、机器人、专精特新、央国企改革</div>
+        <div><b>实控人</b>陕西省国资委（地方国企）</div>
+      </div>
+    </div>
+    <div class="analysis">
+      <p><span class="label">点评：</span>本次预告为<b>上调修正</b>——因参股基金公允价值变动收益增加800-1000万（非经常性损益），归母净利润预测由630-900万上调至1300-1800万。扣非净利1230-1800万同比大增64%~140%，主业确在改善（Q1亏损-222万 → H1扣非转正且高增，Q2单季明显修复），但<b>扣非绝对体量仍<2000万</b>，不满足核心条件2，且归母增速被去年高基数与非经常性损益扰动、方向不明。军工订单波动性大，公司体量小、估值贵（PE为负、PB近2倍），仅作题材跟踪。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>✈️ 航亚科技 <span class="code">688510.SH</span> <span class="tag tag-neutral">👀 中性谨慎</span> <span class="tag tag-red">略减·Q2环比+50%~75%</span></h3>
+    <div class="quote">航空发动机零部件：净利-10%~-18%方向不符，但汇兑/减值扰动下Q2环比强劲修复</div>
+    <div class="grid2">
+      <div class="kv">
+        <div><b>H1营收</b>3.7亿-3.8亿 <span class="up">(+0.17%~+2.88%)</span></div>
+        <div><b>H1归母净利</b>5000万-5500万 <span class="down">(-10.15%~-18.32%)</span></div>
+        <div><b>H1扣非净利</b>4850万-5350万 <span class="down">(-10.02%~-0.74%)</span></div>
+        <div><b>Q2归母环比</b><span class="up">+49.56%~+74.51%</span></div>
+        <div><b>总市值</b>56.2亿 · <b>PE(动)</b>70.1倍 · <b>PB</b>4.76</div>
+      </div>
+      <div class="kv">
+        <div><b>行业</b>国防军工-航空装备（航发关键零部件）</div>
+        <div><b>主营</b>航空90.6%（压气机叶片、整体叶盘）/ 医疗骨科8.1%</div>
+        <div><b>海外占比</b>46.85% · 客户：中国航发、赛峰、RR、GE</div>
+        <div><b>概念</b>大飞机、航天航空、医疗器械、专精特新</div>
+      </div>
+    </div>
+    <div class="analysis">
+      <p><span class="label">点评：</span>净利下滑主要系<b>美元贬值汇兑损失+信用减值计提增加</b>两类扰动（公司海外收入占比近47%，人民币升值直接侵蚀利润），属汇率一次性因素而非经营恶化——营收微增、扣非降幅收敛至-0.74%~-10%，且Q2单季归母环比+49.56%~+74.51%，"客户需求回升、产能逐步释放"的经营改善趋势明确。方向判定"略减"不满足核心条件1，但产业链质地（航发叶片精锻国内稀缺、绑定国际龙头、大飞机+医疗骨科双轮）值得纳入跟踪池，关键变量是人民币汇率与Q2减值回冲节奏。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>数据说明 <span class="en">DISCLOSURE</span></h2>
+  <div class="note">
+    · 数据来源：东方财富妙想 mx-stocks-screener / mx-finance-data / mx-finance-search。iFind MCP 四个服务器当日均返回 "not connected"（网关断线），按降级规则自动切换 EastMoney 完成采集。<br>
+    · 当日公告界定：以数据源"业绩预告日期/业绩快报披露日 = 2026-08-05"为准，未混入前一日（8/4晚间半年报披露潮）数据；8/4晚间半年报（中孚实业、有研新材、百润股份、东方电缆等）属半年报正式披露、非业绩预告/快报范畴，不纳入本报告。<br>
+    · 业绩预告/快报均为公司初步测算、未经审计，最终以半年报为准；扣非数据取自公告原文。<br>
+    · 本报告由资深A股基本面分析师视角生成，仅供内部研究参考，不构成投资建议。
+  </div>
+</div>
+
+<div class="foot">
+  A股业绩预告/业绩快报日报 · 2026-08-05 · 数据源：东方财富妙想（iFind MCP 降级）<br>
+  Generated by Hermes Agent · 分析师小H · 仅供基金经理老余内部参考
+</div>
+
+</div>
+</body>
+</html>
