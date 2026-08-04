@@ -3,328 +3,224 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>龙虎榜游资追踪 2026-08-04</title>
+<title>A股业绩预告日报 2026-08-04</title>
 <style>
-:root {
-  --bg: #0d1117; --bg2: #161b22; --bg3: #1c2333;
-  --border: #2d333b; --text: #e6edf3; --muted: #8b949e;
-  --red: #f85149; --green: #3fb950; --gold: #d29922; --blue: #58a6ff;
-  --purple: #bc8cff;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body { background:var(--bg); color:var(--text); font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif; padding:24px; line-height:1.6; }
-.wrap { max-width:1100px; margin:0 auto; }
-.header { border-bottom:2px solid var(--gold); padding-bottom:16px; margin-bottom:24px; }
-.header h1 { font-size:26px; letter-spacing:1px; }
-.header .sub { color:var(--muted); font-size:13px; margin-top:6px; }
-.header .tag { display:inline-block; background:var(--bg3); border:1px solid var(--border); border-radius:4px; padding:2px 10px; font-size:12px; color:var(--muted); margin-right:8px; margin-top:8px; }
-.kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin-bottom:28px; }
-.kpi { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:16px; }
-.kpi .label { color:var(--muted); font-size:12px; }
-.kpi .value { font-size:24px; font-weight:700; margin-top:4px; }
-.up { color:var(--red); } .down { color:var(--green); }
-h2 { font-size:18px; margin:28px 0 14px; padding-left:10px; border-left:4px solid var(--gold); }
-h3 { font-size:15px; margin:18px 0 10px; color:var(--blue); }
-table { width:100%; border-collapse:collapse; background:var(--bg2); border-radius:8px; overflow:hidden; margin-bottom:14px; font-size:13px; }
-th { background:var(--bg3); color:var(--muted); font-weight:600; padding:10px 12px; text-align:left; white-space:nowrap; }
-td { padding:9px 12px; border-top:1px solid var(--border); }
-tr:hover td { background:#1f2636; }
-.num { text-align:right; font-variant-numeric:tabular-nums; }
-.card { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:16px 18px; margin-bottom:14px; }
-.card .tt { font-size:14px; font-weight:700; margin-bottom:6px; }
-.card .meta { color:var(--muted); font-size:12px; margin-bottom:8px; }
-.badge { display:inline-block; padding:1px 8px; border-radius:3px; font-size:11px; margin-right:6px; }
-.badge.red { background:rgba(248,81,73,.15); color:var(--red); }
-.badge.green { background:rgba(63,185,80,.15); color:var(--green); }
-.badge.blue { background:rgba(88,166,255,.15); color:var(--blue); }
-.badge.gold { background:rgba(210,153,34,.15); color:var(--gold); }
-.badge.purple { background:rgba(188,140,255,.15); color:var(--purple); }
-.alert { background:rgba(248,81,73,.08); border:1px solid rgba(248,81,73,.35); border-radius:8px; padding:14px 16px; margin-bottom:14px; font-size:13px; }
-.alert.green { background:rgba(63,185,80,.08); border-color:rgba(63,185,80,.35); }
-.note { color:var(--muted); font-size:12px; margin-top:6px; }
-.footer { margin-top:36px; padding-top:14px; border-top:1px solid var(--border); color:var(--muted); font-size:12px; text-align:center; }
-.hl { color:var(--gold); font-weight:700; }
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --panel2: #1c2333;
+    --border: #2d333b;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --gold: #d4a72c;
+    --red: #f85149;
+    --green: #3fb950;
+    --blue: #58a6ff;
+    --purple: #bc8cff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.65;
+    padding: 32px 16px;
+  }
+  .container { max-width: 980px; margin: 0 auto; }
+  .header {
+    text-align: center;
+    padding: 36px 24px;
+    background: linear-gradient(135deg, #1a2332 0%, #16202e 100%);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--red), var(--purple));
+  }
+  .header h1 { font-size: 28px; letter-spacing: 1px; margin-bottom: 8px; }
+  .header .sub { color: var(--muted); font-size: 14px; }
+  .badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 8px 4px 0;
+  }
+  .badge-green { background: rgba(63,185,80,.15); color: var(--green); border: 1px solid rgba(63,185,80,.35); }
+  .badge-gold { background: rgba(212,167,44,.15); color: var(--gold); border: 1px solid rgba(212,167,44,.35); }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+  .stat-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-card .num { font-size: 24px; font-weight: 700; color: var(--gold); }
+  .stat-card .label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .section {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+  .section h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .stock-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .stock-name { font-size: 22px; font-weight: 700; }
+  .stock-code { color: var(--muted); font-size: 14px; margin-left: 8px; }
+  .tag {
+    display: inline-block; padding: 3px 10px; border-radius: 6px;
+    font-size: 12px; font-weight: 600; margin-left: 8px;
+  }
+  .tag-up { background: rgba(63,185,80,.15); color: var(--green); }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); font-size: 14px; }
+  th { color: var(--muted); font-weight: 600; background: var(--panel2); white-space: nowrap; }
+  td.num { font-variant-numeric: tabular-nums; text-align: right; }
+  .up { color: var(--green); font-weight: 600; }
+  .warn { color: var(--gold); font-weight: 600; }
+  .down { color: var(--red); font-weight: 600; }
+  .analysis { margin-top: 12px; }
+  .analysis h3 { font-size: 15px; color: var(--blue); margin: 16px 0 8px; }
+  .analysis p { margin-bottom: 10px; font-size: 14px; color: #c9d1d9; }
+  .analysis .kw { color: var(--gold); font-weight: 600; }
+  .rating-box {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    background: rgba(212,167,44,.08);
+    border: 1px solid rgba(212,167,44,.3);
+    font-size: 14px;
+  }
+  .rating-box .star { color: var(--gold); font-size: 16px; }
+  .criteria { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+  .cri-item {
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 13px;
+  }
+  .cri-item .cri-title { color: var(--muted); font-size: 12px; margin-bottom: 4px; }
+  .cri-item .ok { color: var(--green); font-weight: 700; }
+  .footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    padding: 20px 0 8px;
+  }
+  .note {
+    background: rgba(88,166,255,.06);
+    border: 1px solid rgba(88,166,255,.25);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #c9d1d9;
+    margin-top: 16px;
+  }
+  @media (max-width: 720px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .criteria { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="container">
 
-<div class="header">
-  <h1>🐉 龙虎榜游资追踪 — 2026-08-04（周二）</h1>
-  <div class="sub">数据来源：东方财富数据中心（datacenter API）· RPT_BILLBOARD_DAILYDETAILS / RPT_BILLBOARD_SEAT · 涨停池/炸板池 push2ex API · 17:00 发布后采集</div>
-  <div>
-    <span class="tag">📊 上榜个股 85只</span>
-    <span class="tag">🏦 机构净买 38.45亿</span>
-    <span class="tag">🌐 北向净买 24.65亿</span>
-    <span class="tag">🔥 光模块+机器人双主线爆发</span>
+  <div class="header">
+    <h1>📊 A股业绩预告/快报日报</h1>
+    <div class="sub">2026年8月4日 星期二 · 资深基本面分析师小H · 为基金经理老余定制</div>
+    <div>
+      <span class="badge badge-green">今日公告 1 家</span>
+      <span class="badge badge-gold">披露期外自愿披露</span>
+    </div>
   </div>
-</div>
 
-<div class="kpis">
-  <div class="kpi"><div class="label">上证指数</div><div class="value up">3822.28 <span style="font-size:14px">(+0.33%)</span></div></div>
-  <div class="kpi"><div class="label">深证成指</div><div class="value up">13885.71 <span style="font-size:14px">(+3.25%)</span></div></div>
-  <div class="kpi"><div class="label">创业板指</div><div class="value up">3488.97 <span style="font-size:14px">(+5.64%)</span></div></div>
-  <div class="kpi"><div class="label">科创50</div><div class="value up">1616.36 <span style="font-size:14px">(+4.09%)</span></div></div>
-  <div class="kpi"><div class="label">沪深300</div><div class="value up">4600.93 <span style="font-size:14px">(+1.27%)</span></div></div>
-</div>
+  <div class="stats">
+    <div class="stat-card"><div class="num">1</div><div class="label">今日业绩预告公司</div></div>
+    <div class="stat-card"><div class="num">1</div><div class="label">预增/扭亏/大幅上升</div></div>
+    <div class="stat-card"><div class="num">+310.81%</div><div class="label">最高归母增速(中微)</div></div>
+    <div class="stat-card"><div class="num">0</div><div class="label">业绩快报(今日)</div></div>
+  </div>
 
-<div class="alert" style="background:rgba(63,185,80,.1);border-color:rgba(63,185,80,.5)">
-  <b>🟢 今日核心信号：大反弹日，龙虎榜罕见大额净买入。</b> 创业板指 +5.64%、科创50 +4.09%，昨日半导体暴跌后市场强力修复；两市成交 2.21 万亿放量约 2100 亿，上证主力净流入 +124.1 亿（7/27 以来最大单日）。<b>龙虎榜净买入 +72.74 亿、机构专用净买 +38.45 亿、北向净买 +24.65 亿，三大资金罕见同向抢筹。</b> 最强主线：<b>光模块/光通信</b> —— 仕佳光子机构单日净买 +15.77 亿（龙虎榜罕见级别）、东山精密国泰海通系四席位合力 +15.66 亿、鼎通科技/联讯仪器机构纯买。次主线：<b>机器人/具身智能</b> —— 卧龙电驱北向 +6.32 亿、奥比中光北向 +5.47 亿。风险点：高争民爆 26 次炸板、天娱数科机构买北向卖分歧、沪电股份涨停但北向净卖 -2.13 亿。
-</div>
+  <div class="section">
+    <h2>📌 今日入选个股</h2>
 
-<h2>一、龙虎榜总览</h2>
-<table>
-<tr><th>指标</th><th>数值</th><th>说明</th></tr>
-<tr><td>上榜个股（去重）</td><td class="num"><b>85</b> 只</td><td>93 条上榜记录，含 1 只可转债（久吾转02 上市首日）</td></tr>
-<tr><td>总买入 / 总卖出</td><td class="num up">410.81 亿 / 338.07 亿</td><td>龙虎榜披露席位口径合计</td></tr>
-<tr><td>净买入总额</td><td class="num up"><b>+72.74 亿</b></td><td>上榜个股龙虎榜净买入合计（净买 82.77 亿 / 净卖 10.02 亿）</td></tr>
-<tr><td>机构专用席位</td><td class="num up">净 +38.45 亿</td><td>53 只个股 · 买入 120.47 亿 / 卖出 82.01 亿</td></tr>
-<tr><td>北向资金（沪深股通）</td><td class="num up">净 +24.65 亿</td><td>48 只个股 · 买入 121.41 亿 / 卖出 96.76 亿</td></tr>
-<tr><td>涨停家数</td><td class="num up">138 家</td><td>连板梯队：7板×1 / 4板×1 / 3板×6 / 2板×11 / 首板119 · 炸板 15 家</td></tr>
-</table>
-<div class="note">注：净买入/卖出为龙虎榜披露席位口径合计，非全市场资金流。机构+北向净买合计约 63 亿，占龙虎榜净买 87%，大资金是本轮反弹的主要买盘。</div>
+    <div class="stock-head">
+      <div>
+        <span class="stock-name">中微公司</span><span class="stock-code">688012.SH</span>
+        <span class="tag tag-up">预增</span>
+      </div>
+      <div style="color: var(--muted); font-size: 13px;">公告日 2026-08-04（自愿性披露）</div>
+    </div>
 
-<h2>二、机构买入榜 TOP10（机构专用席位）</h2>
-<table>
-<tr><th>#</th><th>个股</th><th>涨跌幅</th><th>机构净买</th><th>机构买入</th><th>机构卖出</th><th>板块/题材</th></tr>
-<tr><td>1</td><td><b>仕佳光子</b> 688313</td><td class="num up">+17.50%</td><td class="num up"><b>+15.77亿</b></td><td class="num">15.77亿</td><td class="num">0</td><td>光芯片/光器件（PLC/AWG/DFB）</td></tr>
-<tr><td>2</td><td><b>联讯仪器</b> 688808</td><td class="num up">+20.00% 涨停</td><td class="num up"><b>+5.18亿</b></td><td class="num">5.18亿</td><td class="num">0</td><td>半导体测试仪器（高速通信）</td></tr>
-<tr><td>3</td><td><b>鼎通科技</b> 688668</td><td class="num up">+18.50%</td><td class="num up"><b>+4.47亿</b></td><td class="num">4.47亿</td><td class="num">0</td><td>高速连接器/光模块液冷散热</td></tr>
-<tr><td>4</td><td><b>天娱数科</b> 002354</td><td class="num up">+10.06% 3连板</td><td class="num up">+3.81亿</td><td class="num">9.17亿</td><td class="num">5.36亿</td><td>AI应用/数字人</td></tr>
-<tr><td>5</td><td><b>东阳光</b> 600673</td><td class="num up">+9.99% 涨停</td><td class="num up">+3.21亿</td><td class="num">3.71亿</td><td class="num">0.51亿</td><td>电极箔/液冷/具身智能</td></tr>
-<tr><td>6</td><td><b>利欧股份</b> 002131</td><td class="num up">+5.85%</td><td class="num up">+1.80亿</td><td class="num">6.10亿</td><td class="num">4.30亿</td><td>AI营销</td></tr>
-<tr><td>7</td><td><b>浙江荣泰</b> 603119</td><td class="num up">+6.79%</td><td class="num up">+1.49亿</td><td class="num">2.54亿</td><td class="num">1.05亿</td><td>机器人云母绝缘材料</td></tr>
-<tr><td>8</td><td><b>易点天下</b> 301171</td><td class="num up">+16.26%</td><td class="num up">+1.36亿</td><td class="num">5.98亿</td><td class="num">4.62亿</td><td>AI营销/出海</td></tr>
-<tr><td>9</td><td><b>蘅东光</b> 920045</td><td class="num up">+20.83%</td><td class="num up">+1.34亿</td><td class="num">1.53亿</td><td class="num">0.19亿</td><td>光通信无源器件（北交所）</td></tr>
-<tr><td>10</td><td><b>高争民爆</b> 002827</td><td class="num up">+10.01%</td><td class="num up">+1.24亿</td><td class="num">1.45亿</td><td class="num">0.21亿</td><td>民爆/西藏基建</td></tr>
-</table>
-<div class="note">机构买入榜高度集中于光模块产业链（仕佳光子/联讯仪器/鼎通科技/蘅东光 合计 +26.76 亿），且仕佳光子、联讯仪器、鼎通科技均为<b>机构纯买（卖出为 0）</b>——机构在建仓而非对倒，是本轮光模块行情最重要的资金特征。</div>
+    <table>
+      <tr><th>指标</th><th>2026H1 预告</th><th>上年同期</th><th>同比变动</th></tr>
+      <tr><td>营业收入</td><td class="num">约 66.91 亿元</td><td class="num">49.61 亿元</td><td class="num up">+34.89%</td></tr>
+      <tr><td>归母净利润</td><td class="num">27 ~ 29 亿元</td><td class="num">7.06 亿元</td><td class="num up">+282.48% ~ +310.81%</td></tr>
+      <tr><td>扣非净利润</td><td class="num">10 ~ 12 亿元</td><td class="num">5.39 亿元</td><td class="num up">+85.61% ~ +122.73%</td></tr>
+      <tr><td>Q2 单季归母(推算)</td><td class="num">17.7 ~ 19.7 亿元</td><td class="num">—</td><td class="num up">环比 +90% ~ +111%</td></tr>
+    </table>
 
-<h3>机构专用席位净卖出 TOP5（风险提示）</h3>
-<table>
-<tr><th>个股</th><th>涨跌幅</th><th>机构净卖</th><th>机构买入</th><th>机构卖出</th></tr>
-<tr><td><b>光智科技</b> 300489</td><td class="num up">+20.00% 涨停</td><td class="num down"><b>-1.37亿</b></td><td class="num">2.74亿</td><td class="num">4.11亿</td></tr>
-<tr><td><b>和林微纳</b> 688661</td><td class="num up">+20.00% 涨停</td><td class="num down"><b>-1.35亿</b></td><td class="num">0.69亿</td><td class="num">2.05亿</td></tr>
-<tr><td><b>行云科技</b> 300209</td><td class="num up">+20.01% 涨停</td><td class="num down">-0.99亿</td><td class="num">2.61亿</td><td class="num">3.60亿</td></tr>
-<tr><td>滨江集团 002244</td><td class="num down">-5.54%</td><td class="num down">-0.72亿</td><td class="num">0.10亿</td><td class="num">0.81亿</td></tr>
-<tr><td>鸿路钢构 002541</td><td class="num down">-6.71%</td><td class="num down">-0.70亿</td><td class="num">0.24亿</td><td class="num">0.94亿</td></tr>
-</table>
-<div class="note">机构在光智科技、和林微纳、行云科技三只 20cm 涨停股上净卖出 —— 高位 20cm 品种机构选择兑现，与低位光模块建仓形成鲜明对比。</div>
+    <div class="criteria">
+      <div class="cri-item"><div class="cri-title">条件1 · 业绩正增长/扭亏</div><span class="ok">✅ 通过</span>（预增 282%~311%）</div>
+      <div class="cri-item"><div class="cri-title">条件2 · 扣非 ≥ 2000万</div><span class="ok">✅ 通过</span>（10~12 亿元）</div>
+      <div class="cri-item"><div class="cri-title">条件3 · 扣非增速 &gt; 20%</div><span class="ok">✅ 通过</span>（+85.61%~122.73%）</div>
+    </div>
 
-<h2>三、知名游资席位动向</h2>
-<div class="card">
-  <div class="tt"><span class="badge red">今日最活跃</span> 国泰海通证券·武汉紫阳东路 — 多线出击王</div>
-  <div class="meta">单席位 5 只个股净买合计约 8.2 亿，全线布局光模块/PCB/算力主线：</div>
-  <table>
-  <tr><th>个股</th><th>方向</th><th>金额</th><th>解读</th></tr>
-  <tr><td><b>东山精密</b> 002384</td><td class="up">买入</td><td class="num up">+3.64亿</td><td>PCB/光模块 · 涨停 · 国泰海通军团成员</td></tr>
-  <tr><td><b>行云科技</b> 300209</td><td class="up">买入</td><td class="num up">+1.59亿</td><td>20cm 涨停 · 算力/ASIC/液冷</td></tr>
-  <tr><td><b>东阳光</b> 600673</td><td class="up">买入</td><td class="num up">+1.22亿</td><td>涨停 · 电极箔/液冷/具身智能</td></tr>
-  <tr><td><b>红板科技</b> 603459</td><td class="up">买入</td><td class="num up">+1.08亿</td><td>PCB · 涨停</td></tr>
-  <tr><td><b>光智科技</b> 300489</td><td class="up">买入</td><td class="num up">+0.66亿</td><td>20cm 涨停 · 光电材料（与机构对手盘）</td></tr>
-  </table>
-</div>
+    <div class="analysis">
+      <h3>一、财务数据与业绩质量</h3>
+      <p>中微公司 2026 年上半年预计归母净利润 <span class="kw">27~29 亿元（+282.48%~310.81%）</span>，表面增速极为亮眼，但拆解后需一分为二看待：<br>
+      ✅ <span class="kw">主业（扣非）真实高增长</span>：扣非净利润 10~12 亿元，同比 +85.61%~122.73%，主要来自营收 +34.89%（66.91 亿元）、毛利同比增加约 6.82 亿元，反映刻蚀/薄膜设备销售放量与规模效应；<br>
+      ⚠️ <span class="kw">大额非经常性收益贡献</span>：对外股权投资公允价值变动收益及投资收益合计约 <span class="warn">19.82 亿元</span>（上年同期仅 1.68 亿元），是归母净利润大增的核心增量，扣非占比约 37%~41%，利润"含金量"需打折。<br>
+      Q2 单季归母净利润推算 17.7~19.7 亿元，环比 Q1（9.3 亿）增长 90%~111%，环比动能强劲。</p>
 
-<div class="card">
-  <div class="tt"><span class="badge purple">国泰海通军团</span> 湛江万豪世家 / 北京知春路 / 中信建投·杭州庆春路 — 合力封板东山精密</div>
-  <div class="meta">东山精密为今日龙虎榜净买第一（+15.87 亿），前五买入席位中四个为游资大额席位：</div>
-  <table>
-  <tr><th>营业部</th><th>个股</th><th>方向</th><th>金额</th><th>备注</th></tr>
-  <tr><td>国泰海通·湛江万豪世家</td><td>东山精密 002384</td><td class="up">买入</td><td class="num up">+4.75亿</td><td>买一主买 · PCB/光模块</td></tr>
-  <tr><td>国泰海通·北京知春路</td><td>东山精密 002384</td><td class="up">买入</td><td class="num up">+3.80亿</td><td>—</td></tr>
-  <tr><td>国泰海通·武汉紫阳东路</td><td>东山精密 002384</td><td class="up">买入</td><td class="num up">+3.64亿</td><td>—</td></tr>
-  <tr><td>中信建投·杭州庆春路</td><td>东山精密 002384</td><td class="up">买入</td><td class="num up">+3.47亿</td><td>同时买风华高科 +1.46亿</td></tr>
-  <tr><td>国投证券·西安曲江池南路</td><td>东山精密 002384</td><td class="down">卖出</td><td class="num down">-2.89亿</td><td>卖一 · 高位兑现</td></tr>
-  </table>
-  <div class="note">四席位合计净买 15.66 亿 + 北向 +3.22 亿，vs 卖一 -2.89 亿 —— 游资军团单票合力强度为近期罕见，封单 9.20 亿。</div>
-</div>
+      <h3>二、行业与概念</h3>
+      <p>所属行业：<span class="kw">电子-半导体-半导体设备</span>（申万 2021）。核心概念：国产芯片、中芯概念、存储芯片、高带宽内存（HBM）、LED 概念等，同时为沪深300、上证50、沪股通成分股。<br>
+      公司已开发出 54 种高端半导体设备（26 种刻蚀机、24 种薄膜/CMP/量检测设备），累计超 8800 个反应台在全球 220 余条产线量产，2026H1 研发投入 20.42 亿元（占营收 30.52%），处于国产设备替代核心赛道。</p>
 
-<div class="card">
-  <div class="tt"><span class="badge blue">成都系</span> 国泰海通证券·成都北一环路 — 光模块买入 / AI 高位兑现</div>
-  <table>
-  <tr><th>个股</th><th>方向</th><th>金额</th><th>解读</th></tr>
-  <tr><td><b>光迅科技</b> 002281</td><td class="up">买入</td><td class="num up">+1.29亿</td><td>涨停 · 光模块（央企）</td></tr>
-  <tr><td><b>华胜天成</b> 600410</td><td class="up">买入</td><td class="num up">+1.02亿</td><td>涨停 · AI算力</td></tr>
-  <tr><td><b>天娱数科</b> 002354</td><td class="down">卖出</td><td class="num down">-3.94亿</td><td>3连板高位兑现（与机构+3.81亿对手盘）</td></tr>
-  </table>
-</div>
+      <h3>三、业绩质量与前景判断</h3>
+      <p><span class="kw">业绩质量</span>：扣非占比偏低（约 37%~41%），归母利润高度依赖对外股权投资公允价值变动，属于典型的"主业高增长 + 投资收益放大利润"结构。若剔除投资损益，主业增速 +85%~123% 依然优秀，说明半导体设备景气度与国产替代逻辑持续兑现。<br>
+      <span class="kw">前景判断</span>：先进制程设备国产化进入加速期，公司新品研发周期由 3~5 年缩短至 2 年，多款产品达到国际先进水平，有望持续放量；但需注意 8/3 股价大跌 9.93%（市场对高估值+利好兑现的博弈），以及海外设备龙头竞争与供应链风险。</p>
+    </div>
 
-<div class="card">
-  <div class="tt"><span class="badge gold">外资+大资金席位</span> 高盛·世纪大道 / 瑞银·花园石桥路 / 摩根大通·银城中路 / 中信·上海分公司 — 机器人方向合力</div>
-  <table>
-  <tr><th>营业部</th><th>个股</th><th>方向</th><th>金额</th><th>备注</th></tr>
-  <tr><td>中信证券·上海分公司</td><td>卧龙电驱 600580</td><td class="up">买入</td><td class="num up">+3.44亿</td><td>机器人电机 · 北向同买 +6.32亿</td></tr>
-  <tr><td>高盛(中国)·上海世纪大道</td><td>卧龙电驱 600580</td><td class="up">买入</td><td class="num up">+1.96亿</td><td>—</td></tr>
-  <tr><td>国泰海通·总部</td><td>卧龙电驱 600580</td><td class="up">买入</td><td class="num up">+1.68亿</td><td>—</td></tr>
-  <tr><td>摩根大通·上海银城中路</td><td>卧龙电驱 600580</td><td class="up">买入</td><td class="num up">+1.02亿</td><td>—</td></tr>
-  <tr><td>瑞银证券·上海花园石桥路</td><td>奥比中光 688322</td><td class="up">买入</td><td class="num up">+1.18亿</td><td>机器人 3D 视觉 · 北向同买 +5.47亿</td></tr>
-  <tr><td>高盛(中国)·上海世纪大道</td><td>奥比中光 688322</td><td class="up">买入</td><td class="num up">+0.74亿</td><td>—</td></tr>
-  <tr><td>中信证券·上海分公司</td><td>仕佳光子 688313</td><td class="down">卖出</td><td class="num down">-2.51亿</td><td>光芯片 · 与机构 +15.77亿对手盘</td></tr>
-  <tr><td>瑞银证券·上海花园石桥路</td><td>仕佳光子 688313</td><td class="down">卖出</td><td class="num down">-1.78亿</td><td>外资兑现（中金 -1.65亿/高盛 -1.19亿 同步）</td></tr>
-  </table>
-  <div class="note">卧龙电驱获 4 席位 + 北向合计约 14.4 亿买入，为今日内外资合力最强的机器人标的；外资在仕佳光子上与机构对手盘（机构买、外资卖）。</div>
-</div>
+    <div class="rating-box">
+      <span class="star">⭐⭐⭐</span> <b>评级：⭐ 强烈关注</b>（主业扣非增速 &gt;85% + 行业景气确认 + 国产替代核心赛道；唯扣非占比偏低，需持续跟踪投资收益波动对利润的扰动）
+    </div>
+  </div>
 
-<div class="card">
-  <div class="tt"><span class="badge green">其他活跃席位</span></div>
-  <table>
-  <tr><th>营业部</th><th>个股</th><th>方向</th><th>金额</th><th>备注</th></tr>
-  <tr><td>东方证券·杭州龙井路</td><td>盈峰环境 000967</td><td class="up">买入</td><td class="num up">+3.64亿</td><td>环保+IDC 概念</td></tr>
-  <tr><td>华泰证券·天津河东金茂广场</td><td>N嘉立创 001232</td><td class="up">买入</td><td class="num up">+3.24亿</td><td>上市首日 +146% · 电子产业互联网（EDA/PCB）</td></tr>
-  <tr><td>长城证券·成都天晖中街</td><td>风华高科 000636</td><td class="up">买入</td><td class="num up">+2.11亿</td><td>MLCC 被动元件</td></tr>
-  <tr><td>浙商证券·杭州五星路</td><td>高争民爆 002827</td><td class="up">买入</td><td class="num up">+1.36亿</td><td>民爆/西藏 · 但炸板 26 次</td></tr>
-  <tr><td>开源证券·西安太华路</td><td>行云科技 300209</td><td class="up">买入</td><td class="num up">+1.05亿</td><td>20cm · 算力</td></tr>
-  <tr><td>开源证券·西安太华路</td><td>宏景科技 301396</td><td class="up">买入</td><td class="num up">+1.05亿</td><td>20cm 涨停 · 算力</td></tr>
-  <tr><td>华泰证券·苏州吴中大道</td><td>神剑股份 002361</td><td class="up">买入</td><td class="num up">+1.05亿</td><td>2连板 · 军工涂料</td></tr>
-  </table>
-</div>
+  <div class="section">
+    <h2>📋 筛选说明</h2>
+    <p style="font-size: 14px; color: #c9d1d9;">数据来源：东方财富 mx-stocks-screener 全量查询（业绩预告日期=2026-08-04），iFind MCP 本轮不可用（not connected），按数据源降级规则全程使用东方财富工作流，并用 mx-finance-search 公告全文交叉核验（公告编号 2026-075）。</p>
+    <p style="font-size: 14px; color: #c9d1d9; margin-top: 8px;">今日全市场仅中微公司 1 家公告业绩预告（8 月中旬为正式中报披露密集期，业绩预告多为自愿性披露，数量自然稀少）。药明康德、四会富仕、三诺生物等为 8/3 晚间正式中报披露，不属于今日业绩预告，按"仅取当天公告"规则未纳入。</p>
+    <div class="note">⚠️ 本报告由 AI 基于公开公告数据生成，仅供研究参考，不构成投资建议。预告数据未经审计，以正式半年报为准。</div>
+  </div>
 
-<h2>四、游资合力个股（多家游资同时买入）</h2>
-<table>
-<tr><th>#</th><th>个股</th><th>涨跌幅</th><th>合力席位</th><th>合计净买</th><th>题材</th></tr>
-<tr><td>1</td><td><b>东山精密</b> 002384</td><td class="num up">+10.00% 涨停</td><td>4 席位（国泰海通×3 + 中信建投杭州庆春路）+ 北向 +3.22亿</td><td class="num up"><b>+15.66亿</b></td><td>PCB/光模块</td></tr>
-<tr><td>2</td><td><b>卧龙电驱</b> 600580</td><td class="num up">+3.36%</td><td>4 席位（中信上海/高盛/国泰海通总部/摩根大通）+ 北向 +6.32亿</td><td class="num up"><b>+8.10亿</b></td><td>机器人电机</td></tr>
-<tr><td>3</td><td><b>N嘉立创</b> 001232</td><td class="num up">+146.28% 首日</td><td>5 席位（华泰天津/广发成都/华西成都/拉萨系×2）</td><td class="num up">+5.73亿</td><td>电子产业互联网（EDA/PCB/元器件）</td></tr>
-<tr><td>4</td><td><b>风华高科</b> 000636</td><td class="num up">+4.56%</td><td>2 席位（长城成都天晖中街/中信建投杭州庆春路）</td><td class="num up">+3.57亿</td><td>MLCC 被动元件</td></tr>
-<tr><td>5</td><td><b>奥比中光</b> 688322</td><td class="num up">—</td><td>3 席位（国泰海通总部/瑞银/高盛）+ 北向 +5.47亿</td><td class="num up">+3.18亿</td><td>机器人 3D 视觉</td></tr>
-<tr><td>6</td><td><b>红板科技</b> 603459</td><td class="num up">+10.00% 涨停</td><td>4 席位（高盛/武汉紫阳东路/华泰总部/中信深圳）</td><td class="num up">+2.80亿</td><td>PCB</td></tr>
-<tr><td>7</td><td><b>行云科技</b> 300209</td><td class="num up">+20.01% 涨停</td><td>2 席位（武汉紫阳东路/开源西安太华路）+ 北向 +2.62亿</td><td class="num up">+2.64亿</td><td>算力/ASIC/液冷</td></tr>
-<tr><td>8</td><td><b>华电辽能</b> 600396</td><td class="num up">+5.54%</td><td>3 席位（中信上海/高盛/瑞银）</td><td class="num up">+2.64亿</td><td>电力（但龙虎榜整体净卖 -1.66亿）</td></tr>
-</table>
-
-<h2>五、题材热度分析</h2>
-
-<div class="card">
-  <div class="tt"><span class="badge gold">🔥 主线一</span> 光模块/光通信 — 机构+北向+游资三方合力（今日最强主线）</div>
-  <div class="meta">上榜：仕佳光子、东山精密、鼎通科技、光迅科技、蘅东光、光库科技、和林微纳、光智科技、通宇通讯、联讯仪器（测试仪器）</div>
-  <table>
-  <tr><th>个股</th><th>涨跌</th><th>机构</th><th>北向</th><th>游资/其他</th></tr>
-  <tr><td>仕佳光子 688313</td><td class="num up">+17.50%</td><td class="num up">+15.77亿</td><td class="num up">+5.54亿</td><td>外资兑现（瑞银-1.78/中金-1.65/高盛-1.19）</td></tr>
-  <tr><td>东山精密 002384</td><td class="num up">+10% 涨停</td><td class="num">-0.13亿（对倒）</td><td class="num up">+3.22亿</td><td>国泰海通军团 +15.66亿</td></tr>
-  <tr><td>鼎通科技 688668</td><td class="num up">+18.50%</td><td class="num up">+4.47亿</td><td class="num">—</td><td>连接器/光模块液冷</td></tr>
-  <tr><td>光迅科技 002281</td><td class="num up">+10% 涨停</td><td class="num">—</td><td class="num up">+2.54亿</td><td>成都系 +1.29亿</td></tr>
-  <tr><td>联讯仪器 688808</td><td class="num up">+20% 涨停</td><td class="num up">+5.18亿</td><td class="num">—</td><td>半导体测试仪器 · 高盛 -1.43亿</td></tr>
-  <tr><td>和林微纳 688661</td><td class="num up">+20% 涨停</td><td class="num down">-1.35亿</td><td class="num down">-2.36亿</td><td>高位 20cm 分歧</td></tr>
-  <tr><td>光智科技 300489</td><td class="num up">+20% 涨停</td><td class="num down">-1.37亿</td><td class="num">—</td><td>武汉紫阳东路 +0.66亿</td></tr>
-  </table>
-  <div class="note">判断：机构在光模块<b>上游（光芯片/器件/测试/连接器）</b>建仓最坚决（仕佳光子/鼎通科技/联讯仪器机构纯买），游资主攻<b>中游 PCB/组装（东山精密）</b>，北向双向参与。光模块是本轮最确定的资金主线，产业链上游 > 中游 > 下游。</div>
-</div>
-
-<div class="card">
-  <div class="tt"><span class="badge blue">⚡ 主线二</span> 机器人/具身智能 — 内外资共振</div>
-  <div class="meta">上榜：卧龙电驱、奥比中光、中大力德、浙江荣泰、东阳光（具身智能概念）</div>
-  <table>
-  <tr><th>个股</th><th>涨跌</th><th>机构</th><th>北向</th><th>游资/外资</th></tr>
-  <tr><td>卧龙电驱 600580</td><td class="num up">+3.36%</td><td class="num">—</td><td class="num up">+6.32亿</td><td>4 席位 +8.10亿（中信上海/高盛/国泰海通总部/摩根大通）</td></tr>
-  <tr><td>奥比中光 688322</td><td class="num up">—</td><td class="num">—</td><td class="num up">+5.47亿</td><td>3 席位 +3.18亿（国泰海通总部/瑞银/高盛）</td></tr>
-  <tr><td>中大力德 002896</td><td class="num up">+6.06%</td><td class="num up">+1.20亿</td><td class="num">—</td><td>减速器</td></tr>
-  <tr><td>浙江荣泰 603119</td><td class="num up">+6.79%</td><td class="num up">+1.49亿</td><td class="num">—</td><td>云母绝缘材料</td></tr>
-  </table>
-  <div class="note">判断：电机（卧龙）、视觉（奥比中光）、减速器（中大力德）、材料（浙江荣泰）全链条上榜且均为净买入，机器人中长线景气获得内外资确认；卧龙电驱为今日北向单票净买第一（+6.32亿）。</div>
-</div>
-
-<div class="card">
-  <div class="tt"><span class="badge green">🟢 主线三</span> AI 应用/算力 — 连板+机构共振</div>
-  <table>
-  <tr><th>个股</th><th>涨跌</th><th>机构</th><th>北向</th><th>游资</th></tr>
-  <tr><td>天娱数科 002354</td><td class="num up">+10.06% 3连板</td><td class="num up">+3.81亿</td><td class="num down">-2.18亿</td><td>成都系 -3.94亿（兑现）</td></tr>
-  <tr><td>美利云 000815</td><td class="num up">+10.00% 3连板</td><td class="num">—</td><td class="num">—</td><td>开源西安 +0.88亿（IDC）</td></tr>
-  <tr><td>易点天下 301171</td><td class="num up">+16.26%</td><td class="num up">+1.36亿</td><td class="num">—</td><td>AI 营销</td></tr>
-  <tr><td>利欧股份 002131</td><td class="num up">+5.85%</td><td class="num up">+1.80亿</td><td class="num down">-1.37亿</td><td>AI 营销</td></tr>
-  <tr><td>行云科技 300209</td><td class="num up">+20.01% 涨停</td><td class="num down">-0.99亿</td><td class="num up">+2.62亿</td><td>武汉紫阳东路 +1.59亿</td></tr>
-  <tr><td>华胜天成 600410</td><td class="num up">+10.00% 涨停</td><td class="num">—</td><td class="num up">+2.71亿</td><td>成都系 +1.02亿</td></tr>
-  <tr><td>宏景科技 301396</td><td class="num up">+20.00% 涨停</td><td class="num">—</td><td class="num">—</td><td>开源西安 +1.05亿</td></tr>
-  <tr><td>大位科技 600589</td><td class="num up">+5.67%</td><td class="num">—</td><td class="num up">+2.32亿</td><td>IDC/算力</td></tr>
-  </table>
-  <div class="note">判断：AI 应用方向连板梯队最完整（天娱数科/美利云 3 连板），但分歧已现——天娱数科机构买、北向卖、成都系兑现，短线注意高位分化；算力基础设施（华胜天成/大位科技/行云科技）获北向接力。</div>
-</div>
-
-<div class="card">
-  <div class="tt"><span class="badge purple">🌀 支线</span> PCB / 被动元件 / 民爆</div>
-  <table>
-  <tr><th>方向</th><th>个股</th><th>资金动向</th></tr>
-  <tr><td>PCB</td><td>东山精密（涨停，游资+15.66亿）、红板科技（涨停，游资+2.80亿）、沪电股份（涨停，但北向 -2.13亿、净卖 -1.18亿）</td><td>游资主攻东山，北向抛沪电 —— PCB 内部分化</td></tr>
-  <tr><td>被动元件</td><td>风华高科（+4.56%，游资+3.57亿）、东阳光（涨停，机构+3.21亿）</td><td>MLCC/电极箔获资金关注，消费电子复苏逻辑</td></tr>
-  <tr><td>民爆/西藏</td><td>高争民爆（+10.01%，机构+1.24亿）</td><td>⚠️ 炸板 26 次尾盘回封，筹码极度松动</td></tr>
-  </table>
-</div>
-
-<h2>六、机构 vs 游资对比</h2>
-<table>
-<tr><th>维度</th><th>机构（专用席位）</th><th>游资（知名/活跃营业部）</th></tr>
-<tr><td>今日方向</td><td class="up">净买 +38.45 亿，主攻光芯片（仕佳 +15.77 亿）/测试仪器（联讯 +5.18 亿）/连接器（鼎通 +4.47 亿）</td><td>国泰海通军团合力东山精密 +15.66 亿，多线出击光模块/PCB/算力</td></tr>
-<tr><td>光模块态度</td><td class="up">坚决建仓上游（仕佳/鼎通/联讯纯买），兑现高位 20cm（光智/和林微纳）</td><td class="up">主攻中游 PCB（东山精密），武汉紫阳东路 5 股全买</td></tr>
-<tr><td>机器人态度</td><td>中大力德 +1.20 亿、浙江荣泰 +1.49 亿（小幅参与）</td><td class="up">卧龙电驱 4 席位 +8.10 亿、奥比中光 3 席位 +3.18 亿（外资为主）</td></tr>
-<tr><td>AI 应用态度</td><td class="up">买天娱 +3.81 亿、利欧 +1.80 亿、易点 +1.36 亿</td><td class="down">成都系兑现天娱 -3.94 亿</td></tr>
-<tr><td>合力标的</td><td colspan="2"><b>东山精密</b>（游资 +15.66 / 北向 +3.22 / 机构对倒）、<b>卧龙电驱</b>（外资游资 +8.10 / 北向 +6.32）、<b>仕佳光子</b>（机构 +15.77 / 北向 +5.54 / 外资兑现）</td></tr>
-<tr><td>分歧标的</td><td colspan="2"><b>天娱数科</b>（机构买 +3.81 / 北向卖 -2.18 / 成都系卖 -3.94）、<b>沪电股份</b>（涨停但北向 -2.13 亿）、<b>行云科技</b>（游资买 / 机构卖 -0.99）</td></tr>
-<tr><td>情绪判断</td><td colspan="2">游资活跃度：<b>高</b>｜主流方向：光模块产业链 + 机器人 + AI 算力｜风险：高位 20cm 品种机构兑现、炸板率上升（高争民爆 26 次）</td></tr>
-</table>
-
-<h2>七、连板标杆（涨停池口径，138 家涨停）</h2>
-<table>
-<tr><th>高度</th><th>个股</th><th>题材</th><th>封单/炸板</th><th>首封时间</th></tr>
-<tr><td><b>7 连板</b></td><td><b>传智教育</b> 003032</td><td>AI 教育/IT 培训</td><td class="num">封单 1.51 亿 · 0 炸板</td><td class="num">09:30</td></tr>
-<tr><td><b>4 连板</b></td><td>神雾节能 000820</td><td>节能环保</td><td class="num">封单 0.12 亿 · 0 炸板</td><td class="num">14:36（尾盘）</td></tr>
-<tr><td rowspan="6"><b>3 连板</b></td><td>德龙汇能 000593</td><td>天然气/LNG</td><td class="num">封单 1.43 亿</td><td class="num">09:25 一字</td></tr>
-<tr><td>恒银科技 603106</td><td>金融科技/AI</td><td class="num">封单 0.88 亿 · 1 炸板</td><td class="num">09:25 一字</td></tr>
-<tr><td>新能股份 000595</td><td>新能源</td><td class="num">封单 0.88 亿 · 1 炸板</td><td class="num">09:30</td></tr>
-<tr><td>美利云 000815</td><td>IDC/数据中心</td><td class="num">封单 2.99 亿 · 0 炸板</td><td class="num">09:30</td></tr>
-<tr><td>豪尔赛 002963</td><td>智慧城市/照明</td><td class="num">封单 0.45 亿 · 1 炸板</td><td class="num">09:34</td></tr>
-<tr><td>天娱数科 002354</td><td>AI 应用/数字人（龙虎榜机构 +3.81 亿）</td><td class="num">封单 1.11 亿 · 0 炸板</td><td class="num">13:46（午后）</td></tr>
-<tr><td rowspan="11"><b>2 连板</b></td><td>欣天科技 300615</td><td>通信射频（20cm）</td><td class="num">封单 2.44 亿</td><td class="num">09:25 一字</td></tr>
-<tr><td>通宇通讯 002792</td><td>通信天线（龙虎榜机构 +0.91 亿）</td><td class="num">封单 1.16 亿 · 1 炸板</td><td class="num">09:38</td></tr>
-<tr><td>神剑股份 002361</td><td>军工涂料</td><td class="num">封单 1.16 亿 · 1 炸板</td><td class="num">10:25</td></tr>
-<tr><td>达实智能 002421</td><td>智能建筑/算力</td><td class="num">封单 1.31 亿</td><td class="num">09:52</td></tr>
-<tr><td>中国科传 601858</td><td>出版/数据要素</td><td class="num">封单 0.75 亿</td><td class="num">10:03</td></tr>
-<tr><td>顺钠股份 000533</td><td>输配电</td><td class="num">封单 0.92 亿 · 1 炸板</td><td class="num">10:09</td></tr>
-<tr><td>风范股份 601700</td><td>电力铁塔</td><td class="num">封单 1.08 亿</td><td class="num">09:35</td></tr>
-<tr><td>利柏特 605167</td><td>化工工程</td><td class="num">封单 0.74 亿</td><td class="num">09:25 一字</td></tr>
-<tr><td>济民健康 603222</td><td>医药</td><td class="num">封单 0.41 亿</td><td class="num">09:34</td></tr>
-<tr><td>魅视科技 001229</td><td>分布式显控</td><td class="num">封单 0.08 亿 · 3 炸板</td><td class="num">10:45</td></tr>
-<tr><td>胜通能源 001331</td><td>LNG 运输</td><td class="num">封单 0.08 亿 · <b>11 炸板</b></td><td class="num">09:50</td></tr>
-</table>
-<div class="note">⚠️ 烂板警示：高争民爆（炸板 26 次）、胜通能源（炸板 11 次）、魅视科技（3 次）—— 高位连板封板质量差，次日分歧概率大。传智教育 7 连板为市场最高标，题材为 AI 教育。</div>
-
-<h2>八、北向资金（沪深股通专用席位）动向</h2>
-<table>
-<tr><th>个股</th><th>买入</th><th>卖出</th><th>净额</th><th>方向</th></tr>
-<tr><td>卧龙电驱 600580</td><td class="num">6.32亿</td><td class="num">0</td><td class="num up">+6.32亿</td><td class="up">机器人 · 单票净买第一</td></tr>
-<tr><td>仕佳光子 688313</td><td class="num">11.68亿</td><td class="num">6.13亿</td><td class="num up">+5.54亿</td><td class="up">光芯片 · 逆势净买</td></tr>
-<tr><td>奥比中光 688322</td><td class="num">5.47亿</td><td class="num">0</td><td class="num up">+5.47亿</td><td class="up">机器人视觉</td></tr>
-<tr><td>东山精密 002384</td><td class="num">11.45亿</td><td class="num">8.23亿</td><td class="num up">+3.22亿</td><td class="up">PCB/光模块</td></tr>
-<tr><td>东阳光 600673</td><td class="num">3.04亿</td><td class="num">0</td><td class="num up">+3.04亿</td><td class="up">涨停净买</td></tr>
-<tr><td>高争民爆 002827</td><td class="num">3.99亿</td><td class="num">1.07亿</td><td class="num up">+2.92亿</td><td class="up">民爆</td></tr>
-<tr><td>华胜天成 600410</td><td class="num">2.71亿</td><td class="num">0</td><td class="num up">+2.71亿</td><td class="up">算力</td></tr>
-<tr><td>行云科技 300209</td><td class="num">4.17亿</td><td class="num">1.55亿</td><td class="num up">+2.62亿</td><td class="up">20cm 净买</td></tr>
-<tr><td>光迅科技 002281</td><td class="num">7.85亿</td><td class="num">5.32亿</td><td class="num up">+2.54亿</td><td class="up">光模块</td></tr>
-<tr><td>和林微纳 688661</td><td class="num">0</td><td class="num">2.36亿</td><td class="num down">-2.36亿</td><td class="down">20cm 兑现</td></tr>
-<tr><td>沪电股份 002463</td><td class="num">5.42亿</td><td class="num">7.56亿</td><td class="num down">-2.13亿</td><td class="down">涨停仍净卖（PCB 分歧）</td></tr>
-<tr><td>天娱数科 002354</td><td class="num">3.84亿</td><td class="num">6.02亿</td><td class="num down">-2.18亿</td><td class="down">3 连板兑现</td></tr>
-</table>
-<div class="note">北向今日全面净买（+24.65 亿），方向与机构高度重合：光模块（仕佳/光迅）+ 机器人（卧龙/奥比）+ 算力（华胜/大位）。唯一显著分歧在 PCB 沪电股份——涨停但北向净卖 2.13 亿，与游资爆买东山精密形成对照。</div>
-
-<h2>九、对持仓的启示（成长中长线视角）</h2>
-<div class="alert green">
-  <b>1. 光模块是本轮最强主线，且机构处于建仓期而非兑现期。</b> 仕佳光子机构单日净买 +15.77 亿、鼎通科技/联讯仪器机构纯买（卖出为 0），为龙虎榜罕见级别。机构买入集中在<b>上游（光芯片/器件/测试/连接器）</b>而非下游组装——若布局光模块产业链，上游卡位品种的中长线确定性更高。北向同步净买（仕佳 +5.54 亿/光迅 +2.54 亿），内外资方向一致。
-</div>
-<div class="alert green">
-  <b>2. 机器人/具身智能获得内外资共振，中长线景气确认。</b> 卧龙电驱（电机）北向 +6.32 亿、奥比中光（3D 视觉）北向 +5.47 亿 + 外资席位 +3.18 亿、中大力德（减速器）机构 +1.20 亿、浙江荣泰（绝缘材料）机构 +1.49 亿——电机/减速器/视觉/材料全链条上榜且均为净买入。这是产业趋势级别的资金信号，值得作为成长组合的底仓方向持续跟踪。
-</div>
-<div class="alert">
-  <b>3. 高位 20cm 品种机构开始兑现，短线追高需谨慎。</b> 光智科技、和林微纳、行云科技三只 20cm 涨停股机构均净卖出；天娱数科 3 连板但北向 -2.18 亿、成都系 -3.94 亿。短线情绪虽高（涨停 138 家），但高位品种的分歧已在龙虎榜上显性化——<b>追 20cm 连板的风险收益比转差</b>。
-</div>
-<div class="alert">
-  <b>4. PCB 内部分化：游资与北向方向相反。</b> 东山精密获国泰海通军团 +15.66 亿封板，而沪电股份涨停但北向净卖 -2.13 亿、龙虎榜净卖 -1.18 亿。同为 AI PCB，资金态度截然不同——东山（高多层+光模块封装）受追捧，沪电（高多层）遭外资减持。若持仓 PCB，需区分具体产品结构和客户结构。
-</div>
-<div class="alert">
-  <b>5. 情绪温度判断：高，但已现过热信号。</b> 涨停 138 家、7 连板传智教育、龙虎榜净买 +72.74 亿、成交 2.21 万亿放量——赚钱效应全面回暖；但高争民爆 26 次炸板、胜通能源 11 次炸板、涨停池中多只一字板封单偏小，说明<b>情绪处于高潮期而非启动期</b>。操作上：主线（光模块/机器人）回调是机会，纯情绪票注意高潮后的退潮风险。
-</div>
-
-<div class="footer">
-  龙虎榜游资追踪 · 数据来源：东方财富数据中心 API（datacenter-web.eastmoney.com）+ 涨停池/炸板池（push2ex）<br>
-  报告生成时间：2026-08-04 17:00 ｜ 本报告仅供研究参考，不构成投资建议
-</div>
+  <div class="footer">
+    生成时间：2026-08-04 07:01 · 小H 基本面分析 · 数据源：东方财富妙想
+  </div>
 
 </div>
 </body>
