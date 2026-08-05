@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股业绩预告/快报日报 2026-08-06</title>
+<style>
+  :root {
+    --bg: #0b0e14;
+    --bg-card: #131926;
+    --bg-card2: #1a2233;
+    --border: #232d42;
+    --gold: #d4af37;
+    --gold-dim: #8a7328;
+    --green: #2ecc71;
+    --green-bg: rgba(46, 204, 113, 0.12);
+    --red: #e74c3c;
+    --red-bg: rgba(231, 76, 60, 0.12);
+    --blue: #4a9eff;
+    --text: #d8dee9;
+    --text-dim: #8a94a8;
+    --text-bright: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    line-height: 1.7;
+    padding: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .header {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #141b2b 0%, #0d1220 100%);
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+  .header h1 {
+    color: var(--text-bright);
+    font-size: 26px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .header h1 span { color: var(--gold); }
+  .header .sub { color: var(--text-dim); font-size: 14px; }
+  .header .badges { margin-top: 14px; }
+  .badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-right: 8px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    background: var(--bg-card2);
+  }
+  .badge.hot { color: var(--gold); border-color: var(--gold-dim); }
+  .summary-box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .stat {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    text-align: center;
+  }
+  .stat .num { font-size: 28px; font-weight: 700; color: var(--gold); }
+  .stat .lbl { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+  .section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 20px;
+  }
+  .section h2 {
+    color: var(--text-bright);
+    font-size: 18px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section h2::before { content: "◆"; color: var(--gold); font-size: 12px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  th {
+    background: var(--bg-card2);
+    color: var(--text-bright);
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(74, 158, 255, 0.04); }
+  .up { color: var(--red); font-weight: 600; }
+  .down { color: var(--green); font-weight: 600; }
+  .gold { color: var(--gold); font-weight: 600; }
+  .tag {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .tag.star { background: var(--green-bg); color: var(--green); border: 1px solid rgba(46,204,113,.4); }
+  .tag.eye { background: rgba(212,175,55,.1); color: var(--gold); border: 1px solid rgba(212,175,55,.4); }
+  .tag.warn { background: var(--red-bg); color: var(--red); border: 1px solid rgba(231,76,60,.4); }
+  .stock-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 18px;
+  }
+  .stock-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .stock-name { font-size: 17px; color: var(--text-bright); font-weight: 700; }
+  .stock-name .code { color: var(--text-dim); font-weight: 400; font-size: 13px; margin-left: 6px; }
+  .stock-meta { font-size: 12.5px; color: var(--text-dim); margin-bottom: 10px; }
+  .analysis { font-size: 13.5px; }
+  .analysis p { margin-bottom: 8px; }
+  .analysis .label { color: var(--gold); font-weight: 600; }
+  .divider { height: 1px; background: var(--border); margin: 14px 0; }
+  .footer {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 12px;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+    margin-top: 24px;
+  }
+  .risk {
+    background: var(--red-bg);
+    border: 1px solid rgba(231,76,60,.3);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #f0a9a1;
+    margin-top: 10px;
+  }
+  @media (max-width: 700px) {
+    .summary-box { grid-template-columns: repeat(2, 1fr); }
+    body { padding: 12px; }
+    .header { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>A股业绩预告 / 业绩快报 日报 <span>| 2026-08-06</span></h1>
+  <div class="sub">资深基本面分析师 小H · 基金经理 老余 · 数据源：东方财富妙想（iFind MCP当日不可用，已降级）</div>
+  <div class="badges">
+    <span class="badge hot">📅 2026-08-06 周四</span>
+    <span class="badge hot">半年度披露期（自愿披露密集期）</span>
+    <span class="badge">当日公告 7 家</span>
+    <span class="badge">入选 4 家</span>
+  </div>
+</div>
+
+<div class="summary-box">
+  <div class="stat"><div class="num">7</div><div class="lbl">当日公告公司</div></div>
+  <div class="stat"><div class="num">4</div><div class="lbl">入选(预增/扭亏/大幅上升)</div></div>
+  <div class="stat"><div class="num">2</div><div class="lbl">⭐强烈关注</div></div>
+  <div class="stat"><div class="num">2</div><div class="lbl">📌关注</div></div>
+</div>
+
+<div class="section">
+  <h2>今日公告全景（2026-08-06）</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>代码</th><th>名称</th><th>公告类型</th><th>方向</th><th>核心数据</th><th>评级</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>688235</td><td>百济神州</td><td>业绩快报</td>
+        <td><span class="up">大幅上升</span></td>
+        <td>营收222.20亿(+26.8%)，归母净利32.71亿(<span class="up">+627.1%</span>)</td>
+        <td><span class="tag star">⭐强烈关注</span></td>
+      </tr>
+      <tr>
+        <td>688758</td><td>赛分科技</td><td>业绩预告(自愿)</td>
+        <td><span class="up">预增</span></td>
+        <td>归母净利0.97~1.13亿(+80%~110%)，扣非(+100%~135%)</td>
+        <td><span class="tag star">⭐强烈关注</span></td>
+      </tr>
+      <tr>
+        <td>688331</td><td>荣昌生物</td><td>业绩预告(自愿)</td>
+        <td><span class="up">扭亏</span></td>
+        <td>归母净利约47亿(上年-4.50亿)，扣非约43亿</td>
+        <td><span class="tag eye">📌关注</span></td>
+      </tr>
+      <tr>
+        <td>301717</td><td>超纯应材</td><td>业绩预告(发行阶段)</td>
+        <td><span class="up">预增</span></td>
+        <td>H1归母净利预计+67.81%~80.16%（次新股）</td>
+        <td><span class="tag eye">📌关注</span></td>
+      </tr>
+      <tr>
+        <td>688252</td><td>天德钰</td><td>业绩快报</td>
+        <td><span class="down">略降(剔除)</span></td>
+        <td>H1净利1.38亿(-9.42%)，Q2单季+99.79%环比改善</td>
+        <td><span class="tag warn">观察</span></td>
+      </tr>
+      <tr>
+        <td>688828</td><td>国仪公司</td><td>业绩预告</td>
+        <td><span class="down">续亏(剔除)</span></td>
+        <td>半年度续亏，方向不符合</td>
+        <td><span class="tag warn">剔除</span></td>
+      </tr>
+      <tr>
+        <td>688121</td><td>*ST卓然</td><td>业绩快报</td>
+        <td><span class="down">亏损(剔除)</span></td>
+        <td>2025年报亏损1.88亿（非半年报）</td>
+        <td><span class="tag warn">剔除</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="risk" style="margin-top:14px;">⚠️ 说明：8月为半年度业绩快报自愿披露密集期，今日4家入选公司中2家来自业绩快报（百济神州）、2家来自自愿性业绩预告（赛分科技、荣昌生物）。iFind MCP当日处于断线状态（"not connected"），已按降级规则改用东方财富 mx-finance-search 公告原文提取精确财务数据。</div>
+</div>
+
+<div class="section">
+  <h2>⭐ 入选个股深度点评</h2>
+
+  <div class="stock-card">
+    <div class="stock-head">
+      <div class="stock-name">百济神州 <span class="code">688235.SH</span></div>
+      <div><span class="tag star">⭐ 强烈关注</span></div>
+    </div>
+    <div class="stock-meta">业绩快报 · 半年度净利同比 <span class="up">+627.1%</span> · 现价280.60元 · 总市值4327.65亿 · PE(动)66.16倍</div>
+    <div class="analysis">
+      <p><span class="label">财务数据：</span>2026H1营业总收入222.20亿元（+26.8%），归母净利润32.71亿元（上年同期约4.5亿，<span class="up">+627.1%</span>）；产品收入217.97亿元，其中核心产品百悦泽（泽布替尼）全球销售额161.27亿元（+28.7%）。公司同步上调全年业绩预期。</p>
+      <p><span class="label">行业/概念：</span>创新药全球龙头 · BTK抑制剂全球领导者 · PD-1 · ADC管线 · 中概创新药核心资产</p>
+      <p><span class="label">业绩质量：</span>产品收入占比约98%，纯主业驱动，无一次性收益依赖；盈利由"研发+销售费用增速放缓+收入放量"双重驱动，商业化能力已在全球最大医药市场（美国）验证，利润质量极高。</p>
+      <p><span class="label">前景判断：</span>百悦泽在CLL/SLL领域头对头数据持续优效，适应症全球最广；MCL一线上市申请下半年递交（美欧中日），tacabrutideg（BCL2）R/R CLL上市申请亦在推进；追加3亿美元扩建美国生产基地。全球创新药企中少数实现"自研+全球化+盈利"三重兑现的公司，业绩确定性强。</p>
+      <p><span class="label">评级：</span>⭐ 强烈关注 —— 盈利拐点确认 + 收入质量极高 + 全球商业化持续兑现。作为创新药板块压舱石资产，适合中长期底仓配置。</p>
+    </div>
+  </div>
+
+  <div class="stock-card">
+    <div class="stock-head">
+      <div class="stock-name">赛分科技 <span class="code">688758.SH</span></div>
+      <div><span class="tag star">⭐ 强烈关注</span></div>
+    </div>
+    <div class="stock-meta">业绩预告(自愿披露) · 扣非同比 <span class="up">+100%~135%</span> · 现价26.16元 · 总市值108.95亿 · PE(动)76.75倍</div>
+    <div class="analysis">
+      <p><span class="label">财务数据：</span>2026H1营收2.56~2.83亿元（+40%~55%）；归母净利润9660万~1.13亿元（+80%~110%）；扣非净利润9320万~1.09亿元（<span class="up">+100%~135%</span>，上年同期4650万）。扣非占比约97%，利润增速显著高于营收增速，盈利质量优。</p>
+      <p><span class="label">行业/概念：</span>生物医药上游核心耗材 · 液相色谱材料（分析色谱+工业纯化双赛道） · GLP-1/ADC/生物类似药产业链 · 国产替代</p>
+      <p><span class="label">业绩质量：</span>扣非占比97%为入选股中最高，主业驱动无水分；期间费用率同比下行，经营杠杆释放；工业纯化板块同比增速突破60%，新增项目133个，累计储备项目1281个（临床三期及商业化阶段125个），收入可见度高。</p>
+      <p><span class="label">前景判断：</span>"十五五"开局年国家将生物医药确立为新兴支柱产业；全球多款重磅生物创新药专利悬崖驱动生物类似药研发产业化提速；GLP-1、ADC、小核酸等赛道持续扩容，上游纯化填料需求长期景气。中美双生产基地辐射全球，公司是色谱填料国产替代核心标的，成长确定性高。</p>
+      <p><span class="label">评级：</span>⭐ 强烈关注 —— 高增长 + 最高扣非质量 + 行业景气确认 + 政策加持。生物医药上游"卖铲人"逻辑，稀缺的确定性成长资产。</p>
+    </div>
+  </div>
+
+  <div class="stock-card">
+    <div class="stock-head">
+      <div class="stock-name">荣昌生物 <span class="code">688331.SH</span></div>
+      <div><span class="tag eye">📌 关注</span></div>
+    </div>
+    <div class="stock-meta">业绩预告(自愿披露) · 扭亏为盈 · 现价117.80元 · 总市值664.95亿 · PE(动)50.68倍</div>
+    <div class="analysis">
+      <p><span class="label">财务数据：</span>2026H1营收约58.5亿元（<span class="up">+433%</span>，上年10.98亿）；归母净利润约47亿元（上年同期-4.50亿，扭亏）；扣非净利润约43亿元（上年-4.46亿，扭亏）。扣非占比约91.5%。</p>
+      <p><span class="label">行业/概念：</span>创新药 · 自免（泰它西普-BLyS/APRIL双靶） · ADC（维迪西妥单抗-HER2） · BD出海授权</p>
+      <p><span class="label">业绩质量：</span>扭亏幅度巨大，但需注意结构：47亿净利中约43亿为扣非口径，其中大头来自艾伯维RC148（大中华区外独家授权）技术授权收入——属BD一次性/里程碑收入而非产品经营利润；产品端泰它西普、维迪西妥单抗国内销售持续增长但体量仍小。参考2025全年：净利7.09亿中扣非仅0.65亿，可见产品主业仍在爬坡期，盈利主要依赖BD。</p>
+      <p><span class="label">前景判断：</span>公司已连续两年通过BD授权实现扭亏（2025年Vor Biopharma泰它西普授权、2026年艾伯维RC148授权），验证了管线出海价值；但需跟踪授权收入确认节奏与产品收入能否接棒，否则2027年业绩存在高基数回落风险。ADC+自免双平台管线仍是A股稀缺资产，H股+A股双上市。</p>
+      <p><span class="label">评级：</span>📌 关注 —— 扭亏确认但盈利质量依赖BD一次性收入，产品端放量是后续核心观察点。适合作为创新药弹性配置，需严格跟踪季度产品收入。</p>
+    </div>
+  </div>
+
+  <div class="stock-card">
+    <div class="stock-head">
+      <div class="stock-name">超纯应材 <span class="code">301717.SZ</span></div>
+      <div><span class="tag eye">📌 关注</span></div>
+    </div>
+    <div class="stock-meta">业绩预告(发行上市阶段) · H1净利预计 <span class="up">+67.81%~80.16%</span> · 次新股（发行结果已公告，待上市）</div>
+    <div class="analysis">
+      <p><span class="label">财务数据：</span>2026H1营业收入预计+30.86%~40.56%（约2.70~2.90亿元）；归母净利润预计+67.81%~80.16%（约1.03~1.11亿元，2025H1基数6153万）。Q1已实现营收1.47亿（+62.39%）、净利6241万（+58.85%）、扣非6149万（+50.11%），扣非占比98.5%。</p>
+      <p><span class="label">行业/概念：</span>半导体设备核心零部件 · 特殊涂层工艺（刻蚀设备介质窗/喷淋头/内衬等） · 5nm及以下先进制程 · 国产替代 · 专精特新小巨人</p>
+      <p><span class="label">业绩质量：</span>毛利率56.9%，扣非占比98.5%，主业纯正；2023-2025营收/净利CAGR分别71.25%/68.84%，成长斜率陡峭。公司是国内极少数5nm及以下制程刻蚀设备核心零部件本土供应商，2024年国内特殊涂层零部件市占率5.7%，对标KoMiCo/TOTO等国际巨头进口替代空间大。</p>
+      <p><span class="label">前景判断：</span>半导体设备零部件国产化率仍有较大提升空间（预计2029年国内特殊涂层零部件市场105.4亿元）；先进制程演进（更严苛的腔室环境）驱动零部件涂层需求升级。发行价65.99元/股，发行市盈率36.38倍，显著低于参考行业市盈率70.62倍及可比公司均值（124.93倍TTM），安全边际较足。风险：新股上市初期波动大、无历史筹码参考。</p>
+      <p><span class="label">评级：</span>📌 关注 —— 赛道优质+高成长+发行估值合理，次新股需等上市后二级市场定价企稳再介入，上市首日博弈价值与中期配置价值并存。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>剔除 / 观察名单</h2>
+  <table>
+    <thead>
+      <tr><th>代码</th><th>名称</th><th>公告</th><th>剔除原因</th><th>跟踪要点</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>688252</td><td>天德钰</td><td>业绩快报</td>
+        <td>H1归母净利1.38亿，同比-9.42%，营收-0.22%，不符合"预增/扭亏/大幅上升"方向</td>
+        <td>Q2单季净利9198万，环比+99.79%、同比+12.44%，毛利率环比+1.33pct；面板驱动芯片行业景气回暖，若H2延续可重新纳入</td>
+      </tr>
+      <tr>
+        <td>688828</td><td>国仪公司</td><td>业绩预告</td>
+        <td>半年度续亏，方向不符合（次新股，量子精密测量/高端科学仪器）</td>
+        <td>科学仪器国产化主题，待扭亏信号</td>
+      </tr>
+      <tr>
+        <td>688121</td><td>*ST卓然</td><td>业绩快报</td>
+        <td>披露的是2025年报（非2026半年报），净利-1.88亿亏损，且*ST风险警示</td>
+        <td>回避</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <h2>筛选方法说明</h2>
+  <p style="font-size:13.5px;">
+    <span class="label">三条件筛选：</span>① 业绩同比正增长 或 扭亏为盈；② 扣非净利润 ≥ 2000万元；③ 扣非净利润同比增速 &gt; 20% 或 营收增速 &gt; 20%。<br>
+    <span class="label">数据源：</span>东方财富 mx-stocks-screener（今日公告全量，业绩预告4家+业绩快报3家）→ mx-finance-search 公告原文核实（精确归母/扣非净利润、变动原因）→ 剔除续亏/亏损/增速下滑公司。<br>
+    <span class="label">特殊情况：</span>iFind MCP 当日断线（"not connected"），已按技能降级规则切换 EastMoney 公告提取路径，所有财务数字均来自上市公司公告原文，未使用任何编造数据。
+  </p>
+</div>
+
+<div class="section">
+  <h2>风险提示</h2>
+  <div class="risk">
+    ① 业绩预告/快报数据为初步核算，未经审计，以正式半年报为准；<br>
+    ② 荣昌生物盈利主要依赖BD授权收入，2027年存在高基数回落风险；<br>
+    ③ 超纯应材为次新股，上市初期价格波动风险大；<br>
+    ④ 创新药板块（百济神州/荣昌生物/赛分科技）受政策、医保谈判、海外临床数据等事件影响，波动较大；<br>
+    ⑤ 本报告基于公开信息整理，不构成投资建议。
+  </div>
+</div>
+
+<div class="footer">
+  A股业绩预告/业绩快报日报 · 2026-08-06 · 分析师小H · 仅供内部参考，不构成投资建议
+</div>
+
+</body>
+</html>
