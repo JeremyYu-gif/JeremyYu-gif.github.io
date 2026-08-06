@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股业绩预告/快报日报 2026-08-07</title>
+<style>
+  :root {
+    --bg: #0b0e14;
+    --bg-card: #131926;
+    --bg-card2: #1a2233;
+    --border: #232d42;
+    --gold: #d4af37;
+    --gold-dim: #8a7328;
+    --green: #2ecc71;
+    --green-bg: rgba(46, 204, 113, 0.12);
+    --red: #e74c3c;
+    --red-bg: rgba(231, 76, 60, 0.12);
+    --blue: #4a9eff;
+    --text: #d8dee9;
+    --text-dim: #8a94a8;
+    --text-bright: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    line-height: 1.7;
+    padding: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .header {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #141b2b 0%, #0d1220 100%);
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+  .header h1 {
+    color: var(--text-bright);
+    font-size: 26px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .header h1 span { color: var(--gold); }
+  .header .sub { color: var(--text-dim); font-size: 14px; }
+  .header .badges { margin-top: 14px; }
+  .badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-right: 8px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    background: var(--bg-card2);
+  }
+  .badge.hot { color: var(--gold); border-color: var(--gold-dim); }
+  .summary-box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .stat {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    text-align: center;
+  }
+  .stat .num { font-size: 28px; font-weight: 700; color: var(--gold); }
+  .stat .lbl { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+  .section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 20px;
+  }
+  .section h2 {
+    color: var(--text-bright);
+    font-size: 18px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section h2::before { content: "◆"; color: var(--gold); font-size: 12px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  th {
+    background: var(--bg-card2);
+    color: var(--text-bright);
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:hover td { background: rgba(74, 158, 255, 0.04); }
+  .up { color: var(--red); font-weight: 600; }
+  .down { color: var(--green); font-weight: 600; }
+  .gold { color: var(--gold); font-weight: 600; }
+  .tag {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .tag.star { background: var(--green-bg); color: var(--green); border: 1px solid rgba(46,204,113,.4); }
+  .tag.eye { background: rgba(212,175,55,.1); color: var(--gold); border: 1px solid rgba(212,175,55,.4); }
+  .tag.warn { background: var(--red-bg); color: var(--red); border: 1px solid rgba(231,76,60,.4); }
+  .stock-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 18px;
+  }
+  .stock-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .stock-name { font-size: 17px; color: var(--text-bright); font-weight: 700; }
+  .stock-name .code { color: var(--text-dim); font-weight: 400; font-size: 13px; margin-left: 6px; }
+  .stock-meta { font-size: 12.5px; color: var(--text-dim); margin-bottom: 10px; }
+  .analysis { font-size: 13.5px; }
+  .analysis p { margin-bottom: 8px; }
+  .analysis .label { color: var(--gold); font-weight: 600; }
+  .divider { height: 1px; background: var(--border); margin: 14px 0; }
+  .footer {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 12px;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+    margin-top: 24px;
+  }
+  .risk {
+    background: var(--red-bg);
+    border: 1px solid rgba(231,76,60,.3);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #f0a9a1;
+    margin-top: 10px;
+  }
+  @media (max-width: 700px) {
+    .summary-box { grid-template-columns: repeat(2, 1fr); }
+    body { padding: 12px; }
+    .header { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>A股业绩预告 / 业绩快报 日报 <span>| 2026-08-07</span></h1>
+  <div class="sub">资深基本面分析师 小H · 基金经理 老余 · 数据源：东方财富妙想（iFind MCP当日不可用，已降级）</div>
+  <div class="badges">
+    <span class="badge hot">📅 2026-08-07 周五</span>
+    <span class="badge hot">半年度披露期（自愿披露密集期）</span>
+    <span class="badge">当日公告 1 家</span>
+    <span class="badge">入选 1 家</span>
+  </div>
+</div>
+
+<div class="summary-box">
+  <div class="stat"><div class="num">1</div><div class="lbl">当日公告公司</div></div>
+  <div class="stat"><div class="num">1</div><div class="lbl">入选(预增/扭亏/大幅上升)</div></div>
+  <div class="stat"><div class="num">1</div><div class="lbl">⭐强烈关注</div></div>
+  <div class="stat"><div class="num">0</div><div class="lbl">📌关注</div></div>
+</div>
+
+<div class="section">
+  <h2>今日公告全景（2026-08-07）</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>代码</th><th>名称</th><th>公告类型</th><th>方向</th><th>核心数据</th><th>评级</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>688796</td><td>百奥赛图</td><td>业绩预告(自愿)</td>
+        <td><span class="up">预增</span></td>
+        <td>营收9.36~9.46亿(+50.8%~52.4%)，归母净利2.36~2.46亿(<span class="up">+391.87%~412.71%</span>)，扣非1.92~2.02亿(+574.02%~609.04%)</td>
+        <td><span class="tag star">⭐强烈关注</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="risk" style="margin-top:14px;">⚠️ 说明：8月为半年度业绩自愿披露密集期，但多为已披露半年报的公司；今日业绩预告公告仅百奥赛图1家（2026-08-07 00:17 自愿性披露，披露日期为今日）。东方财富 mx-stocks-screener 未收录该凌晨公告（返回"无符合问句要求的A股"），经 mx-finance-search 公告原文检索确认。iFind MCP 当日断线（"not connected" + "unreachable"），已按降级规则改用东方财富 mx-finance-search 公告原文提取精确财务数据。</div>
+</div>
+
+<div class="section">
+  <h2>⭐ 入选个股深度点评</h2>
+
+  <div class="stock-card">
+    <div class="stock-head">
+      <div class="stock-name">百奥赛图 <span class="code">688796.SH</span></div>
+      <div><span class="tag star">⭐ 强烈关注</span></div>
+    </div>
+    <div class="stock-meta">业绩预告(自愿披露) · 扣非同比 <span class="up">+574.02%~609.04%</span> · 现价114.50元 · 总市值511.70亿 · PE(动)176.16倍</div>
+    <div class="analysis">
+      <p><span class="label">财务数据：</span>2026H1营收9.36~9.46亿元（+50.80%~52.41%，上年6.21亿）；归母净利润2.36~2.46亿元（<span class="up">+391.87%~412.71%</span>，上年4799.91万）；扣非净利润1.92~2.02亿元（<span class="up">+574.02%~609.04%</span>，上年仅2855.21万）。扣非占比约81.5%，扣非增速显著高于归母增速，主业驱动无水分。单看利润体量：2026H1预计净利已超2025年全年（1.73亿元），规模化利润加速释放。</p>
+      <p><span class="label">行业/概念：</span>创新药研发上游服务 · 人源化动物模型龙头（模式动物） · 全人抗体发现平台（RenMice系列） · "千鼠万抗"规模化药物发现 · CRO/CDMO · AI+抗体发现 · BD出海授权</p>
+      <p><span class="label">业绩质量：</span>两大业务线双轮驱动：①百奥动物——基因编辑模式动物（数千种靶点人源化小鼠模型）销售与定制服务；②抗体发现与对外授权——依托RenMab/RenLite/RenNano/RenTCR等平台构建"抗体货架"，截至2025年底累计签署超350项药物合作开发/授权/转让协议。收入规模与行业地位提升带动产能规模效应显现，毛利率提升、期间费用率下降，盈利质量优（扣非占比81.5%）。</p>
+      <p><span class="label">前景判断：</span>生物医药行业迈入创新引领新阶段，公司以"全人抗体分子库+靶点人源化小鼠库"双引擎平台卡位创新药最上游，深度承接行业景气度提升红利。"千鼠万抗"已完成约1200个靶点评估，超100万条真实全人抗体序列库面向全球开放合作；客户覆盖全球顶级药企与头部生物科技公司。"湿实验+干实验"结合（真实抗体序列+AI模型成药性筛选）构建差异化壁垒。风险点：估值偏高（PE动176倍）、BD授权收入确认节奏波动、新药研发行业融资周期影响订单。</p>
+      <p><span class="label">评级：</span>⭐ 强烈关注 —— 扣非占比81.5%（&gt;80%）+ 扣非增速574%~609%（&gt;50%）+ 创新药上游赛道景气确认 + 平台型稀缺资产。业绩爆发源于主业规模效应而非一次性收益，是创新药产业链"卖铲人"逻辑的优质代表。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>剔除 / 观察名单</h2>
+  <table>
+    <thead>
+      <tr><th>代码</th><th>名称</th><th>公告</th><th>剔除原因</th><th>跟踪要点</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>—</td><td>欧莱新材</td><td>股票交易异常波动公告</td>
+        <td>业绩预告于2026-07-24已披露（扭亏6500~7000万），今日仅为异常波动公告引用旧数据，非新公告</td>
+        <td>连续3日涨幅偏离值超30%，市盈率显著高于行业，短期涨幅大，注意回调风险</td>
+      </tr>
+      <tr>
+        <td>—</td><td>天合光能</td><td>正式半年报</td>
+        <td>非业绩预告/快报（正式半年报不属于本任务筛选范围）；归母净利-2.70亿减亏90.74%，但扣非-28.90亿仍深度亏损，主因T1 Energy股权处置收益26.2亿</td>
+        <td>Q2单季归母净利1321万转正，经营性现金流+175%至50.72亿；组件龙头穿越周期信号，扣非仍承压需持续跟踪</td>
+      </tr>
+      <tr>
+        <td>—</td><td>麦迪科技</td><td>股票交易异常波动公告</td>
+        <td>业绩预告于2026-07-15已披露（净利650~850万，-69.99%~-77.05%），今日仅为异常波动公告；且方向为下滑不入选</td>
+        <td>扣非550~750万(+52.57%~108.05%)转正，但归母受非经常性损益拖累下滑，观察扣非改善持续性</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <h2>筛选方法说明</h2>
+  <p style="font-size:13.5px;">
+    <span class="label">三条件筛选：</span>① 业绩同比正增长 或 扭亏为盈；② 扣非净利润 ≥ 2000万元；③ 扣非净利润同比增速 &gt; 20% 或 营收增速 &gt; 20%。<br>
+    <span class="label">数据源：</span>东方财富 mx-stocks-screener（今日公告全量查询，业绩预告与业绩快报均返回"无符合要求A股"，因今日唯一公告为凌晨00:17自愿披露）→ mx-finance-search 公告原文检索（发现并核实百奥赛图自愿性业绩预告，精确归母/扣非净利润、变动原因均来自公告全文）→ 剔除旧公告引用（欧莱新材/麦迪科技异常波动公告）与非预告类披露（天合光能正式半年报）。<br>
+    <span class="label">特殊情况：</span>iFind MCP 当日断线（"not connected"，stock-mcp 连续失败），已按技能降级规则切换 EastMoney 公告提取路径，所有财务数字均来自上市公司公告原文，未使用任何编造数据。
+  </p>
+</div>
+
+<div class="section">
+  <h2>风险提示</h2>
+  <div class="risk">
+    ① 业绩预告数据为初步核算，未经审计，以正式半年报为准；<br>
+    ② 百奥赛图 PE(动)176倍估值偏高，BD授权收入确认节奏存在季度间波动；<br>
+    ③ 创新药上游服务受新药研发行业融资周期影响，订单存在波动风险；<br>
+    ④ 今日仅1家公司公告，样本极少，不构成板块性信号；<br>
+    ⑤ 本报告基于公开信息整理，不构成投资建议。
+  </div>
+</div>
+
+<div class="footer">
+  A股业绩预告/业绩快报日报 · 2026-08-07 · 分析师小H · 仅供内部参考，不构成投资建议
+</div>
+
+</body>
+</html>
