@@ -3,370 +3,222 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A股业绩预告/快报日报 2026-08-06</title>
+<title>🐉 龙虎榜游资追踪 — 2026-08-06</title>
 <style>
-  :root {
-    --bg: #0b0e14;
-    --bg-card: #131926;
-    --bg-card2: #1a2233;
-    --border: #232d42;
-    --gold: #d4af37;
-    --gold-dim: #8a7328;
-    --green: #2ecc71;
-    --green-bg: rgba(46, 204, 113, 0.12);
-    --red: #e74c3c;
-    --red-bg: rgba(231, 76, 60, 0.12);
-    --blue: #4a9eff;
-    --text: #d8dee9;
-    --text-dim: #8a94a8;
-    --text-bright: #ffffff;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
-    line-height: 1.7;
-    padding: 24px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .header {
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    background: linear-gradient(135deg, #141b2b 0%, #0d1220 100%);
-    padding: 28px 32px;
-    margin-bottom: 24px;
-    position: relative;
-    overflow: hidden;
-  }
-  .header::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--gold), transparent);
-  }
-  .header h1 {
-    color: var(--text-bright);
-    font-size: 26px;
-    letter-spacing: 1px;
-    margin-bottom: 6px;
-  }
-  .header h1 span { color: var(--gold); }
-  .header .sub { color: var(--text-dim); font-size: 14px; }
-  .header .badges { margin-top: 14px; }
-  .badge {
-    display: inline-block;
-    padding: 3px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    margin-right: 8px;
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    background: var(--bg-card2);
-  }
-  .badge.hot { color: var(--gold); border-color: var(--gold-dim); }
-  .summary-box {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    margin-bottom: 24px;
-  }
-  .stat {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px 20px;
-    text-align: center;
-  }
-  .stat .num { font-size: 28px; font-weight: 700; color: var(--gold); }
-  .stat .lbl { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
-  .section {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 22px 26px;
-    margin-bottom: 20px;
-  }
-  .section h2 {
-    color: var(--text-bright);
-    font-size: 18px;
-    margin-bottom: 16px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .section h2::before { content: "◆"; color: var(--gold); font-size: 12px; }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13.5px;
-  }
-  th {
-    background: var(--bg-card2);
-    color: var(--text-bright);
-    padding: 10px 12px;
-    text-align: left;
-    border-bottom: 2px solid var(--border);
-    white-space: nowrap;
-  }
-  td {
-    padding: 10px 12px;
-    border-bottom: 1px solid var(--border);
-    vertical-align: top;
-  }
-  tr:hover td { background: rgba(74, 158, 255, 0.04); }
-  .up { color: var(--red); font-weight: 600; }
-  .down { color: var(--green); font-weight: 600; }
-  .gold { color: var(--gold); font-weight: 600; }
-  .tag {
-    display: inline-block;
-    padding: 1px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 600;
-  }
-  .tag.star { background: var(--green-bg); color: var(--green); border: 1px solid rgba(46,204,113,.4); }
-  .tag.eye { background: rgba(212,175,55,.1); color: var(--gold); border: 1px solid rgba(212,175,55,.4); }
-  .tag.warn { background: var(--red-bg); color: var(--red); border: 1px solid rgba(231,76,60,.4); }
-  .stock-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px 24px;
-    margin-bottom: 18px;
-  }
-  .stock-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 12px;
-  }
-  .stock-name { font-size: 17px; color: var(--text-bright); font-weight: 700; }
-  .stock-name .code { color: var(--text-dim); font-weight: 400; font-size: 13px; margin-left: 6px; }
-  .stock-meta { font-size: 12.5px; color: var(--text-dim); margin-bottom: 10px; }
-  .analysis { font-size: 13.5px; }
-  .analysis p { margin-bottom: 8px; }
-  .analysis .label { color: var(--gold); font-weight: 600; }
-  .divider { height: 1px; background: var(--border); margin: 14px 0; }
-  .footer {
-    text-align: center;
-    color: var(--text-dim);
-    font-size: 12px;
-    padding: 20px 0;
-    border-top: 1px solid var(--border);
-    margin-top: 24px;
-  }
-  .risk {
-    background: var(--red-bg);
-    border: 1px solid rgba(231,76,60,.3);
-    border-radius: 8px;
-    padding: 12px 16px;
-    font-size: 13px;
-    color: #f0a9a1;
-    margin-top: 10px;
-  }
-  @media (max-width: 700px) {
-    .summary-box { grid-template-columns: repeat(2, 1fr); }
-    body { padding: 12px; }
-    .header { padding: 20px; }
-  }
+:root {
+  --bg: #0d1117; --panel: #161b22; --panel2: #1c2333; --border: #2d333b;
+  --up: #f85149; --down: #3fb950; --flat: #8b949e; --gold: #d4a72c;
+  --blue: #58a6ff; --purple: #bc8cff; --text: #e6edf3; --muted: #8b949e;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:"PingFang SC","Microsoft YaHei",sans-serif; padding:24px; }
+.wrap { max-width:1180px; margin:0 auto; }
+h1 { font-size:26px; margin-bottom:4px; }
+.sub { color:var(--muted); font-size:13px; margin-bottom:20px; }
+.badge { display:inline-block; padding:2px 10px; border-radius:10px; font-size:12px; margin-right:6px; }
+.b-up { background:rgba(248,81,73,.15); color:var(--up); }
+.b-gold { background:rgba(212,167,44,.15); color:var(--gold); }
+.b-blue { background:rgba(88,166,255,.15); color:var(--blue); }
+.panel { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:18px; margin-bottom:18px; }
+.panel h2 { font-size:17px; margin-bottom:12px; padding-left:10px; border-left:3px solid var(--gold); }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; }
+.kpi { background:var(--panel2); border-radius:8px; padding:14px; text-align:center; }
+.kpi .v { font-size:22px; font-weight:700; margin-top:4px; }
+.kpi .l { font-size:12px; color:var(--muted); }
+.up { color:var(--up); } .down { color:var(--down); } .flat { color:var(--flat); }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th { text-align:left; padding:8px 10px; background:var(--panel2); color:var(--muted); font-weight:600; white-space:nowrap; }
+td { padding:8px 10px; border-bottom:1px solid var(--border); }
+tr:hover td { background:rgba(88,166,255,.05); }
+.num { text-align:right; font-variant-numeric:tabular-nums; }
+.tag { display:inline-block; padding:1px 8px; border-radius:8px; font-size:11px; margin-left:6px; }
+.t-gold { background:rgba(212,167,44,.15); color:var(--gold); }
+.t-blue { background:rgba(88,166,255,.15); color:var(--blue); }
+.t-purple { background:rgba(188,140,255,.15); color:var(--purple); }
+.t-red { background:rgba(248,81,73,.15); color:var(--up); }
+.note { background:var(--panel2); border-radius:8px; padding:12px 14px; font-size:13px; line-height:1.7; margin-bottom:8px; }
+.note b { color:var(--gold); }
+.footer { color:var(--muted); font-size:12px; text-align:center; margin-top:20px; padding-bottom:20px; }
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+@media(max-width:800px) { .two-col { grid-template-columns:1fr; } }
+.src { font-size:11px; color:var(--muted); margin-top:6px; }
+.alert { background:rgba(248,81,73,.08); border:1px solid rgba(248,81,73,.35); border-radius:8px; padding:12px 14px; font-size:13px; line-height:1.7; margin-bottom:8px; }
+.alert b { color:var(--up); }
 </style>
 </head>
 <body>
+<div class="wrap">
+<h1>🐉 龙虎榜游资追踪 <span style="color:var(--gold)">— 2026-08-06</span></h1>
+<div class="sub">
+  <span class="badge b-up">数据源：东方财富Datacenter API / 涨停池</span>
+  <span class="badge b-gold">市场情绪：退潮分化</span>
+  <span class="badge b-blue">游资活跃度：低</span>
+  生成时间：2026-08-06 17:05 | 龙虎榜数据为收盘后披露
+</div>
 
-<div class="header">
-  <h1>A股业绩预告 / 业绩快报 日报 <span>| 2026-08-06</span></h1>
-  <div class="sub">资深基本面分析师 小H · 基金经理 老余 · 数据源：东方财富妙想（iFind MCP当日不可用，已降级）</div>
-  <div class="badges">
-    <span class="badge hot">📅 2026-08-06 周四</span>
-    <span class="badge hot">半年度披露期（自愿披露密集期）</span>
-    <span class="badge">当日公告 7 家</span>
-    <span class="badge">入选 4 家</span>
+<div class="panel">
+  <h2>📊 大盘与情绪概览</h2>
+  <div class="grid">
+    <div class="kpi"><div class="l">上证指数</div><div class="v up">3900.35 <span style="font-size:14px">+0.57%</span></div></div>
+    <div class="kpi"><div class="l">深证成指</div><div class="v down">14110.12 <span style="font-size:14px">-0.24%</span></div></div>
+    <div class="kpi"><div class="l">创业板指</div><div class="v down">3515.56 <span style="font-size:14px">-0.55%</span></div></div>
+    <div class="kpi"><div class="l">科创50</div><div class="v up">1701.29 <span style="font-size:14px">+0.45%</span></div></div>
+    <div class="kpi"><div class="l">沪深300</div><div class="v down">4651.31 <span style="font-size:14px">-0.15%</span></div></div>
+    <div class="kpi"><div class="l">全市场涨停</div><div class="v up">79家 <span style="font-size:13px;color:var(--muted)">(昨103)</span></div></div>
+    <div class="kpi"><div class="l">连板最高</div><div class="v" style="color:var(--gold)">爱丽家居 10连板</div></div>
   </div>
+  <div class="src">指数分化：上证靠煤炭/权重翻红，创业板、深成指收绿，科创50小幅上涨。涨停家数从昨日103家收缩至79家，赚钱效应降温。前日8连板龙头传智教育今日断板大跌-6.65%，高标退潮信号明确。</div>
 </div>
 
-<div class="summary-box">
-  <div class="stat"><div class="num">7</div><div class="lbl">当日公告公司</div></div>
-  <div class="stat"><div class="num">4</div><div class="lbl">入选(预增/扭亏/大幅上升)</div></div>
-  <div class="stat"><div class="num">2</div><div class="lbl">⭐强烈关注</div></div>
-  <div class="stat"><div class="num">2</div><div class="lbl">📌关注</div></div>
+<div class="panel">
+  <h2>📋 龙虎榜总览（剔除可转债）</h2>
+  <div class="grid">
+    <div class="kpi"><div class="l">上榜个股</div><div class="v">93只 <span style="font-size:13px;color:var(--muted)">(昨63)</span></div></div>
+    <div class="kpi"><div class="l">净买入总额</div><div class="v down">-26.68亿</div></div>
+    <div class="kpi"><div class="l">买入总额</div><div class="v up">747.38亿</div></div>
+    <div class="kpi"><div class="l">卖出总额</div><div class="v down">774.06亿</div></div>
+    <div class="kpi"><div class="l">上涨家数</div><div class="v up">80</div></div>
+    <div class="kpi"><div class="l">下跌家数</div><div class="v down">13</div></div>
+  </div>
+  <div class="src">⚠️ 龙虎榜资金方向反转：昨日净买入+29.62亿 → 今日净卖出-26.68亿。上榜个股虽达93只（放量），但买卖力量逆转，高位放量兑现明显。净卖出居前：厦门钨业-11.39亿、光智科技-9.60亿、中钨高新-7.62亿、宏和科技-4.79亿、博迁新材-4.77亿、金安国纪-3.92亿 —— 集中在钨/锗小金属与PCB材料高位股。</div>
 </div>
 
-<div class="section">
-  <h2>今日公告全景（2026-08-06）</h2>
+<div class="panel">
+  <h2>🏦 机构专用买入榜 TOP 12</h2>
   <table>
-    <thead>
-      <tr>
-        <th>代码</th><th>名称</th><th>公告类型</th><th>方向</th><th>核心数据</th><th>评级</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>688235</td><td>百济神州</td><td>业绩快报</td>
-        <td><span class="up">大幅上升</span></td>
-        <td>营收222.20亿(+26.8%)，归母净利32.71亿(<span class="up">+627.1%</span>)</td>
-        <td><span class="tag star">⭐强烈关注</span></td>
-      </tr>
-      <tr>
-        <td>688758</td><td>赛分科技</td><td>业绩预告(自愿)</td>
-        <td><span class="up">预增</span></td>
-        <td>归母净利0.97~1.13亿(+80%~110%)，扣非(+100%~135%)</td>
-        <td><span class="tag star">⭐强烈关注</span></td>
-      </tr>
-      <tr>
-        <td>688331</td><td>荣昌生物</td><td>业绩预告(自愿)</td>
-        <td><span class="up">扭亏</span></td>
-        <td>归母净利约47亿(上年-4.50亿)，扣非约43亿</td>
-        <td><span class="tag eye">📌关注</span></td>
-      </tr>
-      <tr>
-        <td>301717</td><td>超纯应材</td><td>业绩预告(发行阶段)</td>
-        <td><span class="up">预增</span></td>
-        <td>H1归母净利预计+67.81%~80.16%（次新股）</td>
-        <td><span class="tag eye">📌关注</span></td>
-      </tr>
-      <tr>
-        <td>688252</td><td>天德钰</td><td>业绩快报</td>
-        <td><span class="down">略降(剔除)</span></td>
-        <td>H1净利1.38亿(-9.42%)，Q2单季+99.79%环比改善</td>
-        <td><span class="tag warn">观察</span></td>
-      </tr>
-      <tr>
-        <td>688828</td><td>国仪公司</td><td>业绩预告</td>
-        <td><span class="down">续亏(剔除)</span></td>
-        <td>半年度续亏，方向不符合</td>
-        <td><span class="tag warn">剔除</span></td>
-      </tr>
-      <tr>
-        <td>688121</td><td>*ST卓然</td><td>业绩快报</td>
-        <td><span class="down">亏损(剔除)</span></td>
-        <td>2025年报亏损1.88亿（非半年报）</td>
-        <td><span class="tag warn">剔除</span></td>
-      </tr>
-    </tbody>
+    <tr><th>#</th><th>代码</th><th>名称</th><th class="num">机构买入</th><th class="num">机构卖出</th><th class="num">机构净买</th><th class="num">当日涨跌</th><th class="num">龙虎榜净买</th></tr>
+<tr><td>1</td><td>002827</td><td>高争民爆 <span class="tag t-red">对倒</span></td><td class='num up'>34.98亿</td><td class='num down'>15.43亿</td><td class='num up'>+19.55亿</td><td class='num up'>+10.01%</td><td class='num flat'>0.00亿</td></tr>
+<tr><td>2</td><td>600183</td><td>生益科技</td><td class='num up'>14.59亿</td><td class='num flat'>0</td><td class='num up'>+14.59亿</td><td class='num up'>+3.63%</td><td class='num down'>-1.52亿</td></tr>
+<tr><td>3</td><td>600378</td><td>昊华科技</td><td class='num up'>6.99亿</td><td class='num flat'>0</td><td class='num up'>+6.99亿</td><td class='num up'>+9.51%</td><td class='num down'>-3.50亿</td></tr>
+<tr><td>4</td><td>688596</td><td>正帆科技</td><td class='num up'>4.59亿</td><td class='num flat'>0</td><td class='num up'>+4.59亿</td><td class='num up'>+6.23%</td><td class='num up'>+0.10亿</td></tr>
+<tr><td>5</td><td>000657</td><td>中钨高新</td><td class='num up'>4.19亿</td><td class='num down'>7.13亿</td><td class='num down'>-2.94亿</td><td class='num up'>+8.83%</td><td class='num down'>-7.62亿</td></tr>
+<tr><td>6</td><td>600549</td><td>厦门钨业</td><td class='num up'>3.75亿</td><td class='num down'>6.57亿</td><td class='num down'>-2.82亿</td><td class='num up'>+6.98%</td><td class='num down'>-11.39亿</td></tr>
+<tr><td>7</td><td>300489</td><td>光智科技</td><td class='num up'>3.66亿</td><td class='num down'>5.46亿</td><td class='num down'>-1.80亿</td><td class='num up'>+10.72%</td><td class='num down'>-9.60亿</td></tr>
+<tr><td>8</td><td>603186</td><td>华正新材</td><td class='num up'>2.32亿</td><td class='num flat'>0</td><td class='num up'>+2.32亿</td><td class='num up'>+8.96%</td><td class='num down'>-0.83亿</td></tr>
+<tr><td>9</td><td>002636</td><td>金安国纪</td><td class='num up'>2.30亿</td><td class='num down'>2.97亿</td><td class='num down'>-0.67亿</td><td class='num up'>+6.78%</td><td class='num down'>-3.92亿</td></tr>
+<tr><td>10</td><td>300139</td><td>晓程科技</td><td class='num up'>2.14亿</td><td class='num down'>0.59亿</td><td class='num up'>+1.55亿</td><td class='num up'>+2.97%</td><td class='num up'>+1.60亿</td></tr>
+<tr><td>11</td><td>605376</td><td>博迁新材</td><td class='num up'>2.11亿</td><td class='num down'>2.49亿</td><td class='num down'>-0.38亿</td><td class='num up'>+3.91%</td><td class='num down'>-4.77亿</td></tr>
+<tr><td>12</td><td>600601</td><td>方正科技</td><td class='num up'>2.01亿</td><td class='num flat'>0</td><td class='num up'>+2.01亿</td><td class='num up'>+9.96%</td><td class='num up'>+6.20亿</td></tr>
   </table>
-  <div class="risk" style="margin-top:14px;">⚠️ 说明：8月为半年度业绩快报自愿披露密集期，今日4家入选公司中2家来自业绩快报（百济神州）、2家来自自愿性业绩预告（赛分科技、荣昌生物）。iFind MCP当日处于断线状态（"not connected"），已按降级规则改用东方财富 mx-finance-search 公告原文提取精确财务数据。</div>
+  <div class="src">机构调仓特征明显：净买入集中在 覆铜板龙头生益科技(+14.59亿)、半导体设备正帆科技(+4.59亿)、化工新材料昊华科技(+6.99亿)、PCB方正科技/华正新材；同时对 钨/锗高位股（中钨高新、厦门钨业、光智科技）与PCB材料高位股（金安国纪、博迁新材）净卖出兑现。⚠️ 高争民爆为"主力做T"对倒盘（买卖总额各68.14亿完全对冲，严重异常波动），机构席位买34.98亿/卖15.43亿，自然人席位净卖21.30亿，属高危妖股，不计入机构真实加仓方向。</div>
 </div>
 
-<div class="section">
-  <h2>⭐ 入选个股深度点评</h2>
-
-  <div class="stock-card">
-    <div class="stock-head">
-      <div class="stock-name">百济神州 <span class="code">688235.SH</span></div>
-      <div><span class="tag star">⭐ 强烈关注</span></div>
-    </div>
-    <div class="stock-meta">业绩快报 · 半年度净利同比 <span class="up">+627.1%</span> · 现价280.60元 · 总市值4327.65亿 · PE(动)66.16倍</div>
-    <div class="analysis">
-      <p><span class="label">财务数据：</span>2026H1营业总收入222.20亿元（+26.8%），归母净利润32.71亿元（上年同期约4.5亿，<span class="up">+627.1%</span>）；产品收入217.97亿元，其中核心产品百悦泽（泽布替尼）全球销售额161.27亿元（+28.7%）。公司同步上调全年业绩预期。</p>
-      <p><span class="label">行业/概念：</span>创新药全球龙头 · BTK抑制剂全球领导者 · PD-1 · ADC管线 · 中概创新药核心资产</p>
-      <p><span class="label">业绩质量：</span>产品收入占比约98%，纯主业驱动，无一次性收益依赖；盈利由"研发+销售费用增速放缓+收入放量"双重驱动，商业化能力已在全球最大医药市场（美国）验证，利润质量极高。</p>
-      <p><span class="label">前景判断：</span>百悦泽在CLL/SLL领域头对头数据持续优效，适应症全球最广；MCL一线上市申请下半年递交（美欧中日），tacabrutideg（BCL2）R/R CLL上市申请亦在推进；追加3亿美元扩建美国生产基地。全球创新药企中少数实现"自研+全球化+盈利"三重兑现的公司，业绩确定性强。</p>
-      <p><span class="label">评级：</span>⭐ 强烈关注 —— 盈利拐点确认 + 收入质量极高 + 全球商业化持续兑现。作为创新药板块压舱石资产，适合中长期底仓配置。</p>
-    </div>
-  </div>
-
-  <div class="stock-card">
-    <div class="stock-head">
-      <div class="stock-name">赛分科技 <span class="code">688758.SH</span></div>
-      <div><span class="tag star">⭐ 强烈关注</span></div>
-    </div>
-    <div class="stock-meta">业绩预告(自愿披露) · 扣非同比 <span class="up">+100%~135%</span> · 现价26.16元 · 总市值108.95亿 · PE(动)76.75倍</div>
-    <div class="analysis">
-      <p><span class="label">财务数据：</span>2026H1营收2.56~2.83亿元（+40%~55%）；归母净利润9660万~1.13亿元（+80%~110%）；扣非净利润9320万~1.09亿元（<span class="up">+100%~135%</span>，上年同期4650万）。扣非占比约97%，利润增速显著高于营收增速，盈利质量优。</p>
-      <p><span class="label">行业/概念：</span>生物医药上游核心耗材 · 液相色谱材料（分析色谱+工业纯化双赛道） · GLP-1/ADC/生物类似药产业链 · 国产替代</p>
-      <p><span class="label">业绩质量：</span>扣非占比97%为入选股中最高，主业驱动无水分；期间费用率同比下行，经营杠杆释放；工业纯化板块同比增速突破60%，新增项目133个，累计储备项目1281个（临床三期及商业化阶段125个），收入可见度高。</p>
-      <p><span class="label">前景判断：</span>"十五五"开局年国家将生物医药确立为新兴支柱产业；全球多款重磅生物创新药专利悬崖驱动生物类似药研发产业化提速；GLP-1、ADC、小核酸等赛道持续扩容，上游纯化填料需求长期景气。中美双生产基地辐射全球，公司是色谱填料国产替代核心标的，成长确定性高。</p>
-      <p><span class="label">评级：</span>⭐ 强烈关注 —— 高增长 + 最高扣非质量 + 行业景气确认 + 政策加持。生物医药上游"卖铲人"逻辑，稀缺的确定性成长资产。</p>
-    </div>
-  </div>
-
-  <div class="stock-card">
-    <div class="stock-head">
-      <div class="stock-name">荣昌生物 <span class="code">688331.SH</span></div>
-      <div><span class="tag eye">📌 关注</span></div>
-    </div>
-    <div class="stock-meta">业绩预告(自愿披露) · 扭亏为盈 · 现价117.80元 · 总市值664.95亿 · PE(动)50.68倍</div>
-    <div class="analysis">
-      <p><span class="label">财务数据：</span>2026H1营收约58.5亿元（<span class="up">+433%</span>，上年10.98亿）；归母净利润约47亿元（上年同期-4.50亿，扭亏）；扣非净利润约43亿元（上年-4.46亿，扭亏）。扣非占比约91.5%。</p>
-      <p><span class="label">行业/概念：</span>创新药 · 自免（泰它西普-BLyS/APRIL双靶） · ADC（维迪西妥单抗-HER2） · BD出海授权</p>
-      <p><span class="label">业绩质量：</span>扭亏幅度巨大，但需注意结构：47亿净利中约43亿为扣非口径，其中大头来自艾伯维RC148（大中华区外独家授权）技术授权收入——属BD一次性/里程碑收入而非产品经营利润；产品端泰它西普、维迪西妥单抗国内销售持续增长但体量仍小。参考2025全年：净利7.09亿中扣非仅0.65亿，可见产品主业仍在爬坡期，盈利主要依赖BD。</p>
-      <p><span class="label">前景判断：</span>公司已连续两年通过BD授权实现扭亏（2025年Vor Biopharma泰它西普授权、2026年艾伯维RC148授权），验证了管线出海价值；但需跟踪授权收入确认节奏与产品收入能否接棒，否则2027年业绩存在高基数回落风险。ADC+自免双平台管线仍是A股稀缺资产，H股+A股双上市。</p>
-      <p><span class="label">评级：</span>📌 关注 —— 扭亏确认但盈利质量依赖BD一次性收入，产品端放量是后续核心观察点。适合作为创新药弹性配置，需严格跟踪季度产品收入。</p>
-    </div>
-  </div>
-
-  <div class="stock-card">
-    <div class="stock-head">
-      <div class="stock-name">超纯应材 <span class="code">301717.SZ</span></div>
-      <div><span class="tag eye">📌 关注</span></div>
-    </div>
-    <div class="stock-meta">业绩预告(发行上市阶段) · H1净利预计 <span class="up">+67.81%~80.16%</span> · 次新股（发行结果已公告，待上市）</div>
-    <div class="analysis">
-      <p><span class="label">财务数据：</span>2026H1营业收入预计+30.86%~40.56%（约2.70~2.90亿元）；归母净利润预计+67.81%~80.16%（约1.03~1.11亿元，2025H1基数6153万）。Q1已实现营收1.47亿（+62.39%）、净利6241万（+58.85%）、扣非6149万（+50.11%），扣非占比98.5%。</p>
-      <p><span class="label">行业/概念：</span>半导体设备核心零部件 · 特殊涂层工艺（刻蚀设备介质窗/喷淋头/内衬等） · 5nm及以下先进制程 · 国产替代 · 专精特新小巨人</p>
-      <p><span class="label">业绩质量：</span>毛利率56.9%，扣非占比98.5%，主业纯正；2023-2025营收/净利CAGR分别71.25%/68.84%，成长斜率陡峭。公司是国内极少数5nm及以下制程刻蚀设备核心零部件本土供应商，2024年国内特殊涂层零部件市占率5.7%，对标KoMiCo/TOTO等国际巨头进口替代空间大。</p>
-      <p><span class="label">前景判断：</span>半导体设备零部件国产化率仍有较大提升空间（预计2029年国内特殊涂层零部件市场105.4亿元）；先进制程演进（更严苛的腔室环境）驱动零部件涂层需求升级。发行价65.99元/股，发行市盈率36.38倍，显著低于参考行业市盈率70.62倍及可比公司均值（124.93倍TTM），安全边际较足。风险：新股上市初期波动大、无历史筹码参考。</p>
-      <p><span class="label">评级：</span>📌 关注 —— 赛道优质+高成长+发行估值合理，次新股需等上市后二级市场定价企稳再介入，上市首日博弈价值与中期配置价值并存。</p>
-    </div>
-  </div>
-</div>
-
-<div class="section">
-  <h2>剔除 / 观察名单</h2>
+<div class="panel">
+  <h2>💎 净买入 TOP 20（全部上榜个股）</h2>
   <table>
-    <thead>
-      <tr><th>代码</th><th>名称</th><th>公告</th><th>剔除原因</th><th>跟踪要点</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>688252</td><td>天德钰</td><td>业绩快报</td>
-        <td>H1归母净利1.38亿，同比-9.42%，营收-0.22%，不符合"预增/扭亏/大幅上升"方向</td>
-        <td>Q2单季净利9198万，环比+99.79%、同比+12.44%，毛利率环比+1.33pct；面板驱动芯片行业景气回暖，若H2延续可重新纳入</td>
-      </tr>
-      <tr>
-        <td>688828</td><td>国仪公司</td><td>业绩预告</td>
-        <td>半年度续亏，方向不符合（次新股，量子精密测量/高端科学仪器）</td>
-        <td>科学仪器国产化主题，待扭亏信号</td>
-      </tr>
-      <tr>
-        <td>688121</td><td>*ST卓然</td><td>业绩快报</td>
-        <td>披露的是2025年报（非2026半年报），净利-1.88亿亏损，且*ST风险警示</td>
-        <td>回避</td>
-      </tr>
-    </tbody>
+    <tr><th>#</th><th>代码</th><th>名称</th><th class="num">龙虎榜净买</th><th class="num">当日涨跌</th><th class="num">成交额</th><th>上榜原因</th></tr>
+<tr><td>1</td><td>002428</td><td>云南锗业</td><td class='num up'>11.54亿</td><td class='num up'>+10.00%</td><td class='num'>125.28亿</td><td>3连板，2家机构买入</td></tr>
+<tr><td>2</td><td>603629</td><td>利通电子</td><td class='num up'>11.08亿</td><td class='num up'>+8.76%</td><td class='num'>137.54亿</td><td>上海资金买入</td></tr>
+<tr><td>3</td><td>600206</td><td>有研新材</td><td class='num up'>7.53亿</td><td class='num up'>+10.00%</td><td class='num'>112.35亿</td><td>2连板，普通席位买入</td></tr>
+<tr><td>4</td><td>600601</td><td>方正科技</td><td class='num up'>6.20亿</td><td class='num up'>+9.96%</td><td class='num'>91.56亿</td><td>2家机构买入</td></tr>
+<tr><td>5</td><td>603773</td><td>沃格光电</td><td class='num up'>3.03亿</td><td class='num up'>+10.00%</td><td class='num'>26.77亿</td><td>3连板，上海资金买入</td></tr>
+<tr><td>6</td><td>601231</td><td>环旭电子</td><td class='num up'>2.72亿</td><td class='num up'>+6.01%</td><td class='num'>34.54亿</td><td>2家机构买入</td></tr>
+<tr><td>7</td><td>600105</td><td>永鼎股份</td><td class='num up'>2.36亿</td><td class='num up'>+5.01%</td><td class='num'>234.79亿</td><td>上海资金买入</td></tr>
+<tr><td>8</td><td>300139</td><td>晓程科技</td><td class='num up'>1.60亿</td><td class='num up'>+2.97%</td><td class='num'>36.38亿</td><td>4家机构买入</td></tr>
+<tr><td>9</td><td>688549</td><td>中巨芯</td><td class='num up'>1.51亿</td><td class='num up'>+19.99%</td><td class='num'>71.44亿</td><td>买一主买</td></tr>
+<tr><td>10</td><td>600397</td><td>江钨装备</td><td class='num up'>1.50亿</td><td class='num up'>+10.03%</td><td class='num'>4.08亿</td><td>3连板，买一主买</td></tr>
+<tr><td>11</td><td>600584</td><td>长电科技</td><td class='num up'>1.50亿</td><td class='num up'>+10.00%</td><td class='num'>384.55亿</td><td>买一主买</td></tr>
+<tr><td>12</td><td>603990</td><td>麦迪科技</td><td class='num up'>1.29亿</td><td class='num up'>+8.26%</td><td class='num'>17.53亿</td><td>普通席位买入</td></tr>
+<tr><td>13</td><td>600330</td><td>天通股份</td><td class='num up'>1.12亿</td><td class='num up'>+10.01%</td><td class='num'>76.05亿</td><td>买一主买</td></tr>
+<tr><td>14</td><td>300311</td><td>任子行</td><td class='num up'>0.92亿</td><td class='num up'>+19.93%</td><td class='num'>11.07亿</td><td>2家机构买入</td></tr>
+<tr><td>15</td><td>002579</td><td>中京电子</td><td class='num up'>0.90亿</td><td class='num up'>+7.32%</td><td class='num'>33.01亿</td><td>4家机构买入</td></tr>
+<tr><td>16</td><td>603039</td><td>泛微网络</td><td class='num up'>0.68亿</td><td class='num up'>+9.99%</td><td class='num'>64.33亿</td><td>普通席位买入</td></tr>
+<tr><td>17</td><td>603061</td><td>金海通</td><td class='num up'>0.66亿</td><td class='num up'>+5.08%</td><td class='num'>28.25亿</td><td>2家机构买入</td></tr>
+<tr><td>18</td><td>603106</td><td>恒银科技</td><td class='num up'>0.63亿</td><td class='num up'>+9.97%</td><td class='num'>11.64亿</td><td>普通席位买入</td></tr>
+<tr><td>19</td><td>002975</td><td>博杰股份</td><td class='num up'>0.62亿</td><td class='num up'>+10.00%</td><td class='num'>22.27亿</td><td>3连板，2家机构买入</td></tr>
+<tr><td>20</td><td>002674</td><td>兴业科技</td><td class='num up'>0.61亿</td><td class='num up'>+6.39%</td><td class='num'>28.40亿</td><td>5家机构买入</td></tr>
   </table>
+  <div class="src">净买入结构：锗/小金属（云南锗业11.54亿）、算力硬件（利通电子11.08亿）、半导体靶材（有研新材7.53亿）、PCB（方正科技6.20亿）领衔。注意净买榜与机构净买方向并非完全一致——云南锗业由游资/外资驱动，机构买卖均衡。</div>
 </div>
 
-<div class="section">
-  <h2>筛选方法说明</h2>
-  <p style="font-size:13.5px;">
-    <span class="label">三条件筛选：</span>① 业绩同比正增长 或 扭亏为盈；② 扣非净利润 ≥ 2000万元；③ 扣非净利润同比增速 &gt; 20% 或 营收增速 &gt; 20%。<br>
-    <span class="label">数据源：</span>东方财富 mx-stocks-screener（今日公告全量，业绩预告4家+业绩快报3家）→ mx-finance-search 公告原文核实（精确归母/扣非净利润、变动原因）→ 剔除续亏/亏损/增速下滑公司。<br>
-    <span class="label">特殊情况：</span>iFind MCP 当日断线（"not connected"），已按技能降级规则切换 EastMoney 公告提取路径，所有财务数字均来自上市公司公告原文，未使用任何编造数据。
-  </p>
-</div>
-
-<div class="section">
-  <h2>风险提示</h2>
-  <div class="risk">
-    ① 业绩预告/快报数据为初步核算，未经审计，以正式半年报为准；<br>
-    ② 荣昌生物盈利主要依赖BD授权收入，2027年存在高基数回落风险；<br>
-    ③ 超纯应材为次新股，上市初期价格波动风险大；<br>
-    ④ 创新药板块（百济神州/荣昌生物/赛分科技）受政策、医保谈判、海外临床数据等事件影响，波动较大；<br>
-    ⑤ 本报告基于公开信息整理，不构成投资建议。
+<div class="two-col">
+<div class="panel">
+  <h2>🦈 知名游资动向</h2>
+  <div class="note">
+    <b>炒股养家</b> — 华鑫证券上海分公司<br>
+    <span style="color:var(--muted)">标的：</span>可转债118053 T+0<br>
+    <span style="color:var(--muted)">操作：</span>买入7.65亿 / 卖出7.65亿（对倒做T，连续两日转债投机） <span class="tag t-blue">中性</span>
   </div>
+  <div class="note">
+    <b>赵老哥</b> — 银河证券绍兴鲁迅中路<br>
+    <span style="color:var(--muted)">标的：</span>传智教育(003032)<br>
+    <span style="color:var(--muted)">操作：</span>卖出0.23亿 —— 8连板龙头断板(-6.65%)，游资砸盘离场 <span class="tag t-red">离场</span>
+  </div>
+  <div class="note">
+    <b>宁波桑田路</b> — 国盛证券宁波桑田路<br>
+    <span style="color:var(--muted)">标的：</span>百花医药(600721)<br>
+    <span style="color:var(--muted)">操作：</span>买入0.28亿（3连板，小仓试盘） <span class="tag t-blue">试盘</span>
+  </div>
+  <div class="note">
+    <b>拉萨天团/量化</b> — 东方财富拉萨各席位<br>
+    <span style="color:var(--muted)">标的：</span>哈药股份、翔鹭钨业、中公教育、立新能源、托伦斯等小票/ST<br>
+    <span style="color:var(--muted)">操作：</span>多票小额对倒（单票均&lt;0.35亿），无重仓 <span class="tag t-blue">中性</span>
+  </div>
+  <div class="src">顶级游资全面缺席/退场：炒股养家连续两日只做转债T+0对倒，赵老哥砸盘断板龙头，一线游资未出现任何大额打板动作。今日主导资金为外资（沪深股通/高盛/瑞银/摩根大通）+机构，短线情绪由游资定价转向机构/外资定价。</div>
+</div>
+
+<div class="panel">
+  <h2>📈 连板标杆 & 龙虎榜+涨停共振</h2>
+  <table>
+    <tr><th>代码</th><th>名称</th><th class="num">连板</th><th>板块</th><th class="num">封单</th></tr>
+<tr><td>603221</td><td>爱丽家居</td><td class='num'><span class='tag t-gold'>10连板</span></td><td>家居用品</td><td class='num flat'>0.65亿</td></tr>
+<tr><td>002963</td><td>豪尔赛</td><td class='num'><span class='tag t-gold'>5连板</span></td><td>装修装饰</td><td class='num flat'>0.50亿 <span class="tag t-red">炸4</span></td></tr>
+<tr><td>601700</td><td>风范股份</td><td class='num'><span class='tag t-gold'>4连板</span></td><td>电网设备</td><td class='num flat'>0.65亿 <span class="tag t-red">炸5</span></td></tr>
+<tr><td>300615</td><td>欣天科技</td><td class='num'><span class='tag t-gold'>4连板</span></td><td>通信设备</td><td class='num up'>0.73亿</td></tr>
+<tr><td>002428</td><td>云南锗业</td><td class='num'><span class='tag t-gold'>3连板</span></td><td>小金属</td><td class='num up'>5.85亿</td></tr>
+<tr><td>600397</td><td>江钨装备</td><td class='num'><span class='tag t-gold'>3连板</span></td><td>专用设备</td><td class='num up'>2.79亿</td></tr>
+<tr><td>603773</td><td>沃格光电</td><td class='num'><span class='tag t-gold'>3连板</span></td><td>光学光电</td><td class='num up'>1.72亿</td></tr>
+<tr><td>002975</td><td>博杰股份</td><td class='num'><span class='tag t-gold'>3连板</span></td><td>自动化设备</td><td class='num up'>1.43亿</td></tr>
+<tr><td>600721</td><td>百花医药</td><td class='num'><span class='tag t-gold'>3连板</span></td><td>医疗服务</td><td class='num flat'>0.63亿 <span class="tag t-red">炸3</span></td></tr>
+<tr><td>002425</td><td>凯撒文化</td><td class='num'><span class='tag t-gold'>3连板</span></td><td>游戏</td><td class='num flat'>0.82亿 <span class="tag t-red">炸3</span></td></tr>
+<tr><td>600892</td><td>大晟文化</td><td class='num'><span class='tag t-gold'>3连板</span></td><td>游戏</td><td class='num flat'>0.09亿 <span class="tag t-red">炸11</span></td></tr>
+<tr><td>001267</td><td>汇绿生态</td><td class='num'><span class='tag t-gold'>3连板</span></td><td>通信设备</td><td class='num flat'>0.83亿 <span class="tag t-red">炸3</span></td></tr>
+  </table>
+  <div class="src">连板梯队：10/5/4/4/3×9/2×9，高度较昨日（8连板）抬升但结构弱化——最高标爱丽家居(10连板)不在龙虎榜，无游资/机构席位参与，属缩量锁筹型情绪票；前龙头传智教育8连板断板(-6.65%)。龙虎榜∩涨停共31只。涨停板块分布：通信设备8、化学制品7、煤炭开采7、元件6、计算机设备4、专用设备4、软件开发4、半导体3、电子化学3。</div>
+</div>
+</div>
+
+<div class="panel">
+  <h2>🏆 重点个股席位拆解</h2>
+  <h3 style="font-size:14px;color:var(--blue);margin:12px 0 8px;">云南锗业 002428 — 净买11.54亿｜3连板｜锗/小金属</h3>
+  <table><tr><th>买入席位</th><th class="num">买入额</th><th>卖出席位</th><th class="num">卖出额</th></tr><tr><td>国泰海通证券上海自贸试验区第二分公司</td><td class='up'>9.07</td><td>深股通专用</td><td class='down'>4.35</td></tr><tr><td>深股通专用</td><td class='up'>6.17</td><td>国泰海通证券北京知春路营业部</td><td class='down'>3.14</td></tr><tr><td>国泰海通证券北京知春路营业部</td><td class='up'>3.54</td><td>机构专用</td><td class='down'>2.00</td></tr><tr><td>机构专用</td><td class='up'>1.99</td><td>开源证券西安太华路营业部</td><td class='down'>1.26</td></tr><tr><td>国泰海通证券武汉紫阳东路营业部</td><td class='up'>1.61</td><td>华泰证券上海浦东新区世纪大道营业部</td><td class='down'>1.11</td></tr></table>
+  <div class="src">游资+外资合力：买一国泰海通上海自贸区分公司（两榜合计买入约13亿，为近期锗行情核心推动席位），深股通净买约2.5亿，机构买卖均衡(1.99/2.00)。3连板封单5.85亿为全场最强承接，锗价上行+战略小金属逻辑，短线人气龙头但筹码已高度游资化。</div>
+
+  <h3 style="font-size:14px;color:var(--blue);margin:16px 0 8px;">生益科技 600183 — 机构净买14.59亿｜+3.63%｜覆铜板/CCL龙头</h3>
+  <table><tr><th>买入席位</th><th class="num">买入额</th><th>卖出席位</th><th class="num">卖出额</th></tr><tr><td>沪股通专用</td><td class='up'>21.72</td><td>沪股通专用</td><td class='down'>31.17</td></tr><tr><td>机构专用</td><td class='up'>14.59</td><td>高盛(中国)上海浦东新区世纪大道营业部</td><td class='down'>11.88</td></tr><tr><td>中信证券上海分公司</td><td class='up'>11.84</td><td>中信证券上海分公司</td><td class='down'>7.91</td></tr><tr><td>高盛(中国)上海浦东新区世纪大道营业部</td><td class='up'>8.26</td><td>瑞银证券上海花园石桥路营业部</td><td class='down'>7.55</td></tr><tr><td>瑞银证券上海花园石桥路营业部</td><td class='up'>4.76</td><td>中国国际金融上海分公司</td><td class='down'>4.19</td></tr></table>
+  <div class="src">机构接盘 vs 外资派发：机构专用净买14.59亿（当日最大机构净买入），但沪股通净卖9.45亿、高盛净卖3.62亿、瑞银净卖2.79亿。覆铜板涨价逻辑（电子布/CCL提价）获机构认可，但外资在历史高位兑现，分歧巨大。PCB材料链中机构同步净卖金安国纪/宏和科技/博迁新材，呈现"龙头加仓、杂毛兑现"的头部化特征。</div>
+
+  <h3 style="font-size:14px;color:var(--blue);margin:16px 0 8px;">利通电子 603629 — 净买11.08亿｜+8.76%｜算力硬件/结构件</h3>
+  <table><tr><th>买入席位</th><th class="num">买入额</th><th>卖出席位</th><th class="num">卖出额</th></tr><tr><td>沪股通专用</td><td class='up'>12.73</td><td>沪股通专用</td><td class='down'>5.00</td></tr><tr><td>国泰海通证券总部</td><td class='up'>2.67</td><td>国泰海通证券北京知春路营业部</td><td class='down'>1.92</td></tr><tr><td>高盛(中国)上海浦东新区世纪大道营业部</td><td class='up'>2.47</td><td>华鑫证券上海陆家嘴营业部</td><td class='down'>1.88</td></tr><tr><td>瑞银证券上海花园石桥路营业部</td><td class='up'>2.46</td><td>国泰海通证券总部</td><td class='down'>1.56</td></tr><tr><td>华鑫证券上海陆家嘴营业部</td><td class='up'>2.39</td><td>东北证券佛山分公司</td><td class='down'>1.28</td></tr></table>
+  <div class="src">外资主导：沪股通净买7.73亿，高盛/瑞银合计净买约3亿。利通电子为服务器精密结构件/算力硬件方向，外资大额扫货，成交137亿放巨量。算力硬件链（结构件→PCB→覆铜板）获外资+机构持续认可。</div>
+
+  <h3 style="font-size:14px;color:var(--blue);margin:16px 0 8px;">高争民爆 002827 — +10.01%｜民爆/西藏｜⚠️ 严重异常波动</h3>
+  <table><tr><th>买入席位</th><th class="num">买入额</th><th>卖出席位</th><th class="num">卖出额</th></tr><tr><td>机构投资者</td><td class='up'>34.98</td><td>自然人</td><td class='down'>49.98</td></tr><tr><td>自然人</td><td class='up'>28.68</td><td>中小投资者</td><td class='down'>26.66</td></tr><tr><td>其他自然人</td><td class='up'>16.23</td><td>其他自然人</td><td class='down'>23.32</td></tr><tr><td>中小投资者</td><td class='up'>12.46</td><td>机构投资者</td><td class='down'>15.43</td></tr><tr><td>深股通投资者</td><td class='up'>4.47</td><td>深股通投资者</td><td class='down'>2.72</td></tr></table>
+  <div class="src">⚠️ "主力做T"对倒盘：龙虎榜买卖总额各68.14亿完全对冲（成功率仅4.74%），触发"严重异常期间涨幅偏离值累计100%"监控。机构投资者席位净买19.55亿，自然人/中小投资者合计净卖约42.5亿。该股处异常波动高危区，任何参与均属击鼓传花，中长线资金应坚决回避。</div>
+</div>
+
+<div class="panel">
+  <h2>🧭 题材热度分析</h2>
+  <div class="note"><b>① 覆铜板/PCB涨价（主线分化，龙头强于杂毛）</b> — 生益科技(机构净买14.59亿)、方正科技(净买6.20亿)、华正新材、中京电子、景旺电子(涨停 封单4.6亿)、科翔股份涨停；但金安国纪/宏和科技/博迁新材遭机构净卖且龙虎榜净卖居前。电子布/CCL涨价周期仍在，机构态度"加龙头、弃跟风"，板块内部分化加剧。</div>
+  <div class="note"><b>② 小金属/钨锗（游资接力锗、机构兑现钨）</b> — 云南锗业3连板(净买11.54亿 封单5.85亿)、江钨装备3连板、有研新材(半导体靶材/稀有金属 2连板 净买7.53亿)；但中钨高新(净卖7.62亿)、厦门钨业(净卖11.39亿)、光智科技(净卖9.60亿)遭机构+外资双杀。锗受游资外资追捧，钨被机构高位派发，同板块冰火两重天。</div>
+  <div class="note"><b>③ 半导体材料/设备（机构认可度最高）</b> — 长电科技涨停(成交384亿 封单4.37亿)、有研新材2连板、中巨芯+19.99%、正帆科技(机构净买4.59亿)、金海通、天通股份涨停。半导体材料设备是今日机构净买入最集中的方向，科创50逆势收红，产业趋势+机构定价双确认。</div>
+  <div class="note"><b>④ 煤炭/高股息（风格轮动信号）</b> — 7家涨停（昊华能源、大有能源、平煤股份、淮北矿业、兖矿能源、辽宁能源、潞安环能），为今日指数翻红主推手。上证红/创业板绿的分化+高股息异动，提示资金阶段性避险/高低切换，需警惕对成长风格的虹吸。</div>
+  <div class="note"><b>⑤ 通信设备/光通信（延续但降温）</b> — 8家涨停：欣天科技4连板、汇绿生态3连板、通宇通讯(封单3.62亿)、武汉凡谷、广哈通信；永鼎股份净买2.36亿。光通信算力逻辑延续，但长飞光纤龙虎榜净卖3.08亿，高位兑现压力显现。</div>
+  <div class="src">高标退潮（传智教育断板）+ 煤炭异动 + 龙虎榜净卖出，三者共振指向短线情绪退潮期；资金并未离场，而是在板块内高低切换、向机构定价的半导体材料/PCB龙头集中。</div>
+</div>
+
+<div class="panel">
+  <h2>🎯 机构 vs 游资对比 & 情绪判断</h2>
+  <div class="note"><b>机构（含外资）</b>：今日是绝对定价方。净买入 生益科技(+14.59亿)、昊华科技(+6.99亿)、正帆科技(+4.59亿)、方正科技(+2.01亿)、华正新材(+2.32亿)；净卖出 厦门钨业、中钨高新、光智科技、宏和科技等高位小金属/PCB材料。外资（高盛/瑞银/沪深股通）主导 利通电子、有研新材、云南锗业 的买入，同时在生益科技高位派发。方向=半导体材料设备+PCB龙头，兑现=小金属与跟风材料股。</div>
+  <div class="note"><b>游资</b>：全面休息。炒股养家连续两日转债T+0对倒（未碰个股），赵老哥砸盘断板龙头传智教育，宁波桑田路仅小仓试盘百花医药，拉萨量化在小票上小额对倒。今日无任何一线游资大额打板动作，游资活跃度低。</div>
+  <div class="alert"><b>情绪判断：退潮初期 · 高低切换</b> — 涨停79家(前日103)收缩、龙虎榜净卖-26.68亿(前日+29.62亿)反转、8连板龙头断板、顶级游资集体缺席，四项指标同向指向短线情绪退潮。但连板梯队仍完整（10/5/4/3/2），煤炭/半导体提供承接，属"退潮初期"而非"冰点"。<b>风险提示</b>：① 爱丽家居10连板、高争民爆严重异常波动，高位妖股随时闪崩；② 传智教育断板后教育/AI培训题材补跌风险；③ 生益科技外资持续派发将压制PCB链；④ 煤炭/高股息若持续走强，成长风格阶段性承压。</div>
+  <div class="note"><b>对持仓的启示（成长股中长线视角）</b>：① 覆铜板/PCB涨价中长线逻辑未破——机构仍在加仓龙头生益科技，持有者可继续持有，但应避开金安国纪/宏和科技等被机构兑现的跟风股；② 半导体材料/设备是机构今日净买最集中方向（有研新材/长电/正帆），成长主线未变，回调即中长线布局机会；③ 小金属（钨/锗）机构开始兑现、纯靠游资外资情绪接力，波动将显著放大，中长线勿追高；④ 高标退潮+煤炭异动是风格切换预警，若持有高位题材股（传智教育类）注意补跌；⑤ 整体判断：短线情绪退潮不改科技产业趋势，中长线组合无需恐慌性减仓，反而可在情绪冰点加仓机构定价的半导体/PCB龙头。</div>
 </div>
 
 <div class="footer">
-  A股业绩预告/业绩快报日报 · 2026-08-06 · 分析师小H · 仅供内部参考，不构成投资建议
+  数据来源：东方财富数据中心（datacenter-web.eastmoney.com）龙虎榜API + 涨停池(push2ex) + 腾讯行情 | 游资席位对应关系为历史经验映射，仅供参考<br>
+  本报告由 Hermes Agent 自动生成 · 仅供研究参考，不构成投资建议
 </div>
-
+</div>
 </body>
 </html>
