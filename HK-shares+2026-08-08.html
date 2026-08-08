@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>港股每日复盘 2026-08-08（休市）</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg-card: #161b22;
+    --bg-card-hover: #1c2129;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-dim: #8b949e;
+    --green: #7ee787;
+    --red: #f85149;
+    --yellow: #d29922;
+    --blue: #58a6ff;
+    --purple: #bc8cff;
+    --grad-start: #1f6feb;
+    --grad-end: #6e40c9;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.65;
+    padding: 20px 16px 60px;
+  }
+  .container { max-width: 1080px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
+    border-radius: 12px;
+    padding: 32px 28px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: "";
+    position: absolute;
+    top: -60px; right: -40px;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(255,255,255,0.12), transparent 70%);
+    border-radius: 50%;
+  }
+  .header h1 { font-size: 26px; font-weight: 700; letter-spacing: 1px; }
+  .header .sub { font-size: 14px; opacity: 0.85; margin-top: 8px; }
+  .header .badge {
+    display: inline-block;
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.35);
+    padding: 3px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    margin-top: 12px;
+  }
+
+  /* Holiday banner */
+  .holiday-banner {
+    background: #3a2d12;
+    border: 1px solid #9e6a03;
+    color: #e3b341;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+  .holiday-banner strong { font-size: 17px; }
+
+  /* Section */
+  .section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 26px;
+    margin-bottom: 20px;
+  }
+  .section h2 {
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section h2 .icon { font-size: 20px; }
+
+  /* Cards grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .card:hover { transform: translateY(-2px); border-color: var(--blue); }
+  .card .name { font-size: 13px; color: var(--text-dim); }
+  .card .value { font-size: 22px; font-weight: 700; margin: 4px 0; }
+  .card .detail { font-size: 12.5px; color: var(--text-dim); }
+  .up { color: var(--green); }
+  .down { color: var(--red); }
+  .flat { color: var(--text-dim); }
+
+  /* Tables */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 620px; }
+  th {
+    background: #21262d;
+    color: var(--text-dim);
+    font-weight: 600;
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:hover td { background: var(--bg-card-hover); }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+  .tag-green { background: rgba(126,231,135,0.15); color: var(--green); border: 1px solid rgba(126,231,135,0.35); }
+  .tag-red { background: rgba(248,81,73,0.15); color: var(--red); border: 1px solid rgba(248,81,73,0.35); }
+  .tag-yellow { background: rgba(210,153,34,0.15); color: var(--yellow); border: 1px solid rgba(210,153,34,0.35); }
+  .tag-blue { background: rgba(88,166,255,0.15); color: var(--blue); border: 1px solid rgba(88,166,255,0.35); }
+  .tag-purple { background: rgba(188,140,255,0.15); color: var(--purple); border: 1px solid rgba(188,140,255,0.35); }
+
+  /* Alerts */
+  .alert {
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-size: 14px;
+    border: 1px solid;
+  }
+  .alert-red { background: rgba(248,81,73,0.08); border-color: rgba(248,81,73,0.4); color: #ffa198; }
+  .alert-green { background: rgba(126,231,135,0.08); border-color: rgba(126,231,135,0.4); color: #a5f3b5; }
+  .alert-yellow { background: rgba(210,153,34,0.08); border-color: rgba(210,153,34,0.4); color: #e3b341; }
+  .alert-blue { background: rgba(88,166,255,0.08); border-color: rgba(88,166,255,0.4); color: #79c0ff; }
+
+  /* Lists */
+  ul { padding-left: 20px; }
+  li { margin: 6px 0; }
+  .dim { color: var(--text-dim); font-size: 13px; }
+
+  /* Footer */
+  .footer { text-align: center; color: var(--text-dim); font-size: 12.5px; margin-top: 30px; }
+
+  @media (max-width: 640px) {
+    .header h1 { font-size: 21px; }
+    .section { padding: 18px 16px; }
+    .grid { grid-template-columns: 1fr 1fr; }
+    .card .value { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ============ HEADER ============ -->
+  <div class="header">
+    <h1>🦅 港股每日复盘 · 观澜</h1>
+    <div class="sub">报告日期：2026-08-08（星期六）｜ 生成时间：2026-08-08 20:20 CST</div>
+    <span class="badge">📅 今日休市 · 附 08-07（周五）收盘复盘</span>
+  </div>
+
+  <!-- ============ HOLIDAY ============ -->
+  <div class="holiday-banner">
+    <strong>⚠️ 今日港股休市（周六）</strong><br>
+    本报告以 8月7日（周五）收盘数据为复盘基准，并给出下周操作前瞻。下一交易日：<strong>2026年8月10日（周一）</strong>。
+  </div>
+
+  <!-- ============ 1) 核心结论 ============ -->
+  <div class="section">
+    <h2><span class="icon">🎯</span> 1) 今日核心结论（上周五收盘定调）</h2>
+    <p style="font-size:16px; font-weight:600; margin-bottom:12px;">
+      港股周五温和收涨、<span class="up">恒指 +0.54% 报 25668.03 点</span>，全周小幅回调整固（恒指周跌0.84%）；<span class="up">创新药/生物医药成为绝对主线</span>，License-out出海近千亿美元 + 百济/礼来业绩超预期点燃重估行情，恒生港股通创新药指数单日 <span class="up">+4.70%</span>。
+    </p>
+    <div class="alert alert-yellow" style="margin-top:8px;">
+      <strong>一句话定调：</strong>指数连涨五周后进入整固窗口，市场风格明确偏向「业绩兑现型」创新药与AI硬件，赚钱效应集中于医药生物板块（港股创新药ETF +4.92%），其余板块轮动偏弱、观望气氛浓。
+    </div>
+    <ul style="margin-top:10px;">
+      <li><strong>市场风格：</strong>大盘价值整固 + 医药成长爆发，典型的结构性行情，指数与个股严重分化。</li>
+      <li><strong>赚钱效应：</strong>中等偏上——指数层面平淡，但医药板块内赚钱效应极强（多股涨超10%）。</li>
+      <li><strong>资金信号：</strong>南向资金周五转为净卖出 7.77 亿港元（深市流出为主），短线外资与内资均在等待业绩窗口。</li>
+    </ul>
+  </div>
+
+  <!-- ============ 2) 大盘全景 ============ -->
+  <div class="section">
+    <h2><span class="icon">📊</span> 2) 大盘全景（基金经理视角 · 8月7日收盘）</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="name">恒生指数 HSI</div>
+        <div class="value up">25,668.03 <span style="font-size:14px;">+0.54%</span></div>
+        <div class="detail">+137.75 点｜成交 2,596.86 亿港元</div>
+        <div class="detail dim">全周 -0.84%（连涨五周后整固）</div>
+      </div>
+      <div class="card">
+        <div class="name">恒生科技 HSTECH</div>
+        <div class="value up">4,858.29 <span style="font-size:14px;">+0.78%</span></div>
+        <div class="detail">跑赢大盘｜连续三周上行</div>
+        <div class="detail dim">全周 +0.60%</div>
+      </div>
+      <div class="card">
+        <div class="name">恒生国企 HSCEI</div>
+        <div class="value up">8,531.58 <span style="font-size:14px;">+0.39%</span></div>
+        <div class="detail">表现相对滞涨</div>
+        <div class="detail dim">全周 -0.94%</div>
+      </div>
+      <div class="card">
+        <div class="name">恒生医疗 / 创新药</div>
+        <div class="value up">+4.70%</div>
+        <div class="detail">恒生港股通创新药指数</div>
+        <div class="detail dim">港股创新药ETF +4.92%</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;">
+      <table>
+        <tr><th>指数</th><th>收盘点位</th><th>涨跌幅</th><th>全周</th><th>点评</th></tr>
+        <tr><td>恒生指数 HSI</td><td>25,668.03</td><td class="up">+0.54%</td><td class="down">-0.84%</td><td>低开高走，站上25600，成交额 2596.86 亿港元</td></tr>
+        <tr><td>恒生科技 HSTECH</td><td>4,858.29</td><td class="up">+0.78%</td><td class="up">+0.60%</td><td>低位修复，AI概念+PCB带动，连续三周上行</td></tr>
+        <tr><td>恒生国企 HSCEI</td><td>8,531.58</td><td class="up">+0.39%</td><td class="down">-0.94%</td><td>权重蓝筹整固，弹性弱于科技</td></tr>
+        <tr><td>恒生港股通创新药</td><td>—</td><td class="up">+4.70%</td><td class="up">强</td><td>当日绝对主线，创新药重估行情爆发</td></tr>
+      </table>
+      <p class="dim" style="margin-top:8px;">* 成交量同比/环比、上涨家数等细项周六数据源不可得，以成交额 2596.86 亿港元（较前期温和放量）为参考，标注「数据暂缺」处不臆测。</p>
+    </div>
+  </div>
+
+  <!-- ============ 3) 市场情绪 ============ -->
+  <div class="section">
+    <h2><span class="icon">🌡️</span> 3) 市场情绪（8月7日）</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="name">南向资金</div>
+        <div class="value down">净卖出 7.77亿</div>
+        <div class="detail">成交额 1,282.51 亿港元</div>
+      </div>
+      <div class="card">
+        <div class="name">港股通(沪)</div>
+        <div class="value up">+5.71亿</div>
+        <div class="detail">买入422.83亿 / 卖出417.12亿</div>
+      </div>
+      <div class="card">
+        <div class="name">港股通(深)</div>
+        <div class="value down">-13.48亿</div>
+        <div class="detail">买入214.54亿 / 卖出228.02亿</div>
+      </div>
+      <div class="card">
+        <div class="name">市场风险偏好</div>
+        <div class="value flat">结构性亢奋</div>
+        <div class="detail">医药独强，其余观望；指数整固</div>
+      </div>
+    </div>
+    <table style="margin-top:14px;">
+      <tr><th>情绪指标</th><th>数值 / 状态</th><th>解读</th></tr>
+      <tr><td>恒指连涨周数</td><td>连涨5周后整固</td><td>工银亚洲叶泽恒：短期 25000–26000 区间震荡</td></tr>
+      <tr><td>沽空金额 / 比率</td><td class="dim">数据暂缺</td><td>周六数据源不可得，周一开盘前补齐监控</td></tr>
+      <tr><td>新股表现</td><td class="dim">数据暂缺</td><td>近期新股情绪随大盘温和</td></tr>
+      <tr><td>窝轮/牛熊证资金</td><td class="dim">数据暂缺</td><td>周末无盘中数据</td></tr>
+    </table>
+  </div>
+
+  <!-- ============ 4) 汇率与流动性 ============ -->
+  <div class="section">
+    <h2><span class="icon">💱</span> 4) 汇率与流动性</h2>
+    <div class="alert alert-blue">
+      周六休市，以下为周五（8月7日）市场环境，外部数据源（web_search）超时，细项以「数据暂缺」如实标注，不编造。
+    </div>
+    <table>
+      <tr><th>指标</th><th>数值</th><th>状态说明</th></tr>
+      <tr><td>USD/HKD</td><td class="dim">数据暂缺</td><td>联系汇率制度下维持 7.75–7.85 强方区间</td></tr>
+      <tr><td>CNH/HKD（离岸人民币）</td><td class="dim">数据暂缺</td><td>人民币汇率稳定利于外资回流港股</td></tr>
+      <tr><td>美债 10Y 收益率</td><td class="dim">数据暂缺</td><td>全球risk-on背景下预计维持区间震荡</td></tr>
+      <tr><td>HIBOR 港元拆息</td><td class="dim">数据暂缺</td><td>港元流动性整体宽松，未见明显收紧信号</td></tr>
+    </table>
+    <p class="dim" style="margin-top:8px;">注：外部搜索接口连续超时，汇率/美债/拆息精确数值未能获取；逻辑判断基于周五市场整体环境（全球震荡、港股逆势领涨、成交活跃）。</p>
+  </div>
+
+  <!-- ============ 5) 强势板块 ============ -->
+  <div class="section">
+    <h2><span class="icon">🚀</span> 5) 强势板块与核心逻辑（8月7日）</h2>
+    <h3 style="font-size:15px; margin-bottom:10px; color:var(--green);">🔥 涨幅前5板块</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>#</th><th>板块</th><th>领涨龙头</th><th>核心逻辑</th></tr>
+        <tr>
+          <td>1</td><td><span class="tag tag-green">创新药/生物医药</span></td>
+          <td>派格生物 <span class="up">+23%</span>、金斯瑞 <span class="up">+16.18%</span>、昭衍新药 <span class="up">+12%</span>、药明合联 <span class="up">+11%</span>、基石药业 <span class="up">+11%</span>、药明生物 <span class="up">+10.83%</span>、再鼎医药 <span class="up">+10%</span>、荣昌生物 <span class="up">+8.49%</span>、药明康德 <span class="up">+7.01%</span></td>
+          <td>① 2026H1 中国创新药License-out出海总额约997亿美元≈2024全年2倍；② 百济神州Q2超预期、上调全年指引至66–68亿美元；③ 礼来替尔泊肽收入277亿美元超预期、上调指引，GLP-1链景气验证；④ 荣昌、信达业绩大幅向好，龙头进入商业化兑现期</td>
+        </tr>
+        <tr>
+          <td>2</td><td><span class="tag tag-blue">PCB/光通信/存储</span></td>
+          <td>胜宏科技 <span class="up">+11%</span>、广合科技 <span class="up">+10%</span>、建滔积层板 <span class="up">+9%</span>、兆易创新 <span class="up">+7%</span></td>
+          <td>AI算力硬件景气延续，PCB/存储涨价预期，资金从A股外溢至港股标的</td>
+        </tr>
+        <tr>
+          <td>3</td><td><span class="tag tag-purple">AI大模型</span></td>
+          <td>智谱 <span class="up">+14%</span>、MiniMax <span class="up">+9%</span></td>
+          <td>AI应用侧情绪回暖；DeepSeek调用量霸榜背景下，新模型市场检验窗口期</td>
+        </tr>
+        <tr>
+          <td>4</td><td><span class="tag tag-yellow">黄金/有色金属</span></td>
+          <td>黄金股悉数走高</td>
+          <td>全球避险+降息预期，国信证券看好黄金有色反弹窗口</td>
+        </tr>
+        <tr>
+          <td>5</td><td><span class="tag tag-blue">消费电子/科技硬件</span></td>
+          <td>联想集团 <span class="up">+8.33%</span>（报28.10港元，贡献恒指22.53点）</td>
+          <td>8月13日一季报预告催化：大摩预计经调整纯利7.88亿美元、同比+102%，ISG基础设施业务利润率上行</td>
+        </tr>
+      </table>
+    </div>
+
+    <h3 style="font-size:15px; margin:20px 0 10px; color:var(--red);">🧊 最弱板块 TOP3</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>#</th><th>板块</th><th>领跌方向</th><th>下跌原因</th></tr>
+        <tr><td>1</td><td>白色家电/黑色家电</td><td>家电龙头整体走弱</td><td>消费复苏不及预期，前期涨幅兑现，资金切向医药</td></tr>
+        <tr><td>2</td><td>焦炭/周期上游</td><td>焦炭II <span class="down">-2.35%</span>（A股映射）</td><td>商品价格疲弱，地产链需求压制</td></tr>
+        <tr><td>3</td><td>传统消费/内需</td><td>消费股资金流出</td><td>中报窗口业绩弹性有限，市场聚焦高景气赛道</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ============ 6) 重点个股异动 ============ -->
+  <div class="section">
+    <h2><span class="icon">🔍</span> 6) 重点个股异动（超 ±6% 逐一分析）</h2>
+
+    <div class="alert alert-green"><strong>📌 财报点评（重点）：</strong>周五行情由业绩驱动，两大全球龙头超预期是医药板块引爆的导火索。</div>
+
+    <h3 style="font-size:15px; margin:16px 0 10px; color:var(--green);">📈 涨幅超 +6% 个股</h3>
+    <table>
+      <tr><th>个股</th><th>涨跌幅</th><th>异动分析</th></tr>
+      <tr>
+        <td><strong>派格生物</strong></td><td class="up">+23.00%</td>
+        <td>GLP-1减重赛道核心标的，礼来替尔泊肽收入277亿美元超预期+上调全年指引，直接催化多肽链估值重估</td>
+      </tr>
+      <tr>
+        <td><strong>金斯瑞生物科技</strong></td><td class="up">+16.18%</td>
+        <td>创新药出海+CGT CDMO龙头，License-out近千亿美元背景下产业链全面受益</td>
+      </tr>
+      <tr>
+        <td><strong>昭衍新药</strong></td><td class="up">+12.00%</td>
+        <td>临床前CRO，创新药研发景气回升直接受益</td>
+      </tr>
+      <tr>
+        <td><strong>药明合联</strong></td><td class="up">+11.00%</td>
+        <td>ADC CDMO龙头，多肽/ADC订单确定性获验证，资金抢筹</td>
+      </tr>
+      <tr>
+        <td><strong>基石药业</strong></td><td class="up">+11.00%</td>
+        <td>创新药商业化推进+板块β共振</td>
+      </tr>
+      <tr>
+        <td><strong>药明生物</strong></td><td class="up">+10.83%</td>
+        <td>生物药CDMO龙头，行业订单回暖信号明确，GLP-1链+出海双逻辑</td>
+      </tr>
+      <tr>
+        <td><strong>再鼎医药</strong></td><td class="up">+10.00%</td>
+        <td>商业化品种放量，中报向好预期</td>
+      </tr>
+      <tr>
+        <td><strong>荣昌生物</strong></td><td class="up">+8.49%</td>
+        <td>业绩大幅向好（官方口径），ADC管线价值重估</td>
+      </tr>
+      <tr>
+        <td><strong>联想集团</strong></td><td class="up">+8.33%</td>
+        <td>8/13一季报预期：大摩预计经调整纯利7.88亿美元、同比+102%，ISG利润率上行</td>
+      </tr>
+      <tr>
+        <td><strong>药明康德</strong></td><td class="up">+7.01%</td>
+        <td>GLP-1核心CDMO，多肽订单确定性最强，A+H同步大涨</td>
+      </tr>
+      <tr>
+        <td><strong>智谱 / MiniMax</strong></td><td class="up">+14% / +9%</td>
+        <td>AI大模型"双雄"，应用侧情绪回暖</td>
+      </tr>
+    </table>
+
+    <div class="alert alert-blue" style="margin-top:16px;">
+      <strong>百济神州（+5.26%，未超阈值但必看）：</strong>Q2业绩超预期，<strong>上调全年营收指引至 66–68 亿美元</strong>，泽布替尼美国持续放量，盈利加速拐点确认——这是本轮创新药重估的"定海神针"。
+    </div>
+
+    <h3 style="font-size:15px; margin:16px 0 10px; color:var(--red);">📉 跌幅超 -6% 个股</h3>
+    <p class="dim">监控清单（阿里、腾讯、美团、拼多多-W、京东、快手、小米、信达、君实、中国生物制药、瀚森、华润置地、龙湖、碧桂园、比亚迪、赣锋锂业、海底捞、紫金矿业等）周五均无超 -6% 异动；信达生物、科伦博泰等医药股随板块上涨。其余无重大利空公告。</p>
+
+    <div class="alert alert-yellow" style="margin-top:10px;">
+      <strong>下周财报预警：</strong>联想集团（8/13 一季报）、大型电商/游戏企业业绩进入披露窗口（工银亚洲提示），财报季个股波动将显著放大。
+    </div>
+  </div>
+
+  <!-- ============ 7) 资金面 ============ -->
+  <div class="section">
+    <h2><span class="icon">💰</span> 7) 资金面（港股最关键 · 8月7日）</h2>
+
+    <h3 style="font-size:15px; margin-bottom:10px;">🧭 南下资金（港股通）</h3>
+    <div class="grid" style="margin-bottom:12px;">
+      <div class="card">
+        <div class="name">当日净流向</div>
+        <div class="value down">-7.77 亿港元</div>
+        <div class="detail">买入 637.37 亿 / 卖出 645.14 亿</div>
+      </div>
+      <div class="card">
+        <div class="name">港股通(沪)</div>
+        <div class="value up">+5.71 亿</div>
+        <div class="detail">成交 839.95 亿港元</div>
+      </div>
+      <div class="card">
+        <div class="name">港股通(深)</div>
+        <div class="value down">-13.48 亿</div>
+        <div class="detail">成交 442.56 亿港元</div>
+      </div>
+      <div class="card">
+        <div class="name">全周累计</div>
+        <div class="value flat">震荡</div>
+        <div class="detail">指数整固期，南向短线获利了结</div>
+      </div>
+    </div>
+    <div class="alert alert-yellow">
+      <strong>解读：</strong>南向转为净卖出（-7.77亿），深市流出为主——前期涨幅较大的科技/医药短线兑现。属于整固期的正常调仓，非趋势性撤退；沪市仍小幅净买入，权重蓝筹承接尚可。前十大成交净买入个股数据（数据源超时）暂缺，周一补齐。
+    </div>
+
+    <h3 style="font-size:15px; margin:20px 0 10px;">🌍 外资（国际资金）</h3>
+    <table>
+      <tr><th>项目</th><th>状态</th><th>说明</th></tr>
+      <tr><td>EPFR 资金流向</td><td class="dim">数据暂缺</td><td>周六无盘中数据；结合7月外资回流趋势判断中性偏多</td></tr>
+      <tr><td>ETF 申赎</td><td class="up">活跃</td><td>港股创新药ETF(159567) +4.92%、恒生医药ETF(159892) +2.18%，医药类ETF获明显申购</td></tr>
+      <tr><td>全球环境</td><td class="up">偏多</td><td>国信证券：全球震荡下港股逆势领涨，外资配置价值凸显</td></tr>
+    </table>
+
+    <h3 style="font-size:15px; margin:20px 0 10px;">📉 沽空 / 回购 / 大宗</h3>
+    <table>
+      <tr><th>项目</th><th>状态</th><th>说明</th></tr>
+      <tr><td>总沽空金额/比率</td><td class="dim">数据暂缺</td><td>如周一比率 &gt;15% 需特别警示（监控项）</td></tr>
+      <tr><td>公司回购</td><td class="dim">数据暂缺</td><td>周末无公告更新；恒指25000–26000区间历来有回购托底，关注腾讯等回购节奏</td></tr>
+      <tr><td>大宗交易</td><td class="dim">数据暂缺</td><td>无异常折价大宗被报道</td></tr>
+    </table>
+  </div>
+
+  <!-- ============ 8) 投资机会与风险 ============ -->
+  <div class="section">
+    <h2><span class="icon">🧭</span> 8) 投资机会与风险提示</h2>
+
+    <h3 style="font-size:15px; margin-bottom:10px; color:var(--green);">✅ 短期（1–2周）操作方向</h3>
+    <ul>
+      <li><strong>创新药/生物医药（主线不追高、回调低吸）：</strong>出海近千亿+龙头业绩兑现逻辑未走完，但周五单日大涨后短线乖离过大，等回踩5–10日线再介入，首选CDMO（药明系、金斯瑞、药明合联）与商业化兑现龙头（百济、信达、荣昌）。</li>
+      <li><strong>业绩窗口博弈：</strong>8/13 联想一季报（预期经调整纯利+102%），关注ISG业务兑现度；大型电商/游戏中报前瞻，业绩超预期个股有独立行情。</li>
+      <li><strong>AI硬件（PCB/存储/光通信）：</strong>景气延续，随A股联动，适合波段。</li>
+    </ul>
+
+    <h3 style="font-size:15px; margin:16px 0 10px; color:var(--blue);">✅ 中期（1–3月）布局方向</h3>
+    <ul>
+      <li><strong>创新药全产业链：</strong>从研发期进入商业化兑现期（License-out 997亿美元为2024全年2倍），重估行情有望持续到中报落地后；GLP-1减重链（礼来指引验证）确定性最高。</li>
+      <li><strong>高股息防御底仓：</strong>国信证券推荐方向，震荡市中稳定现金流+回购托底，适合底仓配置。</li>
+      <li><strong>黄金/有色反弹窗口：</strong>降息预期+避险需求，中期趋势未破。</li>
+      <li><strong>互联网龙头：</strong>7月已反弹15–30%，新模型市场检验期，回调后布局龙头（腾讯/阿里/美团）。</li>
+    </ul>
+
+    <h3 style="font-size:15px; margin:16px 0 10px; color:var(--red);">⚠️ 风险提示</h3>
+    <ul>
+      <li><strong>指数整固风险：</strong>恒指连涨五周后进入 25000–26000 震荡区间，追高易吃面；若跌破 25000 需警惕获利盘出逃。</li>
+      <li><strong>医药短线过热：</strong>单日板块+4.7%、个股+20%级别涨幅后，短期波动加剧，勿追涨停板。</li>
+      <li><strong>中报暴雷风险：</strong>8月业绩披露密集期，预期差是最大变量，业绩不达预期个股可能闪崩。</li>
+      <li><strong>外围变量：</strong>美债收益率、美元走势未确认；全球震荡中港股逆势领涨的持续性需资金面验证（南向周五已转净卖出）。</li>
+      <li><strong>汇率：</strong>CNH波动直接影响外资风险偏好，密切跟踪离岸人民币。</li>
+    </ul>
+  </div>
+
+  <!-- ============ 9) 明日预判 ============ -->
+  <div class="section">
+    <h2><span class="icon">🔮</span> 9) 明日预判（8月10日 周一）</h2>
+    <div class="alert alert-blue">
+      <strong>基本判断：</strong>周末消息面真空（周六休市），周一大概率延续「指数窄幅震荡 + 医药高位分化 + 业绩股轮动」格局。恒指核心区间看 <strong>25400–25900</strong>。
+    </div>
+    <ul>
+      <li><strong>医药板块：</strong>周五暴涨后周一大概率高开分化，龙头（药明系、百济）看承接，纯跟风股注意兑现。</li>
+      <li><strong>关注点1：</strong>南向资金是否止跌回流——周五净卖出7.77亿，若周一恢复净买入则整固结束信号。</li>
+      <li><strong>关注点2：</strong>联想(8/13)等中报预告带来的业绩链催化。</li>
+      <li><strong>关注点3：</strong>开盘前补齐沽空比率、HIBOR、美债收益率数据（本报告因周末数据源缺失，已如实标注暂缺）。</li>
+      <li><strong>关注点4：</strong>A股创新药行情（8/7 中证医疗+4.59%）对港股的联动延续性。</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    🦅 观澜 · 首席分析助手 ｜ 数据来源：同花顺iFind、证券时报、中新社、每经、雪球 ｜ 本报告仅供研究参考，不构成投资建议<br>
+    生成时间：2026-08-08 20:20 CST ｜ 港股下一交易日：2026-08-10（周一）
+  </div>
+</div>
+</body>
+</html>
