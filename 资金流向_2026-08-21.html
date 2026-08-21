@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>资金流向日报 2026-08-21</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0e27; color: #c8d6e5; font-family: -apple-system, 'Microsoft YaHei', 'PingFang SC', sans-serif; padding: 20px; }
+.container { max-width: 1100px; margin: 0 auto; }
+.header { background: linear-gradient(135deg, #1a1f4e, #0a0e27); border: 1px solid #2a2f5e; border-radius: 12px; padding: 25px; margin-bottom: 20px; text-align: center; }
+.header h1 { color: #ffd700; font-size: 26px; margin-bottom: 8px; }
+.header .date { color: #7f8fa6; font-size: 14px; }
+.header .summary { margin-top: 18px; display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+.header .summary-item { text-align: center; }
+.header .summary-item .label { color: #7f8fa6; font-size: 12px; }
+.header .summary-item .value { color: #ffd700; font-size: 22px; font-weight: bold; }
+.header .summary-item .value.red { color: #ff4757; }
+.header .summary-item .value.green { color: #2ed573; }
+.card { background: linear-gradient(135deg, #12163a, #0d1132); border: 1px solid #2a2f5e; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+.card h2 { color: #ffd700; font-size: 18px; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid #2a2f5e; }
+.card h3 { color: #ffd700; font-size: 14px; margin: 12px 0 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+th { background: rgba(255,215,0,0.1); color: #ffd700; padding: 7px 10px; text-align: center; border: 1px solid #2a2f5e; font-weight: normal; }
+td { padding: 6px 10px; text-align: center; border: 1px solid #1a1f4e; }
+td.left { text-align: left; }
+.up { color: #2ed573; }
+.down { color: #ff4757; }
+.score-box { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; margin-top: 10px; }
+.score-circle { width: 130px; height: 130px; border-radius: 50%; background: conic-gradient(#ffd700 0deg 231deg, #2a2f5e 231deg 360deg); display: flex; align-items: center; justify-content: center; }
+.score-circle .inner { width: 100px; height: 100px; border-radius: 50%; background: #0d1132; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.score-circle .inner .num { color: #ffd700; font-size: 34px; font-weight: bold; }
+.score-circle .inner .lbl { color: #7f8fa6; font-size: 11px; }
+.score-detail { flex: 1; min-width: 300px; }
+.score-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 13px; border-bottom: 1px dashed #1a1f4e; }
+.score-row .dim { color: #c8d6e5; }
+.score-row .sc { font-weight: bold; }
+.signal { display: flex; gap: 10px; padding: 8px 12px; margin: 6px 0; border-radius: 8px; font-size: 13px; line-height: 1.6; }
+.signal.bull { background: rgba(46,213,115,0.08); border-left: 3px solid #2ed573; }
+.signal.bear { background: rgba(255,71,87,0.08); border-left: 3px solid #ff4757; }
+.signal.neutral { background: rgba(255,215,0,0.06); border-left: 3px solid #ffd700; }
+.signal .tag { font-weight: bold; white-space: nowrap; }
+.signal.bull .tag { color: #2ed573; }
+.signal.bear .tag { color: #ff4757; }
+.signal.neutral .tag { color: #ffd700; }
+.hold-card { border: 1px solid #2a2f5e; border-radius: 8px; padding: 10px 14px; margin: 8px 0; }
+.hold-card .h-name { color: #ffd700; font-weight: bold; font-size: 14px; }
+.hold-card .h-detail { font-size: 12px; color: #7f8fa6; margin-top: 4px; line-height: 1.7; }
+.footer { color: #5f6b7f; font-size: 11px; text-align: center; margin-top: 20px; line-height: 1.8; }
+.tip { font-size: 12px; color: #7f8fa6; line-height: 1.7; }
+.bar { height: 8px; border-radius: 4px; background: #1a1f4e; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; }
+.badge { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 12px; font-weight: bold; }
+.badge.pos { background: rgba(46,213,115,0.15); color: #2ed573; border: 1px solid rgba(46,213,115,0.4); }
+.badge.neg { background: rgba(255,71,87,0.15); color: #ff4757; border: 1px solid rgba(255,71,87,0.4); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>💰 资金流向日报</h1>
+  <div class="date">2026年8月21日 周五 | 数据截止 16:00 | 数据源: iFind(同花顺) + 东财资金流 + 腾讯行情</div>
+  <div class="summary">
+    <div class="summary-item"><div class="label">上证指数</div><div class="value">3905.20 <span class="up">+0.04%</span></div></div>
+    <div class="summary-item"><div class="label">深证成指</div><div class="value">14094.17 <span class="up">+0.87%</span></div></div>
+    <div class="summary-item"><div class="label">创业板指</div><div class="value">3545.58 <span class="up">+1.43%</span></div></div>
+    <div class="summary-item"><div class="label">两市成交额</div><div class="value">1.88万亿 <span class="down">缩量-9.7%</span></div></div>
+    <div class="summary-item"><div class="label">主力净流入(沪深)</div><div class="value green">约+167亿</div></div>
+    <div class="summary-item"><div class="label">资金面综合评分</div><div class="value">6.4<span style="font-size:14px">/10</span></div></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>📊 市场概览</h2>
+  <table>
+    <tr><th>指数</th><th>收盘</th><th>涨跌幅</th><th>成交额</th><th>主力净流入</th><th>超大单</th><th>大单</th><th>中单</th><th>小单</th></tr>
+    <tr><td class="left">上证指数</td><td>3905.20</td><td class="up">+0.04%</td><td>8834亿</td><td class="up">+23.6亿</td><td class="up">+58.0亿</td><td class="down">-34.4亿</td><td class="down">-35.9亿</td><td class="up">+12.3亿</td></tr>
+    <tr><td class="left">深证成指</td><td>14094.17</td><td class="up">+0.87%</td><td>9958亿</td><td class="up">+143.6亿</td><td class="up">+117.5亿</td><td class="up">+26.0亿</td><td class="down">-123.2亿</td><td class="down">-20.4亿</td></tr>
+    <tr><td class="left">创业板指</td><td>3545.58</td><td class="up">+1.43%</td><td>4915亿</td><td class="up">+45.1亿</td><td class="up">+45.0亿</td><td class="up">+0.1亿</td><td class="down">-80.1亿</td><td class="up">+34.9亿</td></tr>
+  </table>
+  <div class="tip" style="margin-top:8px">
+    📌 沪深京三市合计成交 <b>18924亿元</b>，较前一日缩量约 <b>2017亿元</b>（-9.7%），连续两日缩量（8/19峰值2.51万亿 → 8/21 1.88万亿，回落25%）。<br>
+    📌 个股层面分化：指数靠权重（有色/通信/黄金）拉升，多数个股走弱，收盘下跌个股约2800只。黄金股爆发（深中华A、湖南白银、盛达资源、白银有色等涨停），锂矿（融捷股份涨停）、算力硬件（可川科技、瑞斯康达、星网锐捷涨停）活跃；医药（疫苗/创新药）、粮食、养殖、白酒领跌。
+  </div>
+</div>
+
+<div class="card">
+  <h2>🔵 北向资金（沪深港通）</h2>
+  <table>
+    <tr><th>指标</th><th>数值</th><th>说明</th></tr>
+    <tr><td class="left">沪股通当日成交</td><td>1258.47亿元</td><td class="left">今日成交活跃度中等偏高</td></tr>
+    <tr><td class="left">深股通当日成交</td><td>1422.41亿元</td><td class="left">深市成交占比略高</td></tr>
+    <tr><td class="left">北向合计成交</td><td>2680.88亿元</td><td class="left">占两市成交额约14.3%</td></tr>
+    <tr><td class="left">当日净买入</td><td style="color:#7f8fa6">不披露</td><td class="left">⚠️ 交易所自2024年8月起停止披露北向资金当日净买卖额，仅披露成交额</td></tr>
+    <tr><td class="left">2026 Q2 净流入（估算）</td><td class="up">+2193 ~ +2230亿元</td><td class="left">国信证券/招商证券估算，创陆股通开通以来单季新高</td></tr>
+    <tr><td class="left">Q2 末持股市值</td><td class="up">3.13万亿元</td><td class="left">历史首次突破3万亿，创互联互通开通以来季度新高；持股超1078亿股（环比+40亿股）</td></tr>
+    <tr><td class="left">流入结构（Q2）</td><td>长线稳定型 +1859亿</td><td class="left">长线资金为绝对主力，短线灵活型仅+254亿 → 配置型资金战略性加仓，非热钱短炒</td></tr>
+  </table>
+  <div class="tip" style="margin-top:8px">
+    📌 判断：北向当日买卖方向已不可观测，但从Q2净流入创纪录 + 持股市值新高看，<b>外资中长期回流趋势未改</b>。今日黄金/有色大涨部分受隔夜美股下跌避险情绪推动，北向重仓的消费/科技今日分化。
+  </div>
+</div>
+
+<div class="card">
+  <h2>🟡 主力资金 · 行业净流入 TOP10</h2>
+  <table>
+    <tr><th>#</th><th>行业</th><th>涨跌幅</th><th>主力净流入</th><th>超大单</th><th>大单</th></tr>
+    <tr><td>1</td><td class="left">有色金属</td><td class="up">+2.59%</td><td class="up">+88.3亿</td><td class="up">+59.9亿</td><td class="up">+28.4亿</td></tr>
+    <tr><td>2</td><td class="left">电子</td><td class="up">+0.73%</td><td class="up">+85.5亿</td><td class="up">+66.7亿</td><td class="up">+18.8亿</td></tr>
+    <tr><td>3</td><td class="left">通信设备</td><td class="up">+1.34%</td><td class="up">+85.3亿</td><td class="up">+76.3亿</td><td class="up">+9.0亿</td></tr>
+    <tr><td>4</td><td class="left">通信网络设备及器件</td><td class="up">+1.06%</td><td class="up">+78.5亿</td><td class="up">+69.2亿</td><td class="up">+9.4亿</td></tr>
+    <tr><td>5</td><td class="left">通信</td><td class="up">+0.78%</td><td class="up">+78.1亿</td><td class="up">+72.1亿</td><td class="up">+6.1亿</td></tr>
+    <tr><td>6</td><td class="left">元件</td><td class="up">+1.51%</td><td class="up">+44.9亿</td><td class="up">+19.5亿</td><td class="up">+25.4亿</td></tr>
+    <tr><td>7</td><td class="left">印制电路板(PCB)</td><td class="up">+1.43%</td><td class="up">+41.2亿</td><td class="up">+18.3亿</td><td class="up">+22.8亿</td></tr>
+    <tr><td>8</td><td class="left">工业金属</td><td class="up">+2.56%</td><td class="up">+34.5亿</td><td class="up">+26.0亿</td><td class="up">+8.5亿</td></tr>
+    <tr><td>9</td><td class="left">贵金属</td><td class="up">+5.99%</td><td class="up">+34.2亿</td><td class="up">+18.7亿</td><td class="up">+15.5亿</td></tr>
+    <tr><td>10</td><td class="left">铜</td><td class="up">+3.21%</td><td class="up">+27.8亿</td><td class="up">+20.7亿</td><td class="up">+7.1亿</td></tr>
+  </table>
+  <div class="tip" style="margin-top:6px">其余亮点：白银 +20.5亿(+8.68%)、电力设备 +20.4亿、消费电子 +19.9亿、基础化工 +17.0亿、电池 +16.0亿、能源金属 +13.9亿(+4.63%)、黄金 +13.8亿(+5.09%)、锂电池 +12.6亿、锂 +11.4亿(+5.91%)、钨 +10.6亿(+4.9%)、非银金融 +9.5亿。</div>
+
+  <h3>🔴 主力资金 · 行业净流出 TOP10</h3>
+  <table>
+    <tr><th>#</th><th>行业</th><th>涨跌幅</th><th>主力净流出</th><th>超大单</th></tr>
+    <tr><td>1</td><td class="left">医药生物</td><td class="down">-3.14%</td><td class="down">-91.1亿</td><td class="down">-39.3亿</td></tr>
+    <tr><td>2</td><td class="left">化学制药</td><td class="down">-3.72%</td><td class="down">-34.7亿</td><td class="down">-14.1亿</td></tr>
+    <tr><td>3</td><td class="left">医疗服务</td><td class="down">-4.02%</td><td class="down">-30.8亿</td><td class="down">-14.2亿</td></tr>
+    <tr><td>4</td><td class="left">医疗研发外包(CXO)</td><td class="down">-5.39%</td><td class="down">-28.3亿</td><td class="down">-13.1亿</td></tr>
+    <tr><td>5</td><td class="left">化学制剂</td><td class="down">-4.10%</td><td class="down">-26.6亿</td><td class="down">-10.8亿</td></tr>
+    <tr><td>6</td><td class="left">半导体材料</td><td class="down">-0.33%</td><td class="down">-14.3亿</td><td class="down">-5.9亿</td></tr>
+    <tr><td>7</td><td class="left">生物制品</td><td class="down">-3.27%</td><td class="down">-12.4亿</td><td class="down">-7.2亿</td></tr>
+    <tr><td>8</td><td class="left">传媒</td><td class="down">-0.59%</td><td class="down">-12.0亿</td><td class="down">-7.8亿</td></tr>
+    <tr><td>9</td><td class="left">食品饮料</td><td class="down">-1.47%</td><td class="down">-10.3亿</td><td class="down">-5.2亿</td></tr>
+    <tr><td>10</td><td class="left">白酒</td><td class="down">-1.66%</td><td class="down">-8.8亿</td><td class="down">-5.4亿</td></tr>
+  </table>
+  <div class="tip" style="margin-top:6px">其余流出：银行 -8.5亿(-0.42%)、农林牧渔 -8.2亿(-2.83%)。医药板块（尤其CXO/疫苗/创新药）遭遇系统性资金撤离，疫苗股华兰疫苗、安科生物跌超11%。</div>
+</div>
+
+<div class="card">
+  <h2>📈 资金结构：机构 vs 游资 vs 散户</h2>
+  <table>
+    <tr><th>资金类型</th><th>方向</th><th>规模(沪+深)</th><th>解读</th></tr>
+    <tr><td class="left">超大单（机构）</td><td><span class="badge pos">净流入</span></td><td class="up">约 +220亿</td><td class="left">机构资金大举吸筹，主攻有色/通信/电子</td></tr>
+    <tr><td class="left">大单（游资/大户）</td><td><span class="badge pos">小幅净流入</span></td><td class="up">约 -8亿</td><td class="left">游资活跃度一般，集中在黄金/锂矿涨停股</td></tr>
+    <tr><td class="left">中单（散户）</td><td><span class="badge neg">净流出</span></td><td class="down">约 -239亿</td><td class="left">散户大幅减仓/离场观望</td></tr>
+    <tr><td class="left">小单（散户）</td><td><span class="badge pos">净流入</span></td><td class="up">约 +27亿</td><td class="left">小额资金逢低承接</td></tr>
+  </table>
+  <div class="tip" style="margin-top:8px">
+    📌 <b>机构(超大单)买入 + 散户(中单)卖出</b>：典型的机构吸筹特征。历史上该组合出现后短期市场偏强概率较大，但需量能配合确认。<br>
+    📌 概念板块主力净流入前五：融资融券+157亿、深股通+144亿、2026中报预增+144亿、MSCI中国+141亿、5G概念+141亿（多为宽基/权重类，显示资金向大盘蓝筹集中）。
+  </div>
+</div>
+
+<div class="card">
+  <h2>⚖️ 两融余额（杠杆资金）</h2>
+  <table>
+    <tr><th>日期</th><th>融资融券余额</th><th>日变动</th><th>融资买入额</th><th>融资偿还额</th><th>融资净买入</th></tr>
+    <tr><td>08-14</td><td>2.6655万亿</td><td>-</td><td>2003.4亿</td><td>2021.8亿</td><td class="down">-18.4亿</td></tr>
+    <tr><td>08-17</td><td>2.6841万亿</td><td class="up">+185.9亿</td><td>2349.2亿</td><td>2171.5亿</td><td class="up">+177.7亿</td></tr>
+    <tr><td>08-18</td><td>2.6896万亿</td><td class="up">+55.4亿</td><td>2288.0亿</td><td>2235.8亿</td><td class="up">+52.2亿</td></tr>
+    <tr><td>08-19</td><td>2.6593万亿</td><td class="down">-302.8亿</td><td>2148.7亿</td><td>2445.4亿</td><td class="down">-296.7亿</td></tr>
+    <tr><td>08-20</td><td>2.6580万亿</td><td class="down">-13.0亿</td><td>1882.4亿</td><td>1899.3亿</td><td class="down">-16.9亿</td></tr>
+  </table>
+  <div class="tip" style="margin-top:8px">
+    📌 两融余额从 8/18 峰值 <b>2.6896万亿</b> 回落至 8/20 <b>2.6580万亿</b>（-316亿）。8/19 杠杆资金单日大幅净偿还 297亿（去杠杆），8/20 净偿还收窄至 17亿 → <b>去杠杆接近尾声</b>。<br>
+    📌 融资买入额同步缩量（2349亿→1882亿），杠杆资金参与度下降，与两市缩量互相印证。
+  </div>
+</div>
+
+<div class="card">
+  <h2>📉 成交活跃度（两市成交额）</h2>
+  <table>
+    <tr><th>日期</th><th>08-14</th><th>08-17</th><th>08-18</th><th>08-19</th><th>08-20</th><th>08-21</th></tr>
+    <tr><td class="left">成交额</td><td>2.145万亿</td><td>2.390万亿</td><td>2.403万亿</td><td class="up">2.513万亿</td><td>2.082万亿</td><td class="down">1.882万亿</td></tr>
+  </table>
+  <div class="tip" style="margin-top:8px">
+    📌 成交额从 8/19 峰值 2.51万亿 连续两日缩量至 1.88万亿（-25%）。<b>量能萎缩</b>说明多空分歧收敛、观望情绪上升，市场进入"缩量企稳"阶段——指数靠权重护盘，个股普跌，需放量确认方向。
+  </div>
+</div>
+
+<div class="card">
+  <h2>🏦 ETF资金动向（机构行为代理指标）</h2>
+  <table>
+    <tr><th>维度</th><th>资金方向</th><th>明细</th></tr>
+    <tr><td class="left">宽基ETF（8/20）</td><td><span class="badge neg">净流出43.7亿</span></td><td class="left">中证1000系合计-43.7亿（南方-17.1/广发-15.0/华夏-6.0）、创业板ETF易方达-8.8亿、中证500南方-7.5亿、沪深300华泰柏瑞-5.4亿</td></tr>
+    <tr><td class="left">逆势流入</td><td><span class="badge pos">净流入</span></td><td class="left">上证50ETF华夏 +10.5亿、沪深300ETF易方达 +4.0亿 → 资金向大盘价值/权重集中</td></tr>
+    <tr><td class="left">年内主线（截至8/20）</td><td><span class="badge pos">大额流入</span></td><td class="left">科创半导体ETF +401.8亿（全市场第一）、通信ETF +300亿、半导体设备ETF国泰 +259亿、城投债ETF +260亿、电网设备ETF +169.6亿、黄金ETF华安 +143亿、卫星ETF +140亿</td></tr>
+    <tr><td class="left">近20日</td><td><span class="badge pos">净流入</span></td><td class="left">银华日利 +121亿、科创半导体ETF +109亿、A500ETF华泰柏瑞 +60.7亿、科创50ETF华夏 +59.9亿、黄金ETF华安 +47.6亿、创业板ETF易方达 +46.8亿</td></tr>
+    <tr><td class="left">避险/固收</td><td><span class="badge pos">净流入</span></td><td class="left">30年国债ETF +6.9亿、政金债ETF +2.3亿、科创债ETF +2.0亿、华宝添益 +10.5亿（规模破960亿）、黄金ETF国泰 +3.2亿</td></tr>
+  </table>
+  <div class="tip" style="margin-top:8px">
+    📌 机构通过ETF表达的观点：① 托底意愿存在但持续性不足（FICC日报）；② 现金为王（货币ETF吸金）+ 避险（黄金/利率债）双升温；③ 硬科技（半导体/通信/电网设备）为全年最强主线。
+  </div>
+</div>
+
+<div class="card">
+  <h2>🧭 资金面综合评分</h2>
+  <div class="score-box">
+    <div class="score-circle"><div class="inner"><div class="num">6.4</div><div class="lbl">中性偏多</div></div></div>
+    <div class="score-detail">
+      <div class="score-row"><span class="dim">① 主力资金方向（机构吸筹 +167亿）</span><span class="sc up">8.5</span></div>
+      <div class="score-row"><span class="dim">② 北向资金（Q2创纪录回流，当日不披露）</span><span class="sc">6.5</span></div>
+      <div class="score-row"><span class="dim">③ 两融杠杆（大幅去杠杆后企稳）</span><span class="sc">5.5</span></div>
+      <div class="score-row"><span class="dim">④ 成交活跃度（缩量至1.88万亿）</span><span class="sc">5.0</span></div>
+      <div class="score-row"><span class="dim">⑤ ETF/机构行为（宽基流出、托底不足）</span><span class="sc">6.0</span></div>
+      <div class="score-row"><span class="dim">⑥ 结构健康度（双主线清晰、医药失血）</span><span class="sc">7.0</span></div>
+    </div>
+  </div>
+  <div class="tip" style="margin-top:12px">
+    📌 综合判断：<b>中性偏多（6.4/10）</b>。机构资金（超大单）明显吸筹、杠杆去化接近尾声是积极信号；但量能连续萎缩 + 避险情绪升温 + 个股普跌，制约上行空间。策略上：跟随主力主线（资源品+硬科技），规避资金持续撤离的医药/消费；等待放量确认。
+  </div>
+</div>
+
+<div class="card">
+  <h2>🎯 关键信号</h2>
+  <div class="signal bull"><span class="tag">✅ 机构吸筹</span><span>超大单净流入约220亿 vs 散户中单净流出约239亿，机构与散户明显分歧，机构占优。沪深主力合计净流入约+167亿。</span></div>
+  <div class="signal bull"><span class="tag">✅ 双主线</span><span>资源品（有色/贵金属/锂/铜/钨，受益避险+涨价）与硬科技（通信/PCB/元件/消费电子，受益AI算力）获主力资金合力做多。</span></div>
+  <div class="signal neutral"><span class="tag">➖ 杠杆企稳</span><span>两融8/19大幅净偿还297亿后，8/20收窄至17亿，余额2.658万亿，去杠杆接近尾声，但杠杆资金参与度明显下降。</span></div>
+  <div class="signal bear"><span class="tag">⚠️ 量能萎缩</span><span>成交额连续两日缩量至1.88万亿（较8/19峰值-25%），观望情绪浓厚，指数上攻缺乏量能确认。</span></div>
+  <div class="signal bear"><span class="tag">⚠️ 避险升温</span><span>隔夜美股大跌（道指-1.32%/纳指-1.00%），黄金/白银大涨、30年国债ETF获流入、货币ETF吸金，"现金为王"策略升温，风险偏好阶段性下降。</span></div>
+  <div class="signal neutral"><span class="tag">➖ 医药失血</span><span>医药生物主力净流出91亿居首（CXO -28亿），疫苗/创新药大跌，板块资金面持续恶化，短期回避。</span></div>
+  <div class="signal bull"><span class="tag">✅ 外资回流</span><span>北向Q2净流入约2200亿创单季新高、持股市值3.13万亿破纪录，长线配置型外资战略性加仓A股的趋势未改。</span></div>
+</div>
+
+<div class="card">
+  <h2>📋 持仓个股资金面影响</h2>
+  <div class="tip" style="margin-bottom:10px">⚠️ 以下为参考持仓（截至7月初持仓报告：10只、总仓位87%），仅供资金面影响评估，实际持仓以用户确认为准。</div>
+  <div class="hold-card">
+    <span class="h-name">福瑞医科 300049</span> <span class="badge neg">-3.05%</span>
+    <div class="h-detail">主力净流出 780万（净占比-2.91%，超大单-634万）。所属医药板块今日遭主力净流出91亿居全市场首位，个股随板块回调。⚠️ 资金面利空，短期承压，关注是否放量破位。</div>
+  </div>
+  <div class="hold-card">
+    <span class="h-name">福昕软件 688095</span> <span class="badge neg">-1.40%</span>
+    <div class="h-detail">主力净流出 734万（净占比-5.81%，大单-558万为主）。软件板块无主力资金合力，个股缩量调整，资金面中性偏弱。</div>
+  </div>
+  <div class="hold-card">
+    <span class="h-name">金丹科技 300829</span> <span class="badge neg">-0.27%</span>
+    <div class="h-detail">主力净流出 552万（净占比-10.09%，全部来自大单）。成交清淡下资金占比波动大，实际流出规模小，影响有限；属农业/化工链条，今日农业板块调整（-2.83%），个股相对抗跌。</div>
+  </div>
+  <div class="hold-card">
+    <span class="h-name">腾讯控股 00700</span> <span class="badge pos">+1.24%</span>
+    <div class="h-detail">港股科技今日整体走强（B站+2.46%），南向资金活跃。腾讯作为港股科技权重，资金面偏多，对组合贡献正收益。</div>
+  </div>
+  <div class="hold-card">
+    <span class="h-name">哔哩哔哩-W 09626</span> <span class="badge pos">+2.46%</span>
+    <div class="h-detail">港股科技/内容平台今日资金流入明显，涨幅居持仓首位。</div>
+  </div>
+  <div class="hold-card">
+    <span class="h-name">科伦博泰生物 06990</span> <span class="badge pos">+0.94%</span>
+    <div class="h-detail">A股创新药大跌（哈三联、哈药股份跌停），港股创新药相对抗跌（+0.94%），南向资金对港股医药有一定支撑；但需警惕A股医药抛压情绪传导。</div>
+  </div>
+  <div class="hold-card">
+    <span class="h-name">阿里巴巴-W 09988</span> <span class="badge neg">-2.54%</span>
+    <div class="h-detail">今日明显走弱，隔夜美股科技股下跌（纳指-1%）对港股互联网映射偏空，资金面短期承压。</div>
+  </div>
+  <div class="hold-card">
+    <span class="h-name">小鹏汽车-W 09868</span> <span class="badge pos">+0.59%</span>
+    <div class="h-detail">小幅上涨，汽车板块主力净流入+7.8亿，资金面平稳。</div>
+  </div>
+  <div class="hold-card">
+    <span class="h-name">金山云 03896</span> <span class="badge neg">-1.32%</span>
+    <div class="h-detail">云计算板块无主力合力，跟随港股科技小幅调整。</div>
+  </div>
+  <div class="hold-card">
+    <span class="h-name">金蝶国际 00268</span> <span class="badge neg">-0.72%</span>
+    <div class="h-detail">小幅调整，资金面中性。</div>
+  </div>
+  <div class="tip" style="margin-top:10px">
+    📌 <b>组合资金面小结</b>：今日 A股持仓（福瑞医科/福昕软件/金丹科技）全部录得主力净流出且下跌，主要受医药板块系统性抛售拖累；港股持仓涨跌互现，腾讯/B站领涨对冲阿里下跌。整体组合资金面<b>中性</b>，需重点关注福瑞医科所在医药板块的资金撤离是否延续——若医药主力净流出持续居前，建议评估该仓位风险；港股科技受益南向资金活跃，暂可持有。
+  </div>
+</div>
+
+<div class="footer">
+  本报告由 Hermes Agent 自动生成 | 数据来源：同花顺iFind（两融/成交额/北向成交/资讯）、东方财富资金流（主力/超大单/大单/中单/小单）、腾讯行情（指数/个股报价）<br>
+  北向资金当日净买卖额自2024年8月起交易所停止披露，本报告以成交额+季度持仓数据替代。资金流数据为收盘后快照，可能与交易所终值存在小幅差异。<br>
+  报告仅供参考，不构成投资建议。市场有风险，投资需谨慎。<br>
+  生成时间：2026-08-21 19:52
+</div>
+
+</div>
+</body>
+</html>
