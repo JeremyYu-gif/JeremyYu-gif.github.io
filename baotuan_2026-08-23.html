@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>机构抱团识别报告 2026-08-23</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif; background:#f0f2f5; color:#1a1a2e; line-height:1.7; }
+  .container { max-width:1100px; margin:0 auto; padding:20px; }
+  .header { background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460); color:#fff; padding:40px; border-radius:16px; margin-bottom:24px; position:relative; overflow:hidden; }
+  .header h1 { font-size:28px; font-weight:700; margin-bottom:8px; }
+  .header .subtitle { font-size:14px; opacity:0.8; }
+  .header .date-badge { position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.15); padding:8px 16px; border-radius:20px; font-size:13px; }
+  .section { background:#fff; border-radius:12px; padding:24px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+  .section h2 { font-size:20px; font-weight:700; margin-bottom:16px; padding-bottom:12px; border-bottom:2px solid #e8e8e8; display:flex; align-items:center; gap:8px; }
+  .section h2 .icon { font-size:24px; }
+  .score-box { display:flex; gap:12px; margin:16px 0; flex-wrap:wrap; }
+  .score-item { flex:1; min-width:180px; background:#f8f9fa; border-radius:10px; padding:16px; text-align:center; }
+  .score-item .label { font-size:13px; color:#666; }
+  .score-item .value { font-size:28px; font-weight:700; margin:8px 0; }
+  .score-item .desc { font-size:12px; color:#999; }
+  table { width:100%; border-collapse:collapse; margin:12px 0; }
+  th { background:#f5f7fa; padding:10px 12px; text-align:left; font-weight:600; font-size:13px; color:#555; border-bottom:2px solid #e0e0e0; }
+  td { padding:10px 12px; border-bottom:1px solid #f0f0f0; font-size:14px; }
+  tr:hover { background:#fafbfc; }
+  .positive { color:#e74c3c; }
+  .negative { color:#27ae60; }
+  .neutral { color:#f39c12; }
+  .tag { display:inline-block; padding:2px 10px; border-radius:12px; font-size:12px; font-weight:500; }
+  .tag-red { background:#ffe8e8; color:#e74c3c; }
+  .tag-green { background:#e8f8e8; color:#27ae60; }
+  .tag-blue { background:#e8f0ff; color:#2980b9; }
+  .tag-yellow { background:#fff8e8; color:#f39c12; }
+  .tag-purple { background:#f0e8ff; color:#8e44ad; }
+  .tag-orange { background:#fff0e8; color:#e67e22; }
+  .star { color:#f1c40f; font-size:18px; }
+  .risk-box { background:#fff5f5; border-left:4px solid #e74c3c; padding:14px 18px; border-radius:0 8px 8px 0; margin:12px 0; }
+  .risk-box.warning { background:#fffef5; border-left-color:#f39c12; }
+  .risk-box.info { background:#f5f8ff; border-left-color:#3498db; }
+  .flex-row { display:flex; gap:12px; flex-wrap:wrap; }
+  .flex-row > div { flex:1; min-width:200px; }
+  .card { background:#f8f9fa; border-radius:8px; padding:14px; margin-bottom:10px; }
+  .card h4 { font-size:15px; margin-bottom:6px; }
+  .card p { font-size:13px; color:#555; }
+  .footer { text-align:center; padding:30px; color:#999; font-size:12px; }
+  .progress-bar { height:8px; border-radius:4px; background:#e8e8e8; margin:6px 0; overflow:hidden; }
+  .progress-fill { height:100%; border-radius:4px; }
+  .mt10 { margin-top:10px; }
+  .mb10 { margin-bottom:10px; }
+  @media (max-width:768px) { .header h1 { font-size:22px; } .score-item { min-width:140px; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>🏦 机构抱团识别报告</h1>
+  <div class="subtitle">基于 iFind MCP 数据源 · 重点分析公募基金持仓集中度与资金流向</div>
+  <div class="date-badge">📅 报告日 2026-08-23 | 数据截止 2026-08-21</div>
+</div>
+
+<!-- 市场概况 -->
+<div class="section">
+<h2><span class="icon">📊</span> 一、大盘概况（2026-08-21 周五 / 周度对比）</h2>
+<table>
+  <tr><th>指数</th><th>收盘价</th><th>周涨跌(8/14→8/21)</th><th>周内走势</th><th>强弱评价</th></tr>
+  <tr><td>上证指数</td><td>3905.20</td><td class="negative">-0.56%</td><td>8/18冲高3990后回落</td><td><span class="tag tag-yellow">冲高回落</span></td></tr>
+  <tr><td>深证成指</td><td>14094.17</td><td class="negative">-1.81%</td><td>8/17高点14704</td><td><span class="tag tag-yellow">高位回调</span></td></tr>
+  <tr><td>创业板指</td><td>3545.58</td><td class="negative">-2.23%</td><td>8/17高点3740</td><td><span class="tag tag-yellow">高位回调</span></td></tr>
+  <tr><td>科创50</td><td>1653.56</td><td class="negative">-3.73%</td><td>8/18高点1791后跳水</td><td><span class="tag tag-orange">剧烈波动</span></td></tr>
+  <tr><td>沪深300</td><td>4618.90</td><td class="negative">-1.01%</td><td>震荡下行</td><td><span class="tag tag-yellow">偏弱</span></td></tr>
+  <tr><td>上证50</td><td>2883.55</td><td class="negative">-1.12%</td><td>震荡下行</td><td><span class="tag tag-yellow">偏弱</span></td></tr>
+  <tr><td>中证500</td><td>7854.33</td><td class="negative">-1.70%</td><td>8/18高点8177</td><td><span class="tag tag-yellow">高位回调</span></td></tr>
+</table>
+<div class="risk-box info">
+  <strong>📌 市场结构小结：</strong>本周（8/17-8/21）两市呈<b>「冲高回落、放量巨震」</b>格局。周一（8/17）延续上周强势、主力资金净流入753亿，周二（8/18）科创50冲上1791点后动能衰竭；<b>周三（8/19）AI算力链集体闪崩</b>——中际旭创-9.36%、新易盛-9.00%、寒武纪-9.64%、海光信息-7.26%、北方华创-8.24%、澜起科技-8.26%，全A主力资金单日净流出高达1684亿元（本周最大）；周四弱势整理、周五光模块V型回补（新易盛+6.76%、中际旭创+4.29%）。成交额从8/19峰值2.51万亿缩至8/21的1.88万亿。<b>全周最强信号是「高低切换」：石油石化周涨+5.29%、有色金属+2.50%、银行+2.36%、煤炭+1.54%领涨，而计算机-5.22%、传媒-5.76%、国防军工-4.53%重挫</b>——资金从高位TMT向资源+红利板块分流，但AI算力抱团经8/19闪崩洗盘后并未瓦解，周五快速回补显示机构仍在坚守。
+</div>
+</div>
+
+<!-- 抱团强度评分 -->
+<div class="section">
+<h2><span class="icon">🔥</span> 二、抱团强度评分</h2>
+<div class="score-box">
+  <div class="score-item">
+    <div class="label">行业集中度</div>
+    <div class="value">★★★<span style="color:#ddd;">☆☆</span></div>
+    <div class="desc">3星 · TMT回调、资源接力，集中度下降</div>
+  </div>
+  <div class="score-item">
+    <div class="label">资金聚集度</div>
+    <div class="value">★★★<span style="color:#ddd;">☆☆</span></div>
+    <div class="desc">3星 · 8/19净流出1684亿，周五仅回流110亿</div>
+  </div>
+  <div class="score-item">
+    <div class="label">瓦解风险</div>
+    <div class="value">★★★★<span style="color:#ddd;">☆</span></div>
+    <div class="desc">4星 · AI算力拥挤度极高，单日闪崩-9%级别</div>
+  </div>
+  <div class="score-item">
+    <div class="label">综合抱团强度</div>
+    <div class="value" style="color:#e67e22;">3.5星</div>
+    <div class="desc">AI算力高波动坚守 + 资源红利新抱团萌芽</div>
+  </div>
+</div>
+<div class="risk-box warning">
+  <strong>⚠️ 核心判断：</strong>上周「光通信重新点火、AI算力链二次凝聚」的判断本周遭遇<b>极端压力测试</b>：8/19单日光模块/半导体龙头集体闪崩（多股-8%~-10%），是抱团松动以来最剧烈的一次筹码震荡，单日主力净流出1684亿创近期极值；但8/21光模块快速V型回补（新易盛+6.76%、中际旭创+4.29%、烽火通信+5.71%）说明<b>AI算力抱团并未瓦解，而是进入高波动换手阶段</b>——腾讯上半年资本开支847亿(+82%)、金山云Q2 AI云收入+82%验证AI景气仍在兑现。与此同时<b>资源+红利板块形成新抱团萌芽</b>：石油石化周涨5.29%（中国石油+1.91%、中国海油+1.68%）、有色金属+2.50%（紫金矿业+2.69%、洛阳钼业+1.92%）、银行+2.36%，中煤能源（买入评级51家）、宁波银行（56家）、紫金矿业（41家）等机构持仓+评级双高，承接了从TMT溢出的资金。市场呈现「AI算力（高波动核心）+ 资源红利（新承接）+ 医药CXO（蓄势副线）」的<b>双主极格局</b>，白酒消费抱团持续阴跌瓦解。
+</div>
+</div>
+
+<!-- 当前抱团板块 -->
+<div class="section">
+<h2><span class="icon">🎯</span> 三、当前抱团板块及核心个股</h2>
+
+<div class="card">
+<h4>🟢 抱团板块一：AI算力链 — 光模块/CPO/半导体（核心抱团 · 高波动坚守）</h4>
+<p><strong>抱团逻辑：</strong>①景气验证——腾讯H1资本开支847亿(+82%)、金山云Q2 AI云收入13.3亿(+82%)、8/19金山云美股大涨11%创单季营收新高，算力需求从「预期」进入「财报兑现」；②8/19闪崩系拥挤度极端释放（中际旭创-9.36%、寒武纪-9.64%），但周五即回补，机构并未离场；③基金重仓印证——易方达沪深300ETF前十大重仓含中际旭创、新易盛、兆易创新、寒武纪、北方华创5只AI算力股，华夏半导体芯片ETF重仓兆易创新、寒武纪、北方华创、澜起科技、海光信息、中芯国际，诺安成长混合重仓中微、北方华创、中芯、拓荆等半导体设备。</p>
+<div class="progress-bar"><div class="progress-fill" style="width:78%;background:#27ae60;"></div></div>
+<p style="font-size:12px;color:#999;">抱团强度：78% · 高波动坚守，拥挤度极高需防二次闪崩</p>
+</div>
+
+<div class="card">
+<h4>🟠 抱团板块二：资源+红利 — 石油石化/有色/煤炭/银行（新抱团萌芽 · 本周最强）</h4>
+<p><strong>抱团逻辑：</strong>①高低切换主战场——石油石化周涨+5.29%居首、有色金属+2.50%、银行+2.36%、煤炭+1.54%，资金从高位TMT确定性溢出；②机构底仓深厚——紫金矿业（机构持股47.2%、买入41家）、洛阳钼业（37.1%、41家）、中煤能源（89.4%、51家）、宁波银行（66.6%、56家）、南京银行（73.9%、42家）、江苏银行（43.6%、39家）均为机构重仓+券商密集买入；③ETF资金印证——南方有色ETF重仓紫金、洛钼、北方稀土、华友钴业，华宝银行ETF重仓招行、兴业、工行，国泰煤炭ETF重仓神华、陕煤、兖矿；④基本面支撑——中报季有色/煤炭业绩高增（半年报317家公司中222家同比增长，高增长集中在电子、基础化工、有色金属）。</p>
+<div class="progress-bar"><div class="progress-fill" style="width:65%;background:#f39c12;"></div></div>
+<p style="font-size:12px;color:#999;">抱团强度：65% · 新方向萌芽，持续性待验证</p>
+</div>
+
+<div class="card">
+<h4>🔵 抱团板块三：医药/CXO — 创新药+医疗研发外包（蓄势副线 · 外资调研C位）</h4>
+<p><strong>抱团逻辑：</strong>①外资调研热度第一——8月机构调研动向显示医药跃居外资调研"C位"，8月板块累计上涨逾8%；②中报验证——科伦博泰sac-TMT放量（产品销售+112%）、百济神州上调指引、荣昌生物扭亏；③基金重仓——中欧医疗健康重仓凯莱英、百利天恒、恒瑞、药明、康龙化成、泰格医药，广发医药卫生ETF重仓药明、恒瑞、迈瑞、联影。本周恒瑞-3.56%、药明-3.00%、百济-3.22%属中报消化期正常回调，抱团逻辑未破坏。</p>
+<div class="progress-bar"><div class="progress-fill" style="width:58%;background:#3498db;"></div></div>
+<p style="font-size:12px;color:#999;">抱团强度：58% · 蓄势待发，回调即布局窗口</p>
+</div>
+
+<div class="card">
+<h4>🔴 瓦解中板块：白酒/食品饮料（抱团持续瓦解）</h4>
+<p>食品饮料周跌-3.83%，贵州茅台-1.45%、五粮液-1.25%，招商中证白酒ETF重仓的茅台/汾酒/泸州老窖/五粮液全线走弱。消费复苏预期偏弱+北向流出压制，白酒抱团处于持续瓦解通道，茅台机构持股70.5%、买入评级177家虽仍为机构底仓，但短期缺乏催化。</p>
+<div class="progress-bar"><div class="progress-fill" style="width:30%;background:#e74c3c;"></div></div>
+<p style="font-size:12px;color:#999;">抱团强度：30% · 瓦解中，等待消费数据拐点</p>
+</div>
+</div>
+
+<!-- 机构持仓个股筛选 -->
+<div class="section">
+<h2><span class="icon">📋</span> 四、高机构持仓+高评级个股（按行业分组）</h2>
+<p style="font-size:13px;color:#666;">筛选条件：机构持股占流通股比例&gt;15%，2026年买入评级家数&gt;5家（核心组&gt;20%/&gt;10家）</p>
+
+<h3 style="font-size:16px;margin:16px 0 8px;">① TMT — 电子/通信/计算机/半导体</h3>
+<table>
+  <tr><th>股票</th><th>所属行业</th><th>机构持股%</th><th>买入评级家数</th><th>8/21涨跌</th></tr>
+  <tr><td>海光信息(688041)</td><td>半导体-数字芯片设计</td><td>73.6%</td><td>48</td><td class="negative">-0.05%</td></tr>
+  <tr><td>中际旭创(300308)</td><td>通信-网络设备</td><td>45.1%</td><td>45</td><td class="positive">+4.29%</td></tr>
+  <tr><td>联影医疗(688271)</td><td>医疗器械-医疗设备</td><td>61.8%</td><td>32</td><td>-</td></tr>
+  <tr><td>鹏鼎控股(002938)</td><td>电子-PCB</td><td>78.3%</td><td>31</td><td>-</td></tr>
+  <tr><td>中微公司(688012)</td><td>半导体-设备</td><td>59.9%</td><td>28</td><td class="negative">-0.82%</td></tr>
+  <tr><td>蓝思科技(300433)</td><td>消费电子</td><td>69.8%</td><td>22</td><td>-</td></tr>
+  <tr><td>芯原股份(688521)</td><td>半导体-数字芯片设计</td><td>46.9%</td><td>22</td><td>-</td></tr>
+  <tr><td>仕佳光子(688313)</td><td>通信-光器件</td><td>41.5%</td><td>20</td><td>-</td></tr>
+  <tr><td>东山精密(002384)</td><td>电子-PCB</td><td>27.2%</td><td>20</td><td>-</td></tr>
+  <tr><td>生益科技(600183)</td><td>电子-覆铜板/PCB</td><td>64.0%</td><td>15</td><td>-</td></tr>
+</table>
+
+<h3 style="font-size:16px;margin:16px 0 8px;">② 资源+金融 — 有色/石油/煤炭/银行</h3>
+<table>
+  <tr><th>股票</th><th>所属行业</th><th>机构持股%</th><th>买入评级家数</th><th>8/21涨跌</th></tr>
+  <tr><td>中煤能源(601898)</td><td>煤炭开采</td><td>89.4%</td><td>51</td><td>-</td></tr>
+  <tr><td>宁波银行(002142)</td><td>银行-城商行</td><td>66.6%</td><td>56</td><td>-</td></tr>
+  <tr><td>恒力石化(600346)</td><td>石油石化-炼化</td><td>68.0%</td><td>46</td><td>-</td></tr>
+  <tr><td>紫金矿业(601899)</td><td>有色-铜金</td><td>47.2%</td><td>41</td><td class="positive">+2.69%</td></tr>
+  <tr><td>洛阳钼业(603993)</td><td>有色-铜钴</td><td>37.1%</td><td>41</td><td class="positive">+1.92%</td></tr>
+  <tr><td>南京银行(601009)</td><td>银行-城商行</td><td>73.9%</td><td>42</td><td>-</td></tr>
+  <tr><td>江苏银行(600919)</td><td>银行-城商行</td><td>43.6%</td><td>39</td><td>-</td></tr>
+  <tr><td>新集能源(601918)</td><td>煤炭开采</td><td>61.7%</td><td>41</td><td>-</td></tr>
+  <tr><td>神火股份(000933)</td><td>有色-铝</td><td>42.0%</td><td>33</td><td>-</td></tr>
+  <tr><td>华友钴业(603799)</td><td>有色-钴锂</td><td>29.1%</td><td>31</td><td>-</td></tr>
+</table>
+
+<h3 style="font-size:16px;margin:16px 0 8px;">③ 制造+消费 — 电力设备/汽车/机械/食品饮料</h3>
+<table>
+  <tr><th>股票</th><th>所属行业</th><th>机构持股%</th><th>买入评级家数</th><th>8/21涨跌</th></tr>
+  <tr><td>贵州茅台(600519)</td><td>白酒</td><td>70.5%</td><td>177</td><td class="negative">-1.45%</td></tr>
+  <tr><td>盐津铺子(002847)</td><td>休闲食品</td><td>50.5%</td><td>69</td><td>-</td></tr>
+  <tr><td>燕京啤酒(000729)</td><td>啤酒</td><td>63.8%</td><td>62</td><td>-</td></tr>
+  <tr><td>安琪酵母(600298)</td><td>调味发酵品</td><td>53.5%</td><td>58</td><td>-</td></tr>
+  <tr><td>宇通客车(600066)</td><td>商用车</td><td>66.1%</td><td>42</td><td>-</td></tr>
+  <tr><td>重庆啤酒(600132)</td><td>啤酒</td><td>68.9%</td><td>40</td><td>-</td></tr>
+  <tr><td>赛力斯(601127)</td><td>乘用车</td><td>55.6%</td><td>33</td><td>-</td></tr>
+  <tr><td>东方电缆(603606)</td><td>电网设备-海缆</td><td>45.7%</td><td>32</td><td>-</td></tr>
+  <tr><td>湖南裕能(301358)</td><td>电池-正极材料</td><td>54.2%</td><td>29</td><td>-</td></tr>
+  <tr><td>金盘科技(688676)</td><td>输变电设备</td><td>55.9%</td><td>29</td><td>-</td></tr>
+</table>
+</div>
+
+<!-- 资金流向 -->
+<div class="section">
+<h2><span class="icon">💰</span> 五、资金流向与成交结构</h2>
+<table>
+  <tr><th>日期</th><th>两市成交额</th><th>全A主力净主动买入</th><th>盘面特征</th></tr>
+  <tr><td>8/14(五)</td><td>2.15万亿</td><td class="negative">-374亿</td><td>缩量整理</td></tr>
+  <tr><td>8/17(一)</td><td>2.39万亿</td><td class="positive">+753亿</td><td>放量上攻，科创/创业板冲高</td></tr>
+  <tr><td>8/18(二)</td><td>2.40万亿</td><td class="negative">-1410亿</td><td>冲高回落，动能衰竭</td></tr>
+  <tr><td>8/19(三)</td><td>2.51万亿</td><td class="negative" style="font-weight:700;">-1684亿</td><td>AI算力闪崩，放量巨震</td></tr>
+  <tr><td>8/20(四)</td><td>2.08万亿</td><td class="negative">-197亿</td><td>弱势整理，光模块企稳</td></tr>
+  <tr><td>8/21(五)</td><td>1.88万亿</td><td class="positive">+110亿</td><td>缩量修复，光模块V型回补</td></tr>
+</table>
+<div class="risk-box info">
+  <strong>📌 资金解读：</strong>①<b>8/19单日主力净流出1684亿</b>为本周（乃至近月）极值，与AI算力链闪崩完全对应，显示高位抱团筹码剧烈松动；②<b>8/20-21主力转为净流出收窄/回流</b>，周五+110亿虽小但方向转正，说明机构在恐慌后回补核心仓位；③<b>成交额从2.51万亿萎缩至1.88万亿</b>（-25%），缩量反弹意味着抛压减轻但增量资金有限，指数层面短期难有大级别突破；④资源+红利板块（石油石化/有色/银行/煤炭）承接TMT溢出资金，为下周主要观察方向。
+</div>
+</div>
+
+<!-- 基金持仓集中度 -->
+<div class="section">
+<h2><span class="icon">📦</span> 六、基金持仓集中度（2026Q2 重仓股）</h2>
+<table>
+  <tr><th>基金</th><th>类型</th><th>前十大重仓（AI/半导体含量）</th></tr>
+  <tr><td>易方达沪深300ETF</td><td>宽基</td><td>中际旭创、宁德时代、新易盛、贵州茅台、<b>兆易创新、寒武纪</b>、中国平安、招商银行、紫金矿业、北方华创 — 前5大中3只AI算力</td></tr>
+  <tr><td>华夏国证半导体芯片ETF</td><td>行业</td><td><b>兆易创新、寒武纪、北方华创、澜起科技、海光信息、中微公司、中芯国际</b>、佰维存储、源杰科技、长川科技 — 半导体全链条</td></tr>
+  <tr><td>诺安成长混合A</td><td>主动</td><td>中科飞测、中微公司、北方华创、中芯国际、圣邦股份、华大九天、拓荆科技、传音控股、达梦数据、华虹宏力 — 半导体设备+制造</td></tr>
+  <tr><td>汇添富中证人工智能ETF</td><td>行业</td><td>海康威视、科大讯飞、豪威集团、德赛西威、用友网络、中科曙光、四维图新、深信服、澜起科技、大华股份</td></tr>
+  <tr><td>南方中证申万有色金属ETF</td><td>行业</td><td>紫金矿业、洛阳钼业、北方稀土、厦门钨业、中钨高新、赣锋锂业、华友钴业、中国铝业、天齐锂业、藏格矿业</td></tr>
+  <tr><td>华宝中证银行ETF</td><td>行业</td><td>招商银行、兴业银行、工商银行、农业银行、交通银行、江苏银行、浦发银行、宁波银行、平安银行、上海银行</td></tr>
+  <tr><td>国泰中证煤炭ETF</td><td>行业</td><td>中国神华、陕西煤业、兖矿能源、中煤能源、广汇能源、潞安环能、山西焦煤、淮北矿业、晋控煤业、华阳股份</td></tr>
+  <tr><td>中欧医疗健康混合A</td><td>主动</td><td>凯莱英、百利天恒、恒瑞医药、药明康德、海思科、康龙化成、科伦药业、泰格医药、艾力斯、君实生物</td></tr>
+  <tr><td>广发中证全指医药卫生ETF</td><td>行业</td><td>药明康德、恒瑞医药、迈瑞医疗、联影医疗、新和成、科伦药业、云南白药、爱尔眼科、片仔癀、凯莱英</td></tr>
+  <tr><td>易方达蓝筹精选混合</td><td>主动</td><td>腾讯控股、贵州茅台、百胜中国、中国海洋石油、泸州老窖、五粮液、山西汾酒、中芯国际、东山精密、阿里巴巴</td></tr>
+</table>
+<div class="risk-box info">
+  <strong>📌 集中度结论：</strong>①<b>AI算力为基金第一大抱团方向</b>——宽基ETF前十大重仓已大量纳入光模块/半导体（沪深300ETF前5大含3只AI算力股），主动基金（诺安成长）全仓半导体设备链，行业ETF（芯片/人工智能）高度集中于算力；②<b>资源+金融是第二抱团方向</b>——有色/煤炭/银行ETF前十大重仓高度重叠于紫金、洛钼、神华、招行、宁行等，与本周资金高低切换方向一致；③医药基金（中欧医疗、广发医药）仍重仓CXO与创新药，为蓄势型抱团。行业集中度整体仍高，但较上周（TMT独大）已呈「一核两翼」分散化。
+</div>
+</div>
+
+<!-- 信号与风险 -->
+<div class="section">
+<h2><span class="icon">🚨</span> 七、新增/瓦解信号 & 风险提示</h2>
+
+<div class="flex-row">
+  <div>
+    <div class="card">
+      <h4 style="color:#27ae60;">✅ 新增抱团信号</h4>
+      <p>• <b>资源+红利抱团萌芽</b>：石油石化周涨5.29%、有色+2.50%、银行+2.36%、煤炭+1.54%，紫金/洛钼/神华/中煤/宁行机构+评级双高，ETF资金持续流入<br>
+      • <b>医药/CXO外资调研C位</b>：8月医药涨逾8%，科伦博泰、百济中报验证，回调蓄势<br>
+      • <b>AI算力V型回补</b>：8/19闪崩后8/21光模块快速回补，机构坚守核心仓位</p>
+    </div>
+  </div>
+  <div>
+    <div class="card">
+      <h4 style="color:#e74c3c;">❌ 瓦解/风险信号</h4>
+      <p>• <b>白酒消费持续瓦解</b>：食品饮料周跌3.83%，茅台/五粮液阴跌<br>
+      • <b>AI算力拥挤度极端</b>：8/19单日-9%级别闪崩，主力单日流出1684亿<br>
+      • <b>成交额萎缩25%</b>：2.51万亿→1.88万亿，增量资金不足<br>
+      • <b>国防军工/传媒破位</b>：周跌4.5%~5.8%，前期题材抱团退潮</p>
+    </div>
+  </div>
+</div>
+
+<div class="risk-box">
+  <strong>🔴 风险提示（拥挤度/分化度）：</strong>
+  <br>① <b>行业分化度处于极高分位</b>：本周石油石化+5.29% vs 计算机-5.22%、传媒-5.76%，板块间极差超10个百分点，接近历史90%分位——分化极致通常预示风格再平衡或全面回调；
+  <br>② <b>AI算力拥挤度极高</b>：光模块/半导体龙头8/19单日-8%~-10%闪崩，虽快速回补但波动率显著放大，一旦中报不及预期或海外AI股调整，二次闪崩风险高；
+  <br>③ <b>成交额萎缩</b>：1.88万亿较峰值缩25%，缩量环境下抱团板块轮动加速、追高风险加大；
+  <br>④ <b>8月底中报密集披露</b>（8/25-8/31）：业绩兑现度将直接检验AI算力与资源板块抱团成色，业绩不及预期个股面临戴维斯双杀。
+</div>
+</div>
+
+<!-- 下周关注 -->
+<div class="section">
+<h2><span class="icon">🔭</span> 八、下周关注方向（8/24-8/28）</h2>
+<table>
+  <tr><th>方向</th><th>逻辑</th><th>关注标的</th><th>信号强度</th></tr>
+  <tr><td>AI算力-光模块/CPO</td><td>中报密集披露期，光模块龙头业绩兑现决定抱团去留；腾讯/金山云资本开支验证景气</td><td>中际旭创、新易盛、天孚通信、烽火通信</td><td><span class="tag tag-red">强烈关注</span></td></tr>
+  <tr><td>半导体设备/国产替代</td><td>8/19闪崩后设备股估值消化，北方华创/中微中报预期强，长鑫科技产业链催化</td><td>北方华创、中微公司、拓荆科技、中科飞测</td><td><span class="tag tag-red">强烈关注</span></td></tr>
+  <tr><td>资源+红利</td><td>高低切换承接方向，中报高增+机构底仓，关注有色/煤炭/银行持续性</td><td>紫金矿业、洛阳钼业、中煤能源、宁波银行、中国石油</td><td><span class="tag tag-orange">关注</span></td></tr>
+  <tr><td>医药/CXO</td><td>外资调研C位+中报验证，回调即布局窗口</td><td>药明康德、恒瑞医药、百济神州、科伦博泰</td><td><span class="tag tag-orange">关注</span></td></tr>
+  <tr><td>AI应用/算力租赁</td><td>金山云Q2 AI云+82%验证AI应用商业化，中概互联外资回流</td><td>金山办公、科大讯飞、中科曙光</td><td><span class="tag tag-blue">中性</span></td></tr>
+  <tr><td>白酒/消费</td><td>抱团瓦解中，等待消费数据与中秋备货催化，暂不参与</td><td>贵州茅台、五粮液</td><td><span class="tag tag-yellow">回避</span></td></tr>
+</table>
+<div class="risk-box info">
+  <strong>📌 操作策略参考：</strong>①AI算力核心仓位可持有但需设好波动阈值，8/19式闪崩再现时避免恐慌割肉、可逢低回补；②资源+红利作为新增配置方向可分批布局，关注油价/铜价/煤价走势验证；③医药逢回调布局创新药+CXO龙头；④整体仓位建议中性，等待8/25-8/31中报季落地后再加仓，警惕缩量环境下抱团轮动加速。
+</div>
+</div>
+
+<div class="footer">
+  数据来源：iFind MCP（同花顺）· 本报告由 Hermes Agent 自动生成，仅供参考，不构成投资建议<br>
+  报告日期 2026-08-23 | 数据截止 2026-08-21
+</div>
+
+</div>
+</body>
+</html>
