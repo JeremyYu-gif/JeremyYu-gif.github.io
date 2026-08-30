@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>机构抱团识别报告 2026-08-30</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif; background:#f0f2f5; color:#1a1a2e; line-height:1.7; }
+  .container { max-width:1100px; margin:0 auto; padding:20px; }
+  .header { background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460); color:#fff; padding:40px; border-radius:16px; margin-bottom:24px; position:relative; overflow:hidden; }
+  .header h1 { font-size:28px; font-weight:700; margin-bottom:8px; }
+  .header .subtitle { font-size:14px; opacity:0.8; }
+  .header .date-badge { position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.15); padding:8px 16px; border-radius:20px; font-size:13px; }
+  .section { background:#fff; border-radius:12px; padding:24px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+  .section h2 { font-size:20px; font-weight:700; margin-bottom:16px; padding-bottom:12px; border-bottom:2px solid #e8e8e8; display:flex; align-items:center; gap:8px; }
+  .section h2 .icon { font-size:24px; }
+  .score-box { display:flex; gap:12px; margin:16px 0; flex-wrap:wrap; }
+  .score-item { flex:1; min-width:180px; background:#f8f9fa; border-radius:10px; padding:16px; text-align:center; }
+  .score-item .label { font-size:13px; color:#666; }
+  .score-item .value { font-size:28px; font-weight:700; margin:8px 0; }
+  .score-item .desc { font-size:12px; color:#999; }
+  table { width:100%; border-collapse:collapse; margin:12px 0; }
+  th { background:#f5f7fa; padding:10px 12px; text-align:left; font-weight:600; font-size:13px; color:#555; border-bottom:2px solid #e0e0e0; }
+  td { padding:10px 12px; border-bottom:1px solid #f0f0f0; font-size:14px; }
+  tr:hover { background:#fafbfc; }
+  .positive { color:#e74c3c; }
+  .negative { color:#27ae60; }
+  .neutral { color:#f39c12; }
+  .tag { display:inline-block; padding:2px 10px; border-radius:12px; font-size:12px; font-weight:500; }
+  .tag-red { background:#ffe8e8; color:#e74c3c; }
+  .tag-green { background:#e8f8e8; color:#27ae60; }
+  .tag-blue { background:#e8f0ff; color:#2980b9; }
+  .tag-yellow { background:#fff8e8; color:#f39c12; }
+  .tag-purple { background:#f0e8ff; color:#8e44ad; }
+  .tag-orange { background:#fff0e8; color:#e67e22; }
+  .star { color:#f1c40f; font-size:18px; }
+  .risk-box { background:#fff5f5; border-left:4px solid #e74c3c; padding:14px 18px; border-radius:0 8px 8px 0; margin:12px 0; }
+  .risk-box.warning { background:#fffef5; border-left-color:#f39c12; }
+  .risk-box.info { background:#f5f8ff; border-left-color:#3498db; }
+  .flex-row { display:flex; gap:12px; flex-wrap:wrap; }
+  .flex-row > div { flex:1; min-width:200px; }
+  .card { background:#f8f9fa; border-radius:8px; padding:14px 16px; margin:10px 0; }
+  .card h4 { font-size:15px; margin-bottom:6px; }
+  .card p { font-size:13px; color:#555; }
+  .footer { text-align:center; color:#999; font-size:12px; padding:20px 0 40px; }
+  .kw { font-weight:700; }
+  .red { color:#e74c3c; font-weight:700; }
+  .green { color:#27ae60; font-weight:700; }
+  .bar-wrap { display:flex; align-items:center; gap:8px; margin:4px 0; }
+  .bar-label { width:90px; font-size:13px; text-align:right; color:#555; }
+  .bar-bg { flex:1; height:18px; background:#f0f0f0; border-radius:4px; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:4px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <div class="date-badge">📅 报告日 2026-08-30 | 数据截止 2026-08-28</div>
+  <h1>🏦 机构抱团识别报告 2026-08-30</h1>
+  <div class="subtitle">基于 iFind MCP 数据源 · 重点分析公募基金持仓集中度与资金流向</div>
+</div>
+
+<!-- 一、大盘概况 -->
+<div class="section">
+<h2><span class="icon">📊</span>一、大盘概况（2026-08-28 周五 / 周度对比 8/21→8/28）</h2>
+<table>
+<tr><th>指数</th><th>收盘价</th><th>周涨跌</th><th>周内走势</th><th>强弱评价</th></tr>
+<tr><td>上证指数</td><td>3952.18</td><td class='positive'>+1.20%</td><td>周内震荡上行，8/27英伟达财报带动冲高，8/28小幅回落</td><td>偏强</td></tr>
+<tr><td>深证成指</td><td>13953.07</td><td class='negative'>-1.00%</td><td>权重拖累，创业板科技权重调整明显</td><td>中性</td></tr>
+<tr><td>创业板指</td><td>3424.40</td><td class='negative'>-3.42%</td><td>科技成长权重股回调，5日最弱</td><td>偏弱</td></tr>
+<tr><td>科创50</td><td>1662.15</td><td class='positive'>+0.52%</td><td>8/27英伟达财报刺激单日+3.77%，周内V型</td><td>中性偏强</td></tr>
+<tr><td>沪深300</td><td>4609.18</td><td class='negative'>-0.21%</td><td>权重震荡，银行/资源对冲TMT回调</td><td>中性</td></tr>
+<tr><td>上证50</td><td>2923.33</td><td class='positive'>+1.38%</td><td>红利权重领涨，价值风格占优</td><td>偏强</td></tr>
+<tr><td>中证500</td><td>7895.45</td><td class='positive'>+0.52%</td><td>中盘均衡</td><td>中性</td></tr>
+<tr><td>中证1000</td><td>7705.03</td><td class='positive'>+1.36%</td><td>小盘活跃，资金从高位TMT外溢</td><td>偏强</td></tr>
+</table>
+<div class="card">
+<h4>📌 市场结构小结</h4>
+<p>本周（8/24-8/28）A股呈现 <span class="kw">「价值红利走强、高位TMT调整」</span> 的高低切换延续格局。上证50（+1.38%）、中证1000（+1.36%）、上证指数（+1.20%）收涨，而创业板指（-3.42%）显著走弱——科技权重（光模块/半导体）5日深度回调拖累成长指数。<br>
+关键事件：<span class="red">英伟达FY27Q2财报超预期</span>（营收962亿美元+106%、Q3指引超预期）于8/26盘后发布，8/27 A股科创50单日暴涨3.77%、芯片概念集体走强；但8/28即回落（科创50 -1.85%），反映AI算力抱团「利好兑现即调整」的高波动特征。<br>
+全周最强信号是<span class="kw">「资源红利抱团强化」</span>：煤炭周涨+7.34%居首、房地产+4.17%、非银金融+3.38%、石油石化+3.25%、有色金属+2.68%、公用事业+2.60%；而通信设备/半导体/算力5日跑输。8/28当日石油石化+2.88%领涨、国证算力-2.09%领跌，分化极致。</p>
+</div>
+</div>
+
+<!-- 二、抱团强度评分 -->
+<div class="section">
+<h2><span class="icon">🔥</span>二、抱团强度评分</h2>
+<div class="score-box">
+<div class="score-item"><div class="label">行业集中度</div><div class="value">3★</div><div class="desc">基金重仓仍高度集中于半导体/AI算力链（诺安成长、芯片ETF前十重仓几乎全为半导...</div></div>
+<div class="score-item"><div class="label">资金聚集度</div><div class="value">3★</div><div class="desc">AI算力5日成交额仍巨大（中际旭创280亿/新易盛175亿/寒武纪116亿），但...</div></div>
+<div class="score-item"><div class="label">瓦解风险</div><div class="value">4★</div><div class="desc">AI算力核心股5日深度回调（新易盛-9.73%、中际旭创-8.98%），拥挤度释...</div></div>
+</div>
+<div style="text-align:center; margin:16px 0;">
+  <span style="font-size:16px; color:#666;">综合抱团强度</span>
+  <div style="font-size:42px; font-weight:900; color:#1a1a2e;">3.5<span style="color:#f1c40f; font-size:32px;"> ★</span></div>
+  <div style="font-size:13px; color:#888;">AI算力高波动坚守 + 资源红利抱团强化 + 行业分化度极值</div>
+</div>
+<div class="risk-box warning">
+<strong>⚠️ 核心判断：</strong>上周「AI算力高波动坚守 + 资源红利新抱团萌芽」的判断本周进一步演化：<span class="red">AI算力抱团进入深度回调换手阶段</span>——新易盛5日-9.73%、中际旭创-8.98%，尽管英伟达财报超预期在8/27引发强力反弹（科创50+3.77%），8/28再度回落显示「利好兑现」压力；而<span class="green">资源红利抱团显著强化</span>——煤炭周涨7.34%、石油石化+3.25%，紫金矿业H1净利+68%、铜陵有色+107%验证业绩。百亿私募已明确从电子板块分散至有色/医药/机械，「抱团资金瓦解后盈利成为主线」的判断正被市场验证。市场呈现「资源红利（强化主极）+ AI算力（高波动回调副极）+ 房地产（新异动）」格局。</div>
+</div>
+
+<!-- 三、抱团板块 -->
+<div class="section">
+<h2><span class="icon">🎯</span>三、当前抱团板块及核心个股</h2>
+
+<div class="card">
+<h4>🟢 抱团板块一：AI算力链 — 光模块/半导体（核心抱团 · 高位回调换手）</h4>
+<table>
+<tr><th>代码</th><th>简称</th><th>5日涨跌</th><th>8/28涨跌</th><th>8/28成交额</th><th>点评</th></tr>
+<tr><td>300308.SZ</td><td>中际旭创</td><td class='negative'>-8.98%</td><td class='negative'>-0.90%</td><td>280.5亿</td><td>光模块龙头，5日深度回调，成交额仍居首</td></tr>
+<tr><td>300502.SZ</td><td>新易盛</td><td class='negative'>-9.73%</td><td class='negative'>-2.47%</td><td>175.5亿</td><td>5日跌幅最大，高位筹码松动</td></tr>
+<tr><td>300394.SZ</td><td>天孚通信</td><td class='negative'>-3.48%</td><td class='negative'>-1.34%</td><td>91.0亿</td><td>跟随回调</td></tr>
+<tr><td>002463.SZ</td><td>沪电股份</td><td class='positive'>+0.40%</td><td class='negative'>-0.26%</td><td>73.4亿</td><td>PCB，相对抗跌</td></tr>
+<tr><td>601138.SH</td><td>工业富联</td><td class='positive'>+1.91%</td><td class='positive'>+0.28%</td><td>103.1亿</td><td>AI服务器，5日收涨</td></tr>
+<tr><td>000977.SZ</td><td>浪潮信息</td><td class='positive'>+1.43%</td><td class='negative'>-1.06%</td><td>40.1亿</td><td>AI服务器，相对抗跌</td></tr>
+<tr><td>688256.SH</td><td>寒武纪</td><td class='positive'>+1.12%</td><td class='negative'>-0.13%</td><td>116.4亿</td><td>AI芯片，5日收涨</td></tr>
+<tr><td>688981.SH</td><td>中芯国际</td><td class='positive'>+0.87%</td><td class='negative'>-0.36%</td><td>37.7亿</td><td>晶圆代工，相对抗跌</td></tr>
+</table>
+<p style="font-size:13px; color:#555;"><strong>抱团逻辑：</strong>①景气验证——英伟达FY27Q2营收962亿美元(+106%)、Q3指引超预期，腾讯Q2资本开支528亿(+176%)，光通信设备89家中62家半年报营收利润双升；②基金重仓印证——诺安成长、华夏芯片ETF前十重仓几乎全为半导体（北方华创、中芯国际、寒武纪、海光信息、澜起科技）；③但5日深度回调（新易盛-9.73%、中际旭创-8.98%）+ 成交额仍居市场前列（中际旭创280亿、新易盛175亿、寒武纪116亿）= 拥挤度释放中、筹码松动。<br>
+<strong>抱团强度：72%</strong> · 高波动回调，英伟达财报验证景气但「利好兑现」压力显现</p>
+</div>
+
+<div class="card">
+<h4>🟠 抱团板块二：资源+红利 — 煤炭/石油石化/有色/银行（强化主极 · 本周最强）</h4>
+<table>
+<tr><th>代码</th><th>简称</th><th>8/28涨跌</th><th>8/28成交额</th><th>催化</th></tr>
+<tr><td>601899.SH</td><td>紫金矿业</td><td class='positive'>+0.23%</td><td>68.4亿</td><td>H1净利391.7亿(+68%)，10派4.2元</td></tr>
+<tr><td>601857.SH</td><td>中国石油</td><td class='positive'>+1.35%</td><td>11.1亿</td><td>油价支撑</td></tr>
+<tr><td>600938.SH</td><td>中国海油</td><td class='positive'>+1.09%</td><td>10.6亿</td><td>油气景气</td></tr>
+<tr><td>601088.SH</td><td>中国神华</td><td class='negative'>-0.36%</td><td>10.8亿</td><td>煤价回升，中报扭亏</td></tr>
+<tr><td>600036.SH</td><td>招商银行</td><td class='negative'>-0.58%</td><td>18.9亿</td><td>银行红利</td></tr>
+<tr><td>002142.SZ</td><td>宁波银行</td><td class='positive'>+0.33%</td><td>7.8亿</td><td>高机构持仓</td></tr>
+<tr><td>600519.SH</td><td>贵州茅台</td><td class='positive'>+0.39%</td><td>20.9亿</td><td>白酒弱修复</td></tr>
+<tr><td>000858.SZ</td><td>五粮液</td><td class='positive'>+0.55%</td><td>16.4亿</td><td>白酒弱修复</td></tr>
+</table>
+<p style="font-size:13px; color:#555;"><strong>抱团逻辑：</strong>①业绩兑现——紫金矿业H1净利391.7亿(+68.17%)、铜陵有色净利+107%、中金黄金+61%、煤炭企业煤价回升扭亏，资源股中报普遍高增；②资金切换主战场——煤炭周涨+7.34%居全市场首位、石油石化+3.25%、有色+2.68%，8/28当日石油石化+2.88%领涨，承接TMT溢出资金；③高股息防御属性——银行（招行、宁波银行）机构持仓深厚，上证50周涨+1.38%印证红利风格占优。<br>
+<strong>抱团强度：72%</strong> · 业绩+资金共振，抱团强化进行中</p>
+</div>
+
+<div class="card">
+<h4>🔵 抱团板块三：房地产 — 新异动（周涨+4.17%，居全市场第二）</h4>
+<p style="font-size:13px; color:#555;"><strong>抱团逻辑：</strong>周涨+4.17%仅次煤炭，或受政策预期催化（存量房收储/限购放松预期升温）；中证1000（+1.36%）小盘活跃，资金从高位TMT外溢至低位顺周期。需观察是否为持续性抱团或短期脉冲。<br>
+<strong>抱团强度：45%</strong> · 新信号待验证，关注政策催化持续性</p>
+</div>
+
+<div class="card">
+<h4>🔴 瓦解/弱化板块：白酒 & 医药</h4>
+<p style="font-size:13px; color:#555;"><strong>白酒：</strong>食品饮料周涨+2.30%属超跌反弹（茅台8/28 +0.39%、五粮液+0.55%），招商白酒LOF重仓仍为茅台/汾酒/老窖等，但抱团资金持续流出，仅弱修复。<br>
+<strong>医药：</strong>医药生物周涨仅+0.05%全市场垫底，8/28 -0.78%；中欧医疗健康重仓CXO（凯莱英、药明、康龙化成）中报消化中，百亿私募虽增持生物医药但尚未形成合力，蓄势待发。</p>
+</div>
+</div>
+
+<!-- 四、基金持仓集中度 -->
+<div class="section">
+<h2><span class="icon">📦</span>四、基金持仓集中度（2026Q2 重仓股）</h2>
+<table>
+<tr><th>基金</th><th>代码</th><th>方向</th><th>前十大重仓</th></tr>
+<tr><td>诺安成长混合A</td><td>320007.OF</td><td>半导体设备/芯片</td><td>中科飞测、中微公司、北方华创、中芯国际、圣邦股份、华大九天、拓荆科技、传音控股、达梦数据、华虹宏力</td></tr>
+<tr><td>华夏国证半导体芯片ETF</td><td>159995.OF</td><td>半导体全产业链</td><td>兆易创新、寒武纪、北方华创、澜起科技、海光信息、中微公司、中芯国际、佰维存储、源杰科技、长川科技</td></tr>
+<tr><td>中欧医疗健康混合A</td><td>003095.OF</td><td>创新药/CXO</td><td>凯莱英、百利天恒、恒瑞医药、药明康德、海思科、康龙化成、科伦药业、泰格医药、艾力斯、君实生物</td></tr>
+<tr><td>招商中证白酒LOF</td><td>161725.SZ</td><td>白酒</td><td>贵州茅台、山西汾酒、泸州老窖、五粮液、洋河股份、古井贡酒、今世缘、迎驾贡酒、酒鬼酒、舍得酒业</td></tr>
+<tr><td>易方达消费行业股票</td><td>110022.OF</td><td>消费白马</td><td>贵州茅台、美的集团、山西汾酒、比亚迪、福耀玻璃、春风动力、赛轮轮胎、泸州老窖、古井贡酒、海天味业</td></tr>
+</table>
+<div class="card">
+<h4>📌 集中度解读</h4>
+<p>① <span class="kw">半导体/AI算力仍是公募最拥挤方向</span>：诺安成长、华夏芯片ETF重仓高度重合（北方华创、中芯国际、寒武纪、中微公司均双基金重仓），行业集中度极高；② 医药基金坚守创新药/CXO（凯莱英、恒瑞、药明）；③ 消费基金仍抱团白酒白马。但私募端已先行分散（有色/医药/机械），公募端拥挤度回落速度慢于私募，<span class="red">半导体方向仍处「高拥挤+高波动」阶段</span>。</p>
+</div>
+</div>
+
+<!-- 五、资金流向 -->
+<div class="section">
+<h2><span class="icon">💰</span>五、资金流向与成交结构（5日行业涨跌，成分股等权）</h2>
+<div class='card'><h4>5日行业涨跌幅（%）</h4><div class="bar-wrap"><div class="bar-label">煤炭</div><div class="bar-bg"><div class="bar-fill" style="width:100%;background:#e74c3c"></div></div><div style="width:70px;font-size:13px;color:#e74c3c">+7.34%</div></div>
+<div class="bar-wrap"><div class="bar-label">房地产</div><div class="bar-bg"><div class="bar-fill" style="width:57%;background:#e74c3c"></div></div><div style="width:70px;font-size:13px;color:#e74c3c">+4.17%</div></div>
+<div class="bar-wrap"><div class="bar-label">非银金融</div><div class="bar-bg"><div class="bar-fill" style="width:46%;background:#e74c3c"></div></div><div style="width:70px;font-size:13px;color:#e74c3c">+3.38%</div></div>
+<div class="bar-wrap"><div class="bar-label">石油石化</div><div class="bar-bg"><div class="bar-fill" style="width:44%;background:#e74c3c"></div></div><div style="width:70px;font-size:13px;color:#e74c3c">+3.25%</div></div>
+<div class="bar-wrap"><div class="bar-label">有色金属</div><div class="bar-bg"><div class="bar-fill" style="width:37%;background:#e74c3c"></div></div><div style="width:70px;font-size:13px;color:#e74c3c">+2.68%</div></div>
+<div class="bar-wrap"><div class="bar-label">公用事业</div><div class="bar-bg"><div class="bar-fill" style="width:35%;background:#e74c3c"></div></div><div style="width:70px;font-size:13px;color:#e74c3c">+2.60%</div></div>
+<div class="bar-wrap"><div class="bar-label">食品饮料</div><div class="bar-bg"><div class="bar-fill" style="width:31%;background:#e74c3c"></div></div><div style="width:70px;font-size:13px;color:#e74c3c">+2.30%</div></div>
+<div class="bar-wrap"><div class="bar-label">汽车</div><div class="bar-bg"><div class="bar-fill" style="width:28%;background:#e74c3c"></div></div><div style="width:70px;font-size:13px;color:#e74c3c">+2.08%</div></div>
+<div class="bar-wrap"><div class="bar-label">通信</div><div class="bar-bg"><div class="bar-fill" style="width:26%;background:#e74c3c"></div></div><div style="width:70px;font-size:13px;color:#e74c3c">+1.91%</div></div>
+<div class="bar-wrap"><div class="bar-label">家用电器</div><div class="bar-bg"><div class="bar-fill" style="width:24%;background:#e74c3c"></div></div><div style="width:70px;font-size:13px;color:#e74c3c">+1.79%</div></div>
+<div class="bar-wrap"><div class="bar-label">国防军工</div><div class="bar-bg"><div class="bar-fill" style="width:22%;background:#e74c3c"></div></div><div style="width:70px;font-size:13px;color:#e74c3c">+1.60%</div></div>
+<div class="bar-wrap"><div class="bar-label">电子</div><div class="bar-bg"><div class="bar-fill" style="width:16%;background:#e74c3c"></div></div><div style="width:70px;font-size:13px;color:#e74c3c">+1.20%</div></div>
+<div class="bar-wrap"><div class="bar-label">机械设备</div><div class="bar-bg"><div class="bar-fill" style="width:12%;background:#e74c3c"></div></div><div style="width:70px;font-size:13px;color:#e74c3c">+0.89%</div></div>
+<div class="bar-wrap"><div class="bar-label">传媒</div><div class="bar-bg"><div class="bar-fill" style="width:12%;background:#e74c3c"></div></div><div style="width:70px;font-size:13px;color:#e74c3c">+0.89%</div></div>
+<div class="bar-wrap"><div class="bar-label">计算机</div><div class="bar-bg"><div class="bar-fill" style="width:10%;background:#e74c3c"></div></div><div style="width:70px;font-size:13px;color:#e74c3c">+0.76%</div></div>
+<div class="bar-wrap"><div class="bar-label">电力设备</div><div class="bar-bg"><div class="bar-fill" style="width:2%;background:#e74c3c"></div></div><div style="width:70px;font-size:13px;color:#e74c3c">+0.16%</div></div>
+<div class="bar-wrap"><div class="bar-label">银行</div><div class="bar-bg"><div class="bar-fill" style="width:2%;background:#e74c3c"></div></div><div style="width:70px;font-size:13px;color:#e74c3c">+0.14%</div></div>
+<div class="bar-wrap"><div class="bar-label">医药生物</div><div class="bar-bg"><div class="bar-fill" style="width:1%;background:#e74c3c"></div></div><div style="width:70px;font-size:13px;color:#e74c3c">+0.05%</div></div>
+</div><div class="card">
+<h4>📌 资金结构解读</h4>
+<p>① 行业分化度<span class="red">极值</span>：煤炭+7.34% vs 医药+0.05%，板块极差超7pct，资金高度向资源红利集中；② 8/28当日国证算力-2.09%、通信设备-1.25%、半导体-1.38% vs 石油石化+2.88%——<span class="kw">高位科技持续失血、低位周期持续吸金</span>；③ AI算力成交额占比仍极高（中际旭创+新易盛+寒武纪+工业富联合计超670亿），拥挤度未完全释放。</p>
+</div>
+</div>
+
+<!-- 六、新闻验证 -->
+<div class="section">
+<h2><span class="icon">📰</span>六、新闻公告验证抱团逻辑</h2>
+<table>
+<tr><th>事件</th><th>要点</th><th>影响方向</th></tr>
+<tr><td><strong>英伟达财报超预期</strong></td><td>FY27Q2营收962亿美元(+106%)，Q3指引1058-1102亿超预期；8/27美股英伟达+8.74%、单日市值+4420亿美元；8/27 A股科创50单日+3.77%，芯片股集体走强，但8/28即回落</td><td>AI算力</td></tr>
+<tr><td><strong>光通信中报景气验证</strong></td><td>截至8/26申万通信设备89家A股中62家披露半年报，光模块/光器件/光纤光缆头部企业普遍营收利润双升，「光」里掘金</td><td>光模块</td></tr>
+<tr><td><strong>资源股中报业绩兑现</strong></td><td>紫金矿业H1净利391.7亿(+68.17%)；铜陵有色H1净利29.93亿(+107%)；中金黄金净利+61%；煤炭企业煤价回升扭亏</td><td>资源</td></tr>
+<tr><td><strong>百亿私募持仓分散化</strong></td><td>百亿私募不再集中于电子板块，新进/增持分布于有色、生物医药、机械制造；机构称「抱团资金瓦解后，企业盈利成为后续重要投资线索」</td><td>抱团信号</td></tr>
+<tr><td><strong>腾讯/阿里AI资本开支高增</strong></td><td>腾讯Q2资本开支528亿(+176%)、H1归母净利1141亿(+10%)；阿里云以38.1%份额居中国AI云市场第一</td><td>AI算力</td></tr>
+</table>
+</div>
+
+<!-- 七、风险提示 -->
+<div class="section">
+<h2><span class="icon">🚨</span>七、新增/瓦解信号 & 风险提示</h2>
+<div class="risk-box">
+<strong>🚨 瓦解风险（高）：</strong>① 行业分化度超80%警戒线——煤炭+7.34% vs 医药+0.05%极差超7pct；② AI算力拥挤度仍处高位——光模块核心股5日-9%级别回调后成交额不减（中际旭创280亿），「高位放量+利好兑现」组合是抱团瓦解前兆特征；③ 百亿私募持仓从电子分散至有色/医药/机械，机构内部已现分歧。
+</div>
+<div class="risk-box warning">
+<strong>⚠️ 新增抱团信号：</strong>① 资源红利（煤炭/石油石化/有色）业绩+资金共振，抱团强度升至72%；② 房地产周涨+4.17%新异动，关注政策催化；③ 英伟达财报验证AI景气，但A股映射「利好兑现」——若下周光模块继续放量下跌，则AI算力抱团面临实质性瓦解风险。
+</div>
+<div class="risk-box info">
+<strong>💡 瓦解中的抱团：</strong>白酒（食品饮料5日+2.30%仅为超跌反弹，招商白酒LOF重仓股仍在阴跌）、医药（周涨+0.05%垫底，CXO中报消化中）。
+</div>
+</div>
+
+<!-- 八、下周关注 -->
+<div class="section">
+<h2><span class="icon">🔭</span>八、下周关注方向（8/31-9/4）</h2>
+<table>
+<tr><th>方向</th><th>逻辑</th><th>关注标的</th></tr>
+<tr><td><span class="tag tag-orange">资源红利</span></td><td>中报业绩兑现+资金持续流入，抱团强化主极；煤价/油价/金价支撑</td><td>紫金矿业、中国海油、中国神华、陕西煤业</td></tr>
+<tr><td><span class="tag tag-blue">AI算力（风险观察）</span></td><td>英伟达财报已验证景气，但「利好兑现」压力大；若光模块继续放量下杀则抱团瓦解，若缩量企稳则二次上车</td><td>中际旭创、新易盛、工业富联、寒武纪</td></tr>
+<tr><td><span class="tag tag-yellow">房地产（新信号）</span></td><td>周涨+4.17%居前，政策预期升温，验证持续性</td><td>保利发展、万科A、招商蛇口</td></tr>
+<tr><td><span class="tag tag-purple">创新药/CXO（蓄势）</span></td><td>百亿私募增持生物医药，科伦博泰扭亏验证ADC放量；中报消化接近尾声</td><td>恒瑞医药、药明康德、百利天恒、科伦药业</td></tr>
+<tr><td><span class="tag tag-green">中报收官检验</span></td><td>8/31前全部A股中报披露完毕，抱团成色由业绩检验；关注电子/资源/医药超预期方向</td><td>已披露高增公司（铜陵有色、紫金矿业、德明利）</td></tr>
+</table>
+<div class="card" style="background:#fffbe8;">
+<h4>⚠️ 风险声明</h4>
+<p>本报告基于 iFind MCP 数据源（stock/fund/edb 服务器直连；news-mcp token 失效降级使用本地搜索缓存）与公开数据整理，行业涨跌幅为成分股等权近似，仅供参考，不构成投资建议。市场有风险，投资需谨慎。</p>
+</div>
+</div>
+
+<div class="footer">机构抱团识别报告 · 生成于 2026-08-30 20:34 · 数据源：iFind MCP + 腾讯行情 + 本地新闻缓存</div>
+</div>
+</body>
+</html>
