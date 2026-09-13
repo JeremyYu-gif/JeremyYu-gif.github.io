@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美股映射复盘 · 2026-09-14</title>
+<style>
+:root{
+  --bg:#0b0f17; --panel:#121827; --panel2:#161e30; --line:#243049;
+  --txt:#dbe4f3; --sub:#8b9bb8; --up:#ff4d5e; --down:#25c58a;
+  --gold:#f6c453; --blue:#4a9eff; --purple:#a97bff;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:linear-gradient(180deg,#080b12 0%,#0b0f17 40%,#0b0f17 100%);
+  color:var(--txt);font-family:"PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+  line-height:1.7;font-size:15px;}
+.wrap{max-width:1180px;margin:0 auto;padding:26px 18px 70px;}
+header{border-bottom:2px solid var(--line);padding-bottom:20px;margin-bottom:26px;}
+h1{margin:0 0 8px;font-size:27px;letter-spacing:.5px;
+  background:linear-gradient(90deg,#ff9d4d,#f6c453 45%,#4a9eff);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text;}
+.meta{color:var(--sub);font-size:13px;}
+.meta b{color:var(--gold);font-weight:600;}
+h2{margin:38px 0 14px;font-size:20px;padding-left:12px;border-left:4px solid var(--blue);}
+h3{margin:22px 0 10px;font-size:16px;color:var(--gold);}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0;}
+.grid{display:grid;gap:14px;}
+.g3{grid-template-columns:repeat(3,1fr);}
+.g4{grid-template-columns:repeat(4,1fr);}
+.g5{grid-template-columns:repeat(5,1fr);}
+@media(max-width:900px){.g3,.g4,.g5{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.g3,.g4,.g5{grid-template-columns:1fr;}}
+.kpi{background:linear-gradient(145deg,#161e30,#111726);border:1px solid var(--line);
+  border-radius:12px;padding:14px;text-align:center;}
+.kpi .n{font-size:12px;color:var(--sub);letter-spacing:.5px;}
+.kpi .v{font-size:22px;font-weight:700;margin:6px 0 2px;font-variant-numeric:tabular-nums;}
+.kpi .c{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;}
+.up{color:var(--up);} .dn{color:var(--down);} .flat{color:var(--sub);}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;}
+th{background:#1a2337;color:#a8b8d4;font-weight:600;font-size:13px;white-space:nowrap;}
+tbody tr:hover{background:#151d2e;}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.tbl-scroll{overflow-x:auto;}
+.tag{display:inline-block;padding:2px 9px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;}
+.t-hot{background:rgba(255,77,94,.16);color:#ff7b88;border:1px solid rgba(255,77,94,.4);}
+.t-bull{background:rgba(255,157,77,.16);color:#ffb066;border:1px solid rgba(255,157,77,.4);}
+.t-warn{background:rgba(246,196,83,.14);color:#f6c453;border:1px solid rgba(246,196,83,.4);}
+.t-pos{background:rgba(37,197,138,.14);color:#4ddcae;border:1px solid rgba(37,197,138,.4);}
+.t-neu{background:rgba(74,158,255,.14);color:#7dbcff;border:1px solid rgba(74,158,255,.4);}
+.t-avoid{background:rgba(169,123,255,.14);color:#bd9cff;border:1px solid rgba(169,123,255,.4);}
+.dir{background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--blue);
+  border-radius:10px;padding:14px 16px;margin:12px 0;}
+.dir .h{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;}
+.dir .t{font-weight:700;font-size:16px;}
+.dir .logic{color:#a9b8d3;font-size:13.5px;margin:8px 0 10px;}
+.stocks{font-size:13.5px;color:#cfdcf0;}
+.stocks code{background:#1d2740;border:1px solid var(--line);border-radius:6px;
+  padding:2px 7px;margin:2px 5px 2px 0;display:inline-block;font-family:inherit;font-size:13px;}
+.core code{background:rgba(255,77,94,.14);border-color:rgba(255,77,94,.45);color:#ff96a0;font-weight:600;}
+.note{font-size:13px;color:var(--sub);border-left:3px solid var(--line);padding-left:12px;margin:12px 0;}
+footer{margin-top:46px;padding-top:18px;border-top:1px solid var(--line);color:#5f6f8d;font-size:12.5px;}
+.pill{display:inline-block;background:#1a2337;border:1px solid var(--line);border-radius:6px;
+  padding:1px 8px;font-size:12.5px;color:#9fb0cd;margin-right:6px;}
+.hl{background:rgba(74,158,255,.10);border:1px dashed rgba(74,158,255,.45);border-radius:10px;
+  padding:12px 15px;margin:14px 0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>美股映射复盘 · A股受益方向</h1>
+  <div class="meta">
+    报告生成：<b>2026-09-14（周一）07:30 北京时间</b>　|　数据截止：<b>2026-09-11（周五）美股收盘</b>　|　数据源：腾讯行情 / 新浪期货 / CBOE / 公开财经资讯<br>
+    一句话：<b>CPI落地+油价回吐，美股终结四连跌；戴尔财报引爆AI算力硬件，服务器·电源·模拟芯片三链共振</b>
+  </div>
+</header>
+
+<h2>一、隔夜市场全景</h2>
+<div class="grid g4">
+  <div class="kpi"><div class="n">道琼斯工业</div><div class="v">52,573.29</div><div class="c up">+0.98% (+509.19)</div></div>
+  <div class="kpi"><div class="n">标普500</div><div class="v">7,656.98</div><div class="c up">+0.86% (+65.28)</div></div>
+  <div class="kpi"><div class="n">纳斯达克综合</div><div class="v">26,333.04</div><div class="c up">+0.96% (+251.32)</div></div>
+  <div class="kpi"><div class="n">VIX 恐慌指数</div><div class="v">15.84</div><div class="c dn">-12.63% (-2.00)</div></div>
+</div>
+<div class="grid g4" style="margin-top:14px;">
+  <div class="kpi"><div class="n">QQQ 纳指100ETF</div><div class="v">714.88</div><div class="c up">+0.87%</div></div>
+  <div class="kpi"><div class="n">SPY 标普500ETF</div><div class="v">764.29</div><div class="c up">+0.85%</div></div>
+  <div class="kpi"><div class="n">SOXQ 半导体ETF</div><div class="v">93.10</div><div class="c up">+1.78%</div></div>
+  <div class="kpi"><div class="n">费城半导体指数</div><div class="v">—</div><div class="c up">+1.81%</div></div>
+</div>
+<div class="note">
+  本周三大指数集体收跌：<span class="pill">道指 -1.57%</span><span class="pill">标普500 -0.80%</span><span class="pill">纳指 -0.66%</span>；周五单日反弹终结<b>四连跌</b>。
+  利率端：10年期美债收益率约 <b>4.97%</b>、2年期 <b>4.64%</b>；美元指数 <b>99.09</b>；比特币约 <b>7.7万美元</b>。
+  欧股同步收涨（DAX +0.82%、CAC40 +0.78%、富时100 +0.62%）。
+</div>
+
+<h2>二、标普500 十一大板块表现</h2>
+<div class="tbl-scroll">
+<table>
+<thead><tr><th>板块</th><th>ETF</th><th class="num">涨跌幅</th><th>解读</th></tr></thead>
+<tbody>
+<tr><td><b>科技</b></td><td>XLK</td><td class="num up">+1.32%</td><td>领涨主线：半导体（安森美+8.5%、ARM+4%）与计算机硬件（戴尔+12%、HPE+12.4%、超微+7.3%）共振</td></tr>
+<tr><td><b>工业</b></td><td>XLI</td><td class="num up">+1.07%</td><td>AI基建电气化拉动：广达服务+5.15%、伊顿+3.96%、GE Vernova+3.61%</td></tr>
+<tr><td><b>通信服务</b></td><td>XLC</td><td class="num up">+0.99%</td><td>谷歌+1.53%、Meta+0.57%，广告+AI叙事稳，属防御与成长的交叉受益</td></tr>
+<tr><td><b>可选消费</b></td><td>XLY</td><td class="num up">+0.89%</td><td>亚马逊+1.94%（宣布数据中心容量扩两倍以上）、特斯拉+0.52%</td></tr>
+<tr><td><b>房地产</b></td><td>XLRE</td><td class="num up">+0.86%</td><td>加息预期落地、长端利率企稳，利率敏感型REITs修复</td></tr>
+<tr><td><b>金融</b></td><td>XLF</td><td class="num up">+0.67%</td><td>加息预期升温有利于银行净息差，信贷风险仍可控</td></tr>
+<tr><td><b>基础材料</b></td><td>XLB</td><td class="num up">+0.37%</td><td>铜铝前一日重挫后小幅企稳，缺乏独立催化</td></tr>
+<tr><td><b>必需消费</b></td><td>XLP</td><td class="num up">+0.35%</td><td>跟随大盘小幅修复，资金关注度低</td></tr>
+<tr><td><b>能源</b></td><td>XLE</td><td class="num up">+0.32%</td><td>唯一“高开低走”板块：油价从110美元高位跳水，抹平板块涨幅</td></tr>
+<tr><td><b>医疗保健</b></td><td>XLV</td><td class="num dn">-0.18%</td><td>无催化+加息压制无盈利生物科技估值，资金流出转投AI硬件</td></tr>
+<tr><td><b>公用事业</b></td><td>XLU</td><td class="num dn">-0.31%</td><td>领跌：防御性资产被抛售，资金转向成长风格</td></tr>
+</tbody>
+</table>
+</div>
+<div class="hl">
+  <b>板块轮动特征：</b>典型的“风险偏好修复 + 风格切换”一日。资金从<b>防御型（公用事业/医疗）</b>与<b>利率敏感资产</b>流出，集中涌入
+  <b>AI算力硬件（半导体→服务器整机→电源散热→电气设备）</b>。宏观触发点是“8月CPI落地 + 油价从高位回吐”，
+  压制成长股的两大变量同时缓解；但加息预期反而升至约90%，因此银行（XLF）与地产（XLRE）同步受益，形成
+  “硬科技领涨 + 金融为盾”的双主线格局。
+</div>
+
+<h2>三、科技龙头表现</h2>
+<div class="tbl-scroll">
+<table>
+<thead><tr><th>公司</th><th>代码</th><th class="num">收盘价</th><th class="num">涨跌幅</th><th class="num">成交额</th><th>资金方向</th></tr></thead>
+<tbody>
+<tr><td>亚马逊</td><td>AMZN</td><td class="num">256.78</td><td class="num up">+1.94%</td><td class="num">$68.5亿</td><td>数据中心容量扩两倍以上，资本开支最激进</td></tr>
+<tr><td>谷歌-A</td><td>GOOGL</td><td class="num">338.50</td><td class="num up">+1.77%</td><td class="num">$83.9亿</td><td>通讯服务领涨主力</td></tr>
+<tr><td>苹果</td><td>AAPL</td><td class="num">332.27</td><td class="num up">+1.75%</td><td class="num">$169.0亿</td><td>成交额全场最高，避险资金回归大市值</td></tr>
+<tr><td>超威半导体</td><td>AMD</td><td class="num">516.13</td><td class="num up">+2.49%</td><td class="num">$97.9亿</td><td>AI加速卡替代逻辑延续</td></tr>
+<tr><td>台积电</td><td>TSM</td><td class="num">433.24</td><td class="num up">+1.22%</td><td class="num">$46.0亿</td><td>先进制程产能仍紧</td></tr>
+<tr><td>微软</td><td>MSFT</td><td class="num">495.63</td><td class="num up">+0.65%</td><td class="num">$72.0亿</td><td>温和跟涨</td></tr>
+<tr><td>Meta</td><td>META</td><td class="num">648.03</td><td class="num up">+0.57%</td><td class="num">$110.3亿</td><td>成交活跃但涨幅收敛</td></tr>
+<tr><td>特斯拉</td><td>TSLA</td><td class="num">365.44</td><td class="num up">+0.52%</td><td class="num">$110.2亿</td><td>机器人/FSD预期支撑，弹性有限</td></tr>
+<tr><td>博通</td><td>AVGO</td><td class="num">361.99</td><td class="num up">+0.32%</td><td class="num">$77.0亿</td><td>ASIC逻辑稳，当日弱于同业</td></tr>
+<tr><td>英伟达</td><td>NVDA</td><td class="num">218.29</td><td class="num flat">-0.03%</td><td class="num">$195.5亿</td><td>成交额第一但滞涨，资金外溢至服务器/电源链</td></tr>
+</tbody>
+</table>
+</div>
+<h3>AI硬件链重点异动（弹性最大的一批）</h3>
+<div class="tbl-scroll">
+<table>
+<thead><tr><th>公司</th><th>代码</th><th class="num">涨跌幅</th><th class="num">成交额</th><th>驱动</th></tr></thead>
+<tbody>
+<tr><td>慧与 HPE</td><td>HPE</td><td class="num up">+12.44%</td><td class="num">$23.8亿</td><td>AI服务器/网络订单共振，与戴尔同频</td></tr>
+<tr><td>戴尔科技</td><td>DELL</td><td class="num up">+11.98%</td><td class="num">$80.8亿</td><td>财报大超预期，创历史新高</td></tr>
+<tr><td>安森美半导体</td><td>ON</td><td class="num up">+8.51%</td><td class="num">$8.4亿</td><td>功率/模拟芯片周期反转+AI电源需求</td></tr>
+<tr><td>超微电脑</td><td>SMCI</td><td class="num up">+7.28%</td><td class="num">$18.4亿</td><td>服务器整机龙头，订单能见度提升</td></tr>
+<tr><td>Arista网络</td><td>ANET</td><td class="num up">+5.61%</td><td class="num">$9.2亿</td><td>AI数据中心以太网交换机需求</td></tr>
+<tr><td>思佳讯</td><td>SWKS</td><td class="num up">+5.14%</td><td class="num">—</td><td>模拟射频芯片补涨</td></tr>
+<tr><td>Arm</td><td>ARM</td><td class="num up">+4.17%</td><td class="num">$11.2亿</td><td>算力架构与IP授权受益</td></tr>
+<tr><td>Coherent</td><td>COHR</td><td class="num up">+4.16%</td><td class="num">$22.2亿</td><td>光通信器件需求回升</td></tr>
+<tr><td>迈威尔科技</td><td>MRVL</td><td class="num up">+4.03%</td><td class="num">$40.9亿</td><td>定制ASIC+光DSP双轮驱动</td></tr>
+<tr><td>Ciena科技</td><td>CIEN</td><td class="num up">+4.48%</td><td class="num">$6.9亿</td><td>光传输设备订单</td></tr>
+<tr><td>IBM</td><td>IBM</td><td class="num up">+3.96%</td><td class="num">$11.9亿</td><td>企业级AI咨询/主机需求</td></tr>
+<tr><td>维谛技术</td><td>VRT</td><td class="num up">+3.60%</td><td class="num">$12.3亿</td><td>数据中心温控+电源，最直接受益</td></tr>
+<tr><td>西部数据</td><td>WDC</td><td class="num dn">-2.98%</td><td class="num">$23.1亿</td><td>存储板块获利了结</td></tr>
+<tr><td>闪迪</td><td>SNDK</td><td class="num dn">-3.50%</td><td class="num">$153.9亿</td><td>存储概念高开低走，成交巨大</td></tr>
+<tr><td>希捷科技</td><td>STX</td><td class="num dn">-3.73%</td><td class="num">$32.0亿</td><td>硬盘涨价预期兑现，资金撤离</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>四、大市值异动股（涨幅 &gt;9% 且市值 &gt;50亿美元）</h2>
+<div class="tbl-scroll">
+<table>
+<thead><tr><th>公司</th><th>代码</th><th class="num">涨幅</th><th class="num">市值(亿美元)</th><th class="num">收盘价</th><th>异动逻辑</th></tr></thead>
+<tbody>
+<tr><td>慧与科技</td><td>HPE</td><td class="num up">+12.44%</td><td class="num">824.2</td><td class="num">62.09</td><td>AI服务器与企业网络订单爆发，成为“戴尔第二”，年内新高附近</td></tr>
+<tr><td>戴尔科技</td><td>DELL</td><td class="num up">+11.98%</td><td class="num">3,606.9</td><td class="num">567.29</td><td>FY27Q2营收470亿美元(+58%)、non-GAAP EPS 7.04美元(+203%)，上调全年指引；AI服务器为主要增长引擎，年内涨超340%，创历史新高</td></tr>
+<tr><td>Vicor电子</td><td>VICR</td><td class="num up">+11.15%</td><td class="num">91.2</td><td class="num">197.91</td><td>高密度电源模块（数据中心48V直供架构）核心供应商，AI电源价值量提升直接受益</td></tr>
+</tbody>
+</table>
+</div>
+<div class="hl">
+<b>异动主线归纳：</b>本轮不是“概念炒作”，而是<b>AI基础设施订单的财报级验证</b>——三只异动股全部落在
+<b>算力硬件制造</b>链条上：服务器整机（DELL/HPE）→ 供电模块（VICR）。叠加超微+7.3%、Arista+5.6%、维谛+3.6%、
+安森美+8.5%，形成“<b>服务器 + 电源 + 网络 + 模拟芯片</b>”四条子链共振。<br>
+<b>A股映射方向：</b>服务器整机代工（工业富联、浪潮信息、紫光股份）、电源与液冷（麦格米特、英维克、欧陆通）、
+网络设备（紫光股份、星网锐捷）、模拟芯片（圣邦股份、纳芯微）。
+</div>
+
+<h2>五、中概股表现</h2>
+<div class="grid g4">
+  <div class="kpi"><div class="n">纳斯达克中国金龙指数</div><div class="v">+0.40%</div><div class="c flat">本周 -4.03%</div></div>
+  <div class="kpi"><div class="n">蔚来 NIO</div><div class="v">$3.69</div><div class="c up">+3.07%</div></div>
+  <div class="kpi"><div class="n">小鹏汽车 XPEV</div><div class="v">$10.54</div><div class="c up">+1.93%</div></div>
+  <div class="kpi"><div class="n">理想汽车 LI</div><div class="v">$11.81</div><div class="c up">+1.37%</div></div>
+</div>
+<div class="tbl-scroll" style="margin-top:14px;">
+<table>
+<thead><tr><th>公司</th><th>代码</th><th class="num">收盘价</th><th class="num">涨跌幅</th><th>备注</th></tr></thead>
+<tbody>
+<tr><td>蔚来</td><td>NIO</td><td class="num">3.69</td><td class="num up">+3.07%</td><td>新势力领涨</td></tr>
+<tr><td>小鹏汽车</td><td>XPEV</td><td class="num">10.54</td><td class="num up">+1.93%</td><td>智驾/机器人叙事支撑</td></tr>
+<tr><td>理想汽车</td><td>LI</td><td class="num">11.81</td><td class="num up">+1.37%</td><td>纯电新品预期</td></tr>
+<tr><td>阿里巴巴</td><td>BABA</td><td class="num">109.30</td><td class="num up">+0.68%</td><td>云+AI资本开支受益</td></tr>
+<tr><td>哔哩哔哩</td><td>BILI</td><td class="num">15.54</td><td class="num up">+0.45%</td><td>游戏与广告改善</td></tr>
+<tr><td>京东</td><td>JD</td><td class="num">27.06</td><td class="num up">+0.15%</td><td>温和跟涨</td></tr>
+<tr><td>网易</td><td>NTES</td><td class="num">115.61</td><td class="num flat">-0.02%</td><td>微跌</td></tr>
+<tr><td>拼多多</td><td>PDD</td><td class="num">77.81</td><td class="num flat">-0.04%</td><td>基本走平</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">
+其他中概亮点：慧荣科技 <b class="up">+7.25%</b>（存储主控）、欢聚 <b class="up">+3.25%</b>、好未来 <b class="up">+2.70%</b>、
+新东方 <b class="up">+2.27%</b>、联电 <b class="up">+2.35%</b>、贝壳 <b class="up">+1.44%</b>、腾讯音乐 <b class="up">+1.01%</b>、百度 <b class="up">+0.89%</b>。
+中概本周累计下跌4.03%，周五仅属超跌后的技术性修复，弹性明显弱于美股本土AI硬件。
+</div>
+
+<h2>六、商品与宏观四件套</h2>
+<div class="tbl-scroll">
+<table>
+<thead><tr><th>品种</th><th>代理ETF涨跌</th><th class="num">商品真实价格（周五收盘 → 周一早间）</th><th>趋势解读</th></tr></thead>
+<tbody>
+<tr><td><b>WTI原油</b></td><td class="up">USO -2.20%</td><td class="num">$100.05 → $102.59</td><td>胡塞宣布红海停火，地缘溢价回吐，WTI一度跌破100；周末沙特东西输油管道预防性关闭，早间反弹约2.5%</td></tr>
+<tr><td><b>布伦特原油</b></td><td class="dn">BNO -2.79%</td><td class="num">$104.61 → $107.82</td><td>盘中高点109.97后急挫，周一年内累计涨幅仍高达约110%；布伦特维持较WTI约5美元溢价（价差合理）</td></tr>
+<tr><td><b>黄金</b></td><td class="up">GLD +0.61%</td><td class="num">$4,390(COMEX) → $4,380.5</td><td>本周累跌1.93%，加息预期落地后未破位，4300美元为强支撑</td></tr>
+<tr><td><b>白银</b></td><td class="up">SLV +1.08%</td><td class="num">$65.19 → $64.61</td><td>现货一度涨超2%，金银比修复，工业+货币双属性支撑</td></tr>
+<tr><td><b>美元指数</b></td><td class="up">UUP +0.14%</td><td class="num">DXY 99.09</td><td>CPI后冲高99.32又回落，加息预期已被充分定价</td></tr>
+<tr><td><b>美债(长端)</b></td><td class="up">TLT +0.11%</td><td class="num">10Y 4.97% / 2Y 4.64%</td><td>10年期盘中逼近5%（近三年高位），长端是当前最大的估值压制变量</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">
+  ⚠️ 说明：USO/BNO/GLD/SLV/UUP/TLT 为ETF价格，<b>不等于商品本身价格</b>，故本表价格列采用新浪期货接口的真实商品报价（WTI/Brent/COMEX金银、美元指数、美债收益率）。
+  加密：比特币约 <b>7.7万美元</b>，重返7.8万上方后回落。
+</div>
+
+<h2>七、隔夜重点事件</h2>
+<div class="card">
+<ol>
+<li><b>美国8月CPI落地，加息预期反而升至约90%。</b>8月CPI同比 <b>+3.4%</b>（符合预期、持平前值），环比 +0.4%；
+核心CPI同比 <b>+2.4%</b>（回落），但核心环比 <b>+0.3%</b> 高于预期0.2%。CME FedWatch显示9月15-16日FOMC加息25bp概率
+从数据前的约69%飙升至 <b>87%-90%</b>，市场完全定价年底前加息两次；<b>高盛紧急改口</b>由“按兵不动”转为预测9月加息25bp，
+这将是2023年7月以来的首次加息。摩根大通、道明证券亦转向加息交易。</li>
+
+<li><b>戴尔财报引爆AI算力硬件。</b>FY27Q2（截至7月31日）营收 <b>470亿美元、同比+58%</b> 创历史新高（预期448亿），
+non-GAAP每股收益 <b>7.04美元、同比+203%</b>（远超预期），并大幅上调全年营收指引。股价收涨 <b>11.98%</b>，
+市值升至3,606.9亿美元，创历史新高，年内涨幅超340%。这是“AI资本开支能否持续”争议<b>最有力的财报级回答</b>。</li>
+
+<li><b>油市过山车：地缘溢价一日回吐。</b>也门胡塞武装宣布红海西海岸各省份交火停止，布伦特从109.97美元高位跳水，
+WTI跌破100美元收于100.05（-2.37%），布伦特收104.61（-2.81%）。但局势并未真正缓解：胡塞攻占红海要地穆哈港与哈尼什群岛，
+海湾国家拟与伊朗会谈，周末<b>沙特东西输油管道预防性关闭</b>，霍尔木兹与曼德海峡两大能源通道同时承压——周一早间油价已反弹约2.5%。</li>
+
+<li><b>亚马逊宣布数据中心容量扩两倍以上。</b>AMZN收涨1.94%，为超大规模云厂中资本开支指引最激进者，
+直接强化服务器、电源、液冷、光互联的中期需求确定性。</li>
+
+<li><b>甲骨文“高开低走”暴露市场分歧。</b>FQ1营收与利润均超预期，盘前/开盘一度涨超7%-8.5%，但收盘 <b>-1.74%</b>。
+市场认可AI需求，却对巨额资本开支侵蚀利润率与自由现金流保持警惕，这是本轮AI行情中最主要的反向风险信号。</li>
+
+<li><b>半导体全面反弹，存储逆势分化。</b>费城半导体指数 <b>+1.81%</b>（28涨2跌）：安森美+8.51%、思佳讯+5.14%，
+亚德诺/恩智浦/Arm/迈威尔涨超4%，德州仪器/微芯涨超3%，高通+2.88%、英特尔+2.61%。而存储板块全线下跌：
+闪迪-3.50%、希捷-3.73%、西数-2.98%、美光-0.22%，仅SK海力士+0.94%——<b>“算力/模拟强、存储弱”</b>的格局清晰。</li>
+
+<li><b>国内流动性呵护 + A股情绪冰点。</b>央行宣布9月14日至17日连续四天开展隔夜逆回购，每日操作量不超过6000亿元，
+缓解税期（9月15日）流动性压力；A股周五上证指数跌 <b>1.18%</b> 报3888.11点、失守3900点，全周成交创年内新低，
+呈现“涨一天跌四天”的弱势格局，但电子、通信板块获主力资金逆势加仓。9月11日24时国内成品油价格上调260/250元/吨。</li>
+
+<li><b>亚太股市承压。</b>受高利率与油价冲击，日经225周五跌 <b>-1.93%</b>、韩国KOSPI跌 <b>-1.76%</b>，三星电子跌3.72%、
+SK海力士跌4.37%——这也解释了A股周五科技股的同步杀跌。</li>
+
+<li><b>储能技术突破（产业催化）。</b>9月12日，世界最大盐穴压缩空气储能项目两台机组在江苏金坛完成整组启动，
+单台容量350MW，总装机规模全球同类项目之首，标志我国大容量长时储能核心技术实现突破。</li>
+</ol>
+</div>
+
+<h2>八、A股映射方向</h2>
+
+<div class="dir">
+  <div class="h"><div class="t">1. AI服务器 / 算力整机代工</div><span class="tag t-hot">🔥 强烈关注</span></div>
+  <div class="logic">戴尔营收+58%、HPE+12.44%、超微+7.28%，AI服务器订单完成财报级验证；国内云厂资本开支同频，整机代工是最直接受益环节。</div>
+  <div class="stocks core">核心：<code>工业富联 601138</code><code>浪潮信息 000977</code><code>中科曙光 603019</code><code>紫光股份 000938</code></div>
+  <div class="stocks">弹性：<code>神州数码 000034</code><code>高新发展 000628</code><code>拓维信息 002261</code><code>烽火通信 600498</code><code>神州泰岳 300002</code></div>
+</div>
+
+<div class="dir">
+  <div class="h"><div class="t">2. 数据中心电源 / 液冷温控 / 电气设备</div><span class="tag t-hot">🔥 强烈关注</span></div>
+  <div class="logic">Vicor+11.15%（48V高密度电源）、维谛+3.60%、广达服务+5.15%、伊顿+3.96%、GE Vernova+3.61%；亚马逊数据中心容量扩两倍以上，电力与散热价值量确定性最高。</div>
+  <div class="stocks core">核心：<code>英维克 002837</code><code>麦格米特 002851</code><code>科华数据 002335</code><code>申菱环境 301018</code></div>
+  <div class="stocks">弹性：<code>欧陆通 300870</code><code>金盘科技 688676</code><code>思源电气 002028</code><code>东方电气 600875</code><code>同飞股份 300990</code></div>
+</div>
+
+<div class="dir">
+  <div class="h"><div class="t">3. 光模块 / 光通信</div><span class="tag t-bull">看涨</span></div>
+  <div class="logic">迈威尔+4.03%、Coherent+4.16%、Ciena+4.48%，800G/1.6T光互联跟随AI集群规模扩张；国内龙头海外客户占比高，弹性最强。</div>
+  <div class="stocks core">核心：<code>中际旭创 300308</code><code>新易盛 300502</code><code>天孚通信 300394</code><code>光迅科技 002281</code></div>
+  <div class="stocks">弹性：<code>太辰光 300570</code><code>仕佳光子 688313</code><code>剑桥科技 603083</code><code>华工科技 000988</code><code>博创科技 300548</code></div>
+</div>
+
+<div class="dir">
+  <div class="h"><div class="t">4. 模拟 / 功率半导体</div><span class="tag t-bull">看涨</span></div>
+  <div class="logic">安森美+8.51%、思佳讯+5.14%、亚德诺/恩智浦涨超4%，模拟芯片周期底部复苏叠加AI电源管理新需求，是“低位+催化”组合。</div>
+  <div class="stocks core">核心：<code>圣邦股份 300661</code><code>纳芯微 688052</code><code>韦尔股份 603501</code><code>士兰微 600460</code></div>
+  <div class="stocks">弹性：<code>思瑞浦 688536</code><code>闻泰科技 600745</code><code>卓胜微 300782</code><code>艾为电子 688798</code><code>帝奥微 688381</code></div>
+</div>
+
+<div class="dir">
+  <div class="h"><div class="t">5. AI网络设备 / 交换芯片</div><span class="tag t-bull">看涨</span></div>
+  <div class="logic">Arista+5.61%表明AI集群以太网需求延续，数据中心交换机与高速连接是算力扩张的“隐形瓶颈”。</div>
+  <div class="stocks core">核心：<code>紫光股份 000938</code><code>星网锐捷 002396</code><code>盛科通信 688702</code></div>
+  <div class="stocks">弹性：<code>锐捷网络 301165</code><code>菲菱科思 301191</code><code>恒为科技 603496</code><code>共进股份 603118</code></div>
+</div>
+
+<div class="dir">
+  <div class="h"><div class="t">6. 黄金 / 白银 / 有色</div><span class="tag t-pos">🟢 正面</span></div>
+  <div class="logic">COMEX金站上4,390美元、白银现货涨超2%，加息预期虽升温但长端利率未破位，避险与去美元化配置需求延续，是加息周期中少见的正收益资产。</div>
+  <div class="stocks core">核心：<code>山东黄金 600547</code><code>中金黄金 600489</code><code>紫金矿业 601899</code><code>赤峰黄金 600988</code></div>
+  <div class="stocks">弹性：<code>湖南黄金 002155</code><code>洛阳钼业 603993</code><code>兴业银锡 000426</code><code>盛达资源 000603</code><code>银泰黄金 000975</code></div>
+</div>
+
+<div class="dir">
+  <div class="h"><div class="t">7. 石油石化（高波动，波段为主）</div><span class="tag t-warn">⚠️ 关注</span></div>
+  <div class="logic">布伦特自110美元回吐但仍守在100上方，年内涨幅约110%；周末沙特管道预防性关闭+红海/霍尔木兹双通道风险，油价高波动而非单边，A股油气股跟随但弹性打折。</div>
+  <div class="stocks core">核心：<code>中国海油 600938</code><code>中国石油 601857</code><code>中海油服 601808</code></div>
+  <div class="stocks">弹性：<code>中国石化 600028</code><code>海油工程 600583</code><code>新奥股份 600803</code><code>广汇能源 600256</code><code>恒力石化 600346</code></div>
+</div>
+
+<div class="dir">
+  <div class="h"><div class="t">8. 存储芯片（跟随情绪，观察为主）</div><span class="tag t-neu">📌 中性</span></div>
+  <div class="logic">美股存储板块集体下跌（闪迪-3.50%、希捷-3.73%、西数-2.98%），仅SK海力士上涨；A股存储短期或跟随情绪回调，但HBM/企业级需求与涨价周期逻辑未破坏，宜等调整。</div>
+  <div class="stocks core">核心：<code>兆易创新 603986</code><code>澜起科技 688008</code><code>江波龙 301308</code></div>
+  <div class="stocks">弹性：<code>北京君正 300223</code><code>佰维存储 688525</code><code>德明利 001309</code><code>东芯股份 688110</code></div>
+</div>
+
+<div class="dir">
+  <div class="h"><div class="t">9. 中概互联 / 港股科技</div><span class="tag t-pos">🟢 正面</span></div>
+  <div class="logic">金龙指数+0.40%（本周仍-4.03%），蔚来+3.07%、好未来+2.70%、新东方+2.27%，教育与出行平台领涨；中概仅为超跌修复，弹性弱于美股AI硬件。</div>
+  <div class="stocks core">核心：<code>腾讯 00700</code><code>阿里巴巴 09988</code><code>美团 03690</code><code>快手 01024</code></div>
+  <div class="stocks">弹性：<code>京东 09618</code><code>网易 09999</code><code>哔哩哔哩 09626</code><code>学大教育 000526</code><code>科德教育 300192</code></div>
+</div>
+
+<div class="dir">
+  <div class="h"><div class="t">10. 储能（新产业催化）</div><span class="tag t-pos">🟢 正面</span></div>
+  <div class="logic">世界最大盐穴压缩空气储能项目（江苏金坛，2×350MW）9月12日整组启动，长时储能技术突破，叠加AI数据中心对电力稳定性需求，电力设备+储能共振。</div>
+  <div class="stocks core">核心：<code>东方电气 600875</code><code>南网储能 600995</code><code>陕鼓动力 601369</code></div>
+  <div class="stocks">弹性：<code>苏文电能 300982</code><code>金智科技 002090</code><code>中国能建 601868</code><code>科华数据 002335</code></div>
+</div>
+
+<div class="dir">
+  <div class="h"><div class="t">11. 创新药 / 医疗设备（相对回避）</div><span class="tag t-avoid">▼ 回避</span></div>
+  <div class="logic">医疗保健是标普十一大板块中唯一下跌方向（XLV -0.18%），加息预期抬升直接压制无盈利生物科技估值；A/H创新药依靠BD授权逻辑独立运行，但短期缺乏外围助力，不宜追高。</div>
+  <div class="stocks core">核心：<code>恒瑞医药 600276</code><code>药明康德 603259</code><code>百济神州 688235</code></div>
+  <div class="stocks">弹性：<code>信达生物 01801</code><code>康方生物 09926</code><code>科伦博泰 06990</code><code>药明生物 02269</code><code>微创机器人 02252</code></div>
+</div>
+
+<h2>九、持仓影响评估</h2>
+<div class="tbl-scroll">
+<table>
+<thead><tr><th>持仓标的（仓位）</th><th>ADR / 外围映射</th><th class="num">隔夜外围表现</th><th>今日预期</th><th>操作建议</th></tr></thead>
+<tbody>
+<tr>
+  <td><b>小鹏汽车 09868</b>（26%）</td><td>XPEV +1.93% / $10.54</td><td class="num up">+1.93%</td>
+  <td>港股小幅高开，A/H新势力情绪修复，但中概本周跌4%压制弹性</td>
+  <td>持有。仓位26%为组合最高，成本83.53仍处深度浮亏区，<b>反弹是减仓降集中度的机会</b>，不建议在美股风险偏好修复日加仓</td>
+</tr>
+<tr>
+  <td><b>药明生物 02269</b>（15%）</td><td>无直接ADR；XLV -0.18%</td><td class="num dn">医疗最弱板块</td>
+  <td>中性偏弱震荡，外围无助推</td>
+  <td>持有观察。核心驱动仍在BD授权与新签订单，加息预期压制生物科技估值，若跌破成本34.55需主动控制仓位</td>
+</tr>
+<tr>
+  <td><b>微创机器人 02252</b>（14%）</td><td>无ADR；美股手术机器人无独立行情</td><td class="num flat">缺乏催化</td>
+  <td>中性，跟随港股医药情绪</td>
+  <td>持有观察。等待装机量与海外注册进展，短线无外围驱动</td>
+</tr>
+<tr>
+  <td><b>腾讯 00700</b>（14%）</td><td>TCEHY（OTC）；XLC +0.99%</td><td class="num up">+0.99%</td>
+  <td>小幅高开，通讯服务板块隔夜领涨</td>
+  <td>持有。游戏+AI广告+云逻辑稳健，是组合的压舱石，可继续作为底仓</td>
+</tr>
+<tr>
+  <td><b>中宠股份 002891</b>（7%）</td><td>无ADR；美股宠物消费无映射</td><td class="num flat">—</td>
+  <td>中性，受人民币汇率与内需影响</td>
+  <td>持有。与美股关联度最低，属组合内的低相关资产</td>
+</tr>
+<tr>
+  <td><b>福瑞医科</b>（6.6%）</td><td>无ADR</td><td class="num flat">—</td>
+  <td>中性</td>
+  <td>持有观察</td>
+</tr>
+<tr>
+  <td><b>益方生物 688382</b>（4.3%）</td><td>无ADR；生物科技指数偏弱</td><td class="num dn">加息压制</td>
+  <td>中性偏弱</td>
+  <td>持有观察临床与BD催化，不因外围弱势被动减仓</td>
+</tr>
+<tr>
+  <td><b>科伦博泰 06990</b>（1%）</td><td>无ADR</td><td class="num flat">—</td>
+  <td>中性</td>
+  <td>持有</td>
+</tr>
+<tr>
+  <td><b>阿里巴巴 09988</b>（1%）</td><td>BABA +0.68% / $109.30</td><td class="num up">+0.68%</td>
+  <td>小幅高开</td>
+  <td>持有。仓位仅1%，若看好云+AI资本开支逻辑可考虑逢低提升权重</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3>今日策略优先级</h3>
+<div class="card">
+<div class="stocks">
+<b>AI服务器/整机代工</b>（工业富联、浪潮信息） <b>&gt;</b>
+<b>数据中心电源与液冷</b>（英维克、麦格米特） <b>&gt;</b>
+<b>光模块</b>（中际旭创、新易盛） <b>&gt;</b>
+<b>模拟芯片</b>（圣邦股份、纳芯微） <b>&gt;</b>
+<b>黄金有色</b>（山东黄金、紫金矿业） <b>&gt;</b>
+<b>中概/港股科技</b>（腾讯、阿里） <b>&gt;</b>
+<b>油气（波段、不追高）</b> <b>&gt;</b>
+<b>存储（等回调）</b> <b>&gt;</b>
+<b>创新药/医疗（暂不追高）</b>
+</div>
+<div class="note" style="margin-bottom:0;">
+<b>组合层面的三点提醒：</b><br>
+① 你的组合（小鹏26% + 药明生物15% + 微创机器人14% + 腾讯14% = 69%）集中在港股成长股，
+本次美股反弹的核心受益方是<b>A股AI硬件制造</b>，港股并非主要映射对象——<b>与其在港股高位加仓，不如用A股算力硬件做弹性</b>。<br>
+② 最大宏观变量是<b>9月15-16日FOMC</b>：若如期加息25bp，长端利率逼近5%将压制全球成长股估值，港股成长股对利率更敏感，需预留应对空间。<br>
+③ 油价仍在100美元上方且中东双通道风险未解，通胀二次反弹风险未消；建议<i>总仓位</i>控制在可承受回撤范围，而非在单一标的层面分散。
+</div>
+</div>
+
+<footer>
+  报告由 Hermes 美股映射复盘自动生成 · 数据源：腾讯行情API（qt.gtimg.cn）、新浪期货（hq.sinajs.cn）、CBOE、新浪美股涨幅榜、公开财经资讯<br>
+  本报告仅为数据整理与逻辑推演，不构成任何投资建议。市场有风险，决策需谨慎。
+</footer>
+
+</div>
+</body>
+</html>
