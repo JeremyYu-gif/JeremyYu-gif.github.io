@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>龙虎榜游资追踪 · 2026-09-14</title>
+<style>
+:root{
+  --bg:#0a0e17; --panel:#111827; --panel2:#0f1626; --line:#1f2a3d;
+  --txt:#d7dee9; --muted:#8394ab; --up:#ff4d4f; --dn:#00c48c;
+  --gold:#f0b90b; --acc:#3b82f6; --acc2:#8b5cf6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:"PingFang SC","Microsoft YaHei",-apple-system,"Segoe UI",sans-serif;
+  line-height:1.65;padding:22px 14px 60px;font-size:14px}
+.wrap{max-width:1180px;margin:0 auto}
+header{background:linear-gradient(135deg,#111827 0%,#0d1524 60%,#131c2e 100%);
+  border:1px solid var(--line);border-radius:14px;padding:22px 24px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;
+  background:radial-gradient(circle,rgba(240,185,11,.16),transparent 70%)}
+h1{font-size:23px;letter-spacing:1px;color:#fff}
+h1 .em{color:var(--gold)}
+.sub{color:var(--muted);font-size:12.5px;margin-top:6px}
+h2{font-size:16px;margin:26px 0 12px;padding-left:11px;border-left:3px solid var(--gold);color:#fff}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:14px 16px}
+.card .k{font-size:11.5px;color:var(--muted);letter-spacing:.5px}
+.card .v{font-size:21px;font-weight:700;margin-top:5px;color:#fff}
+.card .v.up{color:var(--up)} .card .v.dn{color:var(--dn)} .card .v.gold{color:var(--gold)}
+.note{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.28);
+  border-left:3px solid var(--acc);border-radius:8px;padding:11px 14px;color:#9fc3f5;font-size:12.5px;margin:14px 0}
+.warn{background:rgba(240,185,11,.07);border:1px solid rgba(240,185,11,.3);
+  border-left:3px solid var(--gold);border-radius:8px;padding:11px 14px;color:#e8cf87;font-size:12.5px;margin:14px 0}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);
+  border-radius:10px;overflow:hidden;font-size:13px}
+th{background:var(--panel2);color:var(--muted);font-weight:600;text-align:left;padding:9px 11px;font-size:12px;white-space:nowrap}
+td{padding:9px 11px;border-top:1px solid var(--line);vertical-align:top}
+tr:hover td{background:rgba(59,130,246,.05)}
+.up{color:var(--up)} .dn{color:var(--dn)} .gold{color:var(--gold)} .mut{color:var(--muted)}
+.tag{display:inline-block;padding:1px 7px;border-radius:5px;font-size:11px;margin-right:4px;
+  background:rgba(139,92,246,.15);color:#c4b5fd;border:1px solid rgba(139,92,246,.3)}
+.tag.hot{background:rgba(255,77,79,.13);color:#ff8a8c;border-color:rgba(255,77,79,.32)}
+.tag.gr{background:rgba(0,196,140,.12);color:#5fe0b5;border-color:rgba(0,196,140,.3)}
+.tag.bl{background:rgba(59,130,246,.14);color:#93c5fd;border-color:rgba(59,130,246,.32)}
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:12.5px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}}
+footer{color:var(--muted);font-size:11.5px;margin-top:34px;padding-top:14px;border-top:1px solid var(--line);line-height:1.9}
+.star{color:var(--gold);font-weight:700}
+b.hl{color:#fff}
+ul{margin:6px 0 0 18px} li{margin:4px 0}
+.rank{display:inline-block;width:20px;height:20px;line-height:20px;text-align:center;border-radius:5px;
+  background:var(--panel2);color:var(--muted);font-size:11px;margin-right:7px;border:1px solid var(--line)}
+.rank.t1{background:rgba(240,185,11,.18);color:var(--gold);border-color:rgba(240,185,11,.4)}
+.rank.t2{background:rgba(199,210,224,.14);color:#cbd5e1}
+.rank.t3{background:rgba(205,127,50,.16);color:#e0a060;border-color:rgba(205,127,50,.35)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>🐉 龙虎榜游资追踪 · <span class="em">2026-09-14</span>（周一）</h1>
+  <div class="sub">A股短线情绪 &amp; 游资行为研究 ｜ 数据源：东方财富数据中心（龙虎榜明细 / 买卖席位 / 涨停池 / 概念板块）</div>
+</header>
+
+<div class="note">
+<b>市场概览：</b>今日全市场涨停 <b class="hl">55家</b>、跌停16家，短线情绪较上周五（涨停40家）<b class="gold">明显升温</b>。
+龙虎榜共 <b class="hl">72只</b>个股上榜（84条榜单记录），榜单资金整体<b class="up">净流入 +49.53亿</b>（净买入57.94亿 vs 净卖出8.41亿），
+上榜个股上涨49只 / 下跌23只，做多意愿处在近期高位。主线呈<b class="gold">双轮驱动</b>：<b class="hl">PCB/元件</b>（元件行业6家涨停，延续上周强势）+
+<b class="hl">CRO/创新药</b>（医疗研发外包+5.75%、医疗服务主力净流入16.36亿，新启动主线）。
+指数层面权重承压——上证 <span class="dn">−0.07%</span>、创业板指 <span class="dn">−1.10%</span>、科创50 <span class="dn">−1.62%</span>，
+但国证2000 <span class="up">+0.84%</span>，<b>典型"权重缩量、小盘题材独立走强"结构</b>。
+</div>
+
+<div class="cards">
+  <div class="card"><div class="k">上榜个股</div><div class="v">72 只</div></div>
+  <div class="card"><div class="k">榜单整体净额</div><div class="v up">+49.53 亿</div></div>
+  <div class="card"><div class="k">涨停 / 跌停</div><div class="v gold">55 / 16</div></div>
+  <div class="card"><div class="k">最强主线</div><div class="v">PCB · CRO/创新药</div></div>
+  <div class="card"><div class="k">游资活跃度</div><div class="v up">高</div></div>
+</div>
+
+<h2>🏦 机构专用席位 · 净买入 TOP 10</h2>
+<table>
+<thead><tr><th>#</th><th>个股</th><th>涨跌幅</th><th>机构净买入</th><th>机构买 / 卖</th><th>题材</th></tr></thead>
+<tbody>
+<tr><td><span class="rank t1">1</span></td><td><b class="hl">嘉立创</b> <span class="mut mono">001232</span></td><td class="up">+8.33%</td><td class="up"><b>+3.65亿</b></td><td class="mut">买6.94 / 卖3.28</td><td><span class="tag hot">PCB</span><span class="tag">EDA</span><span class="tag bl">国产芯片</span></td></tr>
+<tr><td><span class="rank t2">2</span></td><td><b class="hl">泰金新能</b> <span class="mut mono">688813</span></td><td class="up">+12.48%</td><td class="up"><b>+2.02亿</b></td><td class="mut">买2.02 / 卖0.00</td><td><span class="tag bl">固态电池</span><span class="tag hot">PCB设备</span><span class="tag">次新股</span></td></tr>
+<tr><td><span class="rank t3">3</span></td><td><b class="hl">意华股份</b> <span class="mut mono">002897</span></td><td class="up">+10.00%</td><td class="up"><b>+1.99亿</b></td><td class="mut">买3.17 / 卖1.18</td><td><span class="tag hot">华为汽车</span><span class="tag bl">6G/连接器</span><span class="tag">智能驾驶</span></td></tr>
+<tr><td>4</td><td><b class="hl">昀冢科技</b> <span class="mut mono">688260</span></td><td class="up">+8.71%</td><td class="up"><b>+1.54亿</b></td><td class="mut">买1.54 / 卖0.00</td><td><span class="tag hot">MLCC</span><span class="tag">华为概念</span><span class="tag gr">机构重仓</span></td></tr>
+<tr><td>5</td><td><b class="hl">风华高科</b> <span class="mut mono">000636</span></td><td class="up">+5.20%</td><td class="up"><b>+1.36亿</b></td><td class="mut">买20.45 / 卖19.09</td><td><span class="tag hot">MLCC</span><span class="tag hot">被动元件</span><span class="tag bl">商业航天</span></td></tr>
+<tr><td>6</td><td><b class="hl">高凯技术</b> <span class="mut mono">688835</span></td><td class="up">+20.00%</td><td class="up"><b>+1.28亿</b></td><td class="mut">买1.78 / 卖0.50</td><td><span class="tag bl">半导体设备</span><span class="tag">光刻机</span><span class="tag gr">中报预增</span></td></tr>
+<tr><td>7</td><td>万讯自控 <span class="mut mono">300112</span></td><td class="up">+14.82%</td><td class="up">+0.78亿</td><td class="mut">买1.54 / 卖0.76</td><td><span class="tag">机器视觉</span><span class="tag">传感器</span><span class="tag bl">人工智能</span></td></tr>
+<tr><td>8</td><td>杭电股份 <span class="mut mono">603618</span></td><td class="up">+1.87%</td><td class="up">+0.69亿</td><td class="mut">买0.69 / 卖0.00</td><td><span class="tag bl">特高压</span><span class="tag hot">PCB</span><span class="tag">电缆</span></td></tr>
+<tr><td>9</td><td>宝鼎科技 <span class="mut mono">002552</span></td><td class="up">+8.00%</td><td class="up">+0.62亿</td><td class="mut">买2.48 / 卖1.87</td><td><span class="tag hot">PCB/元件</span><span class="tag gr">中报预增</span></td></tr>
+<tr><td>10</td><td>万邦医药 <span class="mut mono">301520</span></td><td class="up">+20.00%</td><td class="up">+0.45亿</td><td class="mut">买1.08 / 卖0.63</td><td><span class="tag hot">CRO</span><span class="tag hot">减肥药</span><span class="tag bl">医疗服务</span></td></tr>
+</tbody>
+</table>
+<div class="warn">
+<b>⚠️ 机构买入榜关键特征：</b>TOP10 中有 <b>5只落在 PCB/元件/被动元件链</b>（嘉立创、泰金新能、昀冢科技、风华高科、杭电股份、宝鼎科技），
+机构资金对<b>电子元件产业链呈连续第二天集中增持</b>；同时 <b>2只医药</b>（万邦医药、及医疗链）首次进入机构前列，与今日CRO板块爆发呼应。
+注意 <b>风华高科</b>当日成交额高达 <b>74.03亿</b>（买20.45亿/卖19.09亿），机构净买1.36亿属"巨量换手下的弱净流入"，博弈极其激烈。
+</div>
+
+<h2>🏦 机构专用席位 · 净卖出 TOP 10（高位派发警示）</h2>
+<table>
+<thead><tr><th>#</th><th>个股</th><th>涨跌幅</th><th>机构净卖出</th><th>题材 / 状态</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><b class="hl">海南橡胶</b> <span class="mut mono">601118</span></td><td class="dn">−8.70%</td><td class="dn"><b>−2.08亿</b></td><td><span class="tag">农业种植</span><span class="tag bl">降解塑料</span><span class="tag hot">高位放量派发</span></td></tr>
+<tr><td>2</td><td><b class="hl">博敏电子</b> <span class="mut mono">603936</span></td><td class="up">+6.75%</td><td class="dn">−0.54亿</td><td><span class="tag hot">PCB</span><span class="tag bl">第三代半导体</span><span class="tag">上周五机构净买1.06亿→今日反转卖出</span></td></tr>
+<tr><td>3</td><td><b class="hl">超声电子</b> <span class="mut mono">000823</span></td><td class="up">+10.01%</td><td class="dn">−0.44亿</td><td><span class="tag hot">PCB</span><span class="tag gold">3连板</span><span class="tag">机构连续第二日派发</span></td></tr>
+<tr><td>4</td><td>澳洋健康 <span class="mut mono">002172</span></td><td class="up">+10.09%</td><td class="dn">−0.29亿</td><td><span class="tag">医疗服务/化纤</span></td></tr>
+<tr><td>5</td><td>澳弘电子 <span class="mut mono">605058</span></td><td class="up">+10.00%</td><td class="dn">−0.29亿</td><td><span class="tag hot">PCB</span><span class="tag gold">2连板(炸板7次)</span></td></tr>
+<tr><td>6</td><td>瑞尔特 <span class="mut mono">002790</span></td><td class="dn">−9.99%</td><td class="dn">−0.22亿</td><td><span class="tag">家居用品</span><span class="tag">前期高位股退潮</span></td></tr>
+<tr><td>7</td><td>中粮科技 <span class="mut mono">000930</span></td><td class="dn">−10.03%</td><td class="dn">−0.21亿</td><td><span class="tag">农产品加工</span><span class="tag bl">代糖</span><span class="tag">跌停</span></td></tr>
+<tr><td>8</td><td>中京电子 <span class="mut mono">002579</span></td><td class="up">+10.01%</td><td class="dn">−0.20亿</td><td><span class="tag hot">PCB</span><span class="tag">游资接盘</span></td></tr>
+</tbody>
+</table>
+<div class="warn">
+<b>⚠️ 核心分歧信号：</b><b>PCB板块内部已出现明确高低切</b>——上周五被机构大买的 <b>博敏电子</b> 今日反被机构净卖0.54亿；
+<b>超声电子</b>（3连板、成交24.91亿）机构<b>连续第二日派发</b>0.44亿，但游资席位大幅接盘（见下节）。这是<b class="gold">"机构兑现 → 游资接力"</b>的典型高位结构，
+短线资金若不能承接，次日易现分歧。<b>海南橡胶</b>机构净卖2.08亿叠加股价−8.70%，属确定性出货。
+</div>
+
+<h2>🦈 知名游资 &amp; 活跃席位动向</h2>
+<table>
+<thead><tr><th>游资 / 席位</th><th>方向</th><th>个股（金额）</th><th>风格解读</th></tr></thead>
+<tbody>
+<tr><td><b class="hl">武汉紫阳东路</b><br><span class="mut mono">国泰海通·武汉</span></td><td class="up">主买</td>
+<td>黄河旋风 +2.41亿<br>中京电子 +1.27亿<br>超声电子 +1.08亿<br>津药药业 +1.07亿<br>科翔股份 +0.94亿</td>
+<td>一线活跃游资，今日<b>火力最猛、战线最宽</b>——同时压注 <b>PCB（中京/超声/科翔）+ 培育钻石（黄河旋风）+ 医药（津药）</b>，是本日最核心的游资推手。</td></tr>
+<tr><td><b class="hl">国泰海通·上海分公司</b><br><span class="mut mono">分公司口径·机构/量化型</span></td><td class="up">单票重仓</td>
+<td>科翔股份 +7.08亿</td>
+<td><b>单席位单票净买7.08亿</b>，在16.65亿成交额中占绝对主导，是科翔股份20cm涨停的第一大买盘，属机构/量化级资金。</td></tr>
+<tr><td><b class="hl">开源证券·西安西大街</b><br><span class="mut mono">量化 / 一线席位</span></td><td class="up">主买</td>
+<td>科翔股份 +1.05亿<br>黄河旋风 +1.04亿<br>意华股份 +0.99亿<br>津药药业 +0.74亿<br>多浦乐 +0.70亿<br>满坤科技 +0.35亿<br><span class="dn">卖 博敏电子 −1.09亿</span></td>
+<td>买盘分散、清一色<b>扑向PCB与题材龙头</b>，同时在博敏电子上兑现，是PCB内部高低切的执行者。</td></tr>
+<tr><td><b class="hl">国新证券·北京分公司</b><br><span class="mut mono">一线游资</span></td><td class="up">双向</td>
+<td>中京电子 +0.93亿<br>豫能控股 +0.93亿<br>澳洋健康 +0.43亿<br>津药药业 +0.27亿<br><span class="dn">卖 亚盛集团 −0.69亿 / 中百集团 −0.63亿</span></td>
+<td>同时打 PCB + 电力 + 医药，卖出农业与零售，<b>进攻性调仓特征明显</b>。</td></tr>
+<tr><td><b class="hl">东阳吴宁西路</b><br><span class="mut mono">中信·东阳</span></td><td class="up">单票重仓</td>
+<td>豫能控股 +1.21亿</td>
+<td>单票超1.2亿押注电力/储能方向，与国新北京形成共振。</td></tr>
+<tr><td><b class="hl">成都天府大道</b><br><span class="mut mono">国泰海通·成都</span></td><td class="up">单票重仓</td>
+<td>黄河旋风 +1.02亿</td>
+<td>承接黄河旋风，与武汉紫阳东路合力，<b>培育钻石方向游资抱团</b>。</td></tr>
+<tr><td><b class="hl">北京知春路</b><br><span class="mut mono">国泰海通·北京</span></td><td class="up">主买</td>
+<td>超声电子 +0.99亿<br><span class="dn">卖 博敏电子 −1.06亿 / 新赛股份 −0.51亿</span></td>
+<td>PCB内部<b>卖博敏、买超声</b>，切换痕迹清晰。</td></tr>
+<tr><td><b class="hl">昆明人民中路</b><br><span class="mut mono">国泰海通·昆明</span></td><td class="up">买入</td>
+<td>超声电子 +0.93亿<br>闽东电力 +0.30亿</td>
+<td>跟随武汉紫阳东路承接PCB高标，并参与电力4连板标的。</td></tr>
+<tr><td><b class="hl">章盟主</b><br><span class="mut mono">国泰海通·上海江苏路系</span></td><td class="mut">双向</td>
+<td>铜峰电子 +0.34亿<br>近岸蛋白 +0.20亿<br>曲江文旅 +0.11亿<br><span class="dn">卖 中粮糖业 −0.80亿 / 万向德农 −0.25亿</span></td>
+<td>大资金打法，今日<b>减仓农业、试仓医药（近岸蛋白）</b>，动作偏防御。</td></tr>
+<tr><td><b class="hl">炒股养家</b><br><span class="mut mono">华鑫·上海分公司</span></td><td class="up">买入</td>
+<td>万邦医药 +0.17亿<br>近岸蛋白 +0.14亿</td>
+<td>通道党风格，<b>精准切入今日爆发的新主线 CRO/重组蛋白</b>。</td></tr>
+<tr><td><b class="hl">作手新一</b><br><span class="mut mono">国泰海通·南京太平南路</span></td><td class="up">买入</td>
+<td>中视传媒 +0.34亿</td>
+<td>题材首板打法，押注影视传媒（2连板）。</td></tr>
+<tr><td><b class="hl">杭州系<br>（五星路 / 龙井路）</b><br><span class="mut mono">浙商·杭州五星路 / 东方·杭州龙井路</span></td><td class="up">买入</td>
+<td>宝鼎科技 +0.71亿<br>国芳集团 +0.47亿<br>欧亚集团 +0.07亿</td>
+<td>杭州系今日主要做<b>中报预增+零售题材</b>的补涨，力度中等。</td></tr>
+<tr><td><b class="hl">绍兴系<br>（胜利东路 / 解放大道）</b><br><span class="mut mono">华鑫·绍兴 / 平安·绍兴</span></td><td class="up">买入</td>
+<td>双星新材 +0.52亿<br>众泰汽车 +0.43亿<br>闽东电力 +0.28亿<br>马矿股份 +0.16亿</td>
+<td>偏好<b>中低价题材股 + 连板接力</b>，参与面广、单笔不大。</td></tr>
+<tr><td><b class="hl">上海营口路</b><br><span class="mut mono">中信建投·上海（ST/低价股专线）</span></td><td class="up">买入</td>
+<td>*ST广糖 +0.11亿<br>花溪科技 +0.08亿<br>*ST益通 +0.06亿<br>ST龙元 +0.04亿</td>
+<td>专攻 <b>ST/北交所低价股</b>的游资，今日集中4只，反映低价股投机情绪回暖。</td></tr>
+<tr><td><b class="hl">外资/量化型席位<br>（高盛上海 / 中金上海分公司 / 国泰海通总部 / 中信上海 / 瑞银）</b></td><td class="mut">高频双向</td>
+<td>高盛：黄河旋风+1.07 / 亚盛集团+1.00 / 新赛股份+0.99 / 昀冢科技+1.00亿<br>中金上海：高凯技术+1.17 / 嘉立创+0.75亿<br>国泰海通总部：亚盛集团+1.22 / 新赛股份+1.14 / 中粮糖业+1.06亿</td>
+<td>这几类席位<b>买卖金额几乎对等</b>（如亚盛集团买1.22亿/卖1.31亿），属量化对冲/做市行为，<b>不宜解读为方向性信号</b>，但说明上述个股流动性极好、博弈激烈。</td></tr>
+<tr><td><b class="hl">拉萨天团</b><br><span class="mut mono">东财·拉萨系（多营业部）</span></td><td class="mut">高频双向</td>
+<td>遍布近20只个股，尤集中于国芳集团、桂林旅游、亚盛集团</td>
+<td>散户与量化混合席位，活跃度高，<b>反映跟风盘踊跃、市场情绪偏热</b>。</td></tr>
+</tbody>
+</table>
+
+<h2>⚖️ 机构 vs 游资 · 对比分析</h2>
+<div class="grid2">
+<table>
+<thead><tr><th>类型</th><th>代表个股</th><th>特征</th></tr></thead>
+<tbody>
+<tr><td class="up"><b>机构+游资共振</b></td><td>科翔股份、嘉立创、中京电子</td><td>机构净买 + 开源西安/武汉紫阳东路同步买入，<b>资金合力最强、方向最一致</b></td></tr>
+<tr><td class="up"><b>机构主导</b></td><td>泰金新能、昀冢科技、高凯技术、万讯自控、杭电股份</td><td>机构大额净买但游资参与度低，属<b>景气/基本面驱动</b>（半导体设备、MLCC、固态电池）</td></tr>
+<tr><td class="gold"><b>游资接机构货</b></td><td>超声电子、中京电子、澳弘电子</td><td>机构净卖0.44/0.20/0.29亿，游资（武汉紫阳东路、昆明人民中路、长江安徽）逆势承接，<b>高位分歧风险大</b></td></tr>
+<tr><td class="gold"><b>游资独舞</b></td><td>黄河旋风、豫能控股、闽东电力、宝鼎科技、双星新材</td><td>机构参与少或净卖，靠游资抱团推动，<b>弹性大但持续性依赖情绪</b></td></tr>
+<tr><td class="dn"><b>机构与游资同卖</b></td><td>海南橡胶、亚盛集团、中百集团、博敏电子</td><td>机构净卖叠加游资/外资减仓，<b>确定性退潮</b></td></tr>
+</tbody>
+</table>
+<table>
+<thead><tr><th>板块</th><th>机构</th><th>游资</th><th>合力</th></tr></thead>
+<tbody>
+<tr><td><b class="hl">PCB / 元件 / 覆铜板</b></td><td class="up">大买龙头</td><td class="up">紫阳东路/开源西安重仓</td><td class="up">★★★★★</td></tr>
+<tr><td><b class="hl">CRO / 创新药 / 医疗服务</b></td><td class="up">净买（万邦医药）</td><td class="up">炒股养家/章盟主/武汉紫阳东路</td><td class="up">★★★★☆（新主线）</td></tr>
+<tr><td><b class="hl">培育钻石 / 超硬材料</b></td><td class="mut">参与少</td><td class="up">紫阳东路+成都天府大道+外资</td><td class="up">★★★★</td></tr>
+<tr><td>网络安全 / 信创软件</td><td class="mut">双向</td><td class="up">涨停潮（天融信等）</td><td class="gold">★★★☆</td></tr>
+<tr><td>电力 / 电网设备</td><td class="mut">双向</td><td class="up">东阳吴宁西路+国新北京</td><td class="gold">★★★</td></tr>
+<tr><td>汽车零部件</td><td class="mut">双向</td><td class="up">绍兴系</td><td class="gold">★★☆</td></tr>
+<tr><td>农业种植 / 粮食</td><td class="dn">净卖</td><td class="dn">普遍离场</td><td class="dn">★（退潮）</td></tr>
+<tr><td>旅游 / 零售</td><td class="dn">净卖</td><td class="dn">跌停数只</td><td class="dn">★（退潮）</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>🔥 题材热度分析</h2>
+<table>
+<thead><tr><th>题材</th><th>驱动 / 板块数据</th><th>龙虎榜代表</th><th>热度持续性判断</th></tr></thead>
+<tbody>
+<tr>
+<td><b class="hl">PCB / 元件 / MLCC / 覆铜板</b> <span class="tag hot">今日绝对主线</span></td>
+<td>元件行业涨停<b>6家</b>；PCB概念+3.18%（主力净流入<b>23.10亿</b>）、MLCC+3.31%（+22.41亿）、印制电路板+3.18%</td>
+<td>科翔股份(+20%)、超声电子(3板)、中京电子、澳弘电子(2板)、满坤科技(+20%)、铜峰电子、双星新材(2板)、宝鼎科技</td>
+<td><b class="up">强（★★★★★）</b>——AI服务器/算力硬件对高端PCB与被动元件需求为本轮核心逻辑，机构已<b>连续两日</b>增持。但<b class="gold">内部高低切已启动</b>（博敏遭机构反转卖出），建议聚焦有业绩支撑的元件龙头，规避纯情绪高标。</td>
+</tr>
+<tr>
+<td><b class="hl">CRO / 创新药 / 医疗服务</b> <span class="tag hot">新启动主线</span></td>
+<td>医疗研发外包+5.75%（主力+12.95亿）、CRO+4.56%（+14.83亿）、医疗服务+4.09%（<b>+16.36亿</b>）、创新医疗服务+2.80%、重组蛋白+3.51%、减肥药+2.80%</td>
+<td>万邦医药(2板,+20%)、近岸蛋白(+20%)、三力制药(2板)、津药药业(涨停)、金域医学</td>
+<td><b class="up">较强（★★★★☆）</b>——机构+游资+外资共同进场（万邦医药机构净买0.45亿、炒股养家买入；近岸蛋白5路资金合力），板块资金流入量能居前，<b>属"低位启动、结构健康"的题材</b>，持续性可期。</td>
+</tr>
+<tr>
+<td><b class="hl">培育钻石 / 超硬材料</b> <span class="tag bl">游资抱团</span></td>
+<td>培育钻石+4.48%（主力+18.18亿）、磨具磨料+3.04%（+18.10亿）</td>
+<td>黄河旋风(+9.98%，龙虎榜净买5.85亿，游资+外资5.5亿合力)</td>
+<td><b class="up">较强（★★★★）</b>——单票吸金能力极强，武汉紫阳东路+成都天府大道+高盛上海+开源西安4路资金抱团，但机构参与少，<b>纯资金推动、需紧盯龙头不炸</b>。</td>
+</tr>
+<tr>
+<td><b class="hl">网络安全 / 信创软件</b> <span class="tag bl">涨停潮</span></td>
+<td>VPN+3.58%、横向通用软件+3.96%（主力+10.02亿）；软件开发涨停2家</td>
+<td>中新赛克(3板)、天融信(涨停)、博汇科技(+19.98%)、永信至诚(+20%)、启明信息(涨停)</td>
+<td><b class="gold">中等偏强（★★★☆）</b>——涨停家数多但龙虎榜资金体量小（中新赛克仅0.44亿成交），属<b>低价小市值脉冲</b>，短线跟风为主。</td>
+</tr>
+<tr>
+<td><b class="hl">电力 / 电网设备 / 储能</b></td>
+<td>电力涨停3家、电网设备涨停3家</td>
+<td>闽东电力(4连板)、豫能控股(涨停，净买3.51亿)、通达股份(2板)</td>
+<td><b class="gold">中等（★★★）</b>——闽东电力为当前最高标（4板但炸板2次），豫能控股获游资过亿承接，方向尚可但高度已不低。</td>
+</tr>
+<tr>
+<td>汽车零部件</td>
+<td>涨停3家（山子高科封单4.54亿）</td>
+<td>众泰汽车(2板)、山子高科(涨停)</td>
+<td><b class="gold">中等偏弱（★★☆）</b>——低价整车股博弈，缺乏主线逻辑。</td>
+</tr>
+<tr>
+<td>农业种植 / 粮食 / 供销社</td>
+<td>粮食概念−2.30%、转基因−1.75%、供销社−1.69%、生态农业−1.54%；种植业<b>3只跌停</b></td>
+<td>亚盛集团(跌停)、新赛股份(−4.58%)、敦煌种业(跌停)、新农开发(跌停)</td>
+<td><b class="dn">退潮（★）</b>——上周强势的农业方向今日集体崩塌，机构+外资+游资同向卖出，<b>明确回避</b>。</td>
+</tr>
+<tr>
+<td>旅游 / 零售 / 影视</td>
+<td>曲江文旅/云南旅游/南宁百货跌停；影视院线中视传媒2板</td>
+<td>中视传媒(2板)、国芳集团(涨停)、桂林旅游(涨停但拉萨系大卖)</td>
+<td><b class="dn">分化退潮（★☆）</b>——除个别连板外普遍走弱，作手新一介入中视传媒为唯一亮点。</td>
+</tr>
+</tbody>
+</table>
+
+<h2>📈 连板标杆</h2>
+<table>
+<thead><tr><th>个股</th><th>连板</th><th>涨跌幅</th><th>行业</th><th>成交额 / 封单</th><th>点评</th></tr></thead>
+<tbody>
+<tr><td><b class="hl">闽东电力</b> <span class="mut mono">000993</span></td><td class="gold"><b>4连板</b></td><td class="up">+10.01%</td><td>电力</td><td>8.46亿 / 0.90亿</td><td>当前<b>市场最高标</b>，绿电+化债概念。但<b class="gold">炸板2次</b>、机构未参与，游资（国新北京/昆明人民中路/绍兴解放大道）承接，接力风险偏高。</td></tr>
+<tr><td><b class="hl">超声电子</b> <span class="mut mono">000823</span></td><td class="gold">3连板</td><td class="up">+10.01%</td><td>元件/PCB</td><td><b>24.91亿</b> / 2.63亿</td><td><b>PCB人气标杆</b>，封单2.63亿、零炸板，走势强。但机构连续第二日净卖0.44亿，<b>游资接机构货结构</b>，明日需重点观察承接力度。</td></tr>
+<tr><td><b class="hl">中新赛克</b> <span class="mut mono">002912</span></td><td class="gold">3连板</td><td class="up">+10.01%</td><td>计算机设备</td><td>0.44亿 / 2.50亿</td><td>网络安全方向最高标，封单2.50亿远超成交，<b>惜售特征强</b>，但小市值易受情绪波动。</td></tr>
+<tr><td>凯盛新能 <span class="mut mono">600876</span></td><td class="gold">3连板</td><td class="up">+10.00%</td><td>玻璃玻纤</td><td>3.81亿 / 0.08亿</td><td>光伏玻璃，<b>炸板5次</b>、封单仅0.08亿，<b>分歧巨大，属弱转强失败边缘</b>。</td></tr>
+<tr><td><b class="hl">双星新材</b> <span class="mut mono">002585</span></td><td class="mut">2连板</td><td class="up">+10.04%</td><td>塑料/BOPET膜</td><td>11.04亿 / 1.59亿</td><td>MLCC离型膜+降解塑料双概念，游资三路买入（平安浙江/绍兴解放大道/开源西安），量能放大健康。</td></tr>
+<tr><td>众泰汽车 <span class="mut mono">000980</span></td><td class="mut">2连板</td><td class="up">+9.91%</td><td>汽车整车</td><td>11.73亿 / 1.34亿</td><td>低价整车股，绍兴胜利东路+开源西安参与，封单1.34亿。</td></tr>
+<tr><td>三力制药 <span class="mut mono">603439</span></td><td class="mut">2连板</td><td class="up">+9.97%</td><td>中药</td><td>4.21亿 / 0.80亿</td><td>中药+医药方向连板，与CRO主线共振，零炸板。</td></tr>
+<tr><td>通达股份 <span class="mut mono">002560</span></td><td class="mut">2连板</td><td class="up">+10.03%</td><td>电网设备</td><td>5.92亿 / 0.71亿</td><td>特高压+商业航天双概念，平安浙江+开源西安买入。</td></tr>
+<tr><td>中视传媒 <span class="mut mono">600088</span></td><td class="mut">2连板</td><td class="up">+10.00%</td><td>影视院线</td><td>6.06亿 / 0.33亿</td><td>传媒方向，作手新一买入0.34亿。</td></tr>
+<tr><td>澳弘电子 <span class="mut mono">605058</span></td><td class="mut">2连板</td><td class="up">+10.00%</td><td>元件/PCB</td><td>5.55亿 / 0.29亿</td><td class="dn"><b>炸板7次</b>、13:12才封板，机构净卖0.29亿，<b>典型弱板，次日溢价堪忧</b>。</td></tr>
+<tr><td>正和生态 <span class="mut mono">605069</span></td><td class="mut">2连板</td><td class="up">+10.00%</td><td>环境治理</td><td>0.60亿 / 0.39亿</td><td>乡村振兴+水利，小盘低价，封单占比高。</td></tr>
+</tbody>
+</table>
+
+<h2>🎯 游资情绪判断</h2>
+<div class="grid2">
+<div class="card">
+<div class="k">活跃度</div><div class="v up">高</div>
+<div class="mut" style="margin-top:8px;font-size:12.5px">
+龙虎榜净流入 <b class="up">+49.53亿</b>（上周五+22.37亿）；涨停55家 vs 跌停16家；<br>
+武汉紫阳东路单日买入超5.5亿、开源西安西大街近5亿、国泰海通上海分公司单票7.08亿；
+拉萨系遍布近20只个股。<b>短线资金参与度处近期最高位。</b>
+</div>
+</div>
+<div class="card">
+<div class="k">主流方向</div><div class="v gold">PCB/元件 + CRO医药</div>
+<div class="mut" style="margin-top:8px;font-size:12.5px">
+资金双轮驱动：<b>PCB/被动元件</b>（元件涨停6家，延续强势）+ <b>CRO/创新药/医疗服务</b>（低位新启动，主力净流入超30亿）；
+次要方向：培育钻石、网络安全/信创、电力。<b>农业、旅游零售明确退潮。</b>
+</div>
+</div>
+</div>
+<div class="warn" style="margin-top:14px">
+<b>⚠️ 风险提示：</b>
+<ul>
+<li><b>指数与题材背离：</b>上证/创业板/科创50 全线收跌，唯国证2000上涨，题材行情属"存量资金腾挪"而非增量入场，<b>持续性依赖情绪不降温</b>。</li>
+<li><b>高标接力风险：</b>最高标闽东电力（4板）炸板2次、凯盛新能（3板）炸板5次、澳弘电子（2板）炸板7次，<b>连板梯队质量参差，不建议追高弱板</b>。</li>
+<li><b>机构派发信号：</b>海南橡胶（−2.08亿）、博敏电子（−0.54亿）、超声电子（连续2日净卖）等，提示前期强势股进入兑现窗口。</li>
+<li><b>量化/外资席位双向对冲：</b>高盛上海、中金上海、国泰海通总部等买卖金额近乎对等，会放大个股波动，勿将此类资金误读为方向性买入。</li>
+</ul>
+</div>
+
+<h2>💼 对持仓的启示（以最近记录持仓为参考）</h2>
+<div class="note">
+持仓参考：小鹏汽车、阿里巴巴、腾讯控股、科伦博泰、福瑞医科、金山云、福昕软件、哔哩哔哩、金丹科技、金蝶国际（港股为主，成长股中长线）。
+<b>说明：今日持仓标的中无一只直接登上龙虎榜</b>，以下为板块层面的资金信号传导分析，非个股龙虎榜数据。
+</div>
+<table>
+<thead><tr><th>持仓方向</th><th>今日相关板块信号</th><th>龙虎榜/资金佐证</th><th>启示</th></tr></thead>
+<tbody>
+<tr>
+<td><b class="hl">科伦博泰 / 福瑞医科</b><br><span class="mut">创新药 · CRO · 医疗服务</span></td>
+<td class="up">医疗研发外包+5.75%、CRO+4.56%、医疗服务+4.09%（主力净流入16.36亿）、减肥药+2.80%、重组蛋白+3.51%</td>
+<td>万邦医药(机构净买0.45亿+炒股养家)、近岸蛋白(5路资金合力，+20%)、津药药业(武汉紫阳东路1.07亿)、三力制药2连板</td>
+<td class="up"><b>正面。</b>医药/CRO 是今日<b>新启动的主线</b>，机构+游资+外资共同进场、板块资金流入居前，且属低位启动。对创新药及医药CXO持仓构成<b>情绪与资金面利好</b>，若明日板块延续可继续持有。</td>
+</tr>
+<tr>
+<td><b class="hl">金蝶国际 / 福昕软件 / 金山云</b><br><span class="mut">软件 · 信创 · 云计算</span></td>
+<td class="up">横向通用软件+3.96%（主力+10.02亿）、VPN+3.58%</td>
+<td>天融信(涨停)、永信至诚(+20%)、博汇科技(+19.98%)、启明信息(涨停)、中新赛克3连板</td>
+<td class="up"><b>偏正面。</b>国产软件/信创方向出现涨停潮，资金关注度回升，但龙虎榜体量偏小、属脉冲式行情。<b>对A股软件持仓有情绪支撑，港股标的传导有限</b>，宜观察不宜追高。</td>
+</tr>
+<tr>
+<td><b class="hl">小鹏汽车</b><br><span class="mut">汽车 · 智能驾驶</span></td>
+<td class="mut">汽车零部件涨停3家（山子高科封单4.54亿）、乘用车+2.73%、新能源车概念活跃</td>
+<td>众泰汽车2连板、山子高科涨停</td>
+<td class="mut"><b>中性。</b>A股汽车热点集中在低价整车与零部件补涨，与港股新势力龙头逻辑不同，无明显资金传导信号。</td>
+</tr>
+<tr>
+<td><b class="hl">金丹科技</b><br><span class="mut">可降解塑料 · 乳酸/PLA</span></td>
+<td class="mut">降解塑料概念分散（双星新材2板但同时具MLCC属性）、化学制品涨停3家</td>
+<td>双星新材2连板（主逻辑为MLCC离型膜）、集泰股份跌停</td>
+<td class="mut"><b>中性偏弱。</b>可降解塑料未形成板块效应，金丹科技无直接催化，维持原有判断。</td>
+</tr>
+<tr>
+<td><b class="hl">腾讯控股 / 阿里巴巴 / 哔哩哔哩</b><br><span class="mut">港股互联网平台</span></td>
+<td class="mut">A股传媒（中视传媒2板）、电商/新零售退潮</td>
+<td>中视传媒2连板（作手新一参与）、国芳集团涨停；新零售整体走弱</td>
+<td class="mut"><b>中性。</b>港股平台股与A股题材资金关联度低，今日无显著映射信号。</td>
+</tr>
+</tbody>
+</table>
+<div class="note">
+<b>一句话结论：</b>今日短线资金的最强信号集中在 <b class="hl">PCB/元件</b> 与 <b class="hl">CRO/创新药</b> 两条线；
+后者与持仓中的 <b>科伦博泰、福瑞医科</b> 方向高度契合，属<b class="up">积极信号</b>；软件/信创回暖对 <b>金蝶国际、福昕软件</b> 有情绪传导。
+建议中长线持仓维持不动，短线若参与则以 <b>有业绩支撑的元件龙头 / CRO主线</b> 为优先，规避炸板高标与退潮板块。
+</div>
+
+<footer>
+数据源：东方财富数据中心（RPT_DAILYBILLBOARD_DETAILSNEW / RPT_ORGANIZATION_TRADE_DETAILS / RPT_BILLBOARD_DAILYDETAILSBUY&amp;SELL / RPT_OPERATEDEPT_TRADE_DETAILS）、
+涨停池 / 跌停池（push2ex）、概念与行业板块行情（push2 clist）、腾讯行情（指数）。<br>
+免责声明：本报告为基于公开数据的短线情绪与游资行为研究，不构成任何投资建议。游资席位识别依据公开营业部名称与市场通用别称对应，可能存在偏差，请以实际公告为准。<br>
+生成时间：2026-09-14 19:00 CST ｜ dragon-tiger-tracker v2.0
+</footer>
+
+</div>
+</body>
+</html>
