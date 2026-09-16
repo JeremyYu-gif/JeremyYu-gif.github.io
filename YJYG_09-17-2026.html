@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美股映射复盘 · A股受益方向 2026-09-17</title>
+<style>
+:root{
+  --bg:#0b0f16; --panel:#131a24; --panel2:#1a2330; --line:#243044;
+  --txt:#dfe7f2; --sub:#8fa3bd; --up:#ff4d4f; --down:#00c48c;
+  --gold:#f5b942; --blue:#4a9eff; --purple:#a970ff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.65;padding:24px 16px 60px}
+.wrap{max-width:1180px;margin:0 auto}
+header{background:linear-gradient(135deg,#141d2b 0%,#1d2a3d 50%,#131a24 100%);border:1px solid var(--line);border-radius:14px;padding:26px 28px;margin-bottom:22px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;background:radial-gradient(circle,rgba(74,158,255,.22),transparent 70%)}
+h1{font-size:24px;font-weight:700;letter-spacing:.5px;margin-bottom:8px}
+h1 span{color:var(--blue)}
+.meta{color:var(--sub);font-size:13px}
+.tagrow{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;background:rgba(74,158,255,.12);border:1px solid rgba(74,158,255,.32);color:#8cc4ff}
+.tag.red{background:rgba(255,77,79,.12);border-color:rgba(255,77,79,.35);color:#ff8a8c}
+.tag.green{background:rgba(0,196,140,.12);border-color:rgba(0,196,140,.35);color:#57e0b4}
+h2{font-size:18px;font-weight:700;margin:30px 0 14px;padding-left:12px;border-left:4px solid var(--blue);line-height:1.2}
+h3{font-size:15px;font-weight:600;margin:20px 0 10px;color:#b9cbe2}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--panel);border-radius:10px;overflow:hidden;margin-bottom:8px}
+th{background:var(--panel2);color:#a7bcd6;font-weight:600;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap;font-size:12.5px}
+td{padding:9px 12px;border-bottom:1px solid rgba(36,48,68,.6);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(74,158,255,.045)}
+.up{color:var(--up);font-weight:600}
+.down{color:var(--down);font-weight:600}
+.flat{color:var(--sub)}
+.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.sub{color:var(--sub);font-size:12.5px}
+.hl{color:var(--gold);font-weight:600}
+.key{background:linear-gradient(90deg,rgba(245,185,66,.10),transparent);border-left:3px solid var(--gold);padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:14px}
+.dir{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.dir h4{font-size:15.5px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.dir .logic{color:#a7bcd6;font-size:13.5px;margin-bottom:10px}
+.codes{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.code{font-size:12.5px;padding:3px 9px;border-radius:6px;background:var(--panel2);border:1px solid var(--line);color:#c2d3e8;font-variant-numeric:tabular-nums}
+.code.core{background:rgba(74,158,255,.14);border-color:rgba(74,158,255,.4);color:#9ecbff;font-weight:600}
+.badge{font-size:11.5px;padding:2px 8px;border-radius:5px;font-weight:600;letter-spacing:.3px}
+.b-hot{background:rgba(255,77,79,.16);color:#ff8a8c;border:1px solid rgba(255,77,79,.4)}
+.b-buy{background:rgba(255,77,79,.10);color:#ffb0b1;border:1px solid rgba(255,77,79,.28)}
+.b-warn{background:rgba(245,185,66,.14);color:#f7cb73;border:1px solid rgba(245,185,66,.36)}
+.b-pos{background:rgba(0,196,140,.13);color:#5fe3b9;border:1px solid rgba(0,196,140,.34)}
+.b-neu{background:rgba(143,163,189,.13);color:#a9bdd6;border:1px solid rgba(143,163,189,.3)}
+.b-avoid{background:rgba(0,196,140,.10);color:#4ed6a8;border:1px solid rgba(0,196,140,.3)}
+.news{padding:11px 0;border-bottom:1px dashed rgba(36,48,68,.9);font-size:13.8px}
+.news:last-child{border-bottom:none}
+.news b{color:#eaf2ff}
+.news .t{color:var(--sub);font-size:12px;margin-left:6px}
+footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);color:var(--sub);font-size:12.5px;text-align:center;line-height:1.9}
+.risk{background:rgba(255,77,79,.06);border:1px solid rgba(255,77,79,.25);border-radius:10px;padding:14px 18px;font-size:13.5px;color:#e8c3c4;margin-top:18px}
+.risk b{color:#ff9a9c}
+.scroll{overflow-x:auto}
+@media(max-width:680px){h1{font-size:19px}body{padding:14px 8px 40px}table{font-size:12px}th,td{padding:7px 8px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>美股映射复盘 · <span>A股受益方向</span></h1>
+  <div class="meta">报告生成：2026-09-17 07:30（北京时间） ｜ 数据截止：2026-09-16 美股收盘</div>
+  <div class="tagrow">
+    <span class="tag red">美联储3年来首次加息 25bp</span>
+    <span class="tag red">道指创6月中旬以来收盘新低</span>
+    <span class="tag green">光通信/AI硬件独立走强</span>
+    <span class="tag">油价单日重挫 3%+</span>
+    <span class="tag">美元走强 · 港金管局跟随加息</span>
+  </div>
+</header>
+
+<div class="key">
+<b>一句话复盘：</b>美联储自 2023 年 7 月以来首次加息 25bp 至 3.75%–4.00%，"higher for longer" 落地，<b>道指 -1.21% 创 6 月中旬以来收盘新低</b>，能源（-2.88%）、金融（-1.62%）领跌；但 <b>纳指几乎收平（-0.01%）、费半 ETF +0.65%</b>，光通信与 AI 算力硬件逆势爆发（Lumentum +9.59%、Semtech +11.03%、Coherent +6.92%），背后是"10 家银行筹组 220 亿美元芯片贷款支持黑石+Alphabet 的 CruxAI 云"这一 AI 资本开支再确认事件。<b>结论：宏观杀周期估值，产业逻辑托举 AI 硬件——今日 A 股映射应以"算力硬件/光通信"为矛，"石油石化"为盾（回避）。</b>
+</div>
+
+<!-- ===== 一 ===== -->
+<h2>一、隔夜市场全景</h2>
+<div class="scroll">
+<table>
+<thead><tr><th>指数 / ETF</th><th class="num">收盘</th><th class="num">涨跌幅</th><th>解读</th></tr></thead>
+<tbody>
+<tr><td><b>道琼斯工业</b> .DJI</td><td class="num">51,461.90</td><td class="num down">-1.21%</td><td>跌 631 点，<b>创 6 月中旬以来收盘新低</b>。成分股中能源（雪佛龙 -2.86%、埃克森 -3.54%）与金融（高盛 -3.96%）双杀</td></tr>
+<tr><td><b>纳斯达克综合</b> .IXIC</td><td class="num">25,978.42</td><td class="num flat">-0.01%</td><td>基本收平，AI 硬件板块顶住了加息冲击，与道指分化 <b>1.2 个百分点</b></td></tr>
+<tr><td><b>标普 500</b> .INX</td><td class="num">7,551.81</td><td class="num down">-0.45%</td><td>11 大板块 3 涨 8 跌，宽度偏弱但跌幅温和</td></tr>
+<tr><td>纳指 100 ETF <b>QQQ</b></td><td class="num">704.72</td><td class="num up">+0.03%</td><td>科技权重撑住，唯一收正的宽基 ETF</td></tr>
+<tr><td>标普 500 ETF <b>SPY</b></td><td class="num">754.05</td><td class="num down">-0.44%</td><td>同步大盘</td></tr>
+<tr><td>费城半导体 ETF <b>SOXQ</b></td><td class="num">88.57</td><td class="num up">+0.65%</td><td><b>逆势领涨</b>：光通信/存储/代工强，设备端（AMAT/LRCX/KLAC）小幅走弱形成内部对冲</td></tr>
+<tr><td>道指 ETF <b>DIA</b></td><td class="num">515.22</td><td class="num down">-1.15%</td><td>价值/周期风格持续失血</td></tr>
+<tr><td>波动率 <b>VXX</b> / <b>VIXY</b></td><td class="num">18.43 / 17.67</td><td class="num up">+0.93% / +0.80%</td><td>波动率小幅回升但<u>未恐慌</u>。注：VIX 指数实时源异常（最新报价停留在 9/14 的 21.67），此处以波动率 ETF 代理</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card sub">
+<b>盘面核心矛盾：</b>加息落地 → 无风险利率上行，压制高股息/周期/地产/消费信贷类资产；但同时 <b>AI 资本开支的确定性事件（220 亿美元 CruxAI 芯片贷款）</b> 让资金向"有订单、有产能、有涨价"的硬件环节集中。<b>这不是普涨行情，是极窄的结构性行情</b>——指数失真，方向比仓位重要。
+</div>
+
+<!-- ===== 二 ===== -->
+<h2>二、标普 500 板块表现（11 大板块）</h2>
+<div class="scroll">
+<table>
+<thead><tr><th>板块</th><th>ETF</th><th class="num">涨跌幅</th><th>解读</th></tr></thead>
+<tbody>
+<tr><td>科技</td><td>XLK</td><td class="num up">+0.10%</td><td><b>唯一像样的上涨</b>。半导体（INTC +4.03%、TSM +1.23%）+ 光通信（LITE/COHR/MRVL）对冲了软件与互联网的疲软</td></tr>
+<tr><td>医疗保健</td><td>XLV</td><td class="num up">+0.07%</td><td>防御属性凸显，礼来 +0.15% 稳；加息环境下现金流确定资产受青睐</td></tr>
+<tr><td>公用事业</td><td>XLU</td><td class="num flat">0.00%</td><td>内部完全对冲：发电运营端（CEG -0.14%、VST -0.81%）承压，设备端（GEV +4.79%）大涨，<b>数据中心用电主线未破坏但已分化</b></td></tr>
+<tr><td>工业</td><td>XLI</td><td class="num down">-0.08%</td><td>GE Vernova +4.79%、霍尼韦尔 +2.07%、GE 航空 +1.91% 强，被波音 -3.69% 与卡特彼勒 -0.10% 拖住</td></tr>
+<tr><td>必需消费</td><td>XLP</td><td class="num down">-0.48%</td><td>成本端受油价影响有限，但利率上行压估值</td></tr>
+<tr><td>房地产</td><td>XLRE</td><td class="num down">-0.60%</td><td>对利率最敏感的板块之一，加息直接压制</td></tr>
+<tr><td>可选消费</td><td>XLY</td><td class="num down">-0.63%</td><td>亚马逊 -0.99%、特斯拉 +0.42%；信用卡利率升至 7% 压制消费信贷预期</td></tr>
+<tr><td>基础材料</td><td>XLB</td><td class="num down">-0.73%</td><td>美元走强（UUP +0.64%）+ 铜价高位，压制大宗定价</td></tr>
+<tr><td>通讯服务</td><td>XLC</td><td class="num down">-0.90%</td><td>Meta +0.46% 独木难支，谷歌 -0.61% 且法官要求其任命内部合规官，中概互联拖累明显</td></tr>
+<tr><td>金融</td><td>XLF</td><td class="num down">-1.62%</td><td><b>全场第二大跌幅，且与加息方向背离</b>：高盛 -3.96%、花旗 -2.36%、摩根大通 -1.01%。加息但银行跌 = 市场在定价信用风险与增长下行，而非净息差改善</td></tr>
+<tr><td>能源</td><td>XLE</td><td class="num down">-2.88%</td><td><b>全场最弱</b>：油价单日重挫，OXY -6.55%、XOM -3.54%、CVX -2.86%、SLB -3.51%</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card sub">
+<b>板块轮动特征：</b>资金从 <b>能源 / 金融 / 周期</b> 单向流向 <b>科技（AI 硬件）/ 医疗</b>。宏观逻辑是"加息确认 + 增长担忧上升"→ 杀顺周期估值；产业逻辑是"AI 资本开支再确认"→ 资金向确定性成长收缩。<b>这是典型的"利率上、赛道窄"防守型轮动，不是风险偏好回升。</b>
+</div>
+
+<!-- ===== 三 ===== -->
+<h2>三、科技龙头表现</h2>
+<div class="scroll">
+<table>
+<thead><tr><th>公司</th><th>代码</th><th class="num">收盘</th><th class="num">涨跌幅</th><th class="num">成交额(亿美元)</th><th>解读</th></tr></thead>
+<tbody>
+<tr><td>苹果</td><td>AAPL</td><td class="num">332.41</td><td class="num up">+0.32%</td><td class="num">119.7</td><td>新品周期延续，防御性权重</td></tr>
+<tr><td>英伟达</td><td>NVDA</td><td class="num">213.90</td><td class="num up">+0.82%</td><td class="num">206.7</td><td>全场成交额第一，逆势收红，算力主线定海神针</td></tr>
+<tr><td>微软</td><td>MSFT</td><td class="num">490.30</td><td class="num down">-1.37%</td><td class="num">81.9</td><td>再因 AI 版权问题遭诉讼，软件端承压</td></tr>
+<tr><td>谷歌 A</td><td>GOOGL</td><td class="num">342.87</td><td class="num down">-0.61%</td><td class="num">65.1</td><td>反垄断案法官要求任命内部合规官；但旗下 CruxAI 获 220 亿美元芯片贷款是产业链大利好</td></tr>
+<tr><td>亚马逊</td><td>AMZN</td><td class="num">245.96</td><td class="num down">-0.99%</td><td class="num">82.4</td><td>与 Generac 签数据中心发电机组协议+认股权证，资本开支继续加码</td></tr>
+<tr><td>Meta</td><td>META</td><td class="num">673.31</td><td class="num up">+0.46%</td><td class="num">116.4</td><td>成交额第二，AI 广告逻辑坚挺</td></tr>
+<tr><td>特斯拉</td><td>TSLA</td><td class="num">358.08</td><td class="num up">+0.42%</td><td class="num">115.8</td><td>小幅收红，对利率敏感但机器人/FSD 叙事托底</td></tr>
+<tr><td><b>英特尔</b></td><td>INTC</td><td class="num">101.05</td><td class="num up"><b>+4.03%</b></td><td class="num">121.5</td><td><b>龙头中最强</b>：代工订单预期（SK 海力士拟赴美生产存储芯片、摩根大通预计其成 ASML 重要客户）</td></tr>
+<tr><td>AMD</td><td>AMD</td><td class="num">512.50</td><td class="num up">+1.65%</td><td class="num">115.5</td><td>AI 加速器份额逻辑延续</td></tr>
+<tr><td>博通</td><td>AVGO</td><td class="num">339.51</td><td class="num up">+0.07%</td><td class="num">78.6</td><td>ASIC 龙头微涨</td></tr>
+<tr><td>台积电 ADR</td><td>TSM</td><td class="num">417.72</td><td class="num up">+1.23%</td><td class="num">43.7</td><td>代工环节受益 AI 需求+存储缺货</td></tr>
+<tr><td><b>Lumentum</b></td><td>LITE</td><td class="num">919.40</td><td class="num up"><b>+9.59%</b></td><td class="num">58.6</td><td><b>光通信总龙头</b>，市值 825 亿美元；光博会验证 1.6T/相干方案订单饱满</td></tr>
+<tr><td><b>Coherent</b></td><td>COHR</td><td class="num">289.93</td><td class="num up"><b>+6.92%</b></td><td class="num">21.6</td><td>光器件/激光双主线，跟随 Lumentum 共振</td></tr>
+<tr><td>迈威尔科技</td><td>MRVL</td><td class="num">229.71</td><td class="num up">+3.61%</td><td class="num">37.6</td><td>1.6T 相干 DSP 订单饱满、产能紧缺</td></tr>
+<tr><td>戴尔科技</td><td>DELL</td><td class="num">563.29</td><td class="num up">+3.64%</td><td class="num">73.9</td><td>AI 服务器出货逻辑，超出市场对加息日的预期</td></tr>
+<tr><td>超微电脑</td><td>SMCI</td><td class="num">36.85</td><td class="num up">+3.40%</td><td class="num">11.4</td><td>AI 服务器弹性标的同步走强</td></tr>
+<tr><td>甲骨文</td><td>ORCL</td><td class="num">143.16</td><td class="num up">+2.00%</td><td class="num">49.2</td><td>云收入高增叙事延续，算力基建需求端确认</td></tr>
+<tr><td>美光科技</td><td>MU</td><td class="num">926.55</td><td class="num down">-0.11%</td><td class="num"><b>187.0</b></td><td>成交额极高（全场第二），多空剧烈换手，存储缺口逻辑仍在</td></tr>
+<tr><td>Coinbase</td><td>COIN</td><td class="num">164.51</td><td class="num down">-4.42%</td><td class="num">22.8</td><td>加息打压风险资产，加密概念走弱</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ===== 四 ===== -->
+<h2>四、大市值异动股（涨幅 &gt; 9% 且市值 &gt; 50 亿美元）</h2>
+<div class="scroll">
+<table>
+<thead><tr><th>公司</th><th>代码</th><th class="num">涨幅</th><th class="num">市值(亿美元)</th><th>异动逻辑</th></tr></thead>
+<tbody>
+<tr><td><b>Forgent Power Solutions</b></td><td>FPS</td><td class="num up">+11.10%</td><td class="num">106.1</td><td>美国电力设备制造商，<b>Q4 业绩公布后连续第二日大涨</b>（9/15 业绩日已涨 13%）。直接受益数据中心供电与电网设备景气，与 GE Vernova +4.79% 形成板块共振</td></tr>
+<tr><td><b>Semtech（先科电子）</b></td><td>SMTC</td><td class="num up">+11.03%</td><td class="num">156.4</td><td><b>数通光模块电芯片</b>龙头，1.6T 相干方案订单饱满、产能紧缺；在 220 亿美元芯片贷款与光博会双重催化下放量</td></tr>
+<tr><td><b>Cipher Digital（Cipher Mining）</b></td><td>CIFR</td><td class="num up">+10.80%</td><td class="num">69.4</td><td>矿场转型 AI 数据中心：已开始建设横向管道以绕开电网限制，<b>支持高达 2.5GW 现场发电</b>。隐含波动率长期居全市场首位（97%+），典型高弹性算力基建标的</td></tr>
+<tr><td>MicroSectors 油气 -3x 反向 ETN</td><td>OILD</td><td class="num up">+9.83%</td><td class="num">198.0</td><td><b>注意：这是反向杠杆 ETN 而非个股</b>，其 +9.83% 正是油价重挫的镜像反映，可作为"衰退/地缘溢价回吐"的仓位指标</td></tr>
+<tr><td><b>Lumentum Holdings</b></td><td>LITE</td><td class="num up">+9.59%</td><td class="num">824.7</td><td><b>本次异动的绝对主角</b>，光通信板块集体普涨（开盘即涨 3.76% 后单边走高）。AI 光互连（800G→1.6T）需求爆发+芯片贷款催化，市值 825 亿美元已属超大盘股级别</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card sub">
+<b>异动主线归纳：</b>全场 >9% 的大市值标的 <b>4/5 集中在"AI 算力基础设施"</b>——光通信（LITE/COHR/SMTC）、AI 数据中心电力（FPS/CIFR）。第 5 只（OILD）是油价下跌的反向产品，同样指向"能源溢价回吐"这一宏观主线。<br>
+<b>→ A 股映射方向：光模块/光器件（中际旭创、新易盛、天孚通信）+ 数据中心电气（金盘科技、思源电气、英维克）。</b>
+</div>
+
+<!-- ===== 五 ===== -->
+<h2>五、中概股表现</h2>
+<div class="scroll">
+<table>
+<thead><tr><th>公司</th><th>代码</th><th class="num">收盘</th><th class="num">涨跌幅</th><th>解读</th></tr></thead>
+<tbody>
+<tr><td><b>理想汽车</b></td><td>LI</td><td class="num">12.03</td><td class="num up">+2.30%</td><td>新势力中最强，跑赢大盘</td></tr>
+<tr><td>唯品会</td><td>VIPS</td><td class="num">12.25</td><td class="num up">+1.32%</td><td>特卖消费韧性</td></tr>
+<tr><td><b>小鹏汽车</b></td><td>XPEV</td><td class="num">10.34</td><td class="num up">+1.08%</td><td>连续第二日反弹，robotaxi/新车周期情绪修复</td></tr>
+<tr><td>富途控股</td><td>FUTU</td><td class="num">109.82</td><td class="num up">+1.01%</td><td>加息对券商利息收入偏正面</td></tr>
+<tr><td>拼多多</td><td>PDD</td><td class="num">78.76</td><td class="num up">+0.87%</td><td>低价消费逻辑独立于宏观</td></tr>
+<tr><td>蔚来</td><td>NIO</td><td class="num">3.58</td><td class="num down">-0.56%</td><td>小幅回落，仍弱于理想/小鹏</td></tr>
+<tr><td>京东</td><td>JD</td><td class="num">26.90</td><td class="num down">-0.70%</td><td>跟随大盘走弱</td></tr>
+<tr><td>腾讯音乐</td><td>TME</td><td class="num">7.82</td><td class="num down">-0.89%</td><td>内容端无催化</td></tr>
+<tr><td>网易</td><td>NTES</td><td class="num">117.79</td><td class="num down">-1.42%</td><td>游戏板块缺乏新催化</td></tr>
+<tr><td><b>阿里巴巴</b></td><td>BABA</td><td class="num">107.27</td><td class="num down">-1.89%</td><td>美元走强+港金管局加息 25bp 至 4.25%，港股流动性承压</td></tr>
+<tr><td>百度</td><td>BIDU</td><td class="num">88.55</td><td class="num down">-2.04%</td><td>AI 叙事下仍随中概互联网走弱</td></tr>
+<tr><td><b>哔哩哔哩</b></td><td>BILI</td><td class="num">14.90</td><td class="num down">-3.62%</td><td><b>中概最弱</b>，高估值成长股在加息日被优先卖出</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card sub">
+<b>中概整体：</b>明显结构性分化——<b>新能源车（理想/小鹏）与消费（拼多多/唯品会）走强，互联网平台（阿里/百度/B站/网易）走弱</b>。核心压制来自宏观：离岸人民币报 6.7125（较周二纽约尾盘跌 3 点），香港金管局跟随加息 25bp 至 4.25%，<b>富时 A50 期指夜盘收跌 0.3% 报 14322 点</b>。→ 今日港股与 A 股权重股预计低开，新势力与消费板块相对占优。
+</div>
+
+<!-- ===== 六 ===== -->
+<h2>六、商品与宏观四件套</h2>
+<div class="scroll">
+<table>
+<thead><tr><th>品种</th><th class="num">参考价（真实商品）</th><th class="num">ETF/官方涨跌幅</th><th>解读</th></tr></thead>
+<tbody>
+<tr><td><b>WTI 原油</b></td><td class="num">≈ 97.2 美元/桶</td><td class="num down">USO -3.52%</td><td>单日重挫，前一日结算 97.51</td></tr>
+<tr><td><b>布伦特原油</b></td><td class="num">≈ 105.4 美元/桶</td><td class="num down">BNO -2.91%</td><td>前一日结算 108.75。布伦特-WTI 价差走阔至约 <b>8 美元</b>，反映地缘/制裁结构溢价；本次下跌正是该溢价的回吐</td></tr>
+<tr><td><b>黄金</b></td><td class="num">4,302.5 美元/盎司</td><td class="num down">GLD -0.61% / COMEX -0.70%</td><td>加息+美元走强双压，但跌幅温和，跌幅远小于实际利率上行幅度</td></tr>
+<tr><td><b>白银</b></td><td class="num">63.42 美元/盎司</td><td class="num down">SLV -0.83% / COMEX -0.68%</td><td>盘中现货仍向上触及 63 美元，工业+货币双属性托底，<b>韧性明显强于黄金</b></td></tr>
+<tr><td><b>美元</b></td><td class="num">UUP 28.40</td><td class="num up">UUP +0.64%</td><td>加息直接推动美元走强，压制新兴市场与大宗</td></tr>
+<tr><td><b>美债</b></td><td class="num">TLT 80.88</td><td class="num up">TLT +0.21%</td><td>现金盘小幅收涨，但<b>盘后 10 年期国债期货跌 4 个点、30 年期跌 5 个点</b>——沃什鹰派讲话后收益率曲线进一步上移，加息冲击尚未在 ETF 价格中完全体现</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card sub">
+<b>宏观四件套组合信号：</b>美元↑ + 原油↓↓ + 贵金属小跌 + 利率↑ = <b>"紧缩交易"而非"衰退交易"</b>。若为衰退交易，原油跌的同时美元与美债应同涨、黄金应大涨；当前黄金/白银仅小跌、美元明确走强，说明市场定价的是<b>货币政策收紧与地缘溢价回吐</b>，而非需求崩塌。这一点对 A 股的判断至关重要：<b>顺周期（尤其油服/炼化）应回避，但全球定价的制造业需求尚未被证伪</b>。
+</div>
+
+<!-- ===== 七 ===== -->
+<h2>七、隔夜重点事件</h2>
+<div class="card">
+<div class="news"><b>1. 美联储加息 25bp 至 3.75%–4.00%，为 2023 年 7 月以来首次。</b>沃什重申"通胀过高且持续太久，夏季数据未见明显改善"，表示美联储决定取消一部分宽松政策。点阵图中位数显示 2026 年将再加息一次，但沃什讲话后<b>交易员加大了对年底前再加息两次的押注</b>。<span class="t">（市场影响：利率敏感资产全面承压，道指创 6 月中旬以来新低）</span></div>
+<div class="news"><b>2. 政治压力同步升级。</b>特朗普立即发帖抨击，称"美国利率应该在 1% 甚至更低"；白宫经济顾问委员会主席 PHEKAN 批评加息是个错误。美联储独立性议题重新升温。CME 显示：10 月维持不变概率 50.2%、加息 25bp 概率 49.8%，几乎五五开。<span class="t">（市场影响：政策不确定性溢价抬升）</span></div>
+<div class="news"><b>3. 美国银行体系跟进上调利率。</b>摩根大通、美银、富国、纽约梅隆等宣布最优惠贷款利率（Prime Rate）自 6.75% 上调至 7.00%，9 月 17 日生效；<b>香港金管局同步上调基准利率 25bp 至 4.25%</b>。<span class="t">（市场影响：信用卡/消费贷成本上升，港股流动性承压）</span></div>
+<div class="news"><b>4.【A 股关键利好】10 家银行财团筹组 220 亿美元芯片贷款，支持黑石与 Alphabet 新成立的云计算企业 CruxAI。</b>这是 AI 算力资本开支的又一次硬性确认——资金不是"意向"而是"已组建银团"的实钱。<span class="t">（市场影响：光通信/AI 硬件独立走强的核心催化）</span></div>
+<div class="news"><b>5.【A 股关键利好】美国众议院通过数据中心成本法案</b>，拟将电网升级费用转嫁给数据中心；同日 <b>Generac 宣布与亚马逊签订数据中心发电机组供应协议</b>，并向 Amazon.com NV Investment Holdings 发行认股权证（行权价 200.93 美元/股，最多 169.37 万股）。<span class="t">（市场影响：数据中心电力设备/发电机组确定性提升）</span></div>
+<div class="news"><b>6. 油价单日重挫，地缘溢价快速回吐。</b>美外交官上周末在阿曼与胡塞武装代表会晤，讨论维持停火协议、确保曼德海峡畅通；另据报道<b>埃克森美孚接近就委内瑞拉投资达成协议</b>。<span class="t">（市场影响：XLE -2.88%、OXY -6.55%，OILD 反向产品 +9.83%）</span></div>
+<div class="news"><b>7. 特朗普贸易政策再升级。</b>签署公告将加拿大原产商品排除出美国联邦政府采购（涉及超 2800 亿美元采购项目），并威胁若加拿大成为欧盟"联席成员"将停止美欧贸易、对欧加征高额关税。<span class="t">（市场影响：全球贸易不确定性上升，利好内需与自主可控）</span></div>
+<div class="news"><b>8. 贵金属普遍收跌但韧性犹在。</b>COMEX 黄金 -0.7% 报 4302.5 美元/盎司，白银 -0.68% 报 63.42 美元/盎司；现货白银日内仍向上触及 63 美元。<span class="t">（市场影响：加息短期压制，但跌幅远小于利率上行幅度）</span></div>
+<div class="news"><b>9. 中国算力侧数据再验证。</b>截至 2026 年 7 月底全国智能算力总规模达 <b>245 万 PFLOPS</b>，八大国家算力枢纽+三个算电协同发展区已建成智算规模占全国比重超 85%；互联网数据服务业用电量超 600 亿千瓦时，同比增超四成；全国日均词元调用量较两年前实现<b>千倍级增长</b>。<span class="t">（市场影响：国产算力+算电协同主线的中期支撑）</span></div>
+<div class="news"><b>10. 其他：</b>巴西央行连续第五次降息 25bp 至 13.75%；新西兰 Q2 GDP 同比 +2.6%（预期 2.2%）；美国财政部 7 月 TIC 报告显示海外净流入 837 亿美元，外国投资者持有美债增加 388 亿美元；无人机配送公司 Zipline 据称正以 200 亿美元估值融资约 10 亿美元；美国小企业破产法案在众议院通过。</div>
+</div>
+
+<!-- ===== 八 ===== -->
+<h2>八、A 股映射方向</h2>
+
+<div class="dir">
+<h4>① AI 光通信 / 光模块 <span class="badge b-hot">🔥 强烈关注</span></h4>
+<div class="logic">Lumentum +9.59%（825 亿美元市值）、Coherent +6.92%、Semtech +11.03%、Ciena +1.85%、Arista +2.44% 集体爆发；叠加 220 亿美元 CruxAI 芯片贷款与光博会 1.6T 相干方案订单验证，<b>光互连是当前全球 AI 产业链中斜率最陡的环节</b>。</div>
+<div class="codes">
+<span class="code core">中际旭创 300308</span><span class="code core">新易盛 300502</span><span class="code core">天孚通信 300394</span>
+<span class="code">光迅科技 002281</span><span class="code">太辰光 300570</span><span class="code">剑桥科技 603083</span>
+<span class="code">德科立 688205</span><span class="code">博创科技 300548</span><span class="code">腾景科技 688195</span><span class="code">仕佳光子 688313</span>
+</div>
+</div>
+
+<div class="dir">
+<h4>② AI 算力硬件 / 服务器 / 存储 <span class="badge b-hot">🔥 强烈关注</span></h4>
+<div class="logic">戴尔 +3.64%、超微电脑 +3.40%、甲骨文 +2.00%、台积电 +1.23%、西部数据 +1.22%、希捷 +1.47%；美光成交 187 亿美元居全场第二。算力资本开支资金链（银团贷款）已打通，服务器、存储、代工订单能见度提升。</div>
+<div class="codes">
+<span class="code core">浪潮信息 000977</span><span class="code core">工业富联 601138</span><span class="code core">中科曙光 603019</span>
+<span class="code">紫光股份 000938</span><span class="code">神州数码 000034</span><span class="code">拓维信息 002261</span>
+<span class="code">江波龙 301308</span><span class="code">佰维存储 688525</span><span class="code">德明利 001309</span><span class="code">澜起科技 688008</span>
+</div>
+</div>
+
+<div class="dir">
+<h4>③ 数据中心电力 / 电气设备 <span class="badge b-hot">🔥 强烈关注</span></h4>
+<div class="logic">GE Vernova +4.79%、维谛技术 +2.05%、伊顿 +1.38%、Forgent +11.10%；Generac 与亚马逊签数据中心发电机组协议，众议院通过数据中心成本法案。<b>但注意分化：发电运营端（星座能源 -0.14%、瑞致达 -0.81%）走弱，设备端走强</b>——映射时应选设备与温控，而非纯发电运营。</div>
+<div class="codes">
+<span class="code core">金盘科技 688676</span><span class="code core">思源电气 002028</span><span class="code core">英维克 002837</span>
+<span class="code">伊戈尔 002922</span><span class="code">三变科技 002112</span><span class="code">许继电气 000400</span>
+<span class="code">申菱环境 301018</span><span class="code">高澜股份 300499</span><span class="code">科华数据 002335</span><span class="code">金智科技 002090</span>
+</div>
+</div>
+
+<div class="dir">
+<h4>④ 半导体（制造/存储强、设备弱） <span class="badge b-warn">⚠️ 关注 · 内部择股</span></h4>
+<div class="logic">英特尔 +4.03%、台积电 +1.23%、阿斯麦 +0.67%、西部数据/希捷上涨；但 AMAT -1.37%、泛林 -0.61%、科磊 -0.39%、高通 -1.58%、德州仪器 -1.05%。<b>资金偏向制造与存储涨价，而非设备资本开支</b>，映射需区别对待。</div>
+<div class="codes">
+<span class="code core">中芯国际 688981</span><span class="code core">兆易创新 603986</span>
+<span class="code">华虹公司 688347</span><span class="code">北京君正 300223</span><span class="code">普冉股份 688766</span>
+<span class="code">香农芯创 300475</span><span class="code">中微公司 688012</span><span class="code">北方华创 002371</span>
+</div>
+</div>
+
+<div class="dir">
+<h4>⑤ 石油石化 / 油服 <span class="badge b-avoid">▼ 回避（短线）</span></h4>
+<div class="logic">油价单日重挫，XLE -2.88%、西方石油 -6.55%、埃克森 -3.54%、雪佛龙 -2.86%、斯伦贝谢 -3.51%。美-胡塞红海停火谈判 + 埃克森委内瑞拉投资协议 → 地缘溢价回吐，<b>短期缺乏做多理由</b>。相反，<b>油价下跌的成本受益方（航空/化纤/交运）值得关注</b>。</div>
+<div class="codes">
+<span class="code">中国石油 601857</span><span class="code">中国石化 600028</span><span class="code">中海油服 601808</span>
+<span class="code core">中国国航 601111</span><span class="code core">南方航空 600029</span><span class="code">春秋航空 601021</span><span class="code">恒力石化 600346</span>
+</div>
+</div>
+
+<div class="dir">
+<h4>⑥ 黄金 / 白银 / 有色 <span class="badge b-neu">📌 中性（等待企稳）</span></h4>
+<div class="logic">COMEX 黄金 -0.7%、白银 -0.68%，美元走强（UUP +0.64%）压制短端。但<b>白银现货仍站上 63 美元、跌幅显著小于实际利率上行幅度</b>，央行购金与去美元化中期逻辑未变。策略：不追跌但可低吸，重点看白银弹性。</div>
+<div class="codes">
+<span class="code core">山东黄金 600547</span><span class="code core">紫金矿业 601899</span>
+<span class="code">中金黄金 600489</span><span class="code">湖南黄金 002155</span><span class="code">赤峰黄金 600988</span>
+<span class="code">银泰黄金 000975</span><span class="code">盛达资源 000603</span><span class="code">兴业银锡 000426</span>
+</div>
+</div>
+
+<div class="dir">
+<h4>⑦ 新能源车产业链 <span class="badge b-pos">🟢 正面</span></h4>
+<div class="logic">理想 +2.30%、小鹏 +1.08% 逆势走强，特斯拉 +0.42%，新势力跑赢中概整体。在加息压制高估值资产的背景下仍能收红，说明<b>产品周期与销量逻辑正在盖过流动性压制</b>。</div>
+<div class="codes">
+<span class="code core">拓普集团 601689</span><span class="code core">三花智控 002050</span><span class="code core">小鹏汽车-W 09868</span>
+<span class="code">旭升集团 603305</span><span class="code">新泉股份 603179</span><span class="code">爱柯迪 600933</span>
+<span class="code">文灿股份 603348</span><span class="code">保隆科技 603197</span><span class="code">德赛西威 002920</span>
+</div>
+</div>
+
+<div class="dir">
+<h4>⑧ 中概互联 / 港股科技 <span class="badge b-warn">⚠️ 关注（低开博弈）</span></h4>
+<div class="logic">阿里 -1.89%、百度 -2.04%、哔哩哔哩 -3.62%、网易 -1.42%，<b>港金管局跟随加息 25bp + 美元走强 + 富时 A50 夜盘 -0.3%</b>，今日港股科技大概率低开。但加息对券商利息收入偏正面（富途 +1.01%），且国内政策面（资本市场扩大开放、年内新发基金破 8000 亿）提供托底，<b>低开是布局窗口而非趋势拐点</b>。</div>
+<div class="codes">
+<span class="code core">腾讯控股 00700</span><span class="code core">阿里巴巴-W 09988</span><span class="code core">美团-W 03690</span>
+<span class="code">快手-W 01024</span><span class="code">百度集团-SW 09888</span><span class="code">京东集团-SW 09618</span>
+<span class="code">网易-S 09999</span><span class="code">携程集团-S 09961</span>
+</div>
+</div>
+
+<div class="dir">
+<h4>⑨ 创新药 / CXO <span class="badge b-pos">🟢 正面（防御属性）</span></h4>
+<div class="logic">医疗保健板块 +0.07% 为全场第二强，礼来 +0.15% 稳；UCI Health 首次将激光靶向技术用于胰腺肿瘤 I 期临床（创新疗法情绪）。加息环境下现金流确定的医药资产成避风港，<b>CXO 与创新药在港股连跌后具备相对收益</b>。</div>
+<div class="codes">
+<span class="code core">恒瑞医药 600276</span><span class="code core">百济神州 688235</span>
+<span class="code">科伦药业 002422</span><span class="code">凯莱英 002821</span><span class="code">药明康德 603259</span>
+<span class="code">信达生物 01801</span><span class="code">药明生物 02269</span>
+</div>
+</div>
+
+<div class="dir">
+<h4>⑩ 卫星互联网 / 军工 <span class="badge b-warn">⚠️ 关注（事件驱动）</span></h4>
+<div class="logic">千帆星座 9 月 15/16 日连续两次海上发射成功，规模增至 <b>256 颗</b>，累计今年将完成 324 颗发射，进入工业化组网阶段；同时美军参联会主席称"需为月球周边空间作战做准备"，航天军工安全议题升温。</div>
+<div class="codes">
+<span class="code core">中国卫星 600118</span><span class="code core">铖昌科技 001270</span>
+<span class="code">上海沪工 603131</span><span class="code">航天电子 600879</span><span class="code">震有科技 688418</span><span class="code">信科移动 688387</span>
+</div>
+</div>
+
+<!-- ===== 九 ===== -->
+<h2>九、持仓影响评估</h2>
+<div class="scroll">
+<table>
+<thead><tr><th>持仓标的（仓位）</th><th>ADR / 外围映射</th><th>隔夜外围</th><th>今日预期</th><th>操作建议</th></tr></thead>
+<tbody>
+<tr>
+<td><b>小鹏汽车 09868</b>（26%）</td>
+<td>XPEV +1.08% / $10.34</td>
+<td class="up">+1.08%</td>
+<td>预计小幅高开。新势力隔夜跑赢中概（理想 +2.30%），机器人/新车周期情绪修复，<b>但港金管局加息 25bp 至 4.25% 压制港股成长股估值弹性</b></td>
+<td><b>持有观察，反弹即是降集中度窗口。</b>26% 为组合最高仓位、明显超配；建议在情绪修复日分批减至 20% 以内。本次外围"美元强+港股加息"组合对超配仓位不友好，不宜加仓</td>
+</tr>
+<tr>
+<td><b>药明生物 02269</b>（15%）</td>
+<td>无直接 ADR；XLV +0.07%</td>
+<td class="up">医疗全场第二强</td>
+<td>偏暖震荡。医疗保健板块逆势收正，创新药情绪边际改善；但加息致生物科技估值端受压</td>
+<td><b>持有。</b>核心驱动在 BD 授权与新签订单，XLV 逆势收正是相对收益信号。若加息引发生物科技系统性杀估值再考虑控制仓位</td>
+</tr>
+<tr>
+<td><b>微创机器人 02252</b>（14%）</td>
+<td>无 ADR；美股手术机器人无独立行情</td>
+<td class="flat">缺乏催化</td>
+<td>中性，跟随港股医药与机器人板块共振；加息压制港股中小盘流动性与估值</td>
+<td><b>持有观察。</b>等待装机量与海外注册进展，不因外围弱势被动减仓</td>
+</tr>
+<tr>
+<td><b>腾讯 00700</b>（14%）</td>
+<td>TCEHY（OTC）；XLC -0.90%</td>
+<td class="down">-0.90%</td>
+<td>低开概率大。隔夜通讯服务板块 -0.90%（谷歌 -0.61%、中概互联拖累），叠加港金管局加息与 A50 夜盘 -0.3%</td>
+<td><b>持有，组合压舱石。</b>游戏+AI 广告+云逻辑稳健，加息冲击属估值端而非基本面。低开不构成减仓理由，若跌至前低可考虑小幅加仓</td>
+</tr>
+<tr>
+<td>中宠股份 002891（7%）</td>
+<td>无 ADR；美股宠物消费无映射</td>
+<td class="flat">—</td>
+<td>中性。受人民币汇率与内需影响；离岸人民币 6.7125 基本持平，关注今日 A 股消费板块情绪</td>
+<td><b>持有。</b>与美股关联度最低，组合内低相关资产，继续作为分散化配置</td>
+</tr>
+<tr>
+<td>福瑞医科（6.6%）</td>
+<td>无 ADR</td>
+<td class="flat">—</td>
+<td>中性，跟随 A 股医药板块</td>
+<td><b>持有观察。</b>今日医药有 XLV 逆势走强的映射支撑</td>
+</tr>
+<tr>
+<td>益方生物 688382（4.3%）</td>
+<td>无 ADR；生物科技指数受医疗回暖支撑但被加息压制</td>
+<td class="warn">多空交织</td>
+<td>中性偏暖。医疗板块收正提供支撑，但加息推升实际利率压制生物科技估值</td>
+<td><b>持有观察</b>临床与 BD 催化，不因外围弱势被动减仓</td>
+</tr>
+<tr>
+<td>科伦博泰 06990（1%）</td>
+<td>无 ADR</td>
+<td class="flat">—</td>
+<td>中性</td>
+<td><b>持有。</b>低仓位高弹性，等待授权里程碑</td>
+</tr>
+<tr>
+<td>阿里巴巴 09988（1%）</td>
+<td>BABA -1.89% / $107.27</td>
+<td class="down">-1.89%</td>
+<td>低开。美元走强+港金管局加息压制港股流动性；但云+AI 资本开支逻辑（旗下 CruxAI 获 220 亿美元芯片贷款）实质受益</td>
+<td><b>持有并可逢低提升权重。</b>仓位仅 1%，CruxAI 芯片贷款是阿里云算力扩张的直接利好，今日低开反而是加仓机会</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="card">
+<h3>今日策略优先级</h3>
+<div class="sub" style="font-size:14px;line-height:2.1">
+<b class="hl">AI 光通信 / 光模块</b>（中际旭创、新易盛、天孚通信）&nbsp;&gt;&nbsp;
+<b class="hl">数据中心电力设备</b>（金盘科技、思源电气、英维克）&nbsp;&gt;&nbsp;
+<b class="hl">AI 算力硬件 / 存储</b>（浪潮信息、工业富联、江波龙）&nbsp;&gt;&nbsp;
+<b>创新药 / CXO</b>（恒瑞医药、药明生物）&nbsp;&gt;&nbsp;
+<b>新能源车</b>（拓普集团、三花智控）&nbsp;&gt;&nbsp;
+<b>中概 / 港股科技（低开布局）</b>（腾讯、阿里、美团）&nbsp;&gt;&nbsp;
+<b>黄金白银（低吸不追跌）</b>&nbsp;&gt;&nbsp;
+<b>卫星互联网</b>（中国卫星、铖昌科技）&nbsp;&gt;&nbsp;
+<b>半导体设备（观望）</b>&nbsp;&gt;&nbsp;
+<b>石油石化 / 油服（回避）</b>
+</div>
+</div>
+
+<div class="risk">
+<b>⚠️ 风险提示：</b>
+① <b>加息路径超预期</b>——沃什讲话后交易员押注年底前再加息两次，10 月加息概率 49.8%。若后续 CPI 超预期，全球高估值成长股将二次承压，A 股 AI 硬件虽有产业逻辑但仍会跟跌；
+② <b>银行股与加息背离</b>——高盛 -3.96%、花旗 -2.36% 在加息日下跌，提示市场可能在定价信用风险而非息差改善，需警惕美国区域银行与商业地产链条的尾部风险；
+③ <b>油价下跌的双刃性</b>——地缘溢价回吐短期利空石油石化，但若演变为"衰退式下跌"则对全球制造业需求不利，需观察布伦特能否守住 100 美元关口；
+④ <b>特朗普贸易政策反复</b>——美加、美欧摩擦同时升级，全球供应链不确定性上升，对出口链形成扰动（同时也强化内需与自主可控逻辑）；
+⑤ <b>港股流动性</b>——金管局加息 25bp 至 4.25% + 美元走强，港股短期资金面偏紧，持仓中的港股标的（小鹏 26%、药明生物 15%、腾讯 14%）合计占比过半，需关注汇率与南向资金动向。
+</div>
+
+<footer>
+美股映射复盘日报 · 2026-09-17 07:30（北京时间）· 数据截止 2026-09-16 美股收盘<br>
+数据来源：腾讯行情 API（qt.gtimg.cn）· 新浪期货（hq.sinajs.cn）· 东方财富行情与 7×24 快讯 · 新浪美股涨幅榜<br>
+⚠️ 本报告由 AI 自动生成，所有数据来自上述公开行情与资讯接口，仅供研究参考，不构成任何投资建议。
+</footer>
+
+</div>
+</body>
+</html>
