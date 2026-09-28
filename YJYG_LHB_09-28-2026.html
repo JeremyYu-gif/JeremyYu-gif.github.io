@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>龙虎榜游资追踪 2026-09-28</title>
+<style>
+:root{--bg:#0b0e17;--bg2:#111726;--card:#151d31;--card2:#1b2540;--gold:#f2c14e;--gold2:#e0a800;
+--txt:#e8ecf3;--dim:#8b97ab;--up:#ff5c5c;--down:#3ddc84;--line:rgba(242,193,78,.18);}
+*{box-sizing:border-box;}
+body{margin:0;background:radial-gradient(1200px 600px at 50% -10%,#18203a 0%,#0b0e17 60%);
+color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7;}
+.wrap{max-width:1120px;margin:0 auto;padding:30px 18px 80px;}
+header{text-align:center;padding:26px 16px 20px;border-bottom:2px solid var(--line);margin-bottom:24px;}
+h1{margin:0 0 8px;font-size:30px;color:var(--gold);letter-spacing:2px;text-shadow:0 0 24px rgba(242,193,78,.28);}
+.sub{color:var(--dim);font-size:13.5px;}
+.tag{display:inline-block;margin:10px 4px 0;background:rgba(242,193,78,.1);border:1px solid rgba(242,193,78,.3);
+color:var(--gold);padding:4px 13px;border-radius:20px;font-size:12.5px;}
+.tag.red{border-color:rgba(255,92,92,.4);background:rgba(255,92,92,.1);color:#ff8a8a;}
+.dash{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:20px 0 26px;}
+.stat{background:linear-gradient(160deg,rgba(21,29,49,.9),rgba(17,23,38,.9));border:1px solid rgba(255,255,255,.07);
+border-radius:10px;padding:11px 18px;text-align:center;min-width:120px;}
+.stat b{display:block;font-size:21px;color:var(--gold);font-variant-numeric:tabular-nums;}
+.stat span{font-size:11.5px;color:var(--dim);}
+.idx{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:24px;}
+.idx div{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:9px;padding:10px 14px;}
+.idx .n{font-size:12.5px;color:var(--dim);}
+.idx .v{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;}
+.idx .p{font-size:13px;font-variant-numeric:tabular-nums;}
+.neg{color:var(--down);} .pos{color:var(--up);}
+.card{background:linear-gradient(160deg,rgba(21,29,49,.85),rgba(17,23,38,.85));border:1px solid var(--line);
+border-radius:14px;padding:18px 20px;margin-bottom:18px;box-shadow:0 8px 28px rgba(0,0,0,.4);}
+h2{margin:0 0 14px;font-size:19px;color:var(--gold);display:flex;align-items:center;gap:9px;}
+h2 .cnt{font-size:12px;color:var(--dim);font-weight:400;background:rgba(255,255,255,.05);padding:2px 9px;border-radius:10px;}
+table{width:100%;border-collapse:collapse;font-size:13.5px;}
+th{text-align:left;color:var(--gold2);font-weight:600;font-size:12.5px;padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap;}
+td{padding:8px;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:top;}
+tr:hover td{background:rgba(242,193,78,.04);}
+.code{color:var(--dim);font-size:12px;font-variant-numeric:tabular-nums;}
+.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap;}
+.nm{font-weight:600;color:#fff;}
+.buy{color:var(--up);} .sell{color:var(--down);}
+.pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;margin:1px 2px 1px 0;white-space:nowrap;}
+.pill.gold{background:rgba(242,193,78,.14);color:var(--gold);border:1px solid rgba(242,193,78,.35);}
+.pill.blue{background:rgba(90,150,240,.13);color:#7fb0ff;border:1px solid rgba(90,150,240,.3);}
+.pill.gray{background:rgba(139,151,171,.12);color:var(--dim);border:1px solid rgba(139,151,171,.25);}
+.pill.red{background:rgba(255,92,92,.13);color:#ff8a8a;border:1px solid rgba(255,92,92,.3);}
+.pill.grn{background:rgba(61,220,132,.12);color:#63e0a0;border:1px solid rgba(61,220,132,.3);}
+.note{background:rgba(242,193,78,.06);border-left:3px solid var(--gold);padding:11px 15px;border-radius:6px;
+font-size:12.8px;color:#c9d1d9;margin-bottom:20px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.youzi{border-left:3px solid rgba(242,193,78,.5);background:rgba(255,255,255,.025);border-radius:8px;padding:11px 14px;margin-bottom:10px;}
+.youzi .who{font-size:14.5px;font-weight:700;color:var(--gold);}
+.youzi .seat{font-size:11.5px;color:var(--dim);margin-left:6px;}
+.youzi .act{font-size:13.5px;margin-top:4px;}
+.rank{display:inline-block;width:19px;height:19px;line-height:19px;text-align:center;border-radius:5px;
+background:rgba(242,193,78,.15);color:var(--gold);font-size:11.5px;font-weight:700;margin-right:6px;}
+ul{margin:6px 0;padding-left:20px;} li{margin-bottom:6px;font-size:13.5px;}
+.hl{color:var(--gold);font-weight:600;}
+footer{margin-top:30px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);color:var(--dim);font-size:12px;text-align:center;}
+@media(max-width:720px){.grid2{grid-template-columns:1fr;}h1{font-size:22px;}table{font-size:12.5px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🐉 龙虎榜游资追踪</h1>
+    <div class="sub">2026年09月28日（周一）· A股龙虎榜 · 游资行为研究</div>
+    <div>
+      <span class="tag">上榜 55 只</span>
+      <span class="tag">榜单净买 +1.6 亿</span>
+      <span class="tag red">涨停 33 / 跌停 56</span>
+    </div>
+  </header>
+
+  <div class="note">
+    <b>数据来源标注：</b>龙虎榜榜单、席位明细、机构买卖统计 → 东方财富数据中心 datacenter-web API（RPT_DAILYBILLBOARD_DETAILSNEW / RPT_BILLBOARD_DAILYDETAILSBUY·SELL / RPT_ORGANIZATION_TRADE_DETAILS，交易日 2026-09-28）；
+    涨停/跌停/炸板池 → 东方财富 push2ex 涨停板池接口；指数行情 → 腾讯 qt.gtimg.cn；个股行业与概念标签 → 同花顺 iFind stock-mcp（get_stock_info）。
+    <b>说明：</b>东方财富妙想（mx-*）积分已用完、iFind news-mcp Token 失效，本次未能获取新闻/研报原文，题材判断基于龙虎榜资金结构 + 涨停梯队 + 同花顺概念标签交叉印证。
+  </div>
+
+  <div class="dash">
+    <div class="stat"><b>55</b><span>上榜个股</span></div>
+    <div class="stat"><b>+1.6亿</b><span>榜单净买入</span></div>
+    <div class="stat"><b>99.8亿</b><span>榜单买入合计</span></div>
+    <div class="stat"><b>98.3亿</b><span>榜单卖出合计</span></div>
+    <div class="stat"><b style="color:#ff8a8a">33</b><span>涨停家数</span></div>
+    <div class="stat"><b style="color:#63e0a0">56</b><span>跌停家数</span></div>
+    <div class="stat"><b>11</b><span>炸板家数</span></div>
+  </div>
+
+  <div class="card">
+    <h2>📉 今日市场情绪背景</h2>
+    <div class="idx">
+      <div><div class="n">上证指数</div><div class="v">3823.62</div><div class="p neg">-1.67%</div></div>
+      <div><div class="n">深证成指</div><div class="v">12858.75</div><div class="p neg">-3.44%</div></div>
+      <div><div class="n">创业板指</div><div class="v">3139.82</div><div class="p neg">-4.53%</div></div>
+      <div><div class="n">科创50</div><div class="v">1555.98</div><div class="p neg">-4.06%</div></div>
+      <div><div class="n">沪深300</div><div class="v">4340.76</div><div class="p neg">-2.22%</div></div>
+      <div><div class="n">中证500</div><div class="v">7402.30</div><div class="p neg">-2.91%</div></div>
+      <div><div class="n">上证50</div><div class="v">2806.94</div><div class="p neg">-1.26%</div></div>
+    </div>
+    <p style="font-size:13.5px;margin:6px 0 0;">
+      今日呈典型的<b class="hl">「指数分化、科技硬件杀跌、资金高低切换」</b>格局：创业板指 -4.53%、科创50 -4.06%，而上证50仅 -1.26%，大盘蓝筹显著抗跌。
+      跌停 56 家远多于涨停 33 家，<b>赚钱效应转弱、情绪偏冷</b>。跌停重灾区集中在<b class="hl">通信/光模块/电子元件/PCB</b>（华工科技、中天科技、长江通信、瑞斯康达、艾华集团、意华股份、世嘉科技、三星电气…）及黄金股（山东黄金跌停），
+      资金明显从高位科技硬件撤出，转向<b class="hl">汽车零部件、福建（海峡两岸）、化工、信创、公用事业</b>等低位/补涨方向。
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>🏦 机构买入榜 TOP 10 <span class="cnt">机构专用席位净买入</span></h2>
+    <table>
+      <tr><th>#</th><th>个股</th><th class="num">涨跌幅</th><th class="num">机构净买</th><th>席位结构</th><th>上榜原因 / 概念</th></tr>
+      <tr><td><span class="rank">1</span></td><td><span class="nm">平潭发展</span><br><span class="code">000592.SZ</span></td><td class="num pos">+3.53%</td><td class="num buy">+2.59亿</td><td>4买 0卖</td><td>换手率榜｜海峡两岸·福建自贸·林业</td></tr>
+      <tr><td><span class="rank">2</span></td><td><span class="nm">超声电子</span><br><span class="code">000823.SZ</span></td><td class="num neg">-9.40%</td><td class="num buy">+2.05亿</td><td>4买 2卖</td><td>换手率榜｜PCB·覆铜板·AIDC算力·CPO</td></tr>
+      <tr><td><span class="rank">3</span></td><td><span class="nm">蓝盾光电</span><br><span class="code">300862.SZ</span></td><td class="num neg">-15.56%</td><td class="num buy">+0.90亿</td><td>4买 0卖</td><td>军工雷达·传感器·毫米波雷达·环保仪器</td></tr>
+      <tr><td><span class="rank">4</span></td><td><span class="nm">博纳影业</span><br><span class="code">001330.SZ</span></td><td class="num pos">+10.03%</td><td class="num buy">+0.49亿</td><td>3买 1卖</td><td>3日累计涨幅榜｜影视院线·AI视频·IP经济</td></tr>
+      <tr><td><span class="rank">5</span></td><td><span class="nm">福建金森</span><br><span class="code">002679.SZ</span></td><td class="num pos">+2.42%</td><td class="num buy">+0.37亿</td><td>5买 0卖</td><td>海峡两岸·林业·碳交易</td></tr>
+      <tr><td><span class="rank">6</span></td><td><span class="nm">天奥电子</span><br><span class="code">002935.SZ</span></td><td class="num pos">+1.00%</td><td class="num buy">+0.20亿</td><td>1买 3卖</td><td>时频·军工信息化</td></tr>
+      <tr><td><span class="rank">7</span></td><td><span class="nm">贝特利</span><br><span class="code">301697.SZ</span></td><td class="num neg">-4.95%</td><td class="num buy">+0.09亿</td><td>3买 1卖</td><td>次新·电子新材料</td></tr>
+      <tr><td><span class="rank">8</span></td><td><span class="nm">襄阳轴承</span><br><span class="code">000678.SZ</span></td><td class="num pos">+10.02%</td><td class="num buy">+0.09亿</td><td>1买 0卖</td><td>3日涨幅榜｜汽车零部件·减速器·比亚迪概念</td></tr>
+      <tr><td><span class="rank">9</span></td><td><span class="nm">金丹科技</span><br><span class="code">300829.SZ</span></td><td class="num neg">-17.63%</td><td class="num buy">+0.06亿</td><td>2买 3卖</td><td>乳酸·可降解塑料</td></tr>
+      <tr><td><span class="rank">10</span></td><td><span class="nm">通达创智</span><br><span class="code">001368.SZ</span></td><td class="num pos">+10.00%</td><td class="num buy">+0.05亿</td><td>2买 2卖</td><td>文娱用品·次新</td></tr>
+    </table>
+    <p style="font-size:12.8px;color:var(--dim);margin:12px 0 0;">
+      🏦 <b>机构净卖出 TOP：</b>优利德(688628, -17.04%) -1.34亿 · 我爱我家(000560, +1.37%) -1.34亿 · 新华文轩(601811, -8.99%) -0.72亿 · 洛轴股份(301699, +14.46%) -0.53亿 · 电科思仪(301689, +1.45%) -0.47亿 · 中岩大地(003001, -6.02%) -0.40亿 · 巨力索具(002342, +10.01%) -0.40亿
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>🦈 知名游资席位动向 <span class="cnt">按买入金额</span></h2>
+
+    <div class="youzi">
+      <div class="who">作手新一 <span class="seat">国泰海通证券南京太平南路证券营业部</span></div>
+      <div class="act"><span class="pill red">买</span> <b>跨境通(002640)</b> <span class="buy">+1.50亿</span> — 今日<b class="hl">单笔最大游资买入</b>，跨境电商，一字/换手17.3%封板，全天封单1.12亿。<br>
+      <span class="pill grn">卖</span> 东方中科(002819) <span class="sell">-0.17亿</span></div>
+    </div>
+
+    <div class="youzi">
+      <div class="who">宁波系 <span class="seat">国联民生证券宁波分公司</span></div>
+      <div class="act"><span class="pill red">买</span> <b>新赛股份(600540)</b> <span class="buy">+1.03亿</span> — 新疆棉花/农业种植，今日仅 +3.87% 但获大资金进场，同板块 甬兴证券宁波和源路 +0.30亿、广发深圳后海 +0.48亿 合力。</div>
+    </div>
+
+    <div class="youzi">
+      <div class="who">方新侠 <span class="seat">中信证券西安朱雀大街证券营业部</span></div>
+      <div class="act"><span class="pill red">买</span> <b>我爱我家(000560)</b> <span class="buy">+0.63亿</span> — <b>逆势抄底</b>地产服务/AI应用；但该股今日整体位列龙虎榜<b class="sell">净卖出 -1.90亿</b>，机构专用净卖 -1.34亿，多空分歧极大。</div>
+    </div>
+
+    <div class="youzi">
+      <div class="who">绍兴帮 <span class="seat">华鑫证券绍兴胜利东路证券营业部</span></div>
+      <div class="act"><span class="pill red">买</span> <b>众泰汽车(000980)</b> <span class="buy">+0.17亿</span> — 与开源西安西大街（+0.58亿）形成合力，汽车整车低价弹性标的。</div>
+    </div>
+
+    <div class="youzi">
+      <div class="who">炒股养家 <span class="seat">华鑫证券上海分公司</span></div>
+      <div class="act"><span class="pill red">买</span> <b>浙江新能(600032)</b> <span class="buy">+0.08亿</span> — 绿电/新能源发电，属低吸试探性小仓参与。</div>
+    </div>
+
+    <div class="youzi">
+      <div class="who">赵老哥 <span class="seat">中国银河证券绍兴鲁迅中路证券营业部</span></div>
+      <div class="act"><span class="pill grn">卖</span> <b>海峡创新(300300)</b> <span class="sell">-0.31亿</span> — 该股全天龙虎榜净卖 -1.34亿，是今日资金主要撤离方向之一。</div>
+    </div>
+
+    <div class="youzi" style="border-left-color:rgba(90,150,240,.6)">
+      <div class="who">开源证券西安西大街 <span class="seat">开源证券股份有限公司西安西大街证券营业部</span> <span class="pill blue">量化/高频席位</span></div>
+      <div class="act">当日<b>买 4.47亿 / 卖 6.53亿，净卖 -2.06亿</b>，涉 15 只个股，为今日最活跃席位。特征为<b class="hl">同股双向交易</b>（三峡新材买0.63/卖0.65、洛轴股份买0.59/卖1.19、大业股份买0.41/卖0.43、安邦护卫买0.21/卖0.22），呈典型 <b>T+0 量化快进快出</b>属性，不宜作为"游资合力看多"信号。<br>
+      最大单笔卖出：<b>平潭发展 -2.19亿</b>；另有 吉鑫科技 -0.75亿、洛轴股份合计 -1.19亿。</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h2>⚖️ 机构 vs 游资 对比</h2>
+      <p style="font-size:13px;margin:0 0 10px;"><b class="hl">机构偏好：</b>逆势/低估值/事件驱动</p>
+      <ul>
+        <li><b>平潭发展</b>：机构 4 席买 +2.59亿、深股通净买 +1.23亿，但遭开源西安西大街砸 -2.19亿 → 榜单净卖 -1.13亿</li>
+        <li><b>超声电子</b>：股价 -9.40% 遭 PCB 板块杀跌，机构 +2.05亿、深股通 +2.08亿 → 合计约 <b class="hl">+4.1亿</b>逆势承接</li>
+        <li><b>蓝盾光电</b>：-15.56% 暴跌中 4 家机构席位净买 +0.90亿</li>
+        <li><b>福建金森</b>：5 家机构席位买入、0 卖出</li>
+      </ul>
+      <p style="font-size:13px;margin:12px 0 10px;"><b class="hl">游资偏好：</b>题材/低价/高弹性</p>
+      <ul>
+        <li><b>跨境通</b>、<b>众泰汽车</b>、<b>新赛股份</b>、<b>浙江新能</b> — 多为低位补涨+情绪题材</li>
+      </ul>
+      <p style="font-size:13px;margin:12px 0 6px;"><b class="hl">分歧标的：</b></p>
+      <ul>
+        <li>超声电子：机构/北向买 ↔ 游资席位未参与</li>
+        <li>我爱我家：方新侠买0.63亿 ↔ 机构净卖1.34亿</li>
+        <li>平潭发展：机构买2.59亿 ↔ 量化砸2.19亿</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🪜 连板梯队 <span class="cnt">涨停 33 家</span></h2>
+      <table>
+        <tr><th>高度</th><th>个股（概念）</th></tr>
+        <tr><td><span class="pill gold">5板</span></td><td><b>新华传媒</b>（出版·上海国资·AI语料）<span class="code">封单23.86亿</span></td></tr>
+        <tr><td><span class="pill gold">3板</span></td><td><b>雪龙集团</b>（汽车零部件）· <b>金辰股份</b>（光伏设备）· <b>福建水泥</b>（水泥·福建）</td></tr>
+        <tr><td><span class="pill blue">2板</span></td><td><b>大业股份</b>（通用设备）· <b>襄阳轴承</b>（汽车零部件·减速器）· <b>吉鑫科技</b>（风电零部件）</td></tr>
+        <tr><td><span class="pill gray">1板</span></td><td>博纳影业、跨境通、丽珠集团、江淮汽车、众泰汽车、巨力索具、永信至诚、善水科技、浙江新能、深物业A、宏柏新材、醋化股份、津药药业、启明信息、国新健康、中新赛克、道道全、东瑞股份等 25 只</td></tr>
+      </table>
+      <p style="font-size:12.7px;color:var(--dim);margin:12px 0 0;">
+        🔎 <b>情绪读数：</b>最高板仅 5 板（新华传媒，封单 23.86亿，成交仅 0.43亿属高度锁仓），3 板股 3 只、2 板股 3 只，<b>连板梯队单薄</b>；涨停 33 vs 跌停 56、炸板 11，<b>封板质量与赚钱效应均偏弱</b>，属分歧退潮/高低切阶段。
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🔥 题材热度分析 <span class="cnt">涨停概念分布</span></h2>
+    <table>
+      <tr><th>题材方向</th><th>今日强度</th><th>代表个股 / 龙虎榜佐证</th><th>持续性判断</th></tr>
+      <tr>
+        <td><b>汽车零部件/整车</b></td><td><span class="pill red">强</span> 3板+2板+多只1板</td>
+        <td>雪龙集团3板 · 襄阳轴承2板 · 众泰汽车 · 江淮汽车（封单1.77亿）<br><span class="code">开源西安+绍兴帮合力买众泰汽车</span></td>
+        <td>涨停家数最多、梯队完整，但无明确催化，偏资金惯性轮动</td>
+      </tr>
+      <tr>
+        <td><b>福建 / 海峡两岸</b></td><td><span class="pill red">强</span></td>
+        <td>福建水泥3板 · 平潭发展(机构+2.59亿) · 福建金森(机构5席) · 海峡创新 · 宏柏新材<br><span class="code">平潭发展、福建金森均获机构大额买入</span></td>
+        <td>机构参与度高，是本日最"有资金背书"的区域主题</td>
+      </tr>
+      <tr>
+        <td><b>信创 / 网络安全 / 软件</b></td><td><span class="pill blue">中</span></td>
+        <td>永信至诚(20cm) · 国新健康 · 启明信息 · 中新赛克</td>
+        <td>逆科技硬件下跌而活跃，或为软件方向补涨</td>
+      </tr>
+      <tr>
+        <td><b>化工（染料/有机硅/精细）</b></td><td><span class="pill blue">中</span></td>
+        <td>善水科技(20cm) · 宏柏新材 · 醋化股份 · 津药药业</td>
+        <td>分散在细分品种，缺乏统一主线，为低位补涨</td>
+      </tr>
+      <tr>
+        <td><b>医药 / 创新药</b></td><td><span class="pill blue">中</span></td>
+        <td>丽珠集团(+10%, 龙虎榜净买1.21亿, 浙江资金) · 津药药业</td>
+        <td>化学制药逆势走强，对创新药情绪有正向映射</td>
+      </tr>
+      <tr>
+        <td><b>电力 / 绿电 / 风电</b></td><td><span class="pill blue">中</span></td>
+        <td>浙江新能 · 吉鑫科技2板 · 新筑股份</td>
+        <td>防御属性资金流入，公用事业抗跌</td>
+      </tr>
+      <tr>
+        <td><b>传媒 / 影视 / AI应用</b></td><td><span class="pill gray">分歧</span></td>
+        <td>新华传媒5板 · 博纳影业(机构3席净买)</td>
+        <td>龙头（新华传媒）高度锁仓但成交极小，接力风险高</td>
+      </tr>
+      <tr>
+        <td><b>PCB / 光模块 / 电子元件</b></td><td><span class="pill grn">弱（杀跌）</span></td>
+        <td>超声电子 -9.40%（机构逆势买）· 跌停潮：华工科技、中天科技、艾华集团…</td>
+        <td><b class="hl">今日最大空头方向</b>，机构在超声电子上明显抄底但板块整体承压</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>🎯 游资情绪判断</h2>
+    <p style="font-size:13.8px;margin:0 0 10px;">
+      <b class="hl">游资活跃度：中偏低。</b>今日龙虎榜榜单净买入仅 +1.6 亿，知名大游资中仅 <b>作手新一（+1.50亿）</b>、<b>宁波系（+1.03亿）</b> 单笔过亿，其余多为千万级试探；最活跃的开源西安西大街席位属高频双向交易、<b>净卖出 -2.06亿</b>，说明短线资金整体在<b>减仓而非进攻</b>。
+    </p>
+    <p style="font-size:13.8px;margin:0 0 10px;">
+      <b class="hl">主流方向：</b>资金从高位科技硬件（PCB/光模块/通信）撤离，转向<b>汽车零部件、福建（海峡两岸）、化工、信创、电力</b>等低位补涨方向。机构则逆势加仓被错杀的<b>超声电子、蓝盾光电</b>与<b>福建区域股（平潭发展、福建金森）</b>。
+    </p>
+    <p style="font-size:13.8px;margin:0 0 6px;">
+      <b class="hl">风险提示：</b>①创业板 -4.53%、跌停 56 家，指数层面仍处下跌趋势，龙虎榜资金呈防守特征；②连板梯队单薄（最高5板且缩量锁仓），高位板接力风险大；③超声电子、蓝盾光电等"机构逆势买入"标的，机构也可能是在下跌途中的左侧介入，短期仍可能继续承压；④量化席位（开源西安西大街）双向高频交易会放大个股波动，不宜追高。
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>💼 对持仓/关注组合的启示</h2>
+    <p style="font-size:13px;color:var(--dim);margin:0 0 12px;">（以 Top 个股跟踪组合：美股 9 只 + 港股 4 只 + A股 荣昌生物/卓胜微/有研新材 为参照；今日上述标的均未直接登上龙虎榜，以下为板块层面的情绪映射）</p>
+    <table>
+      <tr><th>相关方向</th><th>今日龙虎榜信号</th><th>对组合的含义</th></tr>
+      <tr>
+        <td><b>半导体 / 电子（卓胜微、有研新材）</b></td>
+        <td><span class="pill grn">偏空</span> 康强电子（半导体封装材料）龙虎榜净卖 -1.16亿；优利德（芯片概念）-17.04% 机构净卖 -1.34亿；电子元件跌停潮</td>
+        <td>半导体与电子元件今日为资金撤离方向，短期需警惕情绪继续发酵，<b>不宜追高加仓</b>，关注是否跌破关键支撑。</td>
+      </tr>
+      <tr>
+        <td><b>医药 / 创新药（荣昌生物）</b></td>
+        <td><span class="pill gold">偏多</span> 丽珠集团 +10% 涨停、龙虎榜净买 +1.21亿（浙江资金合力），化学制药逆势走强</td>
+        <td>创新药/化学制药获资金关注，为组合中<b>相对占优</b>的方向，但荣昌生物自身需结合 BD 与临床进展判断。</td>
+      </tr>
+      <tr>
+        <td><b>汽车产业链（小鹏汽车）</b></td>
+        <td><span class="pill gold">偏多</span> 汽车零部件涨停潮（雪龙集团3板、襄阳轴承2板、众泰汽车、江淮汽车）</td>
+        <td>A股汽车产业链情绪回暖，对港股整车（小鹏）形成正向情绪映射，可留意共振。</td>
+      </tr>
+      <tr>
+        <td><b>互联网 / 传媒（腾讯、阿里）</b></td>
+        <td><span class="pill gray">中性</span> 博纳影业获3家机构净买、新华传媒5板；但龙头缩量锁仓，题材持续性待验证</td>
+        <td>AI应用/传媒有局部资金，但A股联动多为短炒，对港股互联网巨头影响有限。</td>
+      </tr>
+    </table>
+  </div>
+
+  <footer>
+    龙虎榜游资追踪 · 2026-09-28 · 数据源：东方财富数据中心 / push2ex 涨停板池 / 腾讯行情 / 同花顺iFind<br>
+    本报告为短线资金行为客观记录，所有数字均来自公开数据，不构成任何投资建议。
+  </footer>
+</div>
+</body>
+</html>
