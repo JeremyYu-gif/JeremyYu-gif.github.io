@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>龙虎榜游资追踪 2026-09-30</title>
+<style>
+:root{--bg:#0b0e17;--bg2:#111726;--card:#151d31;--card2:#1b2540;--gold:#f2c14e;--gold2:#e0a800;
+--txt:#e8ecf3;--dim:#8b97ab;--up:#ff5c5c;--down:#3ddc84;--line:rgba(242,193,78,.18);}
+*{box-sizing:border-box;}
+body{margin:0;background:radial-gradient(1200px 600px at 50% -10%,#18203a 0%,#0b0e17 60%);
+color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7;}
+.wrap{max-width:1120px;margin:0 auto;padding:30px 18px 80px;}
+header{text-align:center;padding:26px 16px 20px;border-bottom:2px solid var(--line);margin-bottom:24px;}
+h1{margin:0 0 8px;font-size:30px;color:var(--gold);letter-spacing:2px;text-shadow:0 0 24px rgba(242,193,78,.28);}
+.sub{color:var(--dim);font-size:13.5px;}
+.tag{display:inline-block;margin:10px 4px 0;background:rgba(242,193,78,.1);border:1px solid rgba(242,193,78,.3);
+color:var(--gold);padding:4px 13px;border-radius:20px;font-size:12.5px;}
+.tag.red{border-color:rgba(255,92,92,.4);background:rgba(255,92,92,.1);color:#ff8a8a;}
+.tag.grn{border-color:rgba(61,220,132,.4);background:rgba(61,220,132,.1);color:#63e0a0;}
+.dash{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:20px 0 26px;}
+.stat{background:linear-gradient(160deg,rgba(21,29,49,.9),rgba(17,23,38,.9));border:1px solid rgba(255,255,255,.07);
+border-radius:10px;padding:11px 18px;text-align:center;min-width:120px;}
+.stat b{display:block;font-size:21px;color:var(--gold);font-variant-numeric:tabular-nums;}
+.stat span{font-size:11.5px;color:var(--dim);}
+.idx{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:24px;}
+.idx div{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:9px;padding:10px 14px;}
+.idx .n{font-size:12.5px;color:var(--dim);}
+.idx .v{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;}
+.idx .p{font-size:13px;font-variant-numeric:tabular-nums;}
+.neg{color:var(--down);} .pos{color:var(--up);}
+.card{background:linear-gradient(160deg,rgba(21,29,49,.85),rgba(17,23,38,.85));border:1px solid var(--line);
+border-radius:14px;padding:18px 20px;margin-bottom:18px;box-shadow:0 8px 28px rgba(0,0,0,.4);}
+h2{margin:0 0 14px;font-size:19px;color:var(--gold);display:flex;align-items:center;gap:9px;}
+h2 .cnt{font-size:12px;color:var(--dim);font-weight:400;background:rgba(255,255,255,.05);padding:2px 9px;border-radius:10px;}
+table{width:100%;border-collapse:collapse;font-size:13.5px;}
+th{text-align:left;color:var(--gold2);font-weight:600;font-size:12.5px;padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap;}
+td{padding:8px;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:top;}
+tr:hover td{background:rgba(242,193,78,.04);}
+.code{color:var(--dim);font-size:12px;font-variant-numeric:tabular-nums;}
+.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap;}
+.nm{font-weight:600;color:#fff;}
+.buy{color:var(--up);} .sell{color:var(--down);}
+.pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;margin:1px 2px 1px 0;white-space:nowrap;}
+.pill.gold{background:rgba(242,193,78,.14);color:var(--gold);border:1px solid rgba(242,193,78,.35);}
+.pill.blue{background:rgba(90,150,240,.13);color:#7fb0ff;border:1px solid rgba(90,150,240,.3);}
+.pill.gray{background:rgba(139,151,171,.12);color:var(--dim);border:1px solid rgba(139,151,171,.25);}
+.pill.red{background:rgba(255,92,92,.13);color:#ff8a8a;border:1px solid rgba(255,92,92,.3);}
+.pill.grn{background:rgba(61,220,132,.12);color:#63e0a0;border:1px solid rgba(61,220,132,.3);}
+.note{background:rgba(242,193,78,.06);border-left:3px solid var(--gold);padding:11px 15px;border-radius:6px;
+font-size:12.8px;color:#c9d1d9;margin-bottom:20px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.youzi{border-left:3px solid rgba(242,193,78,.5);background:rgba(255,255,255,.025);border-radius:8px;padding:11px 14px;margin-bottom:10px;}
+.youzi .who{font-size:14.5px;font-weight:700;color:var(--gold);}
+.youzi .seat{font-size:11.5px;color:var(--dim);margin-left:6px;}
+.youzi .act{font-size:13.5px;margin-top:4px;}
+.rank{display:inline-block;width:19px;height:19px;line-height:19px;text-align:center;border-radius:5px;
+background:rgba(242,193,78,.15);color:var(--gold);font-size:11.5px;font-weight:700;margin-right:6px;}
+ul{margin:6px 0;padding-left:20px;} li{margin-bottom:6px;font-size:13.5px;}
+.hl{color:var(--gold);font-weight:600;}
+footer{margin-top:30px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);color:var(--dim);font-size:12px;text-align:center;}
+@media(max-width:720px){.grid2{grid-template-columns:1fr;}h1{font-size:22px;}table{font-size:12.5px;}}
+</style></head><body><div class="wrap">
+<header>
+<h1>🐉 龙虎榜游资追踪</h1>
+<div class="sub">2026年09月30日（周三）· A股龙虎榜 · 游资行为研究</div>
+<div>
+<span class="tag">上榜 66 只</span>
+<span class="tag grn">榜单净买 +17.4 亿</span>
+<span class="tag red">涨停 52 / 跌停 9</span>
+</div></header>
+<div class="note">
+<b>数据来源标注：</b>龙虎榜榜单、席位明细、机构买卖统计 → 东方财富数据中心 datacenter-web API
+（RPT_DAILYBILLBOARD_DETAILSNEW / RPT_BILLBOARD_DAILYDETAILSBUY·SELL / RPT_ORGANIZATION_TRADE_DETAILS，交易日 2026-09-30，经 Windows 宿主 curl 直连获取）；
+涨停/跌停池 → 东方财富 push2ex 涨停板池接口；指数行情 → 腾讯 qt.gtimg.cn；题材线索 → mx_finance_search 历史缓存检索。
+<b>说明：</b>东方财富妙想（mx-*）积分已用完、iFind news-mcp Token 失效（返回 Gateway authentication failed），本次未获取新闻/研报原文；
+题材判断基于<b>龙虎榜资金结构 + 涨停梯队 + 缓存公告线索</b>三方交叉印证。表中金额为龙虎榜口径，非全市场主力资金口径。
+</div>
+<div class="dash">
+<div class="stat"><b>66</b><span>上榜个股</span></div>
+<div class="stat"><b>264.3亿</b><span>榜单买入合计</span></div>
+<div class="stat"><b>246.9亿</b><span>榜单卖出合计</span></div>
+<div class="stat"><b style="color:#63e0a0">+17.4亿</b><span>榜单净买入</span></div>
+<div class="stat"><b style="color:#63e0a0">+3.0亿</b><span>机构净额</span></div>
+<div class="stat"><b style="color:#ff8a8a">52</b><span>涨停家数</span></div>
+<div class="stat"><b style="color:#63e0a0">9</b><span>跌停家数</span></div>
+</div>
+<div class="card"><h2>📉 今日市场情绪背景</h2><div class="idx">
+<div><div class="n">上证指数</div><div class="v">3842.19</div><div class="p pos">+0.31%</div></div>
+<div><div class="n">深证成指</div><div class="v">12887.62</div><div class="p neg">-0.11%</div></div>
+<div><div class="n">创业板指</div><div class="v">3135.28</div><div class="p neg">-0.23%</div></div>
+<div><div class="n">科创50</div><div class="v">1530.01</div><div class="p neg">-2.51%</div></div>
+<div><div class="n">沪深300</div><div class="v">4357.62</div><div class="p pos">+0.29%</div></div>
+<div><div class="n">中证500</div><div class="v">7435.16</div><div class="p neg">-0.06%</div></div>
+<div><div class="n">恒生指数</div><div class="v">24613.27</div><div class="p pos">+0.37%</div></div>
+</div>
+<p style="font-size:13.5px;margin:6px 0 0;">
+指数<b>分化加剧、风格切换</b>：权重蓝筹走强（沪深300 +0.29%、上证 +0.31%），而<b class="hl">科技成长显著回调（科创50 -2.51%、创业板指 -0.23%）</b>。
+涨停 52 家 vs 跌停 9 家，较前一交易日（9/28 跌停 57 家）情绪继续修复，但<b>赚钱效应集中在题材小盘股，高位人气股出现分化跳水</b>（内蒙新华 -8.49%、金健米业 -1.65%、澳弘电子/协和电子跌停）。
+龙虎榜 66 只个股上榜、<b class="hl">榜单净买入 +17.4 亿</b>，其中净买入 40 只（+30.4亿）、净卖出 26 只（-13.0亿），
+<b class="hl">买方力量明显强于卖方</b>。机构专用席位合计净额 +3.0 亿，参与度中性偏积极，主要买盘来自<b class="hl">地产链、医药、轴承/机器人</b>三条线。
+本日最显著的资金特征是：<b class="hl">「大游资（方新侠/知春路/三亚迎宾路）抱团地产+整车，而宁波桑田路在江淮汽车、万科A上大额反向出货」</b>，多空对决激烈。
+</p></div>
+<div class="card"><h2>🏦 机构买入榜 TOP 10 <span class="cnt">机构专用席位净买入</span></h2><table>
+<tr><th>#</th><th>个股</th><th class="num">涨跌幅</th><th class="num">机构净买</th><th>席位结构</th><th>概念 / 备注</th></tr>
+<tr><td><span class="rank">1</span></td><td><span class="nm">华是科技</span><br><span class="code">301218.SZ</span></td><td class="num pos">+15.84%</td><td class="num buy">+2.15亿</td><td>4买 4卖</td><td><span class="pill gold">智慧城市·政企数字化</span></td></tr>
+<tr><td><span class="rank">2</span></td><td><span class="nm">滨江集团</span><br><span class="code">002244.SZ</span></td><td class="num pos">+7.19%</td><td class="num buy">+1.88亿</td><td>4买 3卖</td><td><span class="pill blue">地产链·杭州龙头</span></td></tr>
+<tr><td><span class="rank">3</span></td><td><span class="nm">万科A</span><br><span class="code">000002.SZ</span></td><td class="num pos">+4.41%</td><td class="num buy">+1.18亿</td><td>2买 0卖</td><td><span class="pill blue">地产链·龙头</span></td></tr>
+<tr><td><span class="rank">4</span></td><td><span class="nm">金地集团</span><br><span class="code">600383.SH</span></td><td class="num pos">+7.45%</td><td class="num buy">+0.48亿</td><td>1买 0卖</td><td><span class="pill blue">地产链</span></td></tr>
+<tr><td><span class="rank">5</span></td><td><span class="nm">跨境通</span><br><span class="code">002640.SZ</span></td><td class="num neg">-0.76%</td><td class="num buy">+0.40亿</td><td>2买 0卖</td><td><span class="pill gold">跨境电商</span></td></tr>
+<tr><td><span class="rank">6</span></td><td><span class="nm">我爱我家</span><br><span class="code">000560.SZ</span></td><td class="num neg">-1.60%</td><td class="num buy">+0.35亿</td><td>2买 3卖</td><td><span class="pill blue">房产中介·地产链</span></td></tr>
+<tr><td><span class="rank">7</span></td><td><span class="nm">高争民爆</span><br><span class="code">002827.SZ</span></td><td class="num neg">-4.90%</td><td class="num buy">+0.32亿</td><td>1买 0卖</td><td><span class="pill gold">民爆·西藏基建</span></td></tr>
+<tr><td><span class="rank">8</span></td><td><span class="nm">弘元绿能</span><br><span class="code">603185.SH</span></td><td class="num pos">+10.02%</td><td class="num buy">+0.25亿</td><td>2买 0卖</td><td><span class="pill gold">光伏·硅片</span></td></tr>
+<tr><td><span class="rank">9</span></td><td><span class="nm">信诺维</span><br><span class="code">688837.SH</span></td><td class="num pos">+13.28%</td><td class="num buy">+0.20亿</td><td>1买 0卖</td><td><span class="pill red">医药·创新药</span></td></tr>
+<tr><td><span class="rank">10</span></td><td><span class="nm">襄阳轴承</span><br><span class="code">000678.SZ</span></td><td class="num pos">+9.98%</td><td class="num buy">+0.18亿</td><td>1买 2卖</td><td><span class="pill gold">轴承·机器人/风电</span></td></tr>
+</table>
+<p style="font-size:12.8px;color:var(--dim);margin:12px 0 0;">
+机构买入集中在<b class="hl">三条主线</b>：① <b class="hl">地产链</b>——滨江集团(+1.88亿)、万科A、金地集团、信达地产、我爱我家，机构在地产政策发酵期配置龙头；
+② <b class="hl">医药/创新药</b>——信诺维、康希诺等；③ <b class="hl">工业母机/轴承</b>——襄阳轴承。
+值得注意的是机构在<b class="hl">近岸蛋白（688137）上多空对倒、净卖 -2.23亿</b>，该股为最新10日涨幅偏离100%的科创板妖股，机构借高位兑现，且其龙虎榜披露的是「自然人/中小投资者/机构」投资者分类统计而非营业部席位。
+</p></div>
+<div class="card"><h2>🏦 机构卖出榜 <span class="cnt">机构专用席位净卖出 TOP 8 —— 机构不认可的方向</span></h2><table>
+<tr><th>#</th><th>个股</th><th class="num">涨跌幅</th><th class="num">机构净卖</th><th>席位结构</th><th>备注</th></tr>
+<tr><td><span class="rank">1</span></td><td><span class="nm">近岸蛋白</span><br><span class="code">688137.SH</span></td><td class="num pos">+13.47%</td><td class="num sell">-2.23亿</td><td>2买 2卖</td><td><span class="pill red">医药·mRNA原料</span></td></tr>
+<tr><td><span class="rank">2</span></td><td><span class="nm">五方光电</span><br><span class="code">002962.SZ</span></td><td class="num pos">+10.00%</td><td class="num sell">-0.38亿</td><td>4买 4卖</td><td><span class="pill grn">光学光电子</span></td></tr>
+<tr><td><span class="rank">3</span></td><td><span class="nm">万邦医药</span><br><span class="code">301520.SZ</span></td><td class="num neg">-1.32%</td><td class="num sell">-0.37亿</td><td>1买 4卖</td><td><span class="pill red">医药·CRO</span></td></tr>
+<tr><td><span class="rank">4</span></td><td><span class="nm">洛轴股份</span><br><span class="code">301699.SZ</span></td><td class="num pos">+0.13%</td><td class="num sell">-0.35亿</td><td>4买 4卖</td><td><span class="pill gold">轴承·工业母机</span></td></tr>
+<tr><td><span class="rank">5</span></td><td><span class="nm">宁波东力</span><br><span class="code">002164.SZ</span></td><td class="num pos">+10.04%</td><td class="num sell">-0.28亿</td><td>0买 3卖</td><td><span class="pill gold">电机·机器人</span></td></tr>
+<tr><td><span class="rank">6</span></td><td><span class="nm">松原安全</span><br><span class="code">300893.SZ</span></td><td class="num pos">+19.98%</td><td class="num sell">-0.25亿</td><td>0买 2卖</td><td><span class="pill gold">汽车安全·机器人</span></td></tr>
+<tr><td><span class="rank">7</span></td><td><span class="nm">康强电子</span><br><span class="code">002119.SZ</span></td><td class="num neg">-8.74%</td><td class="num sell">-0.22亿</td><td>2买 3卖</td><td><span class="pill grn">半导体·封测材料</span></td></tr>
+<tr><td><span class="rank">8</span></td><td><span class="nm">康希诺</span><br><span class="code">688185.SH</span></td><td class="num pos">+20.00%</td><td class="num sell">-0.21亿</td><td>0买 1卖</td><td><span class="pill red">医药·疫苗</span></td></tr>
+</table>
+<p style="font-size:12.8px;color:var(--dim);margin:12px 0 0;">
+<b class="hl">机构在今日高位股、滞涨股上以卖出为主</b>：近岸蛋白（妖股高位）、五方光电（光学·涨停但仍净卖）、洛轴股份（轴承·+0.13%滞涨）、
+康强电子（半导体·-8.74%）、宁波东力（电机·涨停但机构净卖 -0.28亿）、松原安全（汽车安全·20cm涨停机构却净卖 -0.25亿）。
+即<b class="hl">「游资在追涨停，机构在借涨停出货」</b>，此类行情爆发力强但持续性存疑，需紧盯次日承接。
+</p></div>
+<div class="card"><h2>🦈 知名游资席位动向</h2>
+<div class="youzi">
+<div class="who">方新侠 <span class="seat">中信证券 西安朱雀大街营业部</span></div>
+<div class="act"><span class="pill red">主买</span> 我爱我家(000560) <b class="buy">+0.57亿</b>　·　<span class="pill red">主买</span> 万科A(000002) <b class="buy">+0.50亿</b>　→　席位净买入 <b class="buy">+1.07亿</b>（2只）</div>
+<div style="font-size:12.5px;color:var(--dim);margin-top:4px;">大成交额趋势型游资，<b class="hl">今日双押地产链</b>（地产中介+地产龙头），是本日地产主线最重要的游资买方之一。</div>
+</div>
+<div class="youzi">
+<div class="who">宁波桑田路 <span class="seat">国盛证券 宁波桑田路营业部</span></div>
+<div class="act"><span class="pill grn">主卖</span> 江淮汽车(600418) <b class="sell">-4.15亿</b>　·　<span class="pill grn">主卖</span> 万科A(000002) <b class="sell">-1.06亿</b>　→　席位净卖出 <b class="sell">-5.26亿</b>（3只）</div>
+<div style="font-size:12.5px;color:var(--dim);margin-top:4px;">连板接力+高换手型游资，<b class="hl">今日是本日最大卖方</b>，在汽车整车（江淮）与地产（万科A）上大额兑现，与方新侠/知春路形成明显对手盘。</div>
+</div>
+<div class="youzi">
+<div class="who">国泰海通 北京知春路 <span class="seat">机构系活跃席位 · 本日净买额最大营业部</span></div>
+<div class="act"><span class="pill red">主买</span> 江淮汽车(600418) <b class="buy">+2.50亿</b>　·　襄阳轴承(000678) <b class="buy">+0.82亿</b>（x2）　·　南华生物(000504) <b class="buy">+0.80亿</b>　·　<span class="pill grn">卖出</span> 万科A <b class="sell">-0.73亿</b>　→　席位净买入 <b class="buy">+4.21亿</b>（5只）</div>
+<div style="font-size:12.5px;color:var(--dim);margin-top:4px;">大资金趋势票风格，<b class="hl">重仓做多江淮汽车（与宁波桑田路正面对决）、接力轴承与医药</b>，手法凶悍，是本日最活跃的大买方。</div>
+</div>
+<div class="youzi">
+<div class="who">国投证券 嘉兴嘉善施家南路 <span class="seat">浙江活跃大资金</span></div>
+<div class="act"><span class="pill red">主买</span> 江淮汽车(600418) <b class="buy">+2.58亿</b>　→　席位净买入 <b class="buy">+2.58亿</b>（1只）</div>
+<div style="font-size:12.5px;color:var(--dim);margin-top:4px;">单一标的重仓，<b class="hl">与知春路在江淮汽车上形成合计 +5.08 亿的合力买盘</b>，是江淮汽车封板的核心推手。</div>
+</div>
+<div class="youzi">
+<div class="who">国泰海通 三亚迎宾路 <span class="seat">海南系大资金</span></div>
+<div class="act"><span class="pill red">主买</span> 万科A(000002) <b class="buy">+1.83亿</b>　→　席位净买入 <b class="buy">+1.83亿</b>（1只）</div>
+<div style="font-size:12.5px;color:var(--dim);margin-top:4px;">单票重仓，<b class="hl">与方新侠、深股通共同构成万科A的三大买方</b>，是万科A涨停的核心封板资金。</div>
+</div>
+<div class="youzi">
+<div class="who">作手新一 <span class="seat">国泰海通证券 南京太平南路营业部</span></div>
+<div class="act"><span class="pill grn">主卖</span> 澳洋健康(002172) <b class="sell">-0.31亿</b>　→　席位净卖出 <b class="sell">-0.31亿</b>（1只）</div>
+<div style="font-size:12.5px;color:var(--dim);margin-top:4px;">题材首板+龙头接力型游资，今日操作偏谨慎，<b>仅在澳洋健康上减仓</b>，未主动出击新题材。</div>
+</div>
+<div class="youzi">
+<div class="who">成都系 <span class="seat">华泰证券 成都蜀金路营业部</span></div>
+<div class="act"><span class="pill red">主买</span> 高争民爆(002827) <b class="buy">+0.39亿</b>　·　<span class="pill grn">卖出</span> 华之杰(603400) <b class="sell">-0.15亿</b>　→　席位净买入 <b class="buy">+0.24亿</b>（2只）</div>
+<div style="font-size:12.5px;color:var(--dim);margin-top:4px;">低位首板、题材挖掘型，<b class="hl">抄底跌停的民爆/西藏基建股高争民爆</b>（机构同日也买入 +0.32亿）。</div>
+</div>
+<div class="youzi">
+<div class="who">拉萨军团 + 北向资金 <span class="seat">东方财富拉萨系营业部 / 深股通专用</span></div>
+<div class="act">拉萨团结路第一 净买 <b class="buy">+1.13亿</b>（12笔，主买力勤资源新股、内蒙新华）　·　深股通专用 净买 <b class="buy">+2.21亿</b>（17笔：我爱我家 +1.23亿、万科A +0.91亿、康强电子 +0.33亿）</div>
+<div style="font-size:12.5px;color:var(--dim);margin-top:4px;"><b class="hl">北向资金今日明显加仓地产链</b>（我爱我家、万科A），与游资形成共振；拉萨系则在新股力勤资源上大额参与。</div>
+</div>
+<div class="youzi">
+<div class="who">外资投行席位 <span class="seat">高盛 / 瑞银 / 摩根大通等 · 本日集体净卖出</span></div>
+<div class="act">高盛(中国)上海世纪大道 净卖 <b class="sell">-1.55亿</b>（29笔）：江淮汽车 -1.89亿、近岸蛋白 -0.52亿、康希诺 -0.31亿</div>
+<div style="font-size:12.5px;color:var(--dim);margin-top:4px;"><b class="hl">高盛在江淮汽车上是宁波桑田路的同向卖方</b>，外资席位在整车与高位医药股上集体减仓，与内资游资的多头形成对冲。</div>
+</div>
+</div>
+<div class="card"><h2>🔥 龙虎榜净买入 TOP 15 <span class="cnt">按榜单净买入额排序</span></h2><table>
+<tr><th>#</th><th>个股</th><th class="num">涨跌幅</th><th class="num">榜单净买</th><th class="num">买入额</th><th>上榜原因 / 概念</th></tr>
+<tr><td><span class="rank">1</span></td><td><span class="nm">力勤资源</span><br><span class="code">001246.SZ</span></td><td class="num pos">+206.59%</td><td class="num buy">+5.04亿</td><td class="num" style="color:var(--dim)">7.46亿</td><td><span class="pill gold">次新股·镍钴资源</span> <span style="font-size:11.5px;color:var(--dim)">西藏自治区资金买入，成功率32.48%</span></td></tr>
+<tr><td><span class="rank">2</span></td><td><span class="nm">华是科技</span><br><span class="code">301218.SZ</span></td><td class="num pos">+15.84%</td><td class="num buy">+4.47亿</td><td class="num" style="color:var(--dim)">11.01亿</td><td><span class="pill gold">智慧城市·政企数字化</span> <span style="font-size:11.5px;color:var(--dim)">4家机构买入，成功率30.32%</span></td></tr>
+<tr><td><span class="rank">3</span></td><td><span class="nm">襄阳轴承</span><br><span class="code">000678.SZ</span></td><td class="num pos">+9.98%</td><td class="num buy">+4.23亿</td><td class="num" style="color:var(--dim)">7.83亿</td><td><span class="pill gold">轴承·机器人/风电</span> <span style="font-size:11.5px;color:var(--dim)">1家机构买入，成功率42.18%</span></td></tr>
+<tr><td><span class="rank">4</span></td><td><span class="nm">滨江集团</span><br><span class="code">002244.SZ</span></td><td class="num pos">+7.19%</td><td class="num buy">+2.26亿</td><td class="num" style="color:var(--dim)">8.44亿</td><td><span class="pill blue">地产链·杭州龙头</span> <span style="font-size:11.5px;color:var(--dim)">4家机构买入，成功率37.67%</span></td></tr>
+<tr><td><span class="rank">5</span></td><td><span class="nm">我爱我家</span><br><span class="code">000560.SZ</span></td><td class="num neg">-1.60%</td><td class="num buy">+1.71亿</td><td class="num" style="color:var(--dim)">4.65亿</td><td><span class="pill blue">房产中介·地产链</span> <span style="font-size:11.5px;color:var(--dim)">3家机构卖出，成功率37.76%</span></td></tr>
+<tr><td><span class="rank">6</span></td><td><span class="nm">南华生物</span><br><span class="code">000504.SZ</span></td><td class="num pos">+10.01%</td><td class="num buy">+1.63亿</td><td class="num" style="color:var(--dim)">4.23亿</td><td><span class="pill red">医药·干细胞/生物</span> <span style="font-size:11.5px;color:var(--dim)">2家机构买入，成功率35.83%</span></td></tr>
+<tr><td><span class="rank">7</span></td><td><span class="nm">近岸蛋白</span><br><span class="code">688137.SH</span></td><td class="num pos">+13.47%</td><td class="num buy">+1.55亿</td><td class="num" style="color:var(--dim)">121.98亿</td><td><span class="pill red">医药·mRNA原料</span> <span style="font-size:11.5px;color:var(--dim)">普通席位买入，成功率40.91%</span></td></tr>
+<tr><td><span class="rank">8</span></td><td><span class="nm">康希诺</span><br><span class="code">688185.SH</span></td><td class="num pos">+20.00%</td><td class="num buy">+1.32亿</td><td class="num" style="color:var(--dim)">6.22亿</td><td><span class="pill red">医药·疫苗</span> <span style="font-size:11.5px;color:var(--dim)">买一主买，成功率43.23%</span></td></tr>
+<tr><td><span class="rank">9</span></td><td><span class="nm">新华传媒</span><br><span class="code">600825.SH</span></td><td class="num pos">+9.99%</td><td class="num buy">+0.92亿</td><td class="num" style="color:var(--dim)">1.29亿</td><td><span class="pill gold">传媒·财联社资产注入</span> <span style="font-size:11.5px;color:var(--dim)">上海资金买入，成功率55.39%</span></td></tr>
+<tr><td><span class="rank">10</span></td><td><span class="nm">古越龙山</span><br><span class="code">600059.SH</span></td><td class="num pos">+10.04%</td><td class="num buy">+0.86亿</td><td class="num" style="color:var(--dim)">1.95亿</td><td><span class="pill gold">黄酒·消费</span> <span style="font-size:11.5px;color:var(--dim)">普通席位买入，成功率45.30%</span></td></tr>
+<tr><td><span class="rank">11</span></td><td><span class="nm">万科A</span><br><span class="code">000002.SZ</span></td><td class="num pos">+4.41%</td><td class="num buy">+0.71亿</td><td class="num" style="color:var(--dim)">6.89亿</td><td><span class="pill blue">地产链·龙头</span> <span style="font-size:11.5px;color:var(--dim)">2家机构买入，成功率38.36%</span></td></tr>
+<tr><td><span class="rank">12</span></td><td><span class="nm">上海洗霸</span><br><span class="code">603200.SH</span></td><td class="num pos">+10.01%</td><td class="num buy">+0.71亿</td><td class="num" style="color:var(--dim)">1.69亿</td><td><span class="pill gold">环保·钠电</span> <span style="font-size:11.5px;color:var(--dim)">普通席位买入，成功率41.71%</span></td></tr>
+<tr><td><span class="rank">13</span></td><td><span class="nm">跨境通</span><br><span class="code">002640.SZ</span></td><td class="num neg">-0.76%</td><td class="num buy">+0.47亿</td><td class="num" style="color:var(--dim)">1.63亿</td><td><span class="pill gold">跨境电商</span> <span style="font-size:11.5px;color:var(--dim)">西藏自治区资金卖出，成功率24.60%</span></td></tr>
+<tr><td><span class="rank">14</span></td><td><span class="nm">金地集团</span><br><span class="code">600383.SH</span></td><td class="num pos">+7.45%</td><td class="num buy">+0.47亿</td><td class="num" style="color:var(--dim)">1.86亿</td><td><span class="pill blue">地产链</span> <span style="font-size:11.5px;color:var(--dim)">1家机构买入，成功率43.69%</span></td></tr>
+<tr><td><span class="rank">15</span></td><td><span class="nm">新亚制程</span><br><span class="code">002388.SZ</span></td><td class="num pos">+10.04%</td><td class="num buy">+0.41亿</td><td class="num" style="color:var(--dim)">2.67亿</td><td><span class="pill grn">电子制程·半导体</span> <span style="font-size:11.5px;color:var(--dim)">4家机构买入，成功率25.53%</span></td></tr>
+</table></div>
+<div class="card"><h2>🏛️ 营业部净买入 TOP 12 <span class="cnt">席位维度 · 已剔除投资者分类行</span></h2><table>
+<tr><th>#</th><th>营业部</th><th class="num">席位净额</th></tr>
+<tr><td><span class="rank">1</span></td><td>国泰海通证券股份有限公司北京知春路证券营业部</td><td class="num buy">+4.2081亿</td></tr>
+<tr><td><span class="rank">2</span></td><td>国投证券股份有限公司嘉兴嘉善施家南路证券营业部</td><td class="num buy">+2.5782亿</td></tr>
+<tr><td><span class="rank">3</span></td><td>国信证券股份有限公司浙江互联网分公司</td><td class="num buy">+2.5156亿</td></tr>
+<tr><td><span class="rank">4</span></td><td>国泰海通证券股份有限公司三亚迎宾路证券营业部</td><td class="num buy">+1.8346亿</td></tr>
+<tr><td><span class="rank">5</span></td><td>招商证券股份有限公司深圳科技园高新南一道证券营业部</td><td class="num buy">+1.5849亿</td></tr>
+<tr><td><span class="rank">6</span></td><td>东方财富证券股份有限公司拉萨团结路第一证券营业部</td><td class="num buy">+1.1285亿</td></tr>
+<tr><td><span class="rank">7</span></td><td>中信证券股份有限公司西安朱雀大街证券营业部</td><td class="num buy">+1.0721亿</td></tr>
+<tr><td><span class="rank">8</span></td><td>国泰海通证券股份有限公司成都龙腾东路证券营业部</td><td class="num buy">+1.0576亿</td></tr>
+<tr><td><span class="rank">9</span></td><td>国泰海通证券股份有限公司总部</td><td class="num buy">+0.9559亿</td></tr>
+<tr><td><span class="rank">10</span></td><td>平安证券股份有限公司浙江分公司</td><td class="num buy">+0.8513亿</td></tr>
+<tr><td><span class="rank">11</span></td><td>东方财富证券股份有限公司山南香曲东路证券营业部</td><td class="num buy">+0.7632亿</td></tr>
+<tr><td><span class="rank">12</span></td><td>平安证券股份有限公司济南解放路证券营业部</td><td class="num buy">+0.6209亿</td></tr>
+</table>
+<h2 style="margin-top:22px">🏛️ 营业部净卖出 TOP 8</h2><table>
+<tr><th>#</th><th>营业部</th><th class="num">席位净额</th></tr>
+<tr><td><span class="rank">1</span></td><td>国盛证券股份有限公司宁波桑田路证券营业部</td><td class="num sell">-5.2616亿</td></tr>
+<tr><td><span class="rank">2</span></td><td>高盛(中国)证券有限责任公司上海浦东新区世纪大道证券营业部</td><td class="num sell">-1.5472亿</td></tr>
+<tr><td><span class="rank">3</span></td><td>华福证券股份有限公司南京胜太路证券营业部</td><td class="num sell">-1.4438亿</td></tr>
+<tr><td><span class="rank">4</span></td><td>申万宏源西部证券有限公司石河子北二路证券营业部</td><td class="num sell">-1.4362亿</td></tr>
+<tr><td><span class="rank">5</span></td><td>华泰证券股份有限公司天津河东金茂广场证券营业部</td><td class="num sell">-1.0842亿</td></tr>
+<tr><td><span class="rank">6</span></td><td>国泰海通证券股份有限公司湛江万豪世家证券营业部</td><td class="num sell">-1.0094亿</td></tr>
+<tr><td><span class="rank">7</span></td><td>东方财富证券股份有限公司拉萨金融城南环路证券营业部</td><td class="num sell">-0.7600亿</td></tr>
+<tr><td><span class="rank">8</span></td><td>招商证券股份有限公司北京安外大街证券营业部</td><td class="num sell">-0.7222亿</td></tr>
+</table></div>
+<div class="card"><h2>🎯 题材热度分析</h2><table>
+<tr><th>题材方向</th><th>代表上榜个股</th><th>热度</th><th>持续性判断</th></tr>
+<tr><td><b class="hl">医药 / 创新药 / CRO</b></td>
+<td>昭衍新药(首板·封单2.22亿)、康希诺(20cm)、美诺华、贝瑞基因、近岸蛋白、南华生物、泰诺麦博、南模生物、信诺维、万邦医药</td>
+<td><span class="pill red">高</span></td>
+<td>十五五医药工业规划 + CXO订单回暖 + ESMO年会数据催化，<b>基本面+估值双修复</b>，机构与游资共振，持续性最强，但部分个股位置已高</td></tr>
+<tr><td><b class="hl">地产链</b></td>
+<td>万科A、滨江集团、金地集团、深物业A(3连板)、陆家嘴、信达地产、我爱我家、华发股份</td>
+<td><span class="pill blue">高</span></td>
+<td>购房贷款贴息政策发酵，<b>机构+北向+游资三方合力买入龙头</b>，政策driven持续性强但需防高位兑现</td></tr>
+<tr><td><b class="hl">轴承 / 机器人 / 工业母机</b></td>
+<td>襄阳轴承(4连板)、宁波东力、洛轴股份、松原安全、九阳股份(3连板·人形机器人)</td>
+<td><span class="pill gold">中高</span></td>
+<td>人形机器人+风电轴承景气，但<b>机构在洛轴/宁波东力/松原上净卖</b>，属游资主导，追高风险大</td></tr>
+<tr><td><b class="hl">传媒 / 重组</b></td>
+<td>新华传媒(7连板)、龙版传媒(首板)、内蒙新华(-8.49%)</td>
+<td><span class="pill gold">中</span></td>
+<td>新华传媒为<b>财联社资产注入重组</b>（拟发股收购界面财联社100%股权）7连板龙头，但内蒙新华等高位股跳水，<b>板块内部分化极大</b></td></tr>
+<tr><td><b class="hl">汽车整车</b></td>
+<td>江淮汽车(多空对决)、广汽集团(重组复牌)</td>
+<td><span class="pill gold">中</span></td>
+<td>广汽收购一汽丰田重组催化，<b>江淮汽车成多空主战场</b>（知春路+嘉善买 vs 桑田路+高盛卖）</td></tr>
+<tr><td><b class="hl">食品饮料 / 酿酒</b></td>
+<td>古越龙山、均瑶健康(2连板)、阳光乳业、金健米业(-1.65%)</td>
+<td><span class="pill gray">中低</span></td>
+<td>黄酒/乳业轮动补涨，缺乏强催化，<b>金健米业高位跳水</b>显示持续性弱</td></tr>
+<tr><td><b class="hl">半导体 / 电子</b></td>
+<td>康强电子(-8.74%)、协和电子(跌停)、澳弘电子(跌停)、五方光电</td>
+<td><span class="pill gray">低</span></td>
+<td>受科创50 -2.51%拖累，<b>PCB/元件方向集体调整</b>，机构净卖为主，短期回避</td></tr>
+</table></div>
+<div class="card"><h2>📈 连板梯队 <span class="cnt">涨停池 · 最高标 7 连板</span></h2><table>
+<tr><th>高度</th><th>个股</th><th class="num">涨跌幅</th><th class="num">封单</th><th class="num">换手</th><th>题材</th></tr>
+<tr><td><span class="pill red">7板</span></td><td><span class="nm">新华传媒</span><br><span class="code">600825</span></td><td class="num pos">+9.99%</td><td class="num" style="color:var(--dim)">19.88亿</td><td class="num">1.3%</td><td><span class="pill gold">传媒·财联社资产注入</span></td></tr>
+<tr><td><span class="pill red">4板</span></td><td><span class="nm">襄阳轴承</span><br><span class="code">000678</span></td><td class="num pos">+9.98%</td><td class="num" style="color:var(--dim)">0.67亿</td><td class="num">19.7%</td><td><span class="pill gold">轴承·机器人/风电</span></td></tr>
+<tr><td><span class="pill gold">3板</span></td><td><span class="nm">九阳股份</span><br><span class="code">002242</span></td><td class="num pos">+10.04%</td><td class="num" style="color:var(--dim)">1.65亿</td><td class="num">4.6%</td><td><span class="pill gray">—</span></td></tr>
+<tr><td><span class="pill gold">3板</span></td><td><span class="nm">时代万恒</span><br><span class="code">600241</span></td><td class="num pos">+9.95%</td><td class="num" style="color:var(--dim)">1.42亿</td><td class="num">2.6%</td><td><span class="pill gray">—</span></td></tr>
+<tr><td><span class="pill gold">3板</span></td><td><span class="nm">善水科技</span><br><span class="code">301190</span></td><td class="num pos">+20.01%</td><td class="num" style="color:var(--dim)">1.06亿</td><td class="num">8.0%</td><td><span class="pill gold">分散染料·化工</span></td></tr>
+<tr><td><span class="pill gold">3板</span></td><td><span class="nm">深物业A</span><br><span class="code">000011</span></td><td class="num pos">+9.97%</td><td class="num" style="color:var(--dim)">0.40亿</td><td class="num">17.1%</td><td><span class="pill blue">地产链·深圳国资</span></td></tr>
+<tr><td><span class="pill gold">2板</span></td><td><span class="nm">紫竹高科</span><br><span class="code">002058</span></td><td class="num pos">+10.02%</td><td class="num" style="color:var(--dim)">0.69亿</td><td class="num">1.8%</td><td><span class="pill gold">小盘·2连板</span></td></tr>
+<tr><td><span class="pill gold">2板</span></td><td><span class="nm">园林股份</span><br><span class="code">605303</span></td><td class="num pos">+10.02%</td><td class="num" style="color:var(--dim)">1.75亿</td><td class="num">0.1%</td><td><span class="pill gold">园林·装饰</span></td></tr>
+<tr><td><span class="pill gold">2板</span></td><td><span class="nm">均瑶健康</span><br><span class="code">605388</span></td><td class="num pos">+9.97%</td><td class="num" style="color:var(--dim)">0.77亿</td><td class="num">1.9%</td><td><span class="pill gold">食品饮料·乳业</span></td></tr>
+<tr><td><span class="pill gold">2板</span></td><td><span class="nm">传艺科技</span><br><span class="code">002866</span></td><td class="num pos">+10.03%</td><td class="num" style="color:var(--dim)">0.35亿</td><td class="num">18.7%</td><td><span class="pill grn">消费电子·2连板</span></td></tr>
+<tr><td><span class="pill gold">2板</span></td><td><span class="nm">亚邦股份</span><br><span class="code">603188</span></td><td class="num pos">+9.98%</td><td class="num" style="color:var(--dim)">0.26亿</td><td class="num">5.8%</td><td><span class="pill gold">染料·化工</span></td></tr>
+<tr><td><span class="pill gold">2板</span></td><td><span class="nm">上海洗霸</span><br><span class="code">603200</span></td><td class="num pos">+10.01%</td><td class="num" style="color:var(--dim)">0.48亿</td><td class="num">13.9%</td><td><span class="pill gold">环保·钠电</span></td></tr>
+</table>
+<p style="font-size:12.8px;color:var(--dim);margin:12px 0 0;">
+<b class="hl">市场最高标：新华传媒 7 连板</b>（封单 19.88 亿、换手仅 1.3%，惜售明显），驱动为<b>财联社资产注入重组</b>；
+次高标 襄阳轴承 4 连板（轴承/机器人）。3 连板梯队：九阳股份（人形机器人）、时代万恒、善水科技（分散染料）、深物业A（地产·深圳国资）。
+<b class="hl">梯队结构：最高标 7 板 → 4 板 → 3 板 4 只 → 2 板 7 只 → 首板 40 只</b>，高度集中在传媒重组与地产/机器人，但首板数量多而连板断层明显，<b>情绪处于「高标孤军、补涨扩散」的分化阶段</b>。
+</p></div>
+<div class="card"><h2>🧭 游资情绪判断 &amp; 对中长线持仓的启示</h2>
+<ul>
+<li><b class="hl">游资活跃度：中高。</b>榜单净买入 +17.4 亿、净买入个股 {n_up} 只显著多于净卖出 {n_dn} 只，但高标仅新华传媒（7板）孤军突出，
+连板梯队断层明显，说明<b>短线资金仍活跃但缺乏合力方向，以题材轮动为主</b>。</li>
+<li><b class="hl">主流方向：医药（创新药/CRO）+ 地产链。</b>医药是资金最集中、机构参与度最高的方向（昭衍新药 CRO 龙头首板封单 2.22 亿）；
+地产链获<b>机构+北向+知名游资（方新侠）三方合力</b>，是本日最有「机构属性」的主题。</li>
+<li><b class="hl">资金分歧信号：</b>江淮汽车（知春路+2.50亿、嘉善+2.58亿买 vs 桑田路-4.15亿、高盛-1.89亿卖）、万科A（三亚迎宾路/方新侠/北向买 vs 桑田路/知春路卖）
+出现顶级资金正面对决，<b>此类个股次日波动会非常大，中长线资金不宜参与追高</b>。</li>
+<li><b class="hl">对成长股持仓的启示：</b>今日<b class="hl">科创50 -2.51%、半导体/PCB 集体调整</b>，短期科技成长面临获利回吐压力；
+而地产、医药、消费等<b>低估值+政策/基本面修复方向</b>获得资金青睐。若持仓集中在半导体/AI 算力等高位成长股，
+短期需注意风格切换带来的回调风险；医药（创新药/CRO）方向上机构持续买入，<b>可作为成长持仓的再平衡方向关注</b>。</li>
+<li><b class="hl">风险提示：</b>① 高位人气股（内蒙新华、金健米业、澳弘电子、协和电子）已出现大面积跳水，<b>连板高位股接力风险急剧上升</b>；
+② 机构在多数涨停股上净卖出（五方光电、宁波东力、松原安全、康强电子），说明<b>本轮题材行情机构认可度不高，属纯游资博弈</b>；
+③ 明日为国庆节前最后一个交易日（10/1~10/8 休市），<b>长假前资金倾向于落袋为安，不宜重仓博弈强势股</b>。</li>
+</ul></div>
+<footer>
+龙虎榜游资追踪 · 数据交易日 2026-09-30 · 生成时间 2026-09-30 20:45（北京时间）<br>
+数据来源：东方财富数据中心 API（龙虎榜榜单/席位明细/机构买卖）· 东方财富 push2ex（涨停池）· 腾讯财经（指数行情）<br>
+本报告由 Hermes Agent 自动生成，仅供研究参考，不构成投资建议。
+</footer>
+</div></body></html>
