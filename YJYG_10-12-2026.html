@@ -3,237 +3,325 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A股每日复盘 2026-10-12</title>
+<title>港股每日复盘 · 2026-10-12</title>
 <style>
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body { background:#0b0f17; color:#d7dee8; font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; line-height:1.6; padding:0 0 60px; }
-  .wrap { max-width:1080px; margin:0 auto; padding:0 18px; }
-  header { background:linear-gradient(135deg,#131a26 0%,#1b2536 60%,#101826 100%); border-bottom:2px solid #223047; padding:34px 0 26px; margin-bottom:22px; }
-  h1 { font-size:27px; color:#eaf1fb; letter-spacing:1px; }
-  .sub { color:#7f8ea6; font-size:13px; margin-top:8px; }
-  .concl { background:#131b28; border-left:4px solid #3b82f6; border-radius:10px; padding:18px 20px; margin:18px 0; }
-  .concl h2 { font-size:17px; color:#7db3ff; margin-bottom:10px; }
-  .concl p { font-size:14px; color:#c2cbd8; margin-bottom:8px; }
-  .concl b { color:#ffd166; }
-  section { background:#0f1621; border:1px solid #1c2738; border-radius:12px; padding:20px 20px 18px; margin-bottom:18px; }
-  h2.sec { font-size:18px; color:#eaf1fb; margin-bottom:14px; padding-left:11px; border-left:4px solid #2f81f7; }
-  table { width:100%; border-collapse:collapse; font-size:13.5px; }
-  th { background:#172235; color:#8fa3bf; font-weight:600; text-align:left; padding:9px 10px; border-bottom:1px solid #24344c; white-space:nowrap; }
-  td { padding:8px 10px; border-bottom:1px solid #182231; }
-  tr:hover td { background:#131d2c; }
-  .up { color:#ff5c5c; } .dn { color:#22c55e; } .flat { color:#9aa7b8; }
-  .mono { font-family:"SF Mono",Consolas,monospace; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; }
-  .card { background:#131c2a; border:1px solid #1e2a3d; border-radius:10px; padding:13px 15px; }
-  .card .t { font-size:12px; color:#7f8ea6; margin-bottom:5px; }
-  .card .v { font-size:19px; font-weight:700; }
-  .card .d { font-size:12px; color:#8b9ab1; margin-top:4px; }
-  ul.news { list-style:none; }
-  ul.news li { padding:9px 0; border-bottom:1px dashed #1c2738; font-size:13.5px; color:#bcc7d6; }
-  ul.news li:last-child { border-bottom:none; }
-  .tag { display:inline-block; font-size:11px; padding:1px 8px; border-radius:20px; margin-right:8px; vertical-align:1px; }
-  .tag.pol { background:#2a2130; color:#e08bd0; border:1px solid #4a2a44; }
-  .tag.ind { background:#122a33; color:#5fd0e0; border:1px solid #1c4652; }
-  .tag.rsk { background:#33211c; color:#f0956a; border:1px solid #58301f; }
-  .tag.com { background:#16273a; color:#79b8ff; border:1px solid #234160; }
-  .rank { color:#ffd166; font-weight:700; }
-  .foot { text-align:center; color:#5c6b80; font-size:12px; margin-top:26px; }
-  .badge { display:inline-block; font-size:11.5px; padding:2px 9px; border-radius:6px; margin-left:6px; }
-  .b-star { background:#3a2b12; color:#ffd166; }
-  .b-focus { background:#122740; color:#79b8ff; }
-  .mini { font-size:12.5px; color:#8b9ab1; }
+  :root{
+    --bg:#0b0e14; --panel:#131824; --panel2:#1a2030; --line:#232b3d;
+    --txt:#e6e9f0; --sub:#8a93a8; --red:#ff4d5e; --redbg:rgba(255,77,94,.12);
+    --green:#22c55e; --greenbg:rgba(34,197,94,.12); --gold:#f5b301;
+    --blue:#4da3ff; --purple:#a78bfa;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif;line-height:1.6;padding:0 0 60px}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+  header{background:linear-gradient(135deg,#161d2e 0%,#0f1520 60%,#1a1208 100%);border-bottom:1px solid var(--line);padding:34px 0 26px;position:relative;overflow:hidden}
+  header::after{content:"";position:absolute;right:-80px;top:-80px;width:320px;height:320px;background:radial-gradient(circle,rgba(245,179,1,.16),transparent 65%)}
+  h1{font-size:30px;font-weight:800;letter-spacing:.5px}
+  h1 .dot{color:var(--gold)}
+  .meta{color:var(--sub);font-size:13px;margin-top:8px}
+  .tag{display:inline-block;background:var(--gold);color:#1a1208;font-weight:700;font-size:12px;padding:2px 10px;border-radius:20px;margin-left:10px;vertical-align:middle}
+  h2{font-size:19px;font-weight:700;margin:32px 0 14px;padding-left:12px;border-left:4px solid var(--gold);display:flex;align-items:center;gap:8px}
+  h3{font-size:15px;color:var(--blue);margin:18px 0 8px;font-weight:700}
+  .grid{display:grid;gap:14px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:860px){.g3,.g4,.g2{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .idx{position:relative}
+  .idx .nm{color:var(--sub);font-size:13px}
+  .idx .px{font-size:26px;font-weight:800;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+  .idx .ch{font-size:14px;font-weight:700}
+  .up{color:var(--red)} .down{color:var(--green)}
+  .badge{display:inline-block;font-size:11px;padding:1px 7px;border-radius:6px;font-weight:600}
+  .b-up{background:var(--redbg);color:var(--red)} .b-down{background:var(--greenbg);color:var(--green)}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--panel);border-radius:10px;overflow:hidden}
+  th{background:var(--panel2);color:var(--sub);font-weight:600;text-align:right;padding:9px 11px;font-size:12px}
+  th:first-child{text-align:left}
+  td{padding:9px 11px;text-align:right;border-top:1px solid var(--line);font-variant-numeric:tabular-nums}
+  td:first-child{text-align:left;font-weight:600}
+  tr:hover td{background:rgba(255,255,255,.02)}
+  .note{background:var(--panel2);border-left:3px solid var(--blue);border-radius:8px;padding:12px 15px;font-size:13px;color:#c3cbdb;margin:10px 0}
+  .note.warn{border-left-color:var(--gold)}
+  .note.good{border-left-color:var(--red)}
+  ul.li{list-style:none;font-size:13.5px}
+  ul.li li{padding:7px 0 7px 20px;position:relative;border-bottom:1px dashed var(--line)}
+  ul.li li:last-child{border-bottom:none}
+  ul.li li::before{content:"▸";position:absolute;left:2px;color:var(--gold)}
+  .pill{font-size:11px;padding:1px 8px;border-radius:20px;font-weight:700;margin-right:6px}
+  .p-buy{background:var(--redbg);color:var(--red)} .p-hot{background:rgba(245,179,1,.15);color:var(--gold)}
+  .p-neu{background:rgba(255,255,255,.08);color:var(--sub)} .p-avoid{background:var(--greenbg);color:var(--green)}
+  .kpi{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums}
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:var(--sub);font-size:12px;text-align:center;line-height:1.9}
 </style>
 </head>
 <body>
-<header><div class="wrap">
-  <h1>📉 A股每日复盘 · 2026年10月12日（周一）</h1>
-  <div class="sub">数据源：iFind MCP（同花顺）+ 腾讯行情 + 新浪财经 + 东方财富公开数据 ｜ 生成时间：2026-10-12 盘后 ｜ 资深公募基金经理视角</div>
-</div></header>
+<header>
+  <div class="wrap">
+    <h1>港股每日复盘 <span class="dot">·</span> 2026-10-12</h1>
+    <div class="meta">星期一 · 大金融托底、恒科探底 · 数据来源：iFind MCP / 腾讯行情 API / 港交所披露 / 公开新闻 <span class="tag">深色实战版</span></div>
+  </div>
+</header>
+
 <div class="wrap">
 
-  <div class="concl">
-    <h2>一、核心结论</h2>
-    <p>1）<b>“权重护盘、题材普跌”的高低切换日</b>：沪指 <b>-0.43%（3797.24）</b>，但深成指 <b>-2.03%</b>、创业板指 <b>-2.61%</b>、科创50 <b>-2.10%</b>、中证500 <b>-2.18%</b>；唯独 <b style="color:#22c55e">上证50 +0.43%</b> 逆市翻红，大小盘分化达 <b>3.04pct</b>（50 vs 创业板），二八极致。</p>
-    <p>2）<b>赚钱效应极差</b>：涨 <b style="color:#ff5c5c">1166</b> / 跌 <b style="color:#22c55e">4325</b>（仅 20.9% 个股上涨），平盘81；涨停仅约 48 家（东财口径）/ 跌停约 44 家（新浪全口径）。指数跌幅温和但个股杀伤剧烈。</p>
-    <p>3）<b>缩量下跌</b>：两市成交 <b>≈1.55万亿</b>（较上周五 1.90万亿 缩量约18%），量能回落至近月偏低水平，属“<b>增量撤退、存量博弈</b>”而非恐慌抛售。</p>
-    <p>4）<b>唯一主线=传媒影视/AI短剧</b>：传媒娱乐行业 <b>+1.91%</b> 领涨全市，影视院线逆市大涨（博纳影业、上海电影、新华文轩涨停）；<b style="color:#ffd166">新华传媒 10连板（上百万手封单）盘后宣布10月13日起停牌核查</b>——空间总龙头被“关小黑屋”，题材降温信号明确。周期资源（有色 -3.86%、化工 -3.60%）与科技硬件（电子器件 -3.07%）全线杀跌。</p>
+  <!-- ===== 一、大盘表现 ===== -->
+  <h2>一、大盘表现 · 银行独扛大旗，恒生科技逆势收阴</h2>
+  <div class="grid g3">
+    <div class="card idx">
+      <div class="nm">恒生指数 HSI</div>
+      <div class="px">24,271.20</div>
+      <div class="ch up">+59.85 &nbsp;+0.25%</div>
+      <div class="meta" style="margin-top:6px">高 24,455.95 · 低 24,193.30 · 成交 1,626 亿</div>
+    </div>
+    <div class="card idx">
+      <div class="nm">恒生科技指数 HSTECH</div>
+      <div class="px">4,169.57</div>
+      <div class="ch down">-28.27 &nbsp;-0.67%</div>
+      <div class="meta" style="margin-top:6px">高 4,241.07 · 低 4,157.41 · 成交 358 亿</div>
+    </div>
+    <div class="card idx">
+      <div class="nm">国企指数 HSCEI</div>
+      <div class="px">8,168.57</div>
+      <div class="ch up">+20.70 &nbsp;+0.25%</div>
+      <div class="meta" style="margin-top:6px">高 8,235.69 · 低 8,130.63 · 成交 499 亿</div>
+    </div>
   </div>
 
-  <section>
-    <h2 class="sec">二、核心指数 &amp; 量能</h2>
-    <table>
-      <tr><th>指数</th><th>代码</th><th>收盘</th><th>涨跌幅</th><th>成交额</th></tr>
-      <tr><td>上证指数</td><td class="mono mini">000001</td><td class="mono">3,797.24</td><td class="mono dn">-0.43%</td><td class="mono mini">7,149亿</td></tr>
-      <tr><td>深证成指</td><td class="mono mini">399001</td><td class="mono">12,384.87</td><td class="mono dn">-2.03%</td><td class="mono mini">8,229亿</td></tr>
-      <tr><td>创业板指</td><td class="mono mini">399006</td><td class="mono">2,963.82</td><td class="mono dn">-2.61%</td><td class="mono mini">3,923亿</td></tr>
-      <tr><td>科创50</td><td class="mono mini">000688</td><td class="mono">1,426.72</td><td class="mono dn">-2.10%</td><td class="mono mini">646亿</td></tr>
-      <tr><td>沪深300</td><td class="mono mini">000300</td><td class="mono">4,287.98</td><td class="mono dn">-0.68%</td><td class="mono mini">4,056亿</td></tr>
-      <tr><td>上证50</td><td class="mono mini">000016</td><td class="mono">2,819.41</td><td class="mono up">+0.43%</td><td class="mono mini">1,086亿</td></tr>
-      <tr><td>中证500</td><td class="mono mini">000905</td><td class="mono">7,093.02</td><td class="mono dn">-2.18%</td><td class="mono mini">2,572亿</td></tr>
-      <tr><td>中证1000</td><td class="mono mini">399852</td><td class="mono">7,021.47</td><td class="mono dn">-1.88%</td><td class="mono mini">3,102亿</td></tr>
-      <tr><td>中小100</td><td class="mono mini">399005</td><td class="mono">7,669.50</td><td class="mono dn">-1.62%</td><td class="mono mini">1,070亿</td></tr>
-    </table>
-    <p class="mini" style="margin-top:10px;">两市成交约 <b style="color:#eaf1fb">1.55 万亿元</b>（沪市 7149亿 + 深市 8229亿；新浪全市场口径 15505亿），较上周五 1.90万亿 明显缩量。指数“沪强深弱、权重强成长弱”格局清晰：创业板指距 9月30日 高点已回落约 5.5%，逼近 3000 点整数关。</p>
-  </section>
-
-  <section>
-    <h2 class="sec">三、资金面</h2>
-    <div class="grid">
-      <div class="card"><div class="t">两市成交额</div><div class="v">≈1.55万亿</div><div class="d">沪7149亿 + 深8229亿，缩量约18%</div></div>
-      <div class="card"><div class="t">涨 / 跌家数</div><div class="v"><span class="up">1166</span> / <span class="dn">4325</span></div><div class="d">平81，仅20.9%上涨</div></div>
-      <div class="card"><div class="t">涨停 / 跌停</div><div class="v"><span class="up">~48</span> / <span class="dn">~44</span></div><div class="d">跌停家数接近涨停，情绪转弱</div></div>
-      <div class="card"><div class="t">大盘 vs 小盘</div><div class="v" style="font-size:17px"><span class="up">50 +0.43%</span> / <span class="dn">创 -2.61%</span></div><div class="d">分化 3.04pct，二八极致</div></div>
-    </div>
-    <p class="mini" style="margin-top:12px;">⚠️ 口径说明：<b>北向资金实时数据自2024年8月18日起不再披露</b>，主力资金分单/行业净流入（东方财富 push2 接口）当前网络不可达，故本节以<b>龙虎榜+成交额口径</b>替代，<b>不提供分单数据</b>。</p>
-    <h3 style="font-size:14px;color:#8fa3bf;margin:14px 0 8px;">龙虎榜净买入居前（游资主导，共83只上榜）</h3>
-    <table>
-      <tr><th>股票</th><th>代码</th><th>涨跌幅</th><th>龙虎榜净买入</th><th>方向</th></tr>
-      <tr><td>莱美药业</td><td class="mono mini">300006</td><td class="mono up">+19.93%</td><td class="mono up">+3.21亿</td><td class="mini">医药/疫苗</td></tr>
-      <tr><td>天顺风能</td><td class="mono mini">002531</td><td class="mono up">+9.97%</td><td class="mono up">+2.50亿</td><td class="mini">风电</td></tr>
-      <tr><td>吉视传媒</td><td class="mono mini">601929</td><td class="mono up">+10.00%</td><td class="mono up">+1.85亿</td><td class="mini">传媒/广电</td></tr>
-      <tr><td>掌阅科技</td><td class="mono mini">603533</td><td class="mono up">+9.98%</td><td class="mono up">+1.54亿</td><td class="mini">传媒/在线阅读</td></tr>
-      <tr><td>新华都</td><td class="mono mini">002264</td><td class="mono up">+10.00%</td><td class="mono up">+1.18亿</td><td class="mini">商业百货</td></tr>
-      <tr><td>上海洗霸</td><td class="mono mini">603200</td><td class="mono flat">+0.17%</td><td class="mono up">+1.02亿</td><td class="mini">固态电池(分歧)</td></tr>
-      <tr><td>金安国纪</td><td class="mono mini">002636</td><td class="mono dn">-10.00%</td><td class="mono up">+0.90亿</td><td class="mini">PCB(跌停抢筹)</td></tr>
-      <tr><td>金溢科技</td><td class="mono mini">002869</td><td class="mono up">+6.32%</td><td class="mono up">+0.88亿</td><td class="mini">车路云/ETC</td></tr>
-      <tr><td>东百集团</td><td class="mono mini">600693</td><td class="mono up">+10.04%</td><td class="mono up">+0.87亿</td><td class="mini">商业百货</td></tr>
-      <tr><td>博纳影业</td><td class="mono mini">001330</td><td class="mono up">+10.04%</td><td class="mono up">+0.86亿</td><td class="mini">影视</td></tr>
-      <tr><td>首航新能</td><td class="mono mini">301658</td><td class="mono up">+20.00%</td><td class="mono up">+0.84亿</td><td class="mini">光伏逆变器</td></tr>
-      <tr><td>龙版传媒</td><td class="mono mini">605577</td><td class="mono up">+10.00%</td><td class="mono up">+0.83亿</td><td class="mini">出版/传媒</td></tr>
-    </table>
-    <p class="mini" style="margin-top:10px;">注：<b>机构专用席位口径数据本次未获取（接口空返回）</b>，故无法给出机构净额，以上仅为营业部/龙虎榜净买入，请知悉。跌停股（金安国纪、金健米业-8.43%、哈药股份-10.01%）亦现身榜单，体现<b>资金分歧与出逃并存</b>。</p>
-  </section>
-
-  <section>
-    <h2 class="sec">四、市场情绪</h2>
-    <p style="font-size:13.5px;color:#bcc7d6;margin-bottom:10px;">情绪<span class="dn">明显降温</span>：涨停仅 <b class="up">约48~54家</b>、跌停 <b class="dn">约44家</b>（跌停家数逼近涨停），跌超5%个股数量激增。<b style="color:#ffd166">新华传媒（600825）达成10连板</b>（封单上百万手），成为全场唯一“高标”，<b style="color:#f0956a">但盘后公告：累计10个交易日涨停，10月13日起停牌核查</b>——空间龙头被停牌，短线题材炒作面临“<b>断板→退潮</b>”考验。</p>
-    <p style="font-size:13.5px;color:#bcc7d6;">连板梯队：<b>新华传媒10连板（停牌）</b>、九阳股份（家电，六连板，公司已回应）、德才股份（4天3板，漫剧孙公司仍亏损）、欢瑞世纪（2连板，AI短剧）。20cm方向集中于 <b>果麦文化、博汇科技、金冠电气、金丹科技、阿莱德、首航新能、莱美药业</b>——传媒出版+医药+电力设备+化工新材。</p>
-  </section>
-
-  <section>
-    <h2 class="sec">五、行业主线 TOP6</h2>
-    <table>
-      <tr><th>#</th><th>主线</th><th>代表个股 / 逻辑</th></tr>
-      <tr><td class="rank">1</td><td><b>传媒影视 / AI短剧 / 出版</b> <span class="badge b-star">⭐</span></td><td>新华传媒10连板（停牌核查）、掌阅科技+9.98%、博纳影业+10.04%、上海电影+9.98%、新华文轩+9.99%、内蒙新华/龙版传媒/新经典涨停、吉视传媒+10%、广电网络+10.14%、果麦文化+20%；板块 <span class="up">+1.91%</span>。<b>字节 PineDrama 短剧爆款+AI短剧热潮</b>为催化，影视院线逆市大涨</td></tr>
-      <tr><td class="rank">2</td><td><b>医药 / 疫苗 / 血制品</b></td><td>莱美药业+19.93%、华北制药+9.95%、翰宇药业（预告+503%~531%）；生物疫苗板块高开走强，防御+题材共振</td></tr>
-      <tr><td class="rank">3</td><td><b>华为汽车 / 整车</b></td><td><b>赛力斯+10.00%（成交26.4亿，全场最大）</b>、九阳股份（家电）连板；问界拟2027年进入欧洲、公司回购9.83亿；汽车整车板块局部异动</td></tr>
-      <tr><td class="rank">4</td><td><b>电力设备 / 风电 / 光伏</b></td><td>天顺风能+9.97%（前日跌停后反包）、首航新能+20%、金冠电气+20%、时代万恒+10.03%；风能概念 <span class="up">+0.33%</span> 逆势翻红</td></tr>
-      <tr><td class="rank">5</td><td><b>化工新材料（结构性）</b></td><td>金丹科技+20%、醋化股份+10.03%、东岳硅材（LHB）；但化工行业整体 <span class="dn">-3.60%</span>，仅个股独立行情</td></tr>
-      <tr><td class="rank">6</td><td><b>大金融 / 白酒（防御）</b></td><td>银行板块走强，中国银行、中信银行涨超2%创历史新高；贵州茅台重夺“股王”；金融行业 <span class="up">+0.99%</span>、酿酒 <span class="up">+0.98%</span>、白酒概念+1.12%</td></tr>
-    </table>
-  </section>
-
-  <section>
-    <h2 class="sec">六、龙头梯队</h2>
-    <table>
-      <tr><th>个股</th><th>代码</th><th>所属方向</th><th>表现</th><th>定位</th></tr>
-      <tr><td><b>新华传媒</b></td><td class="mono mini">600825</td><td>传媒/上海国资</td><td class="up">10连板</td><td class="mini">空间总龙头（明日停牌核查）</td></tr>
-      <tr><td><b>赛力斯</b></td><td class="mono mini">601127</td><td>华为汽车/整车</td><td class="up">+10.00%</td><td class="mini">权重级题材（成交26.4亿）</td></tr>
-      <tr><td><b>掌阅科技</b></td><td class="mono mini">603533</td><td>传媒/在线阅读</td><td class="up">+9.98%</td><td class="mini">传媒中军</td></tr>
-      <tr><td><b>莱美药业</b></td><td class="mono mini">300006</td><td>医药/疫苗</td><td class="up">+19.93%</td><td class="mini">医药20cm龙头</td></tr>
-      <tr><td><b>博纳影业</b></td><td class="mono mini">001330</td><td>影视院线</td><td class="up">+10.04%</td><td class="mini">影视龙头</td></tr>
-      <tr><td><b>天顺风能</b></td><td class="mono mini">002531</td><td>风电</td><td class="up">+9.97%</td><td class="mini">风电反包先锋</td></tr>
-      <tr><td><b>果麦文化</b></td><td class="mono mini">301052</td><td>出版/AI应用</td><td class="up">+20.01%</td><td class="mini">20cm出版弹性</td></tr>
-      <tr><td><b>首航新能</b></td><td class="mono mini">301658</td><td>光伏逆变器</td><td class="up">+20.00%</td><td class="mini">电力设备20cm</td></tr>
-    </table>
-  </section>
-
-  <section>
-    <h2 class="sec">七、板块涨跌一览</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-      <div>
-        <h3 style="font-size:14px;color:#ff5c5c;margin-bottom:8px;">领涨板块（新浪行业）</h3>
-        <table>
-          <tr><td>传媒娱乐</td><td class="mono up" style="text-align:right">+1.91%</td><td class="mini">新华传媒</td></tr>
-          <tr><td>公路桥梁</td><td class="mono up" style="text-align:right">+1.71%</td><td class="mini">山东高速</td></tr>
-          <tr><td>摩托车</td><td class="mono up" style="text-align:right">+1.14%</td><td class="mini">钱江摩托</td></tr>
-          <tr><td>金融行业</td><td class="mono up" style="text-align:right">+0.99%</td><td class="mini">中国银行</td></tr>
-          <tr><td>酿酒行业</td><td class="mono up" style="text-align:right">+0.98%</td><td class="mini">贵州茅台</td></tr>
-          <tr><td>家电行业</td><td class="mono up" style="text-align:right">+0.30%</td><td class="mini">九阳股份</td></tr>
-          <tr><td>钢铁行业</td><td class="mono up" style="text-align:right">+0.27%</td><td class="mini">宝钢股份</td></tr>
-        </table>
-      </div>
-      <div>
-        <h3 style="font-size:14px;color:#22c55e;margin-bottom:8px;">领跌板块（新浪行业）</h3>
-        <table>
-          <tr><td>陶瓷行业</td><td class="mono dn" style="text-align:right">-3.99%</td></tr>
-          <tr><td>有色金属</td><td class="mono dn" style="text-align:right">-3.86%</td></tr>
-          <tr><td>化工行业</td><td class="mono dn" style="text-align:right">-3.60%</td></tr>
-          <tr><td>次新股</td><td class="mono dn" style="text-align:right">-3.26%</td></tr>
-          <tr><td>石油行业</td><td class="mono dn" style="text-align:right">-3.17%</td></tr>
-          <tr><td>电子器件</td><td class="mono dn" style="text-align:right">-3.07%</td></tr>
-          <tr><td>化纤行业</td><td class="mono dn" style="text-align:right">-2.89%</td></tr>
-          <tr><td>机械行业</td><td class="mono dn" style="text-align:right">-2.81%</td></tr>
-          <tr><td>房地产</td><td class="mono dn" style="text-align:right">-2.80%</td></tr>
-        </table>
-      </div>
-    </div>
-    <p class="mini" style="margin-top:10px;">概念端：<span class="up">奢侈品+1.62%、白酒+1.12%、超大盘+0.98%、基金重仓+0.87%</span> 领涨（防御/抱团）；<span class="dn">宽带提速-5.21%、生物育种-5.10%、超导-4.19%、稀缺资源-4.12%、华为概念-3.97%、锂矿-3.40%、触摸屏-3.37%、5G-3.33%</span> 领跌。板块分类采用新浪口径。<b>周期资源+科技硬件是全场重灾区。</b></p>
-  </section>
-
-  <section>
-    <h2 class="sec">八、风险信号</h2>
-    <ul class="news">
-      <li>⚠️ <b>龙头停牌核查</b>：新华传媒10连板后公告10月13日起停牌核查——情绪高标被“关小黑屋”，传媒/AI短剧题材面临退潮风险，谨防补跌传导。</li>
-      <li>⚠️ <b>周期资源崩塌</b>：有色金属-3.86%、化工-3.60%、石油-3.17%、化纤-2.89%；<b>碳酸锂创年内新低、5月至今近腰斩</b>，锂矿概念-3.40%，上游资源品价格趋势性走弱。</li>
-      <li>⚠️ <b>科技硬件补跌</b>：电子器件-3.07%、电子信息-2.1%、触摸屏-3.37%、5G-3.33%；<b>韩国KOSPI日内一度跌3%</b>、SK海力士美股盘前跌超2%，海外芯片链走弱传导。</li>
-      <li>⚠️ <b>新能源车政策扰动</b>：两部门公告自2027年4月起新能源汽车出口退税率由13%下调至9%，中长期利空出口链。</li>
-      <li>⚠️ <b>个股黑天鹅</b>：金迪克20cm跌停（三价流感疫苗错过销售窗口，或触及退市警示）；百奥赛图-17.76%、*ST纳川-15.13%、C力勤-13.43%。</li>
-      <li>⚠️ <b>缩量普跌警示</b>：跌4325家、跌停44家，而成交额缩至1.55万亿——<b>缺乏增量承接</b>，指数靠权重硬撑，个股赚钱效应恶化。</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2 class="sec">九、AH联动</h2>
-    <p style="font-size:13.5px;color:#bcc7d6;">港股高开后回落：<b style="color:#eaf1fb">恒生指数 24,271.20（+0.25%）</b>、<b style="color:#eaf1fb">恒生科技 4,169.57（-0.67%）</b>（开盘曾高开0.92%/1.03%）。港股新能源车板块走强（零跑汽车涨超6%），与A股赛力斯涨停、整车异动共振；但恒生科技收跌，与A股科创50-2.10%、电子链承压方向一致。两地均为“<b>权重/政策稳、成长/科技弱</b>”结构。港交所表示延长交易时间“投资中国成为必选项”。</p>
-  </section>
-
-  <section>
-    <h2 class="sec">十、A美联动</h2>
-    <div class="grid">
-      <div class="card"><div class="t">纳斯达克（上周五收）</div><div class="v up">+0.64%</div><div class="d">27,366.17</div></div>
-      <div class="card"><div class="t">标普500（上周五收）</div><div class="v up">+0.59%</div><div class="d">7,811.54</div></div>
-      <div class="card"><div class="t">道琼斯（上周五收）</div><div class="v up">+0.83%</div><div class="d">51,654.95</div></div>
-      <div class="card"><div class="t">英伟达</div><div class="v dn">-0.52%</div><div class="d">$229.28</div></div>
-      <div class="card"><div class="t">AMD / 博通</div><div class="v dn">-2.03% / <span class="up">+0.39%</span></div><div class="d">$608.10 / $361.54</div></div>
-      <div class="card"><div class="t">中概：阿里 / 拼多多</div><div class="v up">+5.36% / +3.95%</div><div class="d">$111.37 / $81.35</div></div>
-      <div class="card"><div class="t">中概：小鹏 / 理想 / 蔚来</div><div class="v up">+3.66% / +5.87% / +4.99%</div><div class="d">新势力集体反弹</div></div>
-      <div class="card"><div class="t">特斯拉 / 亚马逊</div><div class="v up">+2.05% / +3.29%</div><div class="d">$382.70 / $262.43</div></div>
-    </div>
-    <p style="font-size:13.5px;color:#bcc7d6;margin-top:12px;">映射逻辑：① 上周五美股三大指数收涨、中概股大涨（阿里+5.36%）→ <b>但A股周一未跟随</b>，说明下跌主因是<b>内部资金撤退</b>；② AMD-2.03%、英伟达-0.52%、SK海力士盘前-2% → 半导体/PCB/光模块承压（已验证：电子器件-3.07%）；③ <b>本周美股财报周</b>（华尔街大行+台积电+芯片双巨头），台积电业绩对A股半导体链有指引；④ 特斯拉二代跑车3天后亮相，关注特斯拉链。</p>
-  </section>
-
-  <section>
-    <h2 class="sec">十一、明日策略</h2>
-    <p style="font-size:13.5px;color:#bcc7d6;margin-bottom:8px;">1）<b>控仓防守优先</b>：缩量普跌+龙头停牌，市场处于情绪退潮期，建议<b>降低仓位、减少追高</b>，等待量能与情绪的企稳信号。</p>
-    <p style="font-size:13.5px;color:#bcc7d6;margin-bottom:8px;">2）<b>主线分歧加大，警惕传媒退潮</b>：新华传媒停牌核查或引发传媒/AI短剧板块“高位断板”，短期不宜追高；若板块不崩、低位出版/影视补涨（新华文轩、上海电影、慈文传媒），可择强留意。</p>
-    <p style="font-size:13.5px;color:#bcc7d6;margin-bottom:8px;">3）<b>防御+业绩双线</b>：① 大金融/白酒/公用等高股息防御（银行创历史新高、茅台重夺股王）；② 三季报预告超预期线索——源杰科技（Q3+579%~660%）、联讯仪器（+1866%~2073%）、奥来德（+442%~538%）、翰宇药业（+503%~531%）、北方稀土（+135%~139%）、粤桂股份（+153.7%~169.2%）。</p>
-    <p style="font-size:13.5px;color:#bcc7d6;margin-bottom:8px;">4）<b>规避方向</b>：周期资源（有色/化工/石油/煤炭，碳酸锂新低）、高位科技硬件（PCB/光模块/半导体，跟随美股）、纯概念高位连板（退潮风险）。</p>
-    <p style="font-size:13.5px;color:#bcc7d6;">5）<b>事件前瞻</b>：<b>2026金融街论坛10月19日开幕</b>，吴清将发表主题演讲、集中发布系列金融改革发展政策——政策预期或成下周情绪修复抓手；粤芯半导体10月13日上市（智光电气参股）关注晶圆代工链。</p>
-  </section>
-
-  <section>
-    <h2 class="sec">十二、极简对比表</h2>
-    <table>
-      <tr><th>维度</th><th>今日表现</th><th>信号</th></tr>
-      <tr><td>上证指数</td><td class="mono dn">3797.24 (-0.43%)</td><td>权重护盘，勉强抗跌</td></tr>
-      <tr><td>创业板指</td><td class="mono dn">2963.82 (-2.61%)</td><td>成长杀跌，逼近前低</td></tr>
-      <tr><td>两市成交</td><td class="mono">≈1.55万亿</td><td>缩量下跌，增量撤退</td></tr>
-      <tr><td>涨跌家数</td><td class="mono"><span class="up">1166</span> / <span class="dn">4325</span></td><td>普跌，赚钱效应差</td></tr>
-      <tr><td>涨停/跌停</td><td class="mono"><span class="up">~48</span> / <span class="dn">~44</span></td><td>情绪明显降温</td></tr>
-      <tr><td>最强主线</td><td class="up">传媒娱乐+1.91% / 影视出版AI短剧</td><td>唯一亮点，龙头停牌</td></tr>
-      <tr><td>最弱方向</td><td class="dn">陶瓷-3.99%/有色-3.86%/化工-3.60%</td><td>周期资源+科技硬件崩塌</td></tr>
-      <tr><td>隔夜美股</td><td class="up">纳指+0.64% / 道指+0.83%</td><td>外盘偏暖但A股未跟涨</td></tr>
-      <tr><td>AH联动</td><td class="mono">恒指+0.25% / 恒生科技-0.67%</td><td>同呈“权重稳、成长弱”</td></tr>
-      <tr><td>事件/政策</td><td class="up">金融街论坛10/19 + 三季报预告密集</td><td>政策与业绩双预期</td></tr>
-    </table>
-  </section>
-
-  <div class="foot">
-    本报告由 Hermes Agent 自动生成 · 数据来源：iFind MCP（同花顺）、腾讯行情(qt.gtimg.cn)、新浪财经(行业/概念/全市场统计)、东方财富公开数据(龙虎榜/资讯)<br>
-    ⚠️ 北向资金实时数据自2024年8月起停更；主力资金分单/机构席位数据本次未获取，报告未编造相关数据。<br>
-    免责声明：本文仅为市场复盘与数据整理，不构成任何投资建议。市场有风险，投资需谨慎。
+  <div class="note warn">
+    <b>盘口定性：高开回落、二八分化，典型的「权重护盘 + 成长杀估值」。</b>
+    恒指高开 0.92%（开 24,434.93）后震荡走低，全天在 24,193–24,456 区间窄幅运行，尾盘微涨 0.25% 收 24,271.20。<b>恒生科技逆势收跌 0.67%</b>，与恒指、国企指数走势背离，<b>盘中最低 4,157 逼近 10/8 的 52 周低点 4,065</b>。全日大市成交 <b>1,626 亿港元</b>（前一交易日 2,092 亿，缩量约 22%），<b>南向成交 631.61 亿、占比 38.8%</b>——本地资金退潮，南向成为主要定价力量。
   </div>
+
+  <div class="grid g4" style="margin-top:6px">
+    <div class="card"><div class="nm" style="color:var(--sub);font-size:12px">恒指 10 月（本月）</div><div class="kpi down">-1.39%</div><div class="meta" style="font-size:12px">24,613 → 24,271</div></div>
+    <div class="card"><div class="nm" style="color:var(--sub);font-size:12px">恒指年内（YTD）</div><div class="kpi down">-5.30%</div><div class="meta" style="font-size:12px">52周高 28,056 / 低 22,518</div></div>
+    <div class="card"><div class="nm" style="color:var(--sub);font-size:12px">恒生科技年内</div><div class="kpi down">-24.41%</div><div class="meta" style="font-size:12px">距 52周低点仅 +2.6%</div></div>
+    <div class="card"><div class="nm" style="color:var(--sub);font-size:12px">恒生AH溢价指数</div><div class="kpi up">126.43</div><div class="meta" style="font-size:12px">较 10/9 的 126.06 走阔</div></div>
+  </div>
+
+  <div class="note">
+    <b>A 股对照（今日）：上证 3,797.24 <span class="down">-0.43%</span> · 深成指 12,384.87 <span class="down">-2.03%</span> · 创业板指 2,963.82 <span class="down">-2.61%</span> · 科创50 1,426.72 <span class="down">-2.10%</span>（A 股两市成交 15,378 亿）。</b>
+    <b>港股在 A 股成长股大跌中显现明显韧性</b>——上证仅跌 0.43% 靠银行托底，深成指/创业板重挫 2%+，而恒指、国企指数逆势收红。结构上两地完全同源：<b>银行/高股息获资金避险，光通信、PCB、存储等算力硬件链集体杀跌</b>。
+  </div>
+
+  <div class="note warn">
+    <b>技术位提示：</b>恒生科技指数 52 周高 6,715.46 / 低 4,065.18，当前 4,169.57 仅高于 52 周低点 2.6%，<b>年内累计 -24.41%，仍处「底部区域反复磨底」状态</b>；需有效收复 4,241（今日高点）并站稳 4,300 才能确认反弹。恒指距 52 周高 28,056 仍有 13.5% 空间，24,455（今日高）= 短期第一压力。<b>今日缩量收阳但恒科走弱，属「指数维稳、个股失血」的弱修复，不宜视为反转。</b>
+  </div>
+
+  <!-- ===== 二、板块轮动 ===== -->
+  <h2>二、板块轮动 · 银行券商冲高，算力硬件全链塌方</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h3>▲ 强势方向</h3>
+      <ul class="li">
+        <li><b>内银 —— 今日绝对主角，集体创历史新高</b>。<b>Wind 香港银行指数 +2.05%，领涨各主要行业指数</b>。招商银行 <span class="up">+3.07%</span>、农业银行 <span class="up">+2.78%</span>、交通银行 <span class="up">+2.32%</span>、中信银行 <span class="up">+2.07%</span>、中国银行 <span class="up">+2.04%</span>、建设银行 <span class="up">+1.80%</span>、工商银行 <span class="up">+1.60%</span>、民生银行 <span class="up">+1.17%</span>。<b>工行、建行、中行齐创历史新高</b>。逻辑：券商研报推演「10 月及 12 月重要会议 = 政策加码观察窗口，若有效融资需求回升 + 息差企稳，银行盈利修复提速，迎来戴维斯双击」；叠加高股息避险属性。成交同步放大：建行 14.8 亿、中行 14.7 亿、汇丰 14.1 亿、工行 9.7 亿。</li>
+        <li><b>国际金融/保险</b>：汇丰控股 <span class="up">+2.00%</span>、友邦保险 <span class="up">+0.91%</span>（<b>南向净买入 7.29 亿，居第二位</b>）、中国人寿 +0.38%。</li>
+        <li><b>软件 / AI 应用（独立行情）</b>：金山软件 <span class="up">+3.83%</span>、金蝶国际 <span class="up">+3.45%</span>——在恒科整体走弱中逆势上攻，属国产化 + AI Agent 落地叙事，与硬件链脱钩。</li>
+        <li><b>电商 / 互联网平台</b>：网易 <span class="up">+2.89%</span>（成交 16.7 亿）、京东集团-SW <span class="up">+2.75%</span>、阿里巴巴-W <span class="up">+1.12%</span>（成交 50.7 亿，居第二）、美团 +0.42%、腾讯 +0.24%（成交 59.8 亿，居首）。<b>大型平台扛住恒科，小平台失血</b>。</li>
+        <li><b>创新药（Biotech 局部）</b>：复宏汉霖 <span class="up">+3.35%</span>、康诺亚-B <span class="up">+2.04%</span>、百济神州 +1.24%、科伦博泰生物 +1.17%。但 CXO 与商业平台走弱（详见弱势方向），板块内部严重分化。</li>
+        <li><b>汽车（结构爆发）</b>：<b>赛力斯 H 股 09927 <span class="up">+15.22%</span></b>（盘中最高 40.20 / 一度涨超 19%，成交 4.10 亿港元），A 股同步涨停——同日公司披露已累计回购 1,753.57 万股、耗资 9.83 亿元（占总股本 1.01%）。行业面：小鹏 +0.37%、理想 +0.54%、蔚来 +0.15% 高位滞涨，<b>资金从「新能源车新势力」切向「华系（赛力斯）」</b>。</li>
+        <li><b>集运</b>：东方海外国际 <span class="up">+4.38%</span>、中远海控 +0.17%——运价与地缘扰动对冲下逆势走强。</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>▼ 弱势方向</h3>
+      <ul class="li">
+        <li><b>光通信 / 算力硬件 —— 全线塌方，导火索是 FCC 潜在限制</b>。<b>长飞光纤光缆 <span class="down">-7.25%</span></b>（南向净卖出 5.70 亿，居首）、<b>京信通信 -5.03%</b>、建滔积层板（南向净卖出 3.48 亿）。研报推演：摩根士丹利推测 <b>FCC（美国联邦通信委员会）或自 3.2T 光模块起限制 AI 光学器件，要求美国物料价值占比 &gt; 65%</b>；花旗调研 60 余家欧美机构投资者后发现，<b>美方因 FCC 担忧更偏好本土光学企业</b>；东吴证券提示 <b>FCC 限制最早 10 月分阶段推进、10 月 29 日召开下一次公开会议</b>。<b>这是典型的政策/地缘扰动型杀跌，而非业绩问题</b>（同期 A 股光模块龙头业绩预告仍在暴增）。</li>
+        <li><b>半导体制造 / 设备</b>：华虹宏力 <span class="down">-4.97%</span>（成交 17.2 亿，南向关注）、中芯国际 <span class="down">-2.52%</span>（成交 24.3 亿，<b>南向净卖出 4.34 亿</b>）、上海复旦 -1.92%、ASMPT -0.37%。光学链：舜宇光学科技 <span class="down">-2.81%</span>、比亚迪电子 -1.55%。AI 硬件：联想集团 -1.52%、地平线机器人-W <span class="down">-2.92%</span>、优必选 <span class="down">-5.64%</span>。</li>
+        <li><b>黄金珠宝 / 贵金属 —— 高位杀跌</b>：<b>老铺黄金 <span class="down">-7.89%</span></b>（成交 6.5 亿；公司启动上市以来首次产品迭代降价，花旗下调其目标价及盈利预测）、周大福 <span class="down">-4.11%</span>、山东黄金 <span class="down">-3.43%</span>。金价高位回调 + 龙头降价引发估值重估，是今日最「杀」的一条线。</li>
+        <li><b>消费 / 医美 / 免税</b>：安踏体育 <span class="down">-2.13%</span>、中国中免 -1.73%、百胜中国 -1.76%、巨子生物 <span class="down">-3.27%</span>。</li>
+        <li><b>CXO 与生物药平台</b>：复星医药 <span class="down">-3.41%</span>、药明生物 <span class="down">-2.23%</span>（成交 13.4 亿，<b>但南向净买入 0.80 亿，呈「价跌量买」</b>）、康方生物 -1.74%、君实生物 -1.76%、药明康德 -0.10%。</li>
+        <li><b>能源 / 油运</b>：中国神华 -0.50%（A 股 +2.02%，两地背离）、中国石油股份 +0.25% 勉强收红；油运 中远海能 <span class="down">-4.88%</span>、太平洋航运 -1.67%。</li>
+        <li><b>权重杀跌个股</b>：<b>小米集团-W <span class="down">-5.55%</span></b>（成交 45.4 亿，回吐上周五 +9% 的大部分涨幅，但南向仍净买入 9.74 亿居首）、快手-W <span class="down">-2.79%</span>、百度集团-W -1.45%。另有极端个案：<b>真健康医疗单日 -50.41%</b>（两日累计跌 67%，市值自高点 316 亿港元缩至 32 亿），新股炒作风险暴露。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== 三、资金流向 ===== -->
+  <h2>三、资金流向 · 南向净买入 26.03 亿，占大市成交近 39%</h2>
+  <div class="grid g4">
+    <div class="card"><div style="color:var(--sub);font-size:12px">南向资金净买入</div><div class="kpi up">+26.03亿</div><div class="meta" style="font-size:12px">港元（前一交易日 -？亿元级波动）</div></div>
+    <div class="card"><div style="color:var(--sub);font-size:12px">港股通（沪）净买入</div><div class="kpi up">+19.55亿</div><div class="meta" style="font-size:12px">买入 213.5亿 / 卖出 193.9亿</div></div>
+    <div class="card"><div style="color:var(--sub);font-size:12px">港股通（深）净买入</div><div class="kpi up">+6.49亿</div><div class="meta" style="font-size:12px">买入 115.3亿 / 卖出 108.9亿</div></div>
+    <div class="card"><div style="color:var(--sub);font-size:12px">南向成交 / 大市成交</div><div class="kpi">631.6 / 1626亿</div><div class="meta" style="font-size:12px">南向占比 38.8%（定价权高位）</div></div>
+  </div>
+  <div class="note warn">
+    <b>结构解读：净买入回暖但「买消费科技、卖光模块」的调仓特征极强。</b>
+    南向在恒指微涨、恒科下跌的分化行情中仍净流入 26.03 亿港元，<b>沪市通道（+19.55 亿）是主力</b>。方向上看：
+    <b>净买入前三位</b>——小米集团-W <b>+9.74 亿</b>（越跌越买，逆势博反弹）、友邦保险 <b>+7.29 亿</b>（保险高股息）、药明生物 <b>+0.80 亿</b>（价跌量买）；
+    <b>净卖出前三位</b>——长飞光纤光缆 <b>-5.70 亿</b>、中芯国际 <b>-4.34 亿</b>、建滔积层板 <b>-3.48 亿</b>，<b>三条全部落在光通信/PCB/半导体硬件链上</b>，与 FCC 扰动完全对应。
+    <b>南北向对照：</b>北向方面沪股通成交 1,174.5 亿元、深股通成交 1,305.7 亿元（合计 2,480 亿，净流向已不披露）。
+    <b>上周回顾：</b>南向单周净买入腾讯 21.93 亿、阿里 4.66 亿，而小米 -4.89 亿、长飞 -9.86 亿、中芯 -6.67 亿——<b>今日小米/长飞的买卖方向恰好与上周相反，显示短线资金在做「反向轮动」</b>。
+  </div>
+
+  <!-- ===== 四、权重股与成交榜 ===== -->
+  <h2>四、权重股与成交榜 · 腾讯阿里稳、小米重挫、银行放量</h2>
+  <table>
+    <tr><th>个股</th><th>收盘价(港元)</th><th>涨跌幅</th><th>成交额(亿港元)</th><th>简评</th></tr>
+    <tr><td>腾讯控股</td><td>425.80</td><td class="up">+0.24%</td><td>59.84</td><td>全场成交王，抗跌；上周南向净买入 21.93 亿居首</td></tr>
+    <tr><td>阿里巴巴-W</td><td>108.20</td><td class="up">+1.12%</td><td>50.74</td><td>美股 ADR 周五 +5.36%，港股温和跟随</td></tr>
+    <tr><td>小米集团-W</td><td>24.52</td><td class="down">-5.55%</td><td>45.42</td><td><span class="badge b-down">领跌蓝筹</span> 回吐上周五涨幅，南向净买入 9.74 亿</td></tr>
+    <tr><td>中芯国际</td><td>56.20</td><td class="down">-2.52%</td><td>24.28</td><td>南向净卖出 4.34 亿，FCC 扰动拖累</td></tr>
+    <tr><td>友邦保险</td><td>71.90</td><td class="up">+0.91%</td><td>20.74</td><td>南向净买入 7.29 亿，保险高股息配置</td></tr>
+    <tr><td>比亚迪股份</td><td>74.35</td><td class="down">-1.65%</td><td>18.37</td><td>新势力滞涨，资金转向赛力斯</td></tr>
+    <tr><td>中国海洋石油</td><td>24.14</td><td class="up">+1.00%</td><td>17.85</td><td>油价预期上调，三桶油中独强</td></tr>
+    <tr><td>金斯瑞生物科技</td><td>42.14</td><td class="down">-0.61%</td><td>17.42</td><td>生物药平台放巨量，多空分歧极大</td></tr>
+    <tr><td>华虹宏力</td><td>89.85</td><td class="down">-4.97%</td><td>17.20</td><td>半导体二级标的跌幅最大</td></tr>
+    <tr><td>网易</td><td>199.10</td><td class="up">+2.89%</td><td>16.67</td><td>游戏+云，恒科内部最强权重</td></tr>
+    <tr><td>建设银行</td><td>9.91</td><td class="up">+1.80%</td><td>14.78</td><td><span class="badge b-up">历史新高</span> 银行放量</td></tr>
+    <tr><td>中国银行</td><td>6.25</td><td class="up">+2.04%</td><td>14.71</td><td><span class="badge b-up">历史新高</span></td></tr>
+    <tr><td>汇丰控股</td><td>148.10</td><td class="up">+2.00%</td><td>14.09</td><td>国际银行共振，10/13 起美股银行财报周</td></tr>
+    <tr><td>京东集团-SW</td><td>108.50</td><td class="up">+2.75%</td><td>11.94</td><td>电商修复，二线平台走强</td></tr>
+    <tr><td>中国平安</td><td>51.65</td><td class="down">-0.39%</td><td>11.76</td><td>保险分化，H 弱于 A（A +0.78%）</td></tr>
+  </table>
+
+  <!-- ===== 五、强势与弱势个股 ===== -->
+  <h2>五、强势与弱势个股全景</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h3>涨幅榜（主要标的）</h3>
+      <table>
+        <tr><th>个股</th><th>涨跌幅</th><th>成交额</th></tr>
+        <tr><td>赛力斯 (H)</td><td class="up">+15.22%</td><td>4.10亿</td></tr>
+        <tr><td>东方海外国际</td><td class="up">+4.38%</td><td>2.77亿</td></tr>
+        <tr><td>金山软件</td><td class="up">+3.83%</td><td>3.93亿</td></tr>
+        <tr><td>金蝶国际</td><td class="up">+3.45%</td><td>4.32亿</td></tr>
+        <tr><td>复宏汉霖</td><td class="up">+3.35%</td><td>0.74亿</td></tr>
+        <tr><td>招商银行</td><td class="up">+3.07%</td><td>4.62亿</td></tr>
+        <tr><td>网易</td><td class="up">+2.89%</td><td>16.67亿</td></tr>
+        <tr><td>农业银行</td><td class="up">+2.78%</td><td>4.00亿</td></tr>
+        <tr><td>京东集团-SW</td><td class="up">+2.75%</td><td>11.94亿</td></tr>
+        <tr><td>交通银行</td><td class="up">+2.32%</td><td>1.76亿</td></tr>
+        <tr><td>中信银行</td><td class="up">+2.07%</td><td>2.14亿</td></tr>
+        <tr><td>康诺亚-B</td><td class="up">+2.04%</td><td>1.43亿</td></tr>
+        <tr><td>中国银行</td><td class="up">+2.04%</td><td>14.71亿</td></tr>
+        <tr><td>汇丰控股</td><td class="up">+2.00%</td><td>14.09亿</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>跌幅榜（主要标的）</h3>
+      <table>
+        <tr><th>个股</th><th>涨跌幅</th><th>成交额</th></tr>
+        <tr><td>老铺黄金</td><td class="down">-7.89%</td><td>6.51亿</td></tr>
+        <tr><td>长飞光纤光缆</td><td class="down">-7.25%</td><td>22.02亿</td></tr>
+        <tr><td>优必选</td><td class="down">-5.64%</td><td>4.16亿</td></tr>
+        <tr><td>小米集团-W</td><td class="down">-5.55%</td><td>45.42亿</td></tr>
+        <tr><td>京信通信</td><td class="down">-5.03%</td><td>0.15亿</td></tr>
+        <tr><td>华虹宏力</td><td class="down">-4.97%</td><td>17.20亿</td></tr>
+        <tr><td>中远海能</td><td class="down">-4.88%</td><td>6.24亿</td></tr>
+        <tr><td>周大福</td><td class="down">-4.11%</td><td>3.73亿</td></tr>
+        <tr><td>山东黄金</td><td class="down">-3.43%</td><td>3.76亿</td></tr>
+        <tr><td>复星医药</td><td class="down">-3.41%</td><td>0.64亿</td></tr>
+        <tr><td>巨子生物</td><td class="down">-3.27%</td><td>1.28亿</td></tr>
+        <tr><td>地平线机器人-W</td><td class="down">-2.92%</td><td>2.62亿</td></tr>
+        <tr><td>舜宇光学科技</td><td class="down">-2.81%</td><td>3.41亿</td></tr>
+        <tr><td>快手-W</td><td class="down">-2.79%</td><td>9.92亿</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="note warn">
+    <b>两条「杀逻辑」主线必须分清：</b>
+    ① <b>政策/地缘型杀跌（可修复）</b>——光通信、PCB、半导体硬件链，导火索为 FCC 潜在限制，属外生冲击、非基本面恶化，且同期 A 股光模块公司业绩预告仍在暴增（如联讯仪器前三季度净利预增 1866%–2073%、源杰科技 Q3 净利同比增超 5 倍），说明<b>产业景气未变、估值与情绪先跌</b>，后续若 FCC 表态缓和存在超跌反弹机会，但 10/29 公开会议前不宜重仓抄底。
+    ② <b>基本面/价格型杀跌（需警惕）</b>——黄金珠宝链条，老铺黄金主动启动上市以来首次产品迭代降价 + 花旗下调目标价，意味着<b>前期「金价上涨 → 提价 → 毛利率扩张」的正循环被打破</b>，周大福、山东黄金同步走弱，是趋势性信号而非情绪扰动。
+  </div>
+
+  <!-- ===== 六、AH 联动 ===== -->
+  <h2>六、AH 联动 · A 股大跌 H 股抗跌，AH 溢价指数逆势走阔至 126.43</h2>
+  <div class="note">
+    今日 <b>A 股显著走弱（上证 -0.43%、深成指 -2.03%、创业板指 -2.61%、科创50 -2.10%）</b>，而 H 股由银行、平台股托底，<b>AH 溢价指数不降反升至 126.43（较 10/9 的 126.06 走阔 +0.29%）</b>——原因是 <b>A 股银行涨幅整体大于 H 股银行</b>（如建行 A +3.01% vs H +1.80%、工行 A +2.68% vs H +1.60%），银行在 AH 溢价指数中权重高，故指数上升；但港股整体表现明显好于 A 股。港元兑人民币即期 <b>0.85294</b>（美元兑人民币 6.6932）。
+  </div>
+  <table>
+    <tr><th>标的</th><th>A股涨跌</th><th>H股涨跌</th><th>AH溢价(折算后)</th><th>联动解读</th></tr>
+    <tr><td>中国平安</td><td class="up">+0.78%</td><td class="down">-0.39%</td><td>+20.9%</td><td>A 独涨，H 微跌，溢价走阔</td></tr>
+    <tr><td>招商银行</td><td class="up">+3.24%</td><td class="up">+3.07%</td><td>-6.8%</td><td><b>H 溢价</b>，两地同步强势</td></tr>
+    <tr><td>工商银行</td><td class="up">+2.68%</td><td class="up">+1.60%</td><td>+29.9%</td><td>A 涨幅更大，溢价走阔</td></tr>
+    <tr><td>建设银行</td><td class="up">+3.01%</td><td class="up">+1.80%</td><td>+33.8%</td><td>A 领先，H 创历史新高</td></tr>
+    <tr><td>中国石油</td><td class="up">+2.59%</td><td class="up">+0.25%</td><td>+41.6%</td><td>A 大涨 H 滞涨</td></tr>
+    <tr><td>中国神华</td><td class="up">+2.02%</td><td class="down">-0.50%</td><td>+31.6%</td><td><b>明显背离</b>，H 股获利回吐</td></tr>
+    <tr><td>中国人寿</td><td class="up">+1.19%</td><td class="up">+0.38%</td><td>+63.3%</td><td>高溢价，A 强 H 弱</td></tr>
+    <tr><td>中国海洋石油</td><td class="up">+0.41%</td><td class="up">+1.00%</td><td>+64.9%</td><td><b>H 强 A 弱</b>，南向偏好</td></tr>
+    <tr><td>紫金矿业</td><td class="down">-1.88%</td><td class="down">-1.09%</td><td>+8.8%</td><td>低溢价，两地同跌</td></tr>
+    <tr><td>中信证券</td><td class="up">+0.58%</td><td class="up">+0.34%</td><td>+28.4%</td><td>券商小幅修复</td></tr>
+    <tr><td>华泰证券</td><td class="up">+0.89%</td><td class="down">-0.30%</td><td>+29.1%</td><td>A 红 H 绿</td></tr>
+    <tr><td>比亚迪</td><td class="down">-0.41%</td><td class="down">-1.65%</td><td>+33.4%</td><td>H 跌幅更大</td></tr>
+    <tr><td>中国中铁</td><td class="up">+1.17%</td><td class="up">+0.31%</td><td>+57.8%</td><td>高溢价跟随</td></tr>
+    <tr><td>海螺水泥</td><td>0.00%</td><td class="down">-0.75%</td><td>+28.5%</td><td>两地平淡</td></tr>
+    <tr><td>药明康德</td><td class="up">+0.03%</td><td class="down">-0.10%</td><td>-10.9%</td><td><b>H 溢价</b>（南向长期青睐）</td></tr>
+  </table>
+  <div class="note">
+    <b>AH 操作含义：</b>在 A 股成长股系统性杀跌、港股相对抗跌的环境下，<b>「A→H 折价套利」逻辑继续有利港股</b>。两个长期 H 溢价的标的（<b>招商银行 -6.8%、药明康德 -10.9%</b>）说明南向定价权已足以支撑 H 股贵于 A 股；而极高溢价标的（中国海油 +64.9%、中国人寿 +63.3%、中国中铁 +57.8%）需注意 <b>A 股回撤时溢价收敛会放大 H 股波动</b>。
+  </div>
+
+  <!-- ===== 七、美股映射 ===== -->
+  <h2>七、美股映射 · 中概 ADR 周五普涨，今晚起六大行财报周</h2>
+  <ul class="li">
+    <li><b>上周五（10/9）美股三大指数齐涨</b>：道指 <span class="up">+0.83%</span> 收 51,654.95、纳指 <span class="up">+0.64%</span> 收 27,366.17、标普500 <span class="up">+0.59%</span> 收 7,811.54。<b>但港股今日并未跟涨</b>（恒科 -0.67%），说明周五美股情绪已在上周被消化，今日主导变量是 FCC 光模块扰动 + A 股成长股杀跌。<b>映射要点：美股强、港股科技弱，背离来自政策面而非资金面。</b></li>
+    <li><b>中概 ADR 周五集体强势</b>：阿里巴巴 <span class="up">+5.36%</span>、拼多多 <span class="up">+3.95%</span>、理想汽车 <span class="up">+5.87%</span>、蔚来 <span class="up">+4.99%</span>、小鹏汽车 <span class="up">+3.66%</span>、百度 <span class="up">+1.68%</span>、京东 <span class="up">+0.67%</span>。<b>但今日港股新势力（小鹏 +0.37% / 理想 +0.54% / 蔚来 +0.15%）几乎完全滞涨</b>，仅赛力斯独自爆发——<b>中概 ADR 的上涨正在被港股「就地变现」，追高风险上升</b>。</li>
+    <li><b>美股科技七姐妹分化</b>：亚马逊 <span class="up">+3.29%</span>、微软 <span class="up">+2.38%</span>、特斯拉 <span class="up">+2.05%</span>、谷歌 <span class="up">+0.97%</span>；但 苹果 <span class="down">-1.11%</span>、英伟达 <span class="down">-0.52%</span>、Meta <span class="down">-0.31%</span>，AMD <span class="down">-2.03%</span>、台积电 <span class="down">-1.02%</span>、美光 <span class="down">-0.66%</span>。<b>半导体承压直接解释港股硬件链的弱势</b>。另 甲骨文 <span class="up">+4.59%</span>、Palantir <span class="up">+5.17%</span>、Coinbase <span class="up">+4.30%</span>——AI 软件与加密资产强于 AI 硬件，与港股「软件（金山 +3.83% / 金蝶 +3.45%）强、硬件弱」结构完全一致。</li>
+    <li><b>今晚（10/12 美东）起的银行财报周是关键催化</b>：<b>10/13 盘前摩根大通、高盛、花旗、富国银行集中披露三季报</b>（摩根大通于美东 07:00 发布），市场关注高利率环境下净利息收入能否延续、融资成本与信用风险是否挤压盈利。<b>若财报超预期，将强化今日港股银行创新高的逻辑；若不及预期，A/H 银行可能同步回吐。</b></li>
+    <li><b>AI 资本开支担忧再现</b>：英特尔、博通 CEO 齐发警告，<b>「资金」可能成为 AI 发展的最大瓶颈</b>；同时 IREN 拿下 Anthropic 长期 AI 云端订单、德银将微软目标价由 550 上调至 600 美元——<b>AI 叙事正在从「硬件堆料」转向「算力租赁与软件变现」</b>，对港股光模块/PCB（硬件）不利、对 AI 应用/云（阿里、金山、金蝶）有利。</li>
+    <li><b>商品与地缘</b>：<b>高盛上调今年底原油价格预测，并称中东局势仍是最大变数</b>——解释今日 中海油 +1.00% 逆势走强、而油运股（中远海能 -4.88%）受运价与航线预期扰动；金价高位回调则直接压垮黄金珠宝链（老铺黄金 -7.89%）。</li>
+    <li><b>微观：微软新模型底座基于阿里 Qwen，超六成决策模型基于 Qwen 开发</b>——中国 AI 开源生态外溢效应强化，是阿里、金山、金蝶等「AI 应用/云」叙事的中长期支撑。高盛统计亦显示，AI 相关上市公司已占 A 股+港股总市值的 42%、成交额的 57%。</li>
+  </ul>
+
+  <!-- ===== 八、明日关注 ===== -->
+  <h2>八、明日关注 · 关键词</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h3>交易提示</h3>
+      <ul class="li">
+        <li><b>银行股创新高后的持续性</b>：工行/建行/中行齐创历史新高、Wind 香港银行指数 +2.05%，叠加 10/13 美股银行财报周，<b>短期需警惕「利好兑现式回吐」</b>；若明晚美银财报强，则回吐概率下降。</li>
+        <li><b>光模块/算力硬件超跌反弹窗口</b>：长飞 -7.25%、华虹 -4.97%、建滔积层板南向净卖出，属 FCC 扰动型杀跌；<b>10 月是 FCC 分阶段推进窗口、10/29 公开会议为明确节点</b>，节点前反弹高度受限，但产业景气（业绩预告暴增）不支持深度看空——<b>轻仓做「政策缓和预期」而非追空</b>。</li>
+        <li><b>小米（-5.55%）与南向的分歧</b>：南向净买入 9.74 亿 vs 股价大跌 5.55%，<b>明日能否止跌是恒科能否企稳的核心观察点</b>；若南向持续买而股价续跌，说明抛压来自外资/本地盘，恒科仍将磨底。</li>
+        <li><b>赛力斯 H（+15.22%）的次日效应</b>：A 股涨停 + H 股暴涨 + 公司回购 9.83 亿元，<b>「华系汽车」重估叙事若扩散，将带动 A/H 汽车链情绪</b>；但需注意「神秘资金搅动」性质的资金驱动行情波动极大，不追高。</li>
+        <li><b>黄金珠宝链的趋势性风险</b>：老铺黄金主动降价 + 花旗下调目标价，金价高位回调，<b>建议回避周大福、山东黄金、老铺黄金的补跌风险</b>。</li>
+        <li><b>成交结构警示</b>：大市成交缩至 1,626 亿（-22%），南向占比 38.8% 创高位——<b>本地与外资参与度下降，指数上涨完全依赖南向与权重股，广度极差</b>，反弹持续性存疑。</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>关键日历</h3>
+      <ul class="li">
+        <li><b>10/13（今晚）</b> 摩根大通、高盛、花旗、富国银行三季报 —— 全球银行股定价锚。</li>
+        <li><b>10/15</b> 第 140 届广交会开幕 —— 外贸链。</li>
+        <li><b>10/16</b> 美联储主席沃什 IMF 年会讲话（议息静默期最后发声）。</li>
+        <li><b>10/21</b> 世界智能网联汽车大会 —— 汽车 / 智驾板块。</li>
+        <li><b>10/23</b> 欧洲肿瘤内科学会（ESMO）大会 —— 创新药核心催化（药明系、百济、康方、科伦博泰、复宏汉霖）。</li>
+        <li><b>10/27–28</b> 美联储 FOMC 议息。</li>
+        <li><b>10/29 <span class="badge b-down">关键</span></b> FCC 下一次公开会议 —— 光模块/光通信/算力硬件链的核心不确定性节点。</li>
+        <li>持续跟踪：港交所 CEO 陈翊庭已披露 <b>「T+1」及多项上市优化措施将展开咨询</b>（构建多元资产生态圈），制度红利为中长期正面因子。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== 九、基金经理观点 ===== -->
+  <h2>九、基金经理观点 · 操作建议</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h3>核心判断</h3>
+      <ul class="li">
+        <li><span class="pill p-hot">主线</span><b>今日是「防御资产定价日」而非「成长定价日」。</b>银行/保险/高股息 + 软件 AI 应用构成唯一有持续资金的方向；恒生科技 -0.67%、年内 -24.41%、逼近 52 周低点，<b>科技仍在底部磨底，没有趋势性机会，只有结构性机会</b>。</li>
+        <li><span class="pill p-buy">配置</span>① <b>内银 + 保险</b>（招行、建行、工行、友邦、汇丰）——政策加码预期 + 息差企稳 + 南向偏爱 + 美股银行财报周催化，是当前最「顺势」的方向；② <b>AI 软件 / 云</b>（金山软件、金蝶国际、阿里巴巴）——受益于「硬件→软件」的 AI 叙事切换，Qwen 外溢效应是实需支撑；③ <b>大型平台</b>（腾讯、网易、京东）——抗跌、有回购、南向底仓。</li>
+        <li><span class="pill p-neu">防御</span>中国海洋石油、中国移动、中国神华（能源/运营商）提供股息安全垫；赛力斯属「事件驱动型进攻」，仅适合小仓位参与且需严格止损。</li>
+        <li><span class="pill p-avoid">回避</span>① 黄金珠宝链（老铺黄金、周大福、山东黄金）——基本面正循环被打破；② 光模块/PCB/半导体硬件（长飞光纤、建滔积层板、华虹宏力、中芯国际）——FCC 扰动未落地前不接刀，等 10/29 会议；③ 高波动次新股（真健康医疗两日 -67% 是血淋淋的教训）。</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>操作纪律</h3>
+      <ul class="li">
+        <li><b>仓位</b>：恒指缩量收阳、恒科走弱、大市成交 -22%、南向占比 38.8%——<b>广度极差的「指数维稳」行情，建议总仓位控制在 6 成以内</b>，不追涨指数、只做结构。</li>
+        <li><b>止损</b>：恒生科技若失守 4,157（今日低点）并跌破 4,065（52 周低点），<b>科技仓位应无条件减半</b>，因这意味着「底部区域」被破坏；恒指若失守 24,193（今日低点）则回到 24,000 下方震荡格局。</li>
+        <li><b>节奏</b>：① 光模块/算力硬件——<b>10/29 FCC 会议前只做反弹不做反转</b>，反弹 5%–8% 即减；② 银行——<b>创新高后分批止盈、留存高股息底仓</b>，等 10/13 美股银行财报验证；③ 创新药——<b>10/23 ESMO 大会前逢低布局</b>（复宏汉霖、百济神州、科伦博泰），这是本月确定性较高的日历催化。</li>
+        <li><b>对冲</b>：A 股成长股（创业板 -2.61%、科创50 -2.10%）跌幅远大于港股，<b>「多 H 空 A」的相对收益逻辑仍在</b>；可用港股银行/高股息对冲 A 股科技仓位。</li>
+        <li><b>一句话总结</b>：<b>今天港股的钱只认「确定性」——银行的历史新高与算力硬件的历史性杀跌，是同一枚硬币的两面；恒生科技年内 -24% 却仍无买盘，说明估值低不是买入理由，资金流向才是。</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    港股每日复盘 · 2026-10-12 · 数据来源：iFind MCP（宏观 / 资金流）/ 腾讯行情 API（指数与个股实时、K 线）/ 港交所披露 / 东方财富新闻接口 / 公开新闻<br>
+    本报告由 AI 自动生成，仅供研究参考，不构成任何投资建议。市场有风险，决策需独立。
+  </footer>
 </div>
 </body>
 </html>
