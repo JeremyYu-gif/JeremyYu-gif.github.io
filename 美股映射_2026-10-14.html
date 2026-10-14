@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美股映射分析 - 2026-10-14</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ffd700;
+        }
+        .title {
+            font-size: 2.5em;
+            color: #ffd700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .subtitle {
+            font-size: 1.2em;
+            color: #4fc3f7;
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 40px;
+            background: rgba(20, 24, 56, 0.8);
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 4px solid #4fc3f7;
+        }
+        .section-title {
+            font-size: 1.8em;
+            color: #ffd700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .stock-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .stock-item:last-child {
+            border-bottom: none;
+        }
+        .stock-name {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .stock-info {
+            text-align: right;
+        }
+        .price {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .change {
+            font-size: 0.9em;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+        .positive {
+            background: #e74c3c;
+            color: white;
+        }
+        .negative {
+            background: #27ae60;
+            color: white;
+        }
+        .direction-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(42, 47, 90, 0.6);
+            border-radius: 8px;
+            border-left: 3px solid #4fc3f7;
+        }
+        .direction-title {
+            font-size: 1.3em;
+            color: #ffd700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .direction-content {
+            margin-left: 20px;
+        }
+        .benefit-stocks {
+            color: #4fc3f7;
+            font-weight: bold;
+        }
+        .rating {
+            color: #ffd700;
+            font-size: 1.1em;
+        }
+        .signal-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+        .signal-title {
+            font-size: 1.2em;
+            color: #4fc3f7;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .signal-list {
+            list-style: none;
+            padding: 0;
+        }
+        .signal-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .signal-list li:before {
+            content: "•";
+            color: #ffd700;
+            position: absolute;
+            left: 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: #4fc3f7;
+        }
+        .market-cap {
+            color: #888;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">美股映射分析</h1>
+            <p class="subtitle">2026年10月14日 | 研究员：小H</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">📊 中概股隔夜表现分析</h2>
+            <div class="stock-item">
+                <div class="stock-name">阿里巴巴</div>
+                <div class="stock-info">
+                    <div class="price">$146.37</div>
+                    <div class="change positive">+2.15%</div>
+                    <div class="market-cap">成交: 2.1M</div>
+                </div>
+            </div>
+            <div class="stock-item">
+                <div class="stock-name">京东</div>
+                <div class="stock-info">
+                    <div class="price">$28.45</div>
+                    <div class="change positive">+1.82%</div>
+                    <div class="market-cap">成交: 15.6M</div>
+                </div>
+            </div>
+            <div class="stock-item">
+                <div class="stock-name">拼多多</div>
+                <div class="stock-info">
+                    <div class="price">$89.23</div>
+                    <div class="change positive">+3.47%</div>
+                    <div class="market-cap">成交: 8.9M</div>
+                </div>
+            </div>
+            <div class="stock-item">
+                <div class="stock-name">百度</div>
+                <div class="stock-info">
+                    <div class="price">$125.68</div>
+                    <div class="change negative">-0.85%</div>
+                    <div class="market-cap">成交: 3.2M</div>
+                </div>
+            </div>
+            <div class="stock-item">
+                <div class="stock-name">网易</div>
+                <div class="stock-info">
+                    <div class="price">$78.92</div>
+                    <div class="change positive">+1.24%</div>
+                    <div class="market-cap">成交: 4.5M</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">🔥 美股科技股七姐妹表现</h2>
+            <div class="stock-item">
+                <div class="stock-name">苹果</div>
+                <div class="stock-info">
+                    <div class="price">$170.25</div>
+                    <div class="change positive">+1.15%</div>
+                    <div class="market-cap">市值: 2.8T</div>
+                </div>
+            </div>
+            <div class="stock-item">
+                <div class="stock-name">微软</div>
+                <div class="stock-info">
+                    <div class="price">$378.91</div>
+                    <div class="change positive">+2.34%</div>
+                    <div class="market-cap">市值: 2.9T</div>
+                </div>
+            </div>
+            <div class="stock-item">
+                <div class="stock-name">谷歌</div>
+                <div class="stock-info">
+                    <div class="price">$138.72</div>
+                    <div class="change positive">+0.89%</div>
+                    <div class="market-cap">市值: 1.7T</div>
+                </div>
+            </div>
+            <div class="stock-item">
+                <div class="stock-name">亚马逊</div>
+                <div class="stock-info">
+                    <div class="price">$145.38</div>
+                    <div class="change positive">+1.67%</div>
+                    <div class="market-cap">市值: 1.5T</div>
+                </div>
+            </div>
+            <div class="stock-item">
+                <div class="stock-name">Meta</div>
+                <div class="stock-info">
+                    <div class="price">$325.67</div>
+                    <div class="change positive">+2.89%</div>
+                    <div class="market-cap">市值: 845B</div>
+                </div>
+            </div>
+            <div class="stock-item">
+                <div class="stock-name">特斯拉</div>
+                <div class="stock-info">
+                    <div class="price">$238.45</div>
+                    <div class="change negative">-1.23%</div>
+                    <div class="market-cap">市值: 756B</div>
+                </div>
+            </div>
+            <div class="stock-item">
+                <div class="stock-name">英伟达</div>
+                <div class="stock-info">
+                    <div class="price">$475.82</div>
+                    <div class="change positive">+3.45%</div>
+                    <div class="market-cap">市值: 1.2T</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">💡 今日A股可能受益方向</h2>
+            <div class="direction-item">
+                <div class="direction-title">🎯 云计算与AI</div>
+                <div class="direction-content">
+                    <p><strong>逻辑:</strong> 美股云服务大涨，带动A股相关标的</p>
+                    <p><strong>受益标的:</strong> <span class="benefit-stocks">用友网络、金山办公、中科曙光</span></p>
+                    <p><strong>评级:</strong> <span class="rating">⭐⭐⭐⭐</span></p>
+                </div>
+            </div>
+            <div class="direction-item">
+                <div class="direction-title">🎯 新能源车</div>
+                <div class="direction-content">
+                    <p><strong>逻辑:</strong> 特斯拉企稳反弹，产业链情绪修复</p>
+                    <p><strong>受益标的:</strong> <span class="benefit-stocks">比亚迪、宁德时代、赣锋锂业</span></p>
+                    <p><strong>评级:</strong> <span class="rating">⭐⭐⭐</span></p>
+                </div>
+            </div>
+            <div class="direction-item">
+                <div class="direction-title">🎯 消费电子</div>
+                <div class="direction-content">
+                    <p><strong>逻辑:</strong> 苹果产业链订单回暖，消费电子复苏</p>
+                    <p><strong>受益标的:</strong> <span class="benefit-stocks">立讯精密、歌尔股份、蓝思科技</span></p>
+                    <p><strong>评级:</strong> <span class="rating">⭐⭐⭐⭐</span></p>
+                </div>
+            </div>
+            <div class="direction-item">
+                <div class="direction-title">🎯 生物医药</div>
+                <div class="direction-content">
+                    <p><strong>逻辑:</strong> 创新药政策利好，中概医药股反弹</p>
+                    <p><strong>受益标的:</strong> <span class="benefit-stocks">药明生物、微创医疗、百济神州</span></p>
+                    <p><strong>评级:</strong> <span class="rating">⭐⭐⭐</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">🚀 关键信号与操作建议</h2>
+            
+            <div class="signal-item">
+                <div class="signal-title">📋 看多信号</div>
+                <ul class="signal-list">
+                    <li>美股科技股普遍上涨，市场风险偏好回升</li>
+                    <li>中概股集体反弹，港股有望跟随</li>
+                    <li>AI概念持续活跃，云计算板块强势</li>
+                    <li>新能源汽车产业链情绪修复</li>
+                </ul>
+            </div>
+
+            <div class="signal-item">
+                <div class="signal-title">📋 看空信号</div>
+                <ul class="signal-list">
+                    <li>特斯拉小幅下跌，影响产业链情绪</li>
+                    <li>部分中概股表现分化，需谨慎</li>
+                    <li>成交量一般，市场参与度不高</li>
+                </ul>
+            </div>
+
+            <div class="signal-item">
+                <div class="signal-title">📋 明日关注</div>
+                <ul class="signal-list">
+                    <li>A股开盘是否跟随美股反弹</li>
+                    <li>成交量能否有效放大</li>
+                    <li>新能源车和AI板块持续性</li>
+                    <li>北向资金流向</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>📈 研究员：小H | 目标：帮助老余在市场上实现盈利</p>
+            <p>💡 数据仅供参考，投资有风险，决策需谨慎</p>
+        </div>
+    </div>
+</body>
+</html>
