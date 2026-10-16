@@ -3,331 +3,385 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>美股映射分析 - 2026-10-16</title>
+<title>龙虎榜游资追踪 · 2026-10-16</title>
 <style>
-  * { box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
-    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
-    color: #e0e0e0; margin: 0; padding: 20px; line-height: 1.6;
+  :root{
+    --bg:#0b0e14; --panel:#12161f; --panel2:#171c27; --border:#232a38;
+    --txt:#dfe6f2; --mut:#8b97ad; --up:#ff4d5b; --dn:#22c55e;
+    --gold:#f5b942; --blue:#4d9fff; --purple:#a879ff; --cyan:#25d0c0;
   }
-  .container {
-    max-width: 1240px; margin: 0 auto; background: rgba(255,255,255,0.05);
-    border-radius: 15px; padding: 30px; box-shadow: 0 8px 32px rgba(0,0,0,0.35);
-  }
-  .header { text-align: center; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 2px solid #ffd700; }
-  .title { font-size: 2.3em; color: #ffd700; margin: 0 0 8px; text-shadow: 2px 2px 4px rgba(0,0,0,.5); }
-  .subtitle { font-size: 1.05em; color: #4fc3f7; }
-  .meta { font-size: .85em; color: #8b9bb4; margin-top: 8px; }
-  h2 {
-    font-size: 1.35em; color: #4fc3f7; margin: 34px 0 14px; padding-left: 12px;
-    border-left: 4px solid #ffd700;
-  }
-  h3 { font-size: 1.08em; color: #ffd700; margin: 20px 0 10px; }
-  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: .9em; }
-  th {
-    background: rgba(79,195,247,.18); color: #4fc3f7; padding: 10px 8px;
-    text-align: left; border-bottom: 2px solid rgba(79,195,247,.35); font-weight: 600;
-  }
-  td { padding: 9px 8px; border-bottom: 1px solid rgba(255,255,255,.08); }
-  tr:hover td { background: rgba(255,255,255,.04); }
-  .up { color: #ff5252; font-weight: 600; }
-  .down { color: #26c281; font-weight: 600; }
-  .flat { color: #b0bec5; }
-  .num { font-variant-numeric: tabular-nums; }
-  .card {
-    background: rgba(255,255,255,.05); border-radius: 10px; padding: 16px 18px;
-    margin: 12px 0; border-left: 4px solid #4fc3f7;
-  }
-  .card.hot { border-left-color: #ff5252; background: rgba(255,82,82,.08); }
-  .card.warn { border-left-color: #ffb300; background: rgba(255,179,0,.07); }
-  .card.good { border-left-color: #26c281; background: rgba(38,194,129,.07); }
-  .card.neutral { border-left-color: #8b9bb4; }
-  .tag { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: .8em; font-weight: 600; margin-right: 6px; }
-  .t-hot { background: rgba(255,82,82,.22); color: #ff7b7b; }
-  .t-bull { background: rgba(255,179,0,.2); color: #ffc94d; }
-  .t-watch { background: rgba(255,235,59,.18); color: #ffe94d; }
-  .t-good { background: rgba(38,194,129,.2); color: #4ddb9a; }
-  .t-neutral { background: rgba(139,155,180,.2); color: #a9b8cc; }
-  .t-avoid { background: rgba(120,144,156,.25); color: #b0bec5; }
-  .codes { font-family: ui-monospace, Menlo, monospace; font-size: .86em; color: #9fe0ff; word-break: break-all; }
-  .logic { color: #c8d3e0; font-size: .9em; }
-  .kpi { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0; }
-  .kpi > div {
-    flex: 1 1 150px; background: rgba(255,255,255,.06); border-radius: 10px;
-    padding: 12px 14px; text-align: center; border: 1px solid rgba(255,255,255,.08);
-  }
-  .kpi .k-label { font-size: .8em; color: #8b9bb4; }
-  .kpi .k-val { font-size: 1.25em; font-weight: 700; margin-top: 4px; }
-  ul { margin: 8px 0 8px 4px; padding-left: 20px; }
-  li { margin: 6px 0; }
-  .foot { margin-top: 34px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.1);
-          font-size: .78em; color: #78889e; text-align: center; }
-  .note { font-size: .82em; color: #8b9bb4; font-style: italic; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.6;padding:0 0 60px}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+  header{background:linear-gradient(135deg,#101623 0%,#1b2333 60%,#241a2b 100%);border-bottom:1px solid var(--border);padding:34px 0 26px;margin-bottom:26px}
+  h1{font-size:26px;font-weight:800;letter-spacing:.5px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  h1 .tag{font-size:12px;font-weight:600;background:rgba(245,185,66,.14);color:var(--gold);border:1px solid rgba(245,185,66,.35);padding:3px 10px;border-radius:20px}
+  .sub{color:var(--mut);font-size:13.5px;margin-top:8px}
+  .srcbar{margin-top:14px;background:rgba(77,159,255,.08);border:1px solid rgba(77,159,255,.28);border-radius:8px;padding:10px 14px;font-size:12.5px;color:#a9c4e8}
+  .srcbar b{color:var(--blue)}
+  h2{font-size:18px;font-weight:700;margin:32px 0 14px;padding-left:12px;border-left:4px solid var(--gold);display:flex;align-items:center;gap:8px}
+  h2 .en{font-size:11px;color:var(--mut);font-weight:500;letter-spacing:1px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:8px 0 4px}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+  .card .k{font-size:11.5px;color:var(--mut);letter-spacing:.5px}
+  .card .v{font-size:21px;font-weight:800;margin-top:5px;font-variant-numeric:tabular-nums}
+  .card .s{font-size:11.5px;color:var(--mut);margin-top:2px}
+  .up{color:var(--up)} .dn{color:var(--dn)} .gold{color:var(--gold)} .blue{color:var(--blue)} .cyan{color:var(--cyan)} .purple{color:var(--purple)}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--panel);border-radius:10px;overflow:hidden;border:1px solid var(--border)}
+  th{background:var(--panel2);color:var(--mut);font-weight:600;text-align:left;padding:10px 11px;font-size:12px;white-space:nowrap;border-bottom:1px solid var(--border)}
+  td{padding:9px 11px;border-bottom:1px solid rgba(35,42,56,.6);font-variant-numeric:tabular-nums}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:rgba(77,159,255,.05)}
+  .num{text-align:right;white-space:nowrap}
+  .code{color:var(--mut);font-size:12px;font-family:ui-monospace,Menlo,monospace}
+  .nm{font-weight:600}
+  .badge{display:inline-block;font-size:10.5px;padding:1px 7px;border-radius:5px;font-weight:600;white-space:nowrap}
+  .b-gold{background:rgba(245,185,66,.15);color:var(--gold);border:1px solid rgba(245,185,66,.35)}
+  .b-blue{background:rgba(77,159,255,.13);color:var(--blue);border:1px solid rgba(77,159,255,.3)}
+  .b-cyan{background:rgba(37,208,192,.13);color:var(--cyan);border:1px solid rgba(37,208,192,.3)}
+  .b-purple{background:rgba(168,121,255,.13);color:var(--purple);border:1px solid rgba(168,121,255,.3)}
+  .b-red{background:rgba(255,77,91,.12);color:var(--up);border:1px solid rgba(255,77,91,.32)}
+  .b-mut{background:rgba(139,151,173,.12);color:var(--mut);border:1px solid rgba(139,151,173,.3)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:840px){.grid2{grid-template-columns:1fr}}
+  .box{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+  .box h3{font-size:14.5px;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+  .youzi{display:flex;gap:12px;padding:11px 0;border-bottom:1px dashed rgba(35,42,56,.9)}
+  .youzi:last-child{border-bottom:none}
+  .youzi .av{flex:0 0 42px;height:42px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;background:var(--panel2);border:1px solid var(--border)}
+  .youzi .bd{flex:1;min-width:0}
+  .youzi .t{font-weight:700;font-size:13.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .youzi .d{font-size:12.5px;color:var(--mut);margin-top:3px}
+  .youzi .d b{color:var(--txt)}
+  .flowtag{font-size:11px;color:var(--mut);margin-top:2px}
+  ul.clean{list-style:none}
+  ul.clean li{padding:7px 0 7px 20px;position:relative;font-size:13.5px;border-bottom:1px solid rgba(35,42,56,.5)}
+  ul.clean li:last-child{border-bottom:none}
+  ul.clean li:before{content:"▸";position:absolute;left:2px;color:var(--gold)}
+  .heat{display:flex;align-items:center;gap:10px;margin:9px 0}
+  .heat .lbl{flex:0 0 132px;font-size:13px;font-weight:600}
+  .heat .bar{flex:1;height:9px;border-radius:6px;background:var(--panel2);overflow:hidden}
+  .heat .bar i{display:block;height:100%;border-radius:6px}
+  .heat .val{flex:0 0 92px;text-align:right;font-size:11.5px;color:var(--mut)}
+  .note{background:rgba(245,185,66,.07);border:1px solid rgba(245,185,66,.25);border-radius:9px;padding:13px 16px;font-size:13px;color:#e6d3a6;margin-top:14px}
+  .risk{background:rgba(255,77,91,.06);border:1px solid rgba(255,77,91,.25);border-radius:9px;padding:13px 16px;font-size:13px;color:#f0b9bd;margin-top:14px}
+  .pct-pill{font-weight:700;font-variant-numeric:tabular-nums}
+  footer{text-align:center;color:var(--mut);font-size:11.5px;margin-top:38px;padding-top:18px;border-top:1px solid var(--border);line-height:1.9}
+  .kv{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(35,42,56,.5);font-size:13px}
+  .kv:last-child{border-bottom:none}
+  .kv span:first-child{color:var(--mut)}
+  .kv span:last-child{font-weight:700;font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
-<div class="container">
+<header>
+  <div class="wrap">
+    <h1>🐉 龙虎榜游资追踪 <span class="tag">2026-10-16 · 周五</span></h1>
+    <div class="sub">A股短线情绪 · 机构与游资行为分析 ｜ 面向成长股中长线投资者的情绪参考</div>
+    <div class="srcbar">
+      <b>数据来源</b>：龙虎榜明细/机构席位/营业部席位 = 东方财富数据中心 API（datacenter-web.eastmoney.com，实际抓取，<b>非编造</b>）；盘面与市场背景 = 东方财富妙想资讯搜索。所有金额单位已统一为亿元/万元，涨跌幅为当日收盘。
+    </div>
+  </div>
+</header>
 
-  <div class="header">
-    <div class="title">🇺🇸 美股映射复盘 → A股受益方向</div>
-    <div class="subtitle">2026年10月16日（覆盖 2026-10-15 美股交易日）</div>
-    <div class="meta">数据源：腾讯行情 qt.gtimg.cn · 新浪财经 7×24 / 美股频道 · 新浪期货 hq.sinajs.cn ｜ 生成时间：2026-10-16 07:45 (北京)</div>
+<div class="wrap">
+
+  <!-- 市场概览 -->
+  <h2>📊 市场概览 <span class="en">MARKET OVERVIEW</span></h2>
+  <div class="cards">
+    <div class="card"><div class="k">上证指数</div><div class="v up">3716.28</div><div class="s">+0.24% ｜ 险守3700</div></div>
+    <div class="card"><div class="k">深证成指</div><div class="v dn">11802.46</div><div class="s">-0.12%</div></div>
+    <div class="card"><div class="k">创业板指</div><div class="v dn">2772.38</div><div class="s">-0.39%</div></div>
+    <div class="card"><div class="k">北证50</div><div class="v dn">—</div><div class="s">-1.81%</div></div>
+    <div class="card"><div class="k">两市成交</div><div class="v">1.56<span style="font-size:13px">万亿</span></div><div class="s">缩量约776亿</div></div>
+    <div class="card"><div class="k">涨停 / 跌停</div><div class="v"><span class="up">61</span> / <span class="dn">11</span></div><div class="s">炸板51家 · 炸板率45.5%</div></div>
+    <div class="card"><div class="k">主力资金</div><div class="v dn">-49.4亿</div><div class="s">净流出</div></div>
+    <div class="card"><div class="k">上涨家数</div><div class="v up">3300+</div><div class="s">普涨修复</div></div>
+  </div>
+  <div class="note">
+    <b>盘面特征：</b>昨日（10/15）亚太市场集体跳水、A股放量破位，今日走出<b>缩量技术性企稳</b>——指数窄幅分化、个股普遍回血。
+    结构上呈"<b>指数弱、题材强</b>"：<b>军工/低空经济</b>为最强主线（珠海航展12/7-13临近 + 中东地缘 + 前三季火箭发射70次创新高催化），
+    军工装备板块盘中涨超7%、9股涨停；<b>汽车零部件</b>涨停14家为个股涨停数第一；<b>水泥、房地产、碳纤维、贵金属</b>活跃。
+    走弱方向：<b>CRO/创新药</b>（药明康德盘中跌停拖累创新药方阵）、<b>PCB</b>、<b>半导体</b>（高开低走）、<b>传媒/AI视频</b>。
+    <b>最高连板：冰山冷热4板</b>（冷链/汽车热管理）。
   </div>
 
-  <!-- ============ 一、隔夜市场全景 ============ -->
-  <h2>一、隔夜市场全景</h2>
-
-  <div class="kpi">
-    <div><div class="k-label">道琼斯</div><div class="k-val up">52,177.69<br><span style="font-size:.7em">+1.08%</span></div></div>
-    <div><div class="k-label">纳斯达克综指</div><div class="k-val up">26,713.03<br><span style="font-size:.7em">+0.08%</span></div></div>
-    <div><div class="k-label">标普500</div><div class="k-val up">7,744.06<br><span style="font-size:.7em">+0.33%</span></div></div>
-    <div><div class="k-label">VIX 波动率</div><div class="k-val flat">21.67<br><span style="font-size:.7em">高位震荡</span></div></div>
+  <!-- 龙虎榜总览 -->
+  <h2>📋 龙虎榜总览 <span class="en">BILLBOARD OVERVIEW</span></h2>
+  <div class="cards">
+    <div class="card"><div class="k">上榜个股</div><div class="v">61<span style="font-size:13px">只</span></div><div class="s">66条记录 · 含多原因重复</div></div>
+    <div class="card"><div class="k">净买入个股</div><div class="v up">27<span style="font-size:13px">只</span></div><div class="s">合计 +28.39亿</div></div>
+    <div class="card"><div class="k">净卖出个股</div><div class="v dn">34<span style="font-size:13px">只</span></div><div class="s">合计 -21.12亿</div></div>
+    <div class="card"><div class="k">上榜总成交</div><div class="v">741.9<span style="font-size:13px">亿</span></div><div class="s">占两市约4.8%</div></div>
+    <div class="card"><div class="k">封板涨停(上榜)</div><div class="v up">20+<span style="font-size:13px">只</span></div><div class="s">20cm涨停6只</div></div>
+    <div class="card"><div class="k">北向席位</div><div class="v"><span class="up">沪+7.82</span> / <span class="dn">深-4.55</span></div><div class="s">沪股通净买、深股通净卖</div></div>
   </div>
 
+  <!-- 机构买入榜 -->
+  <h2>🏦 机构买入榜 TOP10 <span class="en">INSTITUTION BUY</span></h2>
   <table>
-    <tr><th>类别</th><th>标的</th><th>涨跌幅</th><th>备注</th></tr>
-    <tr><td rowspan="3">三大指数</td><td>道琼斯工业平均</td><td class="up num">+1.08%</td><td>+556.21 点，价值股拉动</td></tr>
-    <tr><td>纳斯达克综合</td><td class="up num">+0.08%</td><td>+20.16 点，几乎平收</td></tr>
-    <tr><td>标普500</td><td class="up num">+0.33%</td><td>+25.12 点，<b>结束三连跌</b></td></tr>
-    <tr><td rowspan="4">核心 ETF</td><td>QQQ（纳指100）</td><td class="down num">-0.13%</td><td>科技权重拖累</td></tr>
-    <tr><td>SPY（标普500）</td><td class="up num">+0.28%</td><td>逢低买盘</td></tr>
-    <tr><td>SOXQ（费城半导体）</td><td class="down num">-0.88%</td><td>半导体仍在被抛售</td></tr>
-    <tr><td>VIX（恐慌指数）</td><td class="flat num">21.67</td><td>维持 20 上方，风险偏好未修复</td></tr>
+    <thead><tr><th>代码</th><th>名称</th><th>涨跌幅</th><th class="num">机构净买入</th><th class="num">成交额</th><th>行业/主题</th><th>看点</th></tr></thead>
+    <tbody>
+      <tr><td class="code">603893</td><td class="nm">瑞芯微</td><td class="pct-pill dn">-9.99%</td><td class="num up">+2.36亿</td><td class="num">39.74亿</td><td>半导体·AI SoC</td><td>机构逆势抄底，外资/北向砸盘分歧</td></tr>
+      <tr><td class="code">000892</td><td class="nm">欢瑞世纪</td><td class="pct-pill dn">-8.26%</td><td class="num up">+1.04亿</td><td class="num">11.94亿</td><td>传媒·影视</td><td>机构低吸跌停潮标的</td></tr>
+      <tr><td class="code">000530</td><td class="nm">冰山冷热</td><td class="pct-pill up">+9.96%</td><td class="num up">+0.72亿</td><td class="num">30.94亿</td><td>制冷·冷链</td><td>4连板最高标，机构接力</td></tr>
+      <tr><td class="code">002531</td><td class="nm">天顺风能</td><td class="pct-pill up">+9.94%</td><td class="num up">+0.68亿</td><td class="num">12.91亿</td><td>风电设备</td><td>3家机构买入，风电回暖</td></tr>
+      <tr><td class="code">300006</td><td class="nm">莱美药业</td><td class="pct-pill up">+19.93%</td><td class="num up">+0.46亿</td><td class="num">30.24亿</td><td>医药·化学制药</td><td>游资点火+机构接力</td></tr>
+      <tr><td class="code">603067</td><td class="nm">振华股份</td><td class="pct-pill dn">-8.17%</td><td class="num up">+0.39亿</td><td class="num">21.83亿</td><td>化工·铬盐</td><td>逆势下跌中机构买入</td></tr>
+      <tr><td class="code">000995</td><td class="nm">皇台酒业</td><td class="pct-pill up">+6.81%</td><td class="num up">+0.38亿</td><td class="num">8.14亿</td><td>白酒</td><td>3家机构买入，但净额仍为卖</td></tr>
+      <tr><td class="code">300681</td><td class="nm">英搏尔</td><td class="pct-pill up">+19.98%</td><td class="num up">+0.37亿</td><td class="num">5.93亿</td><td>汽车零部件·电驱</td><td>机构+游资合力20cm</td></tr>
+      <tr><td class="code">301345</td><td class="nm">涛涛车业</td><td class="pct-pill dn">-18.83%</td><td class="num up">+0.35亿</td><td class="num">7.31亿</td><td>休闲车·出口</td><td>大跌中机构接盘，华创北京砸盘</td></tr>
+      <tr><td class="code">300045</td><td class="nm">华力创通</td><td class="pct-pill up">+20.04%</td><td class="num up">+0.25亿</td><td class="num">8.46亿</td><td>军工·北斗争星</td><td>军工龙头，机构+赵老哥席</td></tr>
+    </tbody>
   </table>
 
-  <div class="card warn">
-    <b>盘面主线：</b>市场正在做一件事——<b>「撤出 AI 交易，转向价值与利率敏感资产」</b>。
-    9 月 CPI（同比 3.7%，超预期）+ 9 月 PPI（同比 6.3%，2022 年以来最大涨幅）双双击穿通胀预期，
-    美联储 12 月加息预期升温；同时市场担忧 AI 基建的巨额高负债融资（AI 云贷款收益率已逼近 15%）。
-    结果是：<b>科技/半导体继续失血，而医疗、金融、房地产、通讯、消费等非科技板块集体补涨</b>，把标普从三连跌中拉了回来。
-  </div>
-
-  <!-- ============ 二、标普500板块表现 ============ -->
-  <h2>二、标普500 十一大板块表现</h2>
+  <!-- 机构卖出榜 -->
+  <h2>💸 机构卖出榜 TOP10 <span class="en">INSTITUTION SELL</span></h2>
   <table>
-    <tr><th>板块</th><th>ETF</th><th>涨跌幅</th><th>解读</th></tr>
-    <tr><td>医疗保健</td><td>XLV</td><td class="up num">+1.86%</td><td><b>领涨</b>。长端利率回落 + 防御属性，生物科技/创新药估值修复</td></tr>
-    <tr><td>基础材料</td><td>XLB</td><td class="up num">+1.79%</td><td>铜价三连跌但板块反弹，受黄金/白银超跌反弹带动（金属矿商权重）</td></tr>
-    <tr><td>可选消费</td><td>XLY</td><td class="up num">+1.71%</td><td>耐克大涨超 5% 领衔，沃尔玛近 +2%，零售旺季预期</td></tr>
-    <tr><td>通讯服务</td><td>XLC</td><td class="up num">+1.46%</td><td>爱立信 +11.8% 拉升电信设备；Meta 发开源大模型</td></tr>
-    <tr><td>金融</td><td>XLF</td><td class="up num">+1.38%</td><td>收益率曲线环境 + 信贷数据股（TransUnion +10.7%）爆发</td></tr>
-    <tr><td>房地产</td><td>XLRE</td><td class="up num">+1.21%</td><td>长端利率单日回落 9bp，利率敏感资产直接受益</td></tr>
-    <tr><td>必需消费</td><td>XLP</td><td class="up num">+0.72%</td><td>防守型资金回流</td></tr>
-    <tr><td>工业</td><td>XLI</td><td class="up num">+0.51%</td><td>温和跟涨</td></tr>
-    <tr><td>公用事业</td><td>XLU</td><td class="down num">-0.17%</td><td>能源价格分化，电力股未跟上 AI 数据中心叙事</td></tr>
-    <tr><td>科技</td><td>XLK</td><td class="down num">-0.65%</td><td><b>垫底之一</b>。半导体与 AI 硬件估值下杀（NVDA -1.84%、AMD -1.50%）</td></tr>
-    <tr><td>能源</td><td>XLE</td><td class="down num">-1.58%</td><td><b>领跌</b>。布伦特走弱 + IEA 释放紧急石油储备消息压制，尽管 WTI 独立大涨</td></tr>
-  </table>
-  <div class="logic">
-    <b>板块轮动特征：</b>资金从 <b>科技(XLK)、能源(XLE)</b> 流向 <b>医疗(XLV)、材料(XLB)、消费(XLY/XLP)、金融(XLF)、地产(XLRE)</b>。
-    对应的宏观逻辑是一条线：<b>「通胀黏性 + 高利率 → 杀高估值 AI 资本开支叙事 → 钱去找现金流确定、且受益于长端利率回落的资产」</b>。
-    注意 XLE 与 WTI 方向背离——这是「布伦特弱、WTI 强」的分化在板块层面的投射。
-  </div>
-
-  <!-- ============ 三、科技龙头 ============ -->
-  <h2>三、科技龙头表现</h2>
-  <table>
-    <tr><th>公司</th><th>代码</th><th>收盘价</th><th>涨跌幅</th><th>成交额</th></tr>
-    <tr><td>英伟达</td><td>NVDA</td><td class="num">217.23</td><td class="down num">-1.84%</td><td class="num">$274.2 亿</td></tr>
-    <tr><td>台积电</td><td>TSM</td><td class="num">422.25</td><td class="down num">-1.80%</td><td class="num">$93.3 亿</td></tr>
-    <tr><td>超威半导体</td><td>AMD</td><td class="num">562.23</td><td class="down num">-1.50%</td><td class="num">$158.6 亿</td></tr>
-    <tr><td>特斯拉</td><td>TSLA</td><td class="num">362.44</td><td class="down num">-1.29%</td><td class="num">$96.3 亿</td></tr>
-    <tr><td>博通</td><td>AVGO</td><td class="num">344.33</td><td class="down num">-0.55%</td><td class="num">$97.2 亿</td></tr>
-    <tr><td>苹果</td><td>AAPL</td><td class="num">342.00</td><td class="down num">-0.28%</td><td class="num">$136.6 亿</td></tr>
-    <tr><td>Meta</td><td>META</td><td class="num">736.72</td><td class="down num">-0.11%</td><td class="num">$124.1 亿</td></tr>
-    <tr><td>亚马逊</td><td>AMZN</td><td class="num">254.76</td><td class="up num">+0.27%</td><td class="num">$87.5 亿</td></tr>
-    <tr><td>谷歌-A</td><td>GOOGL</td><td class="num">349.22</td><td class="up num">+0.45%</td><td class="num">$74.4 亿</td></tr>
-    <tr><td>微软</td><td>MSFT</td><td class="num">539.44</td><td class="up num">+1.08%</td><td class="num">$130.0 亿</td></tr>
-  </table>
-  <div class="logic">
-    <b>特征：</b>Mag7 内部<b>分化</b>——硬件/算力侧（NVDA、AMD、TSM、AVGO）全线下跌，而软件/平台侧（MSFT、GOOGL、AMZN）抗跌甚至上涨，
-    说明资金并非「抛弃科技」，而是在<b>科技内部从「卖铲子」转向「卖服务」</b>。成交额榜第 2 名<b>美光科技收涨 1.87%（成交 350 亿美元）</b>，是全场亮点——
-    存储链在 AI 调整中率先企稳；而希捷、西部数据（HDD）本周延续跌势。
-  </div>
-
-  <!-- ============ 四、大市值异动股 ============ -->
-  <h2>四、大市值异动股（涨幅 &gt; 9% 且市值 &gt; 50 亿美元）</h2>
-  <table>
-    <tr><th>公司</th><th>代码</th><th>涨幅</th><th>市值(亿美元)</th><th>异动逻辑</th></tr>
-    <tr><td>爱立信</td><td>ERIC</td><td class="up num">+11.80%</td><td class="num">347.6</td><td>通讯设备龙头，XLC 板块领涨核心；欧洲电信资本开支与 AI 网络设备订单预期回暖</td></tr>
-    <tr><td>Zillow（A类）</td><td>Z</td><td class="up num">+11.05%</td><td class="num">70.7</td><td><b>美债长端收益率回落</b>，美国地产链估值修复（Opendoor/Zillow 同步大涨）</td></tr>
-    <tr><td>Zillow（C类）</td><td>ZG</td><td class="up num">+10.80%</td><td class="num">72.9</td><td>同上，双股权结构同步异动</td></tr>
-    <tr><td>TransUnion</td><td>TRU</td><td class="up num">+10.73%</td><td class="num">142.0</td><td>信贷数据服务商，利率敏感型金融数据股，超跌后估值修复</td></tr>
-    <tr><td>Figure Technology</td><td>FIGR</td><td class="up num">+10.46%</td><td class="num">62.0</td><td>区块链抵押贷款平台，加密+信贷双重风险偏好回升</td></tr>
-    <tr><td>Compass</td><td>COMP</td><td class="up num">+9.82%</td><td class="num">72.9</td><td>美国最大地产经纪平台之一，跟随利率回落反弹</td></tr>
-    <tr><td>TeraWulf</td><td>WULF</td><td class="up num">+9.36%</td><td class="num">63.0</td><td>比特币矿场转型 AI 数据中心，加密与 AI 算力双主题</td></tr>
-    <tr><td>Circle Internet</td><td>CRCL</td><td class="up num">+9.33%</td><td class="num">220.8</td><td>稳定币第一股，加密板块情绪回暖</td></tr>
-    <tr><td>IonQ</td><td>IONQ</td><td class="up num">+9.33%</td><td class="num">139.2</td><td><b>量子计算催化</b>：谷歌宣布 Willow 处理器"魔态培育"突破，误差降低 40 倍</td></tr>
-  </table>
-  <div class="card hot">
-    <b>异动主线归纳：</b>三条线并行——
-    <b>①利率敏感资产暴力反弹</b>（Zillow +11%、Compass +9.8%、TransUnion +10.7%、Figure +10.5%）：10 年期美债收益率单日回落 9bp，
-    地产与信贷链从超跌中反转；<b>②加密/稳定币链回暖</b>（Circle +9.3%、TeraWulf +9.4%）；
-    <b>③量子计算主题点火</b>（IonQ +9.3%，谷歌 Willow 突破）。
-    <span class="note">（涨幅榜原始榜单被小盘股与权证（W 结尾）主导，如 SEATW +500%、AIIOW +66%，因市值不达标已剔除。）</span>
-  </div>
-
-  <!-- ============ 五、中概股 ============ -->
-  <h2>五、中概股表现</h2>
-  <div class="card good">
-    <b>纳斯达克中国金龙指数（HXC）收涨 +1.96%</b>，跑赢标普 500，是隔夜全球市场为数不多的亮点。
-  </div>
-  <table>
-    <tr><th>上涨个股</th><th>涨幅</th><th>下跌个股</th><th>跌幅</th></tr>
-    <tr><td>新东方</td><td class="up num">+4.81%</td><td>南茂科技</td><td class="down num">-5.85%</td></tr>
-    <tr><td>华住酒店集团</td><td class="up num">+3.94%</td><td>日月光半导体</td><td class="down num">-5.50%</td></tr>
-    <tr><td>WSP 控股</td><td class="up num">+3.84%</td><td>网易有道</td><td class="down num">-5.08%</td></tr>
-    <tr><td>微牛</td><td class="up num">+3.71%</td><td>慧荣科技</td><td class="down num">-2.32%</td></tr>
-    <tr><td>名创优品</td><td class="up num">+3.52%</td><td>联电</td><td class="down num">-2.24%</td></tr>
-    <tr><td>满帮</td><td class="up num">+3.28%</td><td>万国数据</td><td class="down num">-2.09%</td></tr>
-    <tr><td>网易 / 亚朵集团</td><td class="up num">+2.73%</td><td>台积电</td><td class="down num">-1.80%</td></tr>
-    <tr><td>携程</td><td class="up num">+2.70%</td><td>中通快递</td><td class="down num">-1.67%</td></tr>
-    <tr><td>京东</td><td class="up num">+2.66%</td><td>阿里巴巴</td><td class="down num">-0.04%</td></tr>
-    <tr><td>蔚来 / 小鹏汽车</td><td class="up num">+2.64% / +2.23%</td><td>—</td><td class="flat">—</td></tr>
-    <tr><td>腾讯音乐 / 唯品会</td><td class="up num">+2.00% / +2.41%</td><td>—</td><td class="flat">—</td></tr>
-    <tr><td>理想汽车 / 贝壳</td><td class="up num">+1.78% / +1.77%</td><td>—</td><td class="flat">—</td></tr>
-    <tr><td>拼多多 / 百度 / 哔哩哔哩</td><td class="up num">+1.19% / +0.86% / +1.12%</td><td>—</td><td class="flat">—</td></tr>
-  </table>
-  <div class="logic">
-    <b>结构特征非常清晰：</b><b>消费服务/出行链条（新东方、华住、亚朵、携程、名创优品、满帮）全面领涨</b>，
-    而<b>半导体系（台积电、日月光、联电、南茂、慧荣、万国数据）集体承压</b>——
-    这正是美股「撤 AI、买价值消费」逻辑在海外中概资产上的同构映射。对 A 股而言，这意味着
-    <b>消费/出行/教育服务的映射强度，短期高于科技映射强度</b>。
-  </div>
-
-  <!-- ============ 六、商品与宏观四件套 ============ -->
-  <h2>六、商品与宏观四件套</h2>
-  <table>
-    <tr><th>品种</th><th>真实价格 / 水平</th><th>ETF 涨跌幅</th><th>解读</th></tr>
-    <tr><td>WTI 原油（NYMEX 连续）</td><td class="num">97.59 美元/桶</td><td class="up num">USO +2.44%</td><td><b>独立大涨</b>：EIA 美国上周原油库存意外大减 855.7 万桶（预期为+15 万桶）</td></tr>
-    <tr><td>布伦特原油</td><td class="num">105.77 美元/桶</td><td class="down num">BNO -0.31%</td><td><b>与 WTI 分化</b>：IEA 释放紧急石油储备消息压制；布伦特较 WTI 溢价约 8 美元（符合常态）</td></tr>
-    <tr><td>COMEX 黄金</td><td class="num">4177.9 美元/盎司</td><td class="up num">GLD +1.79%</td><td>超跌反弹，但较年内高位仍跌去约三成；央行 9 月购金量创近两年最高</td></tr>
-    <tr><td>COMEX 白银</td><td class="num">57.26 美元/盎司</td><td class="up num">SLV +3.39%</td><td>弹性大于黄金，但较年内高点仍跌近六成</td></tr>
-    <tr><td>美元指数</td><td class="num">UUP 28.99（ETF）</td><td class="down num">UUP -0.41%</td><td><b>彭博美元指数跌 0.3%，逾一个月最大跌幅</b>；抹去通胀超预期带来的涨幅</td></tr>
-    <tr><td>美债（20 年+）</td><td class="num">10Y 收益率约 5.1x%（-9bp）</td><td class="up num">TLT +1.37%</td><td>避险买盘 + AI 担忧推动长端大涨；盘中 10Y 曾升至 5.266%（21 世纪初以来高位）</td></tr>
-  </table>
-  <div class="card neutral">
-    <b>四件套结论：</b><b>美债收益率单日回落是全市场最重要的边际变化</b>——它同时解释了地产/信贷股暴涨、黄金白银超跌反弹、美元走弱。
-    但要注意这是<b>「避险式回落」</b>（AI 担忧驱动），而非通胀回落驱动，可持续性存疑；
-    商品端则是<b>「原油供给冲击（库存大降 + 中东 + 释储博弈）」</b>主导，与贵金属的利率逻辑不同源。
-  </div>
-
-  <!-- ============ 七、隔夜重点事件 ============ -->
-  <h2>七、隔夜重点事件</h2>
-  <ul>
-    <li><b>【通胀】美国 9 月 PPI 同比 +6.3%、环比 +1.3%，创 2022 年以来最大涨幅</b>；此前 9 月 CPI 同比 +3.7%（预期 3.6%，前值 3.4%）、核心 CPI +2.6%。美联储官员戴利、哈马克、古尔斯比齐声警惕通胀持续性与「供应冲击引发的通胀思维」，有预测人士称<b>12 月或直接加息 50bp</b>。</li>
-    <li><b>【全球科技抛售】韩国 KOSPI 暴跌 7.57% 触发熔断（sidecar 机制）</b>，日经 225 连续第 6 个交易日下跌，欧洲科技股重挫（阿斯麦 -6%+、英飞凌 -9%）。核心矛盾是<b>AI 基建的高负债融资模式</b>——AI 云厂商贷款收益率已逼近 15%，云厂商联合创始人持续减持。</li>
-    <li><b>【AI 融资/估值】Anthropic 三季度营收 168 亿美元（环比 +45%）并实现调整后盈利，但投资者考虑将其 IPO 估值从约 2 万亿美元下调至约 1.5 万亿美元</b>；谷歌、Meta 放出重磅模型（Meta 开源「Muse Spark Open」，可在 Mac 本地运行）。</li>
-    <li><b>【量子计算】谷歌量子 AI 宣布突破核心资源瓶颈</b>：在 Willow 处理器上实证「魔态培育」方案可行，误差降低约 40 倍。→ 直接点燃 IonQ（+9.33%）。</li>
-    <li><b>【AI 基建】美国能源部宣布 1000 亿美元 AI/高性能计算园区项目</b>：肯塔基州冷战时期铀浓缩设施旧址改建，含 1.8GW 算力 + <b>2GW 燃气电厂</b>配套；另有消息称德国政府拟与英伟达合作推进 AI 项目。</li>
-    <li><b>【地缘/原油】美军证实在霍尔木兹海峡沉没的集装箱船遭伊朗投射物击中</b>；以色列安全官员称美以正就打击伊朗预案进行磋商；胡塞武装袭击也门亚丁总统府致 5 死 16 伤。IEA 释放紧急石油储备的消息同时发酵，交易员已押注高油价维持到 2028 年。</li>
-    <li><b>【美国地产】抵押贷款利率维持 7.4%，房地产市场举步维艰</b>；同时美国财政赤字约 2 万亿美元、10Y 收益率在 5% 以上，AI 投资加剧资本竞争。</li>
-    <li><b>【中国数据】9 月 CPI 同比 +0.9%、核心 CPI +1.0%</b>；10 月 15 日<b>A 股 ETF 资金净流入 563.82 亿元</b>（股票型 460.99 亿、宽基型 446.03 亿），易方达沪深300ETF 单日净流入 188.03 亿元。</li>
-    <li><b>【其他】</b>耐克大涨超 5%（肯德基美国门店 40 年来首次弃百事改供可口可乐）；哈佛捐赠基金年回报 27%、规模创纪录 680 亿美元；法拉第未来将发布 2500 美元以下入门级人形机器人 FF Nova；锂矿商 PLS 拟投 13 亿美元翻倍扩产。</li>
-  </ul>
-
-  <!-- ============ 八、A股映射方向 ============ -->
-  <h2>八、A股映射方向</h2>
-
-  <div class="card hot">
-    <span class="tag t-hot">🔥 强烈关注</span><b>方向 1：AI 数据中心电力与能源装备</b>
-    <p class="logic">美国能源部 1000 亿美元 AI 园区配套 2GW 燃气电厂——「算力即电力」逻辑再获顶级订单背书，直接映射发电/燃气轮机/液冷电源。</p>
-    <p class="codes">东方电气 600875 ｜ 上海电气 601727 ｜ 华光环能 600475 ｜ 应流股份 603308 ｜ 金盘科技 688676 ｜ 科华数据 002335 ｜ 英维克 002837 ｜ 申菱环境 301018 ｜ 麦格米特 002851 ｜ 东方电缆 603606</p>
-  </div>
-
-  <div class="card good">
-    <span class="tag t-good">🟢 正面</span><b>方向 2：存储芯片（AI 调整中的结构性亮点）</b>
-    <p class="logic">美光由跌转涨 +1.87%（成交 350 亿美元、全场第 2），叠加国内电子布/电子纱持续涨价（7628 电子布本月再涨 1.5 元/米），存储与上游材料景气独立于 GPU。</p>
-    <p class="codes">兆易创新 603986 ｜ 江波龙 301308 ｜ 佰维存储 688525 ｜ 澜起科技 688008 ｜ 德明利 001309 ｜ 深科技 000021 ｜ 北京君正 300223 ｜ 香农芯创 300475</p>
-  </div>
-
-  <div class="card warn">
-    <span class="tag t-warn">⚠️ 关注（承压）</span><b>方向 3：半导体 / AI 硬件（短期回避追高）</b>
-    <p class="logic">费半 -0.88%、台积电 -1.80%、日月光 -5.50%、联电 -2.24%，AI 资本开支叙事被高利率压制，A 股算力硬件短线承压；但光模块出现回购利好（新易盛董事长提议 8–10 亿元回购）。</p>
-    <p class="codes">中芯国际 688981 ｜ 寒武纪 688256 ｜ 海光信息 688041 ｜ 北方华创 002371 ｜ 工业富联 601138 ｜ 中际旭创 300308 ｜ 新易盛 300502 ｜ 天孚通信 300394</p>
-  </div>
-
-  <div class="card good">
-    <span class="tag t-good">🟢 正面</span><b>方向 4：石油石化（供给冲击 + 地缘溢价）</b>
-    <p class="logic">WTI 独立大涨 2.44%（EIA 库存大降 855.7 万桶），霍尔木兹海峡冲突升温，交易员押注高油价至 2028 年，上游油服弹性最大。</p>
-    <p class="codes">中国石油 601857 ｜ 中国海油 600938 ｜ 中海油服 601808 ｜ 海油工程 600583 ｜ 广汇能源 600256 ｜ 新奥股份 600803 ｜ 石化油服 600871 ｜ 中曼石油 603619</p>
-  </div>
-
-  <div class="card warn">
-    <span class="tag t-warn">⚠️ 关注（多空交织）</span><b>方向 5：黄金有色（超跌反弹 vs 加息压制）</b>
-    <p class="logic">GLD +1.79%、SLV +3.39% 超跌反弹，央行 9 月购金创近两年新高（长期利多）；但美联储加息预期是贵金属最大压制，金银较年内高点仍跌三成/六成，属反弹而非反转。花旗看多锡价至 6 万美元/吨。</p>
-    <p class="codes">山东黄金 600547 ｜ 中金黄金 600489 ｜ 紫金矿业 601899 ｜ 湖南黄金 002155 ｜ 银泰黄金 000975 ｜ 兴业银锡 000426 ｜ 锡业股份 000960 ｜ 洛阳钼业 603993</p>
-  </div>
-
-  <div class="card good">
-    <span class="tag t-good">🟢 正面</span><b>方向 6：中概互联 → 消费服务 / 出行 / 教育映射</b>
-    <p class="logic">金龙指数 +1.96%，酒店（华住 +3.94%）、教育（新东方 +4.81%）、出行（携程 +2.70%）、免税零售（名创优品 +3.52%）全面领涨，A 股消费服务板块存在情绪与资金映射。</p>
-    <p class="codes">锦江酒店 600754 ｜ 首旅酒店 600258 ｜ 中国中免 601888 ｜ 宋城演艺 300144 ｜ 中公教育 002607 ｜ 学大教育 000526 ｜ 峨眉山A 000888 ｜ 君亭酒店 301073</p>
-  </div>
-
-  <div class="card good">
-    <span class="tag t-good">🟢 正面</span><b>方向 7：地产链（预期差 + 政策共振）</b>
-    <p class="logic">美债长端收益率回落直接引爆美国地产链（Zillow +11%、Compass +9.8%、Opendoor 大涨）；国内一线城市商品住房销售制度改革细则已全面落地（北上广 9 月底配套政策出台），美国地产股暴涨可作为 A 股地产链的情绪催化。</p>
-    <p class="codes">万科A 000002 ｜ 保利发展 600048 ｜ 招商蛇口 001979 ｜ 金地集团 600383 ｜ 滨江集团 002244 ｜ 华发股份 600325 ｜ 我爱我家 000560 ｜ 贝壳（港股映射）</p>
-  </div>
-
-  <div class="card">
-    <span class="tag t-neutral">📌 中性</span><b>方向 8：量子科技（主题催化）</b>
-    <p class="logic">谷歌 Willow 处理器「魔态培育」突破、误差降低 40 倍，IonQ 单日 +9.33%，主题热度外溢，但 A 股相关标的业绩兑现度低，宜作短线主题对待。</p>
-    <p class="codes">国盾量子 688027 ｜ 科大国创 300520 ｜ 光迅科技 002281 ｜ 三未信安 688489 ｜ 神州信息 000555 ｜ 佳缘科技 301117</p>
-  </div>
-
-  <div class="card good">
-    <span class="tag t-good">🟢 正面</span><b>方向 9：创新药 / 医疗器械（XLV 领涨映射）</b>
-    <p class="logic">XLV +1.86% 领涨全部 11 大板块，长端利率回落利好长久期生物科技资产估值修复，A 股创新药与 CXO 存在联动。</p>
-    <p class="codes">恒瑞医药 600276 ｜ 百济神州 688235 ｜ 科伦药业 002422 ｜ 智飞生物 300122 ｜ 复星医药 600196 ｜ 药明康德 603259 ｜ 泰格医药 300347 ｜ 迈瑞医疗 300760</p>
-  </div>
-
-  <div class="card good">
-    <span class="tag t-good">🟢 正面</span><b>方向 10：人形机器人（产业催化密集）</b>
-    <p class="logic">法拉第未来将发布 2500 美元以下入门级人形机器人 FF Nova；国内具身智能「边融边投」活跃，广交会先进制造展区机器人集中亮相。</p>
-    <p class="codes">三花智控 002050 ｜ 拓普集团 601689 ｜ 绿的谐波 688017 ｜ 鸣志电器 603728 ｜ 双环传动 002472 ｜ 兆威机电 003021 ｜ 五洲新春 603667</p>
-  </div>
-
-  <div class="card warn">
-    <span class="tag t-avoid">▼ 回避</span><b>方向 11：贵金属杠杆 / 纯 AI 概念高标</b>
-    <p class="logic">在「美联储或再度加息 + AI 资本开支质疑」双压下，涨幅过高、无业绩支撑的纯主题标的（贵金属杠杆基金、AI 概念高标）风险收益比最差。</p>
-    <p class="codes">黄金/白银类杠杆 ETF ｜ 无业绩支撑的纯算力概念股</p>
-  </div>
-
-  <!-- ============ 九、持仓影响评估 ============ -->
-  <h2>九、持仓影响评估（ADR 映射）</h2>
-  <table>
-    <tr><th>关注标的</th><th>ADR / 美股映射</th><th>隔夜表现</th><th>今日预期</th><th>操作建议</th></tr>
-    <tr><td>小鹏汽车</td><td>XPEV</td><td class="up num">+2.23%</td><td>偏多，跟随中概情绪</td><td>持有观察，新高概车情绪回暖受益</td></tr>
-    <tr><td>阿里巴巴</td><td>BABA</td><td class="down num">-0.04%</td><td>中性，ADR 基本平收</td><td>不追高，等待方向选择</td></tr>
-    <tr><td>腾讯控股</td><td>无 ADR（港股）</td><td class="flat">—</td><td>中性偏多，看金龙指数 +1.96% 与恒科情绪</td><td>关注港股开盘跟随强度</td></tr>
-    <tr><td>理想汽车</td><td>LI</td><td class="up num">+1.78%</td><td>偏多</td><td>持有</td></tr>
-    <tr><td>蔚来</td><td>NIO</td><td class="up num">+2.64%</td><td>偏多，弹性最大</td><td>关注，若放量可短线参与</td></tr>
-    <tr><td>京东</td><td>JD</td><td class="up num">+2.66%</td><td>偏多，双11 催化</td><td>持有</td></tr>
-    <tr><td>拼多多</td><td>PDD</td><td class="up num">+1.19%</td><td>偏多</td><td>持有</td></tr>
-    <tr><td>网易</td><td>NTES</td><td class="up num">+2.73%</td><td>偏多，游戏板块共振</td><td>持有</td></tr>
-    <tr><td>哔哩哔哩</td><td>BILI</td><td class="up num">+1.12%</td><td>中性偏多</td><td>观察</td></tr>
-    <tr><td>贝壳 / 地产链</td><td>BEKE</td><td class="up num">+1.77%</td><td>偏多，叠加美国地产股暴涨映射</td><td>关注地产链情绪共振</td></tr>
+    <thead><tr><th>代码</th><th>名称</th><th>涨跌幅</th><th class="num">机构净卖出</th><th class="num">成交额</th><th>行业/主题</th><th>看点</th></tr></thead>
+    <tbody>
+      <tr><td class="code">603259</td><td class="nm">药明康德</td><td class="pct-pill dn">-6.60%</td><td class="num dn">-5.95亿</td><td class="num">123.40亿</td><td>医药·CXO</td><td>内资机构借跌停出货，外资反向抄底</td></tr>
+      <tr><td class="code">002815</td><td class="nm">崇达技术</td><td class="pct-pill up">+0.95%</td><td class="num dn">-1.75亿</td><td class="num">55.39亿</td><td>PCB</td><td>巨量换手29%，机构+作手新一出货</td></tr>
+      <tr><td class="code">003029</td><td class="nm">吉大正元</td><td class="pct-pill up">+10.01%</td><td class="num dn">-0.80亿</td><td class="num">7.86亿</td><td>计算机·信息安全</td><td>涨停但机构净卖，主力做T</td></tr>
+      <tr><td class="code">002552</td><td class="nm">宝鼎科技</td><td class="pct-pill dn">-9.99%</td><td class="num dn">-0.70亿</td><td class="num">15.51亿</td><td>船舶·军工</td><td>4家机构卖出，深股通净卖1.11亿</td></tr>
+      <tr><td class="code">600699</td><td class="nm">均胜电子</td><td class="pct-pill up">+10.03%</td><td class="num dn">-0.66亿</td><td class="num">13.70亿</td><td>汽车零部件·智驾</td><td>涨停但机构+北向净卖，游资接盘</td></tr>
+      <tr><td class="code">301002</td><td class="nm">崧盛股份</td><td class="pct-pill up">+0.50%</td><td class="num dn">-0.46亿</td><td class="num">8.90亿</td><td>LED驱动电源</td><td>4家机构买入却净卖</td></tr>
+      <tr><td class="code">000668</td><td class="nm">荣丰控股</td><td class="pct-pill up">+1.57%</td><td class="num dn">-0.35亿</td><td class="num">2.71亿</td><td>房地产</td><td>机构出货，买一主买</td></tr>
+      <tr><td class="code">300581</td><td class="nm">晨曦航空</td><td class="pct-pill up">+20.02%</td><td class="num dn">-0.30亿</td><td class="num">5.92亿</td><td>军工·航发控制</td><td>20cm纯游资炒作，机构净卖</td></tr>
+      <tr><td class="code">603168</td><td class="nm">莎普爱思</td><td class="pct-pill up">+10.05%</td><td class="num dn">-0.29亿</td><td class="num">1.44亿</td><td>医药</td><td>涨停但机构净卖</td></tr>
+      <tr><td class="code">301520</td><td class="nm">万邦医药</td><td class="pct-pill dn">-8.01%</td><td class="num dn">-0.29亿</td><td class="num">8.70亿</td><td>医药·CRO</td><td>5家机构卖出，CRO杀跌</td></tr>
+    </tbody>
   </table>
 
-  <h3>今日策略优先级</h3>
-  <p class="logic">
-    <b>油价/能源装备 &gt; 存储芯片 &gt; 消费服务出行 &gt; 地产链（预期差） &gt; 创新药 &gt; 量子/机器人（主题） &gt; 半导体硬件（低吸不追高） &gt; 贵金属（反弹对待）</b>
-  </p>
-  <div class="card hot">
-    <b>一句话策略：</b>隔夜美股的关键词是<b>「利率回落 + 撤离 AI + 转向价值」</b>。
-    对 A 股最直接的映射是<b>能源（供给冲击是硬逻辑）+ 存储（独立景气）+ 消费服务（金龙指数领涨结构）</b>三条线；
-    同时对<b>算力硬件保持谨慎</b>——昨夜的反弹是「科技以外板块拉动」，而非科技自身修复。
-    另需留意 A 股 10/15 单日 ETF 净流入 563.82 亿元这一增量资金信号，若今日延续，指数级反弹概率提升。
+  <!-- 游资动向 -->
+  <h2>🦈 知名游资席位动向 <span class="en">HOT-MONEY SEATS</span></h2>
+  <div class="grid2">
+    <div class="box">
+      <h3>🔴 净买入游资</h3>
+
+      <div class="youzi">
+        <div class="av gold">西</div>
+        <div class="bd">
+          <div class="t">开源证券·西安西大街 <span class="badge b-gold">今日最活跃</span></div>
+          <div class="d">主攻低位首板与题材首日：<b>均胜电子</b>+5731万、<b>中鼎股份</b>+5962万、<b>宗申动力</b>+4524万、<b>读者传媒</b>+4499万、<b>福建水泥</b>+3442万、<b>金盾股份</b>+2863万、<b>英搏尔</b>+2733万</div>
+          <div class="flowtag">另在 吉大正元 做T（买5115万/卖5614万）、尖峰集团 反向卖-1277万</div>
+        </div>
+      </div>
+
+      <div class="youzi">
+        <div class="av cyan">桑</div>
+        <div class="bd">
+          <div class="t">国盛证券·宁波桑田路 <span class="badge b-cyan">净+1.29亿</span></div>
+          <div class="d">单点重仓 <b>莱美药业</b> 净买 <b>+1.29亿</b>（买1.34亿），点火医药20cm</div>
+          <div class="flowtag">风格：连板接力、高换手</div>
+        </div>
+      </div>
+
+      <div class="youzi">
+        <div class="av blue">章</div>
+        <div class="bd">
+          <div class="t">国泰海通·上海长宁江苏路 <span class="badge b-blue">章盟主系</span></div>
+          <div class="d">分散布局军工+汽车：<b>宗申动力</b>+4083万、<b>佳力奇</b>+2355万、<b>冰山冷热</b>+1706万</div>
+          <div class="flowtag">同时卖出 向日葵 约-258万</div>
+        </div>
+      </div>
+
+      <div class="youzi">
+        <div class="av purple">成</div>
+        <div class="bd">
+          <div class="t">国泰海通·成都天府大道 <span class="badge b-purple">成都系</span></div>
+          <div class="d">重仓汽车零部件龙头 <b>中鼎股份</b> 净买 <b>+7549万</b>（买一）</div>
+          <div class="flowtag">风格：低位首板、题材挖掘</div>
+        </div>
+      </div>
+
+      <div class="youzi">
+        <div class="av gold">赵</div>
+        <div class="bd">
+          <div class="t">银河证券·绍兴鲁迅中路 <span class="badge b-gold">赵老哥系</span></div>
+          <div class="d">买入军工龙头 <b>华力创通</b> +3011万（20cm）</div>
+          <div class="flowtag">风格：大资金打板、偏好龙头</div>
+        </div>
+      </div>
+
+      <div class="youzi">
+        <div class="av blue">连</div>
+        <div class="bd">
+          <div class="t">国泰海通·连云港巨龙南路 <span class="badge b-blue">净+0.91亿</span></div>
+          <div class="d">广撒网：<b>尖峰集团</b>+3107万、<b>读者传媒</b>+3000万、<b>东方嘉盛</b>+2328万、<b>佳力奇</b>+1965万</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <h3>🟢 净卖出游资 / 趋势席位</h3>
+
+      <div class="youzi">
+        <div class="av dn" style="color:var(--dn)">新</div>
+        <div class="bd">
+          <div class="t">国泰海通·南京太平南路 <span class="badge b-red">作手新一系 · 净-1.76亿</span></div>
+          <div class="d">大肆出货 <b>崇达技术</b>（PCB）净卖 <b>-2.19亿</b>；同时买 天顺风能 +4261万</div>
+          <div class="flowtag">风格：题材首板+龙头接力，今日兑现PCB</div>
+        </div>
+      </div>
+
+      <div class="youzi">
+        <div class="av">高</div>
+        <div class="bd">
+          <div class="t">高盛(中国)·上海浦东世纪大道 <span class="badge b-blue">净+3.51亿</span></div>
+          <div class="d">外资/量化席位：大额买入 <b>药明康德</b>+3.70亿、<b>振华股份</b>+8808万</div>
+          <div class="flowtag">与国内机构在药明康德的出货方向相反</div>
+        </div>
+      </div>
+
+      <div class="youzi">
+        <div class="av">瑞</div>
+        <div class="bd">
+          <div class="t">瑞银证券·上海花园石桥路 <span class="badge b-blue">净+2.04亿</span></div>
+          <div class="d">买入 <b>药明康德</b>+2.06亿，外资合力承接</div>
+        </div>
+      </div>
+
+      <div class="youzi">
+        <div class="av dn" style="color:var(--dn)">中</div>
+        <div class="bd">
+          <div class="t">中信证券·上海分公司 <span class="badge b-red">净-2.36亿</span></div>
+          <div class="d">卖出 <b>药明康德</b>-2.16亿、<b>振华股份</b>-9328万、<b>瑞芯微</b>-9066万</div>
+          <div class="flowtag">机构/量化大宗席位，全面减持医药+半导体</div>
+        </div>
+      </div>
+
+      <div class="youzi">
+        <div class="av dn" style="color:var(--dn)">华</div>
+        <div class="bd">
+          <div class="t">华创证券·北京西直门 <span class="badge b-red">净-0.94亿</span></div>
+          <div class="d">重砸出口链 <b>涛涛车业</b> 净卖 -9366万（该股大跌18.8%）</div>
+        </div>
+      </div>
+
+      <div class="youzi">
+        <div class="av">沪</div>
+        <div class="bd">
+          <div class="t">沪股通 / 深股通 专用席位</div>
+          <div class="d">沪股通 <b class="up">净+7.82亿</b>（药明康德买26.25亿/卖12.26亿）；深股通 <b class="dn">净-4.55亿</b>（宝鼎、涛涛、崇达净卖）</div>
+          <div class="flowtag">呈现"沪强深弱"、外资抄底CXO的结构</div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="foot">
-    本报告由自动化任务生成，数据来自公开行情接口（腾讯行情 / 新浪财经 / 新浪期货），仅供参考，不构成投资建议。<br>
-    报告日期：2026-10-16 ｜ 覆盖交易日：2026-10-15（美东）｜ A股方向评级为策略观点，请结合自身仓位决策。
+  <!-- 游资合力 -->
+  <h2>🔥 游资合力个股 <span class="en">MULTI-SEAT CONVERGENCE</span></h2>
+  <table>
+    <thead><tr><th>个股</th><th>涨跌幅</th><th>汇聚席位</th><th>题材逻辑</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="nm">中鼎股份 <span class="code">000887</span></td>
+        <td class="pct-pill up">+9.99%</td>
+        <td>成都系 + 西安西大街 + 国泰海通上海分公司 + 东亚前海深圳</td>
+        <td>汽车零部件/机器人·空气悬挂，机构游资共振</td>
+      </tr>
+      <tr>
+        <td class="nm">宗申动力 <span class="code">001696</span></td>
+        <td class="pct-pill up">+9.98%</td>
+        <td>西安西大街 + 章盟主系 + 爱建证券前滩 + 开源西安高新成章路</td>
+        <td>低空经济·无人机动力，四大游资合力</td>
+      </tr>
+      <tr>
+        <td class="nm">佳力奇 <span class="code">301586</span></td>
+        <td class="pct-pill up">+20.00%</td>
+        <td>章盟主系 + 连云港巨龙南路 + 常州健身路 + 上海浦东锦康路 + 国新证券北京</td>
+        <td>军工·碳纤维复合材料，纯游资接力无机构</td>
+      </tr>
+      <tr>
+        <td class="nm">尖峰集团 <span class="code">600668</span></td>
+        <td class="pct-pill up">+10.01%</td>
+        <td>常州健身路 + 连云港巨龙南路 + 东亚前海苏州 + 平安济南</td>
+        <td>水泥+医药双主题，游资抢筹</td>
+      </tr>
+      <tr>
+        <td class="nm">读者传媒 <span class="code">603999</span></td>
+        <td class="pct-pill up">+9.97%</td>
+        <td>西安西大街 + 连云港巨龙南路 + 长城成都天晖 + 国泰海通杭州滨江</td>
+        <td>出版传媒·逆势涨停（板块整体跌2.3%）</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 连板标杆 -->
+  <h2>📈 连板标杆 & 涨停梯队 <span class="en">LIMIT-UP LADDER</span></h2>
+  <div class="grid2">
+    <div class="box">
+      <h3>🚀 连板标杆</h3>
+      <div class="kv"><span>冰山冷热 <span class="code">000530</span></span><span class="up">4连板</span></div>
+      <div class="kv"><span>题材：冷链 / 汽车热管理</span><span>成交30.9亿 · 换手33.2%</span></div>
+      <div class="kv"><span>机构净买入</span><span class="up">+0.72亿</span></div>
+      <div class="note" style="margin-top:12px">今日两市最高标，机构连续两日现身买榜；但单日龙虎榜整体净卖出，<b>高位接力风险上升</b>。</div>
+    </div>
+    <div class="box">
+      <h3>⚡ 20cm / 30cm 涨停上榜股</h3>
+      <div class="kv"><span>华力创通 <span class="code">300045</span> · 军工</span><span class="up">+20.04%</span></div>
+      <div class="kv"><span>晨曦航空 <span class="code">300581</span> · 军工</span><span class="up">+20.02%</span></div>
+      <div class="kv"><span>金盾股份 <span class="code">300411</span> · 军工/通风</span><span class="up">+20.00%</span></div>
+      <div class="kv"><span>佳力奇 <span class="code">301586</span> · 碳纤维军工</span><span class="up">+20.00%</span></div>
+      <div class="kv"><span>英搏尔 <span class="code">300681</span> · 汽车电驱</span><span class="up">+19.98%</span></div>
+      <div class="kv"><span>莱美药业 <span class="code">300006</span> · 医药</span><span class="up">+19.93%</span></div>
+      <div class="kv"><span>晟楠科技 / 捷众科技 (北交所)</span><span class="up">+30%</span></div>
+    </div>
   </div>
 
+  <!-- 题材热度 -->
+  <h2>🎯 题材热度分析 <span class="en">THEME HEAT</span></h2>
+  <div class="box">
+    <div class="heat"><div class="lbl">军工·低空经济</div><div class="bar"><i style="width:96%;background:linear-gradient(90deg,#f5b942,#ff7a45)"></i></div><div class="val">🔥🔥🔥🔥🔥 主线</div></div>
+    <div class="heat"><div class="lbl">汽车零部件</div><div class="bar"><i style="width:82%;background:linear-gradient(90deg,#4d9fff,#a879ff)"></i></div><div class="val">🔥🔥🔥🔥 强</div></div>
+    <div class="heat"><div class="lbl">冷链/热管理</div><div class="bar"><i style="width:70%;background:linear-gradient(90deg,#25d0c0,#4d9fff)"></i></div><div class="val">🔥🔥🔥 连板标</div></div>
+    <div class="heat"><div class="lbl">水泥/反内卷</div><div class="bar"><i style="width:60%;background:linear-gradient(90deg,#8b97ad,#f5b942)"></i></div><div class="val">🔥🔥🔥 涨价预期</div></div>
+    <div class="heat"><div class="lbl">风电</div><div class="bar"><i style="width:52%;background:linear-gradient(90deg,#22c55e,#25d0c0)"></i></div><div class="val">🔥🔥 回暖</div></div>
+    <div class="heat"><div class="lbl">医药（分化）</div><div class="bar"><i style="width:48%;background:linear-gradient(90deg,#a879ff,#ff4d5b)"></i></div><div class="val">细分活跃/CXO崩</div></div>
+    <div class="heat"><div class="lbl">传媒/AI视频</div><div class="bar"><i style="width:34%;background:linear-gradient(90deg,#4d9fff,#22c55e)"></i></div><div class="val">个股强/板块弱</div></div>
+    <div class="heat"><div class="lbl">PCB·半导体</div><div class="bar"><i style="width:22%;background:linear-gradient(90deg,#ff4d5b,#8b97ad)"></i></div><div class="val">❄️ 走弱</div></div>
+  </div>
+  <div class="note" style="margin-top:14px">
+    <b>热度判断：</b>本期龙虎榜最强共振在 <b>军工/低空经济</b> —— 上榜军工股达9只（华力创通、晨曦航空、金盾股份、佳力奇、宗申动力、晟楠科技、司南导航、捷众科技、宝鼎科技），
+    且有<b>珠海航展临近（12/7-13）</b>这一明确事件催化 + 前三季火箭发射70次创历史新高的基本面支撑，属"事件+基本面"双驱动，<b>持续性偏强</b>。
+    <b>汽车零部件</b>（涨停14家、中鼎股份/英搏尔/均胜电子上榜）为资金合力方向，但均胜电子出现机构+北向净卖，需警惕分歧。<br>
+    <b>风险信号：</b>PCB（崇达技术55亿巨量、作手新一净卖2.19亿）、CRO/创新药（药明康德跌停）、半导体（瑞芯微-10%、机构与北向对砸）三个方向资金明显撤离，属当日<b>资金撤离区</b>。
+  </div>
+
+  <!-- 机构 vs 游资 -->
+  <h2>⚖️ 机构 vs 游资对比 <span class="en">INSTITUTION vs HOT MONEY</span></h2>
+  <table>
+    <thead><tr><th>维度</th><th>机构席位</th><th>游资席位</th></tr></thead>
+    <tbody>
+      <tr><td class="nm">主攻方向</td><td>冷链（冰山冷热）、风电（天顺风能）、医药（莱美药业）、汽车电驱（英搏尔）</td><td>军工小票（佳力奇、晨曦航空）、汽车零部件（中鼎股份）、传媒（读者传媒）、水泥（尖峰集团）</td></tr>
+      <tr><td class="nm">分歧标的</td><td colspan="2">瑞芯微（机构+2.36亿抄底 vs 北向砸-8.96亿）、药明康德（外资抄底 vs 内资机构-5.95亿出货）、均胜电子（游资买 vs 机构卖）、吉大正元（游资做T vs 机构-0.80亿）</td></tr>
+      <tr><td class="nm">共振标的</td><td colspan="2">华力创通、英搏尔、莱美药业、天顺风能、中鼎股份 —— 机构与游资方向一致，信号最强</td></tr>
+      <tr><td class="nm">风格差异</td><td>逆势抄底跌停股、偏好有业绩支撑的细分龙头</td><td>打板军工题材首板、快进快出、高换手接力</td></tr>
+      <tr><td class="nm">净额对比</td><td class="dn">机构专用合计约 -1.74亿（净卖）</td><td class="up">西安西大街、桑田路、成都系等活跃游资净买为主</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 对持仓/成长股启示 -->
+  <h2>💡 对成长股中长线投资者的启示 <span class="en">TAKEAWAYS</span></h2>
+  <div class="box">
+    <ul class="clean">
+      <li><b>军工景气度获资金强确认</b>：今日军工上榜股最多，且非纯题材炒作——珠海航展+火箭发射创历史新高提供基本面锚。<b>华力创通、中鼎股份</b>等机构游资共振标的，可作为成长股中线的情绪与资金验证信号关注。</li>
+      <li><b>汽车零部件/机器人链条活跃</b>：中鼎股份、英搏尔、均胜电子同时上榜，反映汽车智能化+人形机器人产业链的资金关注度回升，但需注意机构在均胜电子上的净卖出分歧。</li>
+      <li><b>警惕高位接力风险</b>：最高标冰山冷热4板，单日龙虎榜整体净卖出、炸板率高达45.5%，情绪处于"修复但不亢奋"阶段，<b>追高性价比低</b>。</li>
+      <li><b>资金撤离区回避</b>：PCB（崇达技术）、CRO/CXO（药明康德、万邦医药）、半导体（瑞芯微）资金明显流出，短期不具备情绪支撑。</li>
+      <li><b>外资与内资分歧值得跟踪</b>：药明康德沪股通+外资超大额买入 vs 国内机构净卖-5.95亿，属典型的"外资抄底、内资调仓"分歧，CXO板块后续走势可作为观察外资偏好的窗口。</li>
+    </ul>
+  </div>
+
+  <div class="risk">
+    <b>⚠️ 风险提示：</b>① 本报告基于2026-10-16公开龙虎榜数据与市场资讯，龙虎榜仅反映当日席位行为，不构成任何投资建议；② 游资席位识别基于营业部别称的经验映射，存在主体变更（如国泰君安+海通合并后席位改名）导致误判的可能；③ 军工、传媒等题材情绪波动大，连板股次日风险高；④ 数据源为东方财富数据中心 API（iFind MCP 本轮请求额度已耗尽，已按降级规则改用东方财富直连 API）。
+  </div>
+
+  <footer>
+    🐉 龙虎榜游资追踪 · 2026-10-16（周五）｜ 数据来源：东方财富数据中心 API + 东方财富妙想资讯<br>
+    本报告由自动化流程生成，仅供研究参考，不构成投资建议 · 生成时间 2026-10-16 19:00
+  </footer>
 </div>
 </body>
 </html>
