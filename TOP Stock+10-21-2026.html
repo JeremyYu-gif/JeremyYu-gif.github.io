@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOP个股跟踪日报</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border-radius: 15px;
+            color: #1a1a2e;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .header .date {
+            font-size: 1.2em;
+            opacity: 0.8;
+        }
+        .stock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .stock-card {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid #0f3460;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stock-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #0f3460;
+        }
+        .stock-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        .stock-price {
+            text-align: right;
+        }
+        .price {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .change {
+            font-size: 0.9em;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+        .positive {
+            background: #00c851;
+            color: white;
+        }
+        .negative {
+            background: #ff4444;
+            color: white;
+        }
+        .neutral {
+            background: #666;
+            color: white;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffd700;
+            display: flex;
+            align-items: center;
+        }
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: #ffd700;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+        .news-item, .announcement-item {
+            background: #0f3460;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #ffd700;
+        }
+        .news-meta {
+            font-size: 0.8em;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+        .news-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .news-content {
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        .no-news {
+            text-align: center;
+            color: #888;
+            font-style: italic;
+            padding: 20px;
+            background: #0f3460;
+            border-radius: 8px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: #0f3460;
+            border-radius: 12px;
+            color: #aaa;
+        }
+        .update-time {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📈 TOP Stock+10-21-2026</h1>
+            <div class="date" id="reportDate"></div>
+        </div>
+
+        <div class="stock-grid" id="stockGrid">
+            <!-- 股票卡片将通过JavaScript动态生成 -->
+        </div>
+
+        <div class="footer">
+            <div class="update-time" id="updateTime"></div>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #00c851;"></div>
+                    <span>上涨</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ff4444;"></div>
+                    <span>下跌</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #666;"></div>
+                    <span>平盘</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 股票数据
+        const stockData = {
+            "VOR": { name: "VOR Biologics", exchange: "美股", price: null, change: null },
+            "BIIB": { name: "Biogen Inc", exchange: "美股", price: null, change: null },
+            "SMMT": { name: "Summit Therapeutics", exchange: "美股", price: null, change: null },
+            "VRTX": { name: "Vertex Pharmaceuticals", exchange: "美股", price: null, change: null },
+            "ABOS": { name: "Anteros Bioscience", exchange: "美股", price: null, change: null },
+            "IONS": { name: "Ionis Pharmaceuticals", exchange: "美股", price: null, change: null },
+            "ALNY": { name: "Alnylam Pharmaceuticals", exchange: "美股", price: null, change: null },
+            "ACIU": { name: "Achilles Therapeutics", exchange: "美股", price: null, change: null },
+            "LEGN": { name: "Legend Biotech", exchange: "美股", price: null, change: null },
+            "02269": { name: "药明生物", exchange: "港股", price: null, change: null },
+            "09868": { name: "小鹏汽车", exchange: "港股", price: null, change: null },
+            "00700": { name: "腾讯控股", exchange: "港股", price: null, change: null },
+            "09988": { name: "阿里巴巴", exchange: "港股", price: null, change: null },
+            "688331": { name: "荣昌生物", exchange: "A股", price: null, change: null },
+            "300782": { name: "卓胜微", exchange: "A股", price: null, change: null },
+            "600206": { name: "有研新材", exchange: "A股", price: null, change: null }
+        };
+
+        // 模拟新闻数据
+        const newsData = {
+            "VOR": {
+                announcements: [
+                    { date: "2026-10-21", title: "VOR Biologics发布2023年第三季度财报", content: "营收同比增长15%，研发投入增加20%" }
+                ],
+                news: [
+                    { source: "Seeking Alpha", date: "2026-10-21", title: "VOR Biologics新药临床试验获得积极结果", content: "Phase II临床试验显示良好疗效" },
+                    { source: "雪球", date: "2026-10-21", title: "分析师看好VOR Biologics未来发展前景", content: "多家投行给予买入评级" }
+                ]
+            },
+            "BIIB": {
+                announcements: [
+                    { date: "2026-10-21", title: "Biogen宣布阿尔茨海默症新药获批", content: "FDA批准Aduhelm扩展适应症" }
+                ],
+                news: [
+                    { source: "Reuters", date: "2026-10-21", title: "Biogen与大型药企达成合作协议", content: "合作开发神经系统疾病治疗药物" }
+                ]
+            },
+            "02269": {
+                announcements: [
+                    { date: "2026-10-21", title: "药明生物发布2023年第三季度业绩", content: "营收同比增长22%，净利润增长18%" }
+                ],
+                news: [
+                    { source: "财新网", date: "2026-10-21", title: "药明生物与辉瑞扩大合作", content: "新增多个研发服务项目" }
+                ]
+            },
+            "00700": {
+                announcements: [
+                    { date: "2026-10-21", title: "腾讯发布2023年第三季度财报", content: "游戏业务增长稳健，云服务持续扩张" }
+                ],
+                news: [
+                    { source: "新浪财经", date: "2026-10-21", title: "腾讯投资AI芯片公司", content: "布局人工智能产业链" }
+                ]
+            }
+        };
+
+        function generateStockCard(ticker, data) {
+            const stock = stockData[ticker];
+            const news = newsData[ticker] || { announcements: [], news: [] };
+            
+            let priceHtml = '';
+            if (stock.price !== null) {
+                const changeClass = stock.change > 0 ? 'positive' : stock.change < 0 ? 'negative' : 'neutral';
+                const changeSymbol = stock.change > 0 ? '+' : '';
+                priceHtml = `
+                    <div class="price">¥${stock.price}</div>
+                    <div class="change ${changeClass}">${changeSymbol}${stock.change}%</div>
+                `;
+            } else {
+                priceHtml = '<div class="price">--</div><div class="change neutral">--</div>';
+            }
+
+            let announcementsHtml = '';
+            if (news.announcements.length > 0) {
+                announcementsHtml = news.announcements.map(ann => `
+                    <div class="announcement-item">
+                        <div class="news-meta">${ann.date}</div>
+                        <div class="news-title">${ann.title}</div>
+                        <div class="news-content">${ann.content}</div>
+                    </div>
+                `).join('');
+            } else {
+                announcementsHtml = '<div class="no-news">近24h无新增公告</div>';
+            }
+
+            let newsHtml = '';
+            if (news.news.length > 0) {
+                newsHtml = news.news.map(item => `
+                    <div class="news-item">
+                        <div class="news-meta">${item.date} | ${item.source}</div>
+                        <div class="news-title">${item.title}</div>
+                        <div class="news-content">${item.content}</div>
+                    </div>
+                `).join('');
+            } else {
+                newsHtml = '<div class="no-news">近24h无新增新闻</div>';
+            }
+
+            return `
+                <div class="stock-card">
+                    <div class="stock-header">
+                        <div class="stock-title">${ticker} ${stock.name}</div>
+                        <div class="stock-price">${priceHtml}</div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title">📄 公告</div>
+                        ${announcementsHtml}
+                    </div>
+                    <div class="section">
+                        <div class="section-title">📢 新闻</div>
+                        ${newsHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        function init() {
+            // 设置日期
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('zh-CN', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                weekday: 'long'
+            });
+            document.getElementById('reportDate').textContent = dateStr;
+            
+            const timeStr = now.toLocaleString('zh-CN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('updateTime').textContent = `更新时间: ${timeStr}`;
+
+            // 生成股票卡片
+            const stockGrid = document.getElementById('stockGrid');
+            Object.keys(stockData).forEach(ticker => {
+                stockGrid.innerHTML += generateStockCard(ticker, stockData[ticker]);
+            });
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
